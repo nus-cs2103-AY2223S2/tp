@@ -276,6 +276,17 @@ Example: `removeappointmenttech t/1 a/2`
 ---
 ### Actions
 
+<div markdown="block" class="alert alert-warning">
+*Do note that the Undo and Redo commands are designed to work specifically with commands that alter or change data. See note below to find out what commands can be undo/redo.*
+</div>
+<div markdown="block" class="alert alert-info">
+**Commands that you can undo/redo:**<br>
+* `add`
+* `delete`
+* `edit`
+* `undo`/`redo` i.e. you can `undo` a `redo`, and you can `redo` an `undo`
+</div>
+
 #### Undo a previously executed command: `undo`
 
 Undoes certain previously typed command
@@ -303,15 +314,6 @@ Examples:
 
 After deleting a customer at Index 3 and using `undo` to reverse the deletion of the customer, using `redo` will restore the customer back into the list.
 
-<div markdown="block" class="alert alert-info">
-
-**Commands that you can undo/redo:**<br>
-* `add` after successfully adding a contact
-* `delete`
-* `edit`
-* `undo`/`redo` i.e. you can `undo` a `redo`, and you can `redo` an `undo`
-</div>
-
 ---
 ### Others
 
@@ -320,7 +322,7 @@ After deleting a customer at Index 3 and using `undo` to reverse the deletion of
 
 Finds the number of appointments on the specified date.
 
-Format: `totalAppointment d\DATE`
+Format: `totalAppointment d/DATE`
 
 Example: `totalappointment d/2023-02-03`
 
@@ -355,10 +357,14 @@ If your changes to the data file makes its format invalid, AutoM8 will discard a
 
 ## FAQ
 
-**Q**: Question<br>
-**A**: Answer
+**Q**: It appears that the index numbers in the list are not in a sequential order, such as 1, 2, 3, and so on, is there something wrong with my AutoM8 app? <br>
+**A**: AutoM8 is actually functioning properly. The numbers you see listed next to the entities are not their index numbers, but rather their unique IDs. The reason why it might appear inconsistent is because our IdGenerator automatically generates IDs based on the highest ID value that has been assigned previously, and then continues sequentially from there. So, the ID numbers might not necessarily be in a perfectly sequential order, but they are still unique and assigned correctly.
 
-TO BE UPDATED
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AutoM8 home folder.
+
+**Q**: I edited the data file and now AutoM8 throws a fatal error and stops working.<br>
+**A**: It seems that your edit has made some conflicts with the way different parts of information are related to each other. This is probably because AutoM8 has some entities that are closely linked together. When you make edits, it's important to be cautious of this and make sure that your changes match up with AutoM8's entity references. You have two options: you can either delete the entire JSON file to reset everything and start fresh, or you can double-check your edits to make sure they are consistent with the way AutoM8 works.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -379,8 +385,8 @@ TO BE UPDATED
 | **Sort Displayed List**                                               | `sort by/ENTITY_PARAM d/DIRECTION`<br> e.g., `listvehicles` then `sort by/brand d/asc`                                                                                          |
 | **View specific Vehicle/Customer/Service/Appointment/Technician**     | `view(vehicle/customer/service/appointment/technician) ID`<br> e.g., `viewappointment 56`                                                                                       |
 | **Find Vehicle/Customer/Service/Appointment/Technician**              | `find KEYWORD [MORE SPACE SEPERATED KEYWORDS]`<br> e.g., `find toyota car`                                                                                                      |
-| **Edit a specific Vehicle/Customer/Service/Appointment/Technician**   | `edit(vehicle/customer/service/appointment/technician) i/ID [?/PARAM] …​`<br> e.g., `edit customer i/1 p/91234567 e/johndoe@example.com`                                        |
-| **Delete a specific Vehicle/Customer/Service/Appointment/Technician** | `delete(vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                                   |
+| **Edit a specific Vehicle/Customer/Service/Appointment/Technician**   | `edit(vehicle/customer/service/appointment/technician) i/ID [?/PARAM] …​`<br> e.g., `editcustomer i/1 p/91234567 e/johndoe@example.com`                                         |
+| **Delete a specific Vehicle/Customer/Service/Appointment/Technician** | `delete(vehicle/customer/part/appointment) ID`<br> e.g., `deletecustomer 12`                                                                                                    |
 | **Unassign Technician from Service/Appointment**                      | `remove(service/appointment)tech t/TECHCICIAN_ID (a//s/)APPOINTMENT/SERVICE_ID`<br> e.g., `removeservicetech s/1 t/2`                                                           | ` 
 | **Remove Part from Service**                                          | `removeservicepart s/SERVICE_ID n/PART_NAME q/PART_QUANTITY`<br> e.g., `removeservicepart s/1 n/wheels q/2`                                                                     |
 | **Get total number appointment on a specified date**                  | `totalAppointment d/DATE` <br> e.g., `totalappointment d/2023-02-03`                                                                                                            |
