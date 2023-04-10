@@ -127,7 +127,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <img src="images/UiClassDiagram.png" width="650" />
 
- </p>
+</p>
  
 The UI consists of a `MainWindow` that is made up of parts, e.g. the `CommandBox`, `ResultDisplay`, `InternshipListPanel`, `StatusBarFooter`, `InfoPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -209,7 +209,7 @@ The *Sequence Diagram* below illustrates the interactions within the `Logic` com
 <div style="page-break-after: always;"></div>
 <br /> 
 
-The *Class Diagram* below outlines classes in `Logic` used for parsing a user command:
+The partial *Class Diagram* below outlines classes in `Logic` used for parsing a user command:
 
 <p align="center">
 
