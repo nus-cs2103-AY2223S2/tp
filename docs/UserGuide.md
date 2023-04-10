@@ -7,13 +7,13 @@ NeoBook is a **desktop app for managing contacts, optimized for use via a Comman
 
 Apart from being your all-encompassing address book, NeoBook also has an Events function for you to keep track of your daily schedule.
 
-# Table Of Contents
+## Table Of Contents
 * Table of Contents
 {:toc}
 
 <hr style="border:2px solid gray">
 
-# Getting started
+## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -45,7 +45,44 @@ Apart from being your all-encompassing address book, NeoBook also has an Events 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
+## How to read the User Guide
+
+<div markdown="block" class="alert alert-info">
+
+####  :information_source: Notes about the command format:<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+* Items with `…​` after them can be used multiple times including zero times.<br>
+  e.g. `t/TAG…​` means that we can exclude the tag prefix completely or use it as `t/friend`, `t/friend t/family` etc.
+
+* Items in `{ }` and have a `…​` followed after them must be used at least once, and can be used multiple times.<br>
+  e.g. For `editevent INDEX {PREFIX/PARAMETER}…​` will allow `editevent 1 r/Weekly` or `editevent 2 d/Do work r/Daily`, but not `editevent 1`.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* If a parameter, which isn't a FieldGroup, is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. Since Phone is just a normal field, if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.<br>
+  e.g. Since Modules is a FieldGroup, if you specify `mt/CS1231S mt/CS2040S`, all will be taken unlike the previous example.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+
+</div>
+
+
+<hr style="border:2px solid gray">
+
+
 ## User Interface
+
+____________________________________________________________________________________________________________________
 
 ### UI Breakdown For `Tabs`
 Use these tabs to toggle between the NeoBook, Events and your own information!
@@ -94,39 +131,18 @@ ________________________________________________________________________________
     * Contains your personal details
 
 [Back To Contents](#table-of-contents)
+
 <hr style="border:2px solid gray">
 
 ## NeoBook Features
 
-<div markdown="block" class="alert alert-info">
-
-####  :information_source: Notes about the command format:<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `t/TAG…​` means that we can exclude the tag prefix completely or use it as `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter, which isn't a FieldGroup, is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. Since Phone is just a normal field, if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.<br>
-  e.g. Since Modules is a FieldGroup, if you specify `mt/CS1231S mt/CS2040S`, all will be taken unlike the previous example.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-
-</div>
-
-
 ____________________________________________________________________________________________________________________
 
+### Introduction
+
+Listed below are all the commands one can do to interact with the address book tab. Try them out for yourself today!
+
+____________________________________________________________________________________________________________________
 
 ### Viewing Help : `help`
 
@@ -160,7 +176,7 @@ Use this command to add him/her to your NeoBook.
 
 #### Syntax
 
-`add n/NAME PREFIX/PARAMETER...`
+`add n/NAME PREFIX/PARAMETER…​`
 
 #### Description
 Here are all the prefixes that can be used:
@@ -276,7 +292,7 @@ Use this command to edit his/her details easily!
 
 #### Syntax
 
-`edit INDEX PREFIX/PARAMETER...`
+`edit INDEX {PREFIX/PARAMETER}…​`
 
 
 #### Description
@@ -345,7 +361,7 @@ Use this command to find contacts by specifying the fields and corresponding key
 
 #### Syntax
 
-`find PREFIX/KEYWORD...`
+`find {PREFIX/KEYWORD}…​`
 
 #### Description
 
@@ -489,19 +505,19 @@ ________________________________________________________________________________
 
 ### NeoBook Command Summary
 
-| Action       | Format, Examples                                                                                                                                 |
-|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME [PREFIX/PARAMETERS]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**    | `clear`                                                                                                                                          |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                              |
-| **Edit**     | `edit INDEX [PREFIX/PARAMETERS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                          |
-| **Fav**      | `fav INDEX`<br> e.g., `fav 2`                                                                                                                    |
-| **Unfav**    | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                |
-| **Find**     | `find [PREFIX/PARAMETERS]…`<br> e.g., `find n/James Jake mt/CS2103T a/Serangon Central`                                                          |
-| **Select**   | `select INDEX` <br> e.g., `select 2`                                                                                                             |
-| **List**     | `list`                                                                                                                                           |
-| **Help**     | `help`                                                                                                                                           |
-| **Exit**     | `exit`                                                                                                                                           |
+| Action     | Format, Examples                                                                                                                              |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME PREFIX/PARAMETER…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                       |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                           |
+| **Edit**   | `edit INDEX {PREFIX/PARAMETERS}…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                       |
+| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                 |
+| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                             |
+| **Find**   | `find {PREFIX/KEYWORD}…​`<br> e.g., `find n/James Jake mt/CS2103T a/Serangon Central`                                                         |
+| **Select** | `select INDEX` <br> e.g., `select 2`                                                                                                          |
+| **List**   | `list`                                                                                                                                        |
+| **Help**   | `help`                                                                                                                                        |
+| **Exit**   | `exit`                                                                                                                                        |
 
 [Back To Contents](#table-of-contents)
 
@@ -522,9 +538,11 @@ Events have 4 components to them
 - EndDateTime
 - Recurrence
 
-Events will auto-update to their next earliest occurrence for recurring events and will be automatically grayed out once the event has been passed.
+Events will automatically update to their next earliest occurrence for recurring events.
 
-In the case where an event is supposed to be greyed out (i.e. the time is 2359 and the event is set to end at 2358 on the same day), then inputting any command will update the event to grey.
+One-time events will be automatically grayed out once the event has been passed.
+
+In the case where a one-time event is supposed to be greyed out (i.e. the current time is 2359 and the event is set to end at 2358 on the same day), then inputting any command will update the event to grey.
 
 </div>
 
@@ -570,15 +588,22 @@ Accepted Intervals:
 
 #### Important requirements
 
-1) `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
+1. `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
     * `START TIME` and `END TIME` follows the 24-Hour Clock format e.g. instead of 6:00pm, you must enter 1800.
     * `START DATE & START TIME` must be before `END DATE & END TIME`
     * If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
     * If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
     * `2400` is also accepted as an input for `START TIME` and `END TIME`, this will roll the date input by the user to the next day
         e.g. Inputting `2023-03-10 2400` will be accepted and will be rolled over to `2023-03-11 0000` instead.
-2) `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
+
+2. `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
     * If unspecified, Event will be automatically added as a `One Time Event`.
+
+#### Extra Notes
+* If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
+* If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
+* `2400` is also accepted as an input for `START TIME` and `END TIME`, this will roll the date input by the user to the next day
+  e.g. Inputting `2023-03-10 2400` will be accepted and will be rolled over to `2023-03-11 0000` instead.
 
 #### Example Usages
 * `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` will add a Weekly Recurring Event of CS2103T Lecture that occurs from 1600 to 1800, starting on 2023-03-30.
@@ -625,7 +650,7 @@ Use this command to edit the specified event in your NeoBook.
 
 #### Syntax
 
-`editevent INDEX PREFIX/PARAMETER...`
+`editevent INDEX {PREFIX/PARAMETER}…​`
 
 #### Description
 `INDEX` refers to the index of the event you wish to edit in the current displayed list.
@@ -640,14 +665,15 @@ Use this command to edit the specified event in your NeoBook.
 
 #### Important requirements
 
-`INDEX` must be a **positive integer** (must be greater than 0).
+1. `INDEX` must be a **positive integer** (must be greater than 0).
+2. At least one field must be provided.
+
 
 #### Extra Notes
 * If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
 * If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
 * `2400` is also accepted as an input for `START TIME` and `END TIME`, this will roll the date input by the user to the next day
     e.g. Inputting `2023-03-10 2400` will be accepted and will be rolled over to `2023-03-11 0000` instead. 
-* At least one field must be provided.
 
 
 #### Example Usages
@@ -677,8 +703,8 @@ NAME is the name of the person you want to tag to the event.
 
 
 #### Important requirements
-1) NAME is **case_sensitive**.
-2) NAME must be the name of a contact already registered in NeoBook.
+1. NAME is **case_sensitive**.
+2. NAME must be the name of a contact already registered in NeoBook.
 
 
 #### Example Usages
@@ -717,8 +743,8 @@ The EVENT INDEX is the index of the event you want to tag the person to.
 
 NAME is the name of the person you want to untag from the event.
 #### Important requirements
-1) NAME is **case_sensitive**.
-2) NAME must be the name of a contact already registered in NeoBook and
+1. NAME is **case_sensitive**.
+2. NAME must be the name of a contact already registered in NeoBook and
 tagged to that event.
 
 Examples:
@@ -739,13 +765,13 @@ Examples:
 
 ### Events Command Summary
 
-| Action                     | Format, Examples                                                                                                                                                                                |
-|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Event**              | `addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE` <br> e.g., `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` |   
-| **Delete Event**           | `delevent INDEX` <br/> e,g., `delevent 1`                                                                                                                                                       |
-| **Edit Event**             | `editevent INDEX PREFIX/PARAMETER...` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                              |
-| **Tag Contact to Event**   | `tagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g., `tagpersonevent et/1 pt/John`                                                                                                                |
-| **Untag Contact to Event** | `untagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                             |
+| Action                     | Format, Examples                                                                                                                                                                                  |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Event**              | `addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME [r/INTERVAL OF RECURRENCE]` <br> e.g., `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` |   
+| **Delete Event**           | `delevent INDEX` <br/> e,g., `delevent 1`                                                                                                                                                         |
+| **Edit Event**             | `editevent INDEX {PREFIX/PARAMETER}…​` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                               |
+| **Tag Contact to Event**   | `tagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g., `tagpersonevent et/1 pt/John`                                                                                                                  |
+| **Untag Contact to Event** | `untagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                               |
 [Back To Contents](#table-of-contents)
 
 <hr style="border:2px solid gray">
@@ -771,7 +797,7 @@ Use this command to edit your details easily!
 
 #### Syntax
 
-`edituser PREFIX/PARAMETER...`
+`edituser {PREFIX/PARAMETER}…​`
 
 
 #### Description
@@ -822,7 +848,7 @@ ________________________________________________________________________________
 
 | Action       | Format, Examples                                                                        |
 |--------------|-----------------------------------------------------------------------------------------|
-| **EditUser** | `edituser [PREFIX/PARAMETERS]…​`<br> e.g.,`edituser n/James Lee e/jameslee@example.com` |
+| **EditUser** | `edituser {PREFIX/PARAMETERS}…​`<br> e.g.,`edituser n/James Lee e/jameslee@example.com` |
 
 [Back To Contents](#table-of-contents)
 
@@ -885,6 +911,19 @@ Use Dark mode!
 `dark`
 
 [Back To Contents](#table-of-contents)
+
+____________________________________________________________________________________________________________________
+
+### User Command Summary
+
+| Action    | Format, Examples |
+|-----------|------------------|
+| **tab**   | `tab INDEX`      |
+| **light** | `light`          |
+| **dark**  | `dark`           |
+
+[Back To Contents](#table-of-contents)
+
 
 <hr style="border:2px solid gray">
 
