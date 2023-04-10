@@ -245,7 +245,7 @@ The fillInnerParts() method is part of the UI's initialization routine. The `Obs
 will be called to listen for changes in project list. During the initialization of the StatisticsBox instance, data
 for the **Due soon**, **Overdue** project list and **Pie chart** is also loaded.
 
-![StatisticsBoxActivityDiagram](images/StatisticsBoxActivityDiagram.png)
+![StatisticsBoxActivityDiagram](images/statisticsbox/StatisticsBoxActivityDiagram.png)
 
 
 ### Tabs panel
