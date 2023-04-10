@@ -943,7 +943,7 @@ In general, our team members have contributed equal effort to turn `coNtactUS` i
 We strived to meet weekly project deadlines, making sure that all the important features of our module tracker
 were completed and implemented perfectly by each specified milestones.
 
-### 11.1 Challenges faced:
+### 12.1 Challenges faced:
 
 1. Refactoring the models of `AB3` to fit the functional requirements of `coNtactUS` (Difficulty: 6 / 10, Effort
 required: 9 / 10)
