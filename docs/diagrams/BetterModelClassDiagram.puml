@@ -10,18 +10,18 @@ UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
 UniqueTagList -right-> "*" Remark
-UniqueTagList -right-> "*" Major
+UniqueTagList -right-> "0..2" Major
 UniqueTagList -right-> "*" CCA
 UniqueTagList -right-> "*" Module
 UniquePersonList -right-> Person
 
-Person -up-> "*" Module
-Person -up-> "*" CCA
-Person -up-> "*" Major
-Person -up-> "*" Remark
+Person *-up-> "*" Module
+Person *-up-> "*" CCA
+Person *-up-> "0..2" Major
+Person *-up-> "*" Remark
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> "1" Name
+Person *--> "0..1" Phone
+Person *--> "0..1" Email
+Person *--> "0..1" Address
 @enduml
