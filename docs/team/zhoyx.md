@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added new Rating field. [#157](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/157)
   * What it does: Allow users add a numeric rating from 0 to 5 to each bookmark.
-  * Justification: This field can then be used for sorting based on rating to allow users to easily find the best and worst content stored in the library. [#157](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/157)
+  * Justification: This field can then be used for sorting based on rating to allow users to easily find the best and worst content stored in the library.
 
 * **New Feature**: Created fixed list of Genres. [#139](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/139)
   * What it does: Added validation to only allow Genres from that list to be added.
