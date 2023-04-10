@@ -25,104 +25,47 @@ hello to a more efficient and organised way of managing the volunteers’ and el
 
 ## Before you Begin
 
-Please read this and [Quick Start](#quick-start) before skipping to specific parts ahead.
+Please read this and [Quick Start](#quick-start) before skipping  ahead.
 
 ### How to use this User Guide
 
 This guide aims to quickly get you started in using and navigating FriendlyLink.
 
-We suggest reading this guide in sequential order (or at least the [Terminology](#terminology) section) to familiarise yourself with the keywords used in this guide in the glossary and differently styled text which have special meanings.
+We suggest reading this guide in sequential order to familiarise yourself with the keywords used in this guide in the glossary and differently styled text which have special meanings.
 
-If you are already familiar with the [Terminology](#terminology),  you might want to go ahead to see the [Quick Start](#quick-start) guide, [Features](#features) explained with examples, or [Fields](#fields) and their specification (Such as Email, phone numbers and addresses). All terms used are summarised in the [Glossary](#glossary)
+If you are already familiar with the [Terminology](#terminology),  you might want to go ahead to see the [Quick Start](#quick-start) guide, 
+[Features](#features) explained with examples, or [Fields](#fields) and their specification (such as email, phone numbers and addresses). 
+All terms used are summarised in the [Glossary](#glossary)
 
-You may see the following icons throughout our user guide, which are styled differently according to their purpose.
+#### Icons 
 
-#### Information Box
+The following icons throughout our user guide:
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
-This provides some additional information that you are recommended to know.
-</div>
+| **Icons**                                                                | **Meaning**                                                                                                   |
+|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| <div markdown="span" class="alert alert-info">:information_source:</div> | This provides some additional information that you are recommended to know.                                   | 
+| <div markdown="block" class="alert alert-primary">:bulb:</div>           | This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink. |
+| <div markdown="block" class="alert alert-danger">:exclamation: </div>    | Danger zone! Do pay attention to the information here carefully.                                              |
 
-#### Tip Box
+The following icons are found in FriendLink: 
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
-This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink.
-</div>
+| **Icons**                                                        | **Meaning**            |
+|------------------------------------------------------------------|------------------------|
+| <img src="images/userGuide/icons/calendar.png" width="20"/>      | Available dates        |
+| <img src="images/userGuide/icons/region.png" width="20"/>        | Region                 |
+| <img src="images/userGuide/icons/home-address.png" width="20"/>  | Address                |
+| <img src="images/userGuide/icons/nric.png" width="20"/>          | NRIC                   |
+| <img src="images/userGuide/icons/age.png" width="20"/>           | Age                    |
+| <img src="images/userGuide/icons/phone.png" width="20"/>         | Phone number           |
+| <img src="images/userGuide/icons/email.png" width="20"/>         | Email                  |
+| <img src="images/userGuide/icons/tags.png" width="20"/>          | Tags                   |
+| <img src="images/userGuide/icons/medical-tags.png" width="20"/>  | Medical Qualifications |
 
-#### Danger Box
-
-<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
-Danger zone! Do pay attention to the information here carefully.
-</div>
-
-#### Code highlight
-
-`Highlights` are used to denote specific terms, commands or output from the application.
-
-* Highlighted commands consists special characters or capitalisation, which have special meaning.
-    * Words that are `CAPITALISED` are placeholders that should be replaced by you.<br>
-      E.g. in `add n/NAME`, `NAME` should be replaced with actual information `add n/John Doe`.
-
-    * Items in `[square brackets]` are optional.<br>
-      E.g. `n/NAME [t/TAG]` can be entered as `n/John Doe t/friend` or just `n/John Doe`.
-
-    * Items in `<angled brackets>` are the [preamble](#preamble).
-      E.g. `edit_elderly <NRIC> n/NAME ...` can be entered as `edit_elderly S1234567A n/John Doe`.
-      In some cases, they are also specified as `<[PREAMBLE]>` which indicates that the preamble is optional.
-
-    * Items with `[ellipsis]…` after them can be entered 0 or more times.<br>
-      E.g. `add_elderly n/NAME [t/TAG]…` can be entered as `add_elderly n/John Doe` (no tags included), `add_elderly n/John Doe t/friend` (1 tag), `add_elderly n/John Doe t/friend t/family` (2 tags) and more.
-
-#### Icons
-
-The following icons are used in FriendlyLink. For more information about what they represent, refer to the [Fields](#fields) section.
-
-<img src="images/userGuide/icons/calendar.png" width="20"/> : Available dates<br />
-
-<img src="images/userGuide/icons/region.png" width="20"/> : Region<br />
-
-<img src="images/userGuide/icons/home-address.png" width="20"/> : Address<br />
-
-<img src="images/userGuide/icons/nric.png" width="20"/> : NRIC<br />
-
-<img src="images/userGuide/icons/age.png" width="20"/> : Age<br />
-
-<img src="images/userGuide/icons/phone.png" width="20"/> : Phone number<br />
-
-<img src="images/userGuide/icons/email.png" width="20"/> : Email<br />
-
-<img src="images/userGuide/icons/tags.png" width="20"/> : Tags<br />
-
-<img src="images/userGuide/icons/medical-tags.png" width="20"/> : Medical Qualifications<br />
+For more information about what they represent, refer to the [Fields](#fields) section.
 
 ### Terminology
 
 The following terms are commonly used in this guide.
-
-#### Command
-A command is an instruction given by you to FriendlyLink to perform a specific task. For example, `add_elderly n/John Doe ...` tells FriendlyLink to record the information of a new person in FriendlyLink. More details about each command is given in the [Features](#features) section.
-
-#### Prefix
-Prefix refers to characters appearing before a slash in a command. Prefixes label the information that they represent. For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
-* Prefixes should be entered in all **lower case** (E.g. n/Abdul instead of N/Abdul)
-* Fields after prefixes have leading and trailing whitespaces removed (E.g. `n/ Mary` is trimmed to `n/Mary`)
-
-#### Field
-Field refers to information following a slash in a command, providing information to the relevant prefix, such as indicating a volunteer's name, phone number, email and other information.
-* For example, `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`.
-* Fields can be entered in any order.
-    * E.g. Specifying `n/John Doe p/97129078` or `p/97129078 n/John Doe` is acceptable.
-* If a field is expected only once in the command, but you specify it multiple times, only the last occurrence of the field will be taken.<br>
-    * E.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-    * E.g. If you specify `help 123`, it will be interpreted as `help`.
-* For more information on each specific field, refer to the [Fields](#fields) section
-
-#### Preamble
-Preamble is a special piece of information specified for certain commands that are entered without prefixes.
-* They need to be specified right after the [command](#command) word and before any other [Fields](#field).
-  * For example, `edit_elderly S1234567A n/John Doe` has the preamble `S1234567A`
-  * On the other hand, specifying `edit_elderly n/John Doe S1234567A` is invalid as the preamble `S1234567A` has to come before all other fields.
 
 #### Duplicate Entry
 * Person (Elderly and Volunteers)
@@ -182,6 +125,51 @@ Opening multiple instances may result in unexpected behaviours.
 [Back to top](#table-of-contents)
 
 -------------------------------------------
+
+### Commands
+
+A command is an instruction given by you to FriendlyLink to perform a specific task.
+
+#### Interpreting the command format
+
+In general, the following command format is adopted in FriendlyLink.
+
+<pre style="color: #28a745">
+    command <[PREAMBLE]> pre/FIELD [pre/FIELD] [pre/FIELD]…
+</pre>
+
+* Words that are `CAPITALISED` are placeholders that should be replaced by you.
+* Items in `[square brackets]` are optional.
+* Items in `<angled brackets>` are the [preamble](#preamble). The inclusion of `[]` indicates that the preamble is optional.
+* Items with `…` can be entered 0 or more times.
+
+For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]… `, a user may choose to specify
+`example_command 29 n/John Doe t/Hello t/World`. Notice that the prefix `bd` is not specified here, because it is optional.
+
+#### Prefix
+Prefix refers to characters appearing before a slash in a command. Prefixes label the information that they represent.
+For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
+* Prefixes should be entered in all **lower case** (E.g. n/Abdul instead of N/Abdul)
+* Fields after prefixes have leading and trailing whitespaces removed (E.g. `n/ Mary` is trimmed to `n/Mary`)
+
+#### Field
+Field refers to information following a slash in a command, providing information to the relevant prefix, such as indicating a volunteer's name, phone number, email and other information.
+* For example, `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`.
+* Fields can be entered in any order.
+    * E.g. Specifying `n/John Doe p/97129078` or `p/97129078 n/John Doe` is acceptable.
+* If a field is expected only once in the command, but you specify it multiple times, only the last occurrence of the field will be taken.<br>
+    * E.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+    * E.g. If you specify `help 123`, it will be interpreted as `help`.
+* For more information on each specific field, refer to the [Fields](#fields) section
+
+#### Preamble
+Preamble is a special piece of information specified for certain commands that are entered without prefixes.
+* They need to be specified right after the [command](#command) word and before any other [Fields](#field).
+    * For example, `edit_elderly S1234567A n/John Doe` has the preamble `S1234567A`
+    * On the other hand, specifying `edit_elderly n/John Doe S1234567A` is invalid as the preamble `S1234567A` has to come before all other fields.
+
+--------------------------------------------------------------
 
 ## Features
 
@@ -703,8 +691,8 @@ please ensure your input available date ranges are non-overlapping.
 </div>
 
 ### Tags
-A tag is a generic description for a group of people.
-* Consists of only alphanumeric, non-space characters.
+Tags provide details about an item and make it easy to locate related items that have the same tag.
+* Consists of only alphanumeric characters.
 
 [Back to top](#table-of-contents)
 
@@ -745,8 +733,8 @@ The following features are planned for the coming update
 | **Delete Elderly**   | `delete_elderly <NRIC> `<br> <br> E.g. `delete_elderly S8238655C`                                                                                                                                                                                                                                                          |
 | **Delete Volunteer** | `delete_volunteer <NRIC> `<br> <br> E.g. `delete_volunteer S8238658J`                                                                                                                                                                                                                                                      |
 | **Unpair**           | `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> E.g. `unpair vic/t0123423a eic/S2235243I`                                                                                                                                                                                                                            |
-| **Listing people**   | `list <[PAIRED \ UNPAIRED]>`                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                          |
 | **Find People**      | `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> E.g. `find n/John Doe`                                                                                           |
+| **Listing people**   | `list <[PAIRED \ UNPAIRED]>`                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                          |
 | **Summarise Data**   | `stats`                                                                                                                                                                                                                                                                                                                    |
 | **Help**             | `help`                                                                                                                                                                                                                                                                                                                     |
 | **Exit Program**     | `exit`                                                                                                                                                                                                                                                                                                                     |
