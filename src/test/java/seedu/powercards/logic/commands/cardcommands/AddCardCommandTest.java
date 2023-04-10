@@ -1,7 +1,8 @@
 package seedu.powercards.logic.commands.cardcommands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.powercards.model.tag.Tag.TagName.HARD;
 import static seedu.powercards.testutil.Assert.assertThrows;
 import static seedu.powercards.testutil.CardBuilder.DEFAULT_DECK;
