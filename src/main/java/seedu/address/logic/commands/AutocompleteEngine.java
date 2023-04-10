@@ -184,26 +184,26 @@ public class AutocompleteEngine {
      * Suggests prompts for arguments for {@code command} based on the user input.
      *
      * @param command The command to suggest arguments for.
-     * @param commmandBody The command body of the current user input.
+     * @param commandBody The command body of the current user input.
      * @return Suggested arguments.
      * @throws ParseException If the user input is invalid.
      */
-    private String suggestArguments(String command, String commmandBody) throws ParseException {
+    private String suggestArguments(String command, String commandBody) throws ParseException {
         ArrayList<Prefix> argPrefixes = ARGUMENT_PREFIX_MAP.get(command);
         assert argPrefixes != null;
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(" " + commmandBody, argPrefixes.toArray(Prefix[]::new));
+                ArgumentTokenizer.tokenize(" " + commandBody, argPrefixes.toArray(Prefix[]::new));
         Map<Prefix, ArrayList<String>> existingArgValues = getExistingArgValuesForAutocomplete();
 
-        if (commmandBody.isBlank()) {
+        if (commandBody.isBlank()) {
             String allArgs = argPrefixes.stream()
                     .map(Prefix::toPlaceholderString)
                     .collect(Collectors.joining(" "));
-            String leadingPadding = commmandBody.isEmpty() ? " " : "";
+            String leadingPadding = commandBody.isEmpty() ? " " : "";
             return leadingPadding + allArgs;
         }
 
-        String[] splitArr = commmandBody.trim().split(" +");
+        String[] splitArr = commandBody.trim().split(" +");
         ArrayList<String> words = new ArrayList<>(Arrays.asList(splitArr));
         int numOfWords = splitArr.length;
         assert numOfWords > 0 : "'numOfWords' should be > 0";
@@ -225,7 +225,7 @@ public class AutocompleteEngine {
             }
         }
 
-        boolean hasNoTrailingSpace = !commmandBody.endsWith(" ");
+        boolean hasNoTrailingSpace = !commandBody.endsWith(" ");
         if (hasNoTrailingSpace) {
             Prefix currPrefix = new Prefix(lastWord.replaceAll("[^\\/]*$", ""));
             boolean toAutocompleteArgValue = existingArgValues.containsKey(currPrefix);
