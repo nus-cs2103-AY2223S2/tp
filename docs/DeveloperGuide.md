@@ -41,6 +41,7 @@ If you're interested in contributing to the Vimification project, this Developer
   - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a task](#deleting-a-task)
   - [Saving data](#saving-data)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
 ---
 
