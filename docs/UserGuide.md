@@ -364,7 +364,7 @@ drug of CareFlow.
   <br/>
 * **Format:** `g help`
 <div markdown="block" class="alert alert-success">:information_source:  **Note:** Clicking on <span 
-style="background-color: #6E7373">Open URL</span> button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
+style="background-color: #6E7373;color:white; padding:2px; border-radius:5px;">Open URL</span> button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
 </div>
 <br/>
 
