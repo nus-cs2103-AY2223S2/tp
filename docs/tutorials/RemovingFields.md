@@ -3,6 +3,9 @@ layout: page
 title: "Tutorial: Removing Fields"
 ---
 
+<div markdown="span" class="alert alert-warning">:exclamation: This tutorial is based on the AddressBook-Level3 project. However, the underlying architecture is largely similar to LoyaltyLift.
+</div>
+
 > Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
 >
 > —  Antoine de Saint-Exupery

@@ -39,6 +39,12 @@ activate Model
 Model --> MarkCustomerCommand
 deactivate Model
 
+MarkCustomerCommand -> Model : setCustomerToDisplay(markedCustomer)
+activate Model
+
+Model --> MarkCustomerCommand
+deactivate Model
+
 create CommandResult
 MarkCustomerCommand -> CommandResult
 activate CommandResult

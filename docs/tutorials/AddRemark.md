@@ -3,6 +3,9 @@ layout: page
 title: "Tutorial: Adding a command"
 ---
 
+<div markdown="span" class="alert alert-warning">:exclamation: This tutorial is based on the AddressBook-Level3 project. However, the underlying architecture is largely similar to LoyaltyLift.
+</div>
+
 Let's walk you through the implementation of a new command — `remark`.
 
 This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:

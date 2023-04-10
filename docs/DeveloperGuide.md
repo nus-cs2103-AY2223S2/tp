@@ -119,12 +119,30 @@ How the parsing works:
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
-The `Model` component,
+The `Model` component stores:
 
-* stores the LoyaltyLift data i.e., all `Customer` objects (which are contained in a `UniqueCustomerList` object), as well as all `Order` objects (which are contained in a `UniqueOrderList` object)
-* stores the currently 'selected' `Customer` and `Order` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` and `ObservableList<Order>` respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* the unique list of all `Customer` and `Order` objects in a `UniqueCustomerList` and `UniqueOrderList`.
+
+* the current filtered list of `Customer` and `Order` objects as separate `FilteredList<Customer>` and `FilteredList<Order>` objects, which uses the unique lists as their source.
+
+* the current sorted list of `Customer` and `Order` objects as separate `SortedList<Customer>` and `SortedList<Order>` objects, which uses the filtered lists as their source.
+
+  These are exposed to the outside as unmodifiable `ObservableList<Customer>` and `ObservableList<Order>` objects that can be 'observed'
+  
+  e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+* the current 'displayed' `Customer` or `Order` object.
+
+* the list of `Order` objects associated with the current 'displayed' `Customer` as a separate `FilteredList<Order>`
+
+  This is exposed to the outside as an `ObservableList<Order>` object.
+
+* a `UserPref` object that represents the user’s preferences.
+
+  This is exposed to the outside as a `ReadOnlyUserPref` object.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `Model` does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+</div>
 
 ### Storage component
 
@@ -147,12 +165,14 @@ Classes used by multiple components are in the `seedu.loyaltylift.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+[//]: # (@@author Junyi00)
+
 ### Bookmark Customer 
 
 The commands `markc` and `unmarkc` are responsible for bookmarking or un-bookmarking a customer respectively. 
 Parsing of the user input is done by the `LogicManager` and `AddressBookParser` (as explained in the section of [Logic component](#logic-component)).
 
-Using `markc` command as an example, the parsing process will create a `MarkCustomerCommand` object.
+Using the `markc` command as an example, the parsing process will create a `MarkCustomerCommand` object.
 The `MarkCustomerCommand` is then executed, and its process is described in the following sequence diagram.
 
 ![Sequence diagram for bookmarking a customer](images/MarkCustomerSequenceDiagram.png)
@@ -161,7 +181,7 @@ The `MarkCustomerCommand` is then executed, and its process is described in the 
 2. A new `Customer` object is created with it's `Marked` attribute to reflect that it is bookmarked.
 3. `Model` is called again to replace the original customer to the newly created customer.
 
-The sequence for `unmarkc` command is similar as the above.
+The sequence for the `unmarkc` command is similar as the above.
 
 ### Future Enhancements
 
@@ -169,43 +189,42 @@ Instead of using commands to manipulate the bookmark-ed status of a customer, Lo
 As we wanted to ensure that LoyaltyLift is optimised as a CLI application, we prioritised the implementation of `markc` and `unmarkc` over the ability to select on the graphical user interface.
 However, certain users may find it more convenient to select the icon or prefer the flexibility of doing both depending on the situation.
 
+[//]: # (@@author Infrix)
+
 ### Add/Deduct reward points feature
 
-From `Points` class, a new feature of adding and deducting from the points a customer has, was required.
-A cumulative points system also had to be introduced. Adding points should increase the cumulative points a customer
-has while deducting points should not affect the cumulative points of the customer.
+A new feature of adding and deducting points for a customer was required.
+A cumulative points system also had to be introduced. Adding points should increase the cumulative points, while deducting points should not affect the cumulative points of the customer.
 
-As a result, a new attribute, `cumulative` was introduced to `Points`.
-For the parsing of the `addpoints` command, we had to consider between different design choices.
-The one we ultimately settled on was simply utilising `Integer.valueOf` method to parse the points inputted by the user.
-Also, in the execution of `AddPointsCommand` class, the points to add would exist as an `Integer` object instead of a
-`Points` object. The addition or subtraction of points from the `Points` class would then be as simple as adding the
-points to current points and cumulative points when it is positive, and subtracting from current points when it is 
-negative. This straightforward design would be sufficient to achieve the intended feature.
-Lastly, to store the cumulative points of `Customer`, a new attribute, `cumulativePoints` was introduced to
-`JsonAdaptedCustomer`.
+As a result, a new attribute `cumulative` was introduced to `Points`.
+For the parsing of the `addpoints` command, we considered multiple design choices.
+The one we ultimately settled on was simply utilising the `Integer.valueOf()` method to parse the points inputted by the user.
+Also, in the execution of `AddPointsCommand` class, the points to add would exist as an `Integer` object instead of a `Points` object. The addition or subtraction of points from the `Points` class would then be as simple as adding the
+points to current points and cumulative points when it is positive, and subtracting from current points when it is negative.
+This straightforward design would be sufficient to achieve the intended feature.
+Lastly, to store the cumulative points of `Customer`, a new attribute `cumulativePoints` was introduced to `JsonAdaptedCustomer`.
 
 #### Alternative approaches
+
 There were other designs we were considering, listed below.
 
-1. A design choice we had to make was for the implementation of the `addpoints` command, originally we intended 
-for the command users input to include a modifier syntax for the user to specify if he or she wishes to 
-add or subtract points from the customer.
-For instance, the command could be `addpoints 1 mod/- pt/100` to indicate that the user wants to subtract 100 points
-from the customer in the first index. We wanted to follow this implementation as many commands follow the syntax of
-`[PREFIX]/` for the user to specify their command. However, we subsequently decided that this may be too inconvenient 
-for the user, and since it is intuitive for 100 or -100 points to exist, we decided to implement the command in the way
-that the modifier of points come after `pt/`
-2. We also considered to have a static inner class of `AddPoints` in `Points`. This is for encapsulation of 
-information for the addition or subtraction of points. Consequently, `AddPointsCommand` would take in 
-`Points.AddPoints` as an attribute. This would allow an enum `modifier` to exist within the `AddPoints` inner class, 
-allowing future extension of editing reward points by simply including a new enumeration of modifier. 
-This would also allow a validity check of the points to be added or deducted.
-However, we later decided that this may not be necessary as checking the validity of the
-resultant `Points` after adding or subtracting is sufficient. Moreover, utilising the `Integer.valueOf` method in
-`AddPointsCommandParser` would make parsing much simpler as compared to evaluating the enum modifier that would come 
-before points. This simpler design would also be sufficient as we had no plans to incorporate
-features other than the addition or subtraction of points.
+1. A design choice we had to make was for the implementation of the `addpoints` command.
+
+   Originally, we intended for the command to include a modifier syntax for the user to specify if he or she wishes to add or subtract points from the customer.
+   For instance, the command could be `addpoints 1 mod/- pt/100` to indicate that the user wants to subtract 100 points from the customer in the first index. This implementation would be more consistent with the other commands that follow the syntax of `[PREFIX]/` for the user to specify their command.
+
+   However, we subsequently decided that this may be inconvenient for the user, and since it is more intuitive for the user to input 100 or -100 points, we decided to implement the command such that the modifier comes after the prefix `pt/`
+
+2. We also considered creating a static inner class `AddPoints` in `Points`.
+
+   This inner class will encapsulate the addition or subtraction of points.
+   Consequently, the `AddPointsCommand` would take in an instance of `Points.AddPoints` as an attribute. This would allow an enum `modifier` to exist within the `AddPoints` inner class, allowing future extension of editing reward points by simply including a new enumeration of modifier.
+
+   This would also allow a validity check of the points to be added or deducted. However, we later decided that this may not be necessary as checking the validity of the resultant `Points` after adding or subtracting is sufficient. Moreover, utilising the `Integer.valueOf` method in `AddPointsCommandParser` would make parsing much simpler as compared to evaluating the enum modifier that would come before points.
+
+   This simpler design would also be sufficient as we had no plans to incorporate features other than the addition or subtraction of points.
+
+[//]: # (@@author CloudHill)
 
 ### Customer and Order Notes
 
@@ -253,6 +272,7 @@ The `SortedList` can be sorted by a `Comparator`.
 * The `Comparator`s for each sorting option is provided as static constants by the `Customer` and `Order` class.
 * To facilitate the comparators, the relevant attribute classes (e.g. `Name` and `Points`) will also implement the `Comparable` interface.
 
+[//]: # (@@author Junyi00)
 
 ### Order Status
 
@@ -265,12 +285,14 @@ An order's `status` attribute represents the stage of an order, which can be one
 
 **Note:** Other than the `Cancelled` stage, an order is expected to start from `Pending` and proceed along the order as mentioned above.
 
-For the implementation, we introduce a few classes. Firstly, `StatusValue` is an enumeration whose values are the stages mentioned above.
-Next, a `StatusUpdate` class encapsulates a `StatusValue` and a date. 
-Finally, a `Status` class serves as the attribute of an Order that has many `StatusUpdate`.
+For the implementation, we introduce a few classes.
 
-A `StatusUpdate` represents the information of when the `Order` transitions into the stage of `StatusValue` it has. 
-Thus, an order's `Status` has an association with many `StatusUpdate` to represent the history of how an order progresses from one stage to another.
+1. Firstly, `StatusValue` is an enumeration whose values are the stages mentioned above.
+1. Next, the `StatusUpdate` class encapsulates a `StatusValue` and a date.
+1. Finally, a `Status` class serves as the attribute of an order that has multiple `StatusUpdate`.
+
+A `StatusUpdate` encapsulates the date an `Order` transitions into a `StatusValue`.
+Thus, an order's `Status` is associated with many `StatusUpdate` to represent the history of how an order progresses from one stage to another.
 
 #### Alternative Approaches
 
@@ -281,8 +303,8 @@ However, this design would not be extensible for including other information suc
 Furthermore, this design assumes that the order's status can only move forward in progress and cannot revert without losing information.
 E.g. An order may return from `Shipped` to `Paid` again if the shipping fails to succeed for the business owner.
 
-With the current implemented approach, `StatusUpdate` can encapsulate other information such as the comment or note. 
-Furthermore, `Status` class which has many `StatusUpdate` which does not assume the size of it or any other information.
+With the current implemented approach, `StatusUpdate` can encapsulate other information such as a note or comment. 
+Furthermore, the `Status` class has many `StatusUpdate` without assuming its size or any other information.
 Hence, this potentially allows subsequent `StatusUpdate` to have a stage that is before the previous entry of `StatusUpdate`.
 More details are explained in **Potential Enhancements**.
 
@@ -295,15 +317,16 @@ More details are explained in **Potential Enhancements**.
   Hence, information is lost that an order was once in that state before returning back.
   Furthermore, `Status` sorts `StatusUpdate` by its `StatusValue` so that the assumption that the latest entry is the latest is always true.
 
-  In the future, it may be useful that the information are preserved and not deleted from the system. 
+  In the future, it may be useful that this information be preserved and not deleted from the system. 
   A potential implementation is by appending new `StatusUpdate` into `Status` instead of deleting the latest entry.
   However, do note that the sorting logic must be updated.
 
 * **More Status Information**
 
-  In the future, the user may find it useful to provide additional information when updating its order status.
-  Eg. Add notes about the shipping details when the order updates from `Paid` to `Shipped`.
+  In the future, the user may find it useful to provide additional information when updating an order's status.
+  E.g. Add notes about the shipping details when the order updates from `Paid` to `Shipped`.
 
+[//]: # (@@author)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -319,52 +342,50 @@ These operations are exposed in the `Model` interface as `Model#commitAddressBoo
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+1. The user launches the application for the first time. The `VersionedAddressBook` will be
+initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+   ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `deletec 5` command to delete the 5th customer in the address book. The `deletec` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deletec 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+2. The user executes `deletec 5` command to delete the 5th customer in the address book. The `deletec` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deletec 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+   ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addc n/David …​` to add a new customer. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+3. The user executes `addc n/David …​` to add a new customer. The `addc` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+   ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+   <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+   </div>
 
-</div>
+4. The user now decides that adding the customer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-Step 4. The user now decides that adding the customer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+   ![UndoRedoState3](images/UndoRedoState3.png)
 
-![UndoRedoState3](images/UndoRedoState3.png)
+   <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+   </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+   The following sequence diagram shows how the undo operation works:
 
-</div>
+   ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-The following sequence diagram shows how the undo operation works:
+   <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+   </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+   The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-</div>
+   <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+   </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
-</div>
+   ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `addc n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
+   ![UndoRedoState5](images/UndoRedoState5.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -401,22 +422,30 @@ _{more aspects and alternatives to be added}_
 
 ### Product scope
 
-**Target user profile**:
-* Small business owners with a need to manage a sizeable number of customers and orders
-* Small business owners who want to improve customer relations and increase customer loyalty
-* Small business owners who prefer desktop apps over using note-taking applications or spreadsheets
-* Small business owners who are proficient in typing
-* Prefers typing to mouse interactions
-* Is reasonably comfortable using CLI applications
+[//]: # (@@author JavonTeo)
 
-**Value proposition**:
+**Target user profile**:
+
+Small business owners who:
+
+* has a need to manage a sizeable number of customers and orders
+* wants to improve customer relations and increase customer loyalty
+* prefers desktop apps over using note-taking applications or spreadsheets
+* are proficient in typing
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI applications
+
+**Value propositions**:
+
 * Manage a list of customers and their respective profiles
-* Create and tag orders with statuses to their respective customers
-* Foster lasting relationships with customers by offering rewards for their continued business with small business owners
+* Create orders with statuses for their respective customers
+* Foster lasting relationships with customers by offering rewards for their continued business
+
+[//]: # (@@author)
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+**Priorities:** `* * *` - High (must have) , `* *` - Medium (nice to have), `*` - Low (unlikely to have)
 
 | Priority | As a …​                                        | I can …​                                                                                                    | So that I can…​                                                                                     |
 |----------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
@@ -533,13 +562,13 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C5 - Bookmark or Unbookmark Customer
+#### Use case: UC C5 - Bookmark/Unbookmark Customer
 
 **MSS**
 
 1.  User gets <u>list of customers (UC C1)</u>.
-2.  User requests to bookmark or unbookmark a customer.
-3.  LL bookmarks or unbookmarks the customer.
+2.  User requests to bookmark/unbookmark a customer.
+3.  LL bookmarks/unbookmarks the customer.
 
     Use case ends.
 
@@ -915,29 +944,29 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list. No customer with the name `Amy Bee` exists in the list.
 
-   1. Test case: `editc 1 p/12345678`
+   1. Test case: `editc 1 p/12345678`<br>
       Expected: First customer's phone number updated to '12345678'. The updated customer is displayed in the information panel. Details of the updated customer shown in the status message.
 
-   1. Test case: `editc 1 ct/ent n/Amy Bee`
+   1. Test case: `editc 1 ct/ent n/Amy Bee`<br>
       Expected: First customer's customer type updated to enterprise and name updated to 'Amy Bee'. The updated customer is displayed in the information panel. Details of the updated customer shown in the status message.
 
 1. Editing a customer with invalid parameters
 
    1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
 
-   1. Test case: `editc ct/invalid`,
+   1. Test case: `editc ct/invalid`<br>
       Expected: No customer is edited. Error details shown in the status message.
 
-   1. Test case: `editc n/Amy Bee*`,
+   1. Test case: `editc n/Amy Bee*`<br>
       Expected: Similar to previous.
 
-   1. Test case: `editc p/invalid`,
+   1. Test case: `editc p/invalid`<br>
       Expected: Similar to previous.
 
-   1. Test case: `editc e/invalid`,
+   1. Test case: `editc e/invalid`<br>
       Expected: Similar to previous.
 
-   1. Test case: `editc a/`,
+   1. Test case: `editc a/`<br>
       Expected: Similar to previous.
 
 1. Editing a customer with an invalid index
@@ -1216,20 +1245,20 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list. No order with the name of 'Banana Cake', with quantity of 50 exists.
 
-    2. Test case: `edito 1 a/5th Smith Street`
+    2. Test case: `edito 1 a/5th Smith Street`<br>
        Expected: First order's address updated to '5th Smith Street'. The updated order is displayed in the information panel. Details of the updated order shown in the status message.
 
-    3. Test case: `edito 1 q/50 n/Banana Cake`
+    3. Test case: `edito 1 q/50 n/Banana Cake`<br>
        Expected: First order's quantity updated to 50 and name updated to 'Banana Cake'. The updated order is displayed in the information panel. Details of the updated order shown in the status message.
 
 2. Editing an order with invalid parameters
 
     1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
 
-    2. Test case: `edito q/invalid`,
+    2. Test case: `edito q/invalid`<br>
        Expected: No order is edited. Error details shown in the status message.
 
-    3. Test case: `edito a/`,
+    3. Test case: `edito a/`<br>
       Expected: Similar to previous.
 
 ### Deleting an order
@@ -1341,11 +1370,17 @@ testers are expected to do more *exploratory* testing.
 
 2. Cancelling an order that is completed
 
-    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Pending' status.
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Completed' status.
 
     2. Test case: `cancelo 1` <br />
        Expected: No order's status is affected. Information panel remains the same. Error details shown in the status message.
 
+3. Cancelling an order that is cancelled
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Cancelled' status.
+
+    2. Test case: `cancelo 1` <br />
+       Expected: No order's status is affected. Information panel remains the same. Error details shown in the status message.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1428,5 +1463,38 @@ For example, the customer may set the third tier to `Platinum` at 10,000 points 
 While each tier will have some default color, we can also consider including an option for the user to provide a hex code for their desired color, e.g. `settier 3 Platinum 10000 1affff`.
 
 To complement this new command, we also plan to include a `viewtiers` command to display the existing tiers and a `deletetier` command to remove an existing tier.
+
+### Access Orders made by a specific Customer
+
+This enhancement consists of two parts:
+
+* Accessing orders from a customer's order history
+* Filtering the order list by customer name or index
+
+#### Accessing orders from a customer's order history
+
+Currently, the user can see a customer's list of orders by viewing the customer using the `viewc` command. However, there is no way to view each order in detail afterwards.
+
+There are two approaches to make this possible:
+
+1. Use the same list for the main order list and the customer view order list
+
+   As described in the [_Model component_](#model-component) section, the order list of the displayed customer is a separate `FilteredList<Order>`. By using the same list as the main order list, we can use the `viewo` command to directly access the orders in the customer view.
+
+1. Provide a separate command for viewing the orders displayed in the customer view
+
+   This command may tentatively be called `viewco`, where it will specifically be used to access orders in the separate `FilteredList<Order>`.
+
+#### Filtering the order list by customer name
+
+Currently, the order list cannot be filtered to show only orders created by a specific customer. Moreover, the order list does not show the customer it's associated with. This can be inconvenient as multiple customers may make similar orders.
+
+Thus, we plan to:
+
+1. Update the UI of the order list to display each order's associated customer.
+
+2. Enhance the `listo` command to support filtering by customer name.
+
+   This can be implemented as a separate parameter `by/CUSTOMER_NAME` (e.g. `listo by/Alice`) where the keyword search logic would work in a similar manner as `findc` (case-insensitive, order-insensitive, full-word, `OR` search).
 
 [//]: # (@@author)
