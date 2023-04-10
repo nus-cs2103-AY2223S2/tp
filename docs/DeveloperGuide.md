@@ -29,10 +29,18 @@ It is intended for:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **2. Acknowledgements**
 
-sprINT is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) 
-project created by the SE-EDU initative. 
+* sprINT is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) 
+project created by the SE-EDU initiative.
+* sprINT's logo is made using Canva. 
+* The undo and redo feature (including the code and implementation details) are reused with minimal changes from the
+[AddressBook-Level4](https://github.com/se-edu/addressbook-level4) project by the SE-EDU initiative.
+* The class diagram of the Model component is adapted from a past CS2103T project 
+[PleaseHireUs](https://ay2223s1-cs2103t-w17-4.github.io/tp/), ([DG](https://ay2223s1-cs2103t-w17-4.github.io/tp/DeveloperGuide.html)). 
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,6 +49,8 @@ project created by the SE-EDU initative.
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **4. Design**
 ### 4.1 Architecture
@@ -80,11 +90,15 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.2 UI component
 
@@ -103,6 +117,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Application` objects residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3 Logic component
 
 The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/logic/Logic.java).
@@ -117,11 +133,13 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add an application).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete-app 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete-app 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteApplicationCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -132,6 +150,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `InternshipBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddApplicationCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddApplicationCommand`) which the `InternshipBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddApplicationCommandParser`, `DeleteApplicationCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Model component
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/model/Model.java).
@@ -145,6 +165,8 @@ The `Model` component,
 * stores the currently 'selected' `Application` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Application>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPrefs` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPrefs` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.5 Storage component
 
@@ -395,6 +417,8 @@ command from the user.
     the execution of the command.
 17. The Ui component displays the contents of the `CommandResult` to the User.
 
+<div style="page-break-after: always;"></div>
+
 For a more graphical illustration of how a sort command is processed, please refer to the following
 sequence diagram:
 
@@ -503,6 +527,8 @@ Step 6. The user executes `clear`, which calls `Model#commitInternshipBook()`. S
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/CommitActivityDiagram.png" width="250" />
@@ -552,6 +578,8 @@ class (`AddTaskCommandParser`), the steps taken when it receives a valid add tas
 similar to the [edit application](#52-edit-application-feature) command, since the add task feature uses existing logic
 from `EditApplicationCommand` under the hood (for why this is the case, refer to 
 [Design Considerations](#design-considerations-1)).
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram provides a graphical illustration of how the add task operation works:
 
@@ -612,12 +640,15 @@ This is what allows the Ui Component, `MainWindow`, to detect that a request to 
 from the user.
 </div> 
 
+<div style="page-break-after: always;"></div>
+
 For a more graphical illustration of how the exit sprINT command is processed, please refer to the following
 sequence diagram:
 
 ![ExitSprintSequenceDiagram](images/ExitSprintSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **6. Documentation, logging, testing, configuration, dev-ops**
 
@@ -629,6 +660,7 @@ Here are some guides that may help you during your development process:
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **7. Glossary**
 
@@ -661,6 +693,7 @@ Command Line Interface
 Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **8. Appendix: Requirements**
 
@@ -701,6 +734,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* `     | neat user             | clear my internship book                         | restart the whole process of tracking my internship applications                             |
 | `* `     | user                  | tag an application                               | label them as I wish                                                                         |
 | `* `     | data-oriented user    | view statistics of all my application entries    | get the general idea of how well I'm doing in my internship hunt                             |
+
+<div style="page-break-after: always;"></div>
 
 ### 8.3 Use Cases
 
