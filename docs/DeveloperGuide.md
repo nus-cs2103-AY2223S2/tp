@@ -585,7 +585,7 @@ Here are some useful links on the following!
 
 ## **Appendix A: Planned Enhancements**
 
-### Feedback to users
+Feedback to User
 
 #### Problem 1: Selection of doctor or patient cards is not cleared upon certain commands
 
