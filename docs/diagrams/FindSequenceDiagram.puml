@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickContactsParser" as QuickContactsParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "d:FindCommand" as FindCommand LOGIC_COLOR
+participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find Bob")
+activate LogicManager
+
+LogicManager -> QuickContactsParser : parseCommand("find bob")
+activate QuickContactsParser
+
+create FindCommandParser
+QuickContactsParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> QuickContactsParser
+deactivate FindCommandParser
+
+QuickContactsParser -> FindCommandParser : parse("bob")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+create NameContainsKeywordsPredicate
+
+FindCommand -> NameContainsKeywordsPredicate
+activate NameContainsKeywordsPredicate
+NameContainsKeywordsPredicate --> FindCommand
+deactivate NameContainsKeywordsPredicate
+
+FindCommand --> FindCommandParser : d
+deactivate FindCommand
+
+FindCommandParser --> QuickContactsParser : d
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> QuickContactsParser
+destroy FindCommandParser
+
+QuickContactsParser --> LogicManager : d
+deactivate QuickContactsParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+FindCommand -> Model : find()
+activate Model
+Model -> NameContainsKeywordsPredicate: FilteredList()
+activate NameContainsKeywordsPredicate
+NameContainsKeywordsPredicate --> Model: return FilteredList
+deactivate NameContainsKeywordsPredicate
+
+Model --> FindCommand: returns filteredList
+deactivate Model
+
+FindCommand --> LogicManager : return
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

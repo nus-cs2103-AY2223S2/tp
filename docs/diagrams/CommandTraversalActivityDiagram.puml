@@ -1,0 +1,33 @@
+@startuml
+start
+
+:User presses a key;
+if () then ([`UP` key pressed])
+    :Checks if previously executed input exists;
+
+    if () then ([Previously executed input exists])
+    :Sets text in CommandBox
+    to contain previous input;
+
+    else ([else])
+    :Text in CommandBox
+    remains unchanged;
+
+    endif
+else ([`DOWN` key pressed])
+    :Checks if inputs executed after
+    the current one exists;
+
+    if () then ([Input executed after
+    the current one exists])
+    :Sets text in CommandBox to contain
+    input executed after the current one;
+
+    else ([else])
+    :Clear text in CommandBox;
+
+    endif
+endif
+
+stop
+@enduml

@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickContactsParser" as QuickContactsParser LOGIC_COLOR
+participant ":SortMeetingCommandParser" as SortMeetingCommandParser LOGIC_COLOR
+participant "d:SortMeetingCommand" as SortMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":Comparator" as Comparator LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sortm n/")
+activate LogicManager
+
+LogicManager -> QuickContactsParser : parseCommand("n/")
+activate QuickContactsParser
+
+create SortMeetingCommandParser
+QuickContactsParser -> SortMeetingCommandParser
+activate SortMeetingCommandParser
+
+SortMeetingCommandParser --> QuickContactsParser
+deactivate SortMeetingCommandParser
+
+QuickContactsParser -> SortMeetingCommandParser : parse("n/")
+activate SortMeetingCommandParser
+
+create SortMeetingCommand
+SortMeetingCommandParser -> SortMeetingCommand
+activate SortMeetingCommand
+
+create Comparator
+SortMeetingCommand -> Comparator
+activate Comparator
+Comparator --> SortMeetingCommand :d
+deactivate Comparator
+SortMeetingCommand --> SortMeetingCommandParser : d
+deactivate SortMeetingCommand
+
+SortMeetingCommandParser --> QuickContactsParser : d
+deactivate SortMeetingCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortMeetingCommandParser -[hidden]-> QuickContactsParser
+destroy SortMeetingCommandParser
+
+QuickContactsParser --> LogicManager : d
+deactivate QuickContactsParser
+
+LogicManager -> SortMeetingCommand : execute()
+activate SortMeetingCommand
+
+SortMeetingCommand -> Model: SortMeeting()
+activate Model
+
+Model -> Comparator
+activate Comparator
+Comparator --> Model
+deactivate Comparator
+Model --> SortMeetingCommand
+
+deactivate Model
+
+create CommandResult
+SortMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortMeetingCommand
+deactivate CommandResult
+
+SortMeetingCommand --> LogicManager : result
+deactivate SortMeetingCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
