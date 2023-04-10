@@ -52,7 +52,7 @@ have fun using Pied Piper and may all your future endeavors be elevated with our
   - [2.16 Help](#216-getting-help-help)
   - [2.17 Lighting modes](#217-toggling-between-light-and-dark-mode)
 - [3. FAQ](#3-faq)
-- [4. Checking Java Version](#4-how-do-i-check-my-java-version)
+- [4. Checking my Java version](#4-how-do-i-check-my-java-version)
 - [5. Command summary](#5-command-summary)
 
 ---
