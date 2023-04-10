@@ -307,7 +307,7 @@ The `list` command supports:
 
 It's behaviour is dependent on the arguments provided by the user.
 
-The feature utilises the following classes/variable:
+The feature utilizes the following classes/variable:
 
 - `ListCommandParser` – Creates the appropriate `ListCommand` subclass object base on the user's input
 - `ListCommand` – Base class of any `Command` subclass that list some entity in the tracker
@@ -387,7 +387,7 @@ The `find` command supports:
 
 It's behaviour is dependent on the arguments provided by the user.
 
-The feature utilises the following classes:
+The feature utilizes the following classes:
 
 - `FindCommandParser` – Creates the appropriate `FindCommand` subclass object base on the user's input
 - `FindCommand` – Base class of any `Command` subclass that finds some entity in the tracker
@@ -565,7 +565,7 @@ This feature's behaviour is dependent on the arguments provided by the user, as 
 
 **Implementation Details**
 
-The feature utilises the following classes:
+The feature utilizes the following classes:
 
 - `DeleteCommandParser`: parses the arguments appropriately for the appropriate `DeleteCommand` to be returned to be executed
 - `DeleteCommand`: Abstract class extending from `Commands` for commands that delete a specified entity from the tracker
@@ -594,7 +594,7 @@ The following is a description of the code execution flow
 1. `DeleteCommandParser#parse(String)` takes the user's input as a `String` argument and determines the intention of the command (delete module, lecture or video).
    The following table below depicts the consideration of inputs against the user's argument:
 
-   | Has Preamble | has `/mod` argument | has `/lec` agrgument | Intent         |
+   | Has Preamble | has `/mod` argument | has `/lec` argument | Intent         |
    | ------------ | ------------------- |----------------| ------------- |
    | Yes          | No                  | No                   | Delete Module  |
    | Yes          | Yes                 | No                   | Delete Lecture |
@@ -617,7 +617,7 @@ The following is a description of the code execution flow
 - `DeleteVideoCommand`: single video to be deleted
 - `DeleteMultipleVideosCommand`: more than one video to be deleted
 
-4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module(s)/lecture(s)/video(s) the respective context. <br>
+4. If no exceptions are thrown, Le Tracker has successfully managed to delete the specified module(s)/lecture(s)/video(s) the respective context. <br>
 Possible exceptions that could be thrown are:
     - Command contains duplicate entities to be deleted
     - Invalid format for any entity
@@ -628,7 +628,7 @@ Possible exceptions that could be thrown are:
 **Reasons for such implementation**
 
 1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification.
-2. Having abstract classes to group multiple commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as `DeleteCommand.COMMAND_WORD` in every class
+2. Having abstract classes to group multiple commands together allows for adherence of DRY (Don't Repeat Yourself) in cases such as `DeleteCommand.COMMAND_WORD` in every class
 
 **Alternatives considered**
 
@@ -654,7 +654,7 @@ The `mark` command supports:
 - Marking unmarked videos as watched
 - Marking marked videos as unwatched
 - Marking multiple videos in 1. and 2.
-  - E.g.: User wishes to mark multile videos "Vid 1, Vid 2" in lecture "Week 1" of module "CS2040S" as watched.\
+  - E.g.: User wishes to mark multiple videos "Vid 1, Vid 2" in lecture "Week 1" of module "CS2040S" as watched.\
     Executing `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` would allow the user to do so, unless either one of the following conditions are true:
     1. the module (CS2040S) does not exist in the Tracker
     2. the lecture (Week 1) does not exist in the module (CS2040S)
@@ -662,7 +662,7 @@ The `mark` command supports:
     4. either of the videos (Vid 1, Vid 2) has already been marked as watched
   - E.g.: User wishes to mark multiple videos "Vid 3", "Vid 4" and "Lecture Summary" in lecture "Topic 4" of module "ST2334" as unwatched.\
     Executing `unmark Vid 3, Vid 4, Lecture Summary /mod ST2334 /lec Topic 1` would allow the user to do so, unless either one of the following conditions are true:
-    1. the module (ST2334) doese not exist in the Tracker
+    1. the module (ST2334) does not exist in the Tracker
     2. the lecture (Topic 1) does not exist in the module (ST2334)
     3. either of the videos (Vid 3, Vid 4, Lecture Summary) does not exist in the lecture of the module (ST2334 > Topic 1)
   - E.g.: User wishes to mark a single video "Vid 1" in lecture "Topic 4" of module "ST2334" as unwatched.\
@@ -678,7 +678,7 @@ Note the difference between mark multiple and unmark multiple. As of current imp
 
 **Implementation Details**
 
-The feature utilises the following classes:
+The feature utilizes the following classes:
 
 - `MarkCommand`: Abstract class extending from `Command` for commands that mark a specified video as watched or unwatched
 - `MarkAsWatchedCommandParser`: parses arguments appropriately for `MarkAsWatchedCommand` to be returned to be executed
@@ -713,7 +713,7 @@ The following is a description of the code execution flow:
 2. The argument values are then checked on as such:
 
    - ModuleCode: valid module code that complies with the module code format
-   - LectureName: valid lecture name that does not containt symbols
+   - LectureName: valid lecture name that does not contain symbols
    - VideoName: valid lecture name that does not contain symbols
 
    Note: VideoName should not contain commas (","). Rather than throwing errors, Le Tracker will treat it as though the user intended to delete multiple videos
@@ -734,7 +734,7 @@ The following is a description of the code execution flow:
 **Reasons for such implementation**
 
 1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification
-2. Having abstract classes to group mark commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as success message formats in every class
+2. Having abstract classes to group mark commands together allows for adherence of DRY (Don't Repeat Yourself) in cases such as success message formats in every class
 
 **Alternatives considered**
 
@@ -765,7 +765,7 @@ added to `Module` objects, `Lecture` objects, or `Video` objects, only the new t
 
 **Notable Classes**
 
-The feature utilises the following classes:
+The feature utilizes the following classes:
 
 - `TagCommandParser` – Creates the appropriate `TagCommand` object based on the user's input
 - `TagCommand` – Handles adding `Tag` objects to a `Module`/`Lecture`/`Video` object based on
@@ -826,7 +826,7 @@ videos, a `CommandException` will be thrown. Duplicated tags in the command, if 
 
 **Notable Classes**
 
-The feature utilises the following classes:
+The feature utilizes the following classes:
 
 - `UntagCommandParser` – Creates the appropriate `UntagCommand` object based on the user's input
 - `UntagCommand` – Handles removing `Tag` objects from a `Module`/`Lecture`/`Video` object
@@ -883,7 +883,7 @@ The `export` behaviour is dependent on the arguments provided by the user.
 
 **Notable Classes**
 
-The feature utilises the following classes:
+The feature utilizes the following classes:
 
 - `ExportCommandParser` – Creates the appropriate `ExportCommand` object based on the user's input
 - `ExportCommand` – Creates the appropriate `CommandResult` object containing the file path for export
@@ -939,7 +939,7 @@ The `import` behaviour is dependent on the arguments provided by the user.
 
 **Notable Classes**
 
-The feature utilises the following classes:
+The feature utilizes the following classes:
 
 - `ImportCommandParser` - Creates the appropriate `ImportCommand` object based on the user's input
 - `ImportCommand` - Creates the appropriate `CommandResult` object containing the file path for import and the set
@@ -992,7 +992,7 @@ The following is a description of the code execution flow:
 
 The `clear` feature supports clearing the entire tracker of all modules, lectures and videos
 
-The feature utilises the following classes:
+The feature utilizes the following classes:
 
 - `ClearCommand` - executable command to clear modules, lectures and videos in the tracker
 
@@ -2641,7 +2641,7 @@ Some incorrect commands to try from root context:
 | -------------------------------------------- | --------------- |
 | `unmark Vid 1 /mod CS2040S /lec Week 1`      | **Message:**<br/>`Successfully unmarked Video in Lecture Week 1 Module CS2040S: Vid 1`<br/>**List Updates:** Watch progress of entry for "CS2040S" is updated to show a less filled bar with `Covered 4/6 lectures` |
 | 1. `nav CS2040S`<br/>2. `unmark Vid 1 /lec Week 1`| **Message:** Same as previous<br/>**List Updates:** Watch progress of entry for "Week 1" is updated to show a half full bar with `Watched 1/2 videos` |
-| 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `unmark Vid 1, Vid 2` | **Message:**<br/>`Successfully unmarked 2 Videos in Lectre Week 1 Module CS2040S: Vid 1, Vid 2`<br/>**List Updates:** Watch progress of entries for "Vid 1" and "Vid 2" are updated to show `Not Watched` |
+| 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `unmark Vid 1, Vid 2` | **Message:**<br/>`Successfully unmarked 2 Videos in Lecture Week 1 Module CS2040S: Vid 1, Vid 2`<br/>**List Updates:** Watch progress of entries for "Vid 1" and "Vid 2" are updated to show `Not Watched` |
 | 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `unmark Vid 1, Vid 2`<br/>4. `unmark Vid 1, Vid 2` | Same as previous |
 
 Some incorrect commands to try from root context:
@@ -2775,7 +2775,7 @@ Some incorrect commands to try from root context:
 
 ### Adapting Model Component
 
-The main difficulty with developing Le Tracker was adapting the **Model** component to support a hierarchical structure. In the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S2/tp) codebase that Le Tracker is forked from, the **Model** component is non-hierarchical, utilising `Person` objects to store person contact details. As Le Tracker requires `Module`s to contain `Lecture`s which in turn contains `Video`s, a hierarchical structure was needed.
+The main difficulty with developing Le Tracker was adapting the **Model** component to support a hierarchical structure. In the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S2/tp) codebase that Le Tracker is forked from, the **Model** component is non-hierarchical, utilizing `Person` objects to store person contact details. As Le Tracker requires `Module`s to contain `Lecture`s which in turn contains `Video`s, a hierarchical structure was needed.
 
 This required a large amount of change to the codebase of the **Model** component. It also pushed us to consider the pros and cons of breaking immutability of the various classes in the component. By breaking immutability, updating of fields would be much easier and the impacts on the **UI** component could be minimised. However, this introduces a risk of making bugs more difficult to diagnose. We ultimately decided to have `Module` and `Lecture` be immutable such that `Lecture` objects and `Video` objects can be added to them respectively. However, we limited the access to these immutable methods through the use of `ReadOnlyModule` and `ReadOnlyLecture` interfaces.
 
@@ -3010,6 +3010,6 @@ As listed above, calling `unmark` on multiple videos has a different result as c
 
 **Proposed Solution**
 
-Set `unmark` for multiple videos to catch when any of the videos specified have already been marked as unwatched, and alert thte user with a similar error message to its counterparts.
+Set `unmark` for multiple videos to catch when any of the videos specified have already been marked as unwatched, and alert the user with a similar error message to its counterparts.
 
 This implementation would allow for users to better realise what their commands are doing, especially if they are in a different context that does not allow them to visualise the effect of their commands.
