@@ -1088,4 +1088,3 @@ can be automatically imported or read from Canvas or any other learning manageme
 
 - The current way of adding students into the student list is also quite troublesome. In future enhancements, they can be automatically parsed from a class list
 from canvas or any other learning management system used by the university.
-- 
