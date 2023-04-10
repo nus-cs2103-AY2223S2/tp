@@ -847,7 +847,7 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `clear`<br>
     Expected: All data are deleted from CookHub.
 
-3. Incorrect command to try: `clear.`<br>
+3. Incorrect command to try: `clear`.<br>
    Expected: No data deleted. Error message shown in result display.
 
 
