@@ -21,4 +21,7 @@
 
 # Acknowledgements
 
-- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
+- Our application is based on the [AB3](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/)
+- Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
+- Our application's white and blue color scheme takes inspiration from the color scheme of Apple's iMessage.
+- Our application's three modes design: `MAIN_UNSELECTED_MODE`, `MAIN_SELECTED_MODE`, `REVIEW_MODE` was inspired by a similar design of the past project [FlashNotes](https://ay2021s1-cs2103t-t15-2.github.io/tp/) ([UG](https://ay2021s1-cs2103t-t15-2.github.io/tp/UserGuide.html), [DG](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html)), although our implementation is entirely new. 
