@@ -24,7 +24,7 @@ PowerConnectParser -> ParentCommandParser
 activate ParentCommandParser
 ParentCommandParser -> PowerConnectParser
 deactivate ParentCommandParser
-PowerConnectParser -> ParentCommandParser : parse("delete n/Bob pnP/91234567")
+PowerConnectParser -> ParentCommandParser : parse(" delete n/Bob pnP/91234567")
 activate ParentCommandParser
 
 create ParentDeleteCommand

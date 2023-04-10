@@ -24,7 +24,7 @@ PowerConnectParser -> StudentCommandParser
 activate StudentCommandParser
 StudentCommandParser -> PowerConnectParser
 deactivate StudentCommandParser
-PowerConnectParser -> StudentCommandParser : parse("1A delete in/25")
+PowerConnectParser -> StudentCommandParser : parse(" 1A delete in/25")
 activate StudentCommandParser
 
 create StudentDeleteCommand

@@ -638,7 +638,7 @@ Format: `parent find <NAME>  `
 Examples:
 * `parent find Russel`
 * `parent find Joseph`
-*
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 To list back all parent, use the [general list](#listing)command! <br><br>
 </div>
@@ -851,7 +851,7 @@ Need to add **student** and **class** before each command!
 
 | Action         | Format, Examples                                                                                                                                                                                                                                                                                                             |
 |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls/<RELATIONSHIP> [ s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] att/[ATTENDANCE] ]`                                                                                     |
+| **Add**        | `add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls/<RELATIONSHIP> [s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] att/[ATTENDANCE] ]`                                                                                      |
 | **Attendance** | `attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`                                                                                                                                                                                                                                                                            |
 | **Grade**      | `grade in/<INDEX_NUMBER> test/<TEST_NAME> or hw/<HOMEWORK_NAME> [score/[SCORE] deadline/[DEADLINE] weightage/[WEIGHTAGE] hwdone/[HOMEWORK DONE OR NOT] ]`                                                                                                                                                                    |
 | **Comment**    | `comment in/<INDEX_NUMBER> com/<COMMENT>`                                                                                                                                                                                                                                                                                    |
@@ -900,7 +900,7 @@ Need to add parent before each command!!
 | Prefix        | Prefix Details                     | Notes                                                                                                                               |
 |---------------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
 | `add`         | Add Command                        | Used to identify command as an Add Command;<br><br> Used in Student Add and Parent/NOK Add commands                                 |
-| `attendance`  | Attendance Command                 | Used in Student Attendance Command;<br><br> Used to input attendance for `Student`s                                                 |
+| `attendance`  | Attendance Command                 | Used in Student Attendance Command;<br><br> Used to input attendance for `Student`                                                  |
 | `comment`     | Comment Command                    | Used in Student Comment Command;<br><br> Used to input comment for `Student`                                                        |
 | `delete`      | Delete Command                     | Used to identify command as a Delete Command;<br><br> Used in Student Delete and Parent/NOK Delete commands                         |
 | `edit`        | Edit Command                       | Used to identify command as an Edit Command;<br><br> Used in Student Edit and Parent Edit commands                                  |

@@ -994,7 +994,7 @@ Provides teachers with the ability to manage students administration and academi
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to handle up to 400 students without a noticeable sluggishness in performance for typical usage.
 3. Should package it as a JAR file that is smaller than 100MB.
-4. Should store data in a txt/csv file.
+4. Should store data in a JSON file.
 5. PowerConnect should be able to work without any internet access.
 6. PowerConnect should only be used by a single user per installation and not by multiple users.
 7. Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
