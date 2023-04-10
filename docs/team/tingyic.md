@@ -43,27 +43,45 @@ Given below are my contributions to the project.
     equivalents. [#83](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/83)
   * Fixed the bug omitted by teammates unintentionally that incorrectly uses the error message for `timeslot` for
   user input error in `deadline`. [#86](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/86)
-  
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tingyic&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=tingyic&tabRepo=AY2223S2-CS2103T-W10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+ 
 
-* **Project management**:
-  * Coming soon!
+#### Additional code contributions
+* Fixed checkstyle errors. [#67](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/67),
+[#149](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/149),
+[#150](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/150)
 
+* Fixed JavaCI failures. [#152](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/152)
 
-* **Documentation**:
-  * User Guide:
-    * Created a table-of-content with valid hyperlinks.
-    * Added a Valid and Invalid Data section.
-    * Added more FAQs.
-    * Added documentation for all the commands of Contact nUS, with appropriate examples.
-    * Added glossary and command summary.
-  * Developer Guide:
-    * Adapted the UML diagrams of [AddressBook3]() to fit Contact nUS.
-    * Added MSS, Glossary and a few user stories.
+* Improve code quality according to the guidelines of KISS and SLAP.
 
-* **Community**:
-  * Reported bugs and suggestions for [other teams](https://github.com/tingyic/ped/issues) in the class
+* Utilitises assertions to ease the debugging process.
+
+<br>
+
+* A summary of my code contribution can be found [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tingyic&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=tingyic&tabRepo=AY2223S2-CS2103T-W10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false).
+
+#### Project management
+* Help brainstormed name and colour scheme of the project.
+* Contributed to the releases `v1.1` - `v1.4` on GitHub.
+
+#### Documentation
+
+* User Guide:
+  * Created a table-of-content with valid hyperlinks.
+  * Added a Valid and Invalid Data section.
+  * Added more FAQs.
+  * Added documentation for all the commands of Contact nUS, with appropriate examples.
+  * Added glossary and command summary.
+
+* Developer Guide:
+  * Adapted the UML diagrams of [AddressBook3]() to fit Contact nUS.
+  * Added MSS, Glossary and a few user stories.
+  * Added new test cases for manual testing.
+  * Established Appendix: Effort, Acknowledgements, Planned Enhancements.
+
+#### Community contribution outside current project:
+
+* Reported bugs and suggestions for [other teams](https://github.com/tingyic/ped/issues) in the class
 
 * **Tools**:
   * Coming soon!
-
