@@ -12,7 +12,6 @@ import seedu.medinfo.commons.exceptions.DataConversionException;
 import seedu.medinfo.commons.exceptions.IllegalValueException;
 import seedu.medinfo.commons.util.FileUtil;
 import seedu.medinfo.commons.util.JsonUtil;
-import seedu.medinfo.logic.commands.Command;
 import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 

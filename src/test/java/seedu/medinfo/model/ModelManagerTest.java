@@ -88,6 +88,7 @@ public class ModelManagerTest {
         try {
             modelManager.addPatient(ALEX);
         } catch (CommandException e) {
+            System.out.println("Caught CommandException error!!!");
         }
         assertTrue(modelManager.hasPatient(ALEX));
     }

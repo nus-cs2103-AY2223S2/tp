@@ -10,7 +10,7 @@ MedInfo is a desktop application for private hospital administrative staff. It h
 
 * **New Feature**:
   * All of Ward Class implementation
-  * Split Screen 
+  * Split Screen
   * Status Bar Footer
 
 * [**Code contributed**](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=daytona65&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=false&zFR=false)
@@ -20,7 +20,7 @@ MedInfo is a desktop application for private hospital administrative staff. It h
     * Drove the implementation of new features for my team
     * Helped assign and delegate some tasks to team members
     * Ensured team vision was aligned
-  
+
 
 * **Enhancements to existing features**:
     * Updated the GUI and added split screens (Pull requests [\#33](), [\#34]())

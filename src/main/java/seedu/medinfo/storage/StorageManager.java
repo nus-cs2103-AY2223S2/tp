@@ -61,7 +61,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyMedInfo> readMedInfo(Path filePath) throws DataConversionException, IOException,
-        CommandException {
+            CommandException {
         logger.fine("Attempting to read data from file: " + filePath);
         return medInfoStorage.readMedInfo(filePath);
     }
