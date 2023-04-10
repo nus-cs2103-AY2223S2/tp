@@ -1055,14 +1055,14 @@ so the corresponding error message will be displayed in the same text box (repla
 
 1. Implementing the command recommendation feature was of high difficulty. The main challenges were showing the correct command recommendations as the user typed each character and throwing warnings at the correct times.
 2. For example, the main challenges include that we had to distinguish between "wrong command" and "incomplete command", as well as detecting existing attributes to avoid repetitive recommendations.
-3. For this feature, we make use of the [Agolia Documentaiton](https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions/) 
+3. For this feature, we make use of the [Agolia Documentation](https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions/) 
 4. We successfully achieved this feature, which effectively increased input speed and user satisfaction.
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
-These terms have specific meanings in the context of FriendlyLink. For a more detailed description, refer to the [How to use this User Guide](#how-to-use-this-user-guide) and the [Fields](#fields) section.
+These terms have specific meanings in the context of FriendlyLink. 
 
 ### Non-Technical
 

@@ -33,10 +33,10 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" ElderlyListPanel
-MainWindow *-down-> "1" PairListPanel
+MainWindow *--down->  "1" CommandBox
+MainWindow *--down-> "1" ResultDisplay
+MainWindow *--down-> "1" ElderlyListPanel
+MainWindow *--down-> "1" PairListPanel
 MainWindow *-down-> "1" VolunteerListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
@@ -50,8 +50,8 @@ ElderlyCard ..> Model
 VolunteerCard ..> Model
 PairCard ..> Model
 
-UiManager -right-> Logic
-MainWindow -left-> Logic
+UiManager --Right-> Logic
+MainWindow --left-> Logic
 
 ElderlyListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
