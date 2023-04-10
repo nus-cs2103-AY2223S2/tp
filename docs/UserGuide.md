@@ -73,14 +73,15 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 ## **Quick Start**
 
-1. Ensure you have Java `11` or above installed in your computer. If not, you can download it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+1. Ensure you have Java `11` or above installed on your computer. If not, you can download it from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
 1. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the *home folder* for AIMS.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
-   run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to run the application.
+   <br>
+   <br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
    <div style="text-align: center;">
@@ -89,7 +90,7 @@ Here are some symbols used throughout the user guide to inform you of additional
      <br>
    </div>
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) section below for details of each command.
 
 [Back to Top ↑](#table-of-contents)
 
@@ -186,13 +187,15 @@ Format: `importcsv PATH_TO_CSV_FILE`
 
 The given CSV file must fulfill the following conditions:
 
-1. File given must end with '.csv'.
-2. Each row in the CSV File must have the same number of rows
+1. The file given must end in `.csv`.
+2. Each row in the CSV file must have the same number of columns.
 3. The first row of the CSV file must be reserved for headers.
-4. Each field, namely `rank, name, unit, company, platoon, phone, email, address, tags`, must appear as a header in this exact form (but
-   in any order, except tag which has to be the last header).
-5. Each person cannot have blank entries for any of the fields (except for unit, company, platoon, tags)
-6. If a person has more than one tag, they are to be listed horizontally. (Additional tags cannot have a header)
+4. Each field (namely `rank`, `name`, `unit`, `company`, `platoon`, `phone`, `email`, `address`, `tags`) must appear exactly once in the headers.
+5. Each header in the CSV file can appear in any order (except `tag` which must be the last header).
+6. Each row in the CSV file must not have blank entries for the `rank`, `name`, `phone`, `email` and `address` fields.
+7. If a person has more than one tag, the tags must all be listed in different columns (see the step-by-step example below).
+
+<br>
 
 Step-by-step example of converting and importing an Excel spreadsheet:
 
