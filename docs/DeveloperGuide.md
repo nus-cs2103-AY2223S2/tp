@@ -546,6 +546,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SoC Student who knows Vim | filter for all tasks that are not completed                      | view tasks to are not completed                           |
 | `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines before a certain date and time   | view all tasks that need to be done before a certain date and time|
 | `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines after a certain date and time    | find all tasks that need to be done after a certain date and time|
+| `* *` | SoC Student who knows Vim | filter for tasks by deadlines within a specified period of time (by specifying both before and after) | find all tasks that need to be done within that specified period of time while arranging my schedule, allowing me to finish them on time |
 | `* * *`  | SoC Student who knows Vim | edit and delete based on the filtered list                       | make changes to the list of task easily                   |
 | `* * *` | SoC Student who knows Vim | sort tasks by upcoming deadlines | view all the tasks in the order of upcoming deadlines and know which more urgent tasks I should be completing first, allowing me to finish them on time |
 | `* * *` | SoC Student who knows Vim | sort tasks by priorities in descending order | see which are the more important tasks I should focus on completing first |
