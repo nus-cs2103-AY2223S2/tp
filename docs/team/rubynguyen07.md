@@ -28,7 +28,8 @@ GUI testing structure based on [Address book-level4](https://github.com/se-edu/a
 * **Documentation**:
     * **Contributions to UG**: I am responsible for writing up the documentation about Glossary, Statistics Panel, and
   Command summary.
-    * **Contributions to DG**: I am responsible for writing up the documentation about User Interface and Testing.
+    * **Contributions to DG**: I am responsible for writing up the documentation about User Interface, Testing and the Appendix: Planned 
+  Enhancements section for Long strings are cut off and Pie chart for project status spins even when no statuses change.
 
 * **Contributions to team-based tasks**: I was responsible for setting up the team's repository and the UserGuide.
 
