@@ -44,7 +44,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
 
     * Wrote additional tests for existing features to increase coverage (Pull request [\#185](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/185))
-<br>
+
+    * <br>
 * **Documentation**:
 
     * User Guide:
@@ -55,6 +56,11 @@ Given below are my contributions to the project.
         * Added implementation details of the `find` feature. (Pull request [\209](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/209))
         * Added sequence diagram for `find` feature. (Pull request [\209](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/209))
         * Added activity diagram for `find` feature. (Pull request [\209](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/209))
+
+* **Community**:
+
+    * PRs reviewed (with non-trivial review comments): 5
+    * Reported bugs and suggestions for other teams in the class: [PED catcher](https://github.com/nt-nic/ped/issues).
 
 
 
