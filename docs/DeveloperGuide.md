@@ -1026,32 +1026,24 @@ The following is a description of the code execution flow:
 **Target user profile**:
 
 - NUS students
-- has a need to keep track of a significant number of modules, lectures, and lecture videos
-- has a need to categorize and organize modules, lectures, and videos with tags
-- falling behind on lecture materials
-- feeling lost regarding lecture content
-- prefer desktop apps over other types
-- can type fast
-- prefers typing to mouse interactions
-- is afraid of losing current data
-- wants to track productivity level
-- is reasonably comfortable using CLI apps
+- Fast typists
+- Prefers typing to mouse interactions
+- Prefers desktop apps over other types
+- Is reasonably comfortable with using CLI apps
+- Is attending modules with recorded lectures
+- Is having difficulty keeping track of which lecture videos he/she has watched
+  - Possibly falling behind on lecture materials
+  - Possibly feeling overwhelmed by large number of lectures per week
 
-**Value proposition**: fast and stress-free way to organise and track module progress and lecture material
+**Value proposition**:
 
-- Easily log lecture progress, search for lectures and lecture media by module code, keywords, or tags for a
-  stress-free learning environment
-- Tailored to needs of students: provides additional information specific to lecture media such as watch progress,
-  topics, and tags
-- Allow students to track progress of all modules
-- Offer the users great control over their current modules progress
-- Allow the users to back up their current progress, as well as import progress from backed up files
-- Faster than a typical mouse/GUI driven app
-- Intuitive, easy to navigate GUI
+- Track lecture watch progress by recorded videos
+- Get an overall glance of one's watch progress on a module by module or lecture by lecture basis
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+
 
 | Implemented          | Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                                |
 |----------------------| -------- | ---------------- |------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
@@ -1096,6 +1088,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | :white_check_mark:   | `*`      | unmotivated user | feel rewarded for making progress in watching lecture videos                       | be motivated to keep up or catch up with the syllabus                                                                          |
 | :x:                  | `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                               |
 | :x:                  | `*`      | user             | store summaries/notes for lectures                                                 | reference those notes when I'm revising the contents of the lecture                                                            |
+
 
 ### Use cases
 
