@@ -196,8 +196,6 @@ Here's a (partial) class diagram of the `Model` component:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-[Back to Table of Contents](#toc)
-
 The `Model` component,
 
 * stores the degree progression i.e., all `Module` objects (which are contained in a `UniqueModuleList` object) and generates `DegreeProgressionData` if needed.
