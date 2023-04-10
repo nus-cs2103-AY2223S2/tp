@@ -49,6 +49,12 @@ public class TypicalBooks {
             .withIsbn("9780743273565")
             .build();
 
+    public static final Book HARRY_POTTER = new BookBuilder()
+            .withTitle("Harry Potter")
+            .withAuthor("JK Rowling")
+            .withIsbn("9780747532743")
+            .build();
+
     public static final Book HEART_OF_DARKNESS = new BookBuilder()
             .withTitle("Heart of Darkness")
             .withAuthor("Joseph Conrad")
