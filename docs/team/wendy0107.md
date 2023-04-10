@@ -30,6 +30,8 @@ Given below are my contributions to the project.
   and case-insensitive name (Pull requests [\#207](), [\#209]())
   * Fixed bug for `show` where editing a shown student's name results in the entry disappearing (Pull request [\#212]())
   * Fixed bug for `show` where deleting a shown student's name doesn't remove it from the shown list (Pull request [\#212]())
+  * Fixed test cases (Pull request [\#262]())
+
 
 * **Documentation**:
   * User Guide:
@@ -38,12 +40,17 @@ Given below are my contributions to the project.
     * Fixed broken hyperlinks (Pull request [\#108]())
     * Updated the user guide with features `undo`, `redo`, `clear` and updated the website landing page (Pull request [\#152]())
     * Fixed broken hyperlinks, typos, and issues with markdown rendering and images not loading (Pull requests [\#207](), [\#208]())
+    * Update UG based on v1.4 updates (with bug fixes, feature flaws, documentation bug fixes, new appendix for editing data file) (Pull requests [\#238](), [\#243](), [\#303](), [\#306]())
   * Developer Guide:
     * Added UML diagrams, implementation details and design considerations for `add`, `edit`, `delete`, `find`, `list` (Pull requests [\#66](), [\#79](), [\#99]())
     * Updated the Ui, model, storage, and student class diagram. (Pull requests [\#66](), [\#79](), [\#99]())
     * Included proposed feature implementations for `undo`, `redo`, `delete` by multiple indexes, `find` by fields, and `sort` (Pull requests [\#66](), [\#79](), [\#99]())
     * Updated the About section, improved navigability with table of contents and hyperlinks (Pull request [\#99]())
     * Updated the proposed feature implementation for `undo` and `redo` (Pull request [\#206]())
+    * Update DG with planned enhancements (Pull requests [\#296](), [\#271](), [\#324]())
+    * Updated UML class and sequence diagrams (Pull requests [\#272](), [\#308]())
+    * Added Appendix on effort (Pull request [\#324]())
+    * Added manual testing for add, edit and show (Pull requests [\#315](), [\#316]())
 
 * **Contributions to team-based tasks**:
   * Set up the GitHub team organisation and repo, codecoverage and issue tracker
@@ -51,7 +58,4 @@ Given below are my contributions to the project.
   * Changed product icon
   * Managed releases for v1.2, v1.3
   * PRs reviewed (with non-trivial review comments): [\#74](), [\#102](), [\#151]()
-
-* **Contributions beyond the project team** (not updated):
-  * Responded to forum posts ([\#42]())
-  * Reported bugs found in other team's products ([\#42]())
+  
