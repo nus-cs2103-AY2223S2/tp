@@ -19,7 +19,7 @@ title: User Guide
 <div markdown="block" class="alert alert-info">
 :information_source: **Preface:**
 
-* This guide is on the **usage** of Team Builder. 
+* This guide is on the **usage** of Team Builder.
 * For a guide on **developing** Team Builder with us, see our [developer guide](DeveloperGuide.html).
 * We are **still working** on making our user guide as user friendly as possible. You can help us by providing feedback [here](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/new)
 </div>
@@ -32,7 +32,7 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 
 <img class="center" src="images/Ui.png" alt="Labelled App Window" width='75%'/>
 
-Welcome to Team Builder, we hope that this product will allow you 
+Welcome to Team Builder, we hope that this product will allow you
 to manage your contacts to build fantastic teams for your events/competitions.
 
 This guide is designed for users with and without technical experience and is to be followed narratively from top to bottom. However, if you are an experienced user, feel free to skip the Example context. If you are looking for a specific command, you can view the [table of commands here](#full-table-of-commands).
@@ -114,7 +114,7 @@ Access this guide quickly through the `help` command or by clicking the **help**
   e.g. in `add n/NAME`, `NAME` is an input data field which can be used as `add n/John Doe`.
 
 * `[]` - are optional input data fields.<br/>
-  e.g. `[e/EMAIL]` can be used like ` ` (i.e. not used) or `e/lmao@lmao.com` 
+  e.g. `[e/EMAIL]` can be used like ` ` (i.e. not used) or `e/lmao@lmao.com`
 
 * `[]...` - are input data fields that can be supplied any number of times including zero times.<br/>
   e.g. `[t/TAG]...` can be used like ` ` (i.e. 0 times), `t/React`, `t/React t/AWS` etc.
@@ -139,7 +139,7 @@ Command |          Type          |Format, Examples
 
 <div markdown="block" class="alert alert-primary">
 :bulb: **Tips on command behaviour:**
-  
+
 * You can place input data fields in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -174,7 +174,7 @@ Information on the Java version installed should appear in the command terminal.
    A window (seen below without the labels) should appear in a few seconds. Note how the app contains some sample data.<br>
 <img class="center" src="images/LabelledAppWindow.png" width="500" ><br>
     As you can see there are two main panels. The left panels shows your contacts, and the right panel shows the teams that you have in Team Builder.<br>
-    
+
     - The _blue_ tags are the **skill tags** of a person, to denote the skills or specialisation of the person.
     - The _red_ tags are the **team tags**, which tell you which team a person is in
     - The _yellow-orange_ tags are the **members** of a team, which tells you the names of the team members in a team
@@ -260,7 +260,7 @@ It seems that we forgot to add some information about **John**.
 We missed out the back of his card that has his **email**.
 Let's use the `edit` command to update his information.
 
-<img class="center" src="images/JohnIndex.png" alt="John at index 1" /> 
+<img class="center" src="images/JohnIndex.png" alt="John at index 1" />
 <p class="caption"> We see <b>John</b> is index 1 in our display. </p>
 
 **What to type**:
@@ -326,15 +326,14 @@ Format: `create tn/TEAM_NAME td/TEAM_DESC [t/TAG]...`
 
 **Example context**:
 
-You have decided to participate in NUS Hack&Roll hackathon. Let's create a team called "NUSMeets"! Since your idea involves creating 
-a web application, you will need someone with technical experience in React and AWS. You would also prefer to have a UI 
-person to make your web app presentable. As this hackathon involves a tight timeline, proper project management skills 
+You have decided to participate in NUS Hack&Roll hackathon. Let's create a team called "NUSMeets"! Since your idea involves creating
+a web application, you will need someone with technical experience in React and AWS. You would also prefer to have a UI
+person to make your web app presentable. As this hackathon involves a tight timeline, proper project management skills
 are required too.
 
 **What to type**:
 
-`create tn/NUSMeets td/A multidisciplinary team for upcoming HacknRoll in mid Jan. t/JavaScript t/React t/AWS 
-t/Project Management t/UI Design`
+`create tn/NUSMeets td/A multidisciplinary team for upcoming HacknRoll in mid Jan. t/JavaScript t/React t/AWS t/Project Management t/UI Design`
 
 **Result**:
 
@@ -416,7 +415,7 @@ If you have accidentally added extra input fields after `list`, the command woul
 
 **Example context**:
 
-Perhaps you are not too sure which skills are required in your team, so you want to list persons who know a wide range 
+Perhaps you are not too sure which skills are required in your team, so you want to list persons who know a wide range
 of skills first.
 
 **What to type**:
@@ -440,7 +439,7 @@ of skills first.
 <div markdown="block" class="alert alert-info">
 :information_source: **Note:**
 Sort would be performed on the current list of persons displayed on the UI. If you are looking to sort all persons after
-performing a `find` command etc., remember to use `list` command before using `sort`. 
+performing a `find` command etc., remember to use `list` command before using `sort`.
 </div>
 
 ## Add a person to a team : `edit`
@@ -449,7 +448,7 @@ Format: `edit INDEX [T/TEAM_NAME]...`
 
 **Example context**:
 
-You recall participating in a Hackathon previously with Alex Yeoh and knows he is familiar with React. You decide to 
+You recall participating in a Hackathon previously with Alex Yeoh and knows he is familiar with React. You decide to
 reach out to him to form your team for Hack&Roll.
 
 **What to type**:
@@ -525,7 +524,7 @@ Format: `remove TEAM_NAME`
 **Example context**:
 
 Oh no, you realised that you have a number of deadlines during the period of time Hack&Roll would run.
-Taking into account Alex's absence as well, You decide to not participate in it anymore. 
+Taking into account Alex's absence as well, You decide to not participate in it anymore.
 
 **What to type**:
 
@@ -653,7 +652,7 @@ Future changes:
 - Users will be able to view the full tag by hovering their cursor over the tag.
 - This will not change the behaviour of the `add`, `edit`, or `find` commands.
 
-## Phone number limit 
+## Phone number limit
 
 Currently, there is no limit to the length of a contacts phone number.
 Future changes:
