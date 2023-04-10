@@ -7,6 +7,7 @@ import trackr.model.menu.MenuItem;
 /**
  * Clears the menu.
  */
+//@@author changgittyhub-reused
 public class ClearMenuItemCommand extends ClearItemCommand<MenuItem> {
 
     public static final String COMMAND_WORD = "clear_menu";

@@ -4,6 +4,7 @@ package trackr.model.menu;
  * Represents a Item's cost in the Item list.
  * Guarantees: immutable; is valid as declared in {@link #isValidPrice(String)}
  */
+//@@author changgittyhub-reused
 public class ItemCost extends ItemPrice {
 
     /**

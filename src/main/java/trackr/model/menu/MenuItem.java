@@ -11,6 +11,7 @@ import trackr.model.item.Item;
  * Represents a Menu in the menu list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
+//@@author changgittyhub-reused
 public class MenuItem extends Item {
 
     // Data fields

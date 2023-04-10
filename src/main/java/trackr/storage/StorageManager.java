@@ -78,11 +78,13 @@ public class StorageManager implements Storage {
         return trackrStorage.readTaskList(filePath);
     }
 
+    //@@author changgittyhub-reused
     @Override
     public Optional<ReadOnlyMenu> readMenu() throws DataConversionException, IOException {
         return readMenu(trackrStorage.getTrackrFilePath());
     }
 
+    //@@author changgittyhub-reused
     @Override
     public Optional<ReadOnlyMenu> readMenu(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);

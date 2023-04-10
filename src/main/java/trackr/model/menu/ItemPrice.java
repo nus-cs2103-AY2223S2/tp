@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 /**
  * ItemPrice represents any currency that may be associated.
  */
+//@@author changgittyhub-reused
 public class ItemPrice {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain positive numbers, and it should be at most 2 decimal place";

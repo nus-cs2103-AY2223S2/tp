@@ -9,6 +9,7 @@ import trackr.model.item.ItemDescriptor;
  * Stores the details of a task.
  * Each non-empty field value will replace the corresponding field value of the task.
  */
+//@@author changgittyhub-reused
 public class MenuItemDescriptor implements ItemDescriptor<MenuItem> {
     private ItemName itemName;
     private ItemSellingPrice itemPrice;

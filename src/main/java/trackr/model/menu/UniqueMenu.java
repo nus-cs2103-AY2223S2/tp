@@ -17,7 +17,7 @@ import trackr.model.item.UniqueItemList;
  *
  * @see MenuItem#isSameItem(Item)
  */
-//@@author liumc-sg-reused
+//@@author changgittyhub-reused
 public class UniqueMenu extends UniqueItemList<MenuItem> {
 
     public UniqueMenu() {

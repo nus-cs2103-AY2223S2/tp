@@ -6,6 +6,7 @@ import trackr.model.commons.Name;
  * Represents a Item's name in the Item list.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
+//@@author changgittyhub-reused
 public class ItemName extends Name {
 
     //@@author HmuuMyatMoe-reused
