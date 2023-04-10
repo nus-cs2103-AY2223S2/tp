@@ -28,6 +28,8 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 1. `undo` implementation in Logic Implementation section
 2. `Storage` implementation in Logic Implementation section
 3. `UniqueList` implementation in Logic Implementation section
+4. Page Navigation effort in Appendix: Effort section
+5. Storage effort in Appendix: Effort section
 
 ## Contributions to Team-Based Tasks&nbsp;
 1. Participated in drafting [UI mockup (v1.1)](https://docs.google.com/presentation/d/1zS7pX0cm-4faiwjN71NLIgvmkHgRCETdZZtLpKHsn38/edit?usp=share_link)
