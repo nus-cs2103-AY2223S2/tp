@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package "Model classes" <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
@@ -12,13 +12,22 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class UniqueApplicationList
+Class InternshipApplication
+Class CompanyName
+Class JobTitle
+Class Review
+Class ProgrammingLanguage
+Class Qualification
+Class Location
+Class Salary
+Class Note
+Class Rating
+Class Reflection
+Class InterviewDate
+Class InternshipStatus
+Class Contact
+Class Documents
 
 }
 
@@ -34,17 +43,22 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueApplicationList
+UniqueApplicationList --> "~* all" InternshipApplication
+InternshipApplication *--> CompanyName
+InternshipApplication *--> JobTitle
+InternshipApplication *--> "*" Review
+InternshipApplication *--> "*" ProgrammingLanguage
+InternshipApplication *--> "*" Qualification
+InternshipApplication *--> Location
+InternshipApplication *--> Salary
+InternshipApplication *--> "*" Note
+InternshipApplication *--> Rating
+InternshipApplication *--> "*" Reflection
+InternshipApplication *--> InterviewDate
+InternshipApplication *--> InternshipStatus
+InternshipApplication *--> Contact
+InternshipApplication *--> Documents
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" InternshipApplication
 @enduml
