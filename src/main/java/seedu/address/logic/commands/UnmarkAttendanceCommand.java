@@ -63,4 +63,12 @@ public class UnmarkAttendanceCommand extends Command {
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, personName, sessionToEdit.getName()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UnmarkAttendanceCommand // instanceof handles nulls
+                && index.equals(((UnmarkAttendanceCommand) other).index)
+                && personName.equals(((UnmarkAttendanceCommand) other).personName)); // state check
+    }
 }

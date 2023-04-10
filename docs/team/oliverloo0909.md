@@ -51,10 +51,10 @@ Check out my contributions on [RepoSense](https://nus-cs2103-ay2223s2.github.io/
 - Took part in crucial team discussions to determine the project's direction.
 - Routinely examined and incorporated pull requests submitted by other team members.
 
-##**Documentation**:
+###**Documentation**:
 * About Us: [\#12](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/20) [\#157](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/157)
 * User Guide: [\#91](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/91) [\#98](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/98)
 * Developer Guide: [\#52](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/52)
 
-##**Community**:
+###**Community**:
 * PRs reviewed (with non-trivial review comments): [\#29](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/29)

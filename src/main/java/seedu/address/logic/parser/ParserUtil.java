@@ -98,7 +98,7 @@ public class ParserUtil {
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Address(reduceSpace(trimmedAddress));
     }
 
     /**
@@ -189,7 +189,7 @@ public class ParserUtil {
         if (!Location.isValidLocation(trimmedLocation)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
-        return new Location(trimmedLocation);
+        return new Location(reduceSpace(trimmedLocation));
     }
 
     /**

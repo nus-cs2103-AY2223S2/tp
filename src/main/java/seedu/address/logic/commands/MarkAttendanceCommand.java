@@ -62,4 +62,12 @@ public class MarkAttendanceCommand extends Command {
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, personName, sessionToEdit.getName()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MarkAttendanceCommand // instanceof handles nulls
+                && index.equals(((MarkAttendanceCommand) other).index)
+                && personName.equals(((MarkAttendanceCommand) other).personName)); // state check
+    }
 }

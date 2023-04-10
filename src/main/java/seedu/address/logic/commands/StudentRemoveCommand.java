@@ -73,4 +73,12 @@ public class StudentRemoveCommand extends Command {
         model.commitAddressBook();
         return new CommandResult(String.format(SESSION_REMOVE_PERSON_SUCCESS, studentToRemove.getName(), session));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StudentRemoveCommand // instanceof handles nulls
+                && index.equals(((StudentRemoveCommand) other).index)
+                && sessionName.equals(((StudentRemoveCommand) other).sessionName)); // state check
+    }
 }
