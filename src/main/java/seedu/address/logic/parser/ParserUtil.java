@@ -270,7 +270,7 @@ public class ParserUtil {
                     Messages.MESSAGE_ONLY_ONE_DEADLINE));
         }
         // it cannot be empty
-        if (argMultimap.getValue(PREFIX_DEADLINE).get().isEmpty()) {
+        if (argMultimap.getValue(PREFIX_DEADLINE).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     Messages.MESSAGE_EMPTY_DEADLINE));
         }
@@ -289,7 +289,7 @@ public class ParserUtil {
                     Messages.MESSAGE_ONLY_ONE_STUDENT));
         }
         // it cannot be empty
-        if (argMultimap.getValue(PREFIX_NAME).get().isEmpty()) {
+        if (argMultimap.getValue(PREFIX_NAME).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     Messages.MESSAGE_EMPTY_STUDENT));
         }
@@ -308,7 +308,7 @@ public class ParserUtil {
                     Messages.MESSAGE_ONLY_ONE_HOMEWORK));
         }
         // it cannot be empty
-        if (argMultimap.getValue(PREFIX_HOMEWORK).get().isEmpty()) {
+        if (argMultimap.getValue(PREFIX_HOMEWORK).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     Messages.MESSAGE_EMPTY_HOMEWORK));
         }
@@ -327,7 +327,7 @@ public class ParserUtil {
                     Messages.MESSAGE_ONLY_ONE_INDEX));
         }
         // it cannot be empty
-        if (argMultimap.getValue(PREFIX_INDEX).get().isEmpty()) {
+        if (argMultimap.getValue(PREFIX_INDEX).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     Messages.MESSAGE_EMPTY_INDEX));
         }
@@ -346,7 +346,7 @@ public class ParserUtil {
                     Messages.MESSAGE_ONLY_ONE_STATUS));
         }
         // it cannot be empty
-        if (argMultimap.getValue(PREFIX_STATUS).get().isEmpty()) {
+        if (argMultimap.getValue(PREFIX_STATUS).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     Messages.MESSAGE_EMPTY_STATUS));
         }
