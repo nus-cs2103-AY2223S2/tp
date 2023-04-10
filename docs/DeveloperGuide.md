@@ -459,7 +459,8 @@ The user is required to key in at least one keyword to be edited.
 
 The parser for `edit` command parses and extracts out the arguments corresponding to each particular field.
 
-The following activity diagram summarizes what happens when the user executes the `edit` command.
+The following activity diagram summarizes what happens when the user executes the `edit` command. 
+(The rake symbol used in the Figure 17: Edit Command Activity Diagram has been implemented with reference to [this forum](https://forum.plantuml.net/195/is-there-any-support-for-subactivity-or-the-rake-symbol).)
 
 <p align="center">
   <img src="images/EditCommandActivityDiagram.svg" width="500" />
