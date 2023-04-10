@@ -112,12 +112,12 @@ that you should pay attention to. </div>
 to [how to check the version of Java on my computer](https://blog.hubspot.com/website/check-java-verison).
 
 2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases).
-The file is named `coNtactUs.jar`
+The file is named `coNtactUS.jar`
 
 <div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
 on your computer that you download the coNtactUS.jar file onto. This is relevant for the next step. </div>
 
-3. Run the `coNtactUs.jar` file. If you are unsure of how to do so, you may refer to
+3. Run the `coNtactUS.jar` file. If you are unsure of how to do so, you may refer to
 [how to run a jar file](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Run-JAR-file-example-windows-linux-ubuntu).
 
 4. You should now see a window similar to the one shown below. There will be a reminder pop-up window upon
