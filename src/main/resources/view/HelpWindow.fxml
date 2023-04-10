@@ -106,7 +106,7 @@
                                 </VBox.margin>
                                 <Label styleClass="command-word" text="exit">
                                     <HBox.margin>
-                                        <Insets right="43.0" />
+                                        <Insets right="42.0" />
                                     </HBox.margin>
                                 </Label>
                                 <Label styleClass="command-explanation" text=": Exits the application" />
@@ -129,12 +129,12 @@
                                 </VBox.margin>
                                 <Label styleClass="command-word" text="add">
                                     <HBox.margin>
-                                        <Insets right="40.0" />
+                                        <Insets right="41.0" />
                                     </HBox.margin>
                                 </Label>
                                 <VBox>
                                     <Label styleClass="command-explanation" text=":  Adds a contact, name is compulsory" />
-                                    <Label styleClass="command-explanation" text="   add n/NAME p/PHONE_NUMBER s/STATION e/EMAIL t/TELEGRAM" wrapText="true" />
+                                    <Label styleClass="command-explanation" text="   n/NAME p/PHONE_NUMBER s/STATION e/EMAIL t/TELEGRAM" wrapText="true" />
                                     <Label styleClass="command-explanation" text="   [g/GROUP]… [m/MODULE]…" wrapText="true" />
                                 </VBox>
                             </HBox>
@@ -177,7 +177,7 @@
                                 </Label>
                                 <VBox>
                                     <Label styleClass="command-explanation" text="CONTACT_INDEX m/MODULE : Tags the contact with the module tag" />
-                                    <Label styleClass="command-explanation" text="m/MODULE : Tags your user profile with module tag" />
+                                    <Label styleClass="command-explanation" text="m/MODULE : Tags your user profile with the module tag" />
                                 </VBox>
                             </HBox>
                             <HBox styleClass="box-pad">
@@ -208,7 +208,7 @@
                         <VBox>
                            <children>
                                       <Label styleClass="command-explanation" text="z/[FIELD] [MORE_FIELDS]... : Accepts only one Prefix, accepts multiple" />
-                              <Label styleClass="command-explanation" text=" keywords" />
+                              <Label styleClass="command-explanation" text="keywords" />
                            </children>
                         </VBox>
                             </HBox>
@@ -256,8 +256,7 @@
                                 </Label>
                         <VBox>
                            <children>
-                              <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to meet with contacts at the" />
-                                      <Label styleClass="command-explanation" text="                                       indexes" />
+                              <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to meet with contacts" />
                            </children>
                         </VBox>
                             </HBox>
@@ -269,8 +268,7 @@
                                 </Label>
                         <VBox>
                            <children>
-                                      <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to eat with contacts at the" />
-                              <Label styleClass="command-explanation" text="                                       indexes" />
+                                      <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to eat with contacts" />
                            </children>
                         </VBox>
                             </HBox>
@@ -282,8 +280,7 @@
                                 </Label>
                         <VBox>
                            <children>
-                                      <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to study with contacts at the" />
-                              <Label styleClass="command-explanation" text="                                       indexes" />
+                                      <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to study with contacts " />
                            </children>
                         </VBox>
                             </HBox>
@@ -294,14 +291,14 @@
                                     </HBox.margin>
                                 </Label>
                                 <VBox>
-                                    <Label styleClass="command-explanation" text="[MEETUP_INDEX] : Organises a meet up from recommendations" />
-                                    <Label styleClass="command-explanation" text="[MEETUP_INDEX]... d/DAY T/TIME_PERIOD l/LOCATION: Organises a" />
-                                    <Label styleClass="command-explanation" text="                                 customised meet up" />
+                                    <Label styleClass="command-explanation" text="[RECOMMENDATION_INDEX] : Organises a meet up from recommendations" />
+                                    <Label styleClass="command-explanation" text="[CONTACT_INDEX]... d/DAY T/TIME_PERIOD l/LOCATION: Organises a" />
+                                    <Label styleClass="command-explanation" text="                                    customised meet up" />
                                 </VBox>
                             </HBox>
                             <HBox styleClass="box-pad">
                                 <Label styleClass="command-word" text="unorganise" />
-                                <Label styleClass="command-explanation" text="[MEETUP_INDEX] : Removes a organised meet up" />
+                                <Label styleClass="command-explanation" text="[MEETUP_INDEX] : Removes an organised meet up" />
                             </HBox>
                             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="486.0" style="-fx-border-color: rgb(227, 211, 238); -fx-border-width: 2;" styleClass="box-pad">
                                 <VBox.margin>
@@ -314,9 +311,9 @@
                                 </Label>
                                 <VBox prefHeight="34.0" prefWidth="460.0">
                                     <Label styleClass="command-explanation" text="Press UP key when text field is selected : Loads previous command into" />
-                           <Label styleClass="command-explanation" text="                                                                       textfield" />
+                           <Label styleClass="command-explanation" text="                                                                      text field" />
                                     <Label styleClass="command-explanation" text="Press DOWN key when text field is selected : Loads next command into" />
-                           <Label styleClass="command-explanation" text="                                                                             textfield" />
+                           <Label styleClass="command-explanation" text="                                                                             text field" />
                                 </VBox>
                             </HBox>
                         </VBox>
