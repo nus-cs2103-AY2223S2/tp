@@ -122,6 +122,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.png" width="600"/>
 
+<div style="page-break-after: always;"></div>
+
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddDoctorCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddDoctorCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddDoctorCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
@@ -131,6 +133,7 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+<div style="page-break-after: always;"></div>
 
 The `Model` component,
 
@@ -150,6 +153,8 @@ The `Model` component,
 * The `Person` object under the `Model` component, stores information of a generic person
 * A `Person` object extends a `Patient` or a `Doctor`, which stores information specific to a patient and a doctor respectively
 * Note that only the `Nric` uniquely identifies each `Person`
+
+<div style="page-break-after: always;"></div>
 
 #### Appointment
 
@@ -179,6 +184,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -222,6 +229,8 @@ Command Format:
    * Pros: Easy to remember
    * Cons: Harder to implement, The command would be too long
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a Person
 
 The delete mechanism is facilitated by `MediConnect`. It extends `MediConnect` with a delete function.
@@ -250,6 +259,7 @@ Step 4. The user executes `delete ic/S9876543K` command to delete the person wit
     * Pros: Easy to implement. No need to worry about multiple people with same name, since everyone has a unique nric number.
     * Cons: Cannot delete multiple people at once. User might delete the wrong nric accidentally since it is a long chain of numbers.
 
+<div style="page-break-after: always;"></div>
 
 ### Display feature
 
@@ -269,6 +279,8 @@ The sequence diagram below shows how the DisplayCommand works:
 * Otherwise, it creates an `DisplayCommand`. The `LogicManager` then executes the `DisplayCommand`, upon which the `Person` is retrieved by `Nric` before calling `Model#updatePersonView()` to display the detailed view of the retrieved `Person`
     * `CommandException` is thrown
         * if `Patient` or `Doctor` retrieved by `Nric` does not exist
+
+<div style="page-break-after: always;"></div>
 
 ### Appointment feature
 
@@ -296,6 +308,7 @@ The sequence diagram below shows how the AppointmentCommand works:
     * if `Appointment` already exists in `Model`
 * Since the `Patient` and `Doctor`'s `Appointment` attributes have been updated, new instances of `Patient` and `Doctor` are created, and saved with `Model#setPerson()`
 
+<div style="page-break-after: always;"></div>
 
 #### Deleting an appointment
 
