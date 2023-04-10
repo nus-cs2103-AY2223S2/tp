@@ -611,6 +611,8 @@ testers are expected to do more *exploratory* testing.
 1. Checking that graphs of each tank can display readings correctly
    1. Prerequisites: The tanks are the default sample tanks, "freshwater tank" and "saltwater tank"
    2. Test case: paste the following test values into `readings.json`: <br>
+ 
+  
 ```json
 {
   "readingLevels" : [ {
