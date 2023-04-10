@@ -122,9 +122,11 @@ Salespeople managing client contacts who prefer a CLI
 
 Shows a message explaining how to access the help page.
 
+Format: `help`
+
 ![help message](images/helpMessage.png)
 
-Format: `help`
+
 
 ### Adding a person: `add`
 
@@ -150,6 +152,10 @@ Contacts can have multiple optional tags associated with them.
 
 Deletes the specified person from the contact list.
 
+Note that any transactions tied to the deleted person will not be deleted together. 
+This could produce transactions with invalid owner. The user should delete related transactions 
+or edit them with `edittxn INDEX to/NEW_OWNER` to assign them to an existing person.
+
 Format: `delete INDEX`
 
 - Deletes the person at the specified `INDEX`.
@@ -165,6 +171,12 @@ Examples:
 
 Shows a list of all persons in the contact list.
 
+Format: `list`
+
+### Sorting all persons : `sort`
+
+Sorts all persons in the contact list based on an attribute.
+
 Format: `sort ATTRIBUTE`
 
 ATTRIBUTE: `name, gender, phone number, email, company, location, occupation, job title, address, status`
@@ -176,12 +188,6 @@ Examples:
 
 - `sort name` Sorts all persons alphabetically by name.
 - `sort occupation` Sorts all persons alphabetically by occupation.
-
-Format: `list`
-
-### Sorting all persons : `sort`
-
-Sorts all persons in the contact list based on an attribute.
 
 ### Editing a person : `edit`
 
@@ -213,6 +219,8 @@ Contacts can have multiple optional tags associated with them.
 Assigns the lead status of a contact. At the same time, saves the timestamp of when the lead status has changed. The
 user can use this information as a gauge of how long a client has stayed in a certain status.
 
+Format: `status INDEX s/STATUS`
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the lead status specified is the same as the previous, nothing is changed and the timestamp is not refreshed. This is
 to mitigate the chances of accidental reassignment of the same lead status by the user.
@@ -232,8 +240,6 @@ There might be other types of lead statuses definitions (<a href="https://www.va
 that you might want to use. For this application, we have implemented only 4 types of lead statuses for simplicity's sake.
 </div>
 
-Format:
-`status INDEX s/STATUS`
 
 Examples:  
 `status 1 s/Q` Assigns the status of QUALIFIED to ID `1` in the current list of persons.  
@@ -321,6 +327,7 @@ Format: `findtxn NAME`
 - The search is case-insensitive and exact-match. e.g `John Doe` will match `john doe` and all transactions with `john doe` as the owner in the transaction
 - The spaces before and after keywords does not matter. e.g. `   Hans Bo ` will match `Hans Bo`
   e.g. `findtxn John Doe` will return `John Doe` and all txns with the same owner name `John Doe`
+- Use `list` and `listtxn` to navigated back to default list displays after `findtxn`.
 
 Examples:
 
@@ -328,9 +335,11 @@ Examples:
 
 ### Adding a transaction: `addtxn`
 
-Adds a transaction record to the transaction list.
+Adds a transaction record to the transaction list. 
 
 Format: `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER`
+
+The 2 types of transaction statuses supported are:
 
 | Type   | Formats (Case-sensitive) | Meaning                |
 | ------ | ------------------------ | ---------------------- |
@@ -338,8 +347,7 @@ Format: `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER`
 | CLOSED | `Closed` or `C`          | Completed transaction  |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-All fields must be provided, and transaction status should be either 'Open' or 'Closed'.
-</div>
+All fields must be provided. Owner needs to be an existing person in the contact list.
 
 Examples:
 
@@ -443,7 +451,7 @@ If your changes to the data file makes its format invalid, SalesPunch will disca
 ## Command summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                      |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**   | `help`                                                                                                                                                                                                                                                                |
 | **Add**    | `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL c/COMPANY l/LOCATION o/OCCUPATION j/JOBTITLE a/ADDRESS [t/TAG…] ​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                   |
@@ -451,11 +459,11 @@ If your changes to the data file makes its format invalid, SalesPunch will disca
 | **Sort**   | `sort ATTRIBUTE`, where `ATTRIBUTE` is one of: <br> `name, gender, phone number, email, company, location, occupation, job title, address, status`<br> e.g., `sort name`                                                                                              |
 | **Edit**   | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                          |
 | **Status** | `status INDEX_NUMBER s/STATUS` <br> e.g., `status 1 s/Unqualified`                                                                                                                                                                                                    |
-| **AddTxn** | `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER ` <br> e.g., `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER` |
-| **DeleteTxn** | `deletetxn INDEX`<br> e.g., `deletetxn 3` |
-| **ListTxn** | `listtxn` |
-| **EditTxn** | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed` |
-| **AddTask** | `addtask INDEX at/TASK_DESCRIPTION` <br> e.g. `addtask 1 at/Meet up and finalise sale` |
-| **ClearTask** | `cleartask INDEX` <br> e.g., `cleartask 1` |
-| **Clear** | `clear` |
-| **Exit** | `exit` |
+| **AddTxn** | `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER ` <br> e.g., `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER`                                                                                                                                                   |
+| **DeleteTxn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                             |
+| **ListTxn** | `listtxn`                                                                                                                                                                                                                                                             |
+| **EditTxn** | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/Closed`                                                                                                                                                                   |
+| **AddTask** | `addtask INDEX at/TASK_DESCRIPTION` <br> e.g. `addtask 1 at/Meet up and finalise sale`                                                                                                                                                                                |
+| **ClearTask** | `cleartask INDEX` <br> e.g., `cleartask 1`                                                                                                                                                                                                                            |
+| **Clear** | `clear`                                                                                                                                                                                                                                                               |
+| **Exit** | `exit`                                                                                                                                                                                                                                                                |

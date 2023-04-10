@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all transactions in the address book to the user.
+ * Lists all transactions in the transaction list to the user.
  */
 public class ListTxnCommand extends Command {
 

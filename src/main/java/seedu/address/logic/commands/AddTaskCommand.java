@@ -15,7 +15,7 @@ import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskList;
 
 /**
- * Changes the task of an existing person in the address book.
+ * Changes the task of an existing person in the contact list .
  */
 public class AddTaskCommand extends Command {
 

@@ -15,7 +15,7 @@ import seedu.address.model.transaction.Transaction;
 
 
 /**
- * Deletes a transaction identified using it's displayed index from the sales book.
+ * Deletes a transaction identified using it's displayed index from the transaction list.
  */
 public class DeleteTxnCommand extends Command {
     public static final String COMMAND_WORD = "deletetxn";

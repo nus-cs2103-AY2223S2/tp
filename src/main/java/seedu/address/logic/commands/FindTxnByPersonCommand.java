@@ -8,8 +8,7 @@ import seedu.address.model.person.OnlyOnePersonPredicate;
 import seedu.address.model.person.TxnContainsPersonPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the
- * argument keywords.
+ * Finds and lists all transactions whose owner matches the input name
  * Keyword matching is case insensitive.
  */
 public class FindTxnByPersonCommand extends Command {
@@ -17,8 +16,8 @@ public class FindTxnByPersonCommand extends Command {
     public static final String COMMAND_WORD = "findtxn";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Returns the contact that matches and all txns related to this contact "
-            + "the specified keywords (case-insensitive) and displays the txn list with index numbers.\n"
+            + ": Returns the contact that matches and all transactions related to this contact "
+            + "the specified keywords (case-insensitive) and displays the transaction list with index numbers.\n"
             + "Parameters: Exact match [NAME]\n"
             + "Example: " + COMMAND_WORD + " Bernice Yu";
 
