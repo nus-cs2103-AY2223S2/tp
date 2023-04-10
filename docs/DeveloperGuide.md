@@ -97,7 +97,7 @@ On start, the `UIManager` will display the `MainWindow` that is made up of parts
 
 Timetable Window displays timetable of the specific week - which is specified by user. The "main" timetable window only contains scheduled jobs (jobs that are scheduled and not yet completed). However, we also have separated windows for completed and unscheduled jobs (`UnscheduleWindow` and `CompleteWindow`). Timetable Window helps users to stay organized and structure their plans for the week.
 
-`Timetable Window`:
+1. `Timetable Window`:
 
 ![Structure of the Timetable Window](images/UiClassDiagramTimetableWindow.png)
 
@@ -111,7 +111,7 @@ Upon calling `MainWindow#handleTimetable()`, the diagram below shows how `Timeta
 ![Sequence Diagram of initialization the Timetable Window](images/UiSequenceDiagramTimetableWindow.png)
 
 
-`Unschedule Window`:
+2. `Unschedule Window`:
 
 ![Structure of the Unscheduled Window](images/UiClassDiagramUnscheduleWindow.png)
 
@@ -124,7 +124,7 @@ Upon calling `MainWindow#handleUnscheduledTimetable()`, the diagram below shows 
 ![Sequence Diagram of initialization the Unschedule Window](images/UiSequenceDiagramUnscheduledTimetableWindow.png)
 
 
-`Complete Window`:
+3. `Complete Window`:
 
 ![Structure of the Completed Window](images/UiClassDiagramCompleteWindow.png)
 
