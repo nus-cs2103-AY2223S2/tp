@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jinbesan.png" width="200px">
 
 [[github](http://github.com/jinbesan)]
-[[portfolio](team/gitsac.md)]
+[[portfolio](team/jinbesan.md)]
 
 * Role: Developer
 * Responsibilities: Feature Implementation
