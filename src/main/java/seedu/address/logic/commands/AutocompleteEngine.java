@@ -200,13 +200,10 @@ public class AutocompleteEngine {
 
         String[] splitArr = commandBody.trim().split(" +");
         List<String> words = Arrays.asList(splitArr);
-        int numOfWords = splitArr.length;
-        assert numOfWords > 0 : "'numOfWords' should be > 0";
+        assert words.size() > 0 : "number of words should be > 0";
         assert !splitArr[0].isBlank() : "first word should not be blank";
         assert !splitArr[0].contains(" ") : "'first word' should not contain any spaces";
         String lastWord = splitArr[splitArr.length - 1];
-        assert !firstWord.isBlank() : "'firstWord' should not be blank";
-        assert !firstWord.contains(" ") : "'firstWord' should not contain any spaces";
         assert !lastWord.isBlank() : "'lastWord' should not be blank";
         assert !lastWord.contains(" ") : "'lastWord' should not contain any spaces";
 
@@ -257,20 +254,7 @@ public class AutocompleteEngine {
                             .substring(lastWord.length());
         }
 
-        long numOfNonRepeatingPrefixlessArgs = argPrefixes.stream()
-                .filter(Prefix::isPlaceholder)
-                .filter(prefix -> !prefix.isRepeatable())
-                .count();
-        String remainingArgs = argPrefixes.stream()
-                // Skip the filled prefix-less arguments.
-                .skip(Math.min(numOfWords, numOfNonRepeatingPrefixlessArgs))
-                // Remove filled non-repeating prefixed arguments.
-                .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
-                        || prefix.isPlaceholder()
-                        || prefix.isRepeatable())
-                .map(Prefix::toPlaceholderString)
-                .collect(Collectors.joining(" "));
-        return remainingArgs;
+        return getRemainingArgSuggestion(argPrefixes, argumentMultimap, words);
     }
 
     /** Gets the full argument suggestion for the command. (ie. suggest all the arguments) */
@@ -294,6 +278,25 @@ public class AutocompleteEngine {
         if (!areAllValidIndexes) {
             throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+    }
+
+    /** Get the suggestion for the remaining unfilled arguments. */
+    private String getRemainingArgSuggestion(List<Prefix> argPrefixes,
+            ArgumentMultimap argumentMultimap, List<String> words) {
+        long numOfNonRepeatingPrefixlessArgs = argPrefixes.stream()
+                .filter(Prefix::isPlaceholder)
+                .filter(prefix -> !prefix.isRepeatable())
+                .count();
+        String remainingArgs = argPrefixes.stream()
+                // Skip the filled prefix-less arguments.
+                .skip(Math.min(words.size(), numOfNonRepeatingPrefixlessArgs))
+                // Remove filled non-repeating prefixed arguments.
+                .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
+                        || prefix.isPlaceholder()
+                        || prefix.isRepeatable())
+                .map(Prefix::toPlaceholderString)
+                .collect(Collectors.joining(" "));
+        return remainingArgs;
     }
 
 }
