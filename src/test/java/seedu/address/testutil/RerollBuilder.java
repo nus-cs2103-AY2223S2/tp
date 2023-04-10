@@ -24,7 +24,7 @@ public class RerollBuilder {
      * Adds a new {@code Person} to the {@code Reroll} that we are building.
      */
     public RerollBuilder withEntity(Entity entity) {
-        //reroll.addEntity(entity);
+        reroll.addEntity(entity);
         return this;
     }
 

@@ -45,6 +45,15 @@ public class EntityBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Set<Tag>} of the {@code Entity} that we are building.
+     */
+    public EntityBuilder withTags(Set<Tag> tags) {
+        this.tags.clear();
+        this.tags.addAll(tags);
+        return this;
+    }
+
     public Character buildChar() {
         return new Character(name);
     }

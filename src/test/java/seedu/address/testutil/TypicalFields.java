@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Stats;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class containing fields for Entity to use.
@@ -18,5 +19,6 @@ public class TypicalFields {
     public static final Stats ORC_STATS = new Stats(15, 6, 1);
     public static final Stats ELF_STATS = new Stats(6, 10, 10);
     public static final Stats HUMAN_STATS = new Stats(7, 9, 9);
+    public static final Tag GARB_TAG = new Tag("GARB");
 
 }
