@@ -9,7 +9,7 @@ title: Park Kwangjoo's Project Portfolio Page
 
 Given below are my contributions to the project.
 
-- **New Feature**: `Integration of Department and Leave` [[PR#84]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/84)
+- **New Feature**: `Integration of Department and Leave` [PR#84](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/84)
 
   - What was done: Integrated the usecases of Department level functionalities to allow users to query headcount for the departments by taking into account the leaves taken by each employee in the specific department.
   - Justification: This feature makes the user experience more cohesive.
@@ -44,5 +44,11 @@ Given below are my contributions to the project.
   - Reviewed a non-trivial PR changing the internal handling of employees. #93
 
 - **Documentation**:
+  - User Guide:
+    - Contributed to explaining about the ListDepartmentHeadcountCommand.
+  - Developer Guide:
+    - Contributed to writing UML diagrams for ListDepartmentHeadcountCommand.
 
 - **Code Quality and Bug Fixing**:
+  - Ensured good code quality and spotted bugs in PRs reviewed.
+  - Fixed bugs regarding test cases when refactoring.

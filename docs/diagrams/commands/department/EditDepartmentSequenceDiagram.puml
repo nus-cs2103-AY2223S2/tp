@@ -62,7 +62,7 @@ destroy EditDepartmentCommandParser
 SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
-LogicManager -> EditDepartmentCommand : execute()
+LogicManager -> EditDepartmentCommand : execute(model)
 activate EditDepartmentCommand
 
 EditDepartmentCommand -> Model : getDepartment(name)
