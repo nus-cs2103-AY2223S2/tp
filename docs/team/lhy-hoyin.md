@@ -46,7 +46,7 @@ It is developed in Java, and uses JavaFX to create the GUI.
   - Rename `package` and all references to previous package
   - User Guide: Came up with the template structure for details of commands
   - Make running `shadowJar` in gradle also run all tests and checkstyles
-  - Release `v1.3` and `v1.3.1` on [GitHub](https://github.com/AY2223S2-CS2103-W17-3/tp/releases)
+  - Release `v1.3`, `v1.3.1` and `v1.4` on [GitHub](https://github.com/AY2223S2-CS2103-W17-3/tp/releases)
 
 - **Review/mentoring Contributions**
   - Milestone v1.1: [4] [pr-reviewed-v1.1] PRs reviewed
