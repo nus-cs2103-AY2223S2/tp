@@ -415,7 +415,7 @@ The following activity diagram summarises what happens when a user executes an `
 
 <img src="images/AddIsolatedEventCommandActivityDiagram.png" width="300" />
 
-### Sequence diagram
+#### Sequence diagram
 The following sequence diagram illustrates the interaction within the Logic component for the execute
 API call.
 
@@ -457,12 +457,12 @@ person's IsolatedEventList.
 ### \[Developed\] Editing Isolated Event
 This feature allows the user to edit a specific isolated event in the person's isolated event list.
 
-### Activity Diagram
+#### Activity Diagram
 The following activity diagram summarises what happens when a user executes an `ie_edit` command:
 
 <img src="images/EditIsolatedEventCommandActivityDiagram.png" width="300" />
 
-### Sequence diagram
+#### Sequence diagram
 The following sequence diagram illustrates the interaction within the Logic component for the execute
 API call.
 
@@ -515,7 +515,7 @@ The recurring event list is fix to span over 7 days from Monday to Sunday, while
 Since there is only 7 days in the recurring event list, it would be guaranteed that the TimeMask will only have a maximum of 7 days. Therefore, updating the 
 TimeMask while adding a recurring event is possible and convenient for finding free time slots.
 
-### Sequence diagram
+#### Sequence diagram
 The following sequence diagram illustrates the interaction within the Logic component for the execute
 API call.
 
@@ -562,7 +562,7 @@ Time slot finding feature requires a few pre-processing steps to function with e
 Instead of traversing through the IsolatedEvents and RecurringEvents of each Person in the Group, it would be a better to have some an auxiliary table to reduce computation. 
 The current implementation uses the idea of a bitmask to determine which intervals are occupied. A TimeMask is simply an array of 7 numbers, each reflecting the occupancy of each time slot (1 hour each) throughout a day. Thus, it reflects the occupancies of each time slot in a week. The ordering of the days follow that of Java’s DayOfWeek API where Monday has the lowest value of 1. The first number in the array then represents Monday, the second represents Tuesday and so on. Each Person’s RecurringEventList will then maintain a TimeMask that gets updated whenever a RecurringEvent is added for that Person. 
 
-### Activity Diagram
+#### Activity Diagram
 The following activity diagram summarises what happens when a user executes a `free` command:
 
 <img src="images/FindTimeCommandActivityDiagram.png" width="300" />
@@ -575,7 +575,7 @@ When the FindTimeCommand executes with a Group and Date as its parameters,
 3. The parent TimeMask is then converted to a list of unoccupied time slots, and it is updated in the AddressBook's ScheduleWeek, that acts as an internal list that UI observes.
 4. The UI detects the changes and then displays the updated timetable.
 
-### Sequence Diagram
+#### Sequence Diagram
 The following sequence diagram illustrates the interaction within the Logic component for the execute
 API call for FindTimeCommand.
 
@@ -594,7 +594,7 @@ Given below is an example usage scenario and how the command mechanism behaves a
    respective field requested.
 6. Execution of `FindTimeCommand` results in a CommandResult created and returned to the LogicManager.
 
-### Design Consideration
+#### Design Consideration
 
 **Aspect: Algorithm and data structure for finding of free time slot**
 * **Alternative 1: List of occupied intervals (start date time and end date time)**
@@ -842,12 +842,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1303,14 +1297,14 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
-### 1. Group name case-sensitive
+### Group name case-sensitive
 * Feature flaw: Users can add groups containing the same letters/numbers but different capitalisation. For example 'CS2103' and 'cs2103' are two different groups
 * Future plan: As we are planning to integrate with NUSMODS in the future. All groups would follow the same naming convention as NUS modules where they are capitalised. So we plan to make all group names capitalised in the future.
 
-### 2. Data file editable
+### Data file editable
 * Feature flaw: Users are able to edit the addressbook.json in the data folder. This can cause unwanted errors. We have handled json files with invalid parameters but it wipes out all existing content in the file if its invalid.
 * Future plan: We plan to encrypt the json file using methods such as XOR encryption which makes the json file non-human readable. This prevents users from intentionally editing certain parameters.
 
-### 3. Event names
+### Event names
 * Feature flaw: Exporting a person includes the exact names for all events. This is undesirable for users as they may only want to share which date and time they are unavaliable and not share what event they have.
 * Future plan: We plan to only export date and time of an event while the event name would be a fixed name. (e.g Events).
