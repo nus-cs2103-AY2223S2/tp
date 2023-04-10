@@ -11,7 +11,7 @@ Trackr is a desktop application catered towards home businesses to track their _
 
 :bulb: **Tip**
 
-Texts that are in _italics_ are further explained in the [Glossary section](#glossary).
+Texts that are in _italics_ are further explained in the [Glossary section](#46-glossary).
 
 </div>
 
@@ -65,7 +65,7 @@ You can click on the respective links below to read up on the relevant sections.
   * [4.5 Non-Functional Requirements](#45-non-functional-requirements)
   * [4.6 Glossary](#46-glossary)
   * [4.7 Planned Enhancements](#47-planned-enhancements)
-  * [4.7 Instructions for manual testing](#47-instructions-for-manual-testing)
+  * [4.8 Instructions for manual testing](#48-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
     * [Adding a supplier](#adding-a-supplier)
     * [Adding a task](#adding-a-task)
@@ -142,19 +142,19 @@ Given below is a quick overview of main components and how they interact with ea
 
 ### 2.1.1 Main components of the architecture
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/MainApp.java). It is responsible for,
 
 * At app launch: Initializing the components in the correct sequence, and connecting them up with each other.
 * At shut down: Shutting down the components and invoking cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#26-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#22-ui-component): The UI of the App.
+* [**`Logic`**](#23-logic-component): The command executor.
+* [**`Model`**](#24-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
 
 ### 2.1.2 How the architecture components interact with each other
 
@@ -528,6 +528,8 @@ The following activity diagram summarizes what happens when the user executes th
 
 The `ListXYZCommand` is an improved version of the original _AB3_ `ListCommand` by implementing into an abstract class - `ListItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require listing all item of the same data type.
+
+<div style="page-break-after: always;"></div>
 
 ## 3.6 SortXYZCommand
 
@@ -998,7 +1000,7 @@ we plan to simply tweak the implementation of `Deadline::isValidDeadline` for st
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4.7 Instructions for manual testing
+## 4.8 Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
