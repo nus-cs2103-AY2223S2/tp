@@ -6,8 +6,9 @@ title: User Guide
 OfficeConnect is a task management tool designed specifically for managerial role personnels based in Singapore.
 
 As managers in the current office environment, it is often not easy to grasp the workload of subordinates. This may result in:
-* work overload among subordinates,
-* difficulties in coordinating tasks with a large number of employees.
+* work overload among subordinates
+* difficulties in coordinating tasks with a large number of employees
+* inefficient, time-consuming administrative tasks like typing and sending emails.
 
 OfficeConnect offers a solution to these problems by providing better visibility into subordinates’ workloads, allowing
 managers to efficiently delegate tasks in an organised manner. 
@@ -537,10 +538,28 @@ _Details coming soon ..._
 
 <div style="page-break-after: always;"></div>
 
-## 4. FAQ
+## 4. Frequently Asked Questions (FAQ)
 
-**Q**: How do I transfer my data to another Computer?  
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous OfficeConnect home folder.
+1. **What is OfficeConnect?**
+   OfficeConnect is a productivity app designed to help you manage tasks, team members, and assignments more efficiently. It offers a variety of features to improve organization and collaboration within your team.
+
+2. **How can I view all tasks and team members in OfficeConnect?**
+   OfficeConnect provides various filter and list commands to display tasks and team members based on different criteria, such as assigned, unassigned, or by specific tags.
+
+3. **Can I edit task and team member details after they have been added?**
+   Yes, OfficeConnect allows you to edit the details of tasks and team members after they have been added to the system. This helps to ensure that your information is always up-to-date and accurate.
+
+4. **How do I assign a task to a team member?**
+   You can assign tasks to team members using the assignment commands. This feature helps to distribute work efficiently and track the progress of each task.
+
+5. **What if I accidentally delete or modify data in the OfficeConnect data file?**
+   Please exercise caution when editing the data file, as any changes to the data file might cause data corruption and lead to the app malfunctioning. If the data file becomes corrupted, OfficeConnect will start with an empty data file on the next run.
+
+6. **Does OfficeConnect support different themes?**
+   Yes, OfficeConnect offers both light and dark themes for your preference. You can easily switch between themes using the respective keyboard shortcuts.
+
+7. **How do I transfer my OfficeConnect data to another computer?**
+   To transfer your data to another computer, first, install the app on the new computer. Next, replace the empty data file created on the new computer with the data file from your previous OfficeConnect data folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
