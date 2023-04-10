@@ -7,6 +7,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
+Low Jian Feng: e0727089@u.nus.edu.sg
+
 ## Project team
 
 ### Mandy Kaw
