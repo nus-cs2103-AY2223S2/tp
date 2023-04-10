@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddAppointmentCommandParser" as AddAppointmentCommandParser LOGIC_COLOR
+participant "a:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("add_appt YYY")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add_appt YYY")")
+activate AddressBookParser
+
+create AddAppointmentCommandParser
+AddressBookParser -> AddAppointmentCommandParser
+activate AddAppointmentCommandParser
+
+AddAppointmentCommandParser --> AddressBookParser
+deactivate AddAppointmentCommandParser
+
+AddressBookParser -> AddAppointmentCommandParser : parse("YYY")
+activate AddAppointmentCommandParser
+
+create AddAppointmentCommand
+AddAppointmentCommandParser -> AddAppointmentCommand
+activate AddAppointmentCommand
+
+AddAppointmentCommand --> AddAppointmentCommandParser : a
+deactivate AddAppointmentCommand
+
+AddAppointmentCommandParser --> AddressBookParser : a
+deactivate AddAppointmentCommandParser
+
+AddAppointmentCommandParser -[hidden]-> AddressBookParser
+destroy AddAppointmentCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

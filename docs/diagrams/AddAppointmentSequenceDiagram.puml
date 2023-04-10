@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+participant "a:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
+
+participant ":Model" as Model MODEL_COLOR
+
+[-> AddAppointmentCommand : execute()
+
+
+activate AddAppointmentCommand
+
+AddAppointmentCommand -> Model: hasPatientName(p)
+activate Model
+Model -> AddAppointmentCommand
+deactivate Model
+
+AddAppointmentCommand -> Model: hasAppointment(a)
+activate Model
+Model -> AddAppointmentCommand
+deactivate Model
+
+AddAppointmentCommand -> Model: hasOverlap(a)
+activate Model
+Model -> AddAppointmentCommand
+deactivate Model
+
+alt Patient exists and Appointment is not already in MediMeet
+    AddAppointmentCommand -> Model : addAppointment(p)
+    activate Model
+    Model -> Model: updateFilteredAppointmentList()
+    activate Model
+    Model --> Model
+    deactivate Model
+    Model --> AddAppointmentCommand
+    deactivate Model
+end
+
+
+[<--AddAppointmentCommand : result
+deactivate AddAppointmentCommand
+[<-[Hidden]- AddAppointmentCommand
+destroy AddAppointmentCommand
+
+@enduml
