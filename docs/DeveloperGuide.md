@@ -1523,7 +1523,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
     1. Ensure that InternBuddy is not running. If it is running, close it.
     2. Open the file `internbuddy.json`.
     3. In `internbuddy.json`, locate any line that contains the word `CompanyName`.
-    4. Highlight the line located in Step 4 and delete the entire line.
+    4. Highlight the line located and delete the entire line.
     5. Save the `internbuddy.json` file and close it.
     6. Launch InternBuddy.
 
