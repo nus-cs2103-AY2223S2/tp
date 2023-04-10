@@ -2871,9 +2871,7 @@ The checking and limiting of length can be done while parsing the arguments and 
 The following {field} should not exceed the length limit of 30 characters: {value}
 ```
 
-### Feature flaw #3
-
-### Feature flaw #4: Limited Find function capability
+### Feature flaw #3: Limited Find function capability
 
 **Description**
 
@@ -2887,7 +2885,7 @@ This reduces the flexibility of the find function as they might be users who do 
 Instead of matching contents that **starts with** a keyword, relax it to **contain** the keyword.
 E.g. `find 2040` will match `CS2040` because `CS2040` contains `2040`.
 
-### Feature flaw #5: Over buffering command history
+### Feature flaw #4: Over buffering command history
 
 **Description**
 
