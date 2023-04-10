@@ -133,7 +133,7 @@ Item | Description
 **age** | Age of the person who got dengue.
 **postal** | Postal code of the person who got dengue.
 **date** | Date that the person got dengue.
-**variant** | Dengue variant of the case.
+**variants** | Dengue variants tagged to the case.
 
 <div style="page-break-after: always;"></div>
 Here is the breakdown of an individual **bin card**.
