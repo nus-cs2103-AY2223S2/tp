@@ -46,7 +46,6 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Adding more error checks like addWeight Command where multiple weights can affect the graph.
-
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `add` [\#62](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/62)
