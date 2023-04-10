@@ -9,6 +9,8 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **1. Introduction**
 
 ### 1.1 About sprINT 
@@ -255,6 +257,7 @@ the execution of the command.
 and its details to the user, should the add command execute successfully. If an error occurred during execution, the corresponding
 exception that was thrown and the error message will be displayed to the user.</div>
 
+<div style="page-break-after: always;"></div>
 
 For a more graphical illustration of how an add application command is processed, please refer to the following
 sequence diagram:
@@ -1411,42 +1414,42 @@ wraps around when the window is resized below a certain width. This way, users c
 they have applied to. We also plan to increase the minimum window height to ensure that the pie chart stays within
 the Statistics Display Panel. 
 
-#### 4. Role of application gets truncated if it exceeds a certain length
+#### 4. Application parameters gets truncated if it exceeds a certain length
 
-When a user enters a role name that exceeds a certain length, the last part of the label is truncated and cannot be 
-viewed by the user. This is illustrated in the screenshot below.
+Our current product does not set a character limit for the various fields of an Application. As such, if the parameter
+length is sufficiently long, it is possible for the last part of the corresponding label to be truncated as it exceeds
+the boundaries of the ApplicationCard. Refer to the following illustrations.
 
 ![LongRoleName.png](images/LongRoleName.png)
 
-While role names of such length are uncommon, it is not impossible. 
+When a user enters a role name that exceeds a certain length, the last part of the label is truncated and cannot be
+viewed by the user.
 
-**Potential Enhancement and Suggested Implementation:** <br>
-In the future, we plan to have the role name wrap around (i.e. continue on a second line) if it goes beyond a certain
-length to provide better readability. 
-
-#### 5. Applications tags gets truncated if tags are too long or too many tags are added
+![LongRoleName.png](images/LongRoleName.png)
 
 When a user adds a large number of tags to a single application, or when each tag is excessively lengthy, the display
-of the tags is truncated at the edge of the `ApplicationCard`. This results in the User not being able to view all tags
-completely. Refer to the screenshot below for an illustration of said problem.
+of the tags is truncated and cannot be viewed by the user.
 
-![LongAndMultipleTags.png](images/LongAndMultipleTags.png)
+<div markdown="span" class="alert alert-info">:information_source: Note: 
+These examples are not exhaustive. The same issue also applies for the other application fields.
+</div>
 
-While such situations are uncommon, it is not impossible.
+Potential Enhancement and Suggested Implementation: <br>
+In the future, we plan to have the parameter Label's wrap around (i.e. continue on a second line) if it goes beyond the
+ApplicationCard boundaries, to provide better readability for Users.
+
+#### 5. Error message not specific enough when the Company Email parameter does not follow the required format.
+
+The current displayed error message, as shown in the screenshot below, does not provide the user with sufficient details
+as to what is required of the input email format. This includes missing information such as what special characters
+are allowed and certain compulsory characters such as `@`.
+
+![EmailErrorMessage.png](images/EmailErrorMessage.png)
 
 **Potential Enhancement and Suggested Implementation:** <br>
-This issue is caused by the `Flowpane` GUI entity (used for encapsulating tags) sharing the same `VBox` as the
-`Label` GUI entity (used for encapsulating application Role). As seen from the previous point, the Role field suffers
-from a similar truncation issue. 
-
-To further illustrate this, refer to the screenshot below.
-![TagWrapAround.png](images/TagWrapAround.png)
-
-We observe that with a reasonable length for the application Role, the wrap around structure for the tags already exists, and kicks in automatically.
-Therefore, we could resolve this by specifying and refurnishing the boundaries for the shared `VBox`, such that it is not too dynamic and 
-dependent on the Role length.
-This enables the automatic wrap around to be applied to both the Tags and Role fields, preventing the truncation issue which
-would negatively affect user's readability.
+We intend to implement our Company Email input validation according to the standard local-part@domain
+![convention](https://en.wikipedia.org/wiki/Email_address). As such, user's may refer to the link for a more comprehensive
+and explicit explanation of the expected email format.
 
 #### 6. Integer overflow, zero or negative index error message for commands that take in an index (`edit-app`, `edit-task`, `delete-app`, `delete-task`) not specific enough
 
@@ -1459,6 +1462,8 @@ A more specific error may be beneficial in bringing a more positive user experie
 
 **Potential Enhancement and Suggested Implementation:** <br>
 In the future, we plan to have the command box display the error message: “The application index provided is invalid.” instead.
+
+<div style="page-break-after: always;"></div>
 
 #### 7. Undo command description appears truncated in Help Window
 
@@ -1480,7 +1485,7 @@ When a user uses the find command and only 1 application is listed, the message 
 **Potential Enhancement and Suggested Implementation:** <br>
 In the future, we will rectify the grammatical error.
 
-#### 9. Duplicate application entries
+#### 9. Limitation of duplicate application entries detection
 
 Currently, sprINT detects duplicate entries when the following fields - `Role`, `Company Name`,
  `Company Email`, `Tags` (if any) as well as `Application Task` (if any) - are the same. This means that 
@@ -1490,3 +1495,13 @@ an application with the same role, company name and company email can be added, 
 In the future, we plan to enhance sprINT to detect duplicate entries based on just `Role`, `Company Name` and 
 `Company Email`. Users will be told that the application already exists when they attempt to add an application that 
 matches an existing entry defined by these 3 criteria.
+
+#### 10. Overzealous input validation for tags and role, company name and task description fields
+
+Currently, sprINT only allows alphanumeric values for `Tags`, `Role`, `Company Name` and `Task Description`. 
+Special characters like `/`, `-`, `&` etc. are not accepted. While this will not affect most use cases, we understand 
+that there might be a small number of instances where special characters are contained in these fields. 
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to allow these 4 fields to accept input containing special characters too to account for 
+a greater range of use cases and for greater user convenience. 
