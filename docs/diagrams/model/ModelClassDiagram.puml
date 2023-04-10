@@ -1,0 +1,45 @@
+@startuml ModelClassDiagram
+
+!include ../styleSimple.puml
+
+interface "<<interface>>\nClientModel" as ClientModel
+interface "<<interface>>\nProjectModel" as ProjectModel
+interface "<<interface>>\nModel" as Model
+class AddressBook {
+	- clients: UniqueList<Client>
+	- projects: UniqueList<Project>
+}
+class Project {
+	- name: NonEmptyString
+	- status: ProjectStatus
+	- clientEmail: Email
+	- source: Optional<NonEmptyString>
+	- description: Optional<String>
+	- acceptedOn: LocalDate
+	- deadline: Optional<LocalDate>
+}
+class Client {
+	- name: Name
+	- email: Email
+	- yearOfBirth: YearOfBirth
+	- source: Optional<NonEmptyString>
+	- mobileNumber: Optional<Phone>
+}
+class UniqueList<T extends IsSame<T>>
+interface "<<interface>>\nIsSame<T>" as IsSame
+
+Model --|> ClientModel
+Model --|> ProjectModel
+Model --> "1" AddressBook
+
+AddressBook ..> UniqueList
+AddressBook ..> Project
+AddressBook ..> Client
+
+UniqueList ..> IsSame
+
+Project ..|> IsSame
+Client ..|> IsSame
+
+
+@enduml
