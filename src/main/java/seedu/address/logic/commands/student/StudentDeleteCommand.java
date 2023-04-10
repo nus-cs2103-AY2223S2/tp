@@ -60,6 +60,7 @@ public class StudentDeleteCommand extends StudentCommand {
             logger.log(Level.WARNING, "----------------[STUDENT DELETE][Student does not exists]");
             throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
+
         model.deleteStudent(studentToDelete);
         logger.log(Level.INFO, "----------------[STUDENT DELETE][Student deleted successfully]");
 
@@ -71,6 +72,7 @@ public class StudentDeleteCommand extends StudentCommand {
         }
         //@@author
 
+        model.deleteStudent(studentToDelete);
         Parent updatedParent = parentToUnbind;
         updatedParent.removeStudent(studentToDelete); //unbind student from parent
         model.setParent(parentToUnbind, updatedParent); //update parent in parentList
