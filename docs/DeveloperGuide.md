@@ -1221,10 +1221,12 @@ discover possible bugs early, and avoid major reworks in future increments and i
 
 Our organisation continued with regression testing as increments came in, to ensure that previous features were not 
 broken with changes and modifications. This is due to the interconnectedness of certain features implemented, such as 
-commands and the model. We used a breadth-first iterative model to extensive test the wide scope of the project.
+commands and the model. Our project followed a breadth-first iterative model, and hence it was crucial for us to carry 
+out regression testing as the project evolved and morphed. 
 
-Our organisation did this both with automated unit tests and manual testing, with more emphasis on unit tests, due to 
-the time taken to test extensively manually. 
+Our organisation did this both with automated unit tests and manual testing. 
+We put a greater emphasis on unit tests due to the expensive cost of manual testing, especially at stages of the product 
+where it is not complete in its entirety.
 
 ### **Unit Tests**
 
