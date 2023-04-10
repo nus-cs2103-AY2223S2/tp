@@ -554,7 +554,7 @@ appear in the Person List.
 
 **Pattern:** `m/MODULE DAY START_TIME END_TIME`<br>
 
-**Rules:** `MODULE` should be the name of a valid NUS module. `DAY` should be a valid day of the week. `START_TIME` and `END_TIME` should be valid hour in a day.<br>
+**Rules:** `MODULE` should be the name of a valid NUS module. `DAY` should be a valid weekday of the week. `START_TIME` and `END_TIME` should be valid hour in a day.<br>
 
 **Example:** `m/CS1234 mon 12 13`
 
