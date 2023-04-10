@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import taa.commons.exceptions.IllegalValueException;
 import taa.model.assignment.Assignment;
 
-/** Jackson-friendly version of {@link Assignment}.*/
+/** Jackson-friendly version of {@link Assignment}. */
 public class JsonAdaptedAssignment {
     private final String name;
     private final String totalMarks;
@@ -31,23 +31,19 @@ public class JsonAdaptedAssignment {
      */
     public Assignment toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException("An assignment in JSON file has name value missing.");
-        }
-        if (totalMarks == null) {
-            throw new IllegalValueException("An assignment in JSON file has totalMarks value missing.");
-        }
-        int assignmentMarks;
-        try {
-            assignmentMarks = Integer.parseInt(totalMarks);
-        } catch (NumberFormatException e) {
-            throw new IllegalValueException("Invalid total marks value \"" + totalMarks + "\" in JSON file.");
-        }
-        if (!Assignment.isValidAssignmentMarks(assignmentMarks)) {
-            throw new IllegalValueException("Invalid total marks value \"" + totalMarks + "\" in JSON file.");
+            throw new IllegalValueException("An assignment in JSON file does not have name.");
         }
         if (!Assignment.isValidAssignmentName(name)) {
             throw new IllegalValueException("Invalid name \"" + name + "\" in JSON file.");
         }
-        return new Assignment(name, assignmentMarks);
+        if (totalMarks == null) {
+            throw new IllegalValueException("Assignment \"" + name + "\" in JSON file does not have totalMarks.");
+        }
+        if (!Assignment.isValidAssignmentMarks(totalMarks)) {
+            throw new IllegalValueException("Assignment \"" + name + "\" has invalid total marks value \"" + totalMarks
+                    + "\" in JSON file.");
+        }
+
+        return new Assignment(name, Integer.parseInt(totalMarks));
     }
 }

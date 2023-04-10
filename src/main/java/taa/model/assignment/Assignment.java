@@ -151,10 +151,16 @@ public class Assignment {
 
     /**
      * Checks whether assignment marks are valid.
-     * @param marks
+     * @param marksStr String representaiton of marks
      * @return
      */
-    public static boolean isValidAssignmentMarks(int marks) {
+    public static boolean isValidAssignmentMarks(String marksStr) {
+        final int marks;
+        try{
+            marks=Integer.parseInt(marksStr);
+        } catch (NumberFormatException e){
+            return false;
+        }
         return marks >= 0;
     }
 }

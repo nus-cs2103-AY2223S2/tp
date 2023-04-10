@@ -16,12 +16,8 @@ import taa.model.student.UniqueStudentList;
 //Credits: Solution below are adapted from original AB3 codes, with significant modifications.
 public class ClassList implements ReadOnlyStudentList {
 
-    private static int lastId;
-
-    private UniqueStudentList students;
-    private AssignmentList assignments;
-    private String className = "DEFAULT";
-    private int classId;
+    private final UniqueStudentList students;
+    private final String className;
     private int studentCount;
 
     /**
@@ -29,9 +25,7 @@ public class ClassList implements ReadOnlyStudentList {
      * @param name the name of the class.
      */
     public ClassList(String name) {
-        assignments = AssignmentList.INSTANCE;
         students = new UniqueStudentList();
-        this.classId = ++lastId;
         this.className = name;
     }
 
@@ -39,16 +33,14 @@ public class ClassList implements ReadOnlyStudentList {
      * Creates a class list instance with a default name.
      */
     public ClassList() {
-        assignments = AssignmentList.INSTANCE;
-        students = new UniqueStudentList();
-        this.classId = ++lastId;
+        this("DEFAULT");
     }
 
     /**
      * Creates an ClassList using the Persons in the {@code toBeCopied}
      */
     public ClassList(ReadOnlyStudentList toBeCopied) {
-        this("DEFAULT");
+        this();
         resetData(toBeCopied);
     }
 

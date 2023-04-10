@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import taa.commons.util.AppUtil;
 
 /**
- * Represents a Student's name in the class list.
+ * Represents a student or assignment name in the class list.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

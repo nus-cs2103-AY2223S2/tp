@@ -61,79 +61,93 @@ public class ImportCommand extends CsvCommand {
         return "This entry has no \"" + keyword + "\"column.";
     }
 
-    private static void throwEntryFormatError(CSVRecord record, String errMsg) throws CommandException {
-        throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + Arrays.toString(record.values()) + "\". " + errMsg);
+    private static void throwEntryFormatError(CSVRecord rec, String errMsg) throws CommandException {
+        throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + Arrays.toString(rec.values()) + "\". " + errMsg);
     }
 
-    static Student parseFromCsvRec(CSVRecord record) throws CommandException {
-        if (!record.isConsistent()) {
-            throwEntryFormatError(record, MSG_INCONSISTENT_ENTRY);
+    private static Name parseName(CSVRecord rec) throws CommandException {
+        if (!rec.isMapped(CsvUtil.KW_NAME)) {
+            throwEntryFormatError(rec, mkMsgNoColumn(CsvUtil.KW_NAME));
         }
-
-        if (!record.isMapped(CsvUtil.KW_NAME)) {
-            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_NAME));
-        }
-        final String nameStr = record.get(CsvUtil.KW_NAME).trim();
+        final String nameStr = rec.get(CsvUtil.KW_NAME).trim();
         if (!Name.isValidName(nameStr)) {
-            throwEntryFormatError(record, Name.MESSAGE_CONSTRAINTS);
+            throwEntryFormatError(rec, Name.MESSAGE_CONSTRAINTS);
         }
+        return new Name(nameStr);
+    }
 
-        if (!record.isMapped(CsvUtil.KW_ATD)) {
-            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_ATD));
+    private static String parseAtd(CSVRecord rec) throws CommandException {
+        if (!rec.isMapped(CsvUtil.KW_ATD)) {
+            throwEntryFormatError(rec, mkMsgNoColumn(CsvUtil.KW_ATD));
         }
-        final String atd = record.get(CsvUtil.KW_ATD);
+        final String atd = rec.get(CsvUtil.KW_ATD);
         final String atdStr;
         if (atd.isBlank()) {
             atdStr = Attendance.ORIGINAL_ATD;
         } else {
             atdStr = atd.trim();
             if (!Attendance.isValidAtdStr(atdStr)) {
-                throwEntryFormatError(record, Attendance.ATD_ERROR_MSG);
+                throwEntryFormatError(rec, Attendance.ATD_ERROR_MSG);
             }
         }
+        return atdStr;
+    }
 
-        if (!record.isMapped(CsvUtil.KW_PP)) {
-            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_PP));
+    private static String parsePp(CSVRecord rec) throws CommandException {
+        if (!rec.isMapped(CsvUtil.KW_PP)) {
+            throwEntryFormatError(rec, mkMsgNoColumn(CsvUtil.KW_PP));
         }
-        final String pp = record.get(CsvUtil.KW_PP);
+        final String pp = rec.get(CsvUtil.KW_PP);
         final String ppStr;
         if (pp.isBlank()) {
             ppStr = Attendance.ORIGINAL_PP;
         } else {
-            ppStr = record.get(CsvUtil.KW_PP).trim();
+            ppStr = rec.get(CsvUtil.KW_PP).trim();
             if (!Attendance.isAcceptablePpStr(ppStr)) {
-                throwEntryFormatError(record, Attendance.PP_UNACCEPTABLE_MSG);
+                throwEntryFormatError(rec, Attendance.PP_UNACCEPTABLE_MSG);
             }
         }
+        return ppStr;
+    }
 
+    private static ArrayList<String> parseSubmissions(CSVRecord rec) throws CommandException {
         final ArrayList<String> submissions = new ArrayList<>();
-        if (!record.isMapped(CsvUtil.KW_SUBMISSION)) {
-            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_SUBMISSION));
+        if (!rec.isMapped(CsvUtil.KW_SUBMISSION)) {
+            throwEntryFormatError(rec, mkMsgNoColumn(CsvUtil.KW_SUBMISSION));
         }
-        final String submitStr = record.get(CsvUtil.KW_SUBMISSION);
+        final String submitStr = rec.get(CsvUtil.KW_SUBMISSION);
         if (!submitStr.isBlank()) {
             Collections.addAll(submissions, submitStr.trim().split(";"));
         }
         try {
             AssignmentList.INSTANCE.testValidCsvSubmissions(submissions);
         } catch (ParseException e) {
-            throwEntryFormatError(record, e.getMessage());
+            throwEntryFormatError(rec, e.getMessage());
         }
+        return submissions;
+    }
 
-        if (!record.isMapped(CsvUtil.KW_CLASS)) {
-            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_CLASS));
+    private static Set<Tag> parseClass(CSVRecord rec) throws CommandException {
+        if (!rec.isMapped(CsvUtil.KW_CLASS)) {
+            throwEntryFormatError(rec, mkMsgNoColumn(CsvUtil.KW_CLASS));
         }
-        final String tagStr = record.get(CsvUtil.KW_CLASS).trim();
-        Set<Tag> parsedTags = null;
+        final String tagStr = rec.get(CsvUtil.KW_CLASS).trim();
+        Set<Tag> parsedClass = null;
         try {
             // ignore all tokens that are empty strings.
-            parsedTags = ParserUtil.parseTags(
+            return ParserUtil.parseTags(
                     Arrays.stream(tagStr.split(";")).filter(IS_UNEMPTY).collect(Collectors.toList()));
         } catch (ParseException e) {
-            throwEntryFormatError(record, Tag.MESSAGE_CONSTRAINTS);
+            throwEntryFormatError(rec, Tag.MESSAGE_CONSTRAINTS);
         }
+        return parsedClass;
+    }
 
-        return new Student(new Name(nameStr), atdStr, ppStr, submissions, parsedTags);
+    private static Student parseFromCsvRec(CSVRecord rec) throws CommandException {
+        if (!rec.isConsistent()) {
+            throwEntryFormatError(rec, MSG_INCONSISTENT_ENTRY);
+        }
+        return new Student(parseName(rec), parseAtd(rec), parsePp(rec), parseSubmissions(rec), parseClass(rec));
     }
 
     @Override
@@ -171,8 +185,8 @@ public class ImportCommand extends CsvCommand {
         final HashSet<Student> inFileStu = new HashSet<>();
         final ArrayList<Student> toAdd = new ArrayList<>();
         final ArrayList<Student> toDel = new ArrayList<>();
-        for (CSVRecord record : parser) {
-            final Student stu = parseFromCsvRec(record);
+        for (CSVRecord rec : parser) {
+            final Student stu = parseFromCsvRec(rec);
             toAdd.add(stu);
             final Student stuInList = nameToStu.get(stu.getName());
             if (stuInList == null) {
