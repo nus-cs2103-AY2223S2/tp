@@ -40,7 +40,6 @@ public class EditValueCommand extends Command {
             + "Example: name gilded staff";
 
     public static final String MESSAGE_EDIT_ENTITY_SUCCESS = "Edited Entity: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ENTITY = "This entity already exists in Reroll.";
     public static final String MESSAGE_INVALID_ENTITY_TYPE = "This entity type is invalid.";
 

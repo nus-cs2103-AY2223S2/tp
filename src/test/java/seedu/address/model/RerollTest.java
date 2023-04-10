@@ -1,34 +1,50 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEntities.AMY;
+import static seedu.address.testutil.TypicalEntities.BOB;
+import static seedu.address.testutil.TypicalEntities.getTypicalReroll;
+
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 class RerollTest {
 
+    private final Reroll reroll = new Reroll();
+
     @Test
-    void getItems() {
+    public void constructor() {
+        assertEquals(Collections.emptyList(), reroll.getEntities().getEntityList());
     }
 
     @Test
-    void getCharacters() {
+    public void resetData_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> reroll.resetData(null));
     }
 
     @Test
-    void getMobs() {
+    public void resetData_withValidReadOnlyReroll_replacesData() {
+        Reroll newData = getTypicalReroll();
+        reroll.resetData(newData);
+        assertEquals(newData, reroll);
     }
 
+    /**
+     * Integration test with RerollAllEntities
+     */
     @Test
-    void getAllList() {
-    }
+    public void addEntities_integration_returnCorrectResult() {
+        RerollAllEntities newData = (RerollAllEntities) getTypicalReroll().getEntities();
+        reroll.resetData(getTypicalReroll());
+        newData.addEntity(BOB);
+        reroll.addEntity(BOB);
+        assertTrue(newData.equals(reroll.getEntities()));
 
-    @Test
-    void getCharacterList() {
-    }
-
-    @Test
-    void getItemList() {
-    }
-
-    @Test
-    void getMobList() {
+        reroll.addEntity(AMY);
+        assertFalse(newData.equals(reroll.getEntities()));
     }
 }
