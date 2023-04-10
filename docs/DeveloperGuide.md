@@ -39,6 +39,7 @@ title: Developer Guide
     - [Deleting a person](#deleting-a-person)
     - [Finding a person](#finding-a-person)
     - [Saving and Loading data](#saving-and-loading-data)
+- [Appendix: Planned Enhancements](#appendix--planned-enhancements)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -147,8 +148,7 @@ The `UI` component,
 
 ### Logic component
 
-**
-API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -189,8 +189,7 @@ How the parsing works:
 
 ### Model component
 
-**
-API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/NricModelClassDiagram.png" width="600" />
 
@@ -216,8 +215,7 @@ The `Model` component,
 
 ### Storage component
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -928,15 +926,15 @@ testers are expected to do more *exploratory* testing.
 
 <sub>[return to table of contents](#table-of-contents)</sub>
 
-### Appendix:Planned Enhancements
+### Appendix: Planned Enhancements
 
-1. At present, a user has the option to enter an individual's `NRIC` number in the future, such as adding a person with 
-NRIC T99******, despite the year 2099 being in the future. We intend to implement a feature that will validate 
-`NRIC`s and generate an error message `Please input a valid NRIC` should an `NRIC` from the future be inputted.
+1. At present, a user has the option to enter an individual's `nric` number in the future, such as adding a person with 
+`nric` starting with T99, despite the year 2099 being in the future. We intend to implement a feature that will validate 
+`nric`s and generate an error message `Please input a valid NRIC` should an `nric` from the future be inputted.
 
-2. Currently, a user is unable to input a `DateOfBirth` with a year that is in the future.In the future, We plan to make 
+2. Currently, a user is able to input a `DateOfBirth` with a year that is in the future. In the future, We plan to make 
 it such that we will check for future dates inputted as `DateOfBirth` and generate an error message `Only dates that 
-have occurred are valid inputs`
+have occurred are valid inputs`.
 
 3. Currently, a user is unable to input `Medicine`s that contain non-alphanumeric characters.In the future, we plan to 
 make it such that you can input `Medicine`s with non-alphanumeric characters such as "retin-A".
