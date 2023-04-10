@@ -24,9 +24,6 @@ StudentCard *-down-> "1" LessonsButton
 StudentCard *-down-> "1" ExamsButton
 
 StudentListPanel -down-> "*" StudentCard
-
-MainWindow -left-|> UiPart
-
 StudentListPanel --|> UiPart
 StudentCard --|> UiPart
 ProfileButton --|> UiPart
@@ -35,6 +32,4 @@ LessonsButton --|> UiPart
 ExamsButton --|> UiPart
 
 StudentCard ..> Model
-
-MainWindow -[hidden]-|> UiPart
 @enduml
