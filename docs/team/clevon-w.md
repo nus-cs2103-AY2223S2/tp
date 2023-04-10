@@ -3,9 +3,9 @@ layout: page
 title: Clevon Wong's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: GoodMatch
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+GoodMatch is a desktop application used for managing applicants and job listings for hiring managers. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -18,11 +18,11 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=clevon-w&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=clevon-w&breakdown=true)
 
 * **Project management**:
 
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
 
@@ -42,11 +42,5 @@ Given below are my contributions to the project.
     * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
     * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
     * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+    * Some parts of the history feature I added was adopted by several other classmates ([1](), [2]())
 
-**Tools**:
-
-* Integrated a third party library (Natty) to the project ([\#42]())
-* Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
