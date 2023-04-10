@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jiasheng59.md)]
 
 * Role: Developer
-* Responsibilities: `Find` and `Help` feature
+* Responsibilities: `Statistics`, `Find` , `Sort` and `Help` feature
 
 ### Lai Hui Qi
 
@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/laihuiqi.md)]
 
 * Role: Developer
-* Responsibilities: `clear`, `delete` and `exit` feature
+* Responsibilities: `Clear`, `Clear_by`, `Delete`, `Exit`, `Revert`, `Revert_all` and `Task Package` related features
 
 ### Benjamin Wee 
 
@@ -56,4 +56,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jianminglok.md)]
 
 * Role: Developer
-* Responsibilities: Add contact and edit status feature
+* Responsibilities:
+  * Contact management features: `add_contact`, `edit_contact`, `delete_contact`
+  * Document management features: `add_docs`, `edit_docs`, `delete_docs`
+  * Edit internship application status feature: `edit_status`
+  * Archiving features: `archive`, `unarchive`, `list_archived`
