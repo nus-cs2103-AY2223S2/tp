@@ -374,7 +374,7 @@ Format: `list`
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip:**
-As `list` removes all active filters, one of its most common uses is to reset the displayed list to show all the cases in DHT.
+As `list` removes all active filters, one of its most common uses is to reset the currently displayed list to show all the cases in DHT.
 You might like to use `list` in conjunction with the following commands:
 * [`delete`](#deleting-cases-delete)
 * [`overview`](#changing-the-overview-type-overview)
