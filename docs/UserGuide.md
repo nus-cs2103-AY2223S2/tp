@@ -26,7 +26,7 @@ title: AIMS User Guide
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Undoing last modification : `undo`](#undoing-last-modification--undo)
   - [Viewing command history](#viewing-command-history)
-  - [Adding a person to favorites : `favorite`](#adding-a-person-to-favorites--favorite)
+  - [Toggling the favorite status of a person : `favorite`](#toggling-the-favorite-status-of-a-person--favorite)
   - [Exiting the program : `exit`](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
@@ -72,7 +72,11 @@ Here are some symbols used throughout the user guide to inform you of additional
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-![Ui](images/Ui.png)
+<div style="text-align: center;">
+  <img src="images/Ui.png">
+  <p style="font-style: italic;"><br>Default state of the app on startup</p>
+  <br>
+</div>
 
 5. Refer to the [Features](#features) below for details of each command.
 
@@ -125,7 +129,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-![help message](images/helpMessage.png)
+<div style="text-align: center;">
+  <img src="images/helpMessage.png">
+  <p style="font-style: italic;"><br>Dialog with instructions to navigate to the help page</p>
+  <br>
+</div>
 
 [Return to Top](#table-of-contents)
 
@@ -146,7 +154,11 @@ Examples:
  `add r/3SG n/Lawrence Tay u/1 GDS e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 t/PlatoonSergeant t/AllergySeafood`
   adds a new person `Lawrence Tay` to AIMS with the following information:
 
-![add Lawrence success](images/addLawrenceSuccess.png)
+<div style="text-align: center;">
+  <img src="images/addLawrenceSuccess.png">
+  <p style="font-style: italic;"><br>Success screen upon successful addition of Lawrence Tay</p>
+  <br>
+</div>
 
 [Return to Top](#table-of-contents)
 
@@ -169,22 +181,53 @@ The given CSV file must fulfill the following conditions:
 Step-by-step example of converting and importing an Excel spreadsheet:
 
 1. Ensure that Excel sheet passes conditions 4 to 6 above. It should look something like this:
-![demo excel](images/demoExcel.png)
+
+<div style="text-align: center;">
+  <img src="images/demoExcel.png">
+  <p style="font-style: italic;"><br>Excel sheet containing contact information in the correct format</p>
+  <br>
+</div>
 
 2. Click on "Save As" and save the Excel sheet as a CSV file. Take note where the saved file is located in your computer.
-![demo save as csv](images/demoSaveAsCsv.png)
+
+<div style="text-align: center;">
+  <img src="images/demoSaveAsCsv.png">
+  <p style="font-style: italic;"><br>Saving Excel sheet as a CSV file</p>
+  <br>
+</div>
 
 3. Find the new CSV file in your computer and copy its path.
-![demo copy path](images/demoCopyPath.png)
+
+<div style="text-align: center;">
+  <img src="images/demoCopyPath.png">
+  <p style="font-style: italic;"><br>Copying the path to the new CSV file</p>
+  <br>
+</div>
 
 4. Open AIMS. Into the command line input `importcsv ` followed by pasting the path to the CSV file. Remove any inverted commas at the front and end of the path that might be added by copy and pasting.
-![demo importcsv command](images/demoImportcsvCommand.png)
+
+<div style="text-align: center;">
+  <img src="images/demoImportcsvCommand.png">
+  <p style="font-style: italic;"><br>Entering ImportCsv Command into AIMS</p>
+  <br>
+</div>
 
 5. Make changes based on any error messages received. For example, if there is an issue with phone numbers, you have to make sure that the Excel file you want to import has no empty entries or invalid characters (i.e. spaces, alphabets, any other non-numeric characters)
-![demo importcsv error](images/demoImportcsvError.png)
+
+<div style="text-align: center;">
+  <img src="images/demoImportcsvError.png">
+  <p style="font-style: italic;"><br>Responding to error messages</p>
+  <br>
+</div>
 
 6. You should see the following screen if you are successful!
 ![importcsv success](images/demoImportcsvSuccess.png)
+
+<div style="text-align: center;">
+  <img src="images/demoImportcsvSuccess.png">
+  <p style="font-style: italic;"><br>Success message!</p>
+  <br>
+</div>
 
 [Return to Top](#table-of-contents)
 
@@ -224,9 +267,13 @@ see all the text.
 
 Examples:
 
-- `copy 2` will show this when your clipboard is accessible.
+- `copy 2` will show this when your clipboard is accessible
 
-    ![result for 'copy 2'](images/copy2Result.png)
+    <div style="text-align: center;">
+      <img src="images/copy2Result.png">
+      <p style="font-style: italic;"><br>Success screen upon successful copying of information to clipboard</p>
+      <br>
+    </div>
 
     The following text will be copied into your clipboard.
 
@@ -243,6 +290,14 @@ Examples:
      ```
 
 - `copy 2` will show this when your clipboard is not accessible.
+
+   <div style="text-align: center;">
+     <img src="images/copy2_noclipboard.png">
+     <p style="font-style: italic;"><br>Screen when the AIMS detects that the clipboard is not accessible</p>
+     <br>
+   </div>
+
+<div markdown="span" class="alert alert-primary">
 
   ![no clipboard for `copy 2`](images/copy2_noclipboard.png)
 
@@ -290,7 +345,11 @@ Examples:
   - `Irfan Ibrahim` (email matches `live`)
   - `Roy Balakrishnan` (company matches `delta`)<br>
 
-![result for 'find charlotte irfan roy'](images/findCharlotteIrfanRoyResult.png)
+<div style="text-align: center;">
+  <img src="images/findCharlotteIrfanRoyResult.png">
+  <p style="font-style: italic;"><br>Screen showing the result of finding 3 persons using partial keyword matching</p>
+  <br>
+</div>
 
 [Return to Top](#table-of-contents)
 
@@ -311,8 +370,13 @@ Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/CO
 Examples:
 
 - `filter n/Jo` returns `john`, `John Doe` and `joseph`
-- `filter a/street r/sg` returns `David Li`, `S Lee Chong Wei`<br>
-  ![result for 'filter david lee'](images/filterDavidLeeResult.png)
+- `filter a/street r/sg` returns `David Li`, `S Lee Chong Wei`
+
+  <div style="text-align: center;">
+    <img src="images/filterDavidLeeResult.png">
+    <p style="font-style: italic;"><br>Screen showing the results of filtering by address and rank</p>
+    <br>
+  </div>
 
 [Return to Top](#table-of-contents)
 
@@ -374,21 +438,30 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
 
 [Return to Top](#table-of-contents)
 
-### Adding a person to favorites : `favorite`
+### Toggling the favorite status of a person : `favorite`
 
-Favorites the specified person from AIMS.
+Toggles the favorite status of a person from AIMS.
 
 Format: `favorite INDEX`
 
-- Favorites the person at the specified `INDEX`.
-- Running this command on a person who is already in the favorite list will remove him from the favorite list.
+- Toggles favorite status for the person at the specified `INDEX`.
+- If the command is run on a person who is not in the favorite list, he will be added to the favorite list.
+- If the command is run on a person who is already in the favorite list, he will be removed from the favorite list.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- The favorites list on the sidebar is sorted according to the index number of the persons that is shown after running the list command.
 
 Example:
 
 - `favorite 3` will pin the third person in the favorites panel.
-  ![result for `favorite 3`](images/favorite3.png)
+
+  <div style="text-align: center;">
+    <img src="images/favorite3.png">
+    <p style="font-style: italic;"><br>Screen showing the result of favoriting person 3, causing the contact to be pinned to the sidebar</p>
+    <br>
+  </div>
+
+:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `favorite`!
 
 [Return to Top](#table-of-contents)
 
