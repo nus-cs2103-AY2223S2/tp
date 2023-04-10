@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
 public class Title {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
     public final String title;
 
     /**

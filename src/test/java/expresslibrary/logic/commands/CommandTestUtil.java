@@ -49,9 +49,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String VALID_AUTHOR_ROWLING = "JK Rowling";
-    public static final LocalDate VALID_BORROW_DATE = DateUtil.parseDate("30/03/2023");
+    public static final LocalDate VALID_BORROW_DATE = DateUtil.parseDate("15/04/2023");
     public static final Person VALID_BORROWER_ALICE = TypicalPersons.ALICE;
-    public static final LocalDate VALID_DUE_DATE = DateUtil.parseDate("06/04/2023");
+    public static final LocalDate VALID_DUE_DATE = DateUtil.parseDate("22/04/2023");
     public static final String VALID_ISBN_HARRY = "9780747532743";
     public static final String VALID_TITLE_ANIMAL = "Animal Farm";
     public static final String VALID_AUTHOR_ALEX = "Alexandra Harris";
@@ -62,8 +62,8 @@ public class CommandTestUtil {
     public static final String TITLE_DESC_HARRY = " " + PREFIX_TITLE + VALID_TITLE_HARRY;
     public static final String AUTHOR_DESC_ROWLING = " " + PREFIX_AUTHOR + VALID_AUTHOR_ROWLING;
     public static final String ISBN_DESC_HARRY = " " + PREFIX_ISBN + VALID_ISBN_HARRY;
-    public static final String BORROW_DATE_DESC = " " + PREFIX_BORROW_DATE + VALID_BORROW_DATE;
-    public static final String DUE_DATE_DESC = " " + PREFIX_DUE_DATE + VALID_DUE_DATE;
+    public static final String BORROW_DATE_DESC = " " + PREFIX_BORROW_DATE + DateUtil.formatDate(VALID_BORROW_DATE);
+    public static final String DUE_DATE_DESC = " " + PREFIX_DUE_DATE + DateUtil.formatDate(VALID_DUE_DATE);
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -77,8 +77,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME; // empty string not allowed for titles
-    public static final String INVALID_AUTHOR_DESC = " " + PREFIX_NAME + "Rowling&"; // '&' not allowed in authors
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE; // empty string not allowed for titles
+    public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR + "Rowling&"; // '&' not allowed in authors
     public static final String INVALID_ISBN_DESC = " " + PREFIX_ISBN + "123a"; // 'a' not allowed in isbns
     public static final String INVALID_BORROW_DATE = " " + PREFIX_BORROW_DATE
             + "30/03/2023a"; // 'a' not allowed in borrow date

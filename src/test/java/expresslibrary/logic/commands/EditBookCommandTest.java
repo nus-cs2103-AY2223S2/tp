@@ -50,23 +50,23 @@ public class EditBookCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-    //        Index indexLastBook = Index.fromOneBased(model.getFilteredBookList().size());
-    //        Book lastBook = model.getFilteredBookList().get(indexLastBook.getZeroBased());
-    //
-    //        BookBuilder bookInList = new BookBuilder(lastBook);
-    //        Book editedBook = bookInList.withTitle(VALID_TITLE_HARRY).withAuthor(VALID_AUTHOR_ROWLING)
-    //                .withIsbn(VALID_ISBN_HARRY).build();
-    //
-    //        EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withTitle(VALID_TITLE_HARRY)
-    //                .withAuthor(VALID_AUTHOR_ROWLING).withIsbn(VALID_ISBN_HARRY).build();
-    //        EditBookCommand editBookCommand = new EditBookCommand(indexLastBook, descriptor);
-    //
-    //        String expectedMessage = String.format(EditBookCommand.MESSAGE_EDIT_BOOK_SUCCESS, editedBook);
-    //
-    //        Model expectedModel = new ModelManager(new ExpressLibrary(model.getExpressLibrary()), new UserPrefs());
-    //        expectedModel.setBook(lastBook, editedBook);
-    //
-    //        assertCommandSuccess(editBookCommand, model, expectedMessage, expectedModel);
+        Index indexLastBook = Index.fromOneBased(model.getFilteredBookList().size());
+        Book lastBook = model.getFilteredBookList().get(indexLastBook.getZeroBased());
+
+        BookBuilder bookInList = new BookBuilder(lastBook);
+        Book editedBook = bookInList.withTitle(VALID_TITLE_HARRY).withAuthor(VALID_AUTHOR_ROWLING)
+                .withIsbn(VALID_ISBN_HARRY).build();
+
+        EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withTitle(VALID_TITLE_HARRY)
+                .withAuthor(VALID_AUTHOR_ROWLING).withIsbn(VALID_ISBN_HARRY).build();
+        EditBookCommand editBookCommand = new EditBookCommand(indexLastBook, descriptor);
+
+        String expectedMessage = String.format(EditBookCommand.MESSAGE_EDIT_BOOK_SUCCESS, editedBook);
+
+        Model expectedModel = new ModelManager(new ExpressLibrary(model.getExpressLibrary()), new UserPrefs());
+        expectedModel.setBook(lastBook, editedBook);
+
+        assertCommandSuccess(editBookCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

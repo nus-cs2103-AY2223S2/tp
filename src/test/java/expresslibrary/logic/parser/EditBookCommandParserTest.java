@@ -61,7 +61,7 @@ public class EditBookCommandParserTest {
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 z/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -165,13 +165,14 @@ public class EditBookCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST;
-        String userInput = targetIndex.getOneBased() + INVALID_TITLE_DESC + AUTHOR_DESC_ROWLING;
-        EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withAuthor(VALID_AUTHOR_ROWLING).build();
+        String userInput = targetIndex.getOneBased() + INVALID_TITLE_DESC + TITLE_DESC_HARRY;
+        EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withTitle(VALID_TITLE_HARRY).build();
         EditBookCommand expectedCommand = new EditBookCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + INVALID_TITLE_DESC + AUTHOR_DESC_ROWLING + ISBN_DESC_HARRY;
+        userInput = targetIndex.getOneBased() + INVALID_TITLE_DESC + TITLE_DESC_HARRY + AUTHOR_DESC_ROWLING
+                + ISBN_DESC_HARRY;
         descriptor = new EditBookDescriptorBuilder().withTitle(VALID_TITLE_HARRY).withAuthor(VALID_AUTHOR_ROWLING)
                 .withIsbn(VALID_ISBN_HARRY).build();
         expectedCommand = new EditBookCommand(targetIndex, descriptor);

@@ -5,8 +5,6 @@ import static expresslibrary.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_ISBN;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_TITLE;
 
-//import java.util.HashSet;
-//import java.util.Set;
 import java.util.stream.Stream;
 
 import expresslibrary.logic.commands.AddBookCommand;
@@ -15,7 +13,6 @@ import expresslibrary.model.book.Author;
 import expresslibrary.model.book.Book;
 import expresslibrary.model.book.Isbn;
 import expresslibrary.model.book.Title;
-//import expresslibrary.model.person.Person;
 
 /**
  * Parses input arguments and creates a new AddBookCommand object
