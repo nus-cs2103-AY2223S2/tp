@@ -361,7 +361,7 @@ drug of CareFlow.
   </p>
   <br/>
 * **Format:** `g help`
-<div markdown="block" class="alert alert-warning">:information_source:  **Note:** Clicking** on <span style="background-color: #6E7373">Open URL</span> button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
+<div markdown="block" class="alert alert-warning">:information_source:  **Note:** Clicking on <span style="background-color: #6E7373">Open URL</span> button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
 </div>
 <br/>
 
@@ -464,6 +464,8 @@ ___
 
     * You can scroll through the list of patient, and John Doe should not be present.
 
+    <br/>
+  
 [↑ Go to Patient Commands](#42-patient-commands)
 <br/>
 
@@ -500,10 +502,10 @@ ___
     <li>
     The index of a patient can change depending on the filter you currently apply on the patient list.</li>
     <li>
-    For example, if you execute the `p list` command, all filter will be removed and the patient's index will be his or her position in the main patient list.
+    For example, if you execute the <code><span style="background-color:#C8EAB3 ;">p list</span></code> command, all filter will be removed and the patient's index will be his or her position in the main patient list.
     </li>
     <li>
-    However, if you execute a `p find PATIENT_NAME` command, the patient's index will be his or her position in the **filtered** patient list.
+    However, if you execute a <code><span style="background-color:#C8EAB3 ;">p find PATIENT_NAME</span></code> command, the patient's index will be his or her position in the **filtered** patient list.
     </li>
     <li>
     Subsequent deletion by index will be with respect to the list you're currently viewing.
@@ -572,7 +574,6 @@ ___
       <br/>
     * You can click on either record to see detailed information.
 
-<br/>
 <div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate multiple patient names, and a patient will be shown as long as the patient's name matches any of the names. So if you enter `p find Yu Yeoh`, both `Bernice Yu` and `Alex Yeoh` will be shown.
 </div>
 
@@ -648,8 +649,7 @@ Use this with command with caution!
 * **Format:** `p list`
 \
 &nbsp; 
-* <div markdown="block" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as `p list hellothere` or `p list 1234?!` will not cause errors in the system</div>
-  \
+* <div markdown="block" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <code><span style="background-color:#C8EAB3;">p list hellothere</span></code> or <code><span style="background-color:#C8EAB3;">p list 1234</span></code> will not cause errors in the system</div>
   &nbsp;
 * **Example:**
     <p align="center">
