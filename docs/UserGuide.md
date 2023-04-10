@@ -8,6 +8,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 
 # Table of Contents
   * [Introduction](#introduction)
@@ -46,6 +47,8 @@ title: User Guide
     * [Summary of prefixes in commands](#command-prefix-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # Introduction
 
@@ -904,6 +907,8 @@ you might want to insert it directly in the `readings.json` file!
 > This will result in a completely empty interface. Delete your `data` folder, containing `addressbook.json` and so on
 > to revert back to the default *Fish Ahoy!*
 
+<div style="page-break-after: always;"></div>
+
 ## Help
 ### Viewing help : `help`
 
@@ -940,6 +945,8 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 | Action     | Format, Examples                                                                                                        |
@@ -951,6 +958,9 @@ Format: `help`
 | **List**   | `list tasks` `list fishes`                                                                                              |
 | **Help**   | `help`                                                                                                                  |
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command prefix summary
 
@@ -968,3 +978,5 @@ Format: `help`
 | **Tank**          | **Temperature reading**   | **tp/**  |
 | **Task**          | **Priority**              | **p/**   |
 | **All**           | **Tank**                  | **tk/**  |
+
+--------------------------------------------------------------------------------------------------------------------
