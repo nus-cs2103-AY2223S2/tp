@@ -84,7 +84,6 @@ public class CommandBox extends UiPart<Region> {
             } catch (RecommendationException ce) {
                 setStyleToIndicateCommandFailure(true);
                 commandRecommendationTextField.setText("");
-                logger.log(Level.WARNING, ce.getMessage());
                 e.consume();
             }
         });
@@ -171,7 +170,6 @@ public class CommandBox extends UiPart<Region> {
             }
         } catch (RecommendationException e) {
             setStyleToIndicateCommandFailure(true);
-            logger.log(Level.WARNING, e.getMessage());
             commandRecommendationTextField.setText("");
 
         }
