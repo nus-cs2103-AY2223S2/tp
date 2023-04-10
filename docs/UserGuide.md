@@ -359,7 +359,7 @@ drug of CareFlow.
   </p>
   <br/>
 * **Format:** `g help`
-<div markdown="block" class="alert alert-info">:information_source:  **Note:** Clicking** on `Open URL` button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
+<div markdown="block" class="alert alert-warning">:information_source:  **Note:** Clicking** on `Open URL` button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
 </div>
 <br/>
 
