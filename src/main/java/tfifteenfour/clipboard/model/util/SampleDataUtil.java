@@ -25,6 +25,17 @@ public class SampleDataUtil {
         Roster sampleRoster = new Roster();
 
         try {
+            FileUtil.createIfMissing(sampleFilePath);
+            // Read json String from the json file stored in /resources/assets
+            BufferedReader reader = new BufferedReader(new InputStreamReader(sampleResourceStream));
+            String contents = reader.lines()
+                    .collect(Collectors.joining(System.lineSeparator()));
+
+            // Write json String into /data/sampleRoster.json
+            BufferedWriter writer = new BufferedWriter(new FileWriter(sampleFilePath.toString()));
+            writer.write(contents);
+            writer.close();
+
             // Create a roster from /data/sampleRoster.json
             File file = new File(sampleFilePath.toString());
             SerializedRoster jsonSampleRoster = mapper.readValue(file, SerializedRoster.class);
