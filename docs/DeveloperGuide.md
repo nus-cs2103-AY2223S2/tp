@@ -7,7 +7,6 @@ title: Developer Guide
 * Table of Contents 
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
 
 ### 1.1 Product Overview
@@ -166,7 +165,7 @@ other classes shown above to parse the user command and create a `XYZCommand` ob
 
 **API** : [`OfficeConnectModel.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/OfficeConnectModel.java)
 
-<img src="images/OfficeConnectModelClassDiagram.png" width="650" />
+<img src="images/OfficeConnectModelClassDiagram.png" width="800" />
 
 * Stores the task list data and task assignment data i.e., all `Task` and `AssignTask` objects (which are contained in a `UniqueItemList` object).
 * Stores the currently 'selected' `Task` and `AssignTask` objects (e.g., results of a search query) as separate _filtered_ lists
@@ -1458,8 +1457,6 @@ testers are expected to do more *exploratory* testing.
          Expected: No tasks are displayed. "No such task found" shown in status message.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ## 8. Appendix: Effort
 OfficeConnect is a project built upon AB3, which was built out of the SE-EDU initiative. Our group has been actively working on OfficeConnect for the past 9 weeks, holding meetings to stay on task ever since the group has been formed, **meeting all weekly checkpoints punctually.** <br> <br>
 Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and shown in AB3. We have also strived to maintain good code coverage, applying what was taught in the later weeks, resulting in a **code coverage of near 70% in Codecov.**
