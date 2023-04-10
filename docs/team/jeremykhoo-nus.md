@@ -62,7 +62,7 @@ The difficulty was, implementing new attributes for Person and dealing with immu
 Below is the description for sortm
 ![sortm description](../images/sortmUG.png)
 
-
+<div style="page-break-after: always;"></div>
 ## Developer Guide:
 * Wrote all the MSS
 * Wrote all the User Stories
