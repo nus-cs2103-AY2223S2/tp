@@ -37,10 +37,11 @@ public class MedInfo implements ReadOnlyMedInfo {
      */
     {
         patients = new UniquePatientList();
-        wards = UniqueWardList.NewUniqueWardList();
+        wards = new UniqueWardList();
     }
 
     public MedInfo() {
+        wards.NewUniqueWardList();
     }
 
     /**
@@ -121,7 +122,7 @@ public class MedInfo implements ReadOnlyMedInfo {
      * The patient must not already exist in the medinfo book.
      */
     public void addPatient(Patient p) throws CommandException, WardNotFoundException {
-        if (!wards.contains(p.getWardNameString())) { // If wardlist does not contain patient's ward, don't add it in.
+        if (!wards.contains(p.getWardNameString())) {
             throw new WardNotFoundException(p.getWardNameString());
         }
         try {

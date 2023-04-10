@@ -52,11 +52,9 @@ public class UniqueWardList implements Iterable<Ward> {
      *
      * @return New UniqueWardList with default Waiting Room.
      */
-    public static UniqueWardList NewUniqueWardList() {
+    public void NewUniqueWardList() {
         Ward WaitingRoom = new Ward(WAITING_ROOM);
-        UniqueWardList NewUniqueWardList = new UniqueWardList();
-        NewUniqueWardList.add(WaitingRoom);
-        return NewUniqueWardList;
+        internalList.add(WaitingRoom);
     }
 
     /**
