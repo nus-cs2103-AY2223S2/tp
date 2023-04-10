@@ -408,7 +408,7 @@ Action | Format, Examples
 **AddPerson** | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `addPerson n/James Ho p/92340121 e/jamesho@example.com t/manager t/hr`
 **DeletePerson** | `deletePerson PERSON_INDEX`<br> e.g., `deletePerson 3`
 **EditPerson** | `editPerson INDEX {[n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…}​`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`
-**FindPerson** | `findPerson KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPerson James Jake`
+**FindPerson** | `findPerson KEYWORD [MORE_KEYWORDS]…`<br> e.g., `findPerson James Jake`
 **ListPerson** | `listPerson`
 
 <div style="page-break-after: always;"></div>
@@ -420,7 +420,7 @@ Action | Format, Examples
 **AddBook** | `addBook t/TITLE a/AUTHOR i/ISBN​` <br> e.g., `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
 **DeleteBook** | `deleteBook BOOK_INDEX`<br> e.g., `deleteBook 3`
 **EditBook** | `editBook BOOK_INDEX {[t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]}`<br> e.g.,`editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
-**FindBook** | `findBook KEYWORD [MORE_KEYWORDS]...`<br> e.g., `findBook dune Cat`
+**FindBook** | `findBook KEYWORD [MORE_KEYWORDS]…`<br> e.g., `findBook dune Cat`
 **ListBook** | `listBook`
 
 ### Common
