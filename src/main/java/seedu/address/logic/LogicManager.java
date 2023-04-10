@@ -37,6 +37,7 @@ import seedu.address.storage.Storage;
 public class LogicManager implements Logic {
 
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    public static final String FILE_READ_ERROR_MESSAGE = "Could not read data from file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;

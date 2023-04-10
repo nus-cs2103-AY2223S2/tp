@@ -88,7 +88,7 @@ public class Archive {
         } catch (IOException ioe) {
             throw new CommandException(LogicManager.FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         } catch (DataConversionException dce) {
-            throw new CommandException(LogicManager.FILE_OPS_ERROR_MESSAGE + dce, dce);
+            throw new CommandException(LogicManager.FILE_READ_ERROR_MESSAGE + dce, dce);
         }
 
         if (isImportingWholeArchive) {
