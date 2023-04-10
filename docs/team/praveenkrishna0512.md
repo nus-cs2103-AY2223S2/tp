@@ -54,10 +54,10 @@ Learn more about how Docedex can help you [here](../UserGuide.md)
     and [GUI Features](../DeveloperGuide.md#gui-features)
 <br><br>
 - **Contributions to team-based tasks**
-  - Pre-development
+  - ***Pre-development***
     - Brainstormed user stories and use cases
     - Envisioned the design of the product design
-  - Development
+  - ***Development***
     - Updated the team on relevant deadlines and critical information, when necessary
     - Led project management for milestone v1.3
     - Captured bugs within the application and alerting team members
