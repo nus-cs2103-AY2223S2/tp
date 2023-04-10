@@ -1067,6 +1067,14 @@ product, enhancing the visual experience for users.
 DengueHotspotTracker currently alternates between using "case" or "person" to refer to each entry in the app.
 Standardising terminology would clean up the app and reduce any potential confusion for users and developers.
 
+### Enhancing duplicate checking
+
+DengueHotspotTracker currently considers a case a duplicate if they have the same name, age, and postal code
+as another pre-existing case. However, this would cause adding a case to fail if the same person were to
+contract dengue fever again at a later date—an unlikely but not impossible scenario.
+
+In future, we would improve duplicate checking to include checking for date and variant as well.
+
 ### Sorting by descending order
 
 The sort command currently only allows users to sort in ascending order. Users might find it more useful in some cases to
@@ -1101,7 +1109,7 @@ We did not implement this due to the difficulty as well as not having thought ab
 
 ### Check the validity of filenames which include subdirectories
 
-This feature helpful as described under export command's design considerations. However, this is an additional feature
+This feature is helpful as described under export command's design considerations. However, this is an additional feature
 and we were not able to add it into `v1.4`.
 
 This is a very helpful feature since it prevents accidental mistakes of overwriting preexisting CSV files.
