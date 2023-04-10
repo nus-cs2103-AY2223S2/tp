@@ -297,6 +297,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of each component and how they interact with each other.
 
+<div style="page-break-after: always;"></div>
+
 **Components of the architecture**
 
 * **`Main`**: has two classes called `Main` and `MainApp` which are responsible for,
@@ -321,6 +323,8 @@ Each of the four core components (also shown in the diagram above),
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class, as illustrated in the (partial) class diagram below.
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** Implementing the core component's API through an interface prevents outside component from being coupled to it.
@@ -380,6 +384,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
