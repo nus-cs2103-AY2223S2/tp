@@ -397,10 +397,7 @@ Format: `sumcat INDEX`
 2. Enter the command `sumcat 2` into the command box.
 3. FastTrack displays the summary of the Entertainment category in the Results Display.
 
-![FastTrack sumcat1](images/demo/category/sumcat1.png)
-_`lcat` lists all available categories._
-![FastTrack sumcat2](images/demo/category/sumcat2.png)
-_`sumcat 2` shows the summary of the Entertainment category._
+![FastTrack sumcat](images/demo/category/sumcat.png)
 
 <p align="right">
     <a href="#top">Back to Top </a>

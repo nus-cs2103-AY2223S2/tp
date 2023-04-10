@@ -3,8 +3,55 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
+# **Table of Contents**
   {:toc}
+1. [Introduction to FastTrack](#fasttrack)
+2. [Purpose of this guide](#purpose-of-this-guide)
+3. [How to use this guide](#how-to-use-this-guide)
+4. [Acknowledgements](#acknowledgements)
+5. [Setting up and getting started](#setting-up-getting-started)
+6. [Design](#design)
+   1. [Architecture](#architecture)
+   2. [UI Component](#ui-component)
+   3. [Logic Component](#logic-component)
+   4. [Model Component](#model-component)
+   5. [AnalyticModel Component](#analyticmodel-component)
+   6. [Storage Component](#storage-component)
+7. [Implementation](#implementation)
+   1. [Expense Features](#implemented-add-expense-feature)
+      1. [Add Expense Feature](#implemented-add-expense-feature)
+      2. [Delete Expense Feature](#implemented-delete-expense-feature)
+      3. [Edit Expense Feature](#implemented-edit-expense-feature)
+      4. [List Feature](#implemented-list-feature)
+      
+   2. [RecurringExpenseManager Features](#implemented-add-recurringexpensemanager-feature)
+      1. [Add RecurringExpenseManager Feature](#implemented-add-recurringexpensemanager-feature)
+      2. [Delete RecurringExpenseManager Feature](#implemented-delete-recurringexpensemanager-feature)
+      3. [Edit RecurringExpenseManager Feature](#implemented-edit-recurringexpensemanager-feature)
+      4. [List RecurringExpenseManager Feature](#implemented-list-recurringexpensemanager-feature)
+      
+   3. [Category Features](#implemented-add-category-feature)
+      1. [Add Category Feature](#implemented-add-category-feature)
+      2. [Delete Category Feature](#implemented-delete-category-feature)
+      3. [Edit Category Feature](#implemented-edit-category-feature)
+      4. [List Category Feature](#implemented-list-category-feature)
+      
+   4. [Recurring Expense Feature](#implemented-recurring-expense-feature)
+   5. [Budget Feature](#implemented-budget-feature)
+   6. [Expense Statistics Feature](#implemented-expense-statistics-feature)
+   7. [Autocomplete Feature](#implemented-category-autocomplete-feature)
+8. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+9. [Appendix: Requirements](#appendix-requirements)
+   1. [Product Scope](#product-scope)
+   2. [User Stories](#user-stories)
+   3. [Use Cases](#use-cases)
+   4. [Non-functional requirements](#non-functional-requirements)
+   5. [Glossary](#glossary)
+10. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    1. [Launch and Shut Down](#launch-and-shutdown)
+    2. [Saving Data](#saving-data)
+11. [Planned Enhancements](#planned-enhancements)
+12. [Effort](#effort)
 
 ---
 
@@ -67,7 +114,7 @@ This section gives you an overview of the different components of FastTrack and 
 
 The **_Architecture Diagram_** given below explains the high-level design of the FastTrack and how each component is connected.
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/ArchitectureDiagram.png" width="500" />
 
 **Main components of the architecture**
 
@@ -90,9 +137,9 @@ FastTrack also consists of five other components.
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-#replace
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="600" />
+
 
 Each of the 5 main components (also shown in the diagram above),
 
@@ -111,9 +158,9 @@ This component is responsible for displaying and interacting with users of FastT
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/ui/Ui.java)
 
-#replace
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="1200" />
+
 
 The UI consists of a `MainWindow` that is made up of the following parts.
 
@@ -148,9 +195,9 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component, to help guide you along on how it works:
 
-#ReplaceUMLHere
 
 <img src="images/LogicClassDiagram.png" width="550"/>
+
 
 #### **How the `Logic` component works:**
 
@@ -161,18 +208,18 @@ Here's a (partial) class diagram of the `Logic` component, to help guide you alo
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delcat 1")` API call.
 
-#ReplaceUMLHere
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-#ReplaceUMLHere
 
 <img src="images/ParserClasses.png" width="600"/>
+
 
 #### **How the parsing works:**
 
@@ -183,9 +230,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/model/Model.java)
 
-#ReplaceUMLHere
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="700" />
 
 The `Model` component,
 
@@ -197,22 +243,10 @@ The `Model` component,
   'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - does not depend on any of the other four components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-#Check if this is needed anymore
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Category` list in the `ExpenseTracker`, which `Expense` references. This allows `ExpenseTracker` to only require one `Category` object per unique expense, instead of each `Expense` needing their own `Category` objects.<br>
-
-#ReplaceUMLHere
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 ### AnalyticModel component
 
 **API** : [`AnalyticModel.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/model/AnalyticModel.java)
 
-#ReplaceUMLHere
-#This requires brand-new UML diagram of how analyticmodel component works.
 
 The `AnalyticModel` component,
 
@@ -224,9 +258,8 @@ The `AnalyticModel` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/storage/Storage.java)
 
-#ReplaceUMLHere
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="900" />
 
 The `Storage` component,
 
@@ -274,7 +307,9 @@ We will be using the user input `add n/Milk p/4.50 c/Groceries` as an example.
 
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
-SEQ#1
+
+<img src="images/sequence_diagrams/AddExpenseSequenceDiagram.png" width="1200" />
+
 
 ### \[Implemented\] Delete Expense feature
 
@@ -306,7 +341,9 @@ We will be using the user input `delete 1` as an example.
 
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
-SEQ#2
+
+<img src="images/sequence_diagrams/DeleteExpenseSequenceDiagram.png" width="1200" />
+
 
 ### \[Implemented\] Edit Expense feature
 
@@ -342,7 +379,12 @@ We will be using the user input `edexp 1 n/Chicken` as an example, whereby the o
 
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
-SEQ#3
+
+<img src="images/sequence_diagrams/EditExpenseSequenceDiagram.png" width="1200" />
+
+
+<img src="images/sequence_diagrams/EditExpenseFindPartSequenceDiagram.png" width="600" />
+
 
 ### **Design Considerations**
 
@@ -387,7 +429,9 @@ We will be using the user input `list c/Groceries t/week` as an example.
 
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
-SEQ#4
+
+<img src="images/sequence_diagrams/ListExpensesSequenceDiagram.png" width="800" />
+
 
 ### **Design Considerations**
 
@@ -431,9 +475,10 @@ We will be using the user input `addrec n/Broth c/Groceries p/3 sd/06/04/23 t/we
 - At step 2, if any input is detected as missing or invalid, an error will be shown and the sequence of action is terminated.
 - At the completion of step 3, due to the behavior of `RecurringExpenseManager`, expenses will be retroactively added if the start date up till current date (or end date if end date is earlier) sufficiently spans the timeframe frequency.
 
-A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+An activity diagram is provided as follows, which matches and further elaborates on the list of steps mentioned above:
 
-SEQ#5
+
+<img src="images/activity_diagrams/addRecurringExpenseActivityDiagram.png" width="1800" />
 
 ### **Design Considerations**
 
@@ -478,9 +523,11 @@ We will be using the user input `delrec 1` as an example.
 
 - At step 2, if the index is detected as invalid or missing, an error will be shown and the sequence of action is terminated.
 
-A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+An activity diagram is provided as follows, which matches and further elaborates on the list of steps mentioned above:
 
-SEQ#6
+
+<img src="images/activity_diagrams/deleteRecurringExpenseActivityDiagram.png" width="1800" />
+
 
 ### **Design Considerations**
 
@@ -525,9 +572,11 @@ We will be using the user input `edrec 1 n/Coconut Milk` as an example.
 - At step 2, if the index provided is detected as invalid or if no arguments other than index are provided, an error will be shown and the sequence of action is terminated.
 - At step 3, if the user provides a category to edit to, and it is found that there is no such category in FastTrack, an error will be shown and the sequence of action is terminated.
 
-A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+An activity diagram is provided as follows, which matches and further elaborates on the list of steps mentioned above:
 
-SEQ#7
+
+<img src="images/activity_diagrams/editRecurringExpenseActivityDiagram.png" width="1800" />
+
 
 ### **Design Considerations**
 
@@ -566,9 +615,10 @@ We will be using the user input `lrec` as an example.
 
 4. A `CommandResult` instance is then returned, with feedback of how many `RecurringExpenseManager` objects are present in the expense tracker, as well as switching to a screen of the list of `RecurringExpenseManager` objects.
 
-As the flow of events are almost identical to that of the [`list` command](#implemented-list-feature) with the sole difference being the different method names and the lack of filters, there are no sequence diagrams provided for this feature.
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
-SEQ#4
+<img src="images/sequence_diagrams/ListRecurringExpensesSequenceDiagram.png" width="600" />
+
 
 ### **Design Considerations**
 
@@ -606,6 +656,8 @@ This command allows the user to add a new category to FastTrack. If the new cate
 
 - At step 3, if the new category has the same name as an existing category, a `CommandException` will be thrown and the sequence of action will be terminated.
 
+As the sequence diagram for this feature is highly similar in idea to that of the [add expense feature](#implemented-add-expense-feature) except for a difference in certain method names, there will be no sequence diagram provided.
+
 ### \[Implemented\] Delete Category feature
 
 #### **Command format:**
@@ -614,7 +666,7 @@ This command allows the user to add a new category to FastTrack. If the new cate
 
 #### **What is the feature about:**
 
-This command allows user to delete a category of choice, expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`. The category will be removed from the user's database.
+This command allows user to delete a category of choice, expenses with the deleted category will have its category replaced with the `MiscellaneousCategory`. The category will be removed from the user's database.
 
 #### **Sequence of actions:**
 
@@ -629,6 +681,8 @@ This command allows user to delete a category of choice, expenses with the delet
 
 - At step 2, if an invalid `INDEX` is given, a `CommandException` will be thrown and the sequence of action will be terminated.
 - At step 3, if the `INDEX` given is out of range, a `CommandException` will be thrown and the sequence of action will be terminated.
+
+As the sequence diagram for this feature is highly similar in idea to that of the [delete expense feature](#implemented-delete-expense-feature) except for a difference in certain method names, there will be no sequence diagram provided.
 
 ### \[Implemented\] Edit Category feature
 
@@ -653,6 +707,8 @@ This command allows user to edit a category of choice. We allow users to edit ei
 
 - At step 2, if an invalid `INDEX` is given or **both** `c/NAME` and `s/SUMMARY` is missing, a `CommandException` will be thrown and the sequence of actions will be terminated.
 - At step 4, if there is a category with the same name as the new name given, a `CommandException` is thrown and the sequence of actions will be terminated.
+
+As the sequence diagram for this feature is highly similar in idea to that of the [edit recurringexpensemanager feature](#implemented-edit-recurringexpensemanager-feature) except for a difference in certain method names, there will be no sequence diagram provided.
 
 #### Design considerations:
 
@@ -692,7 +748,10 @@ We will be using the user input `lcat` as an example.
 
 4. A `CommandResult` instance is then returned, with feedback of how many `Category` objects are present in the expense tracker, as well as switching the screen to that of a list of the `Category` objects.
 
-As the flow of events are almost identical to that of the [`list` command](#implemented-list-feature) with the sole difference being the different method names and the lack of filters, there are no sequence diagrams provided for this feature.
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+<img src="images/sequence_diagrams/ListCategorySequenceDiagram.png" width="600" />
 
 ### **\[Implemented\] Recurring Expense feature:**
 
@@ -813,9 +872,6 @@ The following statistics are calculated and displayed to the user. In FastTrack,
 The current implementation of the expense summary feature requires consistent calculations of the user's expense statistics. As such, an `AnalyticModelManager`, which implements the `AnalyticModel` interface is used to keep track of all of these statistics.
 It contains fields which keep track of each individual statistic as mentioned in the above list, as well as specific methods to perform new calculations and updates to each of these fields.
 
-The following Class Diagram describes the structure of the `AnalyticModelManager`.
-
-// class diagram for AnalyticModelManager
 
 `AnalyticModelManager` requires an instance of `ExpenseTracker` to read and obtain the following unmodifiable, `ObservableList` objects containing data from FastTrack:
 
@@ -1155,7 +1211,7 @@ Use case ends.
 
    Use case ends.
 
-### Use case: UC13 - Exit from FastTrack
+### Use case: UC14 - Exit from FastTrack
 
 **MSS**
 
@@ -1164,6 +1220,82 @@ Use case ends.
 3. FastTrack exits and is closed.
 
    Use case ends.
+
+### Use case: UC15 - Add a recurring expense
+
+**MSS**
+
+1. User wants to add a recurring expense to be tracked.
+2. User keys in the command to add a recurring expense.
+3. FastTrack responds with a successfully added message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User keys in invalid information or wrongly-formatted information.
+    * 2a1. FastTrack returns an error, requesting that the user inputs information in the correct format.
+    * 2a2. User inputs information again.
+    * 2a3. Steps 2a1-2a2 are repeated until the information being input is of the correct format.
+
+      Use case resumes from step 3.
+
+### Use case: UC16 - List all recurring expense generators
+
+**MSS**
+
+1. User requests to list all recurring expense generators.
+2. FastTrack displays all recurring expense generators added by user.
+
+   Use case ends.
+
+### Use case: UC17 - Delete a recurring expense
+
+**MSS**
+
+1. User lists all recurring expense generators using UC16.
+2. User requests to delete a recurring expense generator from FastTrack with the index of the recurring expense generator to be deleted.
+3. FastTrack deletes the recurring expense generator indicated at the index.
+4. FastTrack displays a success message to the user indicating that the recurring expense generator has been successfully deleted.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user selects an invalid index.
+    * 2a1. FastTrack displays an error message telling the user to key in a valid index.
+    * 2a2. User re-enters the delete command with the index.
+    * 2a3. Steps 2a1-2a2 are repeated until the index provided is valid.
+
+  Use case resumes from step 3.
+
+### Use case: UC18 - Edit a recurring expense
+
+**MSS**
+
+1. User lists all recurring expense generators using UC16.
+2. User requests to edit a recurring expense generator from FastTrack with the index of the curring expense generator to be edited as well as the fields to be edited.
+3. FastTrack edits the recurring expense generator indicated at the index.
+4. FastTrack displays a success message to the user indicating that the recurring expense generator has been successfully edited.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user selects an invalid index.
+    * 2a1. FastTrack displays an error message telling the user to key in a valid index.
+    * 2a2. User re-enters the edit command with the index.
+    * 2a3. Steps 2a1-2a2 are repeated until the index provided is valid.
+
+  Use case resumes from step 3.
+
+* 2b. The user inputs invalid data (wrong format)
+    * 2b1. FastTrack displays an error message telling the user to key in information in correct format.
+    * 2b2. User re-enters the edit command with information.
+    * 2b3. Steps 2b1-2b2 are repeated until the information provided is of correct format.
+
+
+  Use case resumes from step 3.
 
 ### Non-Functional Requirements
 
@@ -1205,7 +1337,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -1214,9 +1345,27 @@ testers are expected to do more *exploratory* testing.
    1. In the case whereby your data files end up corrupted, FastTrack will wipe all data and allow you to start over
       with a clean slate.
 
-1. _{ more test cases …​ }_
 
-### Effort
+## Planned Enhancements
+1. The current function of setting a budget does not properly take into account the occasion whereby the user actually wants to set a 0-dollar budget, and thus our team has opted to use a 0-dollar budget to be defined as the state of not having set a budget.
+We plan to make 0-dollars no longer the state of the user not setting a budget, and instead, use another proper indicator to show that a user has not set his or her budget.
+
+2. The current expense statistics do not make it glaringly obvious that the user's budget has been exceeded, as it is only shown in plain words without any form of 
+colour-highlighting or ways to make the user notice it easily. We plan to make the indicator that one's budget has been exceeded very obvious for the user to notice by highlighting and 
+bolding the text.
+
+3. The current method of taking in dates is unable to properly distinguish a proper date with reference to that of the days 29-31 of a month. (e.g. the 31st of February is a valid input for our current state, but we force the date to be the 28th of February in our application)
+We plan to properly handle this behavior for the months whereby the 29th-31st days do not exist by properly throwing an error.
+
+4. The current colour choices in the expense statistics are possibly counter-intuitive, as we have chosen the colour red in cases whereby the user has spent more in the
+current month as compared to that of the previous month to indicate negative performance, but this might confuse users as the numbers shown are +x%, whereby x is the percentage point increase in spending
+as compared to the previous month. The same applies for spending lesser as compared to the previous month but in green. We are planning to make it such that the
+colour choice is more intuitive (Possibly swap the colour choices around).
+
+
+
+
+## Effort
 
 The difficulty of FastTrack as a project was quite high, but one that allowed us to learn a lot. As our group lacked experience in working with
 a properly-structured team as well as a pre-existing codebase that had to be overhauled for our own purposes, we had to start from scratch to learn
