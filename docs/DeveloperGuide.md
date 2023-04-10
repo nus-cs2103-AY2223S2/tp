@@ -98,26 +98,29 @@ On start, the `UIManager` will display the `MainWindow` that is made up of parts
 Timetable Window displays timetable of the specific week - which is specified by user. The "main" timetable window only contains scheduled jobs (jobs that are scheduled and not yet completed). However, we also have separated windows for completed and unscheduled jobs (`UnscheduleWindow` and `CompleteWindow`). Timetable Window helps users to stay organized and structure their plans for the week.
 
 `Timetable Window`:
-* gets the sorted job list by date and slot using `Logic` component
-* displays the corresponding job list with the correct date and slot
+
+![Structure of the Timetable Window](images/UiClassDiagramTimetableWindow.png)
+
+* displays the corresponding job list with the correct date and slot 
 * returns command execution result.
 * remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+* `TimetableDetailPanel` gets the sorted job list by date and slot using `Logic` component: `Logic#getDayofWeekJob()` - and fills in the timetable. 
 
 `Unschedule Window`:
+
+![Structure of the Unscheduled Window](images/UiClassDiagramUnscheduleWindow.png)
+
 * displays the list of unscheduled jobs
+* gets the unscheduled job list using `Logic` component: `Logic#getUnscheduledDeliveryJobList()`
 * remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
 
 `Complete Window`:
+
+![Structure of the Completed Window](images/UiClassDiagramCompleteWindow.png)
+
 * displays the list of completed jobs
+* gets the completed job list using `Logic` component: `Logic#getCompletedDeliveryJobList()`
 * remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
-
-Structure of `UnscheduleWindow` and `CompleteWindow` can be shown using the Main Window UI Class diagram.
-
-However, for `TimetableWindow`, the structure is more complicated than those 2 - it contains a few more parts such as `CommandBox`, `ResultDisplay`, etc.
-
-Below is the structure of Timetable Window through class diagram:
-
-![Structure of the Timetable Window](images/UiClassDiagramTimetableWindow.png)
 
 
 #### Create Job Window
@@ -563,8 +566,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 _**MSS**_
 1. User is on homepage of list of jobs.
 2. User requests to view overall statistics.
-3. System shows total earnings, monthly earnings,
-   weekly earnings, daily earnings and top customers visited.
+3. System shows total earnings, statistics on jobs completed/pending in total and in the previous week.
    Use case ends.
 
 _**Extensions**_
@@ -768,6 +770,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+
 ### Address Book
 
 1. Open address book by command
@@ -800,6 +803,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect format to try:  
       - `not found query`:  `find abc`  
       Expected: 0 persons listed.
+
 1. Deleting a person while all persons are being shown
    1. Prerequisites: List all persons in Customers Window using the `list` command. Multiple persons in the list.
    1. Test case: `delete 1`<br>
@@ -809,7 +813,12 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+
 ### Delivery Job System
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
 
 1. Add a job by command
    1. Prerequisites: User is in the main window. Valid recipient and sender id. 
@@ -830,7 +839,12 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to `1.ii`
    1. Test case: fill in all fields<br>
       Expected: Similar to `1.iii`
+<<<<<<< HEAD
+   1. Other incorrect approach to try:
+
+=======
    1. Other incorrect approach to try:  
+>>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
       - sender/recipient: invalid person id.
       - earning: multiple decimal points.  
       - date: invalid date.  
@@ -872,6 +886,10 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `select a job` > press `del` key<br>
       Expected: Job selected is removed.
 ### Notifications
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
 
 1. Display a notification for a reminder
    1. Prerequisites: Added a reminder using the `add_reminder` command. Make sure the `time/` field is set to an appropriate time.
