@@ -45,7 +45,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added [documentation for the `tab` command](https://ay2223s2-cs2103t-f12-3.github.io/tp/UserGuide.html#switching-between-tabs-tab) (PR [#105](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/105)).
+    * Added [documentation for the `tab` command](https://ay2223s2-cs2103t-f12-3.github.io/tp/UserGuide.html#switching-between-tabs--tab) (PR [#105](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/105)).
   * Developer Guide:
     * Updated [implementation details of the UI](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#ui-component) (PR [#139](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/139)).
     * Added [implementation details of the `tab` command](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#command-for-tab-switching) (PR [#139](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/139)).
