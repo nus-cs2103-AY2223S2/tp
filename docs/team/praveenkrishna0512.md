@@ -14,7 +14,7 @@ Learn more about how Docedex can help you [here](../UserGuide.md)
 
 - **Project management**
   - Managed releases under [`v1.3`](https://github.com/AY2223S2-CS2103T-F12-1/tp/releases/tag/v1.3.4)
-
+<br><br>
 - **Code contributed**: To find out more, click [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=praveenkrishna0512&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
 
 - **Enhancements implemented**
@@ -28,7 +28,7 @@ Learn more about how Docedex can help you [here](../UserGuide.md)
     - Enabled proper saving and loading of Doctor and Patient objects
       - Find out more about the implementation of storage [here](../DeveloperGuide.md#storage-component)
     - Improved test coverage to >90%
-
+<br><br>
 - **Contributions to the UG**
   - Polished up the [front matters](../UserGuide.md#welcome-to-docedex) of the UG
   - Added a section on [Navigating the GUI](../UserGuide.md#navigating-the-graphical-user-interface-gui),
@@ -36,7 +36,7 @@ Learn more about how Docedex can help you [here](../UserGuide.md)
   - Added sections on [saving the data file](../UserGuide.md#saving-the-data)
     and [editing the data file](../UserGuide.md#editing-the-data-file)
   - Added answers to [FAQs](../UserGuide.md#faq) under the *Using Docedex* subsection
-
+<br><br>
 - **Contributions to the DG**
   - Sections
     - Provided design details and documentation about the [Ui](../DeveloperGuide.md#ui-component)
@@ -52,7 +52,7 @@ Learn more about how Docedex can help you [here](../UserGuide.md)
       and [Storage](../DeveloperGuide.md#storage-component) components.
     - Sequence diagrams under sections on [Ui](../DeveloperGuide.md#ui-component) component
     and [GUI Features](../DeveloperGuide.md#gui-features)
-
+<br><br>
 - **Contributions to team-based tasks**
   - Pre-development
     - Brainstormed user stories and use cases
@@ -63,7 +63,7 @@ Learn more about how Docedex can help you [here](../UserGuide.md)
     - Captured bugs within the application and alerting team members
     - Reviewed pull requests from team members
     - Aided with triaging of bugs found through first round of testing
-
+<br><br>
 - **Review/mentoring contributions**
   - Notable PRs reviewed:
     [#17](https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/17),
