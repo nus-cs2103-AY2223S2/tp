@@ -56,11 +56,6 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
-    }
-
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
@@ -117,19 +112,5 @@ public class LogicManagerTest {
                                       String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
-    }
-
-    /**
-     * A stub class to throw an {@code IOException} when the save method is called.
-     */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
-        }
-
-        @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-            throw DUMMY_IO_EXCEPTION;
-        }
     }
 }
