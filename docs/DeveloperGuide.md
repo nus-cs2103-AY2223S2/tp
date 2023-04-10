@@ -2738,8 +2738,8 @@ Some incorrect commands to try from root context:
 
 | Test Case | Expected Result |
 | --------- | --------------- |
-| `clear`   | All modules deleted from Le Tracker |
-| 1. `nav CS2040S` <br> 2. `clear` | Same as previous |
+| `clear`   | **Message:**<br/>`Le Tracker has been cleared!`<br/>**List Updates:** All entries are removed |
+| 1. `nav CS2040S` <br> 2. `clear` | **Message:**<br/> Same as previous<br/>**List Updates:** Show list of modules, where all entries are removed |
 | 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `clear` | Same as previous |
 
 ## Appendix: Planned enhancements
