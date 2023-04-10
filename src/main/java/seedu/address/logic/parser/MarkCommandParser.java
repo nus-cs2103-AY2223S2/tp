@@ -3,15 +3,20 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.ParseIndexException;
 
+import java.util.logging.Logger;
+
 /**
  * Parses input arguments and creates a new MarkCommand object.
  */
 public class MarkCommandParser implements Parser<MarkCommand> {
+
+    private static final Logger logger = LogsCenter.getLogger(DeleteTaskCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the MarkCommand
@@ -24,6 +29,7 @@ public class MarkCommandParser implements Parser<MarkCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new MarkCommand(index);
         } catch (ParseIndexException pie) {
+            logger.info("Invalid numerical index");
             throw new ParseIndexException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX, pie);
         } catch (ParseException pe) {
             throw new ParseException(
