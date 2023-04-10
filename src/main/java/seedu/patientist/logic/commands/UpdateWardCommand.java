@@ -12,16 +12,18 @@ import seedu.patientist.model.Model;
 import seedu.patientist.model.Patientist;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.IsStaffPredicate;
+import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
 
 /**
- * Update Patient's ward identified using it's displayed index from the patientist book.
+ * Transfers the person indicated by the index to the specified ward.
  */
 
-public class UpdatePatientWardCommand extends Command {
+public class UpdateWardCommand extends Command {
     public static final String COMMAND_WORD = "trfward";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves the patient."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves the person."
             + "Parameters: "
             + "Index " + PREFIX_WARD + "WARD "
             + "Example: " + COMMAND_WORD + " "
@@ -29,7 +31,8 @@ public class UpdatePatientWardCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Patient %1$s has been transferred from ward %2$s to ward %3$s";
     public static final String MESSAGE_WARD_NOT_FOUND = "Ward not found: %1$s";
-    public static final String MESSAGE_WARD_INCORRECT = "Ward of patient is incorrect";
+    public static final String MESSAGE_WARD_INCORRECT = "New ward of person is incorrect";
+    public static final String MESSAGE_STAFF_DETECTED = "Staff %1$s has been transferred from ward %2$s to ward %3$s";
     public static final String MESSAGE_NOT_SHOWING_PERSON_LIST = "Transfer Ward Command does not work on wards.";
 
     private final String nextWard;
@@ -39,7 +42,7 @@ public class UpdatePatientWardCommand extends Command {
      * Creates an UpdatePatientWardCommand to change specified {@code Index} ward {@code ogWard} to
      * {@code nextWard}.
      */
-    public UpdatePatientWardCommand(Index patient, String nextWard) {
+    public UpdateWardCommand(Index patient, String nextWard) {
         requireNonNull(patient);
         requireNonNull(nextWard);
         this.nextWard = nextWard;
@@ -64,11 +67,11 @@ public class UpdatePatientWardCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient personToBeUpdated = (Patient) lastShownList.get(patient.getZeroBased());
+        Person personToBeUpdated = lastShownList.get(patient.getZeroBased());
         Ward ward = null;
 
         for (String wardName : model.getWardNames()) {
-            if (model.getWard(wardName).containsPatient(personToBeUpdated)) {
+            if (model.getWard(wardName).containsPerson(personToBeUpdated)) {
                 ward = model.getWard(wardName);
                 break;
             }
@@ -78,8 +81,19 @@ public class UpdatePatientWardCommand extends Command {
             throw new CommandException("Patient not found in Patientist");
         }
 
+        if (new IsStaffPredicate().test(personToBeUpdated)) {
+            try {
+                Staff staffToBeUpdated = (Staff) personToBeUpdated;
+                patientist.transferStaff(staffToBeUpdated, ward, model.getWard(nextWard));
+                return new CommandResult(String.format(MESSAGE_STAFF_DETECTED, patient.getOneBased(), ward, nextWard));
+            } catch (Exception e) {
+                throw new CommandException(MESSAGE_WARD_INCORRECT);
+            }
+        }
+
         try {
-            patientist.transferPatient(personToBeUpdated, ward, model.getWard(nextWard));
+            Patient patientToBeUpdated = (Patient) personToBeUpdated;
+            patientist.transferPatient(patientToBeUpdated, ward, model.getWard(nextWard));
         } catch (Exception e) {
             throw new CommandException(MESSAGE_WARD_INCORRECT);
         }
@@ -89,8 +103,8 @@ public class UpdatePatientWardCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UpdatePatientWardCommand
-                && patient.equals(((UpdatePatientWardCommand) other).patient)
-                && nextWard.equals(((UpdatePatientWardCommand) other).nextWard)); // instanceof handles nulls
+                || (other instanceof UpdateWardCommand
+                && patient.equals(((UpdateWardCommand) other).patient)
+                && nextWard.equals(((UpdateWardCommand) other).nextWard)); // instanceof handles nulls
     }
 }

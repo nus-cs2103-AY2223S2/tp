@@ -21,7 +21,25 @@ public class ListWardPatientsCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         ListWardPatientsCommand expectedFindCommand =
-                new ListWardPatientsCommand("Alice");
-        assertParseSuccess(parser, "Alice", expectedFindCommand);
+                new ListWardPatientsCommand("Block A Ward 1");
+        assertParseSuccess(parser, "Block A Ward 1", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_withPrefixes_throwsParseException() {
+        assertParseFailure(parser, " w/Block A Ward 1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListWardPatientsCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_withMultiplePrefixes_throwsParseException() {
+        assertParseFailure(parser, "w/Block A Ward 1 n/jonnie",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListWardPatientsCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_withMultipleSamePrefixes_throwsParseException() {
+        assertParseFailure(parser, "w/Block A Ward 1 w/Block A Ward 3",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListWardPatientsCommand.MESSAGE_USAGE));
     }
 }
