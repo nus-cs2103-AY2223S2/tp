@@ -6,9 +6,9 @@ title: User Guide
 <!-- omit from toc -->
 ## **Table of Contents**
 
-- [Introduction](#introduction)
+- [**Introduction**](#introduction)
   - [What is AIMS?](#what-is-aims)
-  - [Our Target](#our-target)
+  - [Our Mission](#our-mission)
   - [User Guide](#user-guide)
 - [**Legend**](#legend)
 - [**Quick Start**](#quick-start)
@@ -20,8 +20,8 @@ title: User Guide
   - [Listing all persons : `list`](#listing-all-persons--list)
   - [Copying information to clipboard : `copy`](#copying-information-to-clipboard--copy)
   - [Editing a person : `edit`](#editing-a-person--edit)
-  - [Locating persons by any field : `find`](#locating-persons-by-any-field--find)
-  - [Locating persons using filters on fields : `filter`](#locating-persons-using-filters-on-fields--filter)
+  - [Searching for persons by any field : `find`](#searching-for-persons-by-any-field--find)
+  - [Searching for persons using filters on fields : `filter`](#searching-for-persons-using-filters-on-fields--filter)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Undoing last modification : `undo`](#undoing-last-modification--undo)
@@ -34,19 +34,26 @@ title: User Guide
 - [**Command Summary**](#command-summary)
 
 ---
-## Introduction
+
+## **Introduction**
 
 ### What is AIMS?
-Army Information Management System (AIMS) is **the** desktop app built for army admin clerks, intended to make your life easier. With an emphasis of proper checking and validation of contact information, AIMS eradicates time wasted on dealing with erroneous data and ensures that contact information can be collected properly on the first try. AIMS is optimized for use via a **Command Line Interface** (**CLI**) while still having the benefits of a **Graphical User Interface** (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI apps.
 
-### Our Target
-AIMS was designed to achieve **3 main targets:**
-1. Allow you **conveniently** access information of individual soldiers (With simple to use [find](#locating-persons-by-any-field--find) and [filter](#locating-persons-using-filters-on-fields--filter) commands and a optimally placed [favorites](#adding-a-person-to-favorites--favorite) sidebar).
-2. Ensure that your **data is properly and efficiently checked and validated** before storing.
-3. Keep your **transition** from other contact storage applications as **smooth as possible** through our [import CSV feature](#importing-multiple-persons-from-a-csv-file--importcsv).
+Army Information Management System (AIMS) is **the** desktop app built for army admin clerks, intended to make your life easier. With an emphasis on proper checking and validation of contact information fields, AIMS eradicates time wasted on dealing with erroneous data and ensures that contact information can be collected properly on the first try. AIMS is optimized for use via a **Command Line Interface** (**CLI**) while still having the benefits of a **Graphical User Interface** (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI apps.
+
+### Our Mission
+
+AIMS was designed to achieve **3 main objectives:**
+
+1. Enable you to **quickly** and **easily** access the personal information of soldiers with simple to use [find](#searching-for-persons-by-any-field--find) and [filter](#searching-for-persons-using-filters-on-fields--filter) commands and an optimally placed [favorites](#toggling-the-favorite-status-of-a-person--favorite) sidebar.
+2. Ensure that your data is **properly checked and validated** before storing it in AIMS.
+3. Make your **transition** from other contact storage applications **as smooth as possible** through our [import CSV feature](#importing-multiple-persons-from-a-csv-file--importcsv).
 
 ### User Guide
-This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples. The user guide designed to help all army admin clerks adopt, learn and master AIMS. Mastering the use of AIMS will vastly improve your experience tackling the administrative flow of managing contact information. For the best learning experience, we recommend leaving this guide open for reference during your first few uses of AIMS. Let's start your journey with AIMS today!
+
+This user guide shows you how to get started with using AIMS -- it has easy-to-understand explanations and examples to help you grasp its various features.
+
+We hope that this user guide will help you adopt, learn and ultimately master AIMS. Mastering the use of AIMS will vastly improve your experience in tackling the administrative workflow of managing army personnel's contact information. For the best learning experience, we recommend leaving this guide open for reference during your first few uses of AIMS. Let's start your journey with AIMS today!
 
 For a more technical and comprehensive overview of AIMS's codebase, please refer to our [Developer Guide](DeveloperGuide.md).
 
@@ -66,22 +73,24 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 ## **Quick Start**
 
-1. Ensure you have Java `11` or above installed in your computer. If not, you can download it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+1. Ensure you have Java `11` or above installed on your computer. If not, you can download it from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
-2. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
+1. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the *home folder* for AIMS.
+1. Copy the file to the folder you want to use as the *home folder* for AIMS.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
-   run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to run the application.
+   <br>
+   <br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-  <div style="text-align: center;">
-    <img src="images/Ui.png">
-    <p style="font-style: italic;"><br>Default state of the app on startup</p>
-    <br>
-  </div>
 
-5. Refer to the [Features](#features) below for details of each command.
+   <div style="text-align: center;">
+     <img src="images/Ui.png">
+     <p style="font-style: italic;"><br>Default state of the app on startup</p>
+     <br>
+   </div>
+
+1. Refer to the [Features](#features) section below for details of each command.
 
 [Back to Top ↑](#table-of-contents)
 
@@ -159,6 +168,7 @@ Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EM
 </div>
 
 Examples:
+
 - `add r/3SG n/Lawrence Tay u/1 GDS e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 t/PlatoonSergeant t/AllergySeafood`<br>
   Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.<br>
   <div style="text-align: center;">
@@ -177,13 +187,15 @@ Format: `importcsv PATH_TO_CSV_FILE`
 
 The given CSV file must fulfill the following conditions:
 
-1. File given must end with '.csv'.
-2. Each row in the CSV File must have the same number of rows
+1. The file given must end in `.csv`.
+2. Each row in the CSV file must have the same number of columns.
 3. The first row of the CSV file must be reserved for headers.
-4. Each field, namely `rank, name, unit, company, platoon, phone, email, address, tags`, must appear as a header in this exact form (but
-   in any order, except tag which has to be the last header).
-5. Each person cannot have blank entries for any of the fields (except for unit, company, platoon, tags)
-6. If a person has more than one tag, they are to be listed horizontally. (Additional tags cannot have a header)
+4. Each field (namely `rank`, `name`, `unit`, `company`, `platoon`, `phone`, `email`, `address`, `tags`) must appear exactly once in the headers.
+5. Each header in the CSV file can appear in any order (except `tag` which must be the last header).
+6. Each row in the CSV file must not have blank entries for the `rank`, `name`, `phone`, `email` and `address` fields.
+7. If a person has more than one tag, the tags must all be listed in different columns (see the step-by-step example below).
+
+<br>
 
 Step-by-step example of converting and importing an Excel spreadsheet:
 
@@ -211,7 +223,7 @@ Step-by-step example of converting and importing an Excel spreadsheet:
     <br>
   </div>
 
-4. Open AIMS. Into the command box input `importcsv ` followed by pasting the path to the CSV file. Remove any inverted commas at the front and end of the path that might be added by copy and pasting.
+4. Open AIMS. Into the command box input `importcsv` followed by pasting the path to the CSV file. Remove any inverted commas at the front and end of the path that might be added by copy and pasting.
 
   <div style="text-align: center;">
     <img src="images/demoImportcsvCommand.png">
@@ -294,7 +306,7 @@ If your clipboard is accessible, a success message will be displayed.
     Email: berniceyu@example.com
     Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
     Tags: [colleagues][friends]
-     ```
+    ```
 
 - `copy 2` <br>
 If your clipboard is not accessible, the information will be displayed in the message box which can be manually selected and copied.
@@ -326,7 +338,7 @@ Edits the phone number and email address of the 1st person in the existing list 
 - `edit 2 n/Betsy Crower t/` <br>
 Edits the name of the 2nd person in the existing list to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by any field : `find`
+### Searching for persons by any field : `find`
 
 Lets you find persons who have any fields that contain any of the given keywords.
 
@@ -340,6 +352,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - Persons matching at least one keyword will be returned. (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` and `Bo Hans`)
 
 Example:
+
 - `find live delta` <br>
 3 persons will be found:
   - `Charlotte Oliveiro` (name matches `live`)
@@ -353,7 +366,7 @@ Example:
 
 [Back to Top ↑](#table-of-contents)
 
-### Locating persons using filters on fields : `filter`
+### Searching for persons using filters on fields : `filter`
 
 Lets you filter all persons to only show those whose fields contain **all** the given keywords.
 
@@ -367,6 +380,7 @@ Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/CO
 - At **least** one of the optional fields must be provided.
 
 Example:
+
 - `filter a/street r/sg` <br>
 2 persons named `David Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
   <div style="text-align: center;">
@@ -458,7 +472,7 @@ Format: `favorite INDEX`
 
 Example:
 
-- `favorite 3`<br> 
+- `favorite 3`<br>
 The third person in the existing main list will be added to and pinned in the favorites list.<br>
   <div style="text-align: center;">
     <img src="images/favorite3.png">
