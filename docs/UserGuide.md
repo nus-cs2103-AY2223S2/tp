@@ -714,7 +714,7 @@ What you should see:<br>
 
 * `edit 3 n/Zen Qing`: Changes the name of the third contact to `Zen Qing`.
 * `edit 6 p/89229358 t/@zenqing`: Changes the phone number and telegram handle of the sixth contact.
-* `edit s/Bedok`: Updates your address to `Bedok`.
+* `edit s/Bedok`: Updates your nearest MRT station to `Bedok`.
 </div>
 
 ### Delete a contact `delete`
