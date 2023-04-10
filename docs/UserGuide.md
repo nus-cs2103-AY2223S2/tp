@@ -36,12 +36,14 @@ This user guide provides a detailed documentation on QuickContacts and serves as
 QuickContacts into your daily workflow. From having QuickContacts installed to making the best use out of QuickContacts,
 this user guide has everything you need. Head over to the [Getting started](#getting-started) section to get onboard!
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
-* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Using this User Guide
 
@@ -106,6 +108,7 @@ editing or deleting such files unless you know what you are doing!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick Reference Guide
 
