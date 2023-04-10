@@ -7,7 +7,6 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-//@@author hmuumyatmoe-reused
 public class TaskNameTest {
 
     //@@author HmuuMyatMoe-reused
@@ -22,6 +21,7 @@ public class TaskNameTest {
         String invalidTaskName = "";
         assertThrows(IllegalArgumentException.class, () -> new TaskName(invalidTaskName));
     }
+    //@@author
 
     //@@author liumc-sg-reused
     @Test
@@ -44,7 +44,8 @@ public class TaskNameTest {
     }
     //@@author
 
-    //@@author hmuumyatmoe-reused
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void toStringTest() {
         String expectedTaskName = "Sort Inventory";
@@ -63,4 +64,5 @@ public class TaskNameTest {
         assertFalse(taskName.equals(differentTaskName)); //different task name
         assertFalse(taskName.equals(1)); //different type
     }
+    //@@author
 }
