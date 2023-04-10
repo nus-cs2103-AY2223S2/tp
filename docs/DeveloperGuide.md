@@ -574,6 +574,10 @@ abbreviations can be confusing for new users as they do not provide any informat
 would result in a constant need to refer to the User Guide for assistance. Likewise, this requires the user to put 
 in extra effort to learn and memorize the commands.
 
+### 4.3 Improving data processing
+#### 4.3.1 Description
+Our current data structure for storing input data in the application is Java's observable filter list. While this structure has performed well for smaller volumes of data, we have observed that it is not suitable for larger datasets, particularly when updating the user interface. As a result, we are exploring the possibility of switching to a more efficient data structure that can better handle large volumes of data and process only the necessary portion of it on the screen using techniques such as data buffering and paging. This proposed change is expected to significantly improve the overall performance of our application, leading to a much-improved user experience.
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -1121,7 +1125,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 6.4 Non-Functional Requirements
 
 1. Performance: The system shall respond to user input within 0.1 seconds. 
-2. Performance: The system should be able to hold up to 1000 entries without a noticeable sluggishness in performance.
+2. Performance: The system should be able to hold up to 1000 entries/inputs, whichever is bigger, without a noticeable sluggishness in performance.
 3. Compatibility: The system shall be compatible to operating systems with java 11 runtime (e.g. Windows, MacOS, Linux). For MacOS users specifically, **OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)** is required.
 4. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
    than 2 hours for a new user.
