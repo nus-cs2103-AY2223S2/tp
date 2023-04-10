@@ -454,6 +454,8 @@ Note:
 This command cannot be undone. All deleted projects cannot be restored.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Finding projects
 #### Format: `find-project [name/NAME]* [start/START_OF_TIMEFRAME] [end/END_OF_TIMEFRAME] [status/STATUS] [tag/TAG]* [client/CLIENT]*`
 
@@ -491,8 +493,6 @@ Sorts all **currently visible** projects in ascending order by the specified opt
 
 Note:
 * Option matching is case-insensitive. E.g. `option/NAME` and `option/Name` is treated the same as `option/name`.
-
-<div style="page-break-after: always;"></div>
 
 Example:
 
@@ -584,8 +584,6 @@ If your changes to the data file makes its format invalid, ArB will discard all 
 
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
 
 ## **FAQ**
 
