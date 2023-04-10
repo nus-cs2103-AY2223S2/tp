@@ -1269,7 +1269,8 @@ this testing model as well, to ensure that unit tests are testing on a correct s
 
 Our organisation tested commands by creating commands with the correct parameters, bypassing the parser, and executed 
 them. Assertions were used to ensure that commands created, when executed performed the correct operations, on the model
-created specifically for tests. 
+created specifically for tests, as well as ensuring that correct exceptions are thrown as and when needed, especially for
+invalid inputs.
 
 Our organisation made use of equivalence partitions to tests for the types of commands that can be executed, due to the
 number of variants we have for each command.
@@ -1281,7 +1282,7 @@ correct text, and returning the correct corresponding command.
 
 Negative and positive test cases were used to ensure that invalid inputs throws the correct exceptions, and that valid 
 inputs creates and returns the correct command with correct parameters. This testing ensures that our definitions for 
-commands to be equal were well-defined.
+equivalent commands were well-defined.
 
 ## **GUI Tests**
 Our organisation utilised `TestFX` for conducting GUI tests. `TestFX` is a popular testing framework for `JavaFX` applications as it provides a set of tools and utilities for writing tests that interact with `JavaFX` UI components, simulate user interactions, and perform assertions on the state of the UI.
