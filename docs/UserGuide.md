@@ -376,6 +376,7 @@ If your changes to the data files make their format invalid, MediMeet will disca
 |-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add patient**             | `add_patient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_patient n/Brenda Song p/98765432 e/brendas@example.com a/Red Road, Blk 123, #01-01` |
 | **Add appointment**         | `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION doc/DOCTOR…​` <br> e.g., `add_appt n/Alex Yeoh ts/04032023 10:00,04032023 11:00 d/Regular checkup doc/Xiao Lu`           |                                                                                                       |
+| **Add patient notes**       | `remark_patient INDEX [r/REMARK]` <br> e.g., `remark_patient 3 r/Immunocompromised`                                                                                 |
 | **Clear**                   | `clear`                                                                                                                                                             |
 | **Delete patient**          | `delete_patient INDEX`<br> e.g., `delete_patient 3`                                                                                                                 |
 | **Delete appointment**      | `delete_appt INDEX`<br> e.g., `delete_appt 3`                                                                                                                       |
@@ -386,8 +387,9 @@ If your changes to the data files make their format invalid, MediMeet will disca
 | **Find appointment**        | `find_appt TIMESLOT [TIMESLOT]`<br> e.g., `find_appt 01012023 00:00 01012023 01:00`                                                                                 |
 | **List patient**            | `list_patient`                                                                                                                                                      |
 | **List appointments**       | `list_appt`                                                                                                                                                         |
+| **Today**                   | `today`                                                                                                                                                              |
 | **Help**                    | `help`                                                                                                                                                              |
-| **Add patient notes**       | `remark_patient INDEX [r/REMARK]` <br> e.g., `remark_patient 3 r/Immunocompromised`                                                                                 |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
