@@ -260,7 +260,7 @@ Example:
 
 Adds an appointment for an existing patient in MediMeet.
 
-Format: `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION doc/DOCTOR…​`
+Format: `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION doc/DOCTOR`
 
 * The `TIMESLOT` format is: `DDMMYYYY HH:MM,DDMMYYYY HH:MM` where the first slot indicates the start time and the second slot indicates the end time.
   * Example: `ts/04032023 10:00,04032023 11:00` indicates that the appointment starts at `10:00` hrs on `March 4, 2023` and ends at `11:00` hrs on `March 4, 2023`.
@@ -364,13 +364,13 @@ If your changes to the data files make their format invalid, MediMeet will disca
 
 | Action                      | Format, Examples                                                                                                                                                                      |
 |-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add patient**             | `add_patient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_patient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add appointment**         | `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION [t/TAG]…​` <br> e.g., `add_appt n/John Doe ts/01012023 00:00,01012023 01:00 d/Regular checkup`                                             |                                                                                                       |
+| **Add patient**             | `add_patient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., * `add_patient n/Brenda Song p/98765432 e/brendas@example.com a/Red Road, Blk 123, #01-01` |
+| **Add appointment**         | `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION doc/DOCTOR…​` <br> e.g., `add_appt n/Alex Yeoh ts/04032023 10:00,04032023 11:00 d/Regular checkup doc/Xiao Lu`                                             |                                                                                                       |
 | **Clear**                   | `clear`                                                                                                                                                                               |
 | **Delete patient**          | `delete_patient INDEX`<br> e.g., `delete 3`                                                                                                                                           |
 | **Delete appointment**      | `delete_appt INDEX`<br> e.g., `delete_appt 3`                                                                                                                                         |
 | **Edit patient**            | `edit_patient INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit_patient 2 n/James Lee e/jameslee@example.com`                                           |
-| **Edit appointment**        | `edit_appt INDEX [ts/TIMESLOT] [d/DESCRIPTION] [t/TAG]…​` <br> e.g.,`edit_appt 1 ts/01012023 00:00,01012023 01:00 d/Regular checkup`                                                  |
+| **Edit appointment**        | `edit_appt INDEX [ts/TIMESLOT] [d/DESCRIPTION] [doc/DOCTOR]` <br> e.g.,`edit_appt 1 ts/01012023 00:00,01012023 01:00 d/Regular checkup`                                                  |
 | **Find patient**            | `find_patient KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_patient James Jake`                                                                                                            |
 | **Find in patient details** | `find_patient_details KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_patient_details 22224444`                                                                                              |
 | **Find appointment**        | `find_appt TIMESLOT [TIMESLOT]`<br> e.g., `find_appt 01012023 00:00 01012023 01:00`                                                                                                   |
