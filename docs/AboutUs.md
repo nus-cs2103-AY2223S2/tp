@@ -13,7 +13,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/euph00.png" width="200px">
 
-[[github](https://github.com/euph00)][[portfolio](team/euph00.md)]
+[[github](https://github.com/euph00)]
+[[portfolio](team/euph00.md)]
 
 * Role: Team member
 * Responsibilities: In charge of implementation of backend Model components.
@@ -26,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/pzhengze.md)]
 
 * Role: Team member
-* Responsibilities: ??
+* Responsibilities: In charge of Patient and Ward related commands, Storage, Ui. 
 
 ### Lucas
 
@@ -36,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/lukkesreysandeur.md)]
 
 * Role: Team member
-* Responsibilities: In charge of staff class and related commands, User Guide
+* Responsibilities: In charge of Staff class and related commands, User Guide
 
 ### Glenn Ong JunJie
 
