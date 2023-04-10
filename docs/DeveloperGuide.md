@@ -9,7 +9,6 @@ title: MediMate's Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 * External API: [`pdfbox-app-2.027`](https://pdfbox.apache.org/)
 * Reused code from [`AY2223S1-CS2103T-T17-1`](https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui) for UI design 
 * Reused code from [`AY2223S1-CS2103T-W11-3`](https://github.com/AY2223S1-CS2103T-W11-3/tp) for UI design
