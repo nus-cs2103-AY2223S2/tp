@@ -37,6 +37,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of the main components and how they interact with each other.
 
+<div style="page-break-after: always;"></div>
+
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/MainApp.java). It is responsible for,
@@ -171,7 +173,7 @@ Each of the project detail classes have their own validation check that is run u
 Users have the option to sort visible clients and projects.
 
 #### Implementation
-This is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html), which sorts its contents based on the supplied `Comparator`. As mentioned in the [model](#model-component) section of the architecture overview, the sorted list is exposed to the UI in the form of an unmodifiable `ObservableList`, such that any updates to the sorted list is propagated to the UI.
+This is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html), which sorts its contents based on the supplied `Comparator<T>`. As mentioned in the [model](#model-component) section of the architecture overview, the sorted list is exposed to the UI in the form of an unmodifiable `ObservableList`, such that any updates to the sorted list is propagated to the UI.
 
 There are a set of Comparators defined inside the `ModelManager` class, that are supplied to the sorted list depending on how the user wants to sort clients or projects. Example Comparators include comparing names of `Client` objects.
 
