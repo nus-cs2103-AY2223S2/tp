@@ -20,29 +20,17 @@ Given below are my contributions to the project.
   postal code especially as we needed to keep the original functionality of find, which allowed for substrings of the
   original postal, but our check for validity for all postal codes allowed only valid 6 digits postal codes.
 
-* **New Feature**: Added the ability to find by date ranges to find people in the dengue case list.
-  * What it does: Allows the user to find cases by a specified date range using the prefixes `sd/` and `ed/`.
+* **New Feature**: Added the ability to find by date and age ranges to find people in the dengue case list.
+  * What it does: Allows the user to find cases by a specified date and age ranges using the prefixes `sd/` and `ed/` for date, and `sa/` and `ea/` for age.
   * Justification: This feature improves the product significantly because an NEA staff may realistically require to
-  search for cases that happened in a specific date range to use for data analytics.
+  search for cases that happened in a specific date range and age range to use for data analytics.
   * Highlights: This enhancement affects existing commands. It required a team member (Valerie) and I to decide on a
   design option to accommodate for date ranges as she also needed it for her delete command. The implementation required
-  some abstraction by making a new `Range` class along with `StartDate` and `EndDate`. One difficulty faced was on
+  some abstraction by making a new `Range` class along with `StartDate` and `EndDate`, and `StartAge` and `EndAge`. One difficulty faced was on
   checking the validity of the dates, such as if the start date came after end date. Another difficulty faced was on
-  deciding on whether to make it mandatory for both `sd/` and `ed/` to be present. We ended up deciding only requiring
-  one of the prefix for the function to operate, by taking all dates after the given start date to be filtered, or all
-  dates before the given end date to be filtered.
-
-* **New Feature**: Added the ability to find by age ranges to find people in the dengue case list.
-  * What it does: Allows the user to find cases by a specified age range using the prefixes `sa/` and `ea/`.
-  * Justification: This feature improves the product significantly because an NEA staff may realistically require to
-    search for cases that happened in a specific age range to use for data analytics.
-  * Highlights: This enhancement affects existing commands. I had to decide on a design option to accommodate for age
-  ranges. I re-used the code written for the date ranges made with a teammate (Valerie). The implementation required
-  the abstraction used from making new `Range` class, along with two new classes, `StartAge` and `EndAge`. One
-  difficulty faced was on checking the validity of the ages, such as if the start date came after end date. Another
-  difficulty faced was on deciding on whether to make it mandatory for both `sa/` and `ea/` to be present. We ended up
-  deciding only requiring one of the prefix for the function to operate, by taking all dates after the given start date
-  to be filtered, or all dates before the given end date to be filtered.
+  deciding on whether to make it mandatory for both `sd/` and `ed/` or `sa/` and `ea/` to be present. We ended up deciding only requiring
+  one of the prefix for the function to operate, by taking all dates after the given start date/age to be filtered, or all
+  dates before the given end date/age to be filtered.
 
 * **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=Tohtoroo)
 
