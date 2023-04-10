@@ -975,19 +975,23 @@ testers are expected to do more *exploratory* testing.
 
 ------------------------------------------------------------
 
-## Appendix: Feature Flaws and Planned Enhancements
+## Appendix: Planned Enhancements
 
 When creating software, there are always areas that can be improved upon.
 In the interest of transparency and keeping our users informed, we have identified some aspects
 of our product that we recognise as feature flaws. We appreciate your patience as
 we are actively working to find the best solution to address these feature flaws.
 
-1. Depending on whether or not any record is present in the section, the width of the Elderly, Volunteer and Pair UI may vary slighly.
-2. When users provide a birth date for an Elderly or Volunteer profile, only the person's current age is displayed in the app. To view the specific birth date, users must refer to the respective JSON file. 
-3. In order to give users maximum flexibility in adding tags, we do not impose any limits on the number of tags or the character limit for each tag.
-   However, if tags with excessively long names are used, they could potentially affect the UI display and impact user experience.
-4. Our auto_pair algorithm for pairing up volunteers and elderly users employs a greedy approach, which may not always 
-be the most optimal in terms of time efficiency or number of pairings.
-5. Currently, the user could only enter dates for their available period. In future, we would allow users to enter hours into the available dates fields, so as to provide greater flexibility in specifying availability period.
+1. Currently, depending on whether or not any record is present in the section, the width of the Elderly, Volunteer and Pair UI may vary slighly. 
+We are looking into an optimal solution for this.
+2. Currently, when users provide a birth date for an Elderly or Volunteer profile, only the person's current age is displayed in the app. 
+To view the specific birth date, users must refer to the respective JSON file. We are considering including the person's birthdate in the display as well.
+3. Currently, in order to give users maximum flexibility in adding tags, we do not impose any limits on the number of tags or the character limit for each tag.
+   However, if tags with excessively long names are used, they could potentially affect the UI display and impact user experience. 
+   We are actively looking into a solution that achieve a compromise between both situations.
+4. Currently, our auto_pair algorithm for pairing up volunteers and elderly users employs a greedy approach, which may not always 
+be the most optimal in terms of time efficiency or number of pairings. We are continously searching for more efficient and effective pairing algorithms.
+5. Currently, the user could only enter dates for their available period. In future, we would allow users to enter hours into the available dates fields, 
+so as to provide greater flexibility in specifying availability period.
 6. In future, we plan to add an command to view pairing details directly, instead of hovering over the pair item and reading from the popover card.
 
