@@ -365,6 +365,9 @@ the data of your previous FAid home folder.
 **Q**: How do I key in my client's region?<br>
 **A**: FAid automatically detects region based on address keyed in
 
+[Back to the top](#table-of-contents)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Troubleshooting
@@ -385,6 +388,8 @@ Please refer to this [link](https://www.theserverside.com/blog/Coffee-Talk-Java-
 To check if you have Java `11` installed and configured correctly, refer to steps 2-4 of `Installing Java` under
 Troubleshooting!
 
+[Back to the top](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -401,6 +406,9 @@ Prefix | Field
 **ms/** | Start date and time of meeting
 **me/** | End date and Time of meeting
 
+[Back to the top](#table-of-contents)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -416,7 +424,9 @@ Action | Format, Examples
 **Help** | `help`
 **Add Meeting** | `meetingAdd CLIENT_INDEX md/ DESC ms/ START DATE&TIME me/ END DATE&TIME`
 **Remove Meeting** | `meetingRemove CLIENT_INDEX MEETING_INDEX`
-**Find Meeting** | `meetingFind DATE[CLIENT_INDEX]`
+**Find Meeting** | `meetingFind DATE\|CLIENT_INDEX`
 **List all meetings** | `meetingList`
 **List all in Region** | `listRegion REGION`
 **Find Policy** | `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`
+
+[Back to the top](#table-of-contents)
