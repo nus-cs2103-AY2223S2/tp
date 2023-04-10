@@ -61,7 +61,7 @@ public class UntagCommandTest {
 
     @Test
     public void execute_emptyTags_throwCommandException() {
-        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2107());
         Set<Tag> tagSet = new HashSet<>();
         VideoName videoName = TypicalVideos.INTRO_VIDEO.getName();
         LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();

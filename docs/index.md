@@ -17,7 +17,7 @@ While it has a GUI, most of the user interactions happen using a CLI (Command Li
 - If you are interested in using **Le Tracker**, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.md#quick-start).
 - If you are interested about developing **Le Tracker**, the [**Developer Guide**](DeveloperGuide.md) is a good place to start.
 
-### Acknowledgements
+## Acknowledgements
 
 - Forked from: [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S2/tp)
 - Libraries utilised: [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [JUnit 5](https://junit.org/junit5/)
