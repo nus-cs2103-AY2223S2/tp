@@ -126,7 +126,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdateModelClassDiagram.png" width="600" />
+<img src="images/ModelClassDiagram2.png" width="600" />
 
 
 The `Model` component,
@@ -556,3 +556,5 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## Planned Enhancement

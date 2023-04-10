@@ -15,15 +15,8 @@ Class UserPrefs
 Class UniquePersonList
 Class UniqueTeamList
 Class Person
-Class Address
-Class Major
-Class Email
-Class Name
-Class Phone
-Class Tag
 Class Team
-Class TeamName
-Class Desc
+
 
 }
 
@@ -42,21 +35,10 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniquePersonList
 AddressBook *-left-> "1" UniqueTeamList
 UniquePersonList -left-> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> Major
-Person *--> "*" Tag
-UniqueTeamList --> "~* all" Team
-Team *--> TeamName
-Team *--> Desc
-Team *--> "*" Name
-Team *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UniqueTeamList --> "~* all" Team
+
+
 
 ModelManager -->"~* filtered" Person
 @enduml
