@@ -57,6 +57,6 @@ Careflow can get your patient and drugs management tasks done faster than tradit
 
 * **Community**:
     * PRs reviewed for teammate (with non-trivial review comments): [\#62](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/62), [\#66](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/66), [\#101](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/101), [\#102](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/102),  [\#117](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/117)
-      * Actively correct checkstyle errors for the team to pass java CI. (Pull request [\#295](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/295),  [\#124](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/124), [\#109](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/109))
+    * Actively correct checkstyle errors for the team to pass java CI. (Pull request [\#295](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/295),  [\#124](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/124), [\#109](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/109))
     * Help release milestone versions. (Versions: [v1.2](https://github.com/AY2223S2-CS2103T-W09-3/tp/releases/tag/v1.2), [v1.3](https://github.com/AY2223S2-CS2103T-W09-3/tp/releases/tag/v1.3))
     * Reported bugs and suggestions for other teams in the class [CS2103-W11-4](https://github.com/cshuwen/ped/issues)
