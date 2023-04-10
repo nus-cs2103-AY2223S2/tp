@@ -60,7 +60,7 @@ Here are some of the symbols to take note of when going through this user guide:
 4. Double-click the file to start the app. A GUI similar to below should appear in a few seconds.
    Note how the app contains some sample data.<br>
 
-  <img class="centerImage" src="./images/UserGuide/Ui.png"/>
+   <img class="centerImage" src="./images/UserGuide/Ui.png"/>
 
 5. You can start by typing a command in the command panel and pressing Enter to execute it. e.g.
    typing **`help`** and pressing Enter will open the help window.<br>
@@ -250,7 +250,7 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
 
 2. Next, right-click on the selected columns so that the following shows up:
 
-<img class="centerImage" src="images/UserGuide/batchadd/rightclick.png" width=250>
+   <img class="centerImage" src="images/UserGuide/batchadd/rightclick.png" width=250>
 
 3. Click on `Format Cells...` and the table below will appear:
    ![](images/UserGuide/batchadd/formattable.png)
@@ -285,7 +285,6 @@ Below are the steps to use this command:
 
 1. Run `batchexport FILENAME` in the command panel. The result should look like the image below.
    ![](images/UserGuide/batchexport/exportedFile.png)
-
 
 2. Go to the folder where you stored the `jar` file.
 
@@ -329,7 +328,7 @@ Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [d/DEPARTMENT] [pr/PAYROLL] 
 * Edits the details of the employee with the specified `EMPLOYEE_ID`. If such an employee doesn’t exist, an error message will be shown.
 * At least one of the optional fields (in brackets above) must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
@@ -338,7 +337,11 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### Taking Leave : `leave`
 
-There are plenty of instances where employees take leave, and it is such a tedious task to manage employee leaves. ExecutivePro allows you to help your employees take leave so you no longer have to manually track remaining leaves for each employee.
+There are plenty of instances where employees take leave, and it is such a tedious task to manage employee leaves. ExecutivePro allows you to help your employees take leave so you no longer have to manually track remaining leaves for each employee. Note that the `leave` command can only help an employee take leave, if you want to reset or increase an employee's leave count, use the `edit` command above instead.
+
+:bulb:
+**For resetting or increasing an employee's leave count:**
+Use the `edit` command above instead. (`leave` can only help an employee take leave)
 
 Format: `leave EMPLOYEE_ID l/LEAVE_COUNT`
 
