@@ -3,8 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-## Table Of Contents
-
+## **Table Of Contents**
 {: .no_toc}
 
 * Table of Contents
@@ -117,6 +116,7 @@ The `UI` component does the following
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Main Window
+{: .no_toc}
 
 The `MainWindow` houses all the components that make up the visual display of Docedex. Its primary
 function is to listen to user input through the `CommandBox`, initiate the execution of the command,
@@ -143,6 +143,7 @@ You may refer to their implementations here
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Contact Display
+{: .no_toc}
 
 The `ContactDisplay` houses all the components that provide visual feedback after the manipulation
 of doctors and patients within Docedex.
@@ -274,7 +275,6 @@ Notes about the `Storage` component
   job is to save/load objects that belong to the `Model`)
 
 #### Notes about storing assignments between doctors and patients
-
 {: .no_toc}
 
 In our `Model`, the `Doctor` contains a list of `Patient` that they are assigned to,
@@ -599,9 +599,9 @@ Here are some useful links on the following!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix A: Planned Enhancements
+## **Appendix A: Planned Enhancements**
 
-### User Interface
+### Feedback To User
 
 #### Problem 1: Selection of doctor or patient cards is not cleared upon certain commands
 
@@ -659,6 +659,8 @@ with parameter information and notation present in the [UserGuide](./UserGuide.m
 line `"At least one parameter other than INDEX should be provided\n"`.
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+### Code quality + Input validation
 
 #### Problem 4: Use of association classes instead of lists to capture doctor-patient relationship on assignment
 
@@ -762,6 +764,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 | UC6 - Assign Doctor to Patient | UC12 - Assign Patient to Doctor |
 
 #### Use case: UC1 - Add Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -786,6 +789,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC2 - Delete Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -809,6 +813,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC3 - Edit Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -837,6 +842,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC4 - Find Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -855,6 +861,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC5 - List Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -873,6 +880,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC6 - Assign Doctor To Patient
+{: .no_toc}
 
 **MSS**
 
@@ -954,6 +962,7 @@ Testers are encouraged to do more *exploratory* testing.
 </div>
 
 #### Launch and shutdown
+{: .no_toc}
 
 1. Initial launch
 
@@ -973,6 +982,7 @@ Testers are encouraged to do more *exploratory* testing.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Deleting a doctor
+{: .no_toc}
 
 1. Deleting a doctor while all doctors are being shown
 
@@ -993,6 +1003,7 @@ Testers are encouraged to do more *exploratory* testing.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Saving data
+{: .no_toc}
 
 1. Dealing with missing/corrupted data files
 
