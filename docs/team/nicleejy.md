@@ -35,7 +35,7 @@ Contributions to the DG:
 - Sketched and implemented Activity Diagrams in PlantUML for recurring expense (Pull request [#218](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/218))
 - Add writeup for autocompletion feature in the DG (Pull request [#218](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/218))
 
-- Contributions to team-based tasks:
+Contributions to team-based tasks:
 - Participated in weekly (sometimes biweekly) meetings to discuss project structure and direction.
 - Took part actively in debugging other teammate's issues.
 - Fixed [several bugs](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Anicleejy+pe-d) reported from PE Dry Run
