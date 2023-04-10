@@ -13,7 +13,6 @@ import fasttrack.commons.util.ConfigUtil;
 import fasttrack.commons.util.StringUtil;
 import fasttrack.logic.Logic;
 import fasttrack.logic.LogicManager;
-import fasttrack.model.AnalyticModel;
 import fasttrack.model.ExpenseTracker;
 import fasttrack.model.Model;
 import fasttrack.model.ModelManager;
