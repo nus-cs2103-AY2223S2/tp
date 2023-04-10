@@ -39,10 +39,9 @@ this user guide has everything you need. Head over to the [Getting started](#get
 <div style="page-break-after: always;"></div>
 
 ## Table of Contents
-{:exclude}
 
 * Table of Contents
-{:toc}
+{:toc exclude="Table of Contents"}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -405,6 +404,8 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -427,6 +428,7 @@ Examples:
 * The index **must be a positive integer**: 1, 2, 3...
 
 Format: `export p/INDEX [p/MORE_INDEXES]...`
+<div style="page-break-after: always;"></div>
 
 ### Importing of contacts : `import`
 
@@ -638,8 +640,6 @@ Example:
     "description": "Plan for project work"
   }
 ]
-
-
 ```
 
 Optional Parameter `f/` that forces imports regardless of duplicate values. `f/` does not take any values.
@@ -776,8 +776,8 @@ the data of your previous QuickContacts home folder.
 | **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
 | **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
 | **List all meetings**        | `findm`                                                                                                                                                                                                              |
-| **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                          <br/>                        <br/>                                                                                       |
-| **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                        <br/>            <br/>                                                                                                   |
+| **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                   |
+| **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                 |
 | **View pending Meetings**    | `pending`                                                                                                                                                                                                            |                                                                                                                                                                                                           
 | **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
 | **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
