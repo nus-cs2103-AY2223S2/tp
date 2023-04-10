@@ -19,7 +19,7 @@ Class "<<interface>>\nUltronStorage" as UltronStorage
 Class JsonUltronStorage
 Class JsonSerializableUltron
 Class JsonAdaptedUltron
-Class JsonAdaptedDate
+Class JsonAdaptedKeydate
 }
 
 }
@@ -38,6 +38,6 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonUltronStorage .up.|> UltronStorage
 JsonUltronStorage ..> JsonSerializableUltron
 JsonSerializableUltron --> "*" JsonAdaptedOpening
-JsonAdaptedOpening --> "*" JsonAdaptedDate
+JsonAdaptedOpening --> "*" JsonAdaptedKeydate
 
 @enduml

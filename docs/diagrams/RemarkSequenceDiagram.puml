@@ -8,13 +8,13 @@ end box
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":UltronParser" as UltronParser LOGIC_COLOR
-participant ":RemarkCommand" as RemarkCommand LOGIC_COLOR
+participant "command:RemarkCommand" as RemarkCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "filteredOpenings:" as ObservableList MODEL_COLOR
-participant ":Opening" as Opening MODEL_COLOR
+participant ":ObservableList" as ObservableList MODEL_COLOR
+participant "editedOpening:Opening" as Opening MODEL_COLOR
 end box
 
 [->MainWindow : executeCommand("remark 1 r/2 OAs")
@@ -56,7 +56,7 @@ create Opening
 RemarkCommand -> Opening : new Opening(openingToEdit, remark)
 activate Opening
 
-Opening --> RemarkCommand : editedOpening
+Opening --> RemarkCommand
 deactivate Opening
 
 RemarkCommand -> Model : setOpening(openingToEdit, editedOpening)
@@ -67,6 +67,9 @@ deactivate Model
 
 RemarkCommand --> LogicManager : commandResult
 deactivate RemarkCommand
+
+RemarkCommand -[hidden]-> LogicManager
+destroy RemarkCommand
 
 LogicManager --> MainWindow : commandResult
 deactivate LogicManager

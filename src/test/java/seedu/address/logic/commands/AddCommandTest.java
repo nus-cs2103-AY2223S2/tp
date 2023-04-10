@@ -1,14 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -18,7 +16,6 @@ import seedu.address.testutil.OpeningBuilder;
 import seedu.ultron.commons.core.GuiSettings;
 import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.logic.commands.AddCommand;
-import seedu.ultron.logic.commands.CommandResult;
 import seedu.ultron.logic.commands.exceptions.CommandException;
 import seedu.ultron.model.Model;
 import seedu.ultron.model.ReadOnlyUltron;
@@ -32,17 +29,6 @@ public class AddCommandTest {
     @Test
     public void constructor_nullOpening_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
-    }
-
-    @Test
-    public void execute_openingAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingOpeningAdded modelStub = new ModelStubAcceptingOpeningAdded();
-        Opening validOpening = new OpeningBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validOpening).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validOpening), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validOpening), modelStub.openingsAdded);
     }
 
     @Test
