@@ -40,6 +40,7 @@ By using MM, medical professionals can manage patient data more efficiently and 
   - [Exit](#exiting-the-program--exit)
 - [Saving, Editing, and Archiving Data](#saving-the-data)
 - [FAQ](#faq)
+- [Restriction for Add and Edit](#restriction-on-add-and-edit)
 - [Command Summary](#command-summary)
 
 ---
@@ -117,23 +118,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITI
 
 * MANDATORY: You must add the patient's name, phone number, email, and address to successfully add the patient into MediMate.
 * OPTIONAL: You can also add patient's age, medical condition, Nric.
-* Name allows number as a valid input.
-* No special characters is allowed at the start or end of the email `username`. (username@domain.com)
-* No multiple (More than 1) special characters is allowed at the middle of the email username.
-* Allowed special characters for email are `+` , `_`, `-`, `.` 
-  e.g. `abc@gmail.com` is allowed
-  e.g. `ab.c@gmail.com` is allowed
-  e.g. `ab..c@gmail.com` is not allowed
-  e.g. `abc.@gmail.com` is not allowed
-  e.g. `.abc@gmail.com` is not allowed
-* You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
-* Nric has restriction for first letter, where it must be either 'S', 'T' or 'G' (E.g. S9935010Y) and length must be 9.
-* Nric is case-sensitive. Hence, 's' , 't' or 'g' is not allowed for the first letter.
-* Nric has no restriction from second letter onwards, hence user need to be careful as alphabets is still recognised as a valid input after the first letter.
-* Nric is not unique. Hence, please be aware to check your Nric input before adding to prevent duplicate Nric with other patient's.
-* Age need to be less than or equal to 120 and must be a positive integer.
-* Invalid prefix (such as `A/` in upper case or `ABC` unknown prefix) will cause MediMate to assume it as the description of the previous prefix
 * To record a patient's other information, add them as additional tags to the patient's profile.
+* Refer to [Restriction on Add and Edit](#restriction-on-add-and-edit) below on the `add` function restriction.
 
 Examples:
 
@@ -204,27 +190,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ag/AGE] [m/MEDICAL
 * When index is more than the number of patients in MediMate, it will display `The person Index provided is invalid`.
 * Specify the field you want to edit (name, phone, email, address, age, medical condition, nric, or tag) followed by the
   new value. At least one of the optional fields must be provided.
-* Name allows number as a valid input.
-* No special characters is allowed at the start or end of the email `username`. (username@domain.com)
-* No multiple (More than 1) special characters is allowed at the middle of the email username.
-* Allowed special characters for email are `+` , `_`, `-`, `.`
-  e.g. `abc@gmail.com` is allowed
-  e.g. `ab.c@gmail.com` is allowed
-  e.g. `ab..c@gmail.com` is not allowed
-  e.g. `abc.@gmail.com` is not allowed
-  e.g. `.abc@gmail.com` is not allowed
-* You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
-* Nric has restriction for first letter, where it must be either 'S', 'T' or 'G' (E.g. S9935010Y) and length must be 9.
-* Nric is case-sensitive. Hence, 's' , 't' or 'g' is not allowed for the first letter.
-* Nric has no restriction from second letter onwards, hence user need to be careful as alphabets is still recognised as a valid input after the first letter.
-* Nric is not unique. Hence, please be aware to check your Nric input before adding to prevent duplicate Nric with other patient's.
-* Age need to be less than or equal to 120 and must be a positive integer.
-* Invalid prefix (such as `A/` in upper case or `ABC` unknown prefix) will cause MediMate to assume it as the description of the previous prefix
 * Existing values will be updated to the user input values.
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without
   specifying any tags after it. 
 * You can remove all the patient's medical condition by typing `m/` without specifying any letter(s) after it.
+* Refer to [Restriction on Add and Edit](#restriction-on-add-and-edit) below on the `edit` function restriction.
 
 Examples:
 
@@ -469,7 +440,28 @@ MediMate data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MediMate home folder.
 
----
+--- 
+
+## Restriction on add and edit
+
+* Name allows number as a valid input.
+* No special characters is allowed at the start or end of the email `username`. (username@domain.com)
+* No multiple (More than 1) special characters is allowed at the middle of the email username.
+* Allowed special characters for email are `+` , `_`, `-`, `.`
+  e.g. `abc@gmail.com` is allowed
+  e.g. `ab.c@gmail.com` is allowed
+  e.g. `ab..c@gmail.com` is not allowed
+  e.g. `abc.@gmail.com` is not allowed
+  e.g. `.abc@gmail.com` is not allowed
+* You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
+* Nric has restriction for first letter, where it must be either 'S', 'T' or 'G' (E.g. S9935010Y) and length must be 9.
+* Nric is case-sensitive. Hence, 's' , 't' or 'g' is not allowed for the first letter.
+* Nric has no restriction from second letter onwards, hence user need to be careful as alphabets is still recognised as a valid input after the first letter.
+* Nric is not unique. Hence, please be aware to check your Nric input before adding to prevent duplicate Nric with other patient's.
+* Age need to be less than or equal to 120 and must be a positive integer.
+* Invalid prefix (such as `A/` in upper case or `ABC` unknown prefix) will cause MediMate to assume it as the description of the previous prefix
+
+
 
 ## Command summary
 
