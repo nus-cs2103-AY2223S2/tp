@@ -5,7 +5,7 @@ participant Hidden #FFFFFF
 box UI UI_COLOR_T1
 participant ":AttendanceListPanel" as AttendanceListPanel UI_COLOR
 participant ":AttendanceListViewCell" as AttendanceListViewCell UI_COLOR
-participant ":AbsentAttendanceListCard" as AbsentListCard UI_COLOR
+participant ":AbsentAttendanceListCard" as AbsentListCard MODEL_COLOR
 participant ":PresentAttendanceListCard" as PresentListCard UI_COLOR
 end box
 
