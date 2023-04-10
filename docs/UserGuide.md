@@ -158,6 +158,7 @@ A list of people who applied for the job.
 #### Platforms released
 A list of job platforms on which the job listing has been publicized.
 - It is possible for a job listing to have no platforms released.
+- Platform names in a job listing should be unique
 
 ### Applicant
 An applicant refers to someone who has applied for a job listing. Applicants are displayed according to their names and are specific to each job listing.
