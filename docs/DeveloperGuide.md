@@ -581,6 +581,9 @@ validity and file type validity, returning an error message: `Invalid file path`
 8. Currently, the right panel of our application is not centralized and long inputs may go out of bounds. We plan to make
 the right panel horizontally scrollable as well as increase the size of the right panel to ensure that the information
 remains centralized during the launch of our application.
+9. Update mention of Address Book when `clear` command is input by users to ExecutivePro for better clarity and catered to current project documentation.
+
+
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Requirements**
 

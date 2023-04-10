@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.EmployeeId;
 
 /**
- * Clears the address book.
+ * Clears the ExecutivePro database.
  */
 public class ClearCommand extends Command {
 
