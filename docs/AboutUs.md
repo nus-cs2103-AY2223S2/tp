@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/hj-prk.png" width="200px">
 
-[[github](http://github.com/HJ-PRK] 
+[[github](http://github.com/hj-prk)] 
 [[portfolio](team/hj-prk.md)]
 
 * Role: Developer
