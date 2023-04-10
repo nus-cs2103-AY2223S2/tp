@@ -564,8 +564,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1c1. CookHub displays an error message that informs user of the duplicate recipe.
 
     Use case ends.
+  
+<br>
 
-    
 **Use case: UC02 - Delete a recipe**
 
 **MSS**
@@ -581,16 +582,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 1a.  The specified index is invalid.
-   *  1a1. CookHub shows an error message.
+* 1b.  The specified index is invalid.
+   *  1b1. CookHub shows an error message.
 
       Use case ends.
 
-* 1b. User did not provide any index.
-  * 1b1. CookHub shows an error message.
+* 1c. User did not provide any index.
+  * 1c1. CookHub shows an error message.
 
     Use case ends.
-  
+
+<br>
 
 **Use case: UC03 - Edit a recipe**
 
@@ -606,23 +608,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 1a.  The specified index is invalid.
-    *  1a1. CookHub shows an error message.
+* 1b.  The specified index is invalid.
+    *  1b1. CookHub shows an error message.
 
        Use case ends.
 
-* 1b. User did not provide any index.
-    * 1b1. CookHub shows an error message.
+* 1c. User did not provide any index.
+    * 1c1. CookHub shows an error message.
 
       Use case ends.
 
 
-* 1c. Error occurred when parsing arguments for specified fields to edit.
-    * 1c1. CookHub displays an error message that specifies the incorrect input field value entered.
+* 1d. Error occurred when parsing arguments for specified fields to edit.
+    * 1d1. CookHub displays an error message that specifies the incorrect input field value entered.
 
       Use case ends.
 
-
+<br>
 
 **Use case: UC04 - Clear recipe list**
 
@@ -641,7 +643,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-
+<br>
 
 **Use case: UC06 - Find recipes by keywords**
 
@@ -663,6 +665,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2.
 
+<br>
 
 **Use case: UC07 - Sort recipes by specified order**
 
@@ -684,7 +687,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. CookHub displays an error message.
 
       Use case ends.
-    
+
+<br>
 
 **Use case: UC08 - Filter recipes by price**
 
@@ -706,6 +710,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 2.
 
+<br>
 
 **Use case: UC09 - Favourite a recipe**
 
@@ -728,6 +733,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<br>
 
 **Use case: UC10 - Get groceries for recipes**
 
@@ -763,7 +769,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    tagging, sorting, etc.
 5. Should not be required to handle pictures of recipes or ingredients.
 6. Should have a response time of 5 seconds or less.
-7. Should support the use of UK and US English language.
+7. Should support the use of UK and US English languages.
 
 
 ### Glossary
@@ -818,14 +824,14 @@ testers are expected to do more *exploratory* testing.
 1. Editing a recipe while all recipes are being shown
     1. Prerequisites: List all recipes using the `list` command. Multiple recipes in the list.
 
-    2. Test case: `edit 1 d/Refreshing`
-        Expected: The description of the first recipe is changed to `Refreshing`. Success message shown in 
+    2. Test case: `edit 1 d/Refreshing`<br>
+       Expected: The description of the first recipe is changed to `Refreshing`. Success message shown in 
        the result display.
     
-    3. Test case: `edit 1`
-        Expected: The first recipe remains the same. Error message shown in the result display.
+    3. Test case: `edit 1`<br>
+         Expected: The first recipe remains the same. Error message shown in the result display.
 
-    4. Test case: `edit 0 t/Pizza`
+    4. Test case: `edit 0 t/Pizza`<br>
         Expected: No recipe is edited. Error message shown in the result display.
 
 
@@ -852,7 +858,7 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `clear`<br>
     Expected: All data are deleted from CookHub.
 
-3. Incorrect command to try: `clear.`
+3. Incorrect command to try: `clear.`<br>
    Expected: No data deleted. Error message shown in result display.
 
 
