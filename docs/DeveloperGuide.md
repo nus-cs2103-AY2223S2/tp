@@ -291,13 +291,10 @@ The `Storage` component,
 * depends on some classes in the `Model` component (e.g. `UserPref`)
   because the `Storage` component's job is to save/retrieve objects that belong to the `Model`
 
-<<<<<<< HEAD
 > **IMPORTANT**: Wingman is not responsible for the data loss caused by the 
 > user when he/she directly modifies the data files. The user is expected to 
 > work with the data files only through Wingman.
 
-=======
->>>>>>> master
 <div style="page-break-after: always;"></div>
 
 
@@ -738,6 +735,8 @@ is to make illegal states unrepresentable.
 
 ![Functional Programming](images/FunctionalProgrammingClassDiagram.png)
 
+## Appendix: Requirements
+
 ### Product scope
 
 **Target user profile**:
@@ -958,107 +957,77 @@ is the `user`, unless specified otherwise)
 * **Flight**: An activity with start and end locations, to which pilots, planes
   and crew can be assigned.
 
-## Appendix: Requirements
-
 <div style="page-break-after: always;"></div>
 
 ## Appendix: Planned Enhancements
 
 The Wingman app is still a work in progress and there's a lot of
 potential for our app in the future. Some features could not be
-worked on due to the complexity within our time constraints.
+worked on due to the complexity of the product and the given time constraints.
 In this section, we detail features which we aim to develop and
 include in our Wingman app in upcoming versions.
 
 Below, are the details of the planned enhancements:
 
-#### 1. `filter` command
+#### 1. Addressing the 'multiple link' to flights issue
 
-The `filter` command would serve to allow managers to navigate their
-resource lists, as they can search by specific attributes of a resource.
+- **Feature flaw:** A resource entity can currently be linked to one flight through multiple links at once.
+   (e.g. Crew Member Ben can be linked to Flight SQ312 as both a Cabin Service Director and a Trainee)
 
-Currently, there is no way to search through resource lists - they
-only can be scrolled through and the order of listed resources is
-based on the order the resources have been added to Wingman. This might
-not be the most efficient solution when an airline has a large number
-of resources.
+- **Feature tweak:** We plan to change the crew entity to be linked to one flight through only one appointment
+  at a time. This can be done by adding a new field labelled availability to the different resource classes
+  in the model layer to prevent the same resource from being assigned to multiple flights at the same time.
+  The linkXYZtoFlight command will also be changed to check this additional field before creating the link if the
+  resource entity is available or returning an error message if the resource entity is not available. Upon creation
+  of the link, this command will also update the availability field of the resource entity to false.
+  The unlinkXYZtoFlight command will also be changed to update the availability field of the resource entity
+  to true when the unlinking is successful.
 
-Therefore, a `filter` feature would be particularly useful for
-airline managers. To elaborate, a `filter` command for each resource
-would allow managers to search for a specific resource based on the
-resources attributes. As a result, the resource list would show
-the resources which match the query at the top.
+- **Sample Error Message:** The resource entity is not available for the specified flight.
 
-For example, `Crew` could be filtered by their rank and as a result, the
-`Crew` list would only show the `Crew` with the corresponding rank.
+#### 2. Availability attribute and `check` command
 
-#### 2. Improving the current linking
+- **Feature flaw:** Previously, we tried adding an `availability` feature to `Crew`,
+  `Pilot`, and `Plane` to indicate whether they are currently assigned
+  to a `Flight`. However, under our time constraints, it was difficult
+  for us to synchronize when these resources' availability changes.
 
-In Wingman's current implementation, linking between resources is made
-with a `Link` object. The `Link` can constrain how many resources are linked
-to another. However, `Link` only supports one-directional relations.
-This means that if B is linked to A, only A is "aware" that such a
-`Link` exists.
+  Specifically, there were cases where a resource's availability did not
+  change when it should have.
 
-For better use of our app, it would be helpful to have a bidirectional
-`Link` instead. With a bidirectional `Link`, we could do more commands
-or operations seamlessly (e.g. the `check` command, which is
-detailed below). Furthermore, fixing the `Link` would allow us to fix
-our `LinkLocation` commands.
+- **Feature tweak:** When linking a resource to a `Flight`, we should be checking
+  the resource's availability and determining if the `Link` can be
+  made or not. This is another aspect of input validation as described
+  earlier. Therefore, due to the error-prone nature of this command,
+  we decided to exclude it from this release. With more time, we should be able to implement
+  this feature correctly. By checking that the availability of a resource is updated
+  correctly whenever a `linkflight`, `unlinkflight`, `linklocation`, `unlinklocation`,`add`
+  or `delete` command is executed, we can solve this issue.
 
-Given the time constraints of our project, this was not feasible
+#### 3. UI enhancements
+
+- **Feature flaw:** A point which was raised up by some test users of Wingman is that
+  the resource lists might be slightly hard to navigate/view. This was due to text wrapping
+  not being enabled and due to the physical constraints of the application window. 
+
+- **Feature tweak:** To fix this, we could further develop our UI by resizing our "item cards"
+  so that all the information for a given resource can be seen easily
+  without needing to scroll horizontally. An alternative solution would be to enable text wrapping.
+
+#### 4. Improving the current linking
+
+- **Feature flaw:** In Wingman's current implementation, linking between resources is made
+  with a `Link` object. The `Link` can constrain how many resources are linked
+  to another. However, `Link` only supports one-directional relations.
+  This means that if B is linked to A, only A is "aware" that such a
+  `Link` exists.
+
+- **Feature tweak:** For better use of our app, it would be helpful to have a bidirectional
+  `Link` instead. With a bidirectional `Link`, we could do more commands
+  or operations seamlessly (e.g. the `check` command, which is
+  detailed below). Furthermore, fixing the `Link` would allow us to fix
+  our `LinkLocation` commands. 
+
+- Given the time constraints of our project, this was not feasible
 for this iteration but with more time, we can implement it for
 upcoming versions.
-
-#### 3. Input validation
-
-There are multiple commands in the Wingman app which require input
-validation before they should be executed.
-
-For example, the linking commands such as `LinkXYZtoFlight` or
-`LinkXYZtoLocation`. It seems that currently, a resource could be in
-more than one `Location` at once. Additionally, a resource in
-`Location` A can be linked to a `Flight` starting at `Location` B.
-
-Another example where input validation is required in Wingman is our
-previous availability attribute and `check` command which will be
-elaborated on further in the following point.
-
-One way of tackling this issue would be to modify the current logic of the
-affected commands such that error messages can be thrown when an error is
-detected. The errors would prevent resources being linked to multiple
-locations etc.
-
-In following versions, we would add more input validation to Wingman in
-order to ensure smooth operation of our app.
-
-#### 4. Availability attribute and `check` command
-
-Previously, we tried adding an `availability` feature to `Crew`,
-`Pilot`, and `Plane` to indicate whether they are currently assigned
-to a `Flight`.
-
-However, under our time constraints, it was difficult
-for us to synchronize when these resources' availability changes.
-Specifically, there were cases where a resource's availability did not
-change when it should have.
-
-When linking a resource to a `Flight`, we should be checking
-the resource's availability and determining if the `Link` can be
-made or not. This is another aspect of input validation as described
-earlier.
-
-Therefore, due to the error-prone nature of this command,
-we decided to exclude it from this release. However, the nature of Wingman as a scheduling app would require an
-availability feature. So, with more time, we should be able to implement
-this feature - perhaps by making `Link` bidirectional, or rethinking
-our approach to availability.
-
-#### 5. UI enhancements
-
-A point which was raised up by some test users of Wingman is that
-the resource lists might be slightly hard to navigate.
-
-To fix this, we could further develop our UI by resizing our "item cards"
-so that all the information for a given resource can be seen easily
-without needing to scroll.
