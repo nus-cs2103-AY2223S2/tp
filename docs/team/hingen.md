@@ -13,7 +13,6 @@ title: Hingen's Project Portfolio Page
 - [Code and Features](#code-and-features)
 - [User and Developer Guide](#user-and-developer-guide)
 - [Team-Based Tasks](#team-based-tasks)
-- [Review/Mentoring](#reviewmentoring)
 - [Misc](#misc)
 
 #### Code and Features
