@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -17,11 +18,26 @@ import seedu.address.model.TaskBookModel;
 import seedu.address.model.TaskBookModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Comment;
+import seedu.address.model.task.DeadlineTask;
+import seedu.address.testutil.DeadlineTaskBuilder;
 
 public class CommentCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private TaskBookModel taskBookModel = new TaskBookModelManager(new TaskBook(), new UserPrefs());
+
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        taskBookModel.addTask(validDeadlineTask);
+
+        Comment com = new Comment("Well Done");
+        CommentCommand commentCommand = new CommentCommand(Index.fromZeroBased(0), com);
+
+        String expectedMessage = String.format(CommentCommand.MESSAGE_SUCCESS, com, validDeadlineTask.toString());
+
+        assertCommandSuccess(commentCommand, model, taskBookModel, expectedMessage);
+    }
 
 
     @Test

@@ -278,6 +278,12 @@ public class EventCommandTest {
             throw new UnsupportedOperationException("Unimplemented method 'deletePersonFromTask'");
         }
 
+        @Override
+        public void setTaskBookFilePath(Path taskBookFilePath) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setTaskBookFilePath'");
+        }
+
     }
 
     /**
