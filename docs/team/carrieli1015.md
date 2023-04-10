@@ -11,13 +11,21 @@ Given below are my contributions to the project.
 
 * **New Feature**:
     * Switch command<br>
-  Help the user to easily switch between score text panel and score chart panel. Support both CLI and mouse click.
+  What it does: Help the user to easily switch between score text panel and score chart panel. Support both CLI and mouse click.
+  Justification: This feature is convenient for the user to switch between score text panel and score chart panel.
+  Highlights: Since the switch support both CLI and mouse click. It is important to make the behaviour consistence, so the application need to remember the panel status and switch based on it.
     * Check command<br>
-  For the user to check a specific student's task/s and score/s information.
+  What it does: For the user to check a specific student's task/s and score/s information.
+  Justification: This feature is important as it indicate which student the user want to check and display the selected student's information.
+  Highlights: The check result is normally continue to display. The panel will reset to no student being checked when the currently checked student is being deleted/edited, or the entire student list is cleared, or a new student list is being imported in.
     * Filter command<br>
-  To filter out student/s from the existing list. Filter key is the tag/s.
+  What it does: To filter out student/s from the existing list. Filter key is the tag/s.
+  Justification: This feature help the user to quickly filter out a group of students based on their given tags.
+  Highlights: To allow more flexibility, when filter by tag, it is fully case-insensitive.
     * Score list chart<br>
-  Created the score list chart to track the student's performance. 
+  What it does: Created the score list chart to track the student's performance.
+  Justification: The chart can clearly show the trend of a student's recent performance, whether his/her grade is improving or decreasing.
+  Highlights: The user can hover over the chart node to see tooltip that contains score label and score value.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=carrieli1015&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -30,19 +38,20 @@ Given below are my contributions to the project.
       * Used GitHub for progress tracking. 
 
 * **Enhancements to existing features**:
-    * Revamped the existing student list UI.
-    * UI integration.
-    * Revamped the overall UI layout and make it more responsive
+    * Revamped the existing student list UI. (Pull requests [#71](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/71) [#72](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/72))
+    * UI integration. (Pull requests [#81](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/81))
+    * Revamped the overall UI layout and make it more responsive (Pull requests [#117](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/117))
       * Individual scroll bar for different panels.
       * Allow text wrap and set up display restriction to avoid unwanted text truncate.
+    * Wrote additional tests for existing features. (Pull requests [#170](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/170))
 
 * **Documentation**:
     * Updated AboutUs page and README page.
     * Added a quick user guide inside the help window.
-    * User Guide
-      * Added in missing items.
+    * User Guide (Pull requests [#116](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/166) [#176](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/176))
+      * Added in missing items. 
       * Updated UG with more details.
-    * Developer Guide
+    * Developer Guide (Pull requests [#176](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/176))
       * Helped with generate the UML diagram.
       * Tweaked the DG and relevant guides.
 
