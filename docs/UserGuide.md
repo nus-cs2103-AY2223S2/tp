@@ -189,6 +189,8 @@ The [Ammonia](#tank-ammonia-level-reading-alammonia_level), [Temperature](#tank-
 > :bulb: Tip: Fluctuations in tank conditions can lead to a lot of stress for your fish. The handy charts displayed for [Ammonia](#tank-ammonia-level-reading-alammonia_level), [Temperature](#tank-temperature-reading-tptemperature) and
 [pH](#tank-ph-reading-phph) can let you know at a glance if your levels are stable! 
 
+<div style="page-break-after: always;"></div>
+
 ## Fish Interface
 
 A sample Fish item is shown below. Each Fish you add in *Fish Ahoy!* has multiple [parameters](#parameters-br), such as
@@ -544,8 +546,13 @@ Parameters:
 Example:
 * Scenario 1: You have one tank, 'Freshwater tank' of index 1, with 2 sets of readings. One set made at 12pm and one set made at 3pm. `tank delLastReadings 1`
 deletes the most recent readings, the set made at 3pm.
+
+(continued next page)
+
+<div style="page-break-after: always;"></div>
+
 * Scenario 2 (Screenshot below) : You mistakenly add a set of readings to 'Freshwater tank' of index 1.
-  `tank delLastReadings 1` deletes the most recent set of readings.
+  `tank delLastReadings 1` deletes the most recent set of readings. 
 
 ![AddReadingDemo](images/UiDelLastReadingsDemo.png)
 
