@@ -30,8 +30,8 @@ public class JsonAdaptedMob {
     private final String name;
     private final JsonAdaptedStats stats;
     private final JsonAdaptedInventory inventory;
-    private final JsonAdaptedChallengeRating challengeRating;
-    private final JsonAdaptedLegend legend;
+    private final double challengeRating;
+    private final boolean isLegendary;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,14 +40,14 @@ public class JsonAdaptedMob {
     @JsonCreator
     JsonAdaptedMob(@JsonProperty("name") String name, @JsonProperty("stats") JsonAdaptedStats stats,
             @JsonProperty("inventory") JsonAdaptedInventory inventory,
-            @JsonProperty("challengeRating") JsonAdaptedChallengeRating challengeRating,
-            @JsonProperty("legend") JsonAdaptedLegend legend,
+            @JsonProperty("challengeRating") double challengeRating,
+            @JsonProperty("isLegendary") boolean isLegendary,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.stats = stats;
         this.inventory = inventory;
         this.challengeRating = challengeRating;
-        this.legend = legend;
+        this.isLegendary = isLegendary;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,8 +60,8 @@ public class JsonAdaptedMob {
         name = source.getName().fullName;
         stats = new JsonAdaptedStats(source.getStats());
         inventory = new JsonAdaptedInventory(source.getInventory());
-        challengeRating = new JsonAdaptedChallengeRating(source.getChallengeRating());
-        legend = new JsonAdaptedLegend(source.getLegend());
+        challengeRating = source.getChallengeRating().getRating();
+        isLegendary = source.getLegend().getStatus();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -87,9 +87,9 @@ public class JsonAdaptedMob {
 
         Inventory inventory = this.inventory.toModelType();
 
-        ChallengeRating cr = this.challengeRating.toModalType();
+        ChallengeRating cr = new ChallengeRating(this.challengeRating);
 
-        Legend legend = this.legend.toModalType();
+        Legend legend = new Legend(this.isLegendary);
 
         final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
