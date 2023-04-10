@@ -787,8 +787,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | forgetful user  | view my previously generated schedule         | continue working on what i was doing previously  |
 
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `Clock-Work` and the **Actor** is the `user`, unless specified otherwise)
