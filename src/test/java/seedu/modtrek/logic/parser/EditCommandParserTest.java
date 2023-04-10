@@ -56,8 +56,8 @@ class EditCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_CODE + " " + VALID_CODE_CS1101S, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, " " + VALID_CODE_CS1101S, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                EditCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " " + VALID_CODE_CS1101S,
+                String.format(EditCommand.MESSAGE_NOT_EDITED, EditCommand.MESSAGE_USAGE));
 
         // no module and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -67,7 +67,7 @@ class EditCommandParserTest {
     public void parse_invalidPreamble_failure() {
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, " " + VALID_CODE_CS1101S + VALID_CREDIT_CS1101S,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+                Code.MESSAGE_CONSTRAINTS);
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, " " + VALID_CODE_CS1101S + "/i " + VALID_CREDIT_CS1101S,

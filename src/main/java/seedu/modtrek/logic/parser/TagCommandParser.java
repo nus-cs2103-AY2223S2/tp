@@ -38,6 +38,7 @@ public class TagCommandParser implements Parser<TagCommand> {
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_TAG, TagCommand.MESSAGE_USAGE);
         Code code = ParserUtil.parseCode(preambleParts[0]);
 
         boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
@@ -36,12 +37,22 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        if (args.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG);
+
+        boolean isAnyPrefixPresent = isAnyPrefixPresent(argMultimap, PREFIX_CODE, PREFIX_CREDIT,
+                PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG);
+
+        boolean containsPreambleAndPrefix = !argMultimap.getPreamble().isEmpty() && isAnyPrefixPresent;
+
+        if (args.isEmpty() || containsPreambleAndPrefix || argMultimap.getPreamble().contains("/")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_CODE, FindCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_CREDIT, FindCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_SEMYEAR, FindCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_GRADE, FindCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_TAG, FindCommand.MESSAGE_USAGE);
 
         List<String> filtersList = new ArrayList<>();
 
@@ -92,12 +103,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         ModuleCodePredicate moduleCodePredicate;
         if (!argMultimap.getPreamble().isEmpty()) {
-            Code code;
-            try {
-                code = ParserUtil.parseCode(argMultimap.getPreamble());
-            } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
+            Code code = ParserUtil.parseCode(argMultimap.getPreamble());
             moduleCodePredicate = new ModuleCodePredicate(true, code.toString(), new HashSet<>(),
                     new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
             filtersList.clear();
@@ -110,4 +116,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(moduleCodePredicate, filtersList);
     }
 
+    /**
+     * Returns true if any of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 }

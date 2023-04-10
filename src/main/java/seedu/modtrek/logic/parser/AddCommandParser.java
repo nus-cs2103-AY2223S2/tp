@@ -36,37 +36,43 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG);
 
-        if (args.isEmpty()) {
+        if (args.isEmpty() || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_CODE, AddCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_CREDIT, AddCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_SEMYEAR, AddCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_GRADE, AddCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_TAG, AddCommand.MESSAGE_USAGE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR)) {
             throw new ParseException(AddCommand.MESSAGE_MISSING_PREFIXES);
-        }
-
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         String codeString = argMultimap.getValue(PREFIX_CODE).get();
         if (codeString.isEmpty()) {
             throw new ParseException(Code.MESSAGE_MISSING_DETAIL);
         }
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_CODE, AddCommand.MESSAGE_USAGE);
         Code code = ParserUtil.parseCode(codeString);
 
         String creditString = argMultimap.getValue(PREFIX_CREDIT).get();
         if (creditString.isEmpty()) {
             throw new ParseException(Credit.MESSAGE_MISSING_DETAIL);
         }
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_CREDIT, AddCommand.MESSAGE_USAGE);
         Credit credit = ParserUtil.parseCredit(creditString);
 
         String semYearString = argMultimap.getValue(PREFIX_SEMYEAR).get();
         if (semYearString.isEmpty()) {
             throw new ParseException(SemYear.MESSAGE_MISSING_DETAIL);
         }
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_SEMYEAR, AddCommand.MESSAGE_USAGE);
         SemYear semYear = ParserUtil.parseSemYear(semYearString);
 
         String gradeString = argMultimap.getValue(PREFIX_GRADE).orElse("");
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_GRADE, AddCommand.MESSAGE_USAGE);
         Grade grade = ParserUtil.parseGrade(gradeString);
 
         boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();

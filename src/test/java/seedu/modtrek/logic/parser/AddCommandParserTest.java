@@ -112,7 +112,7 @@ public class AddCommandParserTest {
 
         // missing code prefix
         assertParseFailure(parser, VALID_CODE_MA2002 + CREDIT_DESC_MA2002 + SEMYEAR_DESC_MA2002 + GRADE_DESC_MA2002,
-                AddCommand.MESSAGE_MISSING_PREFIXES);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         // missing credit prefix
         assertParseFailure(parser, CODE_DESC_MA2002 + VALID_CREDIT_MA2002 + SEMYEAR_DESC_MA2002 + GRADE_DESC_MA2002,
@@ -124,7 +124,7 @@ public class AddCommandParserTest {
 
         // all prefixes missing
         assertParseFailure(parser, VALID_CODE_MA2002 + VALID_CREDIT_MA2002 + VALID_SEMYEAR_MA2002 + VALID_GRADE_MA2002,
-                AddCommand.MESSAGE_MISSING_PREFIXES);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
     @Test
