@@ -70,7 +70,7 @@ The rest of the App consists of four components.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
+<div style="page-break-after: always;"></div>
 
 **How the architecture components interact with each other**
 
@@ -231,6 +231,7 @@ if the various lists.
   * Pros: user can update Reminders without opening the app
   * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
 command, the reminders likely do not need to be updated.
+<div style="page-break-after: always;"></div>
 
 ### FishSortCommand feature
 
@@ -281,6 +282,7 @@ Step 6. `FishSortCommand#execute()` then finally returns and triggers a GUI chan
 * **Alternative 2:** Sorts a list externally before replacing the `AddressBook` list.
     * Pros: More customization and control over sorting.
     * Cons: Requires a duplicate list to be made each time.
+<div style="page-break-after: always;"></div>
 
 ### TaskAddCommand feature
 #### Motivation
@@ -312,8 +314,7 @@ Thus, `LogicManager` will invoke `execute` on `TaskAddCommand` with the followin
     * Pros: Easy to implement
     * Cons: Not well abstracted. Difficult to implement other task commands in the future like marking / deleting of
     tasks. Will also result in an extremely long parser of all types of commands which may be difficult to maintain.
-
-
+<div style="page-break-after: always;"></div>
 
 ### TankFeedCommand feature
 #### Motivation
