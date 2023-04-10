@@ -174,7 +174,7 @@ Below shows the activity diagram when the user inputs the add command in the com
 
 ![Activity Diagram for add person command](images/ActivityDiagram_AddPerson.png){:.center}
 
-The _rake_ symbol in the `AddCommandParser parses input` actions is used to indicate that the action is describes in another subsidiary activity diagram. 
+The _rake_ symbol in the `AddCommandParser parses input` actions is used to indicate that the action is describes in another subsidiary activity diagram.
 
 ### Create team feature
 
@@ -191,7 +191,7 @@ Thus, we have made it such that the only mandatory field is the persons name.
 
 #### Implementation
 
-The implementation for the follow fields: Phone, Email, Major, Address have been made optional. The implementation to achieve this is similar across these fields. We use the Phone class as an example. 
+The implementation for the follow fields: Phone, Email, Major, Address have been made optional. The implementation to achieve this is similar across these fields. We use the Phone class as an example.
 
 ```java
 private static final Phone NO_PHONE = new Phone();
