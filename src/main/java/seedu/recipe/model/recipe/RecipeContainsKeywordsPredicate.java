@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.recipe.commons.util.StringUtil;
+import seedu.recipe.model.tag.Tag;
 
 /**
  * Tests that a {@code Recipe}'s {@code Recipe} matches any of the keywords given.
@@ -42,7 +43,16 @@ public class RecipeContainsKeywordsPredicate extends ContainsKeywordsPredicate i
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(recipe.getDesc().description, keyword));
         boolean doesTitleExist = keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(recipe.getTitle().title, keyword));
-        return doesTitleExist || doesDescExist || doesIngredientExist || doesStepExist;
+
+        boolean doesTagExist = false;
+
+        Set<Tag> recipeTags = recipe.getTags();
+        for (Tag t : recipeTags) {
+            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(t.tagName, keyword))) {
+                doesTagExist = true;
+            }
+        }
+        return doesTitleExist || doesDescExist || doesIngredientExist || doesStepExist || doesTagExist;
 
     }
 
