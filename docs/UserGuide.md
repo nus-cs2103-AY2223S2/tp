@@ -322,7 +322,7 @@ Deletes the contact details of a company previously added to a specified applica
 
 Format: `delete_contact INDEX`
 
-- Deletes contact details to the internship application at the specified `INDEX`.
+- Deletes contact details added to the internship application at the specified `INDEX`.
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
 
@@ -432,7 +432,7 @@ Format: `unarchive INDEX`
 - The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `unarchive 1` unarchives the 1st application in the list of applications.
+* `unarchive 1` unarchives the 1st application in the list of archived applications.
 
 GUI alternative:
 1. Click the <img align="center" src = "images/ui/buttons/archive-internship-button.png" alt="Archive Internship" height = "25"/> button to unarchive an internship application that is archived.
@@ -441,15 +441,15 @@ GUI alternative:
 
 ### Display a list of archived internship applications : `list_archived`
 
-Displays a list of archived applied internships
+Displays a list of archived internship applications.
 
 Format: `list_archived`
+
+- If there are no archived internship applications at the moment, "No archived applications at the moment" will be shown.
 
 Examples:
 
 * `list_archived` shows all the archived internship applications with 1 indexing.
-* If there are no archived internship applications at the moment,
-  "No archived applications at the moment" will be shown.
 
 [↑ Back to Features Menu](#features-menu)
 
