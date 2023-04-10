@@ -1143,13 +1143,16 @@ Customer and order data are saved in the hard disk automatically after any comma
 {: .no_toc}
 
 **Q**: My customer's name includes special characters such as 'Jôse'; how can I add this customer into LoyaltyLift? <br />
-**A**: Currently, LoyaltyLift cannot store a customer’s name with special characters. However, one workaround is to add the customer by replacing the special character with a close equivalent, such as 'Jose', and use the `setnotec` command to type his actual name such as `senotec 1 nt/Jôse`.
+**A**: Currently, LoyaltyLift cannot store a customer’s name with special characters. However, one workaround is to add the customer by replacing the special character with a close equivalent, such as 'Jose', and use the `setnotec` command to type his actual name, such as `senotec 1 nt/Jôse`.
 
 **Q**: How do I view a customer's order history in LoyaltyLift? <br />
 **A**: The order history of a customer is available when you view the customer's information in the information panel. To do so, you can first use `findc` command to locate the customer, then `viewc` command to display the customer in the information panel. The order history is found under the **History** section.
 
 **Q**: How can I store specific requests from my customer's for an order? <br />
-**A**: Using the `setnoteo` command, you can add information such as special customer requests for that particular order! Here is an example  when your customer requests for lesser sugar: `setnoteo 1 nt/less sugar`.
+**A**: Using the `setnoteo` command, you can add information such as special customer requests for that particular order! Here is an example when your customer requests lesser sugar: `setnoteo 1 nt/less sugar`.
+
+**Q**: The note I have saved for my customer is no longer valid; how do I clear the note for this customer? <br />
+**A**: Assuming the customer is at position 1 in your customer list, you can execute the command `setnotec 1 nt/` to clear the current notes for a customer.
 
 ### Orders
 
@@ -1159,12 +1162,15 @@ Customer and order data are saved in the hard disk automatically after any comma
 **Q**: Can my orders have a different address than the customer's address? <br />
 **A**: Yes! When you create an order using `addo`, you can specify the new address with the parameter `a/`. If this is not specified, the customer's address is used instead for your convenience.
 
+**Q**: I have cancelled or completed an order by accident, how do I undo this action? <br />
+**A**: With the `revo` command, you can quickly revert the order's last status change you have made with `advo` or `cancelo`!
+
 ### Rewards
 
 **Q**: Are the reward tiers of my customers based on the cumulated points or the current points they have? <br />
 **A**: Currently, LoyaltyLift determines the tiers of your customers by the **cumulated points**. However, if you feel that a customer no longer deserves the tier, you can use `setpoints` to replace both his current and cumulated points so that it would be below the threshold of the tier!
 
-**Q**: Is there a limit to the points my customers can have? <br />
+**Q**: Is there a limit to my customers' cumulated points? <br />
 **A**: There is currently a limit of 999999 cumulated points for every customer. Do not fret as we will look into increasing this limit in future releases!  
 
 [🠕 Back To Top](#table-of-contents)
