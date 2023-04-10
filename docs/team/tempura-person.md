@@ -46,8 +46,6 @@ Added the ability to undo and redo previously entered commands.
 ### Improved Session Panel UI [\#95](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/95)
 * Adjusted session panel UI layout to lessen text truncation and focus pie chart.
 
-<div style="page-break-after: always;"></div>
-
 ## **Documentation**
 ### User Guide & Developer Guide [\#5](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/5) [\#46](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/46) [\#68](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/68) [\#148](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/148) [\#156](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/156) [\#160](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/160)
 * Regularly updated User and Developer Guides to add/modify documentation of new functionality.
