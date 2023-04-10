@@ -129,11 +129,6 @@ public class UpdateExamCommand extends Command {
         }
         Double newWeightage = this.weightage.orElse(examToUpdate.getWeightage());
         Grade newGrade = this.grade.orElse(examToUpdate.getGrade());
-
-        //if (Duration.between(newStartTime, newEndTime).toMinutes() < 30 || Duration.between(newStartTime,
-        //    newEndTime).toHours() > 3) {
-        //    throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DURATION);
-        //}
         Exam newExam = new Exam(newExamName, newStartTime, newEndTime, newWeightage, newGrade);
 
         try {

@@ -147,9 +147,11 @@ public class UpdateLessonCommand extends Command {
         return other == this // short circuit if same object
             || (other instanceof UpdateLessonCommand // instanceof handles nulls
             && predicate.equals(((UpdateLessonCommand) other).predicate)
-            && index == ((UpdateLessonCommand) other).index
+            && index.equals(((UpdateLessonCommand) other).index)
             && lessonName.equals(((UpdateLessonCommand) other).lessonName)
-            && startTime.equals(((UpdateLessonCommand) other).startTime)
-            && endTime.equals((((UpdateLessonCommand) other).endTime)));
+            && startTime.orElse(LocalDateTime.parse("2090-04-10T08:30:00")).isEqual((((UpdateLessonCommand) other))
+            .startTime.orElse(LocalDateTime.parse("2090-04-10T08:30:00")))
+            && endTime.orElse(LocalDateTime.parse("2090-04-10T08:30:00")).isEqual((((UpdateLessonCommand) other))
+            .endTime.orElse(LocalDateTime.parse("2090-04-10T08:30:00"))));
     }
 }

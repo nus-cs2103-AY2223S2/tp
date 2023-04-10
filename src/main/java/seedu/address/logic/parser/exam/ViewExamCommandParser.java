@@ -55,7 +55,6 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
 
         // If name is present, create a predicate to filter by name
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-
             List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
             // for all the names, trim the name and only take the first word
             for (int i = 0; i < nameKeywords.size(); i++) {
@@ -65,10 +64,6 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         ViewExamCommand.MESSAGE_USAGE));
                 }
-                int spaceIndex = name.indexOf(" ");
-                //                if (spaceIndex != -1) {
-                //                    name = name.substring(0, spaceIndex);
-                //                }
                 nameKeywords.set(i, name);
             }
             nameList = nameKeywords;

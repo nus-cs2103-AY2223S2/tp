@@ -140,25 +140,6 @@ public class Student {
 
     //HOMEWORK########################################################################################
     /**
-     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     *
-     * @return list of completed homework
-     */
-    public ObservableList<Homework> getCompletedHomeworkList() {
-        return homeworkList.asUnmodifiableObservableList().filtered(Homework::isCompleted);
-    }
-
-    /**
-     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
-     *
-     * @return list of pending homework
-     */
-    public ObservableList<Homework> getPendingHomeworkList() {
-        return homeworkList.asUnmodifiableObservableList().filtered(homework -> !homework.isCompleted());
-    }
-
-    /**
      * Adds a homework to the homework list.
      *
      * @param homework homework to be added
@@ -314,21 +295,11 @@ public class Student {
 
     public void setLesson(Integer target, Lesson editedLesson) {
         requireAllNonNull(target, editedLesson);
-        //        UniqueLessonsList tempLessonList = lessonsList.clone();
-        //        tempLessonList.setLesson(target, editedLesson);
-        //        if (!(tempLessonList.validLessons())) {
-        //            throw new ConflictingLessonsException();
-        //        }
         lessonsList.setLesson(target, editedLesson);
     }
 
     public void setExam(Integer target, Exam editedExam) {
         requireAllNonNull(target, editedExam);
-        //        UniqueExamList tempExamList = examList;
-        //        tempExamList.setExam(target, editedExam);
-        //        if (!(tempExamList.validExams())) {
-        //            throw new ConflictingExamsException();
-        //        }
         examList.setExam(target, editedExam);
     }
 
