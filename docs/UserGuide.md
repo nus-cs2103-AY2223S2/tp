@@ -399,7 +399,7 @@ _Details coming soon ..._
 ## **Command summary**
 
 Action | Format, Examples
---------|----------------
+--------|------------------
 **Help** | `help`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL i/INCOME a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague i/10000`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
@@ -416,5 +416,5 @@ Action | Format, Examples
 **Undo** | `undo [NUM]`
 **Redo** | `redo [NUM]`
 **Shortcut** | `shortcut`
-**Import** | `import [combine|reset]`
-**Export** | `export [shown|all]`
+**Import** | `import [combine\|reset]`
+**Export** | `export [shown\|all]`
