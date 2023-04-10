@@ -284,7 +284,12 @@ The following sequence diagram shows how the argument parsing for the `edit` com
 
 ![Edit Command Parse Args Sequence Diagram](images/EditCommandParseArgsSequenceDiagram.png)<br>
 
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
