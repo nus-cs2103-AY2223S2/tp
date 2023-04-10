@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.REMARK_PLACEHOLDER;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +32,7 @@ import seedu.address.model.Model;
  */
 public class AutocompleteEngine {
 
-    private static final ArrayList<String> COMMAND_LIST = new ArrayList<>(List.of(
+    private static final List<String> COMMAND_LIST = List.of(
             AddCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
@@ -47,8 +46,8 @@ public class AutocompleteEngine {
             ShowRemarkCommand.COMMAND_WORD,
             RedoCommand.COMMAND_WORD,
             UndoCommand.COMMAND_WORD
-    ));
-    private static final Map<String, ArrayList<Prefix>> ARGUMENT_PREFIX_MAP = Map.ofEntries(
+    );
+    private static final Map<String, List<Prefix>> ARGUMENT_PREFIX_MAP = Map.ofEntries(
             Map.entry(AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES),
             Map.entry(ClearCommand.COMMAND_WORD, ClearCommand.ARGUMENT_PREFIXES),
             Map.entry(DeleteCommand.COMMAND_WORD, DeleteCommand.ARGUMENT_PREFIXES),
@@ -172,7 +171,7 @@ public class AutocompleteEngine {
         return userInput + nextAutocomplete;
     }
 
-    private Map<Prefix, ArrayList<String>> getExistingArgValuesForAutocomplete() {
+    private Map<Prefix, List<String>> getExistingArgValuesForAutocomplete() {
         return new HashMap<>(Map.of(
                 PREFIX_TAG, model.getExistingTagValues(),
                 PREFIX_MODULE, model.getExistingModuleValues(),
@@ -189,11 +188,11 @@ public class AutocompleteEngine {
      * @throws ParseException If the user input is invalid.
      */
     private String suggestArguments(String command, String commandBody) throws ParseException {
-        ArrayList<Prefix> argPrefixes = ARGUMENT_PREFIX_MAP.get(command);
+        List<Prefix> argPrefixes = ARGUMENT_PREFIX_MAP.get(command);
         assert argPrefixes != null;
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(" " + commandBody, argPrefixes.toArray(Prefix[]::new));
-        Map<Prefix, ArrayList<String>> existingArgValues = getExistingArgValuesForAutocomplete();
+        Map<Prefix, List<String>> existingArgValues = getExistingArgValuesForAutocomplete();
 
         if (commandBody.isBlank()) {
             String allArgs = argPrefixes.stream()
@@ -204,7 +203,7 @@ public class AutocompleteEngine {
         }
 
         String[] splitArr = commandBody.trim().split(" +");
-        ArrayList<String> words = new ArrayList<>(Arrays.asList(splitArr));
+        List<String> words = Arrays.asList(splitArr);
         int numOfWords = splitArr.length;
         assert numOfWords > 0 : "'numOfWords' should be > 0";
         String firstWord = splitArr[0];
