@@ -464,11 +464,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01- Pair Volunteer and Elderly**
 
+Precondtions: Elderly and Volunteer is already in FL.
+
 **MSS**
 
 1.  User enters the details of elderly and volunteer to be paired into the application.
-2.  FL adds the pair into the database, and feedbacks the successful addition of the pair.
-3.  User see the pair details appear in the pair list.
+2.  FL feedbacks the successful addition of the pair, and shows the new pair.
 
     Use case ends.
 
@@ -484,12 +485,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 1c. FL detects missing arguments or an error in the entered data.
-    * 1c1. FL feedbacks that entered data is in a wrong format.
+* 1c. FL detects missing arguments or an error in the entered command.
+    * 1c1. FL feedbacks that entered command is incorrect.
 
     Use case ends.
 
-* 1d. FL detects duplicate pair records in the entered data.
+* 1d. FL detects duplicate pair records in the entered command.
     * 1d1. FL feedbacks that it is a duplicate record.
 
     Use case ends.
@@ -499,19 +500,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters the details of elderly to be added into the application.
-2.  FL adds the elderly into the database, and feedbacks the successful addition of the elderly.
-3.  User see the elderly details appear in the elderly list.
+2.  FL feedbacks the successful addition of the elderly, and shows the new elderly.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects missing arguments or an error in the entered data.
-    * 1a1. FL feedbacks that entered data is in a wrong format.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
     
     Use case ends.
 
-* 1b. FL detects duplicate elderly records in the entered data.
+* 1b. FL detects duplicate elderly records in the entered command.
     * 1b1. FL informs it is a duplicate record.
 
     Use case ends.
@@ -521,69 +521,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters the details of volunteer to be added into the application.
-2.  FL adds the volunteer into the database, and feedbacks the successful addition of the volunteer.
-3.  User see the volunteer details appear in the volunteer list.
+2.  FL feedbacks the successful addition of the volunteer and shows the new volunteer.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects missing arguments or an error in the entered data.
-  * 1a1. FL feedbacks that entered data is in a wrong format.
+* 1a. FL detects missing arguments or an error in the entered command.
+  * 1a1. FL feedbacks that entered command is incorrect.
 
   Use case ends.
 
-* 1b. FL detects duplicate volunteer records in the entered data.
+* 1b. FL detects duplicate volunteer records in the entered command.
   * 1b1. FL informs it is a duplicate record.
 
   Use case ends.
 
 **Use case: UC04- Unpair Volunteer and Elderly**
 
+Preconditions: Volunteer and elderly is already paired in FL.
+
 **MSS**
 
 1.  User enters the pair details (elderly & volunteer) to be deleted into FL.
-2.  FL deletes the pair from the database, and feedbacks the successful unpairing.
-3.  User see the pair details removed from the joint list.
+2.  FL feedbacks the successful unpairing and removes the pair from view.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects that the pair is not in the current database.
-    * 1a1. FL informs User that the pair has not been created.
+* 1a. FL detects that the elderly is not in the current database.
+    * 1a1. FL informs User that the elderly has not been created.
 
   Use case ends.
 
-* 1b. FL detects missing arguments or an error in the entered data.
-    * 1b1. FL feedbacks that entered data is in a wrong format.
+* 1b. FL detects that volunteer is not in the current database.
+    * 1b1. FL informs User that the volunteer has not been created.
+
+  Use case ends.
+
+* 1c. FL detects missing arguments or an error in the entered command.
+    * 1c1. FL feedbacks that entered command is incorrect.
 
   Use case ends.
 
 **Use case: UC05- Delete Volunteer**
 
+Preconditions: Volunteer is already in FL.
+
 **MSS**
 
 1.  User enters the NRIC of the volunteer to be deleted.
-2.  FL deletes the volunteer from the database, and feedbacks the successful deletion of the volunteer.
-3.  User see the volunteer details removed from the volunteer list.
+2.  FL feedbacks the successful deletion of the volunteer, and removes the volunteer from view.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects missing arguments or an error in the entered data.
-    * 1a1. FL feedbacks that entered data is in a wrong format.
-
-  Use case ends.
-
-* 1b. FL detects that the volunteer is not inside the records.
-    * 1b1. FL informs that the volunteer does not exist.
-
-* 1c. FL detects the provided NRIC does not match any volunteer in the database.
-    * 1c1. FL feedbacks that no volunteer matches the provided NRIC.
-
-      Use case ends.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
   Use case ends.
 
@@ -592,174 +588,140 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters the NRIC of the elderly to be deleted.
-2.  FL deletes the elderly from the database, and feedbacks the successful deletion of the elderly.
-3.  User see the elderly details removed from the elderly list.
+2.  FL feedbacks the successful deletion of the elderly and removes the elderly from view.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects missing arguments or an error in the entered data.
-  * 1a1. FL feedbacks that entered data is in a wrong format.
+* 1a. FL detects missing arguments or an error in the entered command.
+  * 1a1. FL feedbacks that entered command is incorrect.
 
   Use case ends.
-
-* 1b. FL detects that the elderly is not inside the records.
-  * 1b1. FL informs that the elderly does not exist.
-
-  Use case ends.
-
-* 1c. FL detects the provided NRIC does not match any elderly in the database.
-    * 1c1. FL feedbacks that no elderly matches the provided NRIC.
-
-      Use case ends.
 
 **Use case: UC07- Edit Elderly**
+
+Preconditions: Elderly is already in FL.
 
 **MSS**
 
 1. User enters the index of the elderly to be edited, together with the details of the fields to be edited.
-2. FL edits the corresponding elderly in the database, and feedbacks the successful edit of the elderly.
-3. User see the updated elderly details appear in the elderly list.
+2. FL feedbacks the successful edit of the elderly and shows the updated elderly.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects the provided index is out of bound for the current elderly list.
-  * 1a1. FL feedbacks that the entered index is invalid.
-  
-    Use case ends.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
-* 1b. FL detects that no field is specified for edit.
-  * 1b1. FL feedbacks that at least one field must be specified for edit.
-
-    Use case ends.
-
-* 1c. FL detects an error in the new attribute data.
-    * 1c1. FL feedbacks that entered data is in a wrong format.
-
-      Use case ends.
+  Use case ends.
 
 **Use case: UC08- Edit Volunteer**
+
+Preconditions: Volunteer is already in FL.
 
 **MSS**
 
 1. User enters the index of the volunteer to be edited, together with the details of the fields to be edited.
-2. FL edits the corresponding volunteer in the database, and feedbacks the successful edit of the volunteer.
-3. User see the updated volunteer details appear in the elderly list.
+2. FL feedbacks the successful edit of the volunteer and shows the updated volunteer.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. FL detects the provided index is out of bound for the current volunteer list.
-    * 1a1. FL feedbacks that the entered index is invalid.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
-      Use case ends.
-
-* 1b. FL detects that no field is specified for edit.
-    * 1b1. FL feedbacks that at least one field must be specified for edit.
-
-      Use case ends.
-
-* 1c. FL detects an error in the new attribute data.
-    * 1c1. FL feedbacks that entered data is in a wrong format.
-
-      Use case ends.
+  Use case ends.
 
 **Use case: UC09- Edit Person identified by NRIC**
+
+Preconditions: Person is already in FL.
 
 **MSS**
 
 1. User enters the NRIC of the person to be edited, together with the details of the fields to be edited.
-2. FL edits the corresponding fields of the person (be an elderly or a volunteer), and feedbacks the successful edit of the person.
-3. User see the updated person details appear in the corresponding elderly or volunteer list.
+2. FL feedbacks the successful edit of the person and shows the updated person.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. FL detects the provided NRIC does not match any person in the database.
-    * 1a1. FL feedbacks that no person matches the provided NRIC.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
-      Use case ends.
-
-* 1b. FL detects that no field is specified for edit.
-    * 1b1. FL feedbacks that at least one field must be specified for edit.
-
-      Use case ends.
-
-* 1c. FL detects an error in the new attribute data.
-    * 1c1. FL feedbacks that entered data is in a wrong format.
-
-      Use case ends.
+  Use case ends.
 
 **Use case: UC09- Find person and related pairs**
 
 **MSS**
 
 1. User enters the details of all the fields to be matched.
-2. FL searches for the existing person and pair database, and return lists of matching elderly, volunteer and pairs.
-3. User see the matching persons and pairs appearing in the UI.
+2. FL shows all the matching elderly, volunteer and pairs.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. FL detects that no field is specified for matching.
-    * 1a1. FL feedbacks that at least one field must be specified for finding records.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
-      Use case ends.
-
-* 1b. FL detects an error in the data to be searched.
-    * 1b1. FL feedbacks that entered data is in a wrong format.
-
-      Use case ends.
-      
-
-**Use case: UC10- Listing persons**
+**Use case: UC10- View all persons and pairs**
 
 **MSS**
 
-1. User types `list` in the input text box.
-2. FL return all the current elderly, volunteers and pairs in the database.
-3. User see all the persons and pairs on the interface.
+1. User enters the command to list all persons and pairs.
+2. FL shows all the current elderly, volunteers and pairs.
 
    Use case ends.
 
+**Extensions**
 
-**Use case: UC11- View person statistics**
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+**Use case: UC11- View statistics**
 
 **MSS**
 
-1. User types `stats` in the input text box.
-2. FL returns the number of elderly, volunteer, pairs and their pairing situations.
-3. User see the summary statistics in the feedback box.
+1. User enters the command to see statistics.
+2. FL shows the statistics of elderly, volunteer, pairs and their pairing situations.
 
    Use case ends.
 
+**Extensions**
+
+* 1a. FL detects an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
 **Use case: UC12- Look up Help Page**
 
 **MSS**
 
-1. User types `help` in the input text box.
+1. User enters the command to see more help.
 2. FL returns the pop-up whose link directs user to the user guide.
-3. User see the pop-up message.
 
    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
 **Use case: UC13- Exit the app**
 
 **MSS**
 
-1. User types `exit` in the input text box.
-2. FL saves the current data and exits.
-3. User see the software interface closes.
+1. User enters the command to exit FriendlyLink.
+2. FL exits.
 
    Use case ends.
 
+**Extensions**
+
+* 1a. FL detects an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
 ### Non-Functional Requirements
 
