@@ -738,7 +738,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Selecting a contact
 1. Select a contact while no other contact has been selected
+
    1. Prerequisites: Non-empty address book with at only 1 contact. Navigate to the `Address book` tab using `tab 1`
+
    2. Test Cases
       1. Test case 1: `select 1`
          - Testing for: Successful command execution 
@@ -747,9 +749,13 @@ testers are expected to do more *exploratory* testing.
       2. Test case 2: `select 2`
           - Testing for: Index specified results in command failure
           - Expected: No changes to list and details panel. Error details shown in the status message.
+
+
 2. Select a contact while another contact is had already been selected
+
    1. Prerequisites: Non-empty address book with at least 2 contact. Navigate to the `Address book` tab using `tab 1` and
    select contact at index 1 using `select 1`.
+   
    2. Test Cases
       1. Test case 1: `select 1`
          - Testing for: Successful command execution 
@@ -757,8 +763,11 @@ testers are expected to do more *exploratory* testing.
       2. Test case 2: `select 2`
          - Testing for: Successful command execution
          - Expected: Contact at index 1 is no longer highlighted, contact at index 2 is highlighted and details on panel changes to that of contact at index 2
+         
 3. Select an invalid index
+
    1. Prerequisites: Empty addressbook. Navigate to the `Address book` tab using `tab 1`.
+   
    2. Test Cases:
       1. Test case 1: `select 1`
          - Testing for: Index specified results in command failure
