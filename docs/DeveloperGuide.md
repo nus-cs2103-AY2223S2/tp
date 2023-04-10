@@ -534,10 +534,9 @@ testers are expected to do more *exploratory* testing.
 ### Readings graph feature
 
 1. Checking that graphs of each tank can display readings correctly
-   1. Prerequisites: The tanks are the default sample tanks, "freshwater tank" and "saltwater tank"
+   1. Prerequisites: The tanks are default sample tanks, "freshwater tank" and "saltwater tank"
    2. Test case: paste the following test values into `readings.json`: <br>
- 
-  
+    
 ```json
 {
   "readingLevels" : [ {
@@ -560,7 +559,7 @@ testers are expected to do more *exploratory* testing.
 }
 ```
 Expected: <br>
-![expectedReadingFromSample](images/expectedReadingFromSample.png)
+<img src="images/expectedReadingFromSample.png" width="300" />
 
 :exclamation: Warning: If you want to test with more of your own values, you should ensure all 3 types of
 readings come as a set e.g. if any readings were to be made, it would be all 3 and they are made at the same time
