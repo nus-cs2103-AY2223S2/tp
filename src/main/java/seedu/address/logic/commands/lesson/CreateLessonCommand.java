@@ -22,7 +22,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.ConflictingLessonsException;
 
 /**
- * Adds an assignment to a student.
+ * Adds a lesson to a student.
  */
 public class CreateLessonCommand extends Command {
 
@@ -49,7 +49,7 @@ public class CreateLessonCommand extends Command {
     private final List<String> names;
 
     /**
-     * Creates a CreateHomeworkCommand to add the specified assignment to the specified student.
+     * Creates a CreateLessonCommand to add the specified {@code Lesson}
      */
     public CreateLessonCommand(List<String> names, NamePredicate predicate, String lessonName, LocalDateTime startTime,
                                LocalDateTime endTime) {
@@ -96,10 +96,6 @@ public class CreateLessonCommand extends Command {
         if (model.hasConflictingLessonTime(lesson)) {
             throw new CommandException(Messages.MESSAGE_CONFLICTING_LESSON_TIME);
         }
-
-        //        if (model.hasConflictingExamTime(lesson)) {
-        //            throw new CommandException(Messages.MESSAGE_CONFLICTING_EXAM_TIME);
-        //        }
 
         model.updateFilteredStudentList(predicate);
 

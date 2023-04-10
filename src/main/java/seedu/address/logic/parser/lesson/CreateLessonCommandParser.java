@@ -26,13 +26,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NamePredicate;
 
 /**
- * Parses input arguments and creates a new CreateHomeworkCommand object
+ * Parses input arguments and creates a new CreateLessonCommand object
  */
 public class CreateLessonCommandParser implements Parser<CreateLessonCommand> {
     private List<String> names = new ArrayList<>();
     /**
-     * Parses the given {@code String} of arguments in the context of the CreateHomeworkCommand
-     * and returns a CreateHomeworkCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CreateLessonCommand
+     * and returns an CreateLessonCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public CreateLessonCommand parse(String args) throws ParseException {

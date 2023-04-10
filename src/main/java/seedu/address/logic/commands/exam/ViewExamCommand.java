@@ -19,9 +19,8 @@ import seedu.address.model.student.Exam;
 import seedu.address.model.student.Student;
 
 /**
- * Finds and lists all homework in the homework tracker that match the given name and status keywords.
- * Displays a list of homework with the ability to filter by student name and homework status.
- * Keyword matching is case-insensitive.
+ * Finds and lists all exams in address book whose name contains any of the argument keywords.
+ * Keyword matching is case insensitive.
  */
 public class ViewExamCommand extends Command {
 
@@ -53,9 +52,11 @@ public class ViewExamCommand extends Command {
 
 
     /**
-     * Overloaded constructor for ViewLessonCommand.
+     * Overloaded constructor for ViewExamCommand.
      *
      * @param namePredicate Predicate to filter students by name.
+     * @param examNamePredicate Predicate to filter exams by exam name.
+     * @param donePredicate Predicate to filter exams by whether it is done.
      * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
     public ViewExamCommand(List<String> names, Predicate<Student> namePredicate, Predicate<Exam> examNamePredicate,
@@ -69,10 +70,12 @@ public class ViewExamCommand extends Command {
     }
 
     /**
-     * Overloaded constructor for ViewLessonCommand.
+     * Overloaded constructor for ViewExamCommand.
      *
      * @param namePredicate Predicate to filter students by name.
-     * @param examDatePredicate Predicate to filter lessons by date.
+     * @param examDatePredicate Predicate to filter exams by date.
+     * @param examNamePredicate Predicate to filter exams by exam name.
+     * @param donePredicate Predicate to filter exams by whether it is done.
      * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
     public ViewExamCommand(List<String> names, Predicate<Student> namePredicate, Predicate<Exam> examDatePredicate,
@@ -87,7 +90,7 @@ public class ViewExamCommand extends Command {
     }
 
     /**
-     * Executes the view-lesson command and returns the result message.
+     * Executes the view-exam command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display

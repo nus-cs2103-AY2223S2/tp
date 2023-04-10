@@ -10,17 +10,18 @@ public class LessonBelongsToDatePredicate implements Predicate<Lesson> {
     private final LocalDate targetDate;
 
     /**
-     * Creates a predicate to test if a {@code Homework}'s {@code isCompleted} matches the given boolean.
-     * @param targetDate The LocalDate to test against.
+     * Creates a LessonBelongsToDatePredicate to test if a {@code Lesson}'s date matches the given date.
+     *
+     * @param targetDate The date to test against.
      */
     public LessonBelongsToDatePredicate(LocalDate targetDate) {
         this.targetDate = targetDate;
     }
 
     /**
-     * Tests if a {@code Homework}'s {@code isCompleted} matches the given boolean.
+     * Tests if a {@code Lesson}'s date matches the given date.
      *
-     * @param lesson The homework to test.
+     * @param lesson The lesson to test.
      * @return True if the lesson's date matches the given date.
      */
     @Override

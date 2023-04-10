@@ -30,13 +30,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NamePredicate;
 
 /**
- * An UpdateHomeworkCommandParser that parses input arguments and creates a new UpdateHomeworkCommand object
+ * Parses input arguments and creates a new UpdateLessonCommand object
  */
 public class UpdateLessonCommandParser implements Parser<UpdateLessonCommand> {
     private List<String> names = new ArrayList<>();
     /**
-     * Parses the given {@code String} of arguments in the context of the UpdateHomeworkCommand
-     * and returns an UpdateHomeworkCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UpdateLessonCommand
+     * and returns an UpdateLessonCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -80,18 +80,19 @@ public class UpdateLessonCommandParser implements Parser<UpdateLessonCommand> {
                 "Only one name is allowed for update lesson command."));
         }
 
-        // if homework name is not present, set it to null, else parse it
+        // if lesson is not present, set it to null, else parse it
         Optional<String> lessonName = Optional.empty();
         if (argMultimap.getValue(PREFIX_LESSON).isPresent()) {
             lessonName = Optional.of(argMultimap.getValue(PREFIX_LESSON).get());
         }
 
-        // if deadline is not present, set it to null, else parse it
+        // if start time is not present, set it to null, else parse it
         Optional<LocalDateTime> startTime = Optional.empty();
         if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
             startTime = Optional.of(ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get()));
         }
 
+        // if end time is not present, set it to null, else parse it
         Optional<LocalDateTime> endTime = Optional.empty();
         if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
             endTime = Optional.of(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get()));

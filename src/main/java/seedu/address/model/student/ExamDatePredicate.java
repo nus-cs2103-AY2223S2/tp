@@ -18,10 +18,9 @@ public class ExamDatePredicate implements Predicate<Exam> {
     }
 
     /**
-     * Tests if a {@code Homework}'s {@code isCompleted} matches the given boolean.
-     *
-     * @param lesson The homework to test.
-     * @return True if the lesson's date matches the given date.
+     * Tests if a {@code Exam}'s date matches the given date.
+     * @param lesson The exam to test.
+     * @return True if the exam's date matches the given date.
      */
     @Override
     public boolean test(Exam lesson) {

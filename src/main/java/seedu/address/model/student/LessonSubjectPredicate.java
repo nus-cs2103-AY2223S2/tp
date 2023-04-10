@@ -9,17 +9,18 @@ public class LessonSubjectPredicate implements Predicate<Lesson> {
     private final String subject;
 
     /**
-     * Creates a predicate to test if a Homework's title matches the specified subject
-     * @param subject The String to test against.
+     * Creates a LessonSubjectPredicate to test if a {@code Lesson}'s title matches the given subject.
+     *
+     * @param subject The subject to test against.
      */
     public LessonSubjectPredicate(String subject) {
         this.subject = subject;
     }
 
     /**
-     * Tests if a {@code Homework}'s {@code isCompleted} matches the given boolean.
+     * Tests if a {@code Lesson}'s title matches the given subject.
      *
-     * @param lesson The Lesson to test.
+     * @param lesson The lesson to test.
      * @return True if the lesson's title matches the given subject.
      */
     @Override

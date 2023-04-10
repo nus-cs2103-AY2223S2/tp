@@ -4,24 +4,25 @@ import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Lesson}'s title matches the given subject.
+ * Tests that a {@code Lesson}'s title matches the given done predicate.
  */
 public class LessonDonePredicate implements Predicate<Lesson> {
     private final String done;
 
     /**
-     * Creates a predicate to test if a Homework's title matches the specified subject
-     * @param done The String that represents date
+     * Creates a LessonDonePredicate to test if a {@code Lesson}'s title matches the given done predicate.
+     *
+     * @param done The done predicate to test against.
      */
     public LessonDonePredicate(String done) {
         this.done = done;
     }
 
     /**
-     * Tests if a {@code Homework}'s {@code isCompleted} matches the given boolean.
+     * Tests if a {@code Lesson}'s title matches the given done predicate.
      *
-     * @param lesson The Lesson to test.
-     * @return True if the lesson's title matches the given subject.
+     * @param lesson The lesson to test.
+     * @return True if the lesson's title matches the given done predicate.
      */
     @Override
     public boolean test(Lesson lesson) {

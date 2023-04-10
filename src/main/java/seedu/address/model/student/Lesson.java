@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
- * Represents a Student's assignment in the TutorPro.
+ * Represents a Lesson in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Lesson {
@@ -15,11 +15,7 @@ public class Lesson {
     private final LocalDateTime endTime;
 
     /**
-     * Creates a new Homework with the given description and deadline.
-     *
-     * @param title The title of the lesson.
-     * @param startTime The time when the lesson starts.
-     * @param endTime The time when the lesson ends.
+     * Every field must be present and not null.
      */
     public Lesson(String title, LocalDateTime startTime, LocalDateTime endTime) {
         Objects.requireNonNull(title);
