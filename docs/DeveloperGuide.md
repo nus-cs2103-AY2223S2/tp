@@ -561,7 +561,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Testing Commands for Main Mode
+### Testing Commands for Main Mode (Deck Not Selected)
 
 #### Selecting a deck
 
@@ -625,6 +625,8 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: User is in the Main Mode and a deck is not selected.
     2. Test case: `showDecks` <br>
        Expected: All existing decks in MasterDeck will be shown.
+
+### Testing Commands for Main Mode (Deck Selected)
 
 #### Unselecting a Deck
 
