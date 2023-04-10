@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Add faculty field to AddCommand (PR [#140](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/140))
   * Add test cases
-    * Unit-test new fields (PR [#97](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/97), [#155](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/155)
+    * Unit-test new fields (PR [#97](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/97), [#155](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/155))
     * Parser tests for all fields (PR [#273](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/273))
     * Integration tests that FindCommand works for all fields (PR [#205](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/305))
 
@@ -32,9 +32,7 @@ Given below are my contributions to the project.
     [#138](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/138),
     [#175](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/175),
     [#184](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/184/files))
-      * Add documentations for [UI breakdowns](https://ay2223s2-cs2103t-f12-3.github.io/tp/UserGuide.html#user-interface),
-      [select](https://ay2223s2-cs2103t-f12-3.github.io/tp/UserGuide.html#select-contact-to-expand-details-select) and
-      [favourite/unfavourite](https://ay2223s2-cs2103t-f12-3.github.io/tp/UserGuide.html#favourite-a-contact-fav) commands
+      * Add documentations for UI breakdowns, select and favourite/unfavourite commands
       * Edited images to highlight important features to add with UI breakdowns
   * Developer Guide:
     * Added [implementation details of the `select command`](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#command-for-selecting) (PR [#138](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/138))
