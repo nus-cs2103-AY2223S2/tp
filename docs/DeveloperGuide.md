@@ -114,6 +114,8 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
 
 <div style="page-break-after: always;"></div>
+<br /> 
+<br /> 
 
 **`Page` class**
 
@@ -131,7 +133,8 @@ The *Class Diagram* below outlines the different concrete subclasses of `Page` a
 
 <div style="page-break-after: always;"></div>
 
-<div height="100px"></div>
+ <br /> 
+ <br /> 
 
 **How a `Page` is generated** 
 
@@ -165,6 +168,8 @@ How the `Logic` component works:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 <div style="page-break-after: always;"></div>
+<br /> 
+<br /> 
 
 The *Sequence Diagram* below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -178,6 +183,8 @@ The *Sequence Diagram* below illustrates the interactions within the `Logic` com
 </div>
 
 <div style="page-break-after: always;"></div>
+<br /> 
+<br /> 
 
 The *Class Diagram* below outlines classes in `Logic` used for parsing a user command:
 
@@ -381,7 +388,7 @@ Step 7. In `MainWindow`'s `executeCommand` method, `Page.of(CommandResult)` is c
 
 Step 8. `Page.of(CommandResult)` recognizes that `ResultType` of the `CommandResult` is `CALENDAR`, and creates a `CalendarPage` to be shown by calling its constructor. THe `ObservableList` of `Event` is passed to the constructor.
 
-Step 9. Within constructor of the `CalendarPage`, here is an outline of what happens under the hood:
+Step 9. Within constructor of the `CalendarPage`:
 * A `MonthPage` is created. It is a composite CalendarFX control responsible for displaying all `Event` in a month in grids.
 * The `MonthPage` is initialized with the current time and set up such that it updates its timing accordingly.
 * A `Calendar` is created. It is a CalendarFX class that stores our `Event` in the form of `Entry` (another CalendarFX class you will see again in a later step)
@@ -565,15 +572,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                                                                                            | So that I can…​                                                     |
 |----------|--------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions                                                                                  | refer to instructions when I forget how to use the App              |
-| `* * *`  | Beginner user                              | add a new internship listing                                                                            | record details of my internship application                         |
-| `* * *`  | Beginner user                              | delete a previously added internship listing                                                            | rid of dummy data or unwanted internship application                |
+| `* * *`  | beginner user                              | add a new internship listing                                                                            | record details of my internship application                         |
+| `* * *`  | beginner user                              | delete a previously added internship listing                                                            | rid of dummy data or unwanted internship application                |
 | `* *`    | user                                       | hide internship descriptions unless selected.                                                           | minimize chance of someone else seeing them by accident             |
 | `* *`    | novice user                                | edit existing internship applications                                                                   | update outdated information or add new details                      |
 | `*`      | intermediate user                          | quickly update the status of an internship                                                              | keep the status of my applications up to date                       |
 | `* *`    | expert user                                | see all internship events that have clashes in dates                                                    | try to reschedule some of those events                              |
 | `* * *`  | novice user                                | list all my intership applications easily                                                               | can confirm that my internship listing has been created             
 | `* *`    | intermediate user                          | list all internship events that have deadlines on a particular date	                                    | avoid scheduling an interview on that day                           |
-| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about                |
+| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | easily look up internships that I am concerned about                |
 
 
 ### Use cases
