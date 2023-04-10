@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added storage for `Order` ([#50](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/50), [#56](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/56))
     * What it does: Whenever an `Order` is created, updated or deleted, the application automatically saves order list into the local storage.
-    * Justification: Similar to how `Customer` data are saved, `Order` data is saved as well so the data is lost on application close.
+    * Justification: Similar to how `Customer` data are saved, `Order` data is saved as well so the data is not lost on application close.
 
 * **New Feature**: Added Status / Progress History for `Order` ([#75](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/75))
     * What it does: Allows the user to view how an `Order` has progressed as the status changed.
