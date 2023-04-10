@@ -547,6 +547,7 @@ FriendlyLink data are saved in the [JSON](#technical) files `JAR_FILE_LOCATION/d
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 
 If your changes to the data file makes its format invalid, FriendlyLink will discard all data and start with an empty data file at the next run.
+
 </div>
 
 [Back to top](#table-of-contents)
