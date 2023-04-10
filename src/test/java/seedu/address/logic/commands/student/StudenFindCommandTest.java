@@ -1,28 +1,21 @@
 package seedu.address.logic.commands.student;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.parent.ParentAddCommand;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.PcClass;
-import seedu.address.model.person.exceptions.DuplicateStudentException;
-import seedu.address.model.person.student.Student;
-import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
-import seedu.address.testutil.TypicalStudents;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.assertParentCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertStudentCommandFailure;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.PcClass;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
+import seedu.address.testutil.TypicalStudents;
 
 public class StudenFindCommandTest {
 
