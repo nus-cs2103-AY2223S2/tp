@@ -4,43 +4,14 @@ title: User Guide
 ---
 
 <img class="ui-img" src="images/ug-images/vimification.png" alt="Logo" title="Vimification Logo">
-## **Table of Contents**
 
-- [**Table of Contents**](#table-of-contents)
-- [Introduction](#introduction)
-- [Purpose of this User Guide](#purpose-of-this-user-guide)
-- [Quick Start](#quick-start)
-  - [Installation](#installation)
-  - [For Windows](#for-windows)
-  - [For Mac](#for-mac)
-  - [Trying out the commands](#trying-out-the-commands)
-- [Navigating Vimification](#navigating-vimification)
-- [Using the commands](#using-the-commands)
-- [General information on a task's attributes](#general-information-on-a-tasks-attributes)
-- [Information on commands' parameters](#information-on-commands-parameters)
-- [Features and commands](#features-and-commands)
-  - [Viewing help](#viewing-help)
-  - [Adding task](#adding-task)
-  - [Inserting parameters to a task](#inserting-parameters-to-a-task)
-  - [Deleting task](#deleting-task)
-  - [Deleting parameters of a task](#deleting-parameters-of-a-task)
-  - [Editing task](#editing-task)
-  - [Filtering task](#filtering-task)
-  - [Sorting task](#sorting-task)
-  - [General information on MACRO commands](#general-information-on-macro-commands)
-  - [Undoing the previous command](#undoing-the-previous-command)
-  - [Exiting the application](#exiting-the-application)
-  - [Saving the task list data](#saving-the-task-list-data)
-  - [Editing existing task list data](#editing-existing-task-list-data)
-  - [Archiving data files (future feature)](#archiving-data-files-future-feature)
-- [FAQ](#faq)
-- [Command summary](#command-summary)
+## Table of Contents
 
 ## Introduction
 
-Vimification is a **desktop app** built for Vim enthusasts to manage to-dos and deadlines, optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+**Vimification** is a **desktop app** built for Vim enthusasts to manage tasks and deadlines, optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface** (GUI).
 
-Vimification is modelled after `Vim`, so the command syntax for the Vimificaiton CLI closely mimics `Vim`.
+**Vimification** is modelled after **Vim**, so the command syntax for the Vimificaiton CLI closely mimics **Vim**.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -52,8 +23,6 @@ The guide will walk you through the process of creating and managing tasks, sett
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
----
-
 ## Quick Start
 
 ### Installation
@@ -64,28 +33,29 @@ The guide will walk you through the process of creating and managing tasks, sett
 
 ### For Windows
 
-1. Ensure that you have Java `11` or above installed in your Computer.
+1. Ensure that you have Java `11` or above installed in your computer.
 
 2. Double-click the file to start the app.
 
-3. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
+3. The application should launch, and a GUI similar to the below should appear in a few seconds.
 
 ### For Mac
 
-1. Ensure that you have Java `11` Zulu SDK installed in your Computer.
+1. Ensure that you have Java `11` Zulu SDK installed in your computer.
 
-2. Open your Mac Terminal, and `cd` into the folder you put the jar file in.
+2. Open your Mac Terminal, and `cd` into the folder you put the JAR file in.
 
 3. Run `java -jar vimification.jar`.
 
-4. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
-   <img class="ui-img" src="images/ug-images/1.bootup.png" alt="Ui Image" title="Overall User Interface">
+4. The application should launch, and a GUI similar to the below should appear in a few seconds.
+
+<img class="ui-img" src="images/ug-images/1.bootup.png" alt="Ui Image" title="Overall User Interface">
 
 ### Navigating Vimification
 
-Similar to `Vim`, you can use the `j` and `k` (or `↓` and `↑`) key to move down and up the task-list respectively.
+Similar to Vim, you can use the `j` and `k` (or `↓` and `↑`) key to move down and up the task-list respectively.
 
-Assuming we have already have some tasks loaded in Vimification(we'll show you how to add tasks later), pressing `j` brings us down.
+Assuming we already have some tasks loaded in Vimification (we'll show you how to add tasks later), pressing `j` brings us down.
 
 <table>
   <tr>
@@ -105,7 +75,8 @@ Assuming we have already have some tasks loaded in Vimification(we'll show you h
     </td>
   </tr>
 </table>
-Similarly, pressing `k` brings us up the task-list.
+
+Similarly, pressing `k` brings us up the task list.
 
 <table>
   <tr>
@@ -126,28 +97,33 @@ Similarly, pressing `k` brings us up the task-list.
   </tr>
 </table>
 
-Just like `Vim`, pressing `l` moves you to the right, but in Vimification, pressing `l` would move you to the right and display the task detail.
+In Vim, pressing `l` moves you to the right, but in Vimification, pressing `l` would move you to the right and display the task detail.
+
 <img class="ui-img" src="images/ug-images/6.before-l.png">
+
 <img class="ui-img" src="images/ug-images/7.after-l.png">
 
 **NOTE: If at any point when you are unable to navigate the task list, pressing `j` or `k` multiple times will cause Vimification to refocus onto the task-list and work again.**
+
+**NOTE: Currently, pressing `h` does nothing. This key is reserved for future versions.**
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Exiting Vimification
 
-Similiar to `Vim`, you can quit Vimification by just typing `:quit` or `:q` on your keyboard while in Vimification.
+Similiar to Vim, you can quit Vimification by typing `:quit` or `:q!` on your keyboard while in Vimification.
+
 <img class="ui-img" src="images/ug-images/8.quit.png">
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Trying out the commands
 
-Similar to Vim, you can access command mode by **pressing the `:` key** on your keyboard. This will shift the focus to the command input field, which is at the bottom of the application.</p>
-Example:
+Similar to Vim, you can access command mode by **pressing the `:` key** on your keyboard. This will shift the focus to the command input field, which is at the bottom of the application.
+
 <img class="ui-img" src="images/ug-images/9.showcommand.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
-Type the command in the command box and press the `Enter` key to execute it. e.g. typing **`:help`** and pressing Enter will open the help window.<br>
+Type the command in the command box and press the `Enter` key to execute it. e.g. typing **`:help`** and pressing `Enter` will open the help window.
 
 Some example commands you can try:
 
@@ -165,15 +141,13 @@ Some example commands you can try:
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
----
-
 ## Using the commands
 
-Similar to Vim, you can access command mode by **pressing the `:` key** on your keyboard. This will shift the focus to the command input field, which is at the bottom of the application.</p>
-Example:
+Similar to Vim, you can access command mode by **pressing the `:` key** on your keyboard. This will shift the focus to the command input field, which is at the bottom of the application.
+
 <img class="ui-img" src="images/ug-images/9.showcommand.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
-**NOTE: Besides the navigation commands (`j`,`k`,`l`), every command always starts with a colon (`:`).**
+**NOTE: Besides the navigation commands (`j`, `k`, `l`), every command always starts with a colon (`:`).**
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -181,24 +155,20 @@ Example:
 
 In Vimification, a task can has the following attributes:
 
-| Attribute | Its meaning & purpose                                | Flag | The range of values it accepts                         |
-| --------- | ---------------------------------------------------- | ---- | ------------------------------------------------------ |
-| Title^    | Name or general description of a task.               | `-t` | Any phrase enclosed in quotation marks (" " or ' ')\*. |
-| Status    | Status of a task, indicating that is it done or not. | `-s` | 0, 1, 2 or 3. See below for more details.              |
-| Deadline  | The date (and time) the task is due at.              | `-d` | In the format of yyyy-MM-dd or yyyy-MM-dd HH:mm.       |
-| Labels    | The tags that the task has.                          | `-l` | Any phrase enclosed in quotation marks (" " or ' ')\*. |
-| Priority  | How important/urgent a task is.                      | `-p` | 0, 1, 2 or 3. See below for more details.              |
+| Attribute | Its meaning & purpose                                | Flag | The range of values it accepts |
+| --------- | ---------------------------------------------------- | ---- | ------------------------------ |
+| Title     | Name or general description of a task.               | `-t` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*.  |
+| Deadline  | The date (and time) the task is due at.              | `-d` | In the format of `yyyy-MM-dd`, `yyyy-MM-dd HH:mm`, `EEE` or `EEE HH:mm`^.   |
+| Labels    | The labels that the task has.                        | `-l` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*.  |
+| Status    | Status of a task, indicating that is it done or not. | `-s` | 0, 1, or 2. See below for more details.   |
+| Priority  | How important/urgent a task is.                      | `-p` | 0, 1, 2 or 3. See below for more details. |
 
-^Title is the only compulsory attribute while creating a new task, the other attributes are all optional.
+^`EEE` format accepts the first 3 letters of a day of week (`Mon`, `Tue`, etc.), case insensitive.
 
-\*For a title or label, if the phrase is only one single word, the quotation marks are optional.
-Another 2 constraints on the quotation marks are:
+\*For a title or label, if the phrase is one single word, the quotation marks are optional. Another 2 constraints on the quotation marks are:
 
-- There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
-- 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
-  Another 2 constraints on the quotation marks are:
-- There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
-- 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
+- There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed).
+- 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed).
 
 | Priority | Meaning          |
 | -------- | ---------------- |
@@ -212,13 +182,8 @@ Another 2 constraints on the quotation marks are:
 | 0      | Not done    |
 | 1      | In progress |
 | 2      | Completed   |
-| 3      | Overdue     |
 
 ## Information on commands' parameters
-
-<div markdown="block" class="alert alert-info">
-
-<!-- *IMPORTANT: Take note of how the command format is being interpretted, to know what parameters it requires.* -->
 
 _Take note of how the command format is being interpretted, to know what parameters it requires._
 
@@ -228,35 +193,39 @@ Flags like `-d`, `-l` and `-p` act as identifier for the parameter that comes im
 
 Words in **angle brackets** are **compulsory** parameters to be supplied by the user.
 
-- e.g. in `:a "<title>"`, the user must provide the `"<title>"` parameter, for example, `:a "Do weekly quiz"`.
+- e.g. in `:a <title>`, the user must provide the `<title>` parameter, for example, `:a "Do weekly quiz"`.
 
 Words in **square brackets** are **optional** parameters to be supplied by the user.
 
-- e.g. `:a "<title>" [-d <deadline>]`, the user need not provide the `<deadline>` parameter.
+- e.g. `:a "<title>" [-d <deadline>]`, the user can provide flag `-d` with the `<deadline>` parameter (but this is not compulsory).
 
 Bracketed items with `…`​ behind means that user can provide multiple parameters.
 
-- e.g. `:a <'title"> [-l <label>]…​`, for example, `:a "Do OP2 slides" -l cs2101`, `:a "Do OP2 slides" -l cs2101 -l presentation` are both acceptable.
+- e.g. `:a <title> [-l <label>]…​`, for example, `:a "Do OP2 slides" -l cs2101` and `:a "Do OP2 slides" -l cs2101 -l presentation` are both acceptable.
+
+Bracketed items with `|` inside means that user can provide one, and only one, of the options.
+
+- e.g. `:f [-a|-o] [-l <label>]...`, for example, `:f -a -l "Touhou 6" -l "Touhou 7"` and `:f -o -l "Touhou 6" -l "Touhou 7"` are both acceptable (but not `:f -a -o -l "Touhou 6" -l "Touhou 7"`).
 
 Parameters identified by flags can be in any order.
 
 - e.g. `:a "Do OP2 slides" -l cs2101 -p high`, `:a "Do OP2 slides" -p high -l cs2101` are both acceptable.
 
+Some flags can be used with alternative forms.
+
+- e.g. `-d` flag (to identify the deadline attribute of a task) can also be used with `--deadline`.
+
 Redundant parameter(s) at the end will raise an error, and the command will not be executed.
 
 - e.g. if the user inputs `:help 123`, the command `help` will not be executed, and they will receive an error message.
 
-</div>
-
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
-
----
 
 ## Features and commands
 
 ### Viewing help
 
-Shows a message explaning how to access the help page.
+Show a manual page on the right hand side of Vimification.
 
 ![help message](images/helpMessage.png)
 
@@ -264,56 +233,66 @@ Format: `:help`
 
 ### Adding task
 
-Adds a task to the current task list.
+Add a task to the current task list.
 
 Format: `:a "<title>" [-d <deadline>] [-l <label>]... [-p <priority>]`
 
-| Parameter    | Detail                              | Compulsory | Example        |
-| ------------ | ----------------------------------- | ---------- | -------------- |
-| `"<title>"`  | Title of the task                   | Yes        | `"CS2103T UG"` |
-| `<deadline>` | Deadline of the task                | No         | `2023-03-31`   |
-| `<label>`    | Label given to the task             | No         | `presentation` |
-| `<priority>` | Priority level assigned to the task | No         | `1`            |
+| Parameter    | Detail                              | Example        |
+| ------------ | ----------------------------------- | -------------- |
+| `<title>`    | Title of the task                   | `"CS2103T UG"` |
+| `<deadline>` | Deadline of the task                | `2023-03-31`   |
+| `<label>`    | Label given to the task             | `presentation` |
+| `<priority>` | Priority level assigned to the task | `1`            |
 
-Note: SoC students can put module code as the label.
+| Flag | Alternative form |
+| ---- | ---------------- |
+| `-d` | `--deadline`     |
+| `-l` | `--label`        |
+| `-p` | `--priority`     |
 
 Example of command
 
 1. `:a "Enhance CS2103T tp user guide" -d 2023-03-31 -l cs2103t -p 1`
+2. `:a "Play Touhou Project" --priority 1`
 
 ### Inserting parameters to a task
 
-Insert the parameter as specified by the flag of a task to the current task list as specified by the task number.
+Insert the parameters as specified by the flag of a task to the current task list as specified by the task number.
 
-Format: `:i <task_index> [-d <deadline>] [-l <label_name>]`
+Format: `:i <task_index> [-d <deadline>] [-l <label>]...`
 
-| Parameter      | Detail                               | Example                                         |
-| -------------- | ------------------------------------ | ----------------------------------------------- |
-| `<task_index>` | Index of the target task             | 3 (assuming the task list has at least 3 tasks) |
-| `<deadline>`   | Deadline of task you want to insert  | 2023-04-05                                      |
-| `<label_name>` | Name of the label you want to insert | cs2103t(assuming the task list has this label)  |
+| Parameter      | Detail                               | Example                                           |
+| -------------- | ------------------------------------ | ------------------------------------------------- |
+| `<task_index>` | Index of the target task             | `3` (assuming the task list has at least 3 tasks) |
+| `<deadline>`   | Deadline of task you want to insert  | `2023-04-05`                                      |
+| `<label>`      | Name of the label you want to insert | `cs2103t`                                         |
+
+| Flag | Alternative form |
+| ---- | ---------------- |
+| `-d` | `--deadline`     |
+| `-l` | `--label`        |
 
 Example of command
 
 1. `:i 3 -d 2023-04-5` inserts the deadline to task 3
-2. `:i 3 -l cs2103t` inserts the "cs2103t" label to task 3
+2. `:i 3 -l cs2103t` inserts the label "cs2103t" to task 3
 
 Condition
 
-- At least one for the flags should be present.
+- At least one of the flags must be present.
 - The index refers to the index number shown in the displayed task list.
-- The index **must be a positive integer**, i.e 1, 2, 3 etc.
+- The index must be a positive integer, i.e 1, 2, 3, etc.
 - The index must not exceed the number of tasks in the displayed task list.
 
 ### Deleting task
 
-Deletes a task from the current task list by specifying the task number.
+Delete a task from the current task list by specifying the task number.
 
 Format: `:d <task_index>`
 
-| Parameter      | Detail                               | Compulsory | Example                                         |
-| -------------- | ------------------------------------ | ---------- | ----------------------------------------------- |
-| `<task_index>` | Index of the task you want to delete | Yes        | 3 (assuming the task list has at least 3 tasks) |
+| Parameter      | Detail                               | Compulsory | Example                                           |
+| -------------- | ------------------------------------ | ---------- | ------------------------------------------------- |
+| `<task_index>` | Index of the task you want to delete | Yes        | `3` (assuming the task list has at least 3 tasks) |
 
 Example of command
 
@@ -322,37 +301,42 @@ Example of command
 Condition
 
 - The index refers to the index number shown in the displayed task list.
-- The index **must be a positive integer**, i.e 1, 2, 3 etc.
+- The index must be a positive integer, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
 
 ### Deleting parameters of a task
 
-Deletes the parameter as specified by the flag of a task from the current task list as specified by the task number.
+Delete the parameters as specified by the flag of a task from the current task list as specified by the task number.
 
-Format: `:d <task_index> [-d] [-l <label_name>]`
+Format: `:d <task_index> [-d] [-l <label>]...`
 
-| Parameter      | Detail                               | Example                                         |
-| -------------- | ------------------------------------ | ----------------------------------------------- |
-| `<task_index>` | Index of the target task             | 3 (assuming the task list has at least 3 tasks) |
-| `<label_name>` | Name of the label you want to delete | cs2103t (assuming the task list has this label) |
+| Parameter      | Detail                               | Example                                           |
+| -------------- | ------------------------------------ | ------------------------------------------------- |
+| `<task_index>` | Index of the target task             | `3` (assuming the task list has at least 3 tasks) |
+| `<label>`      | Name of the label you want to delete | `cs2103t`                                         |
+
+| Flag | Alternative form |
+| ---- | ---------------- |
+| `-d` | `--deadline`     |
+| `-l` | `--label`        |
 
 Example of command
 
 1. `:d 3 -d` deletes the deadline of task 3
-2. `:d 3 -l cs2103t` deletes the "cs2103t" label of task 3
+2. `:d 3 -l cs2103t` deletes the label "cs2103t" of task 3
 
 Condition
 
-- At least one for the flags should be present. Else, command will be treated as deleting the task at index number.
+- At least one of the flags must be present. Otherwise, the command will be treated as deleting the task at index number.
 - The index refers to the index number shown in the displayed task list.
-- The index **must be a positive integer**, i.e 1, 2, 3 etc.
+- The index must be a positive integer, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
 
 ### Editing task
 
 Edit the parameters as specified by the flag of a task in the current task list as specified by the task number.
 
-Format: `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>]... `
+Format: `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>]...`
 
 | Parameter          | Detail                              | Example                                        |
 | ------------------ | ----------------------------------- | ---------------------------------------------- |
@@ -360,59 +344,85 @@ Format: `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <prior
 | `<deadline>`       | New deadline of the task            | `2023-03-31`                                   |
 | `<status>`         | New status of task                  | `2`                                            |
 | `<priority>`       | Priority level assigned to the task | `1`                                            |
-| `<previous_label>` | Name of the label you want to edit  | cs2103t(assuming the task list has this label) |
+| `<previous_label>` | Name of the label you want to edit  | `cs2103t`                                      |
 | `<new_label>`      | New name of the label               | `group project`                                |
+
+| Flag | Alternative form |
+| ---- | ---------------- |
+| `-t` | `--title`        |
+| `-d` | `--deadline`     |
+| `-l` | `--label`        |
+| `-s` | `--status`       |
+| `-p` | `--priority`     |
 
 Example of command
 
 1. `:e 3 -t "quiz"` edits the title of task 3 to "quiz"
 2. `:e 3 -d 2023-04-05` edits the deadline of task 3 to 2023-04-05
-3. `:e 3 -s 1` edits the status of task 3 to be in progress
-4. `:e 3 -p 1` edits the priority of task 3 to be in urgent
-5. `:e 3 -l oldLabel newLabel` edits oldLabel of task 3 to be newLabel
+3. `:e 3 -s 1` edits the status of task 3 to "in progress"
+4. `:e 3 -p 1` edits the priority of task 3 to "urgent"
+5. `:e 3 -l label1 label2` edits "label1" of task 3 to "label2"
 
 Condition
 
-- At least one for the flags should be present.
+- At least one of the flags must be present.
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
 
 ### Filtering task
 
-Filter the parameters as specified by the flag.
+Filter by the parameters as specified by the flag.
 
-Format: `:f [-w "<keywords>"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]... `
+Format: `:f [-a|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...`
 
-| Parameter      | Detail                                     | Example                                        |
-| -------------- | ------------------------------------------ | ---------------------------------------------- |
-| `"<keywords>"` | Keywords to filter                         | `"CS2103T UG"`                                 |
-| `<date>`       | Date of the task to filter before or after | `2023-03-31`                                   |
-| `<status>`     | Status of task to filter                   | `2`                                            |
-| `<priority>`   | Priority level of task to filter           | `1`                                            |
-| `<label>`      | Label of task to filter                    | cs2103t(assuming the task list has this label) |
+| Parameter      | Detail                                         | Example                                        |
+| -------------- | ---------------------------------------------- | ---------------------------------------------- |
+| `<keywords>`   | Keywords to filter                             | `"CS2103T UG"`                                 |
+| `<date>`       | Deadline of the task to filter before or after | `2023-03-31`                                   |
+| `<status>`     | Status of task to filter                       | `2`                                            |
+| `<priority>`   | Priority level of task to filter               | `1`                                            |
+| `<label>`      | Label of task to filter                        | `cs2103t`                                      |
+
+| Flag       | Alternative form |
+| ---------- | ---------------- |
+| `-w`       | `--keyword`      |
+| `--before` | None             |
+| `--after`  | None             |
+| `-l`       | `--label`        |
+| `-s`       | `--status`       |
+| `-p`       | `--priority`     |
 
 Example of command
 
 1. `:f -w "quiz"` filter for tasks with "quiz" as keyword
-2. `:f -d --before 2023-04-05` filter for tasks before 2023-04-05
-3. `:f -s 1` filter for tasks with status of in_progress
-4. `:f -p 1` filter for tasks with priority of urgent
-5. `:f -l cs2103t` filter for tasks with label of cs2103t
+2. `:f --before 2023-04-05` filter for tasks with deadline before 2023-04-05
+3. `:f -s 1` filter for tasks with the status "in progress"
+4. `:f -p 1` filter for tasks with the priority "urgent"
+5. `:f -a -l "label1" -l "label2"` filter for tasks contain "label1" and "label2"
+6. `:f -o -l "label1" -l "label2"` filter for tasks contain "label1" or "label2"
 
 Condition
 
-- Only one flag should be present.
+- If flag `-a` and flag `-o` are not provided, only one flag should be present.
+- If flag `-a` is provided, the conditions are combined with **and** operator. If there is no other flag, all tasks will be selected.
+- If flag `-o` is provided, the conditions are combined with **or** operator. If there is no other flag, no task will be selected.
 
 ### Sorting task
 
-Sort the parameters as specified by the flag.
+Sort by the parameters as specified by the flag.
 
-Format: `:s [-t] [-d] [-p] `
+Format: `:s [-d] [-s] [-p]`
+
+| Flag       | Alternative form |
+| ---------- | ---------------- |
+| `-d`       | `--deadline`     |
+| `-s`       | `--status`       |
+| `-p`       | `--priority`     |
 
 Example of command
 
-1. `:s -t` sort for tasks by title
+1. `:s -s` sort for tasks by status
 2. `:s -d` sort for tasks by deadline
 3. `:s -p` sort for tasks by priority level
 
@@ -420,23 +430,44 @@ Condition
 
 - Only one flag should be present.
 
-### General information on MACRO commands
-
-Sometimes we might be adding the exact same task every week, say `:a "Do CS2103 weekly quiz"`. Typing repeated and identical command could be time consuming and Vimification is aware of it. This is where MACRO command comes in.
-
-MACRO is like a customisable template like command, to streamline the process of running repeated commands. For example, to save `:a "Do CS2103 weekly quiz" -d Friday 14:00` as a MACRO, user can simply input the command, `:macro -a CS2103WeeklyQuiz ":a 'Do CS2103 weekly quiz' -d Friday 14:00"`.
-
-The same method works for deletion of tasks & listing of tasks, which is respectively represented by the command headings, `:macro -d` and `:macro -l` respectively. You can also use more verbose flags like `--add`, `--delete` and `--list` instead of `-a`, `-d` and `-l` while typing MACRO commands.
-
 ### Undoing the previous command
 
 You can undo the previous command by simply keying in `:undo`.
 
+### Using macro
+
+Sometimes we might be adding the exact same task every week, say `:a "Do CS2103 weekly quiz"`. Typing repeated and identical command could be time consuming and Vimification is aware of it. This is where the **macro feature** comes in.
+
+Macro is a customisable template-like command, to streamline the process of running repeated commands. For example, you can define a macro `cs2103t` that maps to `a "Do CS2103 weekly quiz" -d Fri 14:00`. Afterward, whenever you type `:cs2103t`, your input will be transformed into `:a "Do CS2103 weekly quiz" -d Fri 14:00`.
+
+### Defining new macro
+
+Format: `:macro -a <macro> <command_string>`
+
+| Parameter          | Detail                                         | Example                                        |
+| ------------------ | ---------------------------------------------- | ---------------------------------------------- |
+| `<macro>`          | The macro to be defined, can only be one word  | `l2103`                                        |
+| `<command_string>` | The command string to be mapped with the macro | `"f -l cs2103t"`                               |
+
+Note:
+
+- If the macro is already defined, this command will replaced the old mapping with the new one.
+
+### Deleting a macro
+
+Format: `macro -d <macro>`
+
+| Parameter          | Detail                                         | Example                                        |
+| ------------------ | ---------------------------------------------- | ---------------------------------------------- |
+| `<macro>`          | The macro to be deleted, can only be one word  | `l2103`                                        |
+
+### View all macros defined in the application
+
+You can view all macros and their mappings by keying in `:macro -l`.
+
 ### Exiting the application
 
-Similar to Vim, we can use the `:wq!`, `:q!`,,`:wq`,`:q` commands to exit the application.
-
-Format: `:wq!`, `:q!`,,`:wq`,`:q`
+(Somwhat) similar to Vim, we can use the `:quit` or `:q!` to exit the application.
 
 ### Saving the task list data
 
@@ -444,41 +475,43 @@ The task list data is saved in the hard disk automatically after any command tha
 
 ### Editing existing task list data
 
-Existing task list data is saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are welcome to update data directly by editing that data file.
+Existing task list data is saved at a JSON file `[JAR file location]/.vimification/tasklist.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+### Editing existing macro data
+
+Existing macro data is saved at a JSON file `[JAR file location]/.vimification/macromap.json`. Users can edit this file directly to manages the macros that can be used in the application.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Vimification will discard all data and start with an empty data file at the next run.
+
 </div>
-
-### Archiving data files (future feature)
-
-_Details coming soon in v2.0 ..._
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
----
-
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Vimification home folder.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
----
-
 ## Command summary
 
-| Action               | Format                                                                                                            |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| View help            | `:help`                                                                                                           |
-| Add task             | `:a "<title>" [-d <deadline>] [-p <priority>] [-l <label>] `                                                      |
-| Insert parameter     | `:i <task_index> [-d <deadline>] [-l <label_name>]`                                                               |
-| Delete task          | `:d [index]`                                                                                                      |
-| Delete parameter     | `:d <task_index> [-d] [-l <label_name>]`                                                                          |
-| Edit parameter       | `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>] ` |
-| Filter               | `:f [-w "<keyword>"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`                       |
-| Sort                 | `:s [-t] [-d] [-p] `                                                                                              |
-| Exit the application | `quit`, `:q`                                                                                                      |
+| Action               | Format                                                       |
+| -------------------- | ------------------------------------------------------------ |
+| View help            | `:help`                                                      |
+| Add task             | `:a <title> [-d <deadline>] [-p <priority>] [-l <label>]...` |
+| Insert parameter     | `:i <task_index> [-d <deadline>] [-l <label>]...`            |
+| Delete task          | `:d <task_index>`                                            |
+| Delete parameter     | `:d <task_index> [-d] [-l <label>]...`                       |
+| Edit parameter       | `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <old_label> <new_label>]...` |
+| Filter               | `:f [-a\|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...`     |
+| Sort                 | `:s [-s] [-d] [-p]`                  |
+| Define macro         | `:macro -a <macro> <command_string>` |
+| Delete macro         | `:macro -d <macro>`                  |
+| List macro           | `:macro -l`                          |
+| Exit the application | `:quit`, `:q!`                       |
 
 <p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
