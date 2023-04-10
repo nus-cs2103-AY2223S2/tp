@@ -31,6 +31,8 @@ public class Prefix {
      */
     public Prefix(String prefix, String placeholderText) {
         //Solution below adapted from https://github.com/AY2223S1-CS2103T-T12-2/tp
+        // We took their idea of adding the placeholder text (eg. NAME in n/NAME) to the prefix class.
+        // But the idea of storing optional, repeatable and examples is ours.
         this(prefix, placeholderText, false, false, List.of());
     }
 

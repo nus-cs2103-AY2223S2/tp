@@ -1,0 +1,121 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":RemarkWindow" as RemarkWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":RemarkCommandParser" as RemarkCommandParser LOGIC_COLOR
+participant ":RemarkCommand" as RemarkCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("remark 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("remark 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remark 1")
+activate AddressBookParser
+
+create RemarkCommandParser
+AddressBookParser -> RemarkCommandParser
+activate RemarkCommandParser
+
+RemarkCommandParser --> AddressBookParser
+deactivate RemarkCommandParser
+
+AddressBookParser -> RemarkCommandParser : parse("1")
+activate RemarkCommandParser
+
+create RemarkCommand
+RemarkCommandParser -> RemarkCommand
+activate RemarkCommand
+
+RemarkCommand--> RemarkCommandParser
+deactivate RemarkCommand
+
+RemarkCommandParser --> AddressBookParser
+deactivate RemarkCommandParser
+
+destroy RemarkCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> RemarkCommand : execute()
+activate RemarkCommand
+
+create CommandResult
+RemarkCommand --> CommandResult : CommandResult("Absent")
+activate CommandResult
+
+CommandResult --> RemarkCommand
+deactivate CommandResult
+
+destroy CommandResult
+
+RemarkCommand --> LogicManager
+deactivate RemarkCommand
+
+destroy RemarkCommand
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+MainWindow -> RemarkWindow : showAndGetText("Absent")
+activate RemarkWindow
+
+RemarkWindow --> MainWindow : updatedRemark
+deactivate RemarkWindow
+
+MainWindow -> LogicManager : execute("remark 1 Submitted lab 10")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remark 1 Submitted lab 10")
+activate AddressBookParser
+
+create RemarkCommandParser
+AddressBookParser -> RemarkCommandParser
+activate RemarkCommandParser
+
+RemarkCommandParser --> AddressBookParser
+deactivate RemarkCommandParser
+
+AddressBookParser -> RemarkCommandParser : parse("1")
+activate RemarkCommandParser
+
+create RemarkCommand
+RemarkCommandParser -> RemarkCommand
+activate RemarkCommand
+
+RemarkCommand --> RemarkCommandParser
+deactivate RemarkCommand
+
+RemarkCommandParser --> AddressBookParser
+deactivate RemarkCommandParser
+
+destroy RemarkCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> RemarkCommand : execute()
+activate RemarkCommand
+
+RemarkCommand --> LogicManager
+deactivate RemarkCommand
+
+destroy RemarkCommand
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
