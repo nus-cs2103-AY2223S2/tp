@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -49,6 +48,10 @@ public class ParserUtil {
         "MMM dd, yyyy HH:mm"
     };
     //@@author
+    private static final String[] ACCEPTABLE_DATE_FORMATS = {
+        "MMM dd yyyy", "yyyy-MM-dd", "dd/MM/yyyy", "yyyy/MM/dd",
+        "dd MMM yyyy", "MMM dd, yyyy", "dd-mm-yyyy"
+    };
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -245,14 +248,15 @@ public class ParserUtil {
      * @throws ParseException if the string does not match any supported date formats
      */
     public static LocalDate parseDate(String date) throws ParseException {
-        //throw new ParseException("test");
-        LocalDate res;
-        try {
-            res = LocalDate.parse(date);
-        } catch (DateTimeParseException e) {
-            throw new ParseException("Invalid date format!", e);
+        for (String dateFormat : ACCEPTABLE_DATE_FORMATS) {
+            try {
+                return LocalDate.parse(date, DateTimeFormatter.ofPattern(dateFormat));
+            } catch (Exception e) {
+                // Go to the next dateFormat
+            }
         }
-        return res;
+        throw new ParseException("Invalid date format. Please use one of the following formats:\n"
+            + String.join("\n", ACCEPTABLE_DATE_FORMATS));
     }
 
     /**

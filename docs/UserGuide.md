@@ -543,12 +543,11 @@ However, on the other hand, it is perfectly possible for you to assign the same 
 
 Displays the lessons for a given student/all students.
 
-Format: `view-lesson [name/STUDENT_NAME] [subject/SUBJECT] [date/DATE] [done/DONE]`
+Format: `view-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON] (optional)[date/DATE] (optional)[done/DONE]`
 
-* If no parameters are given, the lessons for all students will be displayed.
-* Every parameter is optional.
-* To view the lessons for specific student(s), specify the names using `name/STUDENT_NAME` prefix(es).
-* To view the lessons for a specific subject, specify the subject using `subject/SUBJECT`.
+* By default, the lessons for all the tutor’s students will be displayed if no parameters are specified.
+* To view the lessons for specific students, specify the names using `name/STUDENT_NAME`s.
+* To view the lessons whose titles contain a certain keyword/phrase, specify the keyword/phrase using `lesson/LESSON`.
 * To view the lessons for a specific date, specify the date using `date/DATE`.
 * To view the lessons that have been completed, include `done/done`.
 * To view the lessons that haven't been completed, include `done/not done`.
@@ -556,18 +555,20 @@ Format: `view-lesson [name/STUDENT_NAME] [subject/SUBJECT] [date/DATE] [done/DON
 Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
 * `view-lesson name/John` Displays the lesson history for the student named John.
-* `view-lesson name/John subject/Math date/2023-05-03` Displays the lessons for student John, for the subject Math, on the day 2023-05-03.
-* `view-lesson done/done` Displays all lessons that have been completed.
-* `view-lesson done/not done` Displays all lessons that have not been completed.
-* `view-lesson name/John done/done` Displays all lessons that have been completed for student John.
-* `view-lesson name/John name/Bernice done/not done` Displays all lessons for students John and Bernice that have not been completed.
+* `view-lesson name/John lesson/Math date/2023-05-03` Displays the lessons for student John, where the lessons' titles contain the keyword "Math", on the day 2023-05-03.
+* `view-lesson done/done` Displays all lessons that'd been completed
+* `view-lesson done/not done` Displays all lessons that haven't been completed
+* `view-lesson name/John done/done` Displays all lessons that'd been completed for student John
+* `view-lesson name/John name/Bernice done/not done` Displays all lessons that haven't been completed for students John and Bernice
 
 ![View Lesson](images/view-lesson.jpg)
+
+:bulb: **Tip:** You can view the supported date formats [here](#supported-date-formats).
 
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
 For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
-:exclamation: **Caution:** SUBJECT, DATE, and DONE can appear at most once.
+:exclamation: **Caution:** LESSON, DATE, and DONE can appear at most once.
 STUDENT_NAME can appear multiple times.
 
 #### Delete a Lesson from a student
@@ -703,7 +704,7 @@ Examples:
 
 ![view-exam.png](images/view-exam.png)
 
-:bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
+:bulb: **Tip:** You can view the supported date formats [here](#supported-date-formats).
 
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
 For example, `john` will match `John Doe` and `john doe`.
@@ -941,7 +942,6 @@ Alternatively, you can also view with the profile button on the student card.
 | `start/`     | Start Time  | Start time of a lesson/exam                         | `start/2025-03-23 1300`           |
 | `end/`       | End Time    | End time of a lesson/exam                           | `end/2025-03-23 1500`             |
 | `date/`      | Date        | Date of a lesson/exam                               | `date/2023-03-29`                 |
-| `subject/`   | Subject     | Subject of a lesson                                 | `subject/Mathematics`             |
 | `done/`      | Done        | indicates if a lesson/exam is past the current time | `done/done`                       |
 
 
@@ -964,3 +964,11 @@ Alternatively, you can also view with the profile button on the student card.
 * `MMM dd, yyyy HHmm`
 * `MMM dd, yyyy HH:mm `
 
+### Supported date formats
+* `MMM dd yyyy`
+* `yyyy-MM-dd`
+* `dd/MM/yyyy`
+* `yyyy/MM/dd`
+* `dd MMM yyyy`
+* `MMM dd, yyyy`
+* `dd-mm-yyyy`
