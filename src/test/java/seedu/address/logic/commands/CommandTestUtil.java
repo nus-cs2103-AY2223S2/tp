@@ -23,6 +23,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.fields.Attendance;
+import seedu.address.model.tutee.fields.Lesson;
 import seedu.address.model.tutee.fields.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -49,8 +51,11 @@ public class CommandTestUtil {
     public static final String VALID_STARTTIME_BOB = "14:00";
     public static final String VALID_ENDTIME_AMY = "12:30";
     public static final String VALID_ENDTIME_BOB = "16:00";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_EFFORT = "GoodEffort";
+    public static final String VALID_TAG_QUICK = "LearnQuick";
+    public static final Attendance VALID_ATTENDANCE = new Attendance();
+    public static final Lesson VALID_LESSON = new Lesson();
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -70,8 +75,8 @@ public class CommandTestUtil {
     public static final String STARTTIME_DESC_BOB = " " + PREFIX_STARTTIME + VALID_STARTTIME_BOB;
     public static final String ENDTIME_DESC_AMY = " " + PREFIX_ENDTIME + VALID_ENDTIME_AMY;
     public static final String ENDTIME_DESC_BOB = " " + PREFIX_ENDTIME + VALID_ENDTIME_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_EFFORT = " " + PREFIX_TAG + VALID_TAG_EFFORT;
+    public static final String TAG_DESC_QUICK = " " + PREFIX_TAG + VALID_TAG_QUICK;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -93,10 +98,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withSubject(VALID_SUBJECT_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withSubject(VALID_SUBJECT_AMY).withTags(TAG_DESC_EFFORT).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(TAG_DESC_EFFORT, TAG_DESC_QUICK).build();
     }
 
     /**

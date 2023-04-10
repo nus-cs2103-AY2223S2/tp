@@ -42,7 +42,7 @@ public class AddCommand extends Command {
             + PREFIX_SCHEDULE + "monday "
             + PREFIX_STARTTIME + "08:30 "
             + PREFIX_ENDTIME + "10:30 "
-            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "GoodEffort "
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New tutee added: %1$s";

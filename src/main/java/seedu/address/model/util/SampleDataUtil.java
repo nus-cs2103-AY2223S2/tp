@@ -40,7 +40,7 @@ public class SampleDataUtil {
                 new Schedule("monday"),
                 new StartTime("08:30"),
                 new EndTime("09:30"),
-                getTagSet("friends"),
+                getTagSet("GoodEffort"),
                 new Lesson()
             ),
             new Tutee(
@@ -54,7 +54,7 @@ public class SampleDataUtil {
                 new Schedule("monday"),
                 new StartTime("08:30"),
                 new EndTime("11:30"),
-                getTagSet("colleagues", "friends"),
+                getTagSet("GoodEffort"),
                 new Lesson()
             ),
             new Tutee(

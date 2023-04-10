@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SCHEDULE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EFFORT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -48,7 +49,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonAddressBookStorage(temporaryFolder.resolve("TMS.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -84,7 +85,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + SUBJECT_DESC_AMY + SCHEDULE_DESC_AMY + STARTTIME_DESC_AMY + ENDTIME_DESC_AMY;
-        Tutee expectedTutee = new TuteeTestBuilder(AMY).withTags().build();
+        Tutee expectedTutee = new TuteeTestBuilder(AMY).withTags(VALID_TAG_EFFORT).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTutee(expectedTutee);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
