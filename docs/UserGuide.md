@@ -28,41 +28,41 @@ different variant types of dengue. Overall, this application would allow NEA to 
 and take proactive measures to prevent the spread of the disease.
 
 ### Purpose of this guide
-This guide will introduce you to the various features offered by DengueHotspotTracker.
-Use this guide as a tutorial to get started with DengueHotspotTracker.
+This guide will introduce you to the various features offered by DHT.
+Use this guide as a tutorial to get started with DHT.
 
 This guide is:
-* A summary of all the *features* offered by DengueHotspotTracker, and provides a high-level overview on how it operates.
-* An overview of what user *input* is considered as valid so you can quickly get started with tracing cases on DengueHotspotTracker.
+* A summary of all the *features* offered by DHT, and provides a high-level overview on how it operates.
+* An overview of what user *input* is considered as valid so you can quickly get started with tracing cases on DHT.
 
 This guide is not:
-* An exhaustive case study of every single way to use DengueHotspotTracker as well as its features.
+* An exhaustive case study of every single way to use DHT as well as its features.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## How to use this guide
 
-Thank you for taking your time to learn how to use DengueHotspotTracker!
+Thank you for taking your time to learn how to use DHT!
 
 Here are some tips on how to look through this guide more effectively and efficiently,
-so you can improve your knowledge on the use of DengueHotspotTracker.
+so you can improve your knowledge on the use of DHT.
 
 ### Navigating the guide
 
-1. First, you can read the [Quick Start](#quick-start) section to ensure that your system is compatible with DengueHotspotTracker.
-We recommend that you follow along the instructions to download and use DengueHotspotTracker with the commands introduced in this guide.
+1. First, you can read the [Quick Start](#quick-start) section to ensure that your system is compatible with DHT.
+We recommend that you follow along the instructions to download and use DHT with the commands introduced in this guide.
 2. Do have a glance at [Conventions](#conventions) to understand the symbols and formatting used across this guide.
-3. Now that you have had an initial look at DengueHotspotTracker, we have a detailed listing of how to understand the user interface [here](#navigating-the-user-interface).
-4. Now that you understand how to use the interface of DengueHotspotTracker, you are ready to take a deeper dive into our commands.
+3. Now that you have had an initial look at DHT, we have a detailed listing of how to understand the user interface [here](#navigating-the-user-interface).
+4. Now that you understand how to use the interface of DHT, you are ready to take a deeper dive into our commands.
 We have some general guidelines on what user input is considered as valid. You should refer to [commands](#commands) to get a detailed coverage of the available commands.
 
 ### Conventions
 
-| Symbols              | Meaning                                                                                                                |
-|----------------------|------------------------------------------------------------------------------------------------------------------------|
-| :information_source: | This is general information that improves your background understanding of this guide as well as DengueHotspotTracker. |
-| :bulb:               | This is additional information/tips that may help you to use DengueHotspotTracker more effectively.                    |
-| :exclamation:        | This is something important that you should be aware of.                                                               |
+| Symbols              | Meaning                                                                                               |
+|----------------------|-------------------------------------------------------------------------------------------------------|
+| :information_source: | This is general information that improves your background understanding of this guide as well as DHT. |
+| :bulb:               | This is additional information/tips that may help you to use DHT more effectively.                    |
+| :exclamation:        | This is something important that you should be aware of.                                              |
 
 | Formatting   | Meaning                                                                                     |
 |--------------|---------------------------------------------------------------------------------------------|
@@ -76,7 +76,7 @@ We have some general guidelines on what user input is considered as valid. You s
 
 2. Download the latest `dht.jar` from [here](https://github.com/AY2223S2-CS2103-W17-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the home folder for your DengueHotspotTracker.
+3. Copy the file to the folder you want to use as the home folder for your DHT.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dht.jar` command to run
 the application.<br>
@@ -90,7 +90,7 @@ open the help window.<br>
 
    * `list`: Lists all cases.
 
-   * `add n/John Tan p/543299 d/2023 February 13 a/20`: Adds a case named `John Tan` to DengueHotspotTracker.
+   * `add n/John Tan p/543299 d/2023 February 13 a/20`: Adds a case named `John Tan` to DHT.
 
    * `delete 3`: Deletes the third case shown in the current list.
 
@@ -104,7 +104,7 @@ open the help window.<br>
 
    * `redo 5`: Redoes up to five actions.
 
-6. To learn more about DengueHotspotTracker, refer to the [Commands](#commands) section below for details of each command, or the [Command Summary](#command-summary).
+6. To learn more about DHT, refer to the [Commands](#commands) section below for details of each command, or the [Command Summary](#command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -114,12 +114,12 @@ open the help window.<br>
 The user interface is split into the input and output sections, as well as
 two view columns for **Person List** and **Overview**.
 
-Item | Description
---------|------------------
-**command box** | This is where you enter your commands to DengueHotspotTracker.
-**output box** | The output box displays additional information from a command. <br> :bulb: For a *successful* command, the output box may contain information such as the number of entries listed. <br> :bulb: For an *unsuccessful* command, such as invalid input, the output box will give detailed feedback about which part of the command is invalid and how to fix it.
-**person list** | A list of people and their details.
-**overview** | Provides an overview of the total number of cases and cases per category.
+| Item            | Description                                                                                                                                                                                                                                                                                                                                                    |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **command box** | This is where you enter your commands to DHT.                                                                                                                                                                                                                                                                                                                  |
+| **output box**  | The output box displays additional information from a command. <br> :bulb: For a *successful* command, the output box may contain information such as the number of entries listed. <br> :bulb: For an *unsuccessful* command, such as invalid input, the output box will give detailed feedback about which part of the command is invalid and how to fix it. |
+| **person list** | A list of people and their details.                                                                                                                                                                                                                                                                                                                            |
+| **overview**    | Provides an overview of the total number of cases and cases per category.                                                                                                                                                                                                                                                                                      |
 
 <div style="page-break-after: always;"></div>
 Here is the breakdown of an individual **person card**.
@@ -272,18 +272,18 @@ Aside from Variants, data fields must contain at least one non-whitespace charac
 
 ### Adding a case: `add`
 
-Adds a dengue patient to DengueHotspotTracker.
+Adds a dengue patient to DHT.
 
 Format: `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`
 
 Examples:
 * `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1`
   adds a case with the name `John Tan`, postal code `543299`, date `2023-02-13`,
-  age `20`, and variant `DENV1` into DengueHotSpotTracker.
+  age `20`, and variant `DENV1` into DHT.
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
   adds a case with the name `Desiree Lim`, postal code `519999`, date `2023-02-13`,
-  and age `18` into DengueHotSpotTracker.
-* If a case with the same name, postal code, and age already exists in the DengueHotspotTracker,
+  and age `18` into DHT.
+* If a case with the same name, postal code, and age already exists in DHT,
   it cannot be added again.
 
 ![AddCommandExample](images/AddCommandExample.png)
@@ -292,7 +292,7 @@ Examples:
 
 ### Editing a case: `edit`
 
-Edits an existing case in DengueHotspotTracker.
+Edits an existing case in DHT.
 
 Format: `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`
 
@@ -303,7 +303,7 @@ Format: `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`
 * You can remove all the case’s dengue variants by typing `v/` without
   specifying any variants after it.
 * Cases cannot be edited to have the same name, postal code, and age
-  as another case already in DengueHotspotTracker.
+  as another case already in DHT.
 
 Examples:
 * `edit 1 p/912345 d/2001-01-01` edits the postal code and date of the first case to be `S912345` and `2001-01-01`
@@ -317,14 +317,14 @@ Examples:
 
 ### Deleting cases: `delete`
 
-Deletes the specified case(s) from DengueHotspotTracker. The cases can be specified with indexes, a date, or a date range.
+Deletes the specified case(s) from DHT. The cases can be specified with indexes, a date, or a date range.
 
 Format: `delete INDEX...` or `delete d/DATE` or `delete [sd/START_DATE] [ed/END_DATE]`, where at least one of the optional fields must be provided.
 
 * Deletes cases at the specified `INDEX`es, cases from the specified `DATE`, or cases falling within the specified range from `START_DATE` to `END_DATE` inclusive.
 * The command will fail if multiple indexes are given and at least one of them is out of range of the displayed case list.
-* If a start date is given without an end date, the range will be taken to end at the latest date in DengueHotspotTracker.
-* Likewise, if an end date is given without a start date, the range will be taken to start at the earliest date in DengueHotspotTracker.
+* If a start date is given without an end date, the range will be taken to end at the latest date in DHT.
+* Likewise, if an end date is given without a start date, the range will be taken to start at the earliest date in DHT.
 * The start date must come before or be the same as the end date.
 * The three variations of the delete command should not be used together, i.e. indexes should not be provided with dates, and `d/` should not co-occur with `sd/` or `ed/`.
 
@@ -334,7 +334,7 @@ Examples:
 command.
 * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 2023 inclusive in the results of the `find` command.
 
-* `list` followed by `delete 2 3` deletes the second and third cases in DengueHotspotTracker.
+* `list` followed by `delete 2 3` deletes the second and third cases in DHT.
 
 ![DeleteCommandExample](images/DeleteCommandExample.png)
 
@@ -342,19 +342,19 @@ command.
 
 ### Clearing all entries: `clear`
 
-Clears all entries from the **current view** of DengueHotspotTracker.
+Clears all entries from the **current view** of DHT.
 
 Format: `clear`
 
 Examples:
-* `list` followed by `clear` clears all cases from DengueHotspotTracker.
+* `list` followed by `clear` clears all cases from DHT.
 * `find n/Betsy` followed by `clear` deletes all cases with names that include "Betsy".
 
 <br>
 
 ### Listing all cases: `list`
 
-Use this command to reset the find filters and display all cases in DengueHotspotTracker.
+Use this command to reset the find filters and display all cases in DHT.
 
 Format: `list`
 
@@ -362,13 +362,13 @@ Format: `list`
 
 **:bulb: Tip:**<br>
 
-As `list` resets all active filters, one of the most common uses of the `list` command to reset the display lists to display all the cases in `DengueHotspotTracker`.
+As `list` resets all active filters, one of the most common uses of the `list` command to reset the display lists to display all the cases in DHT.
 You might like to use `list` in conjunction with the following commands:
 * [`delete`](#deleting-cases-delete) to show all the cases as delete follows the index of the current list
 * [`overview`](#changing-the-overview-type-overview), which shows an overview of the cases in the current list view
 * [`find`](#finding-cases-by-prefixes-find) which filters the current list view
 
-You may wish to use `list` **before** any of these commands in order to process the *full* list of data within `DengueHotspotTracker`.
+You may wish to use `list` **before** any of these commands in order to process the *full* list of data within DHT.
 
 You may wish to use `list` **after** any of these commands in order to return to the *full* list.
 
@@ -416,7 +416,7 @@ Be careful not to use both the 'specific' tag and 'range' tags for the same prop
 * Only valid names, dates, ages, and variants are allowed.
   * e.g. `find n/#erwin` will fail since names do not allow for special characters.
   * e.g. `find d/2000/13/10` will fail since 13 is not a valid month.
-  * e.g. `find a/200` will fail since DengueHotspotTracker only accepts ages 0–199.
+  * e.g. `find a/200` will fail since DHT only accepts ages 0–199.
   * e.g. `find v/denver` will fail since `denver` is not a valid variant.
 
 Examples:
@@ -439,7 +439,7 @@ Format: `sort { n/ | a/ | p/ | d/ }`
 
 ### Undoing/Redoing an action: `undo` or `redo`
 
-Undoes/redoes an action that resulted in the change of DengueHotspotTracker data.
+Undoes/redoes an action that resulted in the change of DHT data.
 
 Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 
@@ -447,7 +447,7 @@ Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 * `INTEGER` must be a strictly positive integer.
 * The user cannot undo/redo actions from a previous session of starting the app.
 * The user cannot undo actions that are more than 10 iterations old.
-* The user cannot undo actions that do not alter the data of DengueHotspotTracker, such as `list`, `sort`, `overview` and `find`.
+* The user cannot undo actions that do not alter the data of DHT, such as `list`, `sort`, `overview` and `find`.
 * An alteration is defined as a process that changes the contents of the list of persons, such as in the form of edits, additions, or deletions to the list
 * Performing a change after undoing will clear any possible `redo` actions.
 
@@ -465,7 +465,7 @@ Example:
 **:exclamation: Caution:**
 Only the current state will be stored upon exiting the app.
 The temporary storage that stores the undo/redo states are not stored anywhere upon exit.
-Ensure that the current state of the DengueHotspotTracker (after undoing or redoing) is the state you want to save,
+Ensure that the current state of DHT (after undoing or redoing) is the state you want to save,
 before exiting the app!
 </div>
 
@@ -520,19 +520,19 @@ Format: `import [FILENAME]`
 <div markdown="span" class="alert alert-warning">
 
 **:exclamation: Caution:**
-As DengueHotspotTracker does not allow cases with duplicate **names, postal codes, and ages**,
-please ensure that the cases you are importing do not conflict with existing data within DengueHotspotTracker.
+As DHT does not allow cases with duplicate **names, postal codes, and ages**,
+please ensure that the cases you are importing do not conflict with existing data within DHT.
 This applies to **all** cases, not just those currently displayed.
 
 **:exclamation: Caution:**
-DengueHotSpotTracker only supports import from CSV files, and other file formats are to be used at your own risk.
+DHT only supports import from CSV files, and other file formats are to be used at your own risk.
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
 **:bulb: Tip:**
-If you are using Microsoft Excel, you can easily export your data to a CSV file and import it into DengueHotspotTracker!
+If you are using Microsoft Excel, you can easily export your data to a CSV file and import it into DHT!
 
 </div>
 
@@ -577,13 +577,13 @@ Format: `help`
 
 ### Exiting the program: `exit`
 
-Closes DengueHotspotTracker.
+Closes DHT.
 
 Format: `exit`
 
 ### Saving the data
 
-DengueHotspotTracker data are saved in the hard disk automatically after any command that changes
+DHT data are saved in the hard disk automatically after any command that changes
 the data. There is no need to save manually.
 
 <br>
@@ -594,13 +594,13 @@ This section contains features intended for advanced users.
 
 ### Editing the data file
 
-DengueHotspotTracker data are saved as a CSV file `[JAR file location]/data/denguehotspottracker.csv`. Advanced users
+DHT data are saved as a CSV file `[JAR file location]/data/denguehotspottracker.csv`. Advanced users
 are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
 **:exclamation: Caution:**
-If your changes to the data file causes its format to be invalid, DengueHotspotTracker will discard all data and start with an
+If your changes to the data file causes its format to be invalid, DHT will discard all data and start with an
 empty data file at the next run.
 
 </div>
@@ -611,5 +611,5 @@ empty data file at the next run.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous DengueHotspotTracker home folder. Alternatively, transfer a suitable csv file to the other
+the data of your previous DHT home folder. Alternatively, transfer a suitable csv file to the other
 computer and read it in.
