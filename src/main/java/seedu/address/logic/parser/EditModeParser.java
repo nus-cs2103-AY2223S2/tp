@@ -83,7 +83,7 @@ public class EditModeParser {
         } else if (toEdit instanceof Mob) {
             editData = generateMobData((Mob) toEdit, fieldWord, arguments);
         } else if (toEdit instanceof Item) {
-            editData = generateItemData((Item) toEdit, fieldWord, arguments);
+            editData = generateItemData(fieldWord, arguments);
         } else {
             throw new ParseException(MESSAGE_INVALID_ENTITY_TYPE);
         }
@@ -97,8 +97,12 @@ public class EditModeParser {
         switch (fieldWord.toLowerCase()) {
         case "n":
         case "name":
-            outData.setName(new Name(value));
-            break;
+            if (Name.isValidName(value)) {
+                outData.setName(new Name(value));
+                break;
+            } else {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
         case "t":
         case "tag":
         case "tags":
@@ -148,8 +152,12 @@ public class EditModeParser {
         EditMobDescriptor outData = new EditMobDescriptor();
         switch (fieldWord.toLowerCase()) {
         case "name":
-            outData.setName(new Name(value));
-            break;
+            if (Name.isValidName(value)) {
+                outData.setName(new Name(value));
+                break;
+            } else {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
         case "tag":
         case "tags":
             Optional<Set<Tag>> tags = parseTagsForEdit(List.of(value.split("\\s+")));
@@ -189,13 +197,17 @@ public class EditModeParser {
         return outData;
     }
 
-    private EditItemDescriptor generateItemData(Item toEdit, String fieldWord, String value)
+    private EditItemDescriptor generateItemData(String fieldWord, String value)
             throws ParseException, NumberFormatException {
         EditItemDescriptor outData = new EditItemDescriptor();
         switch (fieldWord.toLowerCase()) {
         case "name":
-            outData.setName(new Name(value));
-            break;
+            if (Name.isValidName(value)) {
+                outData.setName(new Name(value));
+                break;
+            } else {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
         case "tag":
         case "tags":
             Optional<Set<Tag>> tags = parseTagsForEdit(List.of(value.split("\\s+")));
@@ -254,6 +266,8 @@ public class EditModeParser {
             } else {
                 throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);
             }
+        } else {
+            //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INVENTORY_COMMAND));
         }
     }
 }
