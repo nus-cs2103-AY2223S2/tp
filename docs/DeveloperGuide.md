@@ -2,6 +2,8 @@
 layout: page
 title: Developer Guide
 ---
+<div align="center"><h1> Wingman Developer Guide</h1></div>
+
 ## Table of Contents
 
 - **[Acknowledgements](#acknowledgements)**
@@ -118,7 +120,7 @@ The `UI` component,
 [`Logic.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/logic/Logic.java)
 
 <p align="center">
-<img src="images/WingmanLogicClassDiagram.png" width="608" alt="UI Class diagram">
+<img src="images/WingmanLogicClassDiagram1.png" width="608" alt="Logic class diagram">
 </p>
 
 The `Logic` component does 3 very important things:
@@ -131,10 +133,10 @@ We shall be looking at the 3 parts one by one.
 
 #### Command Parser
 
-Wingman abandoned the use of the parser design in AB3. The main motivation
-behind this is that we feel that AB3's parser design is too complicated.
-Also, AB3's parser does not have the `mode` component, which is very
-important to the design of Wingman.
+Wingman abandoned the use of the parser design in AB3. The main motivation behind
+this decision was that we felt that AB3's parser design was too complicated.
+Furthermore, AB3's parser didn't have the `mode` component, which was crucial to the
+design of Wingman.
 
 ![Wingman's parser design](images/ParserLogicSequenceDiagram.png)
 
@@ -947,4 +949,3 @@ is the `user`, unless specified otherwise)
 * **Plane**: A unit plane which can be assigned to be used in flights.
 * **Flight**: An activity with start and end locations, to which pilots, planes
   and crew can be assigned.
-
