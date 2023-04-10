@@ -21,7 +21,7 @@
             <stylesheets>
                 <URL value="@HelpWindow.css" />
             </stylesheets>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="527.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="527.0">
                 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="527.0" style="-fx-border-color: rgb(227, 211, 238); -fx-border-width: 0 0 2 0;">
                     <HBox fx:id="helpMessageContainer" alignment="CENTER">
                         <opaqueInsets>
