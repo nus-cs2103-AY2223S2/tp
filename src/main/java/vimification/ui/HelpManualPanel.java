@@ -41,7 +41,6 @@ public class HelpManualPanel extends UiPart<VBox> {
         } catch (URISyntaxException ex) {
             LOGGER.info(StringUtil.getDetails(ex));
         }
-
         webView.prefWidthProperty().bind(this.getRoot().widthProperty());
         webView.prefHeightProperty().bind(this.getRoot().heightProperty());
     }
