@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,6 +34,8 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
     private final Index taskIndex;
 
+    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
+
     /**
      * Creates a MarkCommand object to mark the task at specified {@code Index}.
      */
@@ -47,11 +51,13 @@ public class MarkCommand extends Command {
         List<Task> taskList = officeConnectModel.getTaskModelManagerFilteredItemList();
 
         if (taskIndex.getZeroBased() >= taskList.size()) {
+            logger.info("index too large");
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToMark = taskList.get(taskIndex.getZeroBased());
         if (taskToMark.getStatus().equals(new Status(true))) {
+            logger.info("already marked as completed");
             throw new CommandException(Messages.MESSAGE_TASK_ALREADY_DONE);
         }
 
