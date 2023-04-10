@@ -20,8 +20,6 @@ activate AddressBookParser
 
 create helpCommand
 AddressBookParser -> helpCommand
-activate helpCommand
-
 
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser

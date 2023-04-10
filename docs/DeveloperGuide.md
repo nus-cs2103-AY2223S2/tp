@@ -397,6 +397,7 @@ The clear command deletes all patients and appointments from the patient and app
 **Overview**
 
 The exit command exits the application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
