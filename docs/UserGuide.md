@@ -347,7 +347,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CONTACT_PARENT] 
 * When editing tags, all the existing tags of the student will be removed. i.e. adding of tags is not cumulative.
 * The user can remove all the student’s tags by typing `t/` without specifying any tags after it.
 * We allow the user to edit the `PHONE_NUMBER` and `CONTACT_PARENT` to be the same.
-* The user are not allowed to change the name of a student to be the same as any existing student in the list.
+* The user is not allowed to change the name of a student to be the same as any existing student in the list.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -378,7 +378,7 @@ After the user checked a student, the respective student's task list and score l
   * That respective student (the latest checked student) is being deleted.
   * That respective student (the latest checked student) is being edited.
   * The student list being cleared.
-  * New student date (.json file) is being imported.
+  * New student data (.json file) is being imported.
 
 **Any of the above actions will alter the status to no student being checked now.**
 </div>
