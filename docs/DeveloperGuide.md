@@ -257,6 +257,8 @@ When checking for duplicated fields across employees, the `Id`, `Phone`, and `Em
 This is because `Id` is meant to be the unique identifier for an employee and `Phone` and `Email` fields are understood
 to be unique fields as well.
 
+The Id field is an integer. To avoid ambiguity in interpretation and possible confusion in identifying an employee, we have decided to ignore preceding zeros. 
+For instance, `0007` and `7` are treated as one and the same.
 
 #### 4.2.2 Editing an employee
 
@@ -1024,7 +1026,7 @@ _{More to be added}_
 
 **Extensions**
 
-- 1a. User gives a name that is not alpha numeric
+- 1a. User gives a name that is not alphanumeric
 
   - 1a1. SudoHr shows an error message.
 
@@ -1518,5 +1520,7 @@ leave on.
 
 ## 9. **Glossary**
 
-- **Mainstream OS** :Windows, Linux, Unix, OS-X
-- **Private contact detail** : A contact detail that is not meant to be shared with others
+- **Key**: An attribute that helps to uniquely identify an employee
+- **Primary Key**: The selected key that uniquely identifies an employee
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Private contact detail**: A contact detail that is not meant to be shared with others
