@@ -7,6 +7,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## **Acknowledgements**
 
 * Undo/redo feature implementation concept from original [_AddressBook 3 Developer Guide_](https://nus-cs2103-ay2223s2.github.io/tp/DeveloperGuide.html).
@@ -20,6 +21,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -34,6 +36,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -66,14 +70,16 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.png" width="300" />
 
-How the Logic component works during the user's interaction with the Calendar:
+How the `Logic` component works during the user's interaction with the `Calendar`:
 ![Structure of the Calendar Logic](images/calendarLogic.png)
 
 
-CalendarLogic listens to any changes in Model's filteredSessionList, which contains different Sessions, upon interaction with the Calendar Ui.
-CalendarLogic will then update the corresponding Calendar components in Ui that are dependent on these CalendarEvents.
+`CalendarLogic` listens to any changes in `Model`'s `filteredSessionList`, which contains different instances of `Session`, upon interaction with the `Calendar` UI.
+`CalendarLogic` will then update the corresponding `Calendar` components in `Ui` that are dependent on the `CalendarEvent`.
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -121,6 +127,8 @@ How the parsing works:
 * When called upon to parse a Coach command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the Coach command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -129,7 +137,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the AddressBook data i.e., all `Person` and `Session` objects (which are contained in a `UniquePersonList` and `UniqueSessionList` object respectively).
+* stores SportSync's data i.e., all `Person` and `Session` objects (which are contained in a `UniquePersonList` and `UniqueSessionList` object respectively).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the Coach’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -148,7 +156,7 @@ facilitates the scheduling, calendar and data Analytics functionality.
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both AddressBook data and user preference data in json format, and read them back into corresponding objects.
+* can save both SportSync's data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -168,13 +176,15 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed sort mechanism is facilitated by `UniquePersonList`.
 
-Step 1. The Coach launches the application for the first time. The AddressBook is initialised.
+Step 1. The Coach launches the application for the first time. The `AddressBook` is initialised.
 
 Step 2. The Coach keys in some athletes and their details with the `add` method.
 
 Step 3. After adding his athletes, the Coach wants to view his athletes in alphabetical order, so he wants to sort them by name in ascending order.
 
 Step 4. The Coach then decides to execute the command `sort 1`.
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations:
 
@@ -194,19 +204,19 @@ Restricting attribute and order to an integer value allows for the input to be e
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current AddressBook state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous AddressBook state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone AddressBook state from its history.
+* `VersionedAddressBook#commit()` — Saves the current `AddressBook` state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous `AddressBook` state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone `AddressBook` state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The Coach launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial AddressBook state, and the `currentStatePointer` pointing to that single AddressBook state.
+Step 1. The Coach launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial `AddressBook` state, and the `currentStatePointer` pointing to that single `AddressBook` state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The Coach executes `delete 5` command to delete the 5th athlete in the AddressBook. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the AddressBook after the `delete 5` command executes to be saved in the `AddressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted AddressBook state.
+Step 2. The Coach executes `delete 5` command to delete the 5th athlete in the `AddressBook`. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the `AddressBook` after the `delete 5` command executes to be saved in the `AddressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted `AddressBook` state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -214,15 +224,15 @@ Step 3. The Coach executes `add n/David …​` to add a new athlete. The `add` 
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the AddressBook state will not be saved into the `AddressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the `AddressBook` state will not be saved into the `AddressBookStateList`.
 
 </div>
 
-Step 4. The Coach now decides that adding the athlete was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous AddressBook state, and restores the AddressBook to that state.
+Step 4. The Coach now decides that adding the athlete was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous `AddressBook` state, and restores the `AddressBook` to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `VersionedAddressBook#canUndo()` to check if this is the case. If so, it will return an error to the Coach rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `AddressBook` state, then there are no previous `AddressBook` states to restore. The `undo` command uses `VersionedAddressBook#canUndo()` to check if this is the case. If so, it will return an error to the Coach rather
 than attempting to perform the undo operation.
 
 </div>
@@ -237,7 +247,7 @@ The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the AddressBook to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `AddressBookStateList.size() - 1`, pointing to the latest AddressBook state, then there are no undone AddressBook states to restore. The `redo` command uses `VersionedAddressBook#canRedo()` to check if this is the case. If so, it will return an error to the Coach rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `AddressBookStateList.size() - 1`, pointing to the latest AddressBook state, then there are no undone `AddressBook` states to restore. The `redo` command uses `VersionedAddressBook#canRedo()` to check if this is the case. If so, it will return an error to the Coach rather than attempting to perform the redo.
 
 </div>
 
@@ -245,7 +255,7 @@ Step 5. The Coach then decides to execute the command `list`. Commands that do n
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The Coach executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `AddressBookStateList`, all AddressBook states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The Coach executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `AddressBookStateList`, all `AddressBook` states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -257,7 +267,7 @@ The following activity diagram summarizes what happens when a Coach executes a n
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire AddressBook.
+* **Alternative 1 (current choice):** Saves the entire `AddressBook`.
   * Pros: Easy to implement.
   * Cons: May eventually have performance issues in terms of memory usage.
 
@@ -273,19 +283,19 @@ The following activity diagram summarizes what happens when a Coach executes a n
 The proposed session feature is facilitated by a `Session`, contained in a `UniqueSessionList`, which is subsequently contained an `AddressBook`.
 
 It supports the following sub-features:
-* Adding/Removing students from a session
-* Taking the attendance of a student in a session
+* Adding/Removing athletes from a `Session`
+* Taking the attendance of an athlete in a `Session`
 * Data Analytics
 
 To better understand how each sub-feature is implemented, we need to have a better picture of the attributes of `Session` object.
 
 <img src="images/SessionClassDiagram.png" width="" />
 
-As seen above, a Session needs a:
-* `SessionName`: to uniquely identify a session
+As seen above, a `Session` needs a:
+* `SessionName`: to uniquely identify a `Session`
 * `Location`: extra information for the Coach
 * `AttendanceMap`: to store references of participating athletes
-* `PayRateMap`: to support the Data-Analytics functionality
+* `PayRateMap`: to support the Data Analytics functionality
 
 The `Session` object implements the following operations to enable the respective sub-features:
 
@@ -304,23 +314,27 @@ Given below is an example usage scenario and for each sub-feature:
 
 ### Adding/Removing athletes from a session
 
-To enable this feature, we need to have a data structure that can store references to athletes in a session. A naive way to do this would be to have a `UniquePersonList` in a `Session` object. However, since we also need to track the attendance of every athlete, we propose using a `HashMap` class to store key-value pairs where the key is a `String` (the athlete's name), and the value is a `Boolean` (to indicate attendance).
+To enable this feature, we need to have a data structure that can store references to athletes in a `Session`. A naive way to do this would be to have a `UniquePersonList` in a `Session` object. However, since we also need to track the attendance of every athlete, we propose using a `HashMap` class to store key-value pairs where the key is a `String` (the athlete's name), and the value is a `Boolean` (to indicate attendance).
 
 <img src="images/StudentAddRemoveSequenceDiagram.png" width="" />
 
-Step 1. The coach decides to create a new session object named "Hall". A session is initialized, creating an empty `AttendanceMap`.
+<div style="page-break-after: always;"></div>
 
-Step 2. The coach decides to add athlete Bob (a `Person` object) to the Hall session.
+Step 1. The coach decides to create a new `Session` object named "Hall". A session is initialized, creating an empty `AttendanceMap`.
+
+Step 2. The coach decides to add athlete Bob (a `Person` object) to the Hall `Session`.
 1. We first find the `Name` of Bob and convert it to its `String` equivalent.
 2. We then insert a key-value pair of `String`: "Bob" and `Boolean`: `false` into our `AttendanceMap`.
 3. We now have a reference to athlete Bob in our `AttendanceMap` in the `Session`.
 4. Note that attendance is set to `false` by default since the session hasn't started yet.
 
-Step 3. Bob decides to quit the session, and the coach decides to remove Bob from the Hall session.
+Step 3. Bob decides to quit the `Session`, and the coach decides to remove Bob from the Hall `Session`.
 1. We first find the `Name` of Bob and convert it to its `String` equivalent.
 2. We then check our `AttendanceMap` to make sure Bob is an existing athlete, i.e., an existing key in the `HashMap`.
 3. We then remove the key of `String`: "Bob" from our `AttendanceMap`.
 4. We no longer have a reference to Bob in our Hall `Session` object.
+
+<div style="page-break-after: always;"></div>
 
 ### Taking Attendance of an Athlete in a Session
 
@@ -334,6 +348,7 @@ Step 1. We check if Bob is a key in the `AttendanceMap` of Hall.
 
 Step 2. We then set the key using the `HashMap#put()` method to set the value of the key Bob as `true`.
 
+<div style="page-break-after: always;"></div>
 
 ### Generating Data Analytics for a Coach
 
@@ -349,18 +364,20 @@ Since we are not storing full `Person` objects in a `Session`, we cannot find an
 
 The `Session` class uses the `getTotalPay()` method to find the total `Payrate` of all athletes in the `Session`. This method follows a set formula.
 
-To find the daily, weekly, and monthly earnings, we iterate through our `UniqueSessionList` and find all sessions that fall between a specified period.
+To find the daily, weekly, and monthly earnings, we iterate through our `UniqueSessionList` and find all instances of `Session` that fall between a specified period.
 
 ### Calendar features
-The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
+The calendar feature allows a calendar to display with the corresponding `Session` instances of the month in a calendar format. The feature consists of the following features:
 
-* `Calendar Display`Can display appointments of a month in a calendar format.
-* `Calendar Navigation`Can navigate between months with/without a mouse.
-* `Calendar Pop-Up`Can view the details of each appointment.
+* `Calendar Display` - Can display appointments of a month in a calendar format.
+* `Calendar Navigation` - Can navigate between months with/without a mouse.
+* `Calendar Pop-Up` - Can view the details of each appointment.
+
+<div style="page-break-after: always;"></div>
 
 #### Overall implementation of Calendar
 
-The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire Calendar feature. This main container consists of a `topCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, `CalendarDisplay` contains `calendarGrid`, which is a GridPane that contains all the dates and `Appointment` buttons within the calendar.
+The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire `Calendar` feature. This main container consists of a `topCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, `CalendarDisplay` contains `calendarGrid`, which is a `GridPane` that contains all the dates and `Appointment` buttons within the calendar.
 
 Upon initialisation of the `CalendarDisplay`, it will display the current month and year, using the `CalendarLogic#drawCalendar()` method. The current month and year is obtained using the default `Java` package's `GregorianCalendar` class.
 
@@ -371,26 +388,27 @@ Implementation:
 
 The following is a more detailed explanation on how `Calendar Display` is implemented:
 1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`.
-2. The `CalendarLogic` class is initialised, where the current month to be displayed in the Calendar is set using `Java`'s `GregorianCalendar` class.
-3. Next, `CalendarLogic#drawCalendar()` is called which initialises the header of the Calendar, by calling `CalendarLogic#drawHeader()`, where the `FlowPane`, `topCalendar`, displays the current month.
-4. Also, `CalendarLogic#drawCalendar()` will then call `CalendarLogic#drawBody()` which initialise the body of the Calendar and each individual day of the month is created in the Calendar.
+2. The `CalendarLogic` class is initialised, where the current month to be displayed in the `Calendar` is set using `Java`'s `GregorianCalendar` class.
+3. Next, `CalendarLogic#drawCalendar()` is called which initialises the header of the `Calendar`, by calling `CalendarLogic#drawHeader()`, where the `FlowPane`, `topCalendar`, displays the current month.
+4. Also, `CalendarLogic#drawCalendar()` will then call `CalendarLogic#drawBody()` which initialise the body of the `Calendar` and each individual day of the month is created in the `Calendar`.
 5. A `CalendarEventListPanel` object is created for each day of the month, and `EventButtons` are added to each `CalendarEventListPanel` if there is an appointment falling on that particular day.
 6. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
 
+<div style="page-break-after: always;"></div>
 
 **Calendar Navigation**
 
-The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
+The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month,
+by clicking on the Next/Prev buttons to view the next/previous month in the calendar.
 
-These are the ways that a user can use the `Calendar Navigation` feature.
-1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
 
-#### Calendar Pop-up
-The calendar Pop-up allows user to view the details of the appointment in the calendar
+**Calendar Pop-up**
 
-These are the ways that a user can use the `Calendar Pop-up` feature.
-1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar after selecting one
-2. Clicking on a desired appointment to view the appointment in the calendar
+The calendar Pop-up allows user to view the details of the appointment in the calendar.
+
+These are the ways that a user can use the `Calendar Pop-up` feature:
+1. Clicking on the Up/Down/Left/Right keys to view adjacent instances of `Session` oriented in space in the calendar after selecting one `Session`
+2. Clicking on a desired appointment to view the `Session` in the calendar.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -404,33 +422,31 @@ These are the ways that a user can use the `Calendar Pop-up` feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Planned Enhancements**
 
 1. **The names of the individual tag and session-related commands are inconsistent.**<br>
-   For example, creating a new athlete uses `add`, while a new session uses `create-session`, and adding an athlete to a session uses `student-add`.<br>
+   For example, creating a new athlete uses `add`, while a new `Session` uses `create-session`, and adding an athlete to a `Session` uses `student-add`.<br>
    We plan on standardising the names to `add`, `add-session`, and `add-athlete` to avoid confusion.
-
 
 2. **Displayed messages cannot be seen entirely in the output box without scrolling.**<br>
    This is especially the case when the message is long (i.e. an error message).<br>
    We plan on adjusting the app UI such that the features scale according to the size of the window, including the output box which will display its entire contents without needing to scroll through it.
 
-
 3. **The app cannot be navigated solely through keyboard input alone.**<br>
-   Mouse clicks are still required to select an athlete/session even after using keyboard shortcuts to switch tabs.
+   Mouse clicks are still required to select an athlete/`Session` even after using keyboard shortcuts to switch tabs.
    This may make it inconvenient for those who may prefer CLI apps.<br>
    We plan on making the app completely navigable through keyboard input while also allowing one to click parts of the GUI.
 
 4. **Once created, a session cannot be edited.**<br>
-   This makes it inconvenient for the user when they mistakenly create a session with the wrong details.
+   This makes it inconvenient for the user when they mistakenly create a `Session` with the wrong details.
    Hence, we plan on adding a `session-edit` command.<br>
    This will allow users to edit created sessions and not have to create new ones entirely.
 
-5. **The side panel for a session does not update until you click it again.**<br>
-   This is inconvenient for users as they have to manually the panel by clicking on it again.<br>
-   We plan on making the panel update itself in real time with every command.
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -443,13 +459,14 @@ These are the ways that a user can use the `Calendar Pop-up` feature.
 * can type fast.
 * prefers typing rather than mouse interaction.
 * is reasonably comfortable using CLI (Command Line Interface) apps.
-* requires to organise their Coaching schedule on a frequent basis.
+* requires organising their coaching schedule on a frequent basis.
 
 **Value proposition**:
 * manage contacts faster than a typical mouse/GUI-driven app.
 * features are geared towards managing athletes.
 * makes scheduling of training sessions more convenient than a regular calendar app.
 
+<div style="page-break-after: always;"></div>
 
 ### Coach stories
 
@@ -466,6 +483,8 @@ Priorities:<br>High (must have) - `* * *`<br>Medium (nice to have) - `* *`<br>Lo
 | `* *`    | Coach                             | organise athletes by groups               | facilitate better contact management                                      |
 | `*`      | Coach with many athletes          | sort athletes by name                     | locate an athlete easily                                                  |
 | `*`      | Coach with many training sessions | view my upcoming schedule as a calendar   | better plan my week.                                                      |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -530,6 +549,7 @@ one tag is created and added to the contact list.
     * 2a1. SportSync shows an error message stating the index is out of bounds.<br>
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case UC04 - Edit an athlete's details
 
@@ -616,6 +636,7 @@ one tag is created and added to the contact list.
     * 2a1. SportSync displays an error message.<br>
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case UC09 - Show all athletes belonging to one or more tags.
 
@@ -657,6 +678,7 @@ one tag is created and added to the contact list.
 
 * Similar to UC10 but executes a redo operation instead.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case UC12 - Add tags to an athlete
 
@@ -699,6 +721,7 @@ one tag is created and added to the contact list.
     * 2a1. SportSync shows an error message stating that the athlete does not have one of the tags.<br>
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case UC14 - Add a session to the session list
 
@@ -710,12 +733,7 @@ one tag is created and added to the contact list.
 * Similar to UC03 but deletes a session from the session list instead.
 
 
-#### Use case UC16 - Edit a session's details
-
-* Similar to UC04 but edits the details of a session instead.
-
-
-#### Use case UC17 - Mark an athlete as present for a session
+#### Use case UC16 - Mark an athlete as present for a session
 
 **MSS**
 
@@ -744,6 +762,7 @@ one tag is created and added to the contact list.
 
 * Similar to UC16 but marks the athlete as absent instead.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case UC18 - Add an athlete to a session
 
@@ -767,13 +786,14 @@ one tag is created and added to the contact list.
       Use case resumes at step 1.
 
 * 3a. The session name given does not exist in the session list.
-    * 3a1. SportSync shows an error message stating the session does not exist, and shows a list of available sessions.<br>
+    * 3a1. SportSync shows an error message stating the session does not exist.<br>
       Use case resumes at step 1.
 
 * 3b. The specified athlete already belongs to the specified session
     * 3b1. SportSync shows an error message stating the specified athlete already belongs to the specified session.<br>
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case UC19 - Remove an athlete from a session
 
@@ -797,7 +817,7 @@ one tag is created and added to the contact list.
       Use case resumes at step 1.
 
 * 3a. The session name given does not exist in the session list.
-    * 3a1. SportSync shows an error message stating the session does not exist, and shows a list of available sessions.<br>
+    * 3a1. SportSync shows an error message stating the session does not exist.<br>
       Use case resumes at step 1.
 
 * 3b. The specified athlete does not already belong to the specified session
@@ -815,6 +835,7 @@ one tag is created and added to the contact list.
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -832,9 +853,11 @@ one tag is created and added to the contact list.
 * **Athlete**: A person being trained by a coach.
 * **Contact List**: A list of athletes and their contact details.
 * **Coach**: A person who trains and directs athletes or a team.
-* **Tag**: A label attached to an athlete in SportSync, used to group them together for easier management.
+* **Tag**: A label attached to an athlete in SportSync.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
