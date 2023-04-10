@@ -69,29 +69,41 @@ product effectively.
 ![image](./images/VisualGuide.png)
 ###### Figure 2
 
-1. Clickable File and Help Tabs
-   * You can manually exit the app with your mouse by clicking `File>Exit` or open the
-   help window with `Help>Help`.
-2. Navigation Route
-   * You can view what courses and groups you have selected, and what page you are currently on here.
-3. Navigation Tabs
-   * Compared to the Navigation Route, the Navigation Tabs give you a quick overview on what type of page you are currently on.
-   * Refer to the [<i>Figure 3</i>](#navigation-guide) below for the Navigation Guide on the different pages in CLIpboard.
-4. Command Box
-   * Here is where you will type in your commands.
-5. Log Box
-   * Clipboard will give you feedback on whether or not your command was successful here.
-   * Help messages on the valid arguments of the command you are typing will also appear here if your command has failed.
+1. Using the File and Help Tabs
+   * If you want to close the app, simply click on `File > Exit` with your mouse. To open the help window, click on 
+     `Help > Help`.
+2. Using the Page Tabs
+   * The Page Tabs give you a quick summary of the type of page you are on.
+   * Refer to the [<i>Figure 3</i>](#navigation-guide) below for the Navigation Guide to the different pages in CLIpboard.
+3. Using the Navigation Bar
+   * You can see the courses and groups you have selected and the page you are currently on in the Navigation Bar.
+4. Using the Left Pane
+   * This is where you can find your list of added page objects such as `Courses`, `Groups`, `Students`, `Sessions`, 
+     and `Tasks`.
+5. Using the Right Pane
+   * The Right Pane will appear when you are on the `Attendance Page` or `Tasks Page`. It will show the list of 
+     students to mark their attendance or assign them a grade.
+6. Entering Commands in the Command Box
+   * To enter a command, type it into the Command Box.
+7. Viewing Results in the Result Display
+   * After entering a command, you can view whether it was successful in the Result Display. 
+   * If your command failed, you can also find help messages with valid arguments here.
+8. Checking the Status Bar Footer
+   * The Status Bar Footer displays the file path from which the data is being loaded or saved in relation to the 
+     location of `clipboard.jar`.
+9. Checking the CLIppy Indicator
+   * The CLIppy Indicator can help you know whether you are typing in a command correctly. 
+   * When you enter a correct command, CLIppy will be happy. If you have a command failure, CLIppy will be sad.
 
 --------------------------------------------------------------------------------------------------------------
 ## Fields for Student Commands
-| **Prefix** | **Prefix meaning**          | **Character Restrictions**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/         | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| p/         | Phone Number                | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| e/         | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints: <br> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| sid/       | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
+| Prefix | Prefix meaning | Character Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------ | -------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/     | Name           | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| p/     | Phone Number   | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| e/     | Email          | Emails should be of the format local-part@domain and adhere to the following constraints: <br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br/> - end with a domain label at least 2 characters long <br/> - have each domain label start and end with alphanumeric characters <br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| sid/   | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -300,7 +312,7 @@ add course <COURSE>
 ```
 
 - Adding a course with the same module code is not allowed.
-    - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message inside the log box.
+    - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message inside the result display.
 <div markdown="block" class="alert alert-info">
 This command is case-sensitive.<br>
 e.g. <code>CS2103T</code> and <code>cs2103t</code> are treated as different courses.
@@ -397,7 +409,7 @@ add group <GROUP>
 
 - Adding a group with the same group name is not allowed.
     - For example, if a group with group name `T15` already exists in CLIpboard,
-  entering `add group T15` will display an error message inside the log box.
+  entering `add group T15` will display an error message inside the result display.
 
 <div markdown="block" class="alert alert-info">
 This command is case-sensitive.<br>
@@ -536,7 +548,7 @@ add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
 ```
 
 - Adding a student with the same student ID is not allowed.
-    - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message inside the log box.
+    - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message inside the result display.
 
 Examples:
 - `add student n/Tan Wei Xuan p/81776544 e/twx@example.com sid/A6788796F`
@@ -745,7 +757,7 @@ add session <SESSION>
 
 - Adding a session with the same session name is not allowed.
     - For example, if a session with name `Tutorial1` already exists in CLIpboard,
-      entering `add session Tutorial1` will display an error message inside the log box.
+      entering `add session Tutorial1` will display an error message inside the result display.
     - Note: whitespaces are not allowed in session names.
 
 Examples:
@@ -888,7 +900,7 @@ add task <TASK NAME>
 
 - Adding a task with the same task name is not allowed.
     - For example, if a task with name `OP1` already exists in CLIpboard,
-      entering `add task OP1` will display an error message inside the log box.
+      entering `add task OP1` will display an error message inside the result display.
 
 Examples:
 - `add task OP3`
