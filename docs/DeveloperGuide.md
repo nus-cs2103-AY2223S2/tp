@@ -232,9 +232,9 @@ Step 3. The user executes `touch Tutorial/tut` to add an Event.
 
 Step 4. The user executes `addStudent 1 Tutorial/1` to add the first student in the Person list into the tutorial at first index of the tutorial list.
 
-The following activity diagram summarizes what happens from Step 4 when a TA executes an add student to event, assuming that the student has not yet been added to the event. Assume valid command format as well.
+The following activity diagram summarizes what happens from Step 4 when a TA executes an add student to event.
 
-<img src="images/TrAcker-activity-diagrams/AddStudentToEventActivityDiagram.png" width="550" />
+<img src="images/TrAcker-activity-diagrams/AddStudentToEventUpdated.png" width="750" />
 
 #### Design considerations:
 
@@ -269,9 +269,11 @@ Step 1. The user launches the application. The user has already used the applica
 
 Step 2. The user executes `deleteStudent 1 Tutorial/1` to delete the student at index 1 (1-based) of the student list of the tutorial at index 1 (1-based) of the `Tutorial` list.
 
-The following activity diagram summarizes what happens when a TA executes delete student from event from step 2. Assume valid command format.
+The activity diagram of the `deleteStudent` command is extremely similar to that of the `addStudent` command. The only difference is that deleting happens instead of adding. 
 
-<img src="images/TrAcker-activity-diagrams/DeleteStudentUpdated.png" width="750" />
+The following sequence diagram summarizes the interaction of classes when the command `deleteStudent 1 Tutorial/1` is called.
+
+<img src="images/DeleteStudentSequenceDiagram.png" />
 
 #### Design considerations:
 
