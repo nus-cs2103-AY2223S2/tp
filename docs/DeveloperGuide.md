@@ -220,7 +220,7 @@ The `UI` component,
 
 <div style="page-break-after: always;"></div>
 
-### Logic component
+### Logic Component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/logic/Logic.java)
 
@@ -280,7 +280,7 @@ the `Parser` interface so that they can be treated similarly where possible e.g,
 
 <div style="page-break-after: always;"></div>
 
-### Model component
+### Model Component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/model/Model.java)
 
 Figure 9 is a class diagram for the `Model` component.
@@ -319,7 +319,7 @@ to only require one `Tag` object per unique tag, instead of each `Internship` ne
 
 <div style="page-break-after: always;"></div>
 
-### Storage component
+### Storage Component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/storage/Storage.java)
 
@@ -338,7 +338,7 @@ The `Storage` component,
 * inherits from both `InternBuddyStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### Common Classes
 
 Classes used by multiple components are in the [`seedu.internship.commons`](https://github.com/AY2223S2-CS2103T-T14-3/tp/tree/master/src/main/java/seedu/internship/commons) package.
 
@@ -730,7 +730,7 @@ fields (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
 
 ## **Appendix A: Requirements**
 
-### Product scope
+### Product Scope
 
 **Target user profile:**
 [Computing Undergraduates](#glossary)
@@ -769,7 +769,7 @@ capabilities for easy tracking and follow-ups while eliminating the need to hand
 
 
 
-### User stories
+### User Stories
 Table 2 documents the user stories for InternBuddy.
 
 
@@ -807,7 +807,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-### Use cases
+### Use Cases
 
 (For all use cases below, the **System** is `InternBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
