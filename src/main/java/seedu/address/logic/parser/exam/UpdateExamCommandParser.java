@@ -35,13 +35,13 @@ import seedu.address.model.student.Grade;
 import seedu.address.model.student.NamePredicate;
 
 /**
- * An UpdateHomeworkCommandParser that parses input arguments and creates a new UpdateHomeworkCommand object
+ * Parses input arguments and creates a new UpdateExamCommand object
  */
 public class UpdateExamCommandParser implements Parser<UpdateExamCommand> {
     private List<String> names = new ArrayList<>();
     /**
-     * Parses the given {@code String} of arguments in the context of the UpdateHomeworkCommand
-     * and returns an UpdateHomeworkCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UpdateExamCommand
+     * and returns an UpdateExamCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -95,12 +95,13 @@ public class UpdateExamCommandParser implements Parser<UpdateExamCommand> {
             examName = Optional.of(argMultimap.getValue(PREFIX_EXAM).get());
         }
 
-        // if deadline is not present, set it to null, else parse it
+        // if start time is not present, set it to null, else parse it
         Optional<LocalDateTime> startTime = Optional.empty();
         if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
             startTime = Optional.of(ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get()));
         }
 
+        // if end time is not present, set it to null, else parse it
         Optional<LocalDateTime> endTime = Optional.empty();
         if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
             endTime = Optional.of(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get()));

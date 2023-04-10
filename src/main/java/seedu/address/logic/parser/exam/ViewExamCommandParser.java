@@ -31,14 +31,14 @@ import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
 /**
- * Parses input arguments and creates a new ViewHomeworkCommand object
+ * Parses input arguments and creates a new ViewExamCommand object
  */
 public class ViewExamCommandParser implements Parser<ViewExamCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the ViewLessonCommand
-     * and returns a ViewLessonCommand object for execution.
-     * @param args the user input to be parsed into a ViewLessonCommand object.
-     * @return a ViewExamCommand object.
+     * Parses the given {@code String} of arguments in the context of the ViewExamCommand
+     * and returns an ViewExamCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
      */
     public ViewExamCommand parse(String args) throws ParseException {
         requireNonNull(args);

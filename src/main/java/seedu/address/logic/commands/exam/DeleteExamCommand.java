@@ -17,7 +17,7 @@ import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
 /**
- * Deletes a lesson from a student.
+ * Deletes an exam from a student.
  */
 public class DeleteExamCommand extends Command {
 
@@ -37,7 +37,7 @@ public class DeleteExamCommand extends Command {
 
 
     /**
-     * Creates a DeleteLessonCommand to delete the specified lesson from the specified student.
+     * Creates a DeleteExamCommand to delete the specified exam from the specified student.
      */
     public DeleteExamCommand(List<String> inputNames, NamePredicate predicate, Index targetIndex) {
         requireNonNull(predicate);
@@ -104,6 +104,6 @@ public class DeleteExamCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof DeleteExamCommand // instanceof handles nulls
-            && predicate.equals(((DeleteExamCommand) other).predicate)); // state check
+            && predicate.equals(((DeleteExamCommand) other).predicate));
     }
 }

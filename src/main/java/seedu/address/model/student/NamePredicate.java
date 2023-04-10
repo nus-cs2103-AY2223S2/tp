@@ -4,24 +4,25 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Lesson}'s title matches the given subject.
+ * Tests that a {@code Student}'s name matches the given name.
  */
 public class NamePredicate implements Predicate<Student> {
     private final List<String> names;
 
     /**
-     * Creates a predicate to test if a Homework's title matches the specified subject
-     * @param names The names to test against.
+     * Creates a NamePredicate to test if a {@code Student}'s name matches the given name.
+     *
+     * @param names The name to test against.
      */
     public NamePredicate(List<String> names) {
         this.names = names;
     }
 
     /**
-     * Tests if a {@code Homework}'s {@code isCompleted} matches the given boolean.
+     * Tests if a {@code Student}'s name matches the given name.
      *
-     * @param student The Student to test.
-     * @return True if the student's name contains the given keyword.
+     * @param student The student to test.
+     * @return True if the student's name matches the given name.
      */
     @Override
     public boolean test(Student student) {

@@ -24,7 +24,7 @@ import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
 /**
- * Update the information of an existing homework.
+ * Updates the information of an existing lesson.
  */
 public class UpdateLessonCommand extends Command {
     public static final String COMMAND_WORD = "update-lesson";
@@ -49,13 +49,7 @@ public class UpdateLessonCommand extends Command {
     private final List<String> names;
 
     /**
-     * Creates an UpdateHomeworkCommand to update the information of an existing homework.
-     *
-     * @param index of the homework in the filtered homework list to update
-     * @param predicate of the student to update the homework
-     * @param lessonName of the lesson to be updated to
-     * @param startTime of the lesson to be updated to
-     * @param endTime of the lesson to be updated to
+     * Creates a UpdateLessonCommand to update the specified {@code Lesson}
      */
     public UpdateLessonCommand(List<String> names, Index index, NamePredicate predicate,
                                  Optional<String> lessonName, Optional<LocalDateTime> startTime,

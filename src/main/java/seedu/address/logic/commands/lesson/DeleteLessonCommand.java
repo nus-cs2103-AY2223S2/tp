@@ -104,7 +104,7 @@ public class DeleteLessonCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof DeleteLessonCommand // instanceof handles nulls
-            && predicate.equals(((DeleteLessonCommand) other).predicate)); // state check
+            && predicate.equals(((DeleteLessonCommand) other).predicate));
     }
 }
 

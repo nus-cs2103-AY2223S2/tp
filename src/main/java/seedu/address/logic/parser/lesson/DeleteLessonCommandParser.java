@@ -28,7 +28,8 @@ public class DeleteLessonCommandParser implements Parser<DeleteLessonCommand> {
     private List<String> inputNames = new ArrayList<>();
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteLessonCommand
-     * and returns a CreateHomeworkCommand object for execution.
+     * and returns a DeleteLessonCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteLessonCommand parse(String args) throws ParseException {

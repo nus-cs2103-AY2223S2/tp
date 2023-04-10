@@ -19,9 +19,8 @@ import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Student;
 
 /**
- * Finds and lists all homework in the homework tracker that match the given name and status keywords.
- * Displays a list of homework with the ability to filter by student name and homework status.
- * Keyword matching is case-insensitive.
+ * Finds and lists all lessons in address book whose name contains any of the argument keywords.
+ * Keyword matching is case insensitive.
  */
 public class ViewLessonCommand extends Command {
     public static final String COMMAND_WORD = "view-lesson";
@@ -146,7 +145,7 @@ public class ViewLessonCommand extends Command {
             }
         }
 
-        // If no homework is found, throw an exception
+        // If no lessons are found, throw an exception
         if (numOfLessons == 0) {
             throw new CommandException(Messages.MESSAGE_NO_LESSON_FOUND);
         }
@@ -167,6 +166,6 @@ public class ViewLessonCommand extends Command {
                 || (other instanceof ViewLessonCommand // instanceof handles nulls
                 && namePredicate.equals(((ViewLessonCommand) other).namePredicate)
                 && lessonDatePredicate.equals(((ViewLessonCommand) other).lessonDatePredicate)
-                && defaultPredicateFlag == ((ViewLessonCommand) other).defaultPredicateFlag); // state check
+                && defaultPredicateFlag == ((ViewLessonCommand) other).defaultPredicateFlag);
     }
 }

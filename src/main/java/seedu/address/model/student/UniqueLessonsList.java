@@ -15,16 +15,16 @@ import seedu.address.model.student.exceptions.DuplicateLessonException;
 import seedu.address.model.student.exceptions.LessonNotFoundException;
 
 /**
- * A list of homework that enforces uniqueness between its elements and does not allow nulls.
- * A homework is considered unique by comparing using {@code Homework#isSameHomework(Homework)}.
- * As such, adding and updating of homework uses Homework#isSameHomework(Homework) for equality
- * so as to ensure that the homework being added or updated is unique in terms of identity in the
- * UniqueHomeworkList. However, the removal of a homework uses Homework#equals(Object) so as to ensure
- * that the homework with exactly the same fields will be removed.
+ * A list of lessons that enforces uniqueness between its elements and does not allow nulls.
+ * A lesson is considered unique by comparing using {@code Lesson#isSameLesson(Lesson)}.
+ * As such, adding and updating of lessons uses Lesson#isSameLesson(Lesson) for equality so as to ensure
+ * that the lesson being added or updated is unique in terms of identity in the UniqueLessonList.
+ * However, the removal of a lesson uses Lesson#equals(Object) so as to ensure that the lesson with
+ * exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Homework#isSameHomework(Homework)
+ * @see Lesson#isSameLesson(Lesson)
  */
 public class UniqueLessonsList implements Iterable<Lesson> {
 
