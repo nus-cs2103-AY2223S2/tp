@@ -45,7 +45,7 @@ Given below are my contributions to the project.
 
   * Developer Guide:
     * Added and update use cases [\#31](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/31) [\#90](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/90) [\#292](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/292)
-    * Added and updated UML Class Diagram and documentation for Order and Menu [\#142](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/142) 
+    * Added and updated UML Class Diagram and documentation for Order and Menu [\#142](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/142)
     * Added documentation and activity diagram for "Add" functionality features [\#168](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/168)
     * Introduced a "Why we implemented this way" portion for features [\#176](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/176)
   * Update Javadocs [\#287](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/287)
@@ -56,9 +56,6 @@ Given below are my contributions to the project.
   * Communicate professionally with Professor Damith on Outlook to change UG details
   * Clarify questions on behalf of the team on MSTeams with Tutor.
   * Communicate thoroughly with team members to reduce double work and fix bugs together when help is needed.
-
-
-
 
 * **Tools**:
   * Java 11, JavaFx, Jekyll
