@@ -32,7 +32,7 @@ StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
 
-Storage -left-|> UserPrefsStorage
+Storage --|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
