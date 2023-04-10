@@ -57,6 +57,7 @@ activate OverviewCommand
 OverviewCommand -> ModelManager : setOverview(ao)
 activate ModelManager
 
+ModelManager --> OverviewCommand
 deactivate ModelManager
 
 create CommandResult

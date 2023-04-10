@@ -4,8 +4,6 @@ hide footbox
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AgeAnalyst" as AgeAnalyst LOGIC_COLOR
-participant ":DataBin" as DataBin LOGIC_COLOR
 end box
 
 box UI UI_COLOR_T1
@@ -13,8 +11,13 @@ participant ":OverviewDisplay" as OverviewDisplay UI_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "ao:AgeOverview" as AgeOverview MODEL_COLOR
 participant ":ModelManager" as ModelManager MODEL_COLOR
+participant "ao:AgeOverview" as AgeOverview MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":AgeAnalyst" as AgeAnalyst LOGIC_COLOR
+participant ":DataBin" as DataBin LOGIC_COLOR
 end box
 
 [-> LogicManager : getOverview()
@@ -43,12 +46,14 @@ loop size of filteredPersons
     AgeAnalyst -> DataBin : addPerson()
     activate DataBin
 
+    DataBin --> AgeAnalyst
     deactivate DataBin
 end
 
 AgeAnalyst --> AgeOverview
 deactivate AgeAnalyst
 
+AgeOverview --> ModelManager
 deactivate AgeOverview
 
 ModelManager --> LogicManager : ao
@@ -83,4 +88,7 @@ AgeOverview --> OverviewDisplay : content
 deactivate AgeOverview
 
 OverviewDisplay -> OverviewDisplay : setOverviewContent(content)
+
+OverviewDisplay -->[
+deactivate OverviewDisplay
 @enduml
