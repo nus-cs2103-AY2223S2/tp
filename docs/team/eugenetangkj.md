@@ -4,11 +4,9 @@ title: Eugene Tang's Project Portfolio Page
 ---
 
 ## About InternBuddy
-InternBuddy is a desktop application for Computing undergraduates to manage their internship applications. It is
-optimized for typing where it allows you to complete internship management tasks much more efficiently via
-the keyboard as compared to using traditional Graphical User Interface (GUI) applications. If you are a fast
-typist who is seeking for a one-stop platform to systematically organise your internship applications,
-then InternBuddy is the perfect buddy to accompany you during your internship hunt.
+InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
+It is optimized for typing where it allows you to complete internship management tasks much more efficiently
+via the keyboard as compared to using traditional Graphical User Interface (GUI) applications.
 
 ## Project Contributions
 My code contributions can be found on 
@@ -23,9 +21,10 @@ My code contributions can be found on
 
 - **Redesigned the GUI of InternBuddy**
   [\#52](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/52),
-  [\#78](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/78)
+  [\#78](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/78),
+  [\#191](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/191)
   * Created a new look for the List Panel.
-  * Implemented a new View Panel for the viewing of internship information.
+  * Implemented a new responsive View Panel for the viewing of internship information.
 
 - **Implemented feature to add optional field,** `COMMENT`
   [\#79](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/79)
@@ -36,7 +35,7 @@ My code contributions can be found on
 
 <div style="page-break-after: always;"></div>
 
-- **Implemented the `view` command**
+- **Implemented the** `view` **command**
   [\#78](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/78)
   * Users can now view the detailed information of a selected internship entry.
   * Details are displayed in the View Panel.
@@ -47,37 +46,30 @@ My code contributions can be found on
 
 - **Redesigned the Help Window**
   [\#81](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/81)
+  [\#132](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/132)
   * Inserted the command summary and hyperlink to InternBuddy's user guide in the Help Window.
   * Created a new look for the Help Window.
 
 - **Co-implemented GUI testing for InternBuddy**
   [\#52](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/52)
-  * With code references from [AB4](https://github.com/se-edu/addressbook-level4)
+  * With code references from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
     and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp), I managed to implement
     test cases for UI components such as in the class `InternshipCardTest`.
   * Worked with my teammate, Christopher, to implement this.
   * GUI testing improved code coverage for InternBuddy.
 
 ### Documentation
-- **Updated README**
-  [\#13](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/13),
-  [\#127](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/127)
-  * Removed AB3-related content and added InternBuddy-related content.
-
-- **Updated Landing Page**
-  [\#127](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/127)
-  * Removed AB3-related content and added InternBuddy-related content.
 
 - **Contributed to User Guide**
   [\#21](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/21),
   [\#34](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/34),
   [\#102](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/102),
-  [\#109](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/109)
-  * Documented the explanation for the different parts in InternBuddy's GUI, accompanied by a graphic.
+  [\#109](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/109),
+  [\#204](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/204)
+  * Documented the explanation for the different parts in InternBuddy's GUI.
   * Wrote up the command information, explaining the format and constraints of commands and
     fields in InternBuddy.
-  * Responsible for the write-up of the `list`, `add`, `view`, `help` and `exit` commands,
-    as well as on the sections on `Saving Internship Data` and `Loading the Data`.
+  * Responsible for the write-up of the `list`, `add`, `view`, `help` and `exit` commands.
   * Created the appendices to explain to users how to install Java 11, manually edit the `internbuddy.json` file
     and populate InternBuddy with sample data.
 - **Contributed to Developer Guide**
@@ -87,17 +79,15 @@ My code contributions can be found on
   [\#86](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/86),
   [\#119](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/119)
   * Explained implementation and design considerations for `add` and `view` commands, supplementing the explanations with sequence diagrams.
-  * Defined product scope by identifying InternBuddy's target audience and value proposition.
-  * Drafted user stories on how Computing undergraduates would use InternBuddy.
+  * Defined product scope by identifying InternBuddy's target audience and value proposition, as well as drafted user stories.
   * Added test cases for instructions on manual testing, such as for the `add` and `view` commands.
-
-<div style="page-break-after: always;"></div>
 
 ### Others
 - Provided non-trivial PR reviews for
   [\#47](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/47),
   [\#80](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/80),
-  [\#100](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/100).
+  [\#100](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/100),
+  [\#201](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/201).
 - Designed the logo for InternBuddy.
 - Contributed to CS2103T forum discussions for
   [\#45](https://github.com/nus-cs2103-AY2223S2/forum/issues/45),
@@ -105,5 +95,7 @@ My code contributions can be found on
   [\#177](https://github.com/nus-cs2103-AY2223S2/forum/issues/177),
   [\#252](https://github.com/nus-cs2103-AY2223S2/forum/issues/252),
   [\#254](https://github.com/nus-cs2103-AY2223S2/forum/issues/254),
-  [\#266](https://github.com/nus-cs2103-AY2223S2/forum/issues/266).
+  [\#266](https://github.com/nus-cs2103-AY2223S2/forum/issues/266),
+  [\#319](https://github.com/nus-cs2103-AY2223S2/forum/issues/319),
+  [\#322](https://github.com/nus-cs2103-AY2223S2/forum/issues/322).
 

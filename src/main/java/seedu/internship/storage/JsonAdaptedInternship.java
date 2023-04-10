@@ -68,7 +68,7 @@ class JsonAdaptedInternship {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Internship} object.
+     * Converts this Jackson-friendly adapted internship object into the model's {@code Internship} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted internship
      */

@@ -1,3 +1,4 @@
+'(@@author potty10)
 @startuml
 !include style.puml
 
@@ -62,7 +63,7 @@ activate Model
 Model --> DeleteFieldCommand
 deactivate Model
 
-destroy InternshipContainsKeywordPredicate
+
 
 loop internship in internshipsToDelete
     DeleteFieldCommand -> Model: deleteInternship(internship)
@@ -91,7 +92,7 @@ DeleteFieldCommand --> LogicManager : cr
 deactivate DeleteFieldCommand
 DeleteFieldCommand -[hidden]-> LogicManager
 destroy DeleteFieldCommand
-
+destroy InternshipContainsKeywordPredicate
 
 
 [<--LogicManager : cr

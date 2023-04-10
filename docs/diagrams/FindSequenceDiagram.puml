@@ -1,3 +1,4 @@
+'(@@author kohkaixun)
 @startuml
 !include style.puml
 
@@ -62,8 +63,6 @@ activate Model
 Model --> FindCommand
 deactivate Model
 
-destroy InternshipContainsKeywordPredicate
-
 create CommandResult
 FindCommand -> CommandResult
 activate CommandResult
@@ -76,6 +75,7 @@ deactivate FindCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 FindCommand -[hidden]-> LogicManager
 destroy FindCommand
+destroy InternshipContainsKeywordPredicate
 
 [<--LogicManager : result
 deactivate LogicManager

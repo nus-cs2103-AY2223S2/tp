@@ -35,7 +35,7 @@ public interface Logic {
     ObservableList<Internship> getFilteredInternshipList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' InternBuddy file path.
      */
     Path getInternBuddyFilePath();
 
