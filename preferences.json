@@ -4,8 +4,8 @@
     "windowHeight" : 700.0,
     "windowCoordinates" : {
       "x" : 214,
-      "y" : 114
+      "y" : 84
     }
   },
-  "expenseTrackerFilePath" : "data/fastTrack.json"
+  "expenseTrackerFilePath" : "data\\fastTrack.json"
 }

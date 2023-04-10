@@ -1,0 +1,36 @@
+Apr 10, 2023 10:00:51 PM fasttrack.MainApp init
+INFO: =============================[ Initializing ExpenseTracker ]===========================
+Apr 10, 2023 10:00:51 PM fasttrack.MainApp initConfig
+INFO: Using config file : config.json
+Apr 10, 2023 10:00:51 PM fasttrack.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Apr 10, 2023 10:00:51 PM fasttrack.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Apr 10, 2023 10:00:51 PM fasttrack.commons.util.JsonUtil readJsonFile
+INFO: Json file data\fastTrack.json not found
+Apr 10, 2023 10:00:51 PM fasttrack.MainApp initModelManager
+INFO: Data file not found. Will be starting with a sample ExpenseTracker
+Apr 10, 2023 10:00:51 PM fasttrack.MainApp initModelManager
+INFO: fine
+Apr 10, 2023 10:00:51 PM fasttrack.MainApp start
+INFO: Starting ExpenseTracker V1.3.1ea
+Apr 10, 2023 10:00:51 PM fasttrack.ui.UiManager start
+INFO: Starting UI...
+Apr 10, 2023 10:01:10 PM fasttrack.MainApp stop
+INFO: ============================ [ Stopping Expense Tracker ] =============================
+Apr 10, 2023 10:01:18 PM fasttrack.MainApp init
+INFO: =============================[ Initializing ExpenseTracker ]===========================
+Apr 10, 2023 10:01:18 PM fasttrack.MainApp initConfig
+INFO: Using config file : config.json
+Apr 10, 2023 10:01:18 PM fasttrack.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Apr 10, 2023 10:01:18 PM fasttrack.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Apr 10, 2023 10:01:18 PM fasttrack.MainApp initModelManager
+INFO: fine
+Apr 10, 2023 10:01:18 PM fasttrack.MainApp start
+INFO: Starting ExpenseTracker V1.3.1ea
+Apr 10, 2023 10:01:18 PM fasttrack.ui.UiManager start
+INFO: Starting UI...
+Apr 10, 2023 10:01:23 PM fasttrack.MainApp stop
+INFO: ============================ [ Stopping Expense Tracker ] =============================
