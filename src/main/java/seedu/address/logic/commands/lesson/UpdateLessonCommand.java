@@ -135,7 +135,7 @@ public class UpdateLessonCommand extends Command {
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }
-
+        model.updateFilteredStudentList(s -> s == student);
         return new CommandResult(
             String.format(Messages.MESSAGE_LESSON_UPDATED_SUCCESS, index.getOneBased(),
                 student.getName().getFirstName(),
