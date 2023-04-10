@@ -50,6 +50,10 @@ public class ParserUtil {
     };
     //@@author
 
+    public static void main(String[] args) throws ParseException {
+        String date = "2020-12-10T10:10";
+        System.out.println(parseDate(date));
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

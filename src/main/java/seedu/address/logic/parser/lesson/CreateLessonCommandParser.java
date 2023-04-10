@@ -38,13 +38,13 @@ public class CreateLessonCommandParser implements Parser<CreateLessonCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_LESSON, PREFIX_STARTTIME, PREFIX_ENDTIME);
 
-        checkUniqueNotNUllName(argMultimap);
-
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LESSON, PREFIX_STARTTIME, PREFIX_ENDTIME)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 CreateLessonCommand.MESSAGE_USAGE));
         }
+
+        checkUniqueNotNUllName(argMultimap);
 
         String lessonName = argMultimap.getValue(PREFIX_LESSON).get();
         if (lessonName.trim().isEmpty()) {
