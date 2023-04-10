@@ -769,6 +769,9 @@ Examples:
 
 [Back To Contents](#table-of-contents)
 
+____________________________________________________________________________________________________________________
+
+
 ### Events Command Summary
 
 | Action                     | Format, Examples                                                                                                                                                                                  |
