@@ -29,7 +29,28 @@ This required me to work close with the teammate that implemented the DateTime o
 Hardest to implement. `Person` and `Meetings` are immutable. To have `Meeting` object update the name of person in the meeting when there is a change in person's name. `Person` has to call all meetings it is part of to inform it of its name change. When this happens `Meeting` has to update the `model` to change its list because it cannot do it itself (it is immutable).
 Additionally, `Person` has to hold a list of meeting it is attending, which it previously did not have. Like Meetings, it has to call `model` to update the list for itself. It needs this list to know which `Meeting` to inform when it changes name.
 The difficulty was, implementing new attributes for Person and dealing with immutable objects, and enabling communication between two objects that should not depend on one another
+* **Community**:
+  PR reviewed:
+  [#178](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/178)
+  [#47](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/47)
+  [#67](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/67)
+  [#64](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/64)
+  [#48](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/48)
+  [#114](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/114)
+  [#115](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/115)
 
+* **Tools**:
+  The following are the tools I used to contribute to the project in order of frequency of use
+    * Vim
+        * Was used as main IDE
+    * Git
+        * Used as version control
+    * JDB
+        * Used as debugging tool, in terminal environment
+    * Gradle
+        * Used as package builder
+    * IntelliJ
+        * Used to edit markdown and PLANTUML extension
 
 <div style="page-break-after: always;"></div>
 
