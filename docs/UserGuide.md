@@ -15,7 +15,7 @@ title: User Guide
     7. [Find Student](#find)
     8. [Filter student](#filter)
     9. [Add a lesson](#learn)
-    10. [Remove lesson](#unlearn)
+    10. [Remove a lesson](#unlearn)
     11. [Mark attendence](#mark)
     12. [Unmark attendence](#unmark)
     13. [Query attendence](#query)
@@ -222,7 +222,7 @@ Examples:
 
 You can add a lesson taught to a student.
 
-Format: ```learn <index> [l/LESSON]```
+Format: ```learn <INDEX> [l/LESSON]```
 * The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 * The lesson must be in alphanumeric characters.
 
@@ -237,7 +237,7 @@ Example:
 
 You can remove a lesson taught to a student.
 
-Format: ```unlearn <index> [l/LESSON]```
+Format: ```unlearn [INDEX] [l/LESSON]```
 * The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 * The lesson must match an existing lesson displayed
 
@@ -334,21 +334,19 @@ Format: ```exit```
 | Action | Format and Examples                 |
 |------|-------------------------------------|
 | **Add Student** | `add n/NAME p/PHONE e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/STARTTIME et/ENDTIME [t/TAG]...` <br> e.g., add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/09:30 et/11:30 |
-| **Copy Student** | `copy INDEX`<br> e.g., `delete 1` |
+| **Copy Student** | `copy <index> s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME`<br> e.g., `copy <index> s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME` |
 | **Delete Student** | `delete INDEX`<br> e.g., `delete 1` |
-| **Clear** | `clear`                             |
-| **Edit** | |
-| **Find** |                                     |
-| **Filter** |                                     |
-| **List Students** | `list`                              |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **Help** | `help`                              |
+| **List Students** | `list` |
+| **Edit** |`edit <index> [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 1 p/91234567 e/johndoe@example.com` |
+| **Find** |`find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find John` |
+| **Filter** |`filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SUBJECT] [sch/SCHEDULE] [st/START TIME] [et/END TIME] [t/TAG]`<br> e.g., `filter a/clementi s/math`|
+| **Add lesson** |`learn <INDEX> [l/LESSON]`<br> e.g., `learn 1 l/Rational number`|
+| **Remove lesson** |`unlearn <index> [l/LESSON]`<br> e.g., `unlearn 1 l/Rational number`|
+| **Mark attendance** |`mark <index> [date...]`<br> e.g., `mark 1 2023-03-10`|
+| **Unmark attendence** |`unmark <index> [date...]`<br> e.g., `unmark 1 2023-03-10`|
+| **Query attendence** |`query <index> [date]`<br> e.g., `query 1 2023-03-10`|
+| **Clear** | `clear`|
+| **Exit program** |`Exit`|
+| **Help** | `help` |
 
 #### [Back to top](#table-of-content) 
