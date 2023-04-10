@@ -213,9 +213,10 @@ It consists of:
 2. Prefixes - The identifiers for the various input values, different commands require different prefixes
 3. Placeholders - The actual input values for the command.
 
-<div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
-If there are multiples of the same prefixes typed in for commands that only accept one value per prefix, SudoHR will 
-only register the value of the last prefix.
+<div markdown="span" class="alert alert-warning">:exclamation: **NOTE:**
+1. For the commands in this section, the order in which the prefixes (if any) are placed does not matter.
+2. If duplicated prefixes are provided, only the argument associated with the last instance of the same prefix will 
+   be processed by the parser.
 </div>
 --------------------------------------------------------------------------------------------------------------------
 
