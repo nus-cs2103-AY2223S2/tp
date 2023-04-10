@@ -13,14 +13,21 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.ui.tab.TabInfo;
+import seedu.address.logic.ui.tab.TabUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.user.User;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -77,7 +84,7 @@ public class AddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -139,12 +146,134 @@ public class AddCommandTest {
         }
 
         @Override
+        public Person getPersonWithName(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPersonWithName(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getUserDataFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setUserDataFilePath(Path userDataFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setUserData(ReadOnlyUserData userData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyUserData getUserData() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setUser(User user) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getEvents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void tagPersonToEvent(Index eventIndex, Person taggingPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public Event getEvent(Index index) {
+            return null;
+        }
+
+        @Override
+        public void setEvent(Index index, Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isPersonTaggedToEvent(Index index, Person p) {
+            throw new AssertionError("This method should not be called.");
+        }
+        public void untagPersonFromEvent(Index index, Person p) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void untagPersonToEvent(Index eventIndex, Person taggingPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isValidTabIndex(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public TabUtil getTabUtil() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyObjectProperty<TabInfo> getSelectedTab() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSelectedTab(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ReadOnlyObjectProperty<Person> getSelectedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void setSelectedPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateAllDateTimes() {
+            // This method might be called if you use this ModelStub as part of the NeoBook and you execute a
+            // command.
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -189,6 +318,8 @@ public class AddCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
+
     }
 
 }

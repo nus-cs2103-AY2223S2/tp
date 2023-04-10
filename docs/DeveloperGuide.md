@@ -2,14 +2,26 @@
 layout: page
 title: Developer Guide
 ---
+## Table Of Contents
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [Star icon](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/images/star.png) created by [Pixel perfect - Flaticon](https://www.flaticon.com/free-icons/star).
+* [Module code list](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/data/modules.json) adapted from [NUSMods API](https://api.nusmods.com/v2/).
+
+--------------------------------------------------------------------------------------------------------------------
+## **NeoBook**
+### Introduction
+NeoBook is an address book app designed to connect NUS students with their seniors or other students with similar academic paths, making their contacts much more organized.
+The app allows students to find contacts with similar traits and view their schedules to help them connect with each other more conveniently.
+### Purpose
+This Developer Guide aims to provide technical documentation for developers who want to contribute to NeoBook's development.
+The guide includes a list of setting up instructions, design documentation, app requirements, user stories, use cases, and other relevant technical details.
+### Target Audience
+The target readers of this Developer Guide are developers who are familiar with the programming languages and frameworks used in the development of NeoBook.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,8 +35,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+</div> 
 
 ### Architecture
 
@@ -36,7 +48,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,24 +81,42 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `BodyPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person`, `Event`, and `User` objects residing in the `Model`.
+
+The UI is styled using CSS, primarily via [`DarkTheme.css`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/view/DarkTheme.css) and [`Extensions.css`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/view/Extensions.css) that are imported by `MainWindow.fxml`. The `HelpWindow` has its own separate CSS file, [`HelpWindow.css`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/view/HelpWindow.css).
+
+In `DarkTheme.css`, there is a system of reuse. For example,
+
+* Themes have their own defined variables:
+  * `-fx-primary`: primary theme colour
+  * `-fx-primary-foreground`: primary theme colour, usually for foreground and accented components
+  * `-fx-primary-background`: primary theme colour, usually for background and muted components
+  * `-fx-primary-text`: primary text colour
+  * `-fx-secondary-text`: secondary text colour
+  * `-fx-list-odd`: background colour of odd-indexed list cells
+  * `-fx-list-even`: background colour of even-indexed list cells
+  * `-fx-list-selected`: background colour of selected list cells
+
+* Labels have defined font sizes: `label-h1`, `label-h2`, `label-h3`, `label-h4`, `label-h5`, `label-h6`, and `label-p`, corresponding to the different headings and paragraph font sizes.
+
+* Paddings have been defined and standardised with a width of 10. For example, `pa` represents "all padding", `pt` for "top padding", and `pa-b` for "all padding except bottom".
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,19 +144,35 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+![Model class diagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data 
+  * i.e. all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' 
+  * e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserData` object that contains a `User` object that represents the User's data. This is exposed to the outside as a `ReadOnlyUser` object. 
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+Within the Model component holds the Person Class.
+
+![Person class diagram](images/PersonDiagram.png)
+
+Each field in Person inherits from either the Field abstract class or the SuperField abstract class.
+
+* The Field abstract class represents a field with a singular value. This is used for fields like e.g. Name, Gender
+and Major.
+* The SuperField abstract class represents a field that has multiple values. This is used for fields like e.g. Modules
+and Tags. The SuperField class contains a set of values that are a subclass of Field.
+* The Field and SuperField abstract classes are used to abstract our common logic between the various fields in Person, while
+  also allowing for polymorphism.
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list and `Modules` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require only one `Tag` object per unique tag or only one `Module` object per unique module, instead of each `Person` needing their own `Tag` or `Module` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -135,24 +181,132 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* can save both address book data, user data and user preference data in json format, and read them back into
+corresponding objects.
+* inherits from `UserDataStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as any of the above
+(if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
+that belong to the `Model`). In particular, the changes to the following 5 classes will require a change in their
+respective classes in Storage.
+  * Person
+  * Event
+  * User
+  * NusMod
+  * Tag
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Command for tab switching
+
+Due to the limited space on most displays, the application uses tabs to switch between various panels, such as the address book, events, and personal information panels.
+
+The tab switching mechanism is facilitated by [`TabUtil`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/ui/tab/TabUtil.java), which contains the list of all tabs relevant in the application. Tabs are represented by [`TabInfo`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/ui/tab/TabInfo.java), made up of an `Index` (which the user references in the `tab` command) and a [`TabType`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/ui/tab/TabType.java) (which defines the possible tabs in the application). Their relationship is shown below:
+
+![Structure of `TabUtil`](images/TabClassDiagram.png)
+
+#### Design considerations
+
+There are two ways to switch between tabs:
+* **Method 1:** Click on individual tabs in the tabs bar
+* **Method 2:** Use the `tab` command
+
+Consequently, the state of the selected tab needs to be shared between the two methods, so that the user can be correctly notified if they are already on a tab that they are trying to navigate to.
+
+> **Example:** If the user has navigated from the 1st tab to the 3rd using the tab bar before trying to navigate back to the 1st tab using `tab 1`, they should not be warned that they are already on the 1st tab. In other words, both methods should have their states in sync from the perspective of the user, so as not to induce unexpected behaviour.
+
+### Command for selecting
+
+The `select` feature allows user to select which contact's details to display on the person details panel.
+
+There is _selected person_ field in `AddressBook` that keep tracks of which person's details should be displayed.
+This field is initialised to null at the start when no person is selected yet.
+The `select` feature is facilitated through `SelectCommandParser` and `SelectCommand`.
+The `LogicManager` executes the `SelectCommand`, which communicates with the `ModelManager` and updates the _selected person_ field in `AddressBook`.
+
+The following sequence diagram illustrates the execution of a successful select command.
+Low-level details of the parsing of select command in logic is omitted as it has been described [above](#logic-component)
+
+![Sequence Diagram of successful `select`](images/SelectSequenceDiagram.png)
+
+Upon execution, the `selectedPerson` field of AddressBook would be updated, allowing the GUI to access it
+and display changes accordingly.
+
+#### Design considerations
+
+There are two ways to select a contact:
+* **Method 1:** Click on the contact in the current displayed contact list
+* **Method 2:** Use the `select` command
+
+Consequently, the state of the selected person needs to be shared between the two methods, so that the user can be correctly notified if they have already selected the contact that they are trying to access.
+> **Example:**
+> - If the user has selected index 1 by clicking on the contact, executing "select 1" should result in a warning that the contact is already selected.
+> - If the user has selected index 1 by using `select 1`, clicking on the same contact at index 1 should "deselect" contact.
+
+### Command for Favourite Contacts
+
+For improved User Experience, we want users to be able to easily look up contacts they frequently contact.
+This addresses the issue of convenience.
+
+The Favourite Command works by having the User entering a "fav" command and specify the index of that particular contact. The index will be displayed on the UI of the AddressBook.
+The Favourited Contact will have a Star Emoji displayed beside the Contact's name and will also be displayed under a "Favourite" List for easier convenience and lookup for the User.
+
+### Command for Unfavourite Contacts
+
+Following the Favourite Contacts Command, we want users to fully manage their favourite list. We added an Unfavourite Command to remove contacts they do not frequently contact.
+
+The Unfavourite Command works by having the User entering a "unfav" command and specify the index of that particular contact that is currently in the Favourite List. The index will be displayed on the UI of the AddressBook.
+The Unfavourited Contact will remove the Star Emoji displayed beside the Contact's name and remove the Contact from the Favourite List.
+
+### Command for Adding Events
+
+NeoBook implements an Event Calendar Interface for users to track any notable events. There are 2 types of Events that can be added by the Users. Firstly, a One Time event that occurs only once on the specified date and time.
+Secondly, recurring events that occur periodically e.g. Weekly Lectures, Daily Reminders etc. There are multiple recurrences which can be specified by the users: Daily, Weekly, Monthly and Yearly.
+Users have can choose to input these 4 different type of Recurring Events into NeoBook.
+
+The Add Event Command works by having the User entering the "addevent" command. The User will then specify the Description of the Event, Start Date and Time of the event,
+End Date and Time of the Event, followed by the Recurrence type, whether it is Daily, Weekly, Monthly, Yearly, or a One-Time Event. All are required fields except the Recurrence Field.
+If left unspecified, the Event will be added as a One-Time Event, the Success Message will prompt to the user, what type of Event will have be added to the Events Calendar UI of NeoBook.
+
+### Command for Editing Events
+
+The Edit Event Command allows users to modify any of the specific fields for an existing event in the NeoBook calendar. To use this command, the user will enter "editevent" followed by the index number that corresponds to the event they wish to modify.
+The user can then include multiple field prefix/desired-change arguments in the same command. The field prefixes are as follows: "d" for Description, "s" for Start Date, "e" for End Date, and "r" for Recurrence Type.
+After each field prefix, the user should enter the desired change they would like to make to the corresponding field. For example, to change the Description of an event with index number 1 to "Meeting with clients", the user would enter `editevent 1 d/Meeting with clients`.
+
+Once all the desired fields have been updated, the Success Message will prompt to the user that the event has been updated in the Events Calendar UI of NeoBook.
+It is important to note that the index number must be specified in order to edit an event, and at least one field prefix/desired-change argument must be included in the command. If an incorrect index number is entered or if a field prefix is misspelled or not recognized, the command will not work and an error message will be displayed.
+
+### Command for Tagging People to Events
+
+The Tag Person to Event command allows users to tag a contact in their NeoBook to an event. Not only does it tag the person to the event, but any changes to the person will also dynamically change the information of the tagged person to the event. Currently, due to how the storage is set up, there is no way to have the same Person object be linked properly to the event. This is because on startup, NeoBook recreates a new Person object in its addressbook while each event essentially just creates a new Person object that it is tagged to. However, it would not make sense if the user had to manually update the tag if anything within the contact changed. So to dynamically pair the Person object being tagged to the event and the Person object in the Contacts list, NeoBook checks through all events on any EditPersonCommand and to look for any event where the person is tagged to. Then it edits those Person objects to its new edited version.
+
+In the future, a more proper implementation would include more coupling with storage. The flow on startup would be:
+
+1. All Person objects in NeoBook's contact list is loaded up 
+
+2. All events in NeoBook are loaded up
+
+   1. While loading the events, make a reference to the appropriate Person object within the contact list within the taggedPerson set in events.
+
+This would make it such that we would not have to check through every single contact in NeoBook for edits as any changes to the Person object would be reflected in events.
+
+Alternatively, you could set up an Observable<Person> such that we subscribe to any changes for the certain person that NeoBook has tagged to an event and appropriately make any changes.
+
+Regardless, it is important to note that the implementation will likely have to change depending on the direction of the project.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -219,9 +373,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
-**Aspect: How undo & redo executes:**
+**Aspect: How undo & redo executes**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
@@ -232,12 +386,47 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+### \[Proposed\] Exporting User information
 
-### \[Proposed\] Data archiving
+#### Proposed Implementation
 
-_{Explain here how the data archiving feature will be implemented}_
+Using the User model already implemented into NeoBook. We can create a string that a user can copy to send to their friends, such that when they run that string, the user's contact will be added into their NeoBook. The string can then be easily copy-pasted by displaying it as the CommandResult of the ExportCommand.
 
+The following sequence diagram shows how the undo operation works:
+
+![ExportUserSequence](images/ExportUserSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The return result of exportData(ReadOnlyObjectWrapper<User>) will be the String that the user can copy and easily send to a friend.
+
+For example:
+User has
+- Name: John
+- Address: Serangoon Central
+- Tags: Friend, Soccer Fanatic
+- Gender: Male
+
+The return result of exportData(ReadOnlyObjectWrapper<User>) will be:
+<br>
+`add n/John a/Serangoon Central t/Friend t/Soccer Fanatic g/Male`
+
+Then this String will be displayed as a CommandResult on the UI for the User to easily copy.
+
+#### Design considerations
+
+**Aspect: How the user can send the information to another user:**
+
+* **Alternative 1 (current choice):** Copy and paste.
+    * Pros: Easy to implement.
+    * Cons: May be too analog.
+    * Extra: Make the result be auto copied to the user's clipboard upon click.
+
+* **Alternative 2:** Email.
+    * Pros: Easier to format and for the user to use in a more professional setting. The user can also specify which contact he is sending the exported information to and NeoBook can create a draft email to the email of the contact specified.
+    * Cons: Difficult to implement.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -253,46 +442,61 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Requirements**
 
-### Product scope
+### Product scope (v1.1)
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* NUS students who want to connect with seniors/other students with common academic paths
+* Freshmen looking to get advice from their seniors in the same course or taken the same modules
+* Students who want to get internship advice from others who have worked in that company
+* Students who want to know more about their friends and seniors' schedules to be able to find time to connect with them
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Being able to find contacts with similar traits and being able to view their schedule to find an appropriate time to connect with them.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                                 | I want to …​                                                                                                           | So that I can…​                                |
+|----------|---------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
+| `* * *`  | Student who often needs help with school work           | I want to be to find people to get help by looking for people who have taken the same mods as me                       | Get help as soon as possible                   |
+| `* * *`  | Student who often contacts external organisations       | Segregate my contacts into different categories (e.g. friends, family, t-shirt suppliers, bus drivers , sponsors etc.) | Organise my contacts effectively               |
+| `* * *`  | Student sourcing for internships                        | I am able to see who took part in what internship.                                                                     | To find out more about their interview process |
+| `* * *`  | Student who wants to go for a career fair with somebody | I want to make sure I am free at that time.                                                                            | So that I can go to the career fair with them  |
+| `* *`    | Student who made a new connection                       | I want to be able to add a new contact                                                                                 | So that I can save the person’s details        |
+| `*`      | Student who is in to keeping everything in one place    | I like being able to keep everything I need to see in one place                                                        | So that I dont forget anything                 |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `NeoBook` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2.  User enters person details and submits the command
+3.  NeoBook saves the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. NeoBook is unable to save the person.
+
+    * 2a1. NeoBook shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  NeoBook shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  NeoBook deletes the person
 
     Use case ends.
 
@@ -304,24 +508,120 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NeoBook shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Editing a person**
+
+**MSS**
+
+1.  User enters a command to edit an existing person by specifying their index number and new details
+2.  NeoBook updates the person's details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command or incorrect details.
+
+    * 1a1. NeoBook shows an error message.
+
+      Use case ends.
+
+* 1b. User enters an invalid index number.
+
+    * 1b1. NeoBook shows an error message.
+
+      Use case ends.
+
+* 2a. NeoBook is unable to update the person's details.
+
+    * 2a1. NeoBook shows an error message.
+
+      Use case ends.
+
+**Use case: List all persons**
+
+**MSS**
+
+1.  User enters a command to list all persons
+2.  NeoBook shows a list of all persons with their details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command.
+
+    * 1a1. NeoBook shows an error message.
+
+      Use case ends.
+
+**Use case: Find persons by specified fields**
+
+**MSS**
+
+1.  User enters a command to search for persons by specifying one or more keywords for different fields
+2.  NeoBook searches for persons who contain any of the given keywords for the fields specified
+3.  NeoBook returns a list of persons matching the search criteria
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command or incorrect details.
+
+    * 1a1. NeoBook shows an error message.
+
+      Use case ends.
+
+* 3a. No persons are found matching the search criteria.
+
+    * 3a1. NeoBook shows an empty list message.
+
+      Use case ends.
+
+**Use case: Clearing all entries**
+
+**MSS**
+
+1.  User enters a command to clear all entries
+2.  NeoBook clears all entries from the address book
+3.  NeoBook shows a success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command or incorrect details.
+
+    * 1a1. NeoBook shows an error message.
+
+      Use case ends.
+
+* 2a. NeoBook is unable to clear all entries.
+
+    * 2a1. NeoBook shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be easy to use and navigate, even for users who are not familiar with the NUS student community. This could include features such as clear labeling, intuitive interfaces, and helpful error messages.
+5. Should be accessible to users with disabilities, including those who use screen readers or other assistive technologies. The user interface should be highly readable for all users.
+6. Should provide fast response times and minimal resource usage, even when running on lower-end hardware.
+7. Should be able to handle errors and exceptions gracefully, without crashing or losing user data. This could include features such as error logging, fault tolerance mechanisms, and data backup options.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **SuperField**: A field that can store multiple values.
+* **Field**: A field for a contact.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -334,6 +634,8 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+## General
+
 ### Launch and shutdown
 
 1. Initial launch
@@ -342,36 +644,439 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+## Address-book related
+
+### Adding a person
+1. Adding a person while all persons/no persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
+   
+   2. Test Cases
+      1. Test case 1: `add n/Pierce a/Serangoon Central t/Friend t/Genius` 
+         - Testing for: Command successful execution
+         - Expected: A contact is added to the contact list with Pierce as its name, Serangoon Central as its address, and Friend and Genius as its tags.
+      
+      2. Test case 2: `add p/91238917 a/Serangoon Central` 
+         - Testing for: No name specified
+         - Expected: No contact is added. Error details show in the status message.
+      3. Test case 3: `add n/@`, `add n/pierce p/words`, `add n/Stanley e/notanemail`, ...
+         - Testing for: Invalid fields
+         - Expected: Same as test case 2
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test Cases
+      1. Test case 1: `delete 1`
+         - Testing for: Command successful execution
+         - Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      2. Test case 2: `delete 0`
+         - Testing for: Erroneous index results in command failure
+         - Expected: No person is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+      3. Other test cases: `delete`, `delete x`(where x is larger than the list size), `delete -1` 
+         - Testing for: Erroneous index results in command failure
+         - Expected: Similar to test case 2.
 
-1. _{ more test cases …​ }_
+### Editing data of a contact
+1. Edit data of contact.
+
+    1. Prerequisites: Non-empty address-book. Navigate to the `Address book` tab using `tab 1`
+   
+    2. Test Cases
+        1. Test case 1: `edit N n/Pierce`, `edit N a/Serangoon Central`, ... where N is a number between 1 and the number of contacts in the list
+            - Testing for: Successful command execution
+            - Expected: Field of first contact updates to that specified in the command
+        2. Test case 2: `edit 1 n/@#`, `edit 1 e/123`, ...
+            - Testing for: Invalid fields results in command failure
+            - Expected: Contacts do not update. Error details shown in the status message.
+        3. Test case 3: `edit 1 x n/Pierce`, ... where x is anything that does not have a field specifier and is not a number between 1 and the number of contacts in the list
+            - Testing for: Unspecified field results in command failure
+            - Expected: Contacts do not update. Error details shown in the status message.
+        4. Test case 4: `edit M n/Pierce`, ... where M is a number not between 1 and the number of contacts in the list
+            - Testing for: Unspecified field results in command failure
+            - Expected: Contacts do not update. Error details shown in the status message.
+        5. Test case 5: `edit`
+            - Testing for: No fields specified results in command failure
+            - Expected: User does not update. Error details shown in the status message.
+
+### Finding a person
+1. Finding a person while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
+   
+   2. Test Cases
+      1. Test case 1: `find n/Pi`
+         - Testing for: Command successful execution 
+         - Expected: Shows all contacts with `Pi` in their names show up in the contacts list.
+      2. Test case 2: `find n/Stan n/Pierce`
+         - Testing for: Command successful execution
+         - Expected: Shows all contacts with `Stan` **or** `Pierce` in their names will show up in the contacts list
+      3. Test case 3: `find n/Pie m/Comp`
+         - Testing for: Command successful execution
+         - Expected: Shows all contacts with `Pie` in their name field **and** have `Comp` in their major field.
+      4. Test case 4: `find`
+         - Testing for: No fields specified results in command failure
+         - Expected: List does not update. Error details shown in the status message.
+      5. Test case 5: `find 1 n/Pi`
+         - Testing for: Index specified results in command failure
+         - Expected: List does not update. Error details shown in the status message.
+
+
+2. Find a contact when there are no contacts
+
+   1. Prerequisites: Empty addressbook. Navigate to the `Address book` tab using `tab 1`
+
+   2. Test Cases
+      1. Test case 1: `find n/pierce`
+          - Testing for: Successful command execution
+          - Expected: Command executes, but list does not change as there are no contacts.
+      2. Test case 2: `find 1 n/Pierce`
+          - Testing for: Index specified results in command failure
+          - Expected: List does not update. Error details shown in the status message.
+
+### Favouriting/Unfavouriting a contact
+1. Favouriting a contact
+
+   1. Prerequisites: Non-empty address book with only 1 contact. Navigate to the `Address book` tab using `tab 1`
+
+   2. Test Cases
+      1. Test case 1: `fav 1`
+         - Testing for: Successful Command Execution
+         - Expected: Contact at index 1 on the list will be favourited and a Star emoji will appear on their Person Card and their Person Card will appear in a Favourite List.
+      2. Test case 2: `fav 2`
+          - Testing for: Index Specified Results in Command Failure
+          - Expected: No changes to list and Favourite Contact List. Error details shown in the status message.
+      3. Test case 3: `fav 1` when Contact at Index 1 is already favourited 
+          - Testing for: Successful Command Execution
+          - Expected: Contact at index 1 on the list will remain favourited and will pass as Successful Command Execution. Same result as Test Case 1.
+
+
+2. Unfavouriting a contact
+
+   1. Prerequisites: Non-empty address book with only 1 contact. Navigate to the `Address book` tab using `tab 1`
+   
+   2. Test Cases
+      1. Test case 1: `unfav 1` when Contact at Index 1 is already favourited
+          - Testing for: Successful Command Execution
+          - Expected: Contact at index 1 on the list will be unfavourited and the Star emoji will be removed on their Person Card and their Person Card will disappear in the Favourite List.
+      2. Test case 2: `unfav 2`
+          - Testing for: Index Specified Results in Command Failure
+          - Expected: No changes to list and Favourite Contact List. Error details shown in the status message.
+      3. Test case 3: `unfav 1` when Contact at Index 1 is already unfavourited
+          - Testing for: Successful Command Execution
+          - Expected: Contact at index 1 on the list will remain unfavourited and will pass as Successful Command Execution. Same result as Test Case 1.
+      
+### Selecting a contact
+1. Select a contact while no other contact has been selected
+
+   1. Prerequisites: Non-empty address book with at only 1 contact. Navigate to the `Address book` tab using `tab 1`
+
+   2. Test Cases
+      1. Test case 1: `select 1`
+         - Testing for: Successful command execution 
+         - Expected: Contact at index 1 on the list is highlighted and
+          corresponding details of the contact is displayed on the details panel.
+      2. Test case 2: `select 2`
+          - Testing for: Index specified results in command failure
+          - Expected: No changes to list and details panel. Error details shown in the status message.
+
+
+2. Select a contact while another contact is had already been selected
+
+   1. Prerequisites: Non-empty address book with at least 2 contact. Navigate to the `Address book` tab using `tab 1` and
+   select contact at index 1 using `select 1`.
+   
+   2. Test Cases
+      1. Test case 1: `select 1`
+         - Testing for: Successful command execution 
+         - Expected: Command executes, but no changes because same index selected
+      2. Test case 2: `select 2`
+         - Testing for: Successful command execution
+         - Expected: Contact at index 1 is no longer highlighted, contact at index 2 is highlighted and details on panel changes to that of contact at index 2
+         
+3. Select an invalid index
+
+   1. Prerequisites: Empty addressbook. Navigate to the `Address book` tab using `tab 1`.
+   
+   2. Test Cases:
+      1. Test case 1: `select 1`
+         - Testing for: Index specified results in command failure
+         - Expected: No changes to list and details panel. Error details shown in the status message.
+         
+
+## Events-related
+
+### Adding an event
+1. Adding an Event to the Events Tab.
+
+   1. Prerequisites: Navigate to the Events Tab using `tab 2` or clicking it.
+   
+   2. Test Cases
+      1. Test Case 1 `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
+         - Testing for: Command Successful Execution
+         - Expected: A Weekly Event is added to the Events Tab.
+      2. Test Case 2 `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600`
+         - Testing for: Command Successful Execution
+         - Expected: An One-Time Event is added to the Events Tab.
+      3. Test Case 3 `addevent d/CS2103T Lecture e/2023-03-10 1600 r/Weekly`
+         - Testing for: No Start Date and Time Specified
+         - Expected: No Event is added. Error details show in the status message.
+      4. Test Case 4 `addevent d/CS2103T Lecture s/2023-03-10 1400 r/Weekly`
+         - Testing for: No End Date and Time Specified
+         - Expected: No Event is added. Error details show in the status message.
+      5. Test Case 5 `addevent s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
+         - Testing for: No Description Specified
+         - Expected: No Event is added. Error details show in the status message.
+      6. Test Case 6 `addevent d/CS2103T Lecture s/2023-03-10 1800 e/2023-03-10 1600 r/Weekly`
+         - Testing for: Start Date Time is after End Date Time
+         - Expected: No Event is added. Error details show in the status message.
+
+### Deleting an event
+
+1. Deleting an Event while all Events are being shown.
+
+   1. Prerequisites: Navigate to the Events Tab using `tab 2` or clicking it.
+   
+   2. Test Cases
+      1. Test Case 1: `delevent 1`
+         - Testing for: Command successful execution
+         - Expected: Event at Index 1 will be deleted from the list. Details of the event will be shown in the status message. Existing Events Index will be updated.
+      2. Test Case 2: `delevent 0`
+         - Testing for: Erroneous index results in command failure
+         - Expected: No event is deleted. Error details shown in the status message.
+      3. Other test cases: `delevent`, `delevent x` (where x is larger than the list size), `delevent -1`
+          - Testing for: Erroneous index results in command failure
+          - Expected: Similar to test case 2
+
+### Editing an event
+1. Edit data of Event.
+
+    1. Prerequisites: Non-empty Events Tab. Navigate to the `Event` tab using `tab 2`
+    
+    2. Test Cases
+        1. Test case 1: `editevent N d/CS2103T Lecture`, `editevent N r/Weekly`, ... where N is a number between 1 and the number of Event in the list
+            - Testing for: Successful command execution
+            - Expected: Field of first Event updates to that specified in the command
+        2. Test case 2: `editevent 1 x d/CS2103T Lecture`, ... where x is anything that does not have a field specifier.
+            - Testing for: Unspecified field results in command failure
+            - Expected: Events do not update. Error details shown in the status message.
+        3. Test case 3: `editevent M d/CS2103T Lecture`, ... where M is a number not between 1 and the number of Events in the list
+             - Testing for: Unspecified field results in command failure
+             - Expected: Events do not update. Error details shown in the status message.
+        4. Test case 4: `editevent`
+             - Testing for: No fields specified results in command failure
+             - Expected: Event does not update. Error details shown in the status message.
+
+### Tagging a contact to an event
+1. Tagging a valid contact to an event
+
+   1. Prerequisites: Non-empty events list with at least 1 existing event.
+   Non-empty address book with a contact named `John`.
+   Navigate to Events tab using `tab 2`.
+
+   2. Test Cases:
+      1. Test case 1: `tagpersonevent et/1 pt/John`
+         - Testing for: Successful command execution
+         - Expected: Attendees field appears with John listed.
+
+2. Tagging an invalid contact to an event
+
+    1. Prerequisites: Non-empty events list with at least 1 existing event.
+       Empty address book.
+       Navigate to Events tab using `tab 2`.
+
+    2. Test Cases:
+        1. Test case 1: `tagpersonevent et/1 pt/John`
+            - Testing for: Name specified results in command failure.
+            - Expected: Since there is no contact with the name `John`, no attendees with be attached to the event.
+              Error details shown in the status message.
+
+### Untagging a contact to an event
+
+1. Untagging a tagged contact
+
+   1. Prerequisites: Non-empty events list with the event at index 1 with only contact `John` tagged to it. Navigate to Events tab using `tab 2`.
+
+   2. Test Cases:
+      - Test case 1: `untagpersonevent et/1 pt/John`
+        - Testing for: Successful command execution
+        - Expected: John is untagged and attendees field disappears on event at index 1.
+
+2. Untagging an untagged contact
+
+    1. Prerequisites: Non-empty events list with the event at index 1 with only contact `John` tagged to it.
+   Non-empty address book with only 2 contacts, `John` and `Mary`.
+   Navigate to Events tab using `tab 2`.
+
+    2. Test Cases:
+        - Test case 1: `untagpersonevent et/1 pt/Mary`
+            - Testing for: Successful command execution
+            - Expected: Although command is successful, since Mary was not tagged to the event to begin with, there will be no changes.
+            Warning message will appear in status to inform user that Mary is already untagged.
+       - Test case 2: `untagpersonevent et/1 pt/Robert`
+           - Testing for: Name specified results in command failure.
+           - Expected: Since there is no contact with the name `Robert`, there will be no changes made.
+             Error details shown in the status message to inform user that the contact does not exist.
+
+## User-related
+### Editing data of User
+1. Edit data of User specified in Me tab.
+
+    1. Prerequisites: Navigate to Me tab using `tab 3`
+
+    2. Test Cases
+       1. Test case 1: `edituser n/Pierce`, `edituser a/Serangoon Central`, ...
+           - Testing for: Successful command execution
+           - Expected: Field of user updates to that specified in the command
+       2. Test case 2: `edituser n/@#`, `edituser e/123`, ...
+          - Testing for: Invalid fields results in command failure
+          - Expected: User does not update. Error details shown in the status message.
+       3. Test case 3: `edituser x`, `edituser x n/Pierce`, ... where x is anything that does not have a field specifier.
+          - Testing for: Unspecified field results in command failure
+          - Expected: User does not update. Error details shown in the status message.
+       4. Test case 4: `edituser`
+          - Testing for: No fields specified results in command failure
+          - Expected: User does not update. Error details shown in the status message.
+
+## UI-related
+### Light/Dark mode
+1. Set UI to light mode from dark mode
+
+    1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
+
+    2. Test Cases
+       1. Test case 1: `light`
+          - Testing for: Successful command execution
+          - Expected: UI updates to light mode
+
+2. Set UI to light mode from light mode
+
+    1. Prerequisites: UI currently in light mode (can be switched using the `light` command)
+
+    2. Test Cases
+        1. Test case 1: `light`
+            - Testing for: Successful command execution
+            - Expected: UI stays in light mode
+
+3. Set UI to dark mode from light mode
+
+    1. Prerequisites: UI currently in light mode (can be switched using the `light` command)
+
+    2. Test Cases
+        1. Test case 1: `dark`
+            - Testing for: Successful command execution
+            - Expected: UI updates to dark mode
+
+4. Set UI to dark mode from dark mode
+
+   1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
+
+   2. Test Cases
+       1. Test case 1: `dark`
+           - Testing for: Successful command execution
+           - Expected: UI stays in dark mode
+
+### Moving to another tab in NeoBook
+1. Changing to a different tab
+
+   1. Prerequisites: NeoBook currently on address book tab.
+   
+   2. Test Cases
+      1. Test case 1: `tab 2`
+         - Testing for: Successful command execution
+         - Expected: Switch to Events tab
+      2. Test case 2: `tab 3`
+       - Testing for: Successful command execution
+       - Expected: Switch to Me tab
+       
+2. Changing to same tab
+
+   1. Prerequisites: NeoBook currently on address book tab.
+   
+   2. Test Cases
+      1. Test case 1: `tab 1`
+         - Testing for: Successful command execution
+         - Expected: No changes made because Neobook is already on desired tab. Warning message appears in
+         status to remind user that he/she is already on the tab.
+3. Changing to invalid tab
+
+   1. Prerequisites: Neobook currently on any of the 3 tabs.
+   
+   2. Test Cases
+      1. Test case 1: `tab 4`
+      - Testing for: Index specified results in command failure
+      - Expected: Remains on current tab because invalid index. Error details shown in the status message.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files (Can be simulated by edited `addressbook.json` or `userdata.json` to have erroneous values)
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+- When this happens, just delete the files and start on a fresh file, or you can try to salvage it by trying to ascertain the bug.
 
-1. _{ more test cases …​ }_
+## **Appendix: Effort**
+
+To give evaluators an estimate on the effort put into NeoBook, our team has put together a list of difficulties and challenges faced, effort required, and achievements that should be taken into account when evaluating NeoBook, especially when compared to AB3.
+
+For starters, below are the commands that we have added:
+1. `Light`/`Dark` Command
+2. `Favorite`/`Unfavorite` Command
+3. `Select` Command
+4. `EditUser` Command
+5. `Tab` Command
+6. `AddEvent` Command
+7. `EditEvent` Command
+8. `DeleteEvent` Command
+9. `TagEvent` Command
+
+All 8 commands have their own respectively complexities, of note are commands 4-8, which allow you to interact with an entirely new section of NeoBook added in, known as Events. We estimate that the effort required to add just commands 4-8 alone were equivalent to the effort required to design the initial commands for AB3 (i.e. add, find, delete, e.t.c.). The tag event command especially is extremely complex. It dynamically links a Person object to an Event such that any changes to the Person would also update the Person in the Event.
+
+Moving on, below are the commands that we enhanced with their enhancements abbreviated
+1) `Add` Command
+   1) Added compatibility with the new fields of our contacts
+2) `Edit` Command
+   1) Added compatibility with the new fields of our contacts
+   2) Changed behavior to deal with SuperFields (also known as FieldGroups in the User Guide)
+3) `Find` Command
+   1) Added ability to search based on multiple fields
+4) `Help` Command
+   1) Added a more comprehensive list of commands for users to refer to.
+
+All commands above had their behavior either enhanced or changed to suit the new behavior of NeoBook.
+
+Up next, we would like to speak about the Events system in NeoBook. There were many challenges dealing with Events. One such problem was the decision of the GUI. Initially, we used a much more visually appealing version with CalendarFX, a JavaFX library for calendars. However, after realizing how buggy it was, we moved to a more traditional events list rather than a calendar. The implementation of Events, as mentioned above, was in terms of effort, almost at the same level of the entire AB3 on its own. This is because we had to implement our own persistent storage for events, build a new GUI window for it and also create commands for them. 
+
+Next, we would like to speak about the changes we made to the addressbook in NeoBook. To put it simply, we researched and added in new fields that NUS students would love to have in their addressbook. Fields that were added are:
+- Gender
+- Race
+- Major
+- Faculty
+- And much more!
+
+Along with these new fields, we had to change all our contact-related commands (such as AddCommand and EditCommand) to account for these new fields. Moreover, we abstracted common logic between all these fields into a more generic `Fields` class for use of polymorphism. There is another class of fields that instead holds multiple values, known as `SuperField` (renamed to `FieldGroup` in UG for non-technical readers). These `SuperFields` have different behavior in that they store multiple values, so commands such as the `Edit` and `Add` commands will interact differently for these fields.
+
+We also created our own persistent storage for the Events and the User systems. The events are currently stored in the User object, but we believe we have made it trivial to expand the functionality such that events can also be stored for Contacts in the NeoBook.
+
+We believe that every decision we made was also to improve the maintainability of this project by following good software engineering principles so that this project can be easily built upon.
+
+
+## **Appendix: Planned enhancements**
+
+1. For commands that take an index in the preamble, the current error message when integers of 0 or less is `Invalid command format!` followed by the usage message of the command, which is too general. We plan to change the error message to reference the incorrect index instead: `The provided index should be greater than 0`.
+2. For commands that take prefixes, providing an invalid prefix after a valid one results in an error message regarding the constraints of the valid prefix, which could be confusing. We plan to change the error message to point out the invalid prefix and show the command usage.
+3. Inputs in the app currently have inconsistent character handling for languages other than English. We plan to unify this handling behaviour throughout the app.
+4. The user is currently able to fill nonsensical information into certain fields (e.g., `Psychology` as Major with `Computing` as Faculty, or `McSpicy` as Gender). We plan to use readily available information to build a series of checks that would warn the user for such discrepancies.
+5. The `Tags` and `Favourite` fields for the user currently exist but are not reflected in the `Me` tab as we felt it to be irrelevant from the perspective of the user. However, they can be useful with the introduction of contact import and export features, hence we plan to build a section for the user to customise such information when they export their `Me` page for others to import as a contact.
+6. Events happening on the same day are currently ordered by their index. We plan to adopt a chronological order instead as it is more intuitive to the user.
+7. The command line currently requires users to know the command formats exactly, which steepens the learning curve and may slow down some users. We plan to add fuzzy command recognition and autocomplete features for a better user experience.

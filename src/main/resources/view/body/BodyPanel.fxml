@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TabPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="10" bottom="10" left="10" right="10" />
+    </padding>
+    <TabPane fx:id="bodyTabs" styleClass="tab-pane"
+             tabClosingPolicy="UNAVAILABLE" side="BOTTOM" />
+</StackPane>

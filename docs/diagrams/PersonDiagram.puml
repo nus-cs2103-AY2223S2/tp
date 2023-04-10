@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+'scale 450 width
+scale 800 height
+
+Class HiddenOutside #FFFFFF
+HiddenOutside .down.> Person
+
+
+Package Person {
+    Class Person
+    Class Address
+    Class Email
+    Class Name
+    Class Phone
+    Class Tag
+    Class CommunicationChannel
+    Class Faculty
+    Class Favorite
+    Class Gender
+    Class Major
+    Class Modules
+    Class Race
+    Class Tags
+    Class NusMod
+
+    Class "{abstract}\nField" as Field
+    Class "{abstract}\nSuperField" as SuperField
+
+}
+
+Person *---> Name
+Person *--> Phone
+Person *--> Email
+Person *--> Address
+Person *--> Gender
+Person *--> Race
+Person *--> CommunicationChannel
+Person *--> Faculty
+Person *--> Favorite
+Person *--> Major
+Person *--> Modules
+Person *--> Tags
+Modules *--> "*" NusMod
+Tags *--> "*" Tag
+
+Name --|> Field
+Email --|> Field
+Phone --|> Field
+Address --|> Field
+Gender --|> Field
+CommunicationChannel --|> Field
+Faculty --|>Field
+Favorite --|> Field
+Major --|> Field
+NusMod --|> Field
+Race --|> Field
+Tag --|> Field
+
+Modules --up-|> SuperField
+Tags --up-|> SuperField
+
+'Formatting
+Name -[hidden]right- Phone
+Phone -[hidden]right- Email
+Email -[hidden]right- Address
+Address -[hidden]right- Gender
+Gender -[hidden]right- Race
+Race -[hidden]right- CommunicationChannel
+CommunicationChannel -[hidden]right- Faculty
+Faculty -[hidden]right- Favorite
+Favorite -[hidden]right- Major
+Major -[hidden]right- Modules
+Modules -[hidden]right- Tags
+
+@enduml

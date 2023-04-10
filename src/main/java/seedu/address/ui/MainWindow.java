@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -16,6 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.body.BodyPanel;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -24,31 +27,42 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String THEME_DARK = "theme-dark";
+    private static final String THEME_LIGHT = "theme-light";
+    private static final String SELECT_DARK = "Dark mode";
+    private static final String SELECT_LIGHT = "Light mode";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private BodyPanel bodyPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private boolean isLightMode;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private MenuItem themeToggleItem;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane bodyPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private VBox mainContainer;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -62,6 +76,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        toggleTheme(logic.getGuiSettings().isLightMode(), false);
 
         setAccelerators();
 
@@ -110,11 +125,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        bodyPanel = new BodyPanel(logic, resultDisplay);
+        bodyPanelPlaceholder.getChildren().add(bodyPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -133,6 +148,20 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    /**
+     * Changes the theme of NeoBook to dark mode.
+     */
+    public void handleDarkMode() {
+        toggleTheme(false, true);
+    }
+
+    /**
+     * Changes the theme of NeoBook to light mode.
+     */
+    public void handleLightMode() {
+        toggleTheme(true, true);
     }
 
     /**
@@ -157,14 +186,29 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), isLightMode);
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    @FXML
+    private void handleThemeToggle() {
+        toggleTheme(!isLightMode);
+    }
+
+    private void toggleTheme(boolean isLightMode) {
+        toggleTheme(isLightMode, true);
+    }
+
+    private void toggleTheme(boolean isLightMode, boolean isLazy) {
+        if (isLazy && this.isLightMode == isLightMode) {
+            return;
+        }
+        this.isLightMode = isLightMode;
+        mainContainer.getStyleClass().add(isLightMode ? THEME_LIGHT : THEME_DARK);
+        mainContainer.getStyleClass().remove(isLightMode ? THEME_DARK : THEME_LIGHT);
+        themeToggleItem.setText(isLightMode ? SELECT_DARK : SELECT_LIGHT);
     }
 
     /**
@@ -173,6 +217,12 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        /* Currently, it is impractical to determine the nature of the command
+         * and update the UI accordingly, so it is reset instead to reduce the chance of bugs.
+         */
+        logic.setSelectedPerson(null);
+        bodyPanel.getAddressPanel().getPersonListPanel().scrollToTop();
+
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -180,6 +230,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isLightMode()) {
+                handleLightMode();
+            }
+
+            if (commandResult.isDarkMode()) {
+                handleDarkMode();
             }
 
             if (commandResult.isExit()) {

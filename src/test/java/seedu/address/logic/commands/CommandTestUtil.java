@@ -3,22 +3,34 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TO_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_TO_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRENCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonContainsKeywordsPredicate;
+import seedu.address.model.person.PredicateKey;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -36,6 +48,18 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_GENDER_AMY = "female";
+    public static final String VALID_GENDER_BOB = "dns";
+    public static final String VALID_MAJOR_AMY = "Computer Science";
+    public static final String VALID_MAJOR_BOB = "Chemistry";
+    public static final String VALID_RACE_AMY = "Chinese";
+    public static final String VALID_RACE_BOB = "Indian";
+    public static final String VALID_COMMS_AMY = "Telegram";
+    public static final String VALID_COMMS_BOB = "Whatsapp";
+    public static final String VALID_FACULTY_BOB = "Computing";
+    public static final String VALID_FACULTY_AMY = "Science";
+    public static final String VALID_MODULE_BOB = "CS2101";
+    public static final String VALID_MODULE_AMY = "CS2103T";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -47,23 +71,70 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
+    public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
+    public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String MAJOR_DESC_AMY = " " + PREFIX_MAJOR + VALID_MAJOR_AMY;
+    public static final String MAJOR_DESC_BOB = " " + PREFIX_MAJOR + VALID_MAJOR_BOB;
+    public static final String TAGS_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String TAGS_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_HUSBAND
+            + " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String RACE_DESC_AMY = " " + PREFIX_RACE + VALID_RACE_AMY;
+    public static final String RACE_DESC_BOB = " " + PREFIX_RACE + VALID_RACE_BOB;
+    public static final String COMMS_DESC_AMY = " " + PREFIX_COMMS + VALID_COMMS_AMY;
+    public static final String COMMS_DESC_BOB = " " + PREFIX_COMMS + VALID_COMMS_BOB;
+    public static final String FACULTY_DESC_AMY = " " + PREFIX_FACULTY + VALID_FACULTY_AMY;
+    public static final String FACULTY_DESC_BOB = " " + PREFIX_FACULTY + VALID_FACULTY_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String VALID_DESCRIPTION_1 = "Hello world!";
+    public static final String VALID_DESCRIPTION_2 = "Goodbye world!";
+    public static final String VALID_START_DATETIME_1 = "2023-01-01 0000";
+    public static final String VALID_START_DATETIME_2 = "2077-07-07 0707";
+    public static final String VALID_END_DATETIME_1 = "2023-01-01 0001";
+    public static final String VALID_END_DATETIME_2 = "2088-08-08 0808";
+    public static final String VALID_RECURRENCE_1 = "daily";
+    public static final String VALID_RECURRENCE_2 = "yearly";
+
+    public static final String DESCRIPTION_DESC_1 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_1;
+    public static final String DESCRIPTION_DESC_2 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_2;
+    public static final String START_DATETIME_DESC_1 = " " + PREFIX_START_DATE_TIME + VALID_START_DATETIME_1;
+    public static final String START_DATETIME_DESC_2 = " " + PREFIX_START_DATE_TIME + VALID_START_DATETIME_2;
+    public static final String END_DATETIME_DESC_1 = " " + PREFIX_END_DATE_TIME + VALID_END_DATETIME_1;
+    public static final String END_DATETIME_DESC_2 = " " + PREFIX_END_DATE_TIME + VALID_END_DATETIME_2;
+    public static final String RECURRENCE_DESC_1 = " " + PREFIX_RECURRENCE + VALID_RECURRENCE_1;
+    public static final String RECURRENCE_DESC_2 = " " + PREFIX_RECURRENCE + VALID_RECURRENCE_2;
+    public static final String PERSON_TAG_DESC_1 = " " + PREFIX_PERSON_TO_TAG + VALID_NAME_AMY;
+    public static final String PERSON_TAG_DESC_2 = " " + PREFIX_PERSON_TO_TAG + VALID_NAME_BOB;
+    public static final String EVENT_TAG_DESC_1 = " " + PREFIX_EVENT_TO_TAG + "1";
+    public static final String EVENT_TAG_DESC_2 = " " + PREFIX_EVENT_TO_TAG + "2";
+    // blank description not allowed
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " \n\t";
+    // forward slash not allowed
+    public static final String INVALID_START_DATETIME_DESC = " " + PREFIX_START_DATE_TIME + "2023/01/01 0000";
+    // colon not allowed
+    public static final String INVALID_END_DATETIME_DESC = " " + PREFIX_END_DATE_TIME + "2023-01-01 00:00";
+    // "hourly" is not a valid interval
+    public static final String INVALID_RECURRENCE_DESC = " " + PREFIX_RECURRENCE + "hourly";
+    // '&' not allowed in names
+    public static final String INVALID_PERSON_TAG_DESC = " " + PREFIX_PERSON_TO_TAG + "James&";
+    // non-integers not allowed
+    public static final String INVALID_EVENT_TAG_DESC = " " + PREFIX_EVENT_TO_TAG + "a";
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final PersonDescriptor DESC_AMY;
+    public static final PersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_FRIEND).withGender(VALID_GENDER_AMY).withMajor(VALID_MAJOR_AMY)
+                .withRace(VALID_RACE_AMY).withComms(VALID_COMMS_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
@@ -119,8 +190,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitName = person.getName().value.split("\\s+");
+        model.updateFilteredPersonList(new PersonContainsKeywordsPredicate().withField(PredicateKey.NAME,
+                List.of(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

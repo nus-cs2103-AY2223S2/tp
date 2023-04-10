@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final ReadOnlyObjectWrapper<Person> observableSelectedPerson = new ReadOnlyObjectWrapper<>(null);
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -53,7 +56,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setPersons(newData.getData());
     }
 
     //// person-level operations
@@ -93,8 +96,29 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// util methods
+    /**
+     * Finds the person with given {@code name}.
+     */
+    public Person getPersonWithName(String name) {
+        return this.persons.getPersonWithName(name);
+    }
 
+    /**
+     * Finds the person with given {@code name}.
+     */
+    public boolean hasPersonWithName(String name) {
+        return this.persons.hasPersonWithName(name);
+    }
+
+    public ReadOnlyObjectProperty<Person> getSelectedPerson() {
+        return observableSelectedPerson.getReadOnlyProperty();
+    }
+
+    public void setSelectedPerson(Person person) {
+        observableSelectedPerson.set(person);
+    }
+
+    //// util methods
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
@@ -102,7 +126,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public ObservableList<Person> getData() {
         return persons.asUnmodifiableObservableList();
     }
 

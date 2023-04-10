@@ -1,14 +1,19 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
-import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CommunicationChannel;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Faculty;
+import seedu.address.model.person.fields.Gender;
+import seedu.address.model.person.fields.Major;
+import seedu.address.model.person.fields.Modules;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.Tags;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -20,33 +25,58 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_GENDER = "Male";
+    public static final String DEFAULT_MAJOR = "Computer Science";
+    public static final String DEFAULT_RACE = "Chinese";
+    public static final String DEFAULT_COMMS = "Telegram";
 
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    public static final String DEFAULT_FACULTY = "School Of Computing";
+
+    protected Name name;
+    protected Phone phone;
+    protected Email email;
+    protected Address address;
+    protected Tags tags;
+    protected Gender gender;
+    protected Major major;
+    protected Modules modules;
+    protected Race race;
+    protected CommunicationChannel comms;
+
+    protected Faculty faculty;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        this.name = new Name(DEFAULT_NAME);
+        this.phone = new Phone(DEFAULT_PHONE);
+        this.email = new Email(DEFAULT_EMAIL);
+        this.address = new Address(DEFAULT_ADDRESS);
+        this.tags = new Tags(new HashSet<>());
+        this.gender = new Gender(DEFAULT_GENDER);
+        this.major = new Major(DEFAULT_MAJOR);
+        this.modules = new Modules(new HashSet<>());
+        this.race = new Race(DEFAULT_RACE);
+        this.comms = new CommunicationChannel(DEFAULT_COMMS);
+        this.faculty = new Faculty(DEFAULT_FACULTY);
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        this.name = personToCopy.getName();
+        this.phone = personToCopy.getPhone();
+        this.email = personToCopy.getEmail();
+        this.address = personToCopy.getAddress();
+        this.tags = personToCopy.getTags();
+        this.gender = personToCopy.getGender();
+        this.major = personToCopy.getMajor();
+        this.modules = personToCopy.getModules();
+        this.race = personToCopy.getRace();
+        this.comms = personToCopy.getComms();
+        this.faculty = personToCopy.getFaculty();
     }
 
     /**
@@ -61,7 +91,15 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = new Tags(SampleDataUtil.getTagSet(tags));
+        return this;
+    }
+
+    /**
+     * Parses the {@code mods} into a {@code Set<NusMod>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModules(String ... mods) {
+        this.modules = new Modules(SampleDataUtil.getModsSet(mods));
         return this;
     }
 
@@ -89,8 +127,52 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Major} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMajor(String major) {
+        this.major = new Major(major);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Race} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRace(String race) {
+        this.race = new Race(race);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Comms} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withComms(String comms) {
+        this.comms = new CommunicationChannel(comms);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Faculty} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFaculty(String faculty) {
+        this.faculty = new Faculty(faculty);
+        return this;
+    }
+
+    /**
+     * Builds the {@code person} object
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(this.name, this.phone, this.email, this.address, this.gender,
+                this.major, this.modules, this.race, this.tags, this.comms, null, this.faculty);
     }
 
 }
