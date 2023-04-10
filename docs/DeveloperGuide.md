@@ -33,7 +33,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T17-1/tp/blob/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -46,7 +46,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T17-1/tp/blob/master/src/main/java/teambuilder/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T17-1/tp/blob/master/src/main/java/teambuilder/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -79,13 +79,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T17-1/tp/blob/master/src/main/java/teambuilder/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T17-1/tp/blob/master/src/main/java/teambuilder/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T17-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -96,7 +96,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T17-1/tp/blob/master/src/main/java/teambuilder/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -104,9 +104,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -124,7 +124,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T17-1/tp/blob/master/src/main/java/teambuilder/model/Model.java)
 
 <img src="images/ModelClassDiagram2.png" width="600" />
 
@@ -145,7 +145,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T17-1/tp/blob/master/src/main/java/teambuilder/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -156,7 +156,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `teambuilder.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -213,20 +213,23 @@ private Phone() {
 
 The `undo`/`redo` mechanism is based on the memento design pattern. Within the memento design pattern, there are three main classes:
 
-1. `Originator` - The object that becomes modified and requires to be restored using `undo`/`redo`.
+1. `Originator` - The stateful object that becomes modified and requires to be restored using `undo`/`redo`.
 2. `Memento` - The wrapper of a saved state of an `Originator` that is used to restore the `Originator`.
 3. `Caretaker` - The aggregator of `Memento` that controls the sequence of `Memento`s for `undo`/`redo`.
 
+The pattern can be implemented with the `Originator` and `Memento` as an <<interface>> to allow for better extension and reduce decoupling. 
+
 ![Memento Design Pattern](images/MementoDesignPatternDiagram.png){:.center}
 
-While the Memento Design Pattern is mostly used for `Undo`, we can extend its functionality to include `Redo`.
+
+While the Memento Design Pattern is mostly used for `undo`, we can extend its functionality to include `redo`.
 
 Implementing this design pattern results in the following:
 
 - `Model` inferface extends the `Originator` interface, resulting in a concrete `Originator` in `ModelManger`.
 - `TeamBuilderMemento` implements the `Memento` interface and acts as a saved state of `ModelManager`
 - `HistoryUtil` replaces the `Caretaker` and tracks the timeline and order of `Memento`
-- Any modifying `Command` will call `HistoryUtil#storePast` with `Model#save()` and their `COMMAND_WORD`.\
+- Any modifying `Command` will call `HistoryUtil#storePast` with `Model#save()` and their `COMMAND_WORD` or a description of what changed.\
 (`AddCommand` is given as an example.)
 
 ![Implemented Memento Design](images/ImplementedMementoDesignDiagram.png){:.center}
@@ -237,16 +240,17 @@ As we want `undo`/`redo` to provide feedback to the user, the `Commands` must pr
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 **Step 1.**
-The user launches the application for the first time. The `HistoryUtil` will be initialized with two empty `Memento` arrays, one for `undo` and another for `redo`. The array counter will be `-1` indicating totally empty arrays.
+The user launches the application for the first time. The `HistoryUtil` will be initialized with two empty `Memento` arrays, one for `undo` and another for `redo`. The `currentNum`, an array index, will be `-1` indicating totally empty arrays.
 
 ![UndoRedoState0](images/NewUndoRedoState0.png){:.center}
 
 **Step 2.**
-The user executes `delete 5` command to delete the 5th person in the team builder. The `delete` command calls `Model#save()` before any actions, causing the initial state of the team builder to be saved as a `Memento`. The `delete` command provides the resutling `Memeto` and the context of the change (deleting 5) to `HistoryUtil#storePast`. The `Memento` is saved in `undoHistory` and the array counter increases to `0`.
+The user executes `delete 5` command to delete the 5th person in the team builder. The `delete` command calls `Model#save()` before any actions, causing the initial state of the team builder to be saved as a `Memento`. The `delete` command provides the resutling `Memeto` and the context of the change (deleting 5) to `HistoryUtil#storePast`. The `Memento` is saved in `undoHistory` and the `currentNum`, the array index, increases to `0`.
 
 ![UndoRedoState1](images/NewUndoRedoState1.png){:.center}
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#save()` before any actions, saving another `Memento`. The `Memento` and description (add n/david ...) is stored through `HistoryUtil#storePast`. The `Memento` is saved in `undoHistory` and the array counter increases to `1`.
+**Step 3.**
+The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#save()` before any actions, saving another `Memento`. The `Memento` and description (add n/david ...) is stored through `HistoryUtil#storePast`. The `Memento` is saved in `undoHistory` and the `currentNum` increases to `1`.
 
 ![UndoRedoState2](images/NewUndoRedoState2.png){:.center}
 
@@ -254,7 +258,19 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `HistoryUtil#undo`, which will call `Memento#restore()` on `undoHistory[currentNum]`. `Memento#restore()` will be called and state before the `add` command is restored. `HistoryUtil#undo` also moves the `Memento` into `redoFuture` and outputs an `Optional<String> description` to the `undo` command. The `undo` command then feedbacks to the user that the undo has occured successfully.
+**Step 4.**
+The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command.
+The `undo` command will call `HistoryUtil#undo`.
+
+`HistoryUtil#undo` will then operate as follows:
+1. `Memento#getUpdatedMemo` is called on `undoHistory[currentNum]`, generating a `Memento` of the current state.
+2. The resulting `Memento` is saved into `redoFuture[currentNum]`.
+3. Then, `Memento#restore` is called on `undoHistory[currentNum]`
+4. An `Optional<String> description` is returned
+
+The `undo` command then feedbacks to the user that the undo has occured successfully along with a description if any.
+
+
 
 ![UndoRedoState3](images/NewUndoRedoState3.png){:.center}
 
@@ -277,11 +293,15 @@ The `redo` command does the opposite — it calls `HistoryUtil#redo()`, whic
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the TeamBuilder, such as `list`, will usually not call `Model#Save()`, `HistroyUtil#storePast` , `HistroyUtil#undo`, `HistoryUtil#redo`. Thus, the `Model` remains unchanged.
+**Step 5.** 
+The user then decides to execute the command `list`. Commands that do not modify the TeamBuilder, such as `list`, will usually not call `Model#Save()`, `HistroyUtil#storePast` , `HistroyUtil#undo`, `HistoryUtil#redo`. Thus, the `Model` remains unchanged.
 
 ![UndoRedoState4](images/NewUndoRedoState4.png){:.center}
 
-Step 6. The user executes `clear`, which calls `Model#Save` and stores the resulting `Memento` and description (clear) into `HistoryUtil#storePast`. Since there is a new `Memento` for `undoHistory` that is not from `redoFuture`, all `Memento` in `redoFuture` are purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+**Step 6.**
+The user executes `clear`, which calls `Model#Save` and stores the resulting `Memento` and description (clear) into `HistoryUtil#storePast`. Since there is a new `Memento` for `undoHistory` that is not from `redoFuture`, all `Memento` in `redoFuture` are purged.
+
+**Reason**: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/NewUndoRedoState5.png){:.center}
 
@@ -294,7 +314,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the state of the team builder found in ModelManager (Current choice).
-  * Pros: Easy to implement, easy to extend, easy to modify of "state" saved.
+  * Pros: Easy to implement, easy to extend, easy to modify what "state" is saved and restored.
   * Cons: May have performance issues in terms of memory usage if state saved is too large.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
@@ -303,7 +323,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 * **Alternative 3:** Save the entire team builder inside VersionedTeamBuilder, replacing TeamBuilder (Original AB-3 Choice)
   * Pros: Easy to implement.
-  * Cons: Difficult to extend. Performance issues in terms of memeory usage. Undo/Redo timeline tied to TeamBuilder. No user feedback on what command was undone/redone.
+  * Cons: Difficult to extend. Performance issues in terms of memory usage. Undo/Redo timeline tied to TeamBuilder. No user feedback on what command was undone/redone.
 
 
 ### Sort feature
@@ -371,6 +391,7 @@ names. When there are demands such as searching keywords among team requirements
 ShowCommand can easily adapt to new iterations.
 
 TeamContainsKeywordsPredicate.java is created to facilitate the comparison between keywords and `tagName` of team.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -523,7 +544,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+testers can do more *exploratory* testing.
 
 </div>
 
@@ -605,7 +626,18 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect sort commands to try: `sort`, `sort desc`, `...`<br>
        Expected: Similar to previous.
 
-## Planned Enhancements
+### Undo/Redo
+
+1. Undoing a clear while some contacts are being shown
+
+   1. Prerequisites: Find some contacts using the `find` command. Some but not all contacts in the list. Then use `clear` resulting in an empty Team Builder.
+
+   2. Test case: `undo`<br>
+      Expected: The Team Builder is restored and no longer empty. Some but not all contacts are in the list, as `find` was used. Using `list` then should show the entire contact list still present. 
+
+
+
+## **Appendix: Planned Enhancements**
 
 
 ### Adding and removing tags from persons
