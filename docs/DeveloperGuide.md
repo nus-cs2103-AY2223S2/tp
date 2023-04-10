@@ -544,13 +544,46 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### Deleting a person
 
-1. Dealing with missing/corrupted data files
+1. Deleting a person while all persons are being shown
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-1. _{ more test cases …​ }_
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Creating a team
+
+1. Creating a team
+
+    1. Test case: `create tn/Team A td/Team for upcoming hackathon t/Python t/ReactNative`<br>
+       Expected: Team A is created in the team panel on the right. Team name is shown in the status message.
+
+    1. Test case: `create tn/Team B t/Python t/ReactNative`<br>
+       Expected: No team is created (no team description in command). Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `create`, `create td/Team for upcoming hackathon t/Python t/ReactNative`, `...`<br>
+       Expected: Similar to previous.
+
+### Sorting persons
+
+1. Sorting persons
+
+    1. Test case: `sort desc tcount`<br>
+       Expected: Sort persons by tag count in descending order. 'Sorted all persons.' is shown in the status message.
+
+    1. Test case: `sort tcount`<br>
+       Expected: No sorting occurs (no order in command). Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `sort`, `sort desc`, `...`<br>
+       Expected: Similar to previous.
 
 ## Planned Enhancements
 
