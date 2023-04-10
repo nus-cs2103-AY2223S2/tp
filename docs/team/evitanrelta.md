@@ -13,19 +13,26 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=evitanrelta&breakdown=true)
 
 * **Enhancements implemented**:
+  * Made all fields _(except name)_ optional _([#56])_
   * Added autocompletion feature _([#130], [#136], [#137])_
+  * Enhanced the `Prefix` class to include more info like placeholder text _(eg. `NAME`)_, whether is optional/repeatable, and example values _(eg. `Shaun` for `n/` prefix)_
+  * Improved our undo/redo code by removing unnecessary class `CommandHistory` _([#265])_
+
+* **Bugs fixed** _([#278], [#264], [#255], [#251], [#250], [#248], [#239], [#234], [#229], [#216], [#214], [#197], [#190], [#174], [#165], [#141], [#60], [#57])_
 
 * **Documentation**:
   * User Guide:
     * Added autocompletion section _([#155])_
   * Developer Guide:
-    * _(TO BE ADDED)_
+    * Added [autocomplete section][ac-dg] _([#292])_
+    * Updated [acknowledgement section][dg-acknowledgement] _([#310])_
   * Others:
     * Update the [AboutUs page] _([#21])_
     * Added profile pics for all my team members _([#5])_
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): _(TO BE ADDED)_
+  * PRs reviewed with non-trivial review comments: _([#309], [#303])_
+  * Resolve most of the merge conflicts for all my team's PRs
 
 * **Contributions beyond the project team**:
   * Responded to [forum posts]
@@ -37,7 +44,36 @@ Given below are my contributions to the project.
 [#136]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/136
 [#137]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/137
 [#155]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/155
+[#309]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/309
+[#303]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/303
+[#292]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/292
+[#310]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/310
+[#56]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/56
+[#265]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/265
+
+
+[#278]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/278
+[#264]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/264
+[#255]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/255
+[#251]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/251
+[#250]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/250
+[#248]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/248
+[#239]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/239
+[#234]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/234
+[#229]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/229
+[#216]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/216
+[#214]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/214
+[#197]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/197
+[#190]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/190
+[#174]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/174
+[#165]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/165
+[#141]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/141
+[#60]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/60
+[#57]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/57
+
 
 [AY2223S2-CS2103T-W12-4/tp#142]: https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/142
 [forum posts]: https://github.com/nus-cs2103-AY2223S2/forum/issues?q=is%3Aissue+involves%3Aevitanrelta
 [AboutUs page]: https://ay2223s2-cs2103t-w12-2.github.io/tp/AboutUs.html
+[ac-dg]: https://ay2223s2-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#autocomplete-feature
+[dg-acknowledgement]: https://ay2223s2-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#acknowledgements
