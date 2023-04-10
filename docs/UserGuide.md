@@ -58,6 +58,8 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## User Interface Introduction
 
 This section provides a brief overview of the graphical user interface (GUI) components that are present in FitBook. These components are designed to provide an easy-to-use interface that enables users to track and improve their clients fitness goals.
@@ -625,6 +627,8 @@ If your changes to the data file makes its format invalid, FitBook will discard 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
