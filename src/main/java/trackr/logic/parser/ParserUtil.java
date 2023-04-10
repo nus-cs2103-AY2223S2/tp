@@ -195,7 +195,7 @@ public class ParserUtil {
     }
     //@@author
 
-    //Solution below adapted from AB3.
+    //Solution below adapted from AB3 with some reuse.
     /**
      * Parses a {@code String taskStatus} into a {@code TaskStatus}.
      * Leading and trailing whitespaces will be trimmed.
@@ -208,11 +208,14 @@ public class ParserUtil {
             return new TaskStatus();
         }
 
+        //@@author HmuuMyatMoe-reused
+        //Reused from AB3 with minor modifications
         String trimmedTaskStatus = taskStatus.get().trim();
         if (!TaskStatus.isValidStatus(trimmedTaskStatus, TaskStatus.STATUSES)) {
             throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
         return new TaskStatus(trimmedTaskStatus);
+        //@@author
     }
     //========================Parse those related to menu item==================================
 

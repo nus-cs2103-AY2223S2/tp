@@ -92,7 +92,7 @@ public class CommandTestUtil {
     }
     //@@author
 
-    //Solution below for task is adapted from AB3
+    //Solution below for task fields is adapted from AB3
     //task fields
     public static final String VALID_TASK_NAME_SORT_INVENTORY = "Sort Inventory";
     public static final String VALID_TASK_NAME_BUY_FLOUR = "Buy Flour";
