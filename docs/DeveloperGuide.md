@@ -1272,8 +1272,9 @@ them. Assertions were used to ensure that commands created, when executed, perfo
 created specifically for tests, as well as to ensure that correct exceptions are thrown as and when needed, especially for
 invalid inputs.
 
-Our organisation made use of equivalence partitions to tests for the types of commands that can be executed, due to the
-number of variants we have for each command.
+Our organisation made use of equivalence partitions to tests for the types of commands that can be executed. The rationale
+is that since we have a relavtively large number of variants for each command, we needed to test all possible inputs and 
+partitions.
 
 ## **Testing Parsers**
 
