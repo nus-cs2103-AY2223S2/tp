@@ -218,16 +218,7 @@ public class AutocompleteEngine {
             boolean toAutocompleteArgValue = existingArgValues.containsKey(currPrefix);
 
             if (toAutocompleteArgValue) {
-                String argValue = lastWord.replaceAll("^.*\\/", "");
-                String matchingExistingValues = existingArgValues.get(currPrefix)
-                        .stream()
-                        .filter(value -> value.startsWith(argValue))
-                        .filter(value -> argumentMultimap.getAllValues(currPrefix).stream()
-                                .noneMatch(value::equals))
-                        .collect(Collectors.joining(" | "));
-                return matchingExistingValues.isEmpty()
-                        ? ""
-                        : matchingExistingValues.substring(argValue.length());
+                return getExistingArgSuggestion(existingArgValues, argumentMultimap, lastWord, currPrefix);
             }
 
             // Example of filling the value:
@@ -297,6 +288,21 @@ public class AutocompleteEngine {
                 .map(Prefix::toPlaceholderString)
                 .collect(Collectors.joining(" "));
         return remainingArgs;
+    }
+
+    /** Get suggestion for existing arguments. */
+    private String getExistingArgSuggestion(Map<Prefix, List<String>> existingArgValues,
+            ArgumentMultimap argumentMultimap, String lastWord, Prefix currPrefix) {
+        String argValue = lastWord.replaceAll("^.*\\/", "");
+        String matchingExistingValues = existingArgValues.get(currPrefix)
+                .stream()
+                .filter(value -> value.startsWith(argValue))
+                .filter(value -> argumentMultimap.getAllValues(currPrefix).stream()
+                        .noneMatch(value::equals))
+                .collect(Collectors.joining(" | "));
+        return matchingExistingValues.isEmpty()
+                ? ""
+                : matchingExistingValues.substring(argValue.length());
     }
 
 }
