@@ -23,7 +23,6 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 
 ## Contributions to UG&nbsp;
 1. Participated in drafting [UG (v1.1)](https://docs.google.com/document/d/129glYXctEtL77of9dMmzea-TjVfZh727fVPrv_e9AyI/edit?usp=share_link)
-2. Fix bug for missing header
 
 ## Contributions to DG&nbsp;
 1. `undo` implementation in Logic Implementation section
