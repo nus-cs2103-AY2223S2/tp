@@ -632,3 +632,18 @@ Tags that are longer than 20 characters to be truncated on the Ui. Users can the
 - _E.g._ The Tag "Grandmaster in Witchcraft and Wizardry" will appear as "Grandmaster in Witch..." on the Ui.
 
 
+## _Appendix:_ Effort
+
+TeamBuilder is a brownfield project which builds upon the existing features of AB3. Our vision for TeamBuilder, although simple conceptually, proved to be challenging to implement due to AB3's pre-existing architecture. 
+
+### Challenges with dependencies between Teams and Persons
+The ability to create teams and add persons into TeamBuilder is the highlight of our project. It proved to be  monstrous task, requiring thorough changes in every component of the AB3 Architecture. 
+
+- While AB3 only has Contacts, we wanted TeamBuilder to also have Teams, which is another entity. Teams and Persons are both dependent on each other, as a person cannot be part of a non-existent team, and a Team cannot have a non-existent person.
+- Deleting person and teams proved to be a huge challenge for TeamBuilder, as when a team is deleted, any person that is part of the team has to be updated such that they no longer have that team tag. Similarly, when a person is deleted, Teams have to be updated such that that person is also removed from the team.
+- Additionally, this same issue caused problems for the Storage component. Should the storage contain a person that is part of a Team that does not exist, or a Team contain a person that does not exist, TeamBuilder has to be able to catch these errors and act appropriately.
+
+The large degree of inter-dependencies made implementing a relatively 'simple' feature such as adding a person or deleting a team to require much time and effort in understanding AB3's implementation, as well as coming up with solutions to achieve our goal.
+
+### High effort required for test cases. 
+TeamBuilder differs greatly from AB3 as all persons' fields are optional except for their name, and TeamBuilder has Teams as well as persons. As a result, sizeable chunks of tests from AB3 are not relevant, and the Team had to reformat most of the tests, as well as generate and create new Sample data to test.
