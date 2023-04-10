@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "add n/David"
+
+package undoHistory {
+    class State1 as "__<color:blue>m0:Memento</color>__"
+    class State2 as "__<color:blue>m1:Memento</color>__"
+    class State3 as "__null:Memento__"
+}
+State1 -[hidden]right-> State2
+State2 -[hidden]right-> State3
+
+package redoFuture {
+    class State5 as "__null:Memento__"
+    class State6 as "__null:Memento__"
+    class State7 as "__null:Memento__"
+}
+State5 -[hidden]right-> State6
+State6 -[hidden]right-> State7
+
+class Pointer as "currentNum"
+Pointer -up-> State2
+Pointer -[hidden]down->State6

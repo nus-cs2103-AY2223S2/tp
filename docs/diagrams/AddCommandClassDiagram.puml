@@ -1,0 +1,13 @@
+@startuml
+!include style.puml
+
+'!include style.puml
+'
+'class State1 as "__:ArgMultiMap__"
+'class State2 as "__:AddCommandParser__"
+'class State3 as "__ab2:AddressBook__"
+actor User as Foo1
+participant Ui as Foo2 UI_COLOR
+participant  as Foo3 LOGIC_COLOR
+participant
+@endum

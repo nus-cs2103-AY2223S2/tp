@@ -1,0 +1,58 @@
+@startuml ImplementedMementoDesignDiagram
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam classAttributeIconSize 0
+
+class "<<interface>>\nMemento" as Memento
+show Memento method
+Memento : +restore()
+Memento : +getUpdatedMemo()
+
+class "HistoryUtil" as Caretaker
+show Caretaker members
+Caretaker : -undoHistory: Memento[]
+Caretaker : -redoFuture: Memento[]
+Caretaker : +storePast(Memento, String)
+Caretaker : +undo()
+Caretaker : +redo()
+
+note bottom : calls Memento#restore()
+Caretaker -left-o Memento
+
+class "<<interface>>\nOriginator" as Originator
+show Originator method
+Originator : +save()
+
+Memento <.left.  Originator
+
+class "<<interface>>\nModel" as Model
+Model -up-|> Originator
+
+class "ModelManager" as CO
+show CO method
+CO : +save()
+CO : +setState()
+
+CO -up.|> Model
+
+Class "TeamBuilderMemento" as CM
+show CM members
+CM : -state
+CM : -originator
+CM : +restore()
+CM : +getUpdatedMemo()
+note bottom : Restore calls Originator#setState(state) \ngetUpdatedMemo calls Originator#save()
+
+
+CM -up.|> Memento
+CO <-> CM
+
+Class "AddCommand" as ADC
+show ADC members
+ADC : {static} COMMAND_WORD
+ADC : execute(model)
+note bottom : calls HistoryUtil#storePast with \nModel#save() and COMMAND_WORD
+
+ADC .left.> Model
+ADC -up--> Caretaker

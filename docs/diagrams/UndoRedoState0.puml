@@ -3,18 +3,29 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title Initial state
+title Initial State of HistoryUtil
 
-package States {
-    class State1 as "__ab0:AddressBook__"
-    class State2 as "__ab1:AddressBook__"
-    class State3 as "__ab2:AddressBook__"
+class State0 as "Out of bounds"
+package undoHistory {
+    class State1 as "__null:Memento__"
+    class State2 as "__null:Memento__"
+    class State3 as "__null:Memento__"
 }
+State0 -[hidden]right-> State1
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
-hide State2
-hide State3
 
-class Pointer as "Current State" #FFFFF
-Pointer -up-> State1
-@end
+class State4 as "Out of bounds"
+hide State4
+package redoFuture {
+    class State5 as "__null:Memento__"
+    class State6 as "__null:Memento__"
+    class State7 as "__null:Memento__"
+}
+State4 -[hidden]right-> State5
+State5 -[hidden]right-> State6
+State6 -[hidden]right-> State7
+
+class Pointer as "currentNum"
+Pointer -up-> State0
+Pointer -[hidden]down-> State4
