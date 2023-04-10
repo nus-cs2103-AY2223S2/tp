@@ -531,19 +531,19 @@ If your changes to the data file makes its format invalid, Vimification will dis
 
 ## Command summary
 
-| Action               | Format                                                       |
-| -------------------- | ------------------------------------------------------------ |
-| View help            | `:help`                                                      |
+| Action               | Format                                                                                                         |
+| -------------------- | -------------------------------------------------------------------------------------------------------------- |
+| View help            | `:help`                                                                                                        |
 | Add task             | `:a <title> [-d <deadline>] [-p <priority>] [-l <label>]...`                                                   |
 | Insert parameter     | `:i <task_index> [-d <deadline>] [-l <label>]...`                                                              |
 | Delete task          | `:d <task_index>`                                                                                              |
 | Delete parameter     | `:d <task_index> [-d] [-l <label>]...`                                                                         |
 | Edit parameter       | `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <old_label> <new_label>]...`   |
 | Filter               | `:f [-a\|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...` |
-| Sort                 | `:s [-s] [-d] [-p]`                  |
-| Define macro         | `:macro -a <macro> <command_string>` |
-| Delete macro         | `:macro -d <macro>`                  |
-| List macro           | `:macro -l`                          |
-| Exit the application | `:quit`, `:q!`                       |
+| Sort                 | `:s [-s] [-d] [-p]`                                                                                            |
+| Define macro         | `:macro -a <macro> <command_string>`                                                                           |
+| Delete macro         | `:macro -d <macro>`                                                                                            |
+| List macro           | `:macro -l`                                                                                                    |
+| Exit the application | `:quit`, `:q!`                                                                                                 |
 
 <p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
