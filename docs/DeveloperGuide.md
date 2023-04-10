@@ -594,7 +594,8 @@ However, if the need arises (as specified below), the algorithm allows the effor
 The algorithm allocates tasks as such:
 
 ##### Step 1: Allocate all events to the day(s) it is supposed to be happening. Events will be allocated, even if the effort required exceeds the user preferred effort.
-More about scheduling for Events
+**More about scheduling for Events**
+<br>
 <br>
 After getting a list of Events from all tasks within TaskBook, a scheduling algorithm for events is run. The following diagram shows its behaviour.
 <br>
@@ -619,7 +620,8 @@ After getting a list of Events from all tasks within TaskBook, a scheduling algo
 
 
 ##### Step 2: Allocate all deadlines to the first free day before it is due (exclusive of due date), as we assume that it is better to complete a time-sensitive task as soon as possible. If it is not possible to find a free day, the algorithm will allocate task to a day before deadline with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
-More about scheduling for Deadlines
+**More about scheduling for Deadlines**
+<br>
 <br>
 After getting a list of Deadlines from all tasks within Task Book, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
 <br>
@@ -643,7 +645,9 @@ After getting a list of Deadlines from all tasks within Task Book, a scheduling 
 </ul>
 <br>
 
-##### Step 3: Allocate all SimpleTasks in descending order of effort required. As we assume that SimpleTasks are not time-sensitive, the algorithm allocates each task to the most busy free day (greedy approach). If such a day is not available, the algorithm will allocate the task to a day with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+##### Step 3: Allocate all Simple Tasks in descending order of effort required. As we assume that SimpleTasks are not time-sensitive, the algorithm allocates each task to the most busy free day (greedy approach). If such a day is not available, the algorithm will allocate the task to a day with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+**More about scheduling for Simple Tasks**
+<br>
 <br>
 After getting a list of Simple Tasks from all tasks within TaskBook, a scheduling algorithm for simple tasks will be run. The following diagram shows its behaviour.
 <br>
