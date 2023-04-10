@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T09-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,18 +36,19 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components and an extra `Importer` component.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Importer`**](#importer-component): Imports data from export files.
 
 
 **How the architecture components interact with each other**
@@ -61,6 +62,8 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
+**NOTE**: The `Importer` class works separately and is described in further detail below.
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
@@ -69,13 +72,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +89,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +117,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -134,7 +137,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -142,6 +145,16 @@ The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+### Importer Component
+**API**: [`Importer.java`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Importer.java)
+
+<img src="images/ImporterClassDiagram.png" width="150" />
+
+The `Importer` component,
+* is used to import data from export files
+* is only used by the specific command `ImportCommand` in order to read the data from the given export file.
+
 
 ### Common classes
 
@@ -487,8 +500,6 @@ respective field requested.
     * Cons:
         * Some part of the code is the same as EditCommand.
 
-
-<<<<<<< HEAD
 ### \[Developed\] Adding Recurring Event
 User can add recurring events. Adding a recurring event is almost similar to the adding isolated event except that it is implemented using `AddRecurringEventCommand`,
 `AddRecurringEventCommandParser` and `RecurringEventList`, `TimeMaksk`  classes.
@@ -544,7 +555,6 @@ Given below is an example usage scenario and how the command mechanism behaves a
         * There will be instances when users will have event that span over multiple days such as studying overnight 
           from 23:00 to 01:00. Hence, it will reduce the user-friendliness if we restrict isolated events to be only one day long.
 
-=======
 ### \[Developed\] Finding free time slots
 This feature allows a user to display unoccupied time slots shared by members of a group.
 
@@ -618,8 +628,6 @@ Given below is an example usage scenario and how the command mechanism behaves a
 
 * **Justification**
     * To ensure the correctness of our application within the insufficient amount of time remaining, we have decided not to implement this.
-  
->>>>>>> master
 
 ### \[Developed\] Export
 
@@ -693,6 +701,67 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 * **Justification**
     * As import does not import `Group` and `Tag`. Exporting all details of a `Person` is not required.
     * Different users may have different `Tag` or `Group` for their contact. Hence `Group` and `Tag` is not exported/imported.
+
+### \[Developed\] Import
+
+The export feature allows users to import a person's details to a json file. Groups and tags are not imported.
+
+This is implemented using the `ImportCommand`, `JsonImporter`.
+
+The `ImportCommand` uses a `JsonImporter` to import data from the file `data/export.json`
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes an export command:
+
+<img src="images/ImportCommandActivityDiagram.png" width="500" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call when a `Person` is being updated:
+
+<img src="images/ImportCommandSequenceDiagramSetPerson.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the import `COMMAND_WORD`, the `AddressBookParser` creates a `ImportCommand`.
+4. The `ImportCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `ImportCommand` instance which obtains the data from the file (as a `ReadonlyAddressBook`) via the `Importer` API call
+6. A `Person` is then created via the `createImportPerson()` call
+7. The `Person` is set in the `Model`
+8. Execution of `ImportCommand` results in a `CommandResult` created and returned back to the `LogicManager`, completing the execution.
+
+In the event that a new person is added due to the import:
+<img src="images/ImportCommandSequenceDiagramAddPerson.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the import `COMMAND_WORD`, the `AddressBookParser` creates a `ImportCommand`.
+4. The `ImportCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `ImportCommand` instance which obtains the data from the file (as a `ReadonlyAddressBook`) via the `Importer` API call
+6. A new `Person` is then created via the `createNewImportPerson()` call
+7. The `Person` is added to the `Model`
+8. Execution of `ImportCommand` results in a `CommandResult` created and returned back to the `LogicManager`, completing the execution.
+
+#### Design consideration
+
+**Aspect: Importing multiple persons**
+* **Alternative 1:** Import multiple `Person` in one user command.
+    * Pros:
+        * Users can import multiple persons at once instead of importing each person one at a time.
+    * Cons:
+        * More bug-prone as unable to verify the source of import files, import files could possibly be corrupted.
+
+* **[Current implementation] Alternative 2:** Only allow one person to be imported in one user command.
+    * Pros:
+        * Easy to implement.
+        * Less bug-prone as import files are less likely to be from external sources.
+    * Cons:
+        * Users have to export one person at a time.
+
+* **Justification**
+    * Importing is meant to be paired with exports. Ensuring that files that are imported are likley to be valid exports will reduce issues and bugs during importing.
+    * Import command can be easily modified to accept larger export files in future iterations.
 
 
 ### \[Proposed\] Undo/redo feature
@@ -1141,9 +1210,42 @@ testers are expected to do more *exploratory* testing.
    Expected: GroupList will list out 1 group with name 'CS2103' and personList will list out all person in group 'CS2103'. 1 group listed shown in status message.
 
 3. Test case: `group_find Bestfriends`<br>
-   Expected: Group and person list will not display anytrhing
-   
-   
+   Expected: Group and person list will not display anything
+
+### Creating an Isolated event
+
+1. Prerequisities: The preloaded data for person are not modified.
+
+2. Test case: `event_create 1 ie/Swimming f/10/04/2025 14:00 t/10/04/2025 16:00`<br>
+   Expected: An Isolated event 'Swimming from: 10/04/2024 14:00 to: 10/04/2025 16:00' will be created for Alex Tan
+
+3. Test case: `event_create 1 ie/Camping f/10/04/2020 14:00 t/13/04/2020 12:00`<br>
+   Expected: Isolated event not created. Status message indicates that event date cannot be before the current time
+
+4. Test case: `event_create 1 ie/Karoke with friends f/13/04/2025 14:00 t/12/04/2025 12:00`<br>
+   Expected: Isolated event not created. Status message indicates that end time should not be earlier than start time.
+
+5. Test case: `event_create 1 ie/Watching movie f/10/04/2025 14:00 t/10/04/2025 16:00`<br>
+   Expected: Isolated event not created. Status message indicates that event has conflict with Isolated Event List followed by
+   the index of the isolated event that it conflicted with and 'Swimming from: 10/04/2024 14:00 to: 10/04/2025 16:00'.
+
+### Creating a Recurring event
+1. Prerequisities: The preloaded data for person are not modified.
+
+2. Test case: `event_create_recur 1 re/CS2103 Lecture d/Friday f/14:00 t/16:00`<br>
+   Expected: A Recurring Event 'CS2103 Lecture on FRIDAY from 14:00' will be created for Alex Tan
+
+3. Test case: `event_create_recur 1 re/CS2101 Lecture d/Tuueeesdayy f/14:00 t/16:00`<br>
+   Expected: Recurring event not created. Status message indicates that the day of the week should be either MONDAY, 
+   TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY or SUNDAY.
+
+4. Test case: `event_create_recur 1 re/CS2103 Tutorial d/Thursday f/10:00 t/09:00`<br>
+   Expected: Recurring event not created. Status message indicates that end time should not be earlier than start time.
+
+5. Test case: `event_create_recur 1 re/Self Studying d/Friday f/12:00 t/15:00`<br>
+   Expected: Recurring event not created. Status message indicates that event has conflict with Recurring Event List followed by
+   the index of the recurring event that it conflicted with and 'CS2103 Lecture on FRIDAY from 14:00 to 16:00.
+
 ### Export a person
 
 1. Export a person while all persons are being shown

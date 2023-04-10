@@ -22,9 +22,13 @@ slots within a group of NUS friends, and keep track of personal and friends' tim
 * Made minor edits for better clarity.
 
 #### **Contributions to the DG**:
+* Added documentation for `Import` classes and commands
+* Updated Architecture Diagram, `Import` related diagrams
+* Made minor edits to fix errors.
 
 #### **Contributions to team-based tasks**:
 * Reviewed several PRs [PR1](https://github.com/AY2223S2-CS2103T-T09-2/tp/pull/43) [PR2](https://github.com/AY2223S2-CS2103T-T09-2/tp/pull/42).
+* Suggested changes to method implementations to improve code quality.
 
 #### **Contributions beyond the project team**:
 * Left detailed bug reports: [Bug1](https://github.com/clydelhui/ped/issues/2) [Bug2](https://github.com/clydelhui/ped/issues/6)

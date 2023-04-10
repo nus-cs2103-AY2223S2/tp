@@ -66,7 +66,8 @@ public class AddRecurringEventCommand extends Command {
         }
 
         RecurringEventList recurringEventList = personToEdit.getRecurringEventList();
-        RecurringEvent checkForEventClash = recurringEventList.checkClashingRecurringEvent(eventToAdd);
+
+        String checkForEventClash = recurringEventList.checkClashingRecurringEvent(eventToAdd);
 
         if (checkForEventClash != null) {
             throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));

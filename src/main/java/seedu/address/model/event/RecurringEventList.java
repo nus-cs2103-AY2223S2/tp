@@ -41,20 +41,20 @@ public class RecurringEventList {
     }
 
     /**
-     * Check if the isolated event object is in the isolated event list.
+     * Check if the recurring event object is in the recurring event list.
      * @param recurringEvent of which event to be added
      * @return
      */
-    public RecurringEvent checkClashingRecurringEvent(RecurringEvent recurringEvent) {
+    public String checkClashingRecurringEvent(RecurringEvent recurringEvent) {
         Iterator<RecurringEvent> it = recurringEvents.iterator();
         RecurringEvent currEvent;
 
-        int count = 0;
+        int count = 1;
         while (it.hasNext()) {
             currEvent = it.next();
 
             if (recurringEvent.compareTo(currEvent) == 0) {
-                return currEvent;
+                return "Event Conflict in Recurring Event List\n" + count + ". " + currEvent;
             }
             count++;
         }
