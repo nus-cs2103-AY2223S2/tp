@@ -559,6 +559,29 @@ Here is a sequence diagram showing the interactions between components when `rem
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+In addition, we should take special note of the format for the `remark` command: `remark INDEX [REMARK]`.
+
+The remark mechanism will be facilitated by a pop-up text box.
+They can do this by simply omitting the optional `REMARK` parameter, which will cause the pop-up text box to appear.
+This will allow users to format their remarks however they like, rather than being restricted to a single line in the command line.
+Users can use the `CTRL` + `S` combination to close the remark box without using the mouse to click on the "X", thereby
+staying true to the goal of catering to fast typists.
+
+We implemented this by keeping the `remark INDEX` command when it is specified, while pulling up the text box.
+When the text box is closed, the remark will be appended entirely to the saved `remark INDEX` command. This makes it
+conform to the `remark INDEX REMARK` format and this command will be run again. 
+
+However, should the user prefer it, they can also directly input their remarks into the pop-up text box
+by directly specifying the optional `REMARK` parameter, thereby skipping the 2-step nature of the command.
+
+Deletion of remarks will be done by specifying an empty remark from the text box.
+
+Currently, to differentiate between deletion of the remark and the `remark INDEX` command to open the text box,
+empty or whitespace only remarks are represented by the null character `\0`. This means that if the
+user somehow types only a single `\0` character into the text box, it can be seen as a bug as it will be cleared 
+upon closing the text box. However, we do not consider this to be a legitimate use of the program, and see no use in
+changing the design.
+
 #### Feature Details
 1. The remark feature is facilitated by a pop-up text box brought up by using the command `remark INDEX`.
 2. The contents of the pop-up text box are saved by pressing `Ctrl + S` on the keyboard.
@@ -567,7 +590,8 @@ Here is a sequence diagram showing the interactions between components when `rem
 
 #### General Design Considerations
 
-In order to make this feature as versatile as possible, the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs).
+In order to make this feature as versatile as possible, 
+the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs).
 
 Additionally, we opted for a pop-up text window as the command line only provides a restricted view and input option for users, hence it does not support formatted remarks.
 
@@ -575,6 +599,7 @@ Additionally, we opted for a pop-up text window as the command line only provide
 * **Alternative 1:** Adding the `remark` through the command line.
   * Pros:
     * Easier to implement.
+    * Fewer chances of bugs to appear
   * Cons:
     * Restricts users to a single line or continuous paragraph of remark.
     * Limits formatting options for remark.
@@ -582,8 +607,16 @@ Additionally, we opted for a pop-up text window as the command line only provide
   * Pros:
     * Provides users flexibility in the format of their remarks.
     * Remarks are not restricted to a single line or continuous paragraph.
+    * Allows the future implementation of enhanced formatting, like using Markdown.
   * Cons:
     * More complicated to implement as the format of the remarks have to be saved and loaded into `VersionedAddressBook` without any formatting errors.
+    * Have to make sure the user does not enter any state-changing commands like `add` and even `find`/`list`.
+* **Alternative 3: ** Adding remark through an in-window text box
+  * Pros:
+    * Has the same level of flexibility as Alternative 2.
+    * No need for a pop up text window, which could be beneficial for cross-platform support.
+  * Cons:
+    * Less intuitive for the user as the user could try to input more commands into the application while editing remarks, which would cause bugs due to the 2-step nature of the command.
 
 **Aspect: Remark display**
 * **Alternative 1: (Current implementation)** Preview the first line (truncated) of a student's remarks under all the other attributes
