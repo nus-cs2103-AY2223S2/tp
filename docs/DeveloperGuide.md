@@ -179,7 +179,7 @@ The `UI` component,
 -   Listens for changes to `Model` data so that the UI can be updated with the modified data.
 -   Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 -   Depends on some classes in the `Model` component, as it displays `Food` object residing in the `Model`.
-- 
+
 <div style="page-break-after: always;"></div>
 
 ### Logic component
@@ -747,6 +747,8 @@ such as using 1L or 2L to indicate the volume of milk. To accommodate this, futu
 incorporate alphanumeric representations of `Unit`, enabling users to include such unit specifications.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -1015,6 +1017,7 @@ The same as Use Case UC08: Increment the quantity of a `Food`, except that it is
 7.  A first-time user should be able to easily perform CRUD operations on items.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
