@@ -238,14 +238,14 @@ Examples:
 *  `list-client` followed by `delete-client 1` deletes the first client in the list (if there is one).
 * `dc 3` deletes the third client in the currently visible client list (if there is one).
 
+<div style="page-break-after: always;"></div>
+
 ### Clearing the client list
 #### Format: `clear-client`
 
 Short form: `cc`
 
 Deletes all clients in the client list.
-
-<div style="page-break-after: always;"></div>
 
 Note:
 * A client list needs to be shown for this command to be executed successfully.
