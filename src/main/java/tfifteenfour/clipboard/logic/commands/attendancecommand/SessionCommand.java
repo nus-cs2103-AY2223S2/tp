@@ -34,7 +34,7 @@ public class SessionCommand extends Command {
      * @param targetIndex the index of the group to select
      */
     public SessionCommand(Index targetIndex) {
-        super(false);
+        super(true);
         this.targetIndex = targetIndex;
     }
 
