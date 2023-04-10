@@ -322,6 +322,8 @@ E.g. CS is the code prefix of Computer Science modules like CS1101S and CS2106.
 Using more keywords from the same category will return you all the modules that satisfy at least one of those keywords in that parameter.
 </div>
 
+<div style="page-break-after: always;"></div>
+   
 **Example:**
 * `find /c 4 /g A+`
 * `find /y y2s2`
