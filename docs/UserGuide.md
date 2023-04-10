@@ -115,7 +115,7 @@ It is recommended that you switch to this resolution before using FriendlyLink.
    The main window should appear in a few seconds.
    ![Ui](images/emptyFriendlyLink.png)
 
-1. Type the command in the command box and press Enter to execute it e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it e.g. typing `help` and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
 
     * `add_elderly n/John Doe ic/S1234567A bd/1959-09-09 re/WEST r/LOW` : [Adds an elderly](#adding-an-elderly--addelderly) named `John Doe`with [NRIC](#nric) 
@@ -733,28 +733,29 @@ The following features are planned for v1.5
 
 These terms have specific meanings in the context of FriendlyLink. For a more detailed description, refer to the [Terminology](#terminology) and the [Fields](#fields) section.
 
-| Term                  | Meaning                                                                                                                                                     |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command               | An instruction given by you to FriendlyLink to perform a specific task.                                                                                     |
-| Date                  | A date representing the timestamp of an event, in the format `YYYY-MM-DD`                                                                                   |
-| Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink                                                            |
-| Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink                                                                           |
-| Elderly               | Elderly are people under the care of your VWO                                                                                                               |
-| Email                 | The email of a person, in the `localPart@domain` format, containing the `@`                                                                                 |
-| FriendlyLink          | The name of our application                                                                                                                                 |
-| Field                 | A field is the information following the slash in a command.                                                                                                |
-| Index                 | An index represents the position of the referred item in a displayed list of persons. It must be a positive integer.                                        |
-| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
-| NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
-| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
-| Phone number          | The phone number of a person. Must be numeric and has more than 3 digits                                                                                    |
-| Prefix                | Prefix refers to the characters appearing before a slash in a command. Prefix describe the field that it represents.                                        |
-| Region                | The general portion of area in Singapore. Must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`                            |
-| Risk level            | The susceptibility level of an elderly to injury or sickness. Must be one of the following values: `LOW`, `MEDIUM` or `HIGH`                                |
-| Tag                   | A generic description for a group of people. Must contain only alphanumeric characters                                                                      |
-| Volunteer             | Volunteers that signed up to pair up with and accompany elderly members                                                                                     |
-| VWO                   | Voluntary Welfare Organisations such as yourself                                                                                                            |
-
+| Term                  | Meaning                                                                                                              |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------|
+| Availability Date     | The availability date of a person.                                                                                   |
+| Birth Date            | The birth date of a person.                                                                                          |
+| Command               | An instruction given by you to FriendlyLink to perform a specific task.                                              |
+| Date                  | The date of an event.                                                                                                |
+| Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink.                    |
+| Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink.                                   |
+| Elderly               | Elderly are people under the care of your VWO.                                                                       |
+| Email                 | The email of a person.                                                                                               |
+| FriendlyLink          | The name of our application.                                                                                         |
+| Field                 | A field is the information following the slash in a command.                                                         |
+| Index                 | An index represents the position of the referred item in a displayed list of persons.                                |
+| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill and a skill level.            |
+| NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                               |
+| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly.                    | 
+| Phone number          | The phone number of a person.                                                                                        |
+| Prefix                | Prefix refers to the characters appearing before a slash in a command. Prefix describe the field that it represents. |
+| Region                | The general portion of area in Singapore.                                                                            |
+| Risk level            | The susceptibility level of an elderly to injury or sickness.                                                        |
+| Tag                   | A generic description for a group of people.                                                                         |
+| Volunteer             | Volunteers that signed up to pair up with and accompany elderly members.                                             |
+| VWO                   | Voluntary Welfare Organisations such as yourself.                                                                    |
 
 ### Technical
 
