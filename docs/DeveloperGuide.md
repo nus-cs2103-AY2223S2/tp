@@ -220,7 +220,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_order 1")` API call.
 
 <p align="center">
-  <img src="images/DeleteSequenceDiagram.svg" />
+  <img src="images/DeleteSequenceDiagram.svg" style="transform:rotate(-90deg);" />
   <br>Figure 6: Delete Sequence Diagram (Deleting Order)
 </p>
 
