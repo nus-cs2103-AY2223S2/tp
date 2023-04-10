@@ -24,6 +24,8 @@ Are you excited yet? Let's get started!
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure your computer has Java `11` or above installed.
@@ -332,6 +334,8 @@ Here are some recommended features to explore after this tutorial.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -369,6 +373,12 @@ Here are some recommended features to explore after this tutorial.
   * `OINDEX` refers to an order's index
 
 </div>
+
+[🠕 Back To Top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Customer
 
@@ -676,6 +686,8 @@ appendnotec CINDEX nt/NOTE
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 [//]: # (@@author Dawson)
 
 ### Rewards
@@ -753,6 +765,8 @@ Addition will also result in an addition of cumulative points, while subtraction
 [🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 [//]: # (@@author jednghk)
 
@@ -1093,6 +1107,8 @@ appendnoteo OINDEX nt/NOTE
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 [//]: # (@@author)
 
 ### Miscellaneous
@@ -1137,6 +1153,8 @@ Customer and order data are saved in the hard disk automatically after any comma
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 ### Customers
@@ -1178,6 +1196,8 @@ Customer and order data are saved in the hard disk automatically after any comma
 [🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
