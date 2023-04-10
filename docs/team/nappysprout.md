@@ -7,12 +7,17 @@ title: Darie Chan Rong Zhi's Project Portfolio Page
 
 CoDoc is a desktop contact management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20.8k LoC.
 
-Given below are my contributions to the project.
+##### Summary of Contributions
+* **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=nappysprout&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+These following new features were simple but very tedious to implement as simply adding new attribute required adding new files all
+over the code, Logic, parser, model and storage were all touched. I had to update the test cases as well to ensure the new 
+test cases include the newly added attributes. Despite the tediousness, it was an important role as my peers were about to 
+build upon the foundations I made to build greater implementations like, filtering based on module or courses.
 * **New Feature**: Module
     * What it does: Provide Module field for Person in Codoc
     * Justification: Codoc is an address book for Students and Module is an important aspect of student
-    * Highlights: The regex for Module was a little complicated and different errors need to show up depending which part of module is wrong during input
+    * Highlights: The regex checked for the correct format and an additonal validation was required to ensure correct module Years
 
 * **New Feature**: Course
   * What it does: Provide Course field for Person in Codoc
@@ -22,10 +27,6 @@ Given below are my contributions to the project.
   * What it does: Provide Year field for Person in Codoc
   * Justification: Codoc is an address book for Students and Year is an important aspect of student
 
-* **Code contributed**: I implemented the basic structure of Module, Course and Year into Person class. 
-I had to change files from many directories just to implement it such as making sure storage class expects that field, 
-parser knowing the particular prefix for the field and also initialising and error catching when initialising the attributes. 
-After implementing these attributes, my teammates were then able to put it into the UI and implement more complex logic like the find command on the fields I added.
 
 * **Project management**: I was able to merge PRs of my teammates and even spot errors which might be bad for the project before they are merged into master branch.
 I was able to set up the organisation, create the repository and gave my teammates access as well. 
@@ -45,7 +46,10 @@ I was able to set up the organisation, create the repository and gave my teammat
         * Tidied up glossaries and added Java specific definitions
         * Added use cases and neaten up use cases which can be inside other use cases
         * Provided images for the UI implementation segments and added Course List Panel Segment.
-
+* **Community**:
+    * Reviewed, merged and commented on teammates' PRs. [PRs reviewed by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Anappysprout), [My comments on PRs](https://nus-cs2103-ay2223s2.github.io/dashboards/contents/tp-comments.html#163-dari-zhi-nappysprout-5-comments)
+    * Opened and assigned issues to teammates and me. [Issues opened by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Anappysprout), [Issues assigned to me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Anappysprout+)
+    * Reported bugs for other teams. [PE-D](https://github.com/nappysprout/ped/issues)
 * **Tools**:
     * JavaFX
     * Jackson

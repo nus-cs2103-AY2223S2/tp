@@ -38,7 +38,7 @@ title: Developer Guide
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 - [Appendix: Requirements](#appendix-requirements)
-  - [Product Scope](#product-scope-)
+  - [Product Scope](#product-scope)
   - [User Stories](#user-stories-)
   - [Use Cases](#use-cases)
   - [Non-functional Requirements](#non-functional-requirements)
@@ -80,6 +80,8 @@ meaningful connections and engaging in productive work.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Navigating the Developer Guide
 
 The Developer Guide is divided into the following sections :
@@ -108,6 +110,8 @@ implemented. In this section, you will be provided with:
 5. An Activity Diagram to show all possible behaviours of the feature where applicable.
 6. An Object Diagram to model relationships between objects of the same components where applicable.
 7. Design considerations and alternatives taken into consideration that justifies our implementation of the feature where applicable.
+
+<div style="page-break-after: always;"></div>
 
 The [Potential Enhancement](#potential-enhancement) section shows some features that could be useful for CoDoc's functionality as a contact management app. In this section, you will be provided with:
 
@@ -273,11 +277,12 @@ It    It is a better alternative than creating user interfaces using procedural 
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <br>
-<br>
 
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Design Architecture**
 <div markdown="span" class="alert alert-info">
@@ -291,6 +296,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of each component and how they interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 **Components of the architecture**
 
@@ -333,6 +340,8 @@ A collection of classes used by multiple other components located in the [`codoc
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### UI Component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/ui/Ui.java)
@@ -352,10 +361,11 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Logic Component
 
 The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/logic/Logic.java)
-
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
@@ -365,13 +375,15 @@ Here's a (partial) class diagram of the `Logic` component:
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-
+<br>
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -382,6 +394,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 * all `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Model Component
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/model/Model.java)
@@ -396,6 +410,8 @@ The **API** of this component is specified in [`Model.java`](https://github.com/
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Skill` list in the `Codoc`, which `Person` references. This allows `Codoc` to only require one `Skill` object per unique skill, instead of each `Person` needing their own `Skill` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
@@ -407,9 +423,9 @@ The **API** of this component is specified in [`Model.java`](https://github.com/
 ### Storage Component
 
 The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/storage/Storage.java)
-
 <img src="images/StorageClassDiagram.png" width="550" />
-<br>
+
+<div style="page-break-after: always;"></div>
 
 **The `Storage` component:** 
 * can save both CoDoc data and user preference in `json` format, and read them back to corresponding objects.
@@ -428,9 +444,9 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 
 [Scroll back to top](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -476,6 +492,8 @@ Main section consists of the following components:
 
 ![ui-main-section-sections](images/ui-diagrams/ui-main-section-sections.png)
 
+<div style="page-break-after: always;"></div>
+
 #### **CommandBox**
 
 **Main input for the UI.**
@@ -484,8 +502,6 @@ Main section consists of the following components:
 bidirectional association between the two, removing the need for the `CommandBox` to interact with the `Model` directly.
 
 Users are able to write their commands into its text field and execute it by pressing `Enter` key.
-
-<div style="page-break-after: always;"></div>
 
 ##### Design considerations
 
@@ -505,15 +521,13 @@ Even though the program supports GUI, main interaction between the user and the 
 leads to a need for showing results of command as Strings which the users can refer to, gaining more understanding about
 execution of commands.
 
-<br>
-
 ##### Design considerations
 
 Since the execution of command is handled by the `Logic` component, all it needs to have is an uneditable text field
 that is updated by the `MainWindow` after execution. Respective commands executed are responsible for the content of
 this update, adhering to the segregation of concerns principle.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### **PersonListPanel**
 
@@ -521,8 +535,6 @@ Part of the main section that displays a list of person registered to the CoDoc 
 
 The list is created as a ListView. More information about ListView
 [here](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ListView.html).
-
-<br>
 
 ##### Design considerations
 
@@ -534,8 +546,6 @@ change during execution without having the user to update what is shown on the p
 To allow cells within the ListView to show relevant information about a person, `PersonListPanel` also has a custom
 class `PersonListViewCell` that acts as a factory to create the cells through `PersonCard` class. Developers interested
 in changing how the cells within the ListView look should look into `PersonCard` and its `.fxml` file for modification.
-
-<div style="page-break-after: always;"></div>
 
 #### **StatusBarFooter**
 
@@ -645,9 +655,9 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 
 [Scroll back to UI Implementation](#ui-implementation)
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### **Logic Implementation**
 
@@ -876,7 +886,7 @@ Given below is the activity diagram to illustrate what happens when the user cal
 
 Refer to [here](#findcommand-combining-predicates) for activity diagram on combining predicates.
 
-<div style="page-break-after: always;"></div>
+<br>
 
 ##### Design Considerations
 
@@ -974,9 +984,10 @@ the Info Panel gets updated to the users. Refer to [Info Panel](#info-panel) for
 
 [Scroll back to top](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ### **Model Implementation**
 
 This section describes implementation of features within `model` package. Refer to [Model component](#model-component) for more
@@ -1067,9 +1078,10 @@ in our `Storage` as well as the courses displayed in the application.
 
 [Scroll back to top](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ### **Storage Implementation**
 This section describes implementation of features within `storage` package. Refer to [Storage Component](#storage-component)
 for more information about this package.
@@ -1088,10 +1100,7 @@ for more information about this package.
 
 [Scroll back to top](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ### **Potential Enhancement**
 
@@ -1189,6 +1198,8 @@ _{more aspects and alternatives to be added}_
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
+Refer to the links below.
+
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
@@ -1200,7 +1211,6 @@ _{more aspects and alternatives to be added}_
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Appendix: Planned Enhancements**
 
@@ -1217,7 +1227,9 @@ _{more aspects and alternatives to be added}_
 
 ## **Appendix: Requirements**
 
-### Product scope 🔍️
+### Product scope
+
+Here is a product scope for CoDoc 🔍️
 
 **Target user profile** 🧑:
 
@@ -1300,6 +1312,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC02 - View specific person**<br/>
 **MSS**
 1. User <u>View all persons (UC01)</u>
@@ -1335,7 +1349,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. CoDoc shows an error message.
 
       Use case resumes at step 4.
-  
+
+<div style="page-break-after: always;"></div>
+
 * 4b. Valid `prefixes/ATTRIBUTES` include:
   * `c/COURSE`
   * `n/NAME`
@@ -1367,6 +1383,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4h. Editing the name, year, email, github and linkedin follows the implementation of the course
 
   Use case resumes at step 4.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC04 - Find a person by attribute**<br/>
 **MSS**
@@ -1400,6 +1418,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC05 - Delete a person**<br/>
 **MSS**
@@ -1463,6 +1482,8 @@ testers are expected to do more *exploratory* testing.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -1517,5 +1538,4 @@ testers are expected to do more *exploratory* testing.
 
 <img src="images/createCombinedPredicate.png" width="300">
 
-<div style="page-break-after: always;"></div>
 
