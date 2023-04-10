@@ -104,27 +104,17 @@ and is responsible for:
 * Initializing the other components in the correct sequence at software launch, and connecting them up with each other.
 * Shutting down the components when the program is closed and invoking cleanup methods where necessary.
 
-<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
-
 ### `Commons`
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
-
-<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### `UI`
 [**`UI`**](#ui-component) is responsible for the user interface of the module tracker.
 
-<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
-
 ### `Logic`
 [**`Logic`**](#logic-component) is responsible for executing commands.
 
-<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
-
 ### `Model`
 [**`Model`**](#model-component) holds the data of the module tracker in memory.
-
-<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### `Storage`
 [**`Storage`**](#storage-component) reads data from, and writes data to, the hard disk.
@@ -279,7 +269,8 @@ model is given below. It has a `Tag` list in the `ModuleTracker`, which `Module`
 to only require one `Tag` object per unique tag, instead of each `Module` needing their own `Tag` objects.<br>
 
 <p align="center">
-    <img src="images/BetterModelClassDiagram.png" width="650" /></p>
+    <img src="images/BetterModelClassDiagram.png" width="650" />
+</p>
 
 <div align="center"> A more OOP model of the Model component. </div>
 
@@ -476,14 +467,14 @@ to resize the software window (e.g: Extremely long website names)
 
 **Target user profile**
 
-* NUS Computing Students who are more tech-savvy than the general population and are also fast typists
-* computing students would have to refer to these details regularly throughout the course of the semester as they may
-not be able to remember them
-* has a need to manage a significant number of lecture
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* ***NUS Computing students*** who are more tech-savvy than the general population and are also fast typists
+* ***NUS Computing students*** would have to refer to these details regularly throughout the course of the semester as
+they may not be able to remember them
+* ***NUS Computing students*** that have a need to manage a significant number of lecture
+* ***NUS Computing students*** who prefer desktop apps over other types
+* ***NUS Computing students*** who can type fast
+* ***NUS Computing students*** who prefers typing to mouse interactions
+* ***NUS Computing students*** who is reasonably comfortable using CLI apps
 
 **Value proposition**
 * Text-based university module tracker with the ability to:
@@ -1001,4 +992,3 @@ Effort required: 8 / 10)
    * Although implementing the reminder window was not overly difficult, the process took some time due to the need to learn and understand new aspects of the program.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
-
