@@ -28,7 +28,7 @@ public class DarkCommandTest {
     //Expected Behaviour to change from Light Theme -> Dark Theme
     @Test
     public void execute_light_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS,true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, true);
         model.setCssFilePath("view/LightTheme.css");
         expectedModel.setCssFilePath("view/LightTheme.css");
         assertCommandSuccess(new DarkCommand(), model, expectedCommandResult, expectedModel);
