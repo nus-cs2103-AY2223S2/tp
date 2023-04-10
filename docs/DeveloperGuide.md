@@ -1158,7 +1158,7 @@ Our CSV files follow the following format:
       marked 0 for this assignment for this student.
 * (Optional) Class: Non-blank alphanumeric words separated by semicolons.
 
-2. Optional fields still requires a colon to be represented in the CSV file
+3. Optional fields still requires a colon to be represented in the CSV file
    because ["if a column is defined as optional, it means that the column is required to exist, but the value can be blank."](https://www.ibm.com/docs/en/atlas-policy-suite/6.0.3?topic=files-rules-creating-populating-csv)
 
 Acceptable CSV format example: (suppose assignment x, y, and z is already added to the assignment list)
