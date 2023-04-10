@@ -38,7 +38,7 @@ title: Developer Guide
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 - [Appendix: Requirements](#appendix-requirements)
-  - [Product Scope](#product-scope)
+  - [Product Scope](#product-scope-)
   - [User Stories](#user-stories-)
   - [Use Cases](#use-cases)
   - [Non-functional Requirements](#non-functional-requirements)
@@ -511,7 +511,7 @@ Since the execution of command is handled by the `Logic` component, all it needs
 that is updated by the `MainWindow` after execution. Respective commands executed are responsible for the content of
 this update, adhering to the segregation of concerns principle.
 
-<div style="page-break-after: always;"></div>
+<br>
 
 #### **PersonListPanel**
 
@@ -530,6 +530,8 @@ change during execution without having the user to update what is shown on the p
 To allow cells within the ListView to show relevant information about a person, `PersonListPanel` also has a custom
 class `PersonListViewCell` that acts as a factory to create the cells through `PersonCard` class. Developers interested
 in changing how the cells within the ListView look should look into `PersonCard` and its `.fxml` file for modification.
+
+<div style="page-break-after: always;"></div>
 
 #### **StatusBarFooter**
 
@@ -968,10 +970,9 @@ the Info Panel gets updated to the users. Refer to [Info Panel](#info-panel) for
 
 [Scroll back to top](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
+--------------------------------------------------------------------------------------------------------------------
 ### **Model Implementation**
 
 This section describes implementation of features within `model` package. Refer to [Model component](#model-component) for more
@@ -1184,8 +1185,6 @@ _{more aspects and alternatives to be added}_
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-Refer to the links below.
-
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
@@ -1214,9 +1213,7 @@ Refer to the links below.
 
 ## **Appendix: Requirements**
 
-### Product scope
-
-Here is the product scope for CoDoc 🔍️
+### Product scope 🔍️
 
 **Target user profile** 🧑:
 
