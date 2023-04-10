@@ -149,7 +149,7 @@ The Clients tab lists all the clients you have created. Each client block contai
 - Email
 - Year of birth
 - Source, e.g. Fiverr
-- Phone number
+- Mobile number
 
 ### Statistics Panel
 
@@ -500,7 +500,7 @@ argument, if specified, will be used to partially update the project.
     * A new deadline for the project.
     * **Default:** *Existing deadline or 'No Deadline'*
 
-Each of these arguments, if specified, will be used to (paritially) update the
+Each of these arguments, if specified, will be used to update the
 target project.
 
 <div markdown="span" class="alert alert-success">

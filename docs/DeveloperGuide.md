@@ -38,15 +38,15 @@ Throughout this guide, you might encounter certain boxes which like the ones
 below. Here is what each of them means.
 
 <div markdown="span" class="alert alert-success">
-:bulb: This box signifies a tip or suggestion.
+:bulb: This signifies a tip or suggestion.
 </div>
 
 <div markdown="span" class="alert alert-info">
-:information_source: This box signifies a general note.
+:information_source: This signifies a general note.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-:warning: This box indicates a warning or caution.
+:warning: This indicates a warning or caution.
 </div>
 
 ### Content overview
@@ -270,16 +270,16 @@ For demonstration purposes, the following is the Activity Diagram when a `Entity
 
 
 For more information about interacting with the tabs using hotkeys, please refer to the
-[Hotkeys with UiEvents](#hotkeys-with-uievents) section.
+[Hotkeys with UiEvent](#hotkeys-with-uievents) section.
 
 
 ## Keyboard Interaction
 
-### Hotkeys with UiEvents
+### Hotkeys with UiEvent
 
-UiEvents is an abstraction of keyboard events that can trigger changes in
-the user interface or perform some action. These keyboard events are handled by
-UiEvent handlers that are bundled together within the `UiEventManager` class.
+`UiEvent` is an abstraction of keyboard events that can trigger changes in
+user interface or perform some action. These keyboard events are handled by
+`UiEvent` handlers that are bundled together within the `UiEventManager` class.
 
 <div markdown="span" class="alert alert-info">
 :information_source: We will occasionally refer to each of these event handlers as a `Key`
@@ -575,10 +575,11 @@ Upon being executed, `UiAction` instance calls the appropriate method in `MainWi
 **Target user profile**:
 **Freelance Devs**
 
-Freelance web developers with postings on multiple online marketplaces for digital services (e.g. Fiverr) who want to manage projects and clients easily while tracking their contract terms and hours spent per project.
+Freelance web developers with postings on multiple online marketplaces for digital services (e.g. Fiverr) who want to manage projects 
+and clients easily. 
 
 **Value proposition**:
-Mycelium strives to be a one-stop shop for freelance web developers to consolidate projects from multiple sources. Manage descriptive yet concise information about each client, all through an intuitive console-first interface. Mycelium is tailored for the modern web developer, enabling you to build strong and trusted relationships with clients.
+Mycelium strives to be a one-stop shop for freelance web developers to consolidate projects and clients from multiple sources. Manage descriptive yet concise information about each client, all through an intuitive console-first interface. Mycelium is tailored for the modern web developer, enabling you to build strong and trusted relationships with clients.
 
 ### User stories
 
@@ -660,7 +661,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-* 1b. Some project details are invalid.
+* 1b. Some client details are invalid.
    * 1b1. Mycelium shows an error message.
 
    Use case ends.
@@ -791,6 +792,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should not lose any work in case the application crashes.
 1.  Data persists when the application restarts.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 ## Glossary
 
 The terms in this glossary are sorted in alphabetical order.
@@ -803,7 +808,7 @@ The terms in this glossary are sorted in alphabetical order.
   [draw.io](https://app.diagrams.net/).
 * **Fuzzy search**: A feature to search for items which partially match a query
   rather than exactly
-* **Hotkey**: A convenient combination of key presses meant to invoke some app
+* **Hotkey**: A convenient combination of key presses meant to invoke an app
   functionality
 * **PlantUML**: A text-based diagramming tool. See
   [plantuml.com](https://plantuml.com/) for more information.
@@ -825,7 +830,7 @@ cases.
 
 * Prerequisite: there is no client with email *spiderman@gmail.com*
 * Command: `c -cn spider man -e spiderman@gmail.com`
-* The output box should display a message confirming that the new client has
+* The output box should display a message confirming that the new client has been
   added
 * The client should be appended to the bottom of the Clients tab
 
@@ -1281,10 +1286,10 @@ such as:
 * Adding tabs to the application, and
 * Tweaking the parser to support the new commands.
 
-The process of adding small features allowed to get a better understanding of the codebase
+The process of adding small features allowed us to get a better understanding of the codebase
 and gave us confidence in adding more advanced features.
 By splitting up the work and specialising in different parts of the codebase, each of us
 gain a stake in the project and were more motivated constantly improve the project.
 We also reviewed each other's code, helped each other out when we encountered problems, and
-hold weekly meetings to discuss our progress and to plan out the next week's work.
+held weekly meetings to discuss our progress and to plan out the next week's work.
 
