@@ -19,12 +19,10 @@ Given below are my contributions to the project.
 * **Code contributed**:
 Please refer to this [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=xyluschen&breakdown=true)
 
-
 * **Project management**
-* Authored **21** issues on the project repository.
-* Reviewed and merged **29** pull requests.
-* Verified and filtered all **43** issue reports received from external parties during the PE-Dry Run.
-
+  * Authored **21** issues on the project repository.
+  * Reviewed and merged **29** pull requests.
+  * Verified and filtered all **43** issue reports received from external parties during the PE-Dry Run.
 
 * **New Feature**
   * Application Statistics 
@@ -40,7 +38,6 @@ Please refer to this [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-d
   to create a Statistics Panel that displays a User's application statistics. It also involved the creation of a `Statistics` entity
   as part of the `Model` component. It required changes as to how `Commands` were processed by the `LogicManager`, specifically commands
   that potentially changes the application statistics.
-
 
 * **Enhancements to existing features**
   * Logic and UI component Refactoring 
@@ -65,7 +62,6 @@ Please refer to this [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-d
     * Please refer to PR [#104](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/104)
     * Update the initial `ExitCommand` in AB3 to match sprINT's requirements.
 
-
 * **Documentation**
   * ReadMe
     * Please refer to PR [#32](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/32)
@@ -82,7 +78,6 @@ Please refer to this [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-d
     * Added implementation details for Add Application, Clear and Exit features of sprINT. 
     * Documented how each feature's command is processed by sprINT and explains the interaction betweeen the different
     components of the app itself.
-
 
 * **Team-based tasks**
   * Enforced build success with the help of GitHub Actions throughout sprINT's development
