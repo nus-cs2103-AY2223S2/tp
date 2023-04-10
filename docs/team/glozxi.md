@@ -24,12 +24,15 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=glozxi&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * Managed releases `v1.2`, `v1.2b`, `v1.3`, `v1.3b` and `v1.3.1` (5 releases) on GitHub
+  * Managed releases `v1.2`, `v1.2b`, `v1.3`, `v1.3b`, `v1.3.1` and `v1.4` (6 releases) on GitHub
   * Added labels, milestones and assignees to tasks
 
 * **Enhancements to existing features**:
   * Modified commands to add and edit events to have event timings
   * Updated class and variable naming
+
+* **Major bugs fixed**:
+  * [#235](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/235)
 
 * **Documentation**:
   * User Guide:
@@ -38,8 +41,9 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `remind` feature
     * Added documentation for planned enhancements 1 and 2
+    * Transferred user stories to Developer Guide
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [#44](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/44), [#55](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/55), [#127](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/127), [#137](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/137), [#139](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/139), [#146](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/146)
+  * PRs reviewed (with non-trivial review comments): [#44](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/44), [#55](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/55), [#127](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/127), [#137](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/137), [#139](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/139), [#146](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/146), [#159](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/159), [#171](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/171), [#239](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/239), [#244](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/244)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/4), [2](https://github.com/nus-cs2103-AY2223S2/forum/issues/222))
 
