@@ -24,8 +24,12 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [Model component](#model-component)
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
-- [Implementation]()
-  - [Add feature]()
+- [Implementation](#implementation)
+  - [Basic features](#basic-features)
+  - [Find feature](#find-feature)
+  - [Sort feature](#sort-feature)
+  - [Undo feature](#undo-feature)
+  - [Autocomplete feature](#autocomplete-feature)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product scope](#product-scope)
@@ -36,13 +40,12 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a listing](#deleting-a-listing)
-  - [Saving data](#saving-data)
 
 ---
 
 ### Purpose of this guide
 
-Welcome to the developer guide for GoodMatch. This guide will provide you with the information to work on GoodMatch by helping you understand how GoodMatch is designed. The guide also includes information on the requirements of GoodMatch as well as the instructions to manually test GoodMatch on your local machines.
+Welcome to the developer guide for GoodMatch! This guide will provide you with the information to work on GoodMatch by helping you understand how GoodMatch is designed. The guide also includes information on the requirements of GoodMatch as well as the instructions to manually test GoodMatch on your local machines.
 
 ### How to use this guide
 
@@ -58,11 +61,15 @@ Use the interactive [table of contents](#table-of-contents) to navigate through 
 
 ❗ **Caution**: Be careful not to make this deadly mistake.
 
---------------------------------------------------------------------------------------------------------------------
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
 
 ## **Acknowledgements**
 
-Codebase foundation by AB3.
+* Codebase foundation by [AddressBook Level 3](https://ay2223s2-cs2103t-w14-3.github.io/tp/).
+* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson 2.7](https://github.com/FasterXML/jackson/wiki/Jackson-Release-2.7)
+
 
 ---
 
@@ -70,7 +77,7 @@ Codebase foundation by AB3.
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
@@ -84,7 +91,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <p>
   <img class="diagram" src="images/ArchitectureDiagram.png" />
   
-  <em>Architecture Diagram for GoodMatch</em>
+  <em>Architecture diagram for GoodMatch</em>
 </p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
@@ -113,7 +120,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <p>
   <img class="diagram" src="images/ArchitectureSequenceDiagram.png" />
-  <em>Architecture Sequence Diagram for GoodMatch</em>
+  <em>Architecture sequence diagram for GoodMatch</em>
 </p>
 
 Each of the four main components (also shown in the diagram above),
@@ -125,8 +132,11 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <p>
   <img class="diagram" src="images/ComponentManagers.png" />
-  <em>Sequence Diagram for the Managers in GoodMatch</em>
+  <em>Sequence diagram for the Managers in GoodMatch</em>
 </p>
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
 
 ### UI component
 
@@ -134,7 +144,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <p>
   <img class="diagram" src="images/UiClassDiagram.png" />
-  <em>Structure of the UI Component</em>
+  <em>Structure of the <code>UI</code> component</em>
 </p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ListingListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
@@ -144,9 +154,11 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 The `UI` component,
 
 * executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* listens for changes to `Model` data so that the `UI` can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Listing` object residing in the `Model`.
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Logic component
 
@@ -156,7 +168,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <p>
   <img class="diagram" src="images/LogicClassDiagram.png" />
-  <em>Structure of the UI Component</em>
+  <em>Structure of the <code>Logic</code> component</em>
 </p>
 
 How the `Logic` component works:
@@ -169,7 +181,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <p>
   <img class="diagram" src="images/DeleteSequenceDiagram.png" />
-  <em>Interactions Inside the Logic Component for the `delete 1` Command</em>
+  <em>Interactions inside the <code>Logic</code> component for the <code>delete 1</code> command</em>
 </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -179,36 +191,40 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <p>
   <img class="diagram" src="images/ParserClasses.png" />
-  <em>Class diagram for the Parser classes</em>
+  <em>Class diagram for the <code>Parser</code> classes</em>
 </p>
 
 How the parsing works:
 * When called upon to parse a user command, the `ListingBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ListingBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <p>
   <img class="diagram" src="images/ModelClassDiagram.png" />
-  <em>Class diagram for the Model Component</em>
+  <em>Class diagram for the <code>Model</code> component</em>
 </p>
 
 The `Model` component,
 
-* stores the address book data i.e., all `Listing` objects (which are contained in a `UniqueListingList` object).
+* stores the listing book data i.e., all `Listing` objects (which are contained in a `UniqueListingList` object).
 * stores the currently 'selected' `Listing` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Listing>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ListingBook`, which `Listing` references. This allows `ListingBook` to only require one `Tag` object per unique tag, instead of each `Listing` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a <code>Applicant</code> list in the <code>ListingBook</code>, which <code>Listing</code> references. This allows <code>ListingBook</code> to only require one <code>Applicant</code> object per unique applicant, instead of each <code>Listing</code> needing their own <code>Applicant</code> objects. Same goes for <code>Platform</code> objects.<br>
 
 <p>
   <img class="diagram" src="images/BetterModelClassDiagram.png" />
-  <em>A better Class diagram for the Model Component</em>
+  <em>A better class diagram for the <code>Model</code> component</em>
 </p>
 
 </div>
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Storage component
 
@@ -216,7 +232,7 @@ The `Model` component,
 
 <p>
   <img class="diagram" src="images/StorageClassDiagram.png" />
-  <em>Class diagram for the Storage Component</em>
+  <em>Class diagram for the <code>Storage</code> component</em>
 </p>
 
 The `Storage` component,
@@ -224,11 +240,13 @@ The `Storage` component,
 * inherits from both `ListingBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -251,7 +269,7 @@ In GoodMatch, feature commands can be split into these categories:
 1. Feature commands that only require a preliminary parsing.
    1. Commands like `help`, `exit`, `view`.
 2. Feature commands that require further parsing which can be further categorised.
-   1. Feature commands that modify ListingBook.
+   1. Feature commands that modify ListingBook. (Basic features)
       1. Commands like `add`, `add_app`, `add_plat`, `delete`, `del_app`, `del_plat`, `edit`, and `edit_app`.
    2. Feature commands that do not modify ListingBook.
       1. Commands like `find` and `sort`.
@@ -261,13 +279,16 @@ In GoodMatch, feature commands can be split into these categories:
 
 Examples for the implementation of each category will be provided below.
 
-### Add feature
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+### Basic features
+For this category, we will be looking at the `add` command as an example.
 
 The `add` command creates a new `Listing` in GoodMatch's Job Listing Management System.
 
 <div markdown="span" class="alert alert-info">
   :information_source: **Note:** Command format: <br/>
-  `add t/TITLE d/DESCRIPTION [p/PLATFORM]... [a/APPLICANT]...`
+  <code>add t/TITLE d/DESCRIPTION [p/PLATFORM]... [a/APPLICANT]...</code>
 </div>
 
 When a user use the `add` command:
@@ -280,11 +301,11 @@ When a user use the `add` command:
 7. However, if the check for compulsory prefixes fails or the preamble is non-empty, the system throws a parse error for invalid command format. 
 8. By following these steps, users can successfully add new listings to the application while avoiding duplicate listings and incorrect command formats.
 
-Please refer to the activity diagram below to see what happens when the user enters an add command.
+Please refer to the activity diagram below to see what happens when the user enters an `add` command.
 
 <p>
   <img class="diagram" src="images/AddCommandActivityDiagram.png" />
-  <em>Activity Diagram for the `add` command</em>
+  <em>Activity diagram for the <code>add</code> command</em>
 </p>
 
 #### Feature Implementation Details
@@ -295,7 +316,7 @@ Please refer to the activity diagram below to see what happens when the user ent
    2. `d/DESCRIPTION`: The job description of the listing (Compulsory).
    3. `a/APPLICANT`: The applicants that applied using that job listing (Not compulsory, can input multiple).
    4. `p/PLATFORM`: The platforms that the job listing is posted on (Not compulsory, can input multiple).
-3. The check for whether a `Listing` is in a `model` or not is done using the `JobTitle` of the `Listing` only.
+3. The check for whether a `Listing` is in a `Model` or not is done using the `JobTitle` of the `Listing` only.
 4. A preamble is the substring between the command word and the first prefix.
    1. For example, `add something t/title d/description`.
       1. The command word is `add`.
@@ -304,7 +325,7 @@ Please refer to the activity diagram below to see what happens when the user ent
 
 #### Design considerations
 
-* The `add` command is implemented using the [Logic](#logic-component) and [Model](#model-component) components as shown in the [Design](#design) section above.
+* The `add` command is implemented using the [`Logic`](#logic-component) and [`Model`](#model-component) components as shown in the [Design](#design) section above.
 * The `add` and `delete` command share almost identical UML Sequence Diagrams.
 * One advantage of using this design is that it is very scalable and new commands can be added easily.
   * Add a case into the switch case statement for the new command.
@@ -312,6 +333,8 @@ Please refer to the activity diagram below to see what happens when the user ent
   * Add a `XYZCommand` class into `src/main/java/seedu/address/logic/commands` to execute the parsed command from the step above.
   * Return the command result from the `XYZCommand` mentioned in the step above.
 * However, one disadvantage for using this design choice is the file directory might be very difficult to understand for newcomers because function calls are very deeply nested.
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 
 ### Find feature
@@ -323,7 +346,7 @@ GoodMatch currently supports finding listings that contain the entire keyword in
 Refer to the activity diagram below for a typical `find` command.
 <p>
   <img class="diagram" src="images/FindActivityDiagram.png" />
-  <em>Activity Diagram for the `find` command</em>
+  <em>Activity diagram for the <code>find</code> command</em>
 </p>
 
 
@@ -336,10 +359,10 @@ Refer to the activity diagram below for a typical `find` command.
 Refer to the sequence diagram below for a typical `find` command.
 <p>
   <img class="diagram" src="images/FindSequenceDiagram.png" />
-  <em>Sequence Diagram for the `find` command</em>
+  <em>Sequence diagram for the <code>find</code> command</em>
 </p>
 
-
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Sort feature
 
@@ -348,12 +371,12 @@ GoodMatch currently supports sorting by JobTitle, JobDescription, and Number of 
 When sorting `String` like JobTitle and JobDescription, Listings in the ListingBook is sorted by lexicographical order, whereas for numerical values like number of applicants, Listings are sorted by the numerical value.
 Sorting is all done in ascending order.
 
-Refer to the activity diagram below for what happens when a user runs a sort command.
+Refer to the activity diagram below for what happens when a user runs a `sort` command.
 
 <p>
   <img class="diagram" 
    src="images/SortActivityDiagram.png" />
-  <em>Activity Diagram for the `sort` command</em>
+  <em>Activity diagram for the <code>sort</code> command</em>
 </p>
 
 Refer to the sequence diagram below for a typical `sort` command using `title` as the sorting field.
@@ -361,8 +384,10 @@ Refer to the sequence diagram below for a typical `sort` command using `title` a
 <p>
   <img class="diagram" 
    src="images/SortSequenceDiagram.png" />
-  <em>Sequence Diagram for the `sort` command</em>
+  <em>Sequence diagram for the <code>sort</code> command</em>
 </p>
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Undo feature
 
@@ -384,14 +409,14 @@ Step 2. The user executes `delete 5` command to delete the 5th listing in the li
 
 <p>
   <img class="diagram" src="images/UndoState1.png" />
-  <em>Saving `delete` modified listing book state.</em>
+  <em>Saving <code>delete</code> modified listing book state.</em>
 </p>
 
 Step 3. The user executes `add t/Coder d/code​` to add a new listing. The `add` command also calls `Model#commitListingBook()`, causing another modified listing book state to be saved into the `prevListingBookStates`.
 
 <p>
   <img class="diagram" src="images/UndoState2.png" />
-  <em>Saving `add` modified listing book state.</em>
+  <em>Saving <code>add</code> modified listing book state.</em>
 </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitListingBook()`, so the listing book state will not be saved into the `prevListingBookStates`.
@@ -401,34 +426,35 @@ Step 3. The user executes `add t/Coder d/code​` to add a new listing. The `add
 Step 4. The user now decides that adding the listing was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which restores the previous listing book state by setting as the `listingBook` and deleting it from `prevListingBookStates`.
 
 <p>
-  <img class="diagram" src="images/UndoState3.png" />
+  <img class="diagram" 
+   src="images/UndoState3.png" />
   <em>Restoring the previous listing book state.</em>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `prevListingBookStates` is empty, then there are no previous ListingBook states to restore. The `undo` command uses `Model#hasPreviousState()` to check if undo is possible. If not, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the <code>prevListingBookStates</code> is empty, then there are no previous ListingBook states to restore. The <code>undo</code> command uses <code>Model#hasPreviousState()</code> to check if undo is possible. If not, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
 
-The following activity diagram shows how the undo operation works:
+The following activity diagram shows how the `undo` operation works:
 
 <p>
   <img class="diagram" src="images/UndoActivityDiagram.png" />
-  <em>Activity Diagram for the undo command.</em>
+  <em>Activity diagram for the <code>undo</code> command.</em>
 </p>
 
 The following sequence diagram shows how the undo operation works:
 
 <p>
   <img class="diagram" src="images/UndoSequenceDiagram.png" />
-  <em>Sequence Diagram for the undo command.</em>
+  <em>Sequence Diagram for the <code>undo</code> command.</em>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the listing book, such as `list`, will usually not call `Model#commitListingBook()` or `Model#undo()`. Thus, the `prevListingBookStates` remains unchanged.
+Step 5. The user then decides to execute the command `view`. Commands that do not modify the listing book, such as `view`, will usually not call `Model#commitListingBook()` or `Model#undo()`. Thus, the `prevListingBookStates` remains unchanged.
 
 <p>
   <img class="diagram" src="images/UndoState4.png" />
@@ -439,8 +465,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <p>
   <img class="diagram" src="images/CommitActivityDiagram.png" />
-  <em>Activity Diagram for the undo command.</em>
+  <em>Activity Diagram for the <code>undo</code> command.</em>
 </p>
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Autocomplete feature
 
@@ -470,14 +498,14 @@ Please refer to the activity diagram below to see what happens when a user uses 
 
 <p>
   <img class="diagram" src="images/AutocompleteActivityDiagram.png" />
-  <em>Activity Diagram for the autocomplete feature.</em>
+  <em>Activity diagram for the autocomplete feature.</em>
 </p>
 
 The following sequence diagram shows how the autocomplete operation works:
 
 <p>
   <img class="diagram" src="images/AutocompleteSequenceDiagram.png" />
-  <em>Sequence Diagram for the autocomplete feature.</em>
+  <em>Sequence diagram for the autocomplete feature.</em>
 </p>
 
 #### Feature Implementation details
@@ -498,6 +526,8 @@ The following sequence diagram shows how the autocomplete operation works:
       1. Better user experience for instances where user wants a long suggestion.
       2. User is able to see at a glance whether the correct suggestion is generated rather than having to cycle through everything.
 
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -508,7 +538,9 @@ The following sequence diagram shows how the autocomplete operation works:
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
 
 ## **Appendix: Requirements**
 
@@ -548,6 +580,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 | 16  | * * * | Recruiter | add platforms to job listing                                |                                                                          |
 | 17  | * * * | Recruiter | remove platforms where the listing is expired               | the database stays clean                                                 |
 | 18  | * * * | Recruiter | use the app with the help of autocomplete                   | I can type very fast                                                     |
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ## Use cases
 
@@ -876,6 +910,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
     Use case ends.
 
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Non-Functional Requirements
 
@@ -885,12 +920,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 4. Should be maintainable and have a clear code structure and documentation, so new updates and bug fixes can be easily implemented.
 5. Should be easy to use with clear instructions and meaningful error messages.
 
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Private contact detail**: A contact detail that is not meant to be shared with others
 
---------------------------------------------------------------------------------------------------------------------
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -905,40 +944,35 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-  1. Download the jar file and copy into an empty folder
+2. Download the JAR file and copy into an empty folder
 
-  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+3. Double-click the JAR file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+4. Saving window preferences
 
-  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+5. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-  1. Re-launch the app by double-clicking the jar file.<br>
+6. Re-launch the app by double-clicking the jar file.<br>
      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
 
 ### Deleting a listing
 
 1. Deleting a listing while all listings are being shown
 
-  1. Prerequisites: List all listings using the `view` command. Multiple listings in the list.
+2. Prerequisites: List all listings using the `view` command. Multiple listings in the list.
 
-  1. Test case: `delete 1`<br>
+3. Test case: `delete 1`<br>
      Expected: First listing is deleted from the list. Details of the deleted listing shown in the status message. Timestamp in the status bar is updated.
 
-  1. Test case: `delete 0`<br>
+4. Test case: `delete 0`<br>
      Expected: No listing is deleted. Error details shown in the status message. Status bar remains the same.
 
-  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+5. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
-### Saving data
 
-1. Dealing with missing/corrupted data files
 
-  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+###### _< Back to [Table of Contents](#table-of-contents) >_
