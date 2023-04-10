@@ -223,6 +223,8 @@ This is because the status of `Homework` is determined by the user, (using mark 
 Therefore, we use different terms to avoid confusion.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## Commands
 
 ### How to interpret the Command format
@@ -367,6 +369,8 @@ and DEADLINE should all only appear exactly once and should not be empty.
 :bulb: **Tip:** A student cannot have multiple homeworks with the same name,
 even if they have different deadlines.
 
+<div style="page-break-after: always;"></div>
+
 #### View Student Homework
 
 Displays a list of homework with the ability to filter by student name and homework status.
@@ -392,6 +396,8 @@ For example, `john` will match `John Doe` and `john doe`. You can refer to the [
 
 :exclamation: **Caution:** STATUS should only appear at most once.
 STUDENT_NAME can appear zero or multiple times.
+
+<div style="page-break-after: always;"></div>
 
 #### Delete Homework from a Student
 
@@ -820,6 +826,8 @@ Example:
 * Unlike adding a new lesson, when adding a new exam, TutorPro will check if the exam clashes with any other exams of the same student only. (note the difference between adding a new lesson and adding a new exam). For example:
   * Run command `new-exam name/John Doe exam/English Exam start/2023-05-21 12:00 end/2023-05-21 14:00` will add a new exam for `John Doe` on `2023-05-21` from `12:00` to `14:00`.
   * If you run command `new-exam name/John Doe exam/Math Exam start/2023-05-21 13:00 end/2023-05-21 14:00`, which adds a new exam for `John Doe` on `2023-05-21` from `13:00` to `14:00`, TutorPro will detect that there is a clash in the schedule and will not add the exam for `John Doe` as a student can't have two exams at the same time.
+
+<div style="page-break-after: always;"></div>
 
 ### Duplicate Detection Mechanism
 TutorPro will detect duplicate homeworks,
