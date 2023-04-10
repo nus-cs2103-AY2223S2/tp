@@ -67,7 +67,7 @@ public class EditCategoryCommand implements EditCommand {
                 throw new CommandException(Messages.MESSAGE_INVALID_CATEGORY_NAME);
             }
             for (Category category : lastShownList) {
-                if (category.getCategoryName().equals(newCategoryName)) {
+                if (category.getCategoryName().equalsIgnoreCase(newCategoryName)) {
                     throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
                 }
             }
