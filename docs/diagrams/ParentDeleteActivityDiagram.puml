@@ -3,20 +3,20 @@ start
 :Users keys in the parent delete command;
 
 if () then ([User keys in a valid command format])
-:Retrieve parent from UniqiueParentList with name and phone number;
+    :Retrieve parent from UniqueParentList with name and phone number;
     if () then ([Parent can be found in the list])
-        if () then ([Parent to be deleted has no students attached])
+        if () then ([Parent to delete has no students attached])
             :Delete parent from the list;
             else ([else])
-            :Display invalid parent delete message;
+                :Display invalid parent delete message;
             stop
             endif
     else ([else])
-    :Display parent not found message;
+        :Display parent not found message;
     stop
     endif
 else ([else])
-:Display invalid command format msg;
+    :Display invalid command format msg;
 stop
 endif
 :Display parent delete success message;

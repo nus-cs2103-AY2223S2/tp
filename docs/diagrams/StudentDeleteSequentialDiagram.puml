@@ -50,13 +50,13 @@ activate Model
 Model --> StudentDeleteCommand
 deactivate Model
 
-StudentDeleteCommand -> Model: deleteStudent(student)
+StudentDeleteCommand -> Model: getParent(parentName, parentNumber)
 activate Model
 
 Model --> StudentDeleteCommand
 deactivate Model
 
-StudentDeleteCommand -> Model: getParent(parentName, parentNumber)
+StudentDeleteCommand -> Model: deleteStudent(studentToDelete)
 activate Model
 
 Model --> StudentDeleteCommand

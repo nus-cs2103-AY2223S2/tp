@@ -31,13 +31,13 @@ Without further ado, let's get started!
          4. [Deletes students' grade: `gradedelete`](#deleting-a-grade-for-student--student-class-gradedelete)
          5. [Add comments to students: `comment`](#adding-comments-for-student--student-class-comment)
          6. [Listing all students in a particular class: `list`](#listing-all-students-in-the-selected-class-student-class-list)
-         7. [Editing a student's particulars: `edit`](#edit-student-student-class-edit)
-         8. [Searching students: `find`](#locating-students-by-name-student-class-find)
+         7. [Editing a student's particulars: `edit`](#edit-student--student-class-edit)
+         8. [Searching students: `find`](#locating-students-by-name--student-class-find)
          9. [Deleting a student: `delete`](#deleting-student-student-class-delete)
     3. [Parent Features: `parent`](#parent)
         1. [Add Parent/Next-of-Kin: `add`](#adding-a-parentnok-parent-add)
         2. [Editing a Parent/Next-of-Kin particulars: `edit`](#edit-parent-parent-edit)
-        3. [Searching Parents/Next-of-Kins: `find`](#locating-parent-by-name-parent-find)
+        3. [Searching Parents/Next-of-Kins: `find`](#locating-parent-by-name--parent-find)
         4. [Deleting a Parent/Next-of-Kin: `delete`](#deleting-parent-parent-delete)
     4. [General Features](#general)
        1. [List all students / parents](#listing-students--parents-list)
@@ -766,7 +766,7 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 
 1. In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
 
-2. Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS>.png` <br>
+2. Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEX>.png` <br>
 
     Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br><br>
 
@@ -776,7 +776,8 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 3. Inside the images' folder, create a folder called `student` and `parent` if it does not exist.
 ![image2 message](images/images2.png)
 
-    Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEXNUMBER>.png`
+    Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEX>.png`
+    
 ![imagestudent message](images/imagestudent.png)
 
     Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
