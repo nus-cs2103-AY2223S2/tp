@@ -28,8 +28,12 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
       ![WindowsCMD](images/windowsTutorial/WindowsCMD.png)
       Run the command `java -jar wheregottime.jar` to start the application:
       ![WindowsJARCommand](images/windowsTutorial/WindowsJARCommand.png)
-      2. **INSERT MACOS TUTORIAL HERE**
-         
+      2. On Macs: Control-click on the _home folder_ and click on `New Terminal at Folder`
+      ![MacFinder](images/macsTutorial/MacsFinder.png)
+      A window similar to the one below should appear:
+      ![MacsCMD](images/macsTutorial/MacsCMD.png)
+      Run the command `java -jar wheregottime.jar` to start the application:
+      ![MacsJARCommand](images/macsTutorial/MacsJARCommand.png)
 5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -278,6 +282,13 @@ Format: `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END
 
 Examples:
 * `event_create_recur 1 re/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00`
+* `event_create_recur 1 re/CS2103T Lecture d/Friday f/16:00 t/18:00`
+
+**Note:** To create a recurring event that lasts the whole day from `00:00` to `00:00`, the event needs to be split into
+two seperate recurring events as `START_TIME` and `END_TIME` cannot have the same time.
+For example, 
+`event_create_recur 1 re/Studying d/Saturday f/00:00 t/14:00`
+`event_create_recur 1 re/Studying d/Saturday f/14:00 t/00:00`
 
 ### Deleting an event:
 Delete either an isolated or a weekly recurring event
