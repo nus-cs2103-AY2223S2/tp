@@ -27,8 +27,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Refactor and rename many traces of AB3.
-    * Enhanced JavaDocs.
-    * Modify existing test cases.
+    * Modify existing test cases to work with PowerCards.
 
 * **Documentation**:
     * User Guide:
@@ -37,8 +36,9 @@ Given below are my contributions to the project.
         * Add command summary
     * Developer Guide:
         * Add Main Mode features to explain how they work.
-        * Add activity and sequence diagrams for the Main Mode. 
+        * Draw activity and sequence diagrams for the Main Mode. 
         * Add Appendix:Manual Testing for the Main Mode.
+        * Add on Appendix:Effort
 
 * **Community**:
     * Reviewed and approved PRs
