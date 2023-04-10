@@ -76,7 +76,7 @@ Note:
 
 
    A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Ui.png" alt="Ui" width="50%">
+   <img src="images/Ui.png" alt="Ui" width="41%">
 
 
 5. Type in a command in the command box to execute it. Some commands to try:
@@ -187,7 +187,7 @@ Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` edit the phone number and email address of the patient at index 1 to be 91234567 and johndoe@example.com respectively.
 
-![Edit](images/command_result/Edit.png)
+<img src="images/command_result/Edit.png" alt="Edit" width="80%">
 
 Above is the execution result of the input `edit 7 i/G0000000A`.
 <div style="page-break-after: always;"></div>
@@ -302,7 +302,7 @@ Examples:
 <div markdown="span" class="alert alert-info">:information_source: **Note:**: INDEX_NO can only be an integer between 1 and 10
 </div>
 
-![Backup](images/command_result/Backup.png)
+<img src="images/command_result/Backup.png" alt="Backup" width="80%">
 
 Above is the execution result of the input `backup 1`.
 <div style="page-break-after: always;"></div>
