@@ -8,9 +8,9 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([has arguments])
-    :create person descriptor;
+    :create EditPersonDescriptor;
     if () then ([prefix are present])
-        :Update person descriptor with respective attributes;
+        :Update EditPersonDescriptor with respective attributes*;
     else ([else])
     endif
     if () then ([some fields are edited])

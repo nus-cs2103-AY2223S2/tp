@@ -1,6 +1,5 @@
 @startuml
 start
-:EditCommandParser parses user command into EditCommand;
 :EditCommand checks if command can execute;
 :Get personToEdit from Model;
 
@@ -11,7 +10,6 @@ if () then ([Edit removes any skills])
     :Check original set of skills;
     if () then ([Any removed skill does not exist in original set])
         :throw skill does not exist error message;
-    else ([else])
     endif
 else ([else])
 endif

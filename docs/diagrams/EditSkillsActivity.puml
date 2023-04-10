@@ -1,0 +1,15 @@
+@startuml
+
+start
+:Editing skills of a person;
+
+if () then (["s/" prefix is present])
+    :Create a new set of skills written with "s/" prefix;
+else ([else])
+    :Copy original person's set of skills;
+    :Remove removed skills from set written with "s-/" prefix;
+    :Add newly added skills to set written with "s+/" prefix;
+endif
+:Return set of skills for EditedPerson;
+stop
+@enduml
