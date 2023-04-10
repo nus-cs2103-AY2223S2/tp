@@ -119,7 +119,7 @@ This provides some quick and convenient hacks that you can use to optimize your 
 
    A Graphical User Interface (pictured below) will appear. Note how the app contains some sample data.<br>
 
-![Ui](images/UiStartup.png)
+![Ui](images/UiStartup.PNG)
 
 6. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
