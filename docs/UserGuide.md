@@ -148,6 +148,9 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
+
 # About the Interface
 
 The *Fish Ahoy!* interface consists of three main components, the **Command Line**, **Alerts**, and **Panels**,
@@ -944,8 +947,6 @@ Format: `help`
 **A**: No! You can store all of your fish on *Fish Ahoy!*
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## Command summary
 
