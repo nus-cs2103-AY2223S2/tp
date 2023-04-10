@@ -1599,8 +1599,8 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The name is invalid or missing.
     * 1a1. EduMate shows an error message.
 
-* 1f. The person with the given name already exists in the contact list.
-    * 1f1. EduMate shows an error message.
+* 1b. The person with the given name already exists in the contact list.
+    * 1b1. EduMate shows an error message.
 
 * 2a. The email field is missing.
     * 2a1. EduMate assigns an email based on the name.
