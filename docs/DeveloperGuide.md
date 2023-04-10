@@ -56,7 +56,7 @@ TutorPro is a **desktop app designed to help private tutors manage their student
   * [Launch and shutdown](#launch-and-shutdown)
   * [Deleting a student](#deleting-a-student)
 * [Saving data](#saving-data)
-* [Appendix: Effort](#appendix-effort)
+- [**Appendix: Effort**](#appendix-effort)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -803,8 +803,6 @@ Priorities:
 * 2a. The student's exam list is empty.
 
   Use case ends.
-
-*{More to be added}*
 
 ### View all Students' Exams
 
