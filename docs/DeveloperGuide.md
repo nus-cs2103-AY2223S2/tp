@@ -1154,7 +1154,6 @@ These instructions only provide a starting point for testers to work on; testers
 <div style="page-break-after: always;"></div>
 
 ### Adding an applicant
-<div style="page-break-after: always;"></div>
 
 Prerequisites: An applicant with the name Fred and phone number 999 does not exist in HMHero yet.
 
