@@ -36,14 +36,14 @@ Given below are my contributions to the project.
     * Created labels and categorized issues on GitHub
 * **Enhancements to existing features**:
     * Changed the find, edit, delete command such that they now require the user to use prefixes to specify the fields to search for, edit, or delete
-    * Changed the add command such that when a new student is created, his/her name cannot be part of any existing students' names, and vice versa.
-    * Added lesson unique lists in teh application, added, and updated relevant methods in a logical model, storage, and other classes ot fit the change.
+    * Changed the add and edit command such that when a new student is created or an existing student is modified, his/her name cannot be part of any existing students' names, and vice versa.
+    * Added lesson unique lists in the application, added, and updated relevant methods in a logical model, storage, and other classes ot fit the change.
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `new-lesson`, `view-lesson`, `delete-lesson`, `update-lesson`, `new-exam`, `view-exam`, `delete-exam`, `update-exam`: [#184](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/184)
     * Added Glossary, List of Commands, and List of Prefixes as 3 separate tables: [#117](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/117)
   * Developer Guide:
-    * Added implementation for `CreateLessonCommand` [#89](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/89)
+    * Added implementation for `CreateLessonCommand` with Sequence Diagramm and Activity Diagram [#89](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/89)
     * Added Glossary and changed the table of contents [#198](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/198)
   
 * **Community**:
