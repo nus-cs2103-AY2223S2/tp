@@ -38,13 +38,13 @@ Given below is a quick overview of main components and how they interact with ea
 
 #### Main components of the architecture
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/MainApp.java). It is responsible for
+* At app launch: Initialising the components in the correct sequence, and connecting them up with each other.
+* At shut down: Shutting down the components and invoking cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components:
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
@@ -481,10 +481,6 @@ The following activity and sequence diagrams shows how the undo operation works:
 ![UndoSequenceDiagram](images/UndoActivityDiagram.png)
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
 
 The `redo` command does the opposite — it calls `TemporaryMemory#redo()`, which pops from the auxiliary `Stack` once, and pushes the popped item back into the primary `Deque`, restoring the Dengue Hotspot Tracker to a previous state.
 
@@ -982,6 +978,14 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding cases
+
+1. Adding a case
+   1. Test case: `add n/Betty Tan p/123456 a/12 d/2023-03-23`<br>
+      Expected: A case with the name `Betty Tan`, postal code `123456`, date `2023-03-23`
+      and age `12` is added into DengueHotspotTracker.
+   1. Test case: `add n/River Lee`<br>
+      Expected: No case is added. Error details shown in the status message.
 
 ### Deleting cases
 
@@ -999,6 +1003,15 @@ testers are expected to do more *exploratory* testing.
       Expected: First and second cases are deleted from the list. Number of cases deleted shown in the status message.
    2. Test case: `delete 0 1` <br>
       Expected: No case is deleted as at least one of the given indexes is out of range. Error details shown in the status message.
+
+### Sorting cases
+
+1. Sorting cases
+    1. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
+    1. Test case: `sort n/`<br>
+       Expected: Cases are sorted by name.
+    1. Test case: `sort v/`<br>
+       Expected: List does not change. Error details shown in the status message.
 
 ### Exporting/Importing data
 
