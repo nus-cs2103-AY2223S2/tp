@@ -54,4 +54,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Reset the index.
+     */
+    void resetIndex();
 }
