@@ -41,11 +41,11 @@ All terms used are summarised in the [Glossary](#glossary)
 
 The following icons throughout our user guide:
 
-| **Icons**                                                                | **Meaning**                                                                                                   |
-|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| <div markdown="span" class="alert alert-info">:information_source:</div> | This provides some additional information that you are recommended to know.                                   | 
-| <div markdown="block" class="alert alert-primary">:bulb:</div>           | This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink. |
-| <div markdown="block" class="alert alert-danger">:exclamation: </div>    | Danger zone! Do pay attention to the information here carefully.                                              |
+| **Icons**                                                                                                                                              | **Meaning**                                                                                                   |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| <div markdown="span" class="alert alert-info">:information_source: This provides some additional information that you are recommended to know.  </div> | Infomation                                                                                                    | 
+| <div markdown="block" class="alert alert-primary">:bulb: </div>                                                                                        | This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink. |
+| <div markdown="block" class="alert alert-danger">:exclamation: </div>                                                                                  | Danger zone! Do pay attention to the information here carefully.                                              |
 
 The following icons are found in FriendLink: 
 
