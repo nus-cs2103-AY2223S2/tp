@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ADD_ORDER_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ADD_ORDER_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.model.order.StatusUpdate.DATE_FORMATTER;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
@@ -45,10 +46,10 @@ public class AddOrderCommandTest {
     }
 
     @Test
-    public void execute_duplicateOrder_success() throws Exception {
+    public void execute_duplicateOrder_failure() throws Exception {
         LocalDate dateToday = LocalDate.now();
         String formattedDate = dateToday.format(DATE_FORMATTER);
-        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
+        ModelStubWithOneOrder modelStub = new ModelStubWithOneOrder();
         Customer customerToAdd = new CustomerBuilder().withName(VALID_NAME_AMY).build();
         Order validOrder = new OrderBuilder().withCustomer(customerToAdd)
                 .withCreatedDate(formattedDate).withInitialStatus(formattedDate).build();
@@ -56,11 +57,7 @@ public class AddOrderCommandTest {
                 .AddOrderDescriptor(validOrder);
         AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST, validAddOrderDescriptor);
 
-        CommandResult commandResult = addOrderCommand.execute(modelStub);
-
-        assertEquals(
-                String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
+        assertCommandFailure(addOrderCommand, modelStub, addOrderCommand.MESSAGE_DUPLICATE_ORDER);
     }
 
     @Test
@@ -155,6 +152,16 @@ public class AddOrderCommandTest {
         }
 
         @Override
+        public void setCustomerToDisplay(Customer customer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Customer getCustomerToDisplay() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Customer> getFilteredCustomerList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -181,6 +188,16 @@ public class AddOrderCommandTest {
 
         @Override
         public void setOrder(Order target, Order editedOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setOrderToDisplay(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Order getOrderToDisplay() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -214,16 +231,31 @@ public class AddOrderCommandTest {
      * A Model stub that contains a single customer.
      */
 
-    private class ModelStubAcceptingOrderAdded extends ModelStub {
+    private class ModelStubWithOneOrder extends ModelStub {
+        final LocalDate dateToday = LocalDate.now();
+        final String formattedDate = dateToday.format(DATE_FORMATTER);
         final Customer customerToAdd = new CustomerBuilder().withName(VALID_NAME_AMY).build();
+        final Order orderToAdd = new OrderBuilder().withCustomer(customerToAdd)
+                .withCreatedDate(formattedDate).withInitialStatus(formattedDate).build();
         final ArrayList<Customer> customers = new ArrayList<>(
                 Arrays.asList(customerToAdd));
-        final ArrayList<Order> ordersAdded = new ArrayList<>();
+        final ArrayList<Order> ordersAdded = new ArrayList<>(
+                Arrays.asList(orderToAdd));
 
         @Override
         public void addOrder(Order order) {
             requireNonNull(order);
             ordersAdded.add(order);
+        }
+
+        @Override
+        public void setOrderToDisplay(Order order) {
+        }
+
+        @Override
+        public boolean hasOrder(Order order) {
+            requireNonNull(order);
+            return ordersAdded.stream().anyMatch(order::isSameOrder);
         }
 
         @Override

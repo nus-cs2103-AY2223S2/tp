@@ -38,49 +38,35 @@ public class EditOrderCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        LocalDate dateToday = LocalDate.now();
-        String formattedDate = dateToday.format(DATE_FORMATTER);
-        Order initialOrder = new OrderBuilder().withCreatedDate(formattedDate)
-                .withInitialStatus(formattedDate).build();
-        Order editedOrder = new OrderBuilder().withName(VALID_NAME_B)
-                .withQuantity(VALID_QUANTITY_B).withAddress(VALID_ADDRESS_B)
-                .withCreatedDate(formattedDate).withInitialStatus(formattedDate).build();
-
-        model.addOrder(initialOrder);
+        Order firstOrder = model.getFilteredOrderList().get(0);
+        Order editedOrder = new OrderBuilder(firstOrder).withName(VALID_NAME_B)
+                .withQuantity(VALID_QUANTITY_B).withAddress(VALID_ADDRESS_B).build();
 
         EditOrderCommand.EditOrderDescriptor descriptor =
                 new EditOrderDescriptorBuilder(editedOrder).build();
-        Index lastOrderIndex = Index.fromOneBased(model.getFilteredOrderList().size());
-        EditOrderCommand editOrderCommand = new EditOrderCommand(lastOrderIndex, descriptor);
+        EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
-
+        System.out.println(expectedMessage);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setOrder(initialOrder, editedOrder);
+        expectedModel.setOrder(firstOrder, editedOrder);
 
         assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        LocalDate dateToday = LocalDate.now();
-        String formattedDate = dateToday.format(DATE_FORMATTER);
-        Order initialOrder = new OrderBuilder().withCreatedDate(formattedDate)
-                .withInitialStatus(formattedDate).build();
-        Order editedOrder = new OrderBuilder().withAddress(VALID_ADDRESS_B)
-                .withCreatedDate(formattedDate).withInitialStatus(formattedDate).build();
-
-        model.addOrder(initialOrder);
+        Order firstOrder = model.getFilteredOrderList().get(0);
+        Order editedOrder = new OrderBuilder(firstOrder).withAddress(VALID_ADDRESS_B).build();
 
         EditOrderCommand.EditOrderDescriptor descriptor =
                 new EditOrderDescriptorBuilder(editedOrder).build();
-        Index lastOrderIndex = Index.fromOneBased(model.getFilteredOrderList().size());
-        EditOrderCommand editOrderCommand = new EditOrderCommand(lastOrderIndex, descriptor);
+        EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
-
+        System.out.println(expectedMessage);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setOrder(initialOrder, editedOrder);
+        expectedModel.setOrder(firstOrder, editedOrder);
 
         assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }

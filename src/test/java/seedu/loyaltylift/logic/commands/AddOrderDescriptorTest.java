@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ADD_ORDER_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ADD_ORDER_B;
-import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_A;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_QUANTITY_B;
 
@@ -42,7 +42,7 @@ public class AddOrderDescriptorTest {
         assertFalse(DESC_ADD_ORDER_A.equals(editedOrder));
 
         // different address -> returns false
-        editedOrder = new AddOrderDescriptorBuilder(DESC_ADD_ORDER_A).withAddress(VALID_ADDRESS_A).build();
+        editedOrder = new AddOrderDescriptorBuilder(DESC_ADD_ORDER_A).withAddress(VALID_ADDRESS_B).build();
         assertFalse(DESC_ADD_ORDER_A.equals(editedOrder));
     }
 }
