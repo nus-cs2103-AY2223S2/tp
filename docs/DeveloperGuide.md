@@ -679,7 +679,7 @@ The design considerations and future are the same of that as [export](#export-fe
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​       | I want to …​                                                            | So that I can…​                                                           |
+| Priority | As a …        | I want to …                                                             | So that I can…                                                            |
 |----------|---------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------|
 | `* * *`  | new user      | easily view a help page                                                 | know how to use the app                                                   |
 | `* * *`  | new user      | list all dengue cases                                                   | have a high-level overview of the cases                                   |
