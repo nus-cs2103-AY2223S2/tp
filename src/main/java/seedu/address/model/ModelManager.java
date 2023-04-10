@@ -11,33 +11,38 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.pet.Pet;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the PetPal data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final PetPal petPal;
+    private final PetPal archiveStorage;
+    private PetPal petPalCache;
+    private PetPal archiveCache;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Pet> filteredPets;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given PetPal and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyPetPal petPal, ReadOnlyPetPal petPalArchive, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(petPal, petPalArchive, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.info("Initializing with PetPal: " + petPal + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.petPalCache = new PetPal(petPal);
+        this.petPal = new PetPal(petPal);
+        this.archiveStorage = new PetPal(petPalArchive);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPets = new FilteredList<>(this.petPal.getPetList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new PetPal(), new PetPal(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,67 +70,116 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPetPalFilePath() {
+        return userPrefs.getPetPalFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPetPalFilePath(Path petPalFilePath) {
+        requireNonNull(petPalFilePath);
+        userPrefs.setPetPalFilePath(petPalFilePath);
     }
 
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public Path getPetPalArchiveFilePath() {
+        return userPrefs.getPetPalArchiveFilePath();
     }
 
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setPetPalArchiveFilePath(Path petPalArchiveFilePath) {
+        requireNonNull(petPalArchiveFilePath);
+        userPrefs.setPetPalArchiveFilePath(petPalArchiveFilePath);
     }
 
+    //===================================== PetPal ======================================================
+
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public void setPetPal(ReadOnlyPetPal petPal) {
+        this.petPal.resetData(petPal);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public ReadOnlyPetPal getPetPal() {
+        return petPal;
+    }
+
+    public ReadOnlyPetPal getPetPalArchive() {
+        return archiveStorage;
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasPet(Pet pet) {
+        requireNonNull(pet);
+        return petPal.hasPet(pet);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void deletePet(Pet target) {
+        this.petPalCache = new PetPal(petPal);
+        petPal.removePet(target);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void addPet(Pet pet) {
+        this.petPalCache = new PetPal(petPal);
+        petPal.addPet(pet);
+        updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
+    }
+
+    @Override
+    public void markPet(Pet target) {
+        this.petPalCache = new PetPal(petPal);
+        petPal.markPet(target);
+    }
+
+    @Override
+    public void undo() {
+        PetPal temp = new PetPal(petPalCache);
+        petPal.setPets(temp.getPetList());
+        if (archiveCache == null) {
+            archiveCache = new PetPal();
+        }
+        PetPal archiveTemp = new PetPal(archiveCache);
+        archiveStorage.setPets(archiveTemp.getPetList());
+    }
+
+    @Override
+    public void setPet(Pet target, Pet editedPet) {
+        requireAllNonNull(target, editedPet);
+
+        petPal.setPet(target, editedPet);
+    }
+
+    @Override
+    public void archivePet(Pet petToArchive) {
+        this.petPalCache = new PetPal(petPal);
+        this.archiveCache = new PetPal(archiveStorage);
+
+        requireNonNull(petToArchive);
+        archiveStorage.archivePet(petToArchive);
+        petPal.removePet(petToArchive);
+        updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
+    }
+
+    @Override
+    public boolean hasArchivePet(Pet p) {
+        requireNonNull(p);
+        return archiveStorage.hasPet(p);
+    }
+
+    //=========== Filtered Pet List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Pet} backed by the internal list of
+     * {@code versionedPetPal}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Pet> getFilteredPetList() {
+        return filteredPets;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPetList(Predicate<Pet> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredPets.setPredicate(predicate);
     }
 
     @Override
@@ -142,9 +196,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return petPal.equals(other.petPal)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPets.equals(other.filteredPets);
     }
-
 }

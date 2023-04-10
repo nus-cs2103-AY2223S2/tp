@@ -1,0 +1,74 @@
+{
+  "_comment": "PetPal save file which contains the same Pet values as in TypicalPet#getTypicalPetPal()",
+  "pets" : [ {
+    "ownerName": "Alice Pauline",
+    "name" : "Whiskers",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "timestamp" : "2023-04-05T22:37:07.428987500",
+    "deadline" : "Cut hair by 2023-04-07 22:37:08",
+    "status" : "Unmarked",
+    "tagged" : [ "MaineCoon" ]
+  }, {
+    "ownerName": "Benson Meier",
+    "name" : "Woofers",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "timestamp" : "2023-04-05T22:37:07.428987500",
+    "deadline" : "Feed pet by 2023-04-07 22:37:08",
+    "status" : "Unmarked",
+    "tagged" : [ "GoldenRetriever", "Male" ]
+  }, {
+    "ownerName": "Yuan Xun",
+    "name" : "Bobby",
+    "phone" : "91111111",
+    "email" : "yx@example.com",
+    "address" : "311, Kent Ridge Ave 2, #04-25",
+    "timestamp" : "2023-04-05T22:37:07.428987500",
+    "deadline" : "Feed pet by 2023-04-07 22:37:08",
+    "status" : "Unmarked",
+    "tagged" : [ "Turtle" ]
+  }, {
+    "ownerName": "Weng Kit",
+    "name" : "GREGORY",
+    "phone" : "98761234",
+    "email" : "wk@example.com",
+    "address" : "411, Bukit Panjang Ave 2, #02-25",
+    "timestamp" : "2023-04-05T22:37:07.428987500",
+    "deadline" : "Feed pet by 2023-04-07 22:37:08",
+    "status" : "Unmarked",
+    "tagged" : [ "Mouse" ]
+  }, {
+    "ownerName": "Daniel Irwan",
+    "name" : "Pengy",
+    "phone" : "93323334",
+    "email" : "dirwan@example.com",
+    "address" : "122, Bukit Batok Ave 10, #06-25",
+    "timestamp" : "2023-04-05T22:37:07.428987500",
+    "deadline" : "Cut pet by 2023-04-07 22:37:08",
+    "status" : "Unmarked",
+    "tagged" : [ "Penguin" ]
+  }, {
+    "ownerName": "Shui Mei",
+    "name" : "SHARKY",
+    "phone" : "12345678",
+    "email" : "shuimei@example.com",
+    "address" : "444, Chinatown St 2, #01-25",
+    "timestamp" : "2023-04-05T22:37:07.428987500",
+    "deadline" : "Feed pet by 2023-04-07 22:37:08",
+    "status" : "Unmarked",
+    "tagged" : [ "Parrot", "Female" ]
+  }, {
+    "ownerName": "Yang Shan",
+    "name" : "Grizzly",
+    "phone" : "92313222",
+    "email" : "ys123@example.com",
+    "address" : "888, Shenton Ave 2, #02-25",
+    "timestamp" : "2023-04-05T22:37:07.428987500",
+    "deadline" : "Ensure complete molt by 2023-04-07 22:37:08",
+    "status" : "Unmarked",
+    "tagged" : [ "Snake" ]
+  } ]
+}

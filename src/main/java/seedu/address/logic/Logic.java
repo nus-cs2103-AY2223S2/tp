@@ -7,8 +7,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyPetPal;
+import seedu.address.model.pet.Pet;
 
 /**
  * API of the Logic component
@@ -24,19 +25,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the PetPal.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getPetPal()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyPetPal getPetPal();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of Pets */
+    ObservableList<Pet> getFilteredPetList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' PetPal file path.
      */
-    Path getAddressBookFilePath();
+    Path getPetPalFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

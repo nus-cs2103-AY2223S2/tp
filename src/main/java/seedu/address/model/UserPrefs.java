@@ -14,7 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path petPalFilePath = Paths.get("data" , "petpal.json");
+    private Path petPalArchiveFilePath = Paths.get("data", "archive.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setPetPalFilePath(newUserPrefs.getPetPalFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,13 +48,22 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getPetPalFilePath() {
+        return this.petPalFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setPetPalFilePath(Path petPalFilePath) {
+        requireNonNull(petPalFilePath);
+        this.petPalFilePath = petPalFilePath;
+    }
+
+    public Path getPetPalArchiveFilePath() {
+        return this.petPalArchiveFilePath;
+    }
+
+    public void setPetPalArchiveFilePath(Path petPalArchiveFilePath) {
+        requireNonNull(petPalArchiveFilePath);
+        this.petPalArchiveFilePath = petPalArchiveFilePath;
     }
 
     @Override
@@ -68,20 +78,23 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && petPalFilePath.equals(o.petPalFilePath)
+                && petPalArchiveFilePath.equals(o.petPalArchiveFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, petPalFilePath, petPalArchiveFilePath);
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
-        return sb.toString();
+        return "Gui Settings : "
+                + guiSettings
+                + "\nLocal data file location : "
+                + petPalFilePath
+                + "\nLocal archive file location: "
+                + petPalArchiveFilePath;
     }
 
 }

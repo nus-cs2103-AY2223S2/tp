@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "PetPal"
 theme: minima
 
 header_pages:
@@ -8,8 +8,8 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
-github_icon: "images/github-icon.png"
+repository: "AY2223S2-CS2103T-T14-2/tp"
+github_icon: "images/UI/github-icon.png"
 
 plugins:
   - jemoji

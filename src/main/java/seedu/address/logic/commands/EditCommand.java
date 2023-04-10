@@ -2,12 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PETS;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -19,87 +22,95 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.pet.Address;
+import seedu.address.model.pet.Deadline;
+import seedu.address.model.pet.Email;
+import seedu.address.model.pet.Name;
+import seedu.address.model.pet.OwnerName;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing pet in the pet list.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the pet identified "
+            + "by the index number used in the displayed pet list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TIMESTAMP + "TIMESTAMP]...\n"
+            + "[" + PREFIX_DEADLINE + "DEADLINE]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PET_SUCCESS = "Edited Pet:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the pet list.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditPetDescriptor editPetDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the pet in the filtered pet list to edit
+     * @param editPetDescriptor details to edit the pet with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditPetDescriptor editPetDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editPetDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPetDescriptor = new EditPetDescriptor(editPetDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Pet> lastShownList = model.getFilteredPetList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PET_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Pet petToEdit = lastShownList.get(index.getZeroBased());
+        Pet editedPet = createEditedPet(petToEdit, editPetDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!petToEdit.isSamePet(editedPet) && model.hasPet(editedPet)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PET);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setPet(petToEdit, editedPet);
+        model.updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
+        return new CommandResult(String.format(MESSAGE_EDIT_PET_SUCCESS, editedPet));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Pet} with the details of {@code petToEdit}
+     * edited with {@code editPetDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Pet createEditedPet(Pet petToEdit, EditPetDescriptor editPetDescriptor) {
+        assert petToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        OwnerName updatedOwnerName = editPetDescriptor.getOwnerName().orElse(petToEdit.getOwnerName());
+        Name updatedName = editPetDescriptor.getName().orElse(petToEdit.getName());
+        Phone updatedPhone = editPetDescriptor.getPhone().orElse(petToEdit.getPhone());
+        Email updatedEmail = editPetDescriptor.getEmail().orElse(petToEdit.getEmail());
+        Address updatedAddress = editPetDescriptor.getAddress().orElse(petToEdit.getAddress());
+        LocalDateTime updatedTimestamp = editPetDescriptor.getTimeStamp().orElse(petToEdit.getTimeStamp());
+        Deadline updatedDeadline = editPetDescriptor.getDeadline().orElse(petToEdit.getDeadline());
+        Set<Tag> updatedTags = editPetDescriptor.getTags().orElse(petToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Pet(updatedOwnerName, updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedTimestamp, updatedDeadline, updatedTags);
     }
 
     @Override
@@ -117,31 +128,37 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editPetDescriptor.equals(e.editPetDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the pet with. Each non-empty field value will replace the
+     * corresponding field value of the pet.
      */
-    public static class EditPersonDescriptor {
+    public static class EditPetDescriptor {
+        private LocalDateTime timestamp;
+        private OwnerName ownerName;
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
+        private Deadline deadline;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPetDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditPetDescriptor(EditPetDescriptor toCopy) {
+            setOwnerName(toCopy.ownerName);
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setDeadline(toCopy.deadline);
+            setTimeStamp(toCopy.timestamp);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +166,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, timestamp, deadline, tags);
+        }
+
+        public void setOwnerName(OwnerName ownerName) {
+            this.ownerName = ownerName;
+        }
+
+        public Optional<OwnerName> getOwnerName() {
+            return Optional.ofNullable(ownerName);
         }
 
         public void setName(Name name) {
@@ -200,6 +225,21 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
+        public void setTimeStamp(LocalDateTime timestamp) {
+            this.timestamp = timestamp;
+        }
+
+        public Optional<LocalDateTime> getTimeStamp() {
+            return Optional.ofNullable(this.timestamp);
+        }
+
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(this.deadline);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -209,18 +249,23 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditPetDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditPetDescriptor e = (EditPetDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getOwnerName().equals(e.getOwnerName())
+                    && getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getTimeStamp().equals(e.getTimeStamp())
+                    && getDeadline().equals(e.getDeadline())
                     && getTags().equals(e.getTags());
         }
+
+
     }
 }

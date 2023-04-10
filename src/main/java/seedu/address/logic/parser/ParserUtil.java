@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,10 +11,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.pet.Address;
+import seedu.address.model.pet.Deadline;
+import seedu.address.model.pet.Email;
+import seedu.address.model.pet.Name;
+import seedu.address.model.pet.OwnerName;
+import seedu.address.model.pet.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +25,21 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    /**
+     * Parses a {@code String ownerName} into a {@code OwnerName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ownerName} is invalid.
+     */
+    public static OwnerName parseOwnerName(String ownerName) throws ParseException {
+        requireNonNull(ownerName);
+        String trimmedOwnerName = ownerName.trim();
+        if (!OwnerName.isValidName(trimmedOwnerName)) {
+            throw new ParseException(OwnerName.MESSAGE_CONSTRAINTS);
+        }
+        return new OwnerName(trimmedOwnerName);
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -33,6 +52,10 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static double parseDouble(String d) {
+        return Double.parseDouble(d);
     }
 
     /**
@@ -111,6 +134,32 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String timestamp} into an {@code LocalDateTime}.
+     */
+    public static LocalDateTime parseTimeStamp(String timestamp) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return LocalDateTime.parse(timestamp, formatter);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a Deadline object
+     *
+     * @param deadline takes in a deadline date in the form of yyyy-MM-dd HH:mm:ss
+     * @return new Deadline(String description, LocalDateTime time)
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        String[] split = deadline.split("-", 2);
+        String description = split[0].trim();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime time = LocalDateTime.parse(split[1].trim(), formatter);
+        if (!Deadline.isValidDeadline(time)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return new Deadline(description, time);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -121,4 +170,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }

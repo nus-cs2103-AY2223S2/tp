@@ -1,0 +1,73 @@
+{
+  "pets" : [ {
+    "ownerName" : "Alice Pauline",
+    "name" : "Whiskers",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "timestamp" : "2023-04-08T14:51:03.125202300",
+    "deadline" : "Feed cat by 2023-04-12 14:51:03",
+    "status" : "Unmarked",
+    "tagged" : [ "MaineCoon" ]
+  }, {
+    "ownerName" : "Benson Meier",
+    "name" : "Woofers",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "timestamp" : "2023-04-08T14:51:03.129203600",
+    "deadline" : "Feed dog by 2023-04-13 14:51:03",
+    "status" : "Unmarked",
+    "tagged" : [ "GoldenRetriever", "Male" ]
+  }, {
+    "ownerName" : "Weng Kit",
+    "name" : "GREGORY",
+    "phone" : "98761234",
+    "email" : "wk@example.com",
+    "address" : "411, Bukit Panjang Ave 2, #02-25",
+    "timestamp" : "2023-04-08T14:51:03.129203600",
+    "deadline" : "Feed mouse by 2023-04-12 14:51:03",
+    "status" : "Unmarked",
+    "tagged" : [ "Mouse" ]
+  }, {
+    "ownerName" : "Daniel Irwan",
+    "name" : "Pengy",
+    "phone" : "93323334",
+    "email" : "dirwan@example.com",
+    "address" : "122, Bukit Batok Ave 10, #06-25",
+    "timestamp" : "2023-04-08T14:51:03.130204200",
+    "deadline" : "Feed penguin by 2023-04-12 14:51:03",
+    "status" : "Unmarked",
+    "tagged" : [ "Penguin" ]
+  }, {
+    "ownerName" : "Yuan Xun",
+    "name" : "Bobby",
+    "phone" : "91111111",
+    "email" : "yx@example.com",
+    "address" : "311, Kent Ridge Ave 2, #04-25",
+    "timestamp" : "2023-04-08T14:51:03.129203600",
+    "deadline" : "Feed turtle by 2023-04-12 14:51:03",
+    "status" : "Unmarked",
+    "tagged" : [ "Turtle" ]
+  }, {
+    "ownerName" : "Shui Mei",
+    "name" : "SHARKY",
+    "phone" : "12345678",
+    "email" : "shuimei@example.com",
+    "address" : "444, Chinatown St 2, #01-25",
+    "timestamp" : "2023-04-08T14:51:03.130204200",
+    "deadline" : "Feed parrot by 2023-04-12 14:51:03",
+    "status" : "Unmarked",
+    "tagged" : [ "Parrot", "Female" ]
+  }, {
+    "ownerName" : "Yang Shan",
+    "name" : "Grizzly",
+    "phone" : "92313222",
+    "email" : "ys123@example.com",
+    "address" : "888, Shenton Ave 2, #02-25",
+    "timestamp" : "2023-04-08T14:51:03.130204200",
+    "deadline" : "Vaccination by 2023-04-19 14:51:03",
+    "status" : "Unmarked",
+    "tagged" : [ "Snake" ]
+  } ]
+}

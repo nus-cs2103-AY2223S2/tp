@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.pet.Pet;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Pet> PREDICATE_SHOW_ALL_PETS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +35,77 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' PetPal file path.
      */
-    Path getAddressBookFilePath();
+    Path getPetPalFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' PetPal file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPetPalFilePath(Path petPalFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces pet pal data with the data in {@code petPal}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPetPal(ReadOnlyPetPal petPal);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the PetPal */
+    ReadOnlyPetPal getPetPal();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a pet with the same identity as {@code pet} exists in the pet list.
      */
-    boolean hasPerson(Person person);
+    boolean hasPet(Pet pet);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given pet.
+     * The pet must exist in the pet list.
      */
-    void deletePerson(Person target);
+    void deletePet(Pet target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given pet.
+     * {@code pet} must not already exist in the pet list.
      */
-    void addPerson(Person person);
+    void addPet(Pet pet);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Marks the given pet
+     * The pet must exist in the pet list.
      */
-    void setPerson(Person target, Person editedPerson);
+    void markPet(Pet target);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void undo();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Replaces the given pet {@code target} with {@code editedPet}.
+     * {@code target} must exist in the PetPal.
+     * The pet identity of {@code editedPet} must not be the same as another existing pet in the PetPal.
+     */
+    void setPet(Pet target, Pet editedPet);
+
+    /**
+     * Returns an unmodifiable view of the filtered pet list
+     */
+    ObservableList<Pet> getFilteredPetList();
+
+    /**
+     * Updates the filter of the filtered pet list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPetList(Predicate<Pet> predicate);
+
+    /**
+     * Deletes the given pet
+     * This pet must exist in the PetPal list
+     * @param petToArchive Pet object to archive
+     */
+    void archivePet(Pet petToArchive);
+
+    /**
+     * Returns true if a pet with the same identity as {@code pet} exists in the pet archive list.
+     */
+    boolean hasArchivePet(Pet pet);
+
+    ReadOnlyPetPal getPetPalArchive();
 }
