@@ -113,6 +113,12 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+<br /> 
+<br /> 
+
+**`Page` class**
+
 The abstract `Page` class represents the part of the GUI that displays information requested by the user. This may include details of an internship, existing clashes and etc. Note that a `Page` differs from `ResultDisplay`, which outputs the outcome of a command (e.g. success or failure) keyed in by the user.
 
 Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. 
@@ -122,8 +128,13 @@ The *Class Diagram* below outlines the different concrete subclasses of `Page` a
 <p align="center">
 
 <img src="images/PageClasses.png" width="650" />
+  
+</p>
 
- </p>
+<div style="page-break-after: always;"></div>
+
+ <br /> 
+ <br /> 
 
 **How a `Page` is generated** 
 
@@ -156,6 +167,10 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add an Internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
+<div style="page-break-after: always;"></div>
+<br /> 
+<br /> 
+
 The *Sequence Diagram* below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <p align="center">
@@ -166,6 +181,10 @@ The *Sequence Diagram* below illustrates the interactions within the `Logic` com
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
+<br /> 
+<br /> 
 
 The *Class Diagram* below outlines classes in `Logic` used for parsing a user command:
 
@@ -201,6 +220,7 @@ The `Model` component,
 
 
 **Relationship Between `Internship` and `Event` entities**
+
 Events cannot exist without its corresponding internship, thus there exists a composite relationship between the two.
 Also, to make insertions and deletions of events easier, each event instance stores the internship instance it is
 associated with. Due to this, extra precautions are taken during internship deletions, making sure the corresponding
@@ -208,7 +228,7 @@ events are deleted as well.
 
 <p align="center">
 
-<img src="images/InternshipEventModelClassDiagram.png" width="250" />
+<img src="images/InternshipEventModelClassDiagram.png" width="00" />
 
  </p>
  
@@ -233,6 +253,8 @@ treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
 that belong to the `Model`)
 
+<div style="page-break-after: always;"></div>
+
 ### Common classes
 
 Classes used by multiple components are in the [`seedu.internship.commons`](https://github.com/AY2223S2-CS2103T-W11-2/tp/tree/master/src/main/java/seedu/internship/commons) package.
@@ -243,7 +265,9 @@ Classes used by multiple components are in the [`seedu.internship.commons`](http
 
 ## **Implementation**
  
-This section describes some noteworthy details on how certain features are implemented.
+The following section describes some noteworthy details on how certain features are implemented.
+
+<div style="page-break-after: always;"></div>
 
 ### Selecting an `Internship`: `select` command
 
@@ -285,6 +309,8 @@ The following *Sequence Diagram* shows how the `select` command works:
  
 Note: The lifeline for `SelectCommand` should end at the destroy marker(X) but due to a limitation of PlantUML, the
 lifeline reaches the end of diagram.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding `Event` to an `Internship`: `event add` command
 
@@ -332,6 +358,8 @@ The *Sequence Diagram* for the adding the `Event` is below:
 
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing all `Event` on a calendar: `calendar` command
 
 #### Purpose of `calendar` command
@@ -342,7 +370,7 @@ The `calendar` command displays all Events under existing Internships in a calen
 
 The `calendar` command is a standard command that extends `Command` and returns a `CommandResult` in the `execute()` method.
 
-Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
+Given below is an example usage, and a trace-through of the execution of `calendar` command.
 
 Step 1. The user enters `calendar` command into the CommandBox.
 
@@ -360,7 +388,7 @@ Step 7. In `MainWindow`'s `executeCommand` method, `Page.of(CommandResult)` is c
 
 Step 8. `Page.of(CommandResult)` recognizes that `ResultType` of the `CommandResult` is `CALENDAR`, and creates a `CalendarPage` to be shown by calling its constructor. THe `ObservableList` of `Event` is passed to the constructor.
 
-Step 9. Within constructor of the `CalendarPage`, here is an outline of what happens under the hood:
+Step 9. Within constructor of the `CalendarPage`:
 * A `MonthPage` is created. It is a composite CalendarFX control responsible for displaying all `Event` in a month in grids.
 * The `MonthPage` is initialized with the current time and set up such that it updates its timing accordingly.
 * A `Calendar` is created. It is a CalendarFX class that stores our `Event` in the form of `Entry` (another CalendarFX class you will see again in a later step)
@@ -380,6 +408,8 @@ Step 8 till Step 11 are depicted in the *Sequence Diagram* below.
 </p>
 
 To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
+
+<div style="page-break-after: always;"></div>
 
 ### View useful `Statistics`: `stats` command
 
@@ -429,6 +459,7 @@ The following sequence diagram shows how the `stats` command works:
 
 </p>
 
+<div style="page-break-after: always;"></div>
 
 ### View all clashing `Event`: `clash` command
 
@@ -476,7 +507,7 @@ duplicated records.
 
 The `clash` command feature is standard command that extends `Command` and returns a `CommandResult` in the
 `execute()` method. The `CommandResult` returns a `HashMap`, which contains mapping from a `LocalDate` to `List<Event>`.
-The `List<Event>` is the list of event with clashes on that particular date.
+The `List<Event>` is the list of events with clashes on that particular date.
 
 Given below is an example usage scenario and how the select command behaves at each step.
 
@@ -505,8 +536,6 @@ the list of events corresponding to those dates.
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -543,30 +572,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                                                                                            | So that I can…​                                                     |
 |----------|--------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions                                                                                  | refer to instructions when I forget how to use the App              |
-| `* * *`  | Beginner user                              | add a new internship listing                                                                            | record details of my internship application                         |
-| `* * *`  | Beginner user                              | delete a previously added internship listing                                                            | rid of dummy data or unwanted internship application                |
+| `* * *`  | beginner user                              | add a new internship listing                                                                            | record details of my internship application                         |
+| `* * *`  | beginner user                              | delete a previously added internship listing                                                            | rid of dummy data or unwanted internship application                |
 | `* *`    | user                                       | hide internship descriptions unless selected.                                                           | minimize chance of someone else seeing them by accident             |
 | `* *`    | novice user                                | edit existing internship applications                                                                   | update outdated information or add new details                      |
 | `*`      | intermediate user                          | quickly update the status of an internship                                                              | keep the status of my applications up to date                       |
 | `* *`    | expert user                                | see all internship events that have clashes in dates                                                    | try to reschedule some of those events                              |
 | `* * *`  | novice user                                | list all my intership applications easily                                                               | can confirm that my internship listing has been created             
 | `* *`    | intermediate user                          | list all internship events that have deadlines on a particular date	                                    | avoid scheduling an interview on that day                           |
-| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about                |
+| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | easily look up internships that I am concerned about                |
 
 
 ### Use cases
 
 (For all use cases below, the **System** is `TinS` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Edit eventDescription of an Internship Application
+#### Use case: Edit description of an internship application
 
 **MSS**
 
 1. User requests to list all internship applications.
-2. System shows a list of all internship applications
+2. System shows a list of all internship applications.
 3. User specifies the ID of the internship application he wishes to edit.
-4. System shows current eventDescription of the internship application and prompts user to input a new eventDescription to edit it.
-5. User inputs the new eventDescription of the internship application.
+4. System shows current description of the internship application and prompts user to input a new description to replace it.
+5. User inputs the new description of the internship application.
 6. System updates the internship application with the new details.
 
 Use Case ends.
@@ -579,29 +608,29 @@ Use Case ends.
 
 * 5a. User cancels the operation midway.
 
-    * 5a1. System retains the original eventDescription and does not edit the internship application.
+    * 5a1. System retains the original description and does not edit the internship application.
 
       Use case ends.
 
-* 5b. User inputs invalid eventDescription.
+* 5b. User inputs invalid description.
 
     * 5b1. System shows an error message.
-    * 5b2. System retains the original eventDescription and does not edit the internship application.
+    * 5b2. System retains the original description and does not edit the internship application.
 
       Use case resumes at step 4.
 
-#### Use Case: Add an Internship Listing
+#### Use Case: Add an internship listing
 
 **MSS**
 
-1. User requests to Add Internship followed by Internship Position, Company Name, Application Status, Description and Tag
-2. System adds the internship listing
+1. User requests to add an internship and provides details of the internship (i.e. position, company name, application status, description and tag).
+2. System adds the internship listing.
 
 Use Case ends.
 
 **Extensions**
 
-* 1a User inputs invalid Parameter.
+* 1a User inputs invalid parameter.
 
     * 1a1. System shows an error message.
     
@@ -623,30 +652,30 @@ Use case ends.
     Use Case ends.
   
 
-#### Use Case: Delete Internship Listing
+#### Use Case: Delete an internship listing
 
 **MSS**
 
-1. User requests to list internships inputted
-2. System shows a list all the inputted internships
-3. User requests to delete an internship listing by its index
-4. System deletes the internship listing
+1. User requests to list internships inputted.
+2. System shows a list all the inputted internships.
+3. User requests to delete an internship listing by its index.
+4. System deletes the internship listing.
 
 Use case ends.
 
 **Extensions**
 
-* 3a. User enters an invalid ID
+* 3a. User enters an invalid ID.
     * 3a1. System will show an error message and not delete any listing.
     
        Use Case resumes at Step 3
 
-#### Use case: List all internship events on a particular date
+#### Use case: Find internship events by a desired criteria
 
 **MSS**
 
-1. User requests to find events that end on a particular date.
-2. System displays the list of events.
+1. User requests to find events by a desired criteria (i.e. event title, start date and end date).
+2. System displays the list of events that fulfills the criteria specified.
  
 Use case ends.
 
@@ -656,20 +685,19 @@ Use case ends.
 
   * 1a1. System displays an error message to inform the user that the input date is not valid.
   
-* 2a. There are no internship events on the particular date.
+* 2a. There are no internship events fulfilling specified criteria.
 
   Use case ends.
 
 
-#### Use case: List internships by desired criteria
+#### Use case: Find internships by desired criteria
 
 **MSS**
 
-1. User requests to list internships by desired criteria
-2. System prompts user to choose a criteria to list internship by
-3. User inputs desired criteria
-4. System displays list of all internships sorted in order based on chosen
-   criteria
+1. User requests to find internships by desired criteria.
+2. System prompts user to choose a criteria to list internship by.
+3. User inputs desired criteria.
+4. System displays list of all internships sorted in order based on chosen criteria.
 
 **Extensions**
 
@@ -682,18 +710,18 @@ Use case ends.
     * 3a1. TinS shows an error message.
     
 
-#### Use case: View all clashes of internship Events.
+#### Use case: View all clashes of internship events
 
 **MSS**
 
-1.  User requests to view all clashes of internship Event dates.
-2.  TinS shows a list of dates that have clashes and the Events that clashed.
+1.  User requests to view all clashes of internship event dates.
+2.  TinS shows a list of dates that have clashes and the events that clashed.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. There are no Event clashes.
+* 2a. There are no event clashes.
 
   Use case ends.
 
@@ -715,7 +743,9 @@ Use case ends.
 * **ID**: This is a key to uniquely identify each internship. It is auto-generated by TinS based on position and company name.
 * **Status**: This refers to the status of application.
 * **Position**: The name of the internship position/role.
-
+* **Company**: This refers to the hiring company for any internship.
+* **Description**: Additional details about the internship. For example, contact details of hiring manager, link to internship webpage, requirements of internship)
+* **Event**: 
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
