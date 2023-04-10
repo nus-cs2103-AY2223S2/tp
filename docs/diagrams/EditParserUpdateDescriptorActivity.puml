@@ -1,0 +1,62 @@
+@startuml
+
+start
+:Look into ArgumentMultimap;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([name prefix is present])
+        :Update name;
+    else ([else])
+endif
+if () then ([GitHub prefix is present])
+        :Update GitHub;
+    else ([else])
+endif
+if () then ([Email prefix is present])
+        :Update Email;
+    else ([else])
+endif
+if () then ([Course prefix is present])
+        :Update Course;
+    else ([else])
+endif
+if () then ([Year prefix is present])
+        :Update Year;
+    else ([else])
+endif
+if () then ([LinkedIn prefix is present])
+        :Update LinkedIn;
+    else ([else])
+endif
+if () then ([Skills delete prefix is present])
+        :Update Skills removed;
+    else ([else])
+endif
+if () then ([Skills add prefix is present])
+        :Update Skills added;
+    else ([else])
+endif
+if () then ([Skills prefix is present])
+        :Update Skills final;
+    else ([else])
+endif
+if () then ([Modules delete prefix is present])
+        :Update Skills removed;
+    else ([else])
+endif
+if () then ([Modules add prefix is present])
+        :Update Skills added;
+    else ([else])
+endif
+if () then ([Modules prefix is present])
+        :Update Skills final;
+    else ([else])
+endif
+
+
+
+
+stop
+@enduml

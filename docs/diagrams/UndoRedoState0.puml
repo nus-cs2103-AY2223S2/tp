@@ -6,15 +6,15 @@ skinparam ClassBorderColor #000000
 title Initial state
 
 package States {
-    class State1 as "__ab0:Codoc__"
-    class State2 as "__ab1:Codoc__"
-    class State3 as "__ab2:Codoc__"
+    class State1 as "__cd0:Codoc__" #FFFF99
+    class State2 as "__cd1:Codoc__" #FFFF99
+    class State3 as "__cd2:Codoc__" #FFFF99
 }
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
 hide State2
 hide State3
 
-class Pointer as "Current State" #FFFFF
+class Pointer as "Current State" #FFFFFF
 Pointer -up-> State1
 @end
