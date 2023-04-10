@@ -81,6 +81,7 @@ public class CommandTestUtil {
     public static final PersonDescriptor DESC_AMY;
     public static final PersonDescriptor DESC_BOB;
 
+    //@@author liumc-sg-reused
     static {
         DESC_AMY = new PersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -89,6 +90,7 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
+    //@@author
 
     //Solution below for task is adapted from AB3
     //task fields
@@ -349,6 +351,7 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the supplier at the given {@code targetIndex} in the
      * {@code model}'s supplier list.
      */
+    //@@author arkarsg-reused
     public static void showSupplierAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredSupplierList().size());
 
@@ -359,6 +362,7 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredSupplierList().size());
     }
+    //@@author
 
     /**
      * Updates {@code moedl}'s filtered task list to show only the task at the given {@code targetIndex}
@@ -378,6 +382,7 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered task list to show only the task at the given {@code targetIndex} in the
      * {@code model}'s task list.
      */
+    //@@author liumc-sg-reused
     public static void showTaskAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
 
@@ -389,7 +394,9 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredTaskList().size());
     }
+    //@@author
 
+    //@@author chongweiguan-reused
     /**
      * Updates {@code model}'s filtered order list to show only the order at the given {@code targetIndex} in the
      * {@code model}'s task list.
@@ -405,5 +412,6 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredOrderList().size());
     }
+    //@@author
 
 }

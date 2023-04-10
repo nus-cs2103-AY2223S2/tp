@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.testutil.TaskBuilder;
 
+//@@author hmuumyatmoe-reused
 public class TaskTest {
 
     //@@author HmuuMyatMoe-reused
@@ -92,6 +93,7 @@ public class TaskTest {
     }
     //@@author
 
+    //@@author liumc-sg
     @Test
     public void hashCode_success() {
         TaskName taskName = new TaskName("Task");

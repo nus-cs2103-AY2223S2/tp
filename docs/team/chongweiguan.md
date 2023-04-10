@@ -10,6 +10,11 @@ Trackr is a desktop application used to keep track of order, menu, suppliers and
 Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=chognweiguan&breakdown=true)
+  * All _reused_ code are adapted from the [AB3](https://github.com/nus-cs2103-AY2223S2/tp) code base (both functional and test code).
+    * The code could be refractored out to be a more standard format for repetitive use in our project.
+    * The code could be adapted to fit the different models that we have.
+
+* **Contributions to code base**:
   * Added `Order` and `Customer` Models including all field classes [\#100] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/100), [#107] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/107)
   * Updated Storage related classes to allow for the storage of `Order` objects [\#114] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/114)
   * Completed `add` and `delete` commands for `Order` objects [#120] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/120)
@@ -31,4 +36,4 @@ Given below are my contributions to the project.
   * Approved a number of PRs
 
 * **Tools**:
-  * Java 11, JavaFx
+  * Java 11, JavaFx, JUnit

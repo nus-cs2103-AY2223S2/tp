@@ -16,6 +16,7 @@ import trackr.model.item.UniqueItemList;
  *
  * @see Task#isSameItem(Item)
  */
+//@@author liumc-sg-reused
 public class UniqueTaskList extends UniqueItemList<Task> {
 
     public UniqueTaskList() {

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import trackr.model.person.PersonDescriptor;
 import trackr.testutil.PersonDescriptorBuilder;
 
+//@@author liumc-sg-reused
 public class EditSupplierDescriptorTest {
 
     @Test

@@ -20,16 +20,13 @@ import java.util.List;
 import trackr.logic.commands.UploadCsvCommand;
 import trackr.logic.parser.exceptions.ParseException;
 
+//@@author chongweiguan
 /**
  * Parses input arguments and creates a new UploadCsvCommand object.
  */
 public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
     private List<String> listOfCommands = new ArrayList<String>();
-    //@@author HmuuMyatMoe-reused
-    //Reused from
-    //https://github.com/nus-cs2103-AY2223S2/tp/blob/master/src/main/java/seedu/address/logic/parser
-    // /AddCommandParser.java
-    // with minor modifications
+
     /**
      * Parses the given {@code String} of arguments in the context of the UploadCsvCommand
      * and returns an UploadCsvCommand object for execution.
@@ -225,4 +222,5 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
         }
         return menuItemsCommands;
     }
+    //@@author
 }

@@ -66,11 +66,13 @@ public class TaskListTest {
         assertFalse(taskList.hasItem(SORT_INVENTORY_N));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void hasTask_taskInTaskList_returnsTrue() {
         taskList.addItem(SORT_INVENTORY_N);
         assertTrue(taskList.hasItem(SORT_INVENTORY_N));
     }
+    //@@author
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTaskList_returnsTrue() {
@@ -81,6 +83,7 @@ public class TaskListTest {
     }
     //@@author
 
+    //@@author liumc-sg-reused
     @Test
     public void setTaskList_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> taskList.setItem(null, SORT_INVENTORY_N));
@@ -98,6 +101,7 @@ public class TaskListTest {
         taskList.addItem(BUY_FLOUR_N);
         assertThrows(DuplicateItemException.class, () -> taskList.setItem(BUY_FLOUR_N, SORT_INVENTORY_N));
     }
+    //@@author
 
     @Test
     public void setTaskList_withDifferentTask_success() {

@@ -7,6 +7,7 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+//@@author chongweiguan-reused
 public class OrderQuantityTest {
 
     @Test
@@ -51,5 +52,6 @@ public class OrderQuantityTest {
         OrderQuantity orderQuantity = new OrderQuantity("123");
         assertEquals(123, orderQuantity.getOrderQuantity());
     }
+    //@@author
 
 }

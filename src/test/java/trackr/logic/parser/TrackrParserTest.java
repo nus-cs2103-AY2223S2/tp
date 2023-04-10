@@ -97,6 +97,7 @@ public class TrackrParserTest {
         assertEquals(new AddOrderCommand(order), command);
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void parseCommand_clearSupplier() throws Exception {
         assertTrue(parser.parseCommand(ClearSupplierCommand.COMMAND_WORD) instanceof ClearSupplierCommand);
@@ -155,7 +156,9 @@ public class TrackrParserTest {
                 DeleteTaskCommand.COMMAND_WORD_SHORTCUT + " " + INDEX_FIRST_OBJECT.getOneBased());
         assertEquals(new DeleteTaskCommand(INDEX_FIRST_OBJECT), command);
     }
+    //@author
 
+    //@@author chongweiguan-reused
     @Test
     public void parseCommand_deleteOrder() throws Exception {
         DeleteOrderCommand command = (DeleteOrderCommand) parser.parseCommand(
@@ -169,7 +172,9 @@ public class TrackrParserTest {
                 DeleteOrderCommand.COMMAND_WORD_SHORTCUT + " " + INDEX_FIRST_OBJECT.getOneBased());
         assertEquals(new DeleteOrderCommand(INDEX_FIRST_OBJECT), command);
     }
+    //@@author
 
+    //@@author liumc-sg-reused
     @Test
     public void parseCommand_editSupplier() throws Exception {
         Supplier supplier = new SupplierBuilder().build();
@@ -178,6 +183,7 @@ public class TrackrParserTest {
                 + INDEX_FIRST_OBJECT.getOneBased() + " " + SupplierUtil.getEditSupplierDescriptorDetails(descriptor));
         assertEquals(new EditSupplierCommand(INDEX_FIRST_OBJECT, descriptor), command);
     }
+    //@@author
 
     //@@author HmuuMyatMoe-reused
     //Reused from AB3 with minor modifications
@@ -210,6 +216,7 @@ public class TrackrParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void parseCommand_findSupplier() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
@@ -239,6 +246,7 @@ public class TrackrParserTest {
                         + TaskUtil.getTaskPredicateDetails(predicate));
         assertEquals(new FindTaskCommand(predicate), command);
     }
+    //@@author
 
     @Test
     public void parseCommand_help() throws Exception {
@@ -246,6 +254,7 @@ public class TrackrParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void parseCommand_listSupplier() throws Exception {
         assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD) instanceof ListSupplierCommand);
@@ -271,6 +280,7 @@ public class TrackrParserTest {
         assertTrue(parser.parseCommand(
                 ListOrderCommand.COMMAND_WORD_SHORTCUT + " 3") instanceof ListOrderCommand);
     }
+    //@@author
 
     //@@author HmuuMyatMoe-reused
     //Reused from AB3 with minor modifications

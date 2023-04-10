@@ -33,6 +33,7 @@ public class PersonEmail {
 
     public final String personEmail;
 
+    //@@author liumc-sg-reused
     /**
      * Constructs an {@code PersonEmail}.
      *
@@ -43,6 +44,7 @@ public class PersonEmail {
         checkArgument(isValidPersonEmail(personEmail), MESSAGE_CONSTRAINTS);
         this.personEmail = personEmail;
     }
+    //@@author
 
     /**
      * Returns if a given string is a valid email.
@@ -56,12 +58,14 @@ public class PersonEmail {
         return personEmail;
     }
 
+    //@@author liumc-sg-reused
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersonEmail // instanceof handles nulls
                 && personEmail.equals(((PersonEmail) other).personEmail)); // state check
     }
+    //@@author
 
     @Override
     public int hashCode() {

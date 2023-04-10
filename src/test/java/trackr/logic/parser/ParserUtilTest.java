@@ -73,6 +73,7 @@ public class ParserUtilTest {
                 -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
@@ -81,6 +82,7 @@ public class ParserUtilTest {
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_OBJECT, ParserUtil.parseIndex("  1  "));
     }
+    //@@author
 
     @Test
     public void parseName_null_throwsNullPointerException() {
@@ -92,6 +94,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
         PersonName expectedName = new PersonName(VALID_NAME);
@@ -104,6 +107,7 @@ public class ParserUtilTest {
         PersonName expectedName = new PersonName(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
+    //@@author
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
@@ -115,6 +119,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
         PersonPhone expectedPersonPhone = new PersonPhone(VALID_PHONE);
@@ -127,6 +132,7 @@ public class ParserUtilTest {
         PersonPhone expectedPersonPhone = new PersonPhone(VALID_PHONE);
         assertEquals(expectedPersonPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
+    //@@author
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
@@ -138,6 +144,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         PersonAddress expectedPersonAddress = new PersonAddress(VALID_ADDRESS);
@@ -150,6 +157,7 @@ public class ParserUtilTest {
         PersonAddress expectedPersonAddress = new PersonAddress(VALID_ADDRESS);
         assertEquals(expectedPersonAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
+    //@@author
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
@@ -161,6 +169,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
         PersonEmail expectedPersonEmail = new PersonEmail(VALID_EMAIL);
@@ -173,6 +182,7 @@ public class ParserUtilTest {
         PersonEmail expectedPersonEmail = new PersonEmail(VALID_EMAIL);
         assertEquals(expectedPersonEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
+    //@@author
 
     @Test
     public void parseTag_null_throwsNullPointerException() {
@@ -294,6 +304,7 @@ public class ParserUtilTest {
     //@@author
 
     //=====================Test parser util methods that are related to order==================
+    //@@author chongweiguan-reused
     @Test
     public void parseOrderName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderName((String) null));
@@ -455,4 +466,5 @@ public class ParserUtilTest {
         PersonAddress expectedCustomerAddress = new PersonAddress(VALID_ADDRESS);
         assertEquals(expectedCustomerAddress, ParserUtil.parseCustomerAddress(customerAddressWithWhiteSpace));
     }
+    //@@author
 }

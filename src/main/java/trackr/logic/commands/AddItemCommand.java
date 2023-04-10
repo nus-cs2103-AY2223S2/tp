@@ -24,11 +24,13 @@ public abstract class AddItemCommand<T extends Item> extends Command {
      * @param item The item to be added.
      * @param modelEnum A representation of the name of the list we add to.
      */
+    //@@author liumc-sg-reused
     public AddItemCommand(T item, ModelEnum modelEnum) {
         requireAllNonNull(item, modelEnum);
         toAdd = item;
         this.modelEnum = modelEnum;
     }
+    //@@author
 
     public T getItemToAdd() {
         return toAdd;
@@ -42,6 +44,7 @@ public abstract class AddItemCommand<T extends Item> extends Command {
      * @throws CommandException If item to be added is considered to be duplicates
      *                          with any of the other existing items in the list.
      */
+    //@@author liumc-sg-reused
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

@@ -50,6 +50,7 @@ public class LogicManagerTest {
     private Model model = new ModelManager();
     private Logic logic;
 
+    //@@author liumc-sg-reused
     @BeforeEach
     public void setUp() {
         JsonTrackrStorage trackrStorage =
@@ -58,6 +59,7 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(trackrStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
+    //@@author
 
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
@@ -71,6 +73,7 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, MESSAGE_INVALID_SUPPLIER_DISPLAYED_INDEX);
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void execute_validCommand_success() throws Exception {
         String listSupplierCommand = ListSupplierCommand.COMMAND_WORD;
@@ -98,6 +101,7 @@ public class LogicManagerTest {
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addSupplierCommand, CommandException.class, expectedMessage, expectedModel);
     }
+    //@@author
 
     @Test
     public void getFilteredSupplierList_modifyList_throwsUnsupportedOperationException() {
@@ -112,10 +116,12 @@ public class LogicManagerTest {
     }
     //@@author
 
+    //@@author chongweiguan-reused
     @Test
     public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
     }
+    //@@author
 
     @Test
     public void getSupplierList() {
@@ -129,11 +135,13 @@ public class LogicManagerTest {
         assertEquals(expected, logic.getTaskList());
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void getOrderList() {
         ReadOnlyOrderList expected = model.getOrderList();
         assertEquals(expected, logic.getOrderList());
     }
+    //@@author
 
     public void getFilteredSupplierList() {
         ObservableList<Supplier> expected = model.getFilteredSupplierList();
@@ -146,11 +154,13 @@ public class LogicManagerTest {
         assertEquals(expected, logic.getFilteredTaskList());
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void getFilteredOrderList() {
         ObservableList<Order> expected = model.getFilteredOrderList();
         assertEquals(expected, logic.getFilteredOrderList());
     }
+    //@@author
 
     @Test
     public void getTrackrFilePath() {
@@ -158,12 +168,14 @@ public class LogicManagerTest {
         assertEquals(expected, logic.getTrackrFilePath());
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void getGuiSettings() {
         GuiSettings expected = new GuiSettings(0, 0, 0, 0);
         logic.setGuiSettings(expected);
         assertEquals(expected, logic.getGuiSettings());
     }
+    //@@author
 
     @Test
     public void setGuiSettings() {

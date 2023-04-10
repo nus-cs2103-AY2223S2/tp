@@ -27,6 +27,7 @@ import trackr.model.person.Supplier;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteSupplierCommand}.
  */
+//@@author liumc-sg-reused
 public class DeleteSupplierCommandTest {
 
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),

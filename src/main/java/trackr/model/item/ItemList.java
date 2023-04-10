@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
  * Wraps all data at the item-list level
  * Duplicates are not allowed (by .isSameItem comparison)
  */
+//@@author liumc-sg-reused
 public class ItemList<T extends Item> implements ReadOnlyItemList<T> {
 
     private final UniqueItemList<T> items;

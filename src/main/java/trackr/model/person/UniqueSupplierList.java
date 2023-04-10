@@ -15,6 +15,7 @@ import trackr.model.item.UniqueItemList;
  *
  * @see Supplier#isSameItem(Item)
  */
+//@@author liumc-sg-reused
 public class UniqueSupplierList extends UniqueItemList<Supplier> {
 
     public UniqueSupplierList() {

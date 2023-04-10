@@ -16,6 +16,7 @@ import trackr.model.person.Supplier;
 /**
  * A utility class for Supplier.
  */
+//@@author liumc-sg-reused
 public class SupplierUtil {
 
     /**

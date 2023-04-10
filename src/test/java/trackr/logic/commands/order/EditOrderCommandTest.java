@@ -132,28 +132,33 @@ public class EditOrderCommandTest {
         assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
 
-    //    @Test
-    //    public void execute_duplicateOrderUnfilteredOrderList_failure() {
-    //        Order firstOrder = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
-    //        OrderDescriptor descriptor = new OrderDescriptorBuilder(firstOrder).build();
-    //        EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_SECOND_OBJECT, descriptor);
-    //        assertThrows(DuplicateItemException.class, () -> editOrderCommand.execute(model));
-    //    }
+    @Test
+    public void execute_duplicateOrderUnfilteredOrderList_failure() {
+        Order firstOrder = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        OrderDescriptor descriptor = new OrderDescriptorBuilder(firstOrder).build();
+        EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_SECOND_OBJECT, descriptor);
+        assertCommandFailure(editOrderCommand,
+                            model,
+                            String.format(EditOrderCommand.MESSAGE_DUPLICATE_ITEM,
+                                            ModelEnum.ORDER.toString().toLowerCase(),
+                                            ModelEnum.ORDER.toString().toLowerCase()));
+    }
 
-    //    @Test
-    //    public void execute_duplicateOrderFilteredOrderList_failure() {
-    //        showOrderAtIndex(model, INDEX_FIRST_OBJECT);
-    //
-    //        // edit order in filtered order list into a duplicate in order list
-    //        Order orderInList = model.getOrderList().getItemList().get(INDEX_SECOND_OBJECT.getZeroBased());
-    //        EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_OBJECT,
-    //                new OrderDescriptorBuilder(orderInList).build());
-    //
-    //        assertCommandFailure(editOrderCommand,
-    //                model,
-    //                String.format(EditSupplierCommand.MESSAGE_DUPLICATE_ITEM,
-    //                                    ModelEnum.ORDER.toString().toLowerCase()));
-    //    }
+    @Test
+    public void execute_duplicateOrderFilteredOrderList_failure() {
+        showOrderAtIndex(model, INDEX_FIRST_OBJECT);
+
+        // edit order in filtered order list into a duplicate in order list
+        Order orderInList = model.getOrderList().getItemList().get(INDEX_SECOND_OBJECT.getZeroBased());
+        EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_OBJECT,
+                new OrderDescriptorBuilder(orderInList).build());
+
+        assertCommandFailure(editOrderCommand,
+                model,
+                String.format(EditOrderCommand.MESSAGE_DUPLICATE_ITEM,
+                                    ModelEnum.ORDER.toString().toLowerCase(),
+                                    ModelEnum.ORDER.toString().toLowerCase()));
+    }
 
     @Test
     public void execute_invalidOrderIndexUnfilteredOrderList_failure() {

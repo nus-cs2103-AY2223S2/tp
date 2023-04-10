@@ -87,6 +87,7 @@ public class SampleDataUtil {
         };
     }
 
+    //@@author liumc-sg-reused
     public static ReadOnlyTaskList getSampleTaskList() {
         TaskList sampleTl = new TaskList();
         for (Task sampleTask : getSampleTasks()) {
@@ -94,6 +95,7 @@ public class SampleDataUtil {
         }
         return sampleTl;
     }
+    //@@author
 
     public static MenuItem[] getSampleMenuItems() {
         return new MenuItem[] {

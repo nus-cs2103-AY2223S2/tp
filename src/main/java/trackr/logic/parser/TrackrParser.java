@@ -85,9 +85,11 @@ public class TrackrParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        //@@author chongweiguan-reused
         case AddOrderCommand.COMMAND_WORD:
         case AddOrderCommand.COMMAND_WORD_SHORTCUT:
             return new AddOrderCommandParser().parse(arguments);
+        //@@author
 
         case AddSupplierCommand.COMMAND_WORD:
         case AddSupplierCommand.COMMAND_WORD_SHORTCUT:
@@ -129,9 +131,11 @@ public class TrackrParser {
         case DeleteMenuItemCommand.COMMAND_WORD_SHORTCUT:
             return new DeleteMenuItemCommandParser().parse(arguments);
 
+        //@@author chongweiguan-reused
         case DeleteOrderCommand.COMMAND_WORD:
         case DeleteOrderCommand.COMMAND_WORD_SHORTCUT:
             return new DeleteOrderCommandParser().parse(arguments);
+        //@@author
 
         case ClearSupplierCommand.COMMAND_WORD:
         case ClearSupplierCommand.COMMAND_WORD_SHORTCUT:
@@ -198,8 +202,10 @@ public class TrackrParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        //@@author chongweiguan-reused
         case UploadCsvCommand.COMMAND_WORD:
             return new UploadCsvCommandParser().parse(arguments);
+        //@@author
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

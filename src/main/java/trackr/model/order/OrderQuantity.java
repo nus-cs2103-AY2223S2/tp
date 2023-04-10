@@ -13,6 +13,7 @@ public class OrderQuantity {
     public static final String VALIDATION_REGEX = "\\d{1,3}";
     public final String value;
 
+    //@@author chongweiguan-reused
     /**
      * Constructs an Order Quantity Object.
      */
@@ -66,4 +67,5 @@ public class OrderQuantity {
     public int hashCode() {
         return value.hashCode();
     }
+    //@@author
 }
