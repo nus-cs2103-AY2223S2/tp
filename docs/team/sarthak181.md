@@ -28,7 +28,7 @@ Given below are my contributions to the project.
     * Justification: This feature is vital for users to use TinS, as it aids users to find internship events they are concerned about.
     
 
-* **Code contributed**: [link](https://github.com/sarthak181/tp)
+* **Code contributed**: [link]([https://github.com/sarthak181/tp](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=sarthak181&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17))
 
 * **Project management**:
     * Adapting all the testcases after v1.2 [(#92)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/92)
