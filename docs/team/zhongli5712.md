@@ -34,6 +34,9 @@ Given below are my contributions to the project.
     * Added implementation detail of the `learn/unlearn` feature.
     * Added user stories, glossary, NFRS, use cases.
   * AboutUs.md
+  
+* **Review/mentoring contributions**:
+  * Help debug test.
 
 * **Community**:
   * Reported bugs for other teams during PE-Dry run
