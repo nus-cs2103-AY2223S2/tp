@@ -5,19 +5,19 @@ title: Jed Ng's Project Portfolio Page
 
 ## Project: LoyaltyLift
 
-LoyaltyLift is an application for small business owners to manage customers and their orders to boost customer satisfaction and retention rate. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+LoyaltyLift is a desktop application designed for small business owners to manage their customers and orders efficiently, allowing you to **improve customer relations** and **increase customer loyalty**.
 
 Given below are my contributions to the project.
 
-* **New Feature**: [to be added soon]
-    * What it does: [to be added soon]
-    * Justification: [to be added soon]
-    * Highlights: [to be added soon]
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jednghk&breakdown=true)
 
-* **New Feature**: [to be added soon]
+* **New Feature**: Added the addo, deleteo, and edito commands
+    * What it does: Allows the user to add, edit and delete orders, through the aforementioned commands.
+    * Justification: A key part of LoyaltyLift, where users are able to add, delete and edit the orders their orders.
 
-* **Code contributed**: [to be added soon]
+* **New Feature**: Added the advo, revo, cancelo commands ([#89](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/89))
+  * What it does: Allows the user to advance, revert or cancel their orders, by typing in the suitable commands
+  * Justification: As a user, we want to change our order status, so that we can track how far our order has progressed.
 
 * **Project management**:
     * [to be added soon]
