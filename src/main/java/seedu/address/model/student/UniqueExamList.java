@@ -232,10 +232,6 @@ public class UniqueExamList implements Iterable<Exam> {
                 upcomingExams.add(exam);
             }
         }
-        upcomingExams.sort(Comparator.comparing(Exam::getStartTime));
-        if (upcomingExams.size() > 3) {
-            upcomingExams = upcomingExams.subList(0, 3);
-        }
         return FXCollections.observableArrayList(upcomingExams);
     }
 
