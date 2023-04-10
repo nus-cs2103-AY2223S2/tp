@@ -23,7 +23,7 @@ public class DisplayCommand extends Command {
             + "Example: " + COMMAND_WORD
             + "ic/S1234567Z";
 
-    public static final String MESSAGE_SUCCESS = "Displaying person details: %1$s"; // todo patient name
+    public static final String MESSAGE_SUCCESS = "Displaying person details: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Specified NRIC is invalid ";
 
     private final Nric nric;
@@ -41,7 +41,19 @@ public class DisplayCommand extends Command {
         requireNonNull(model);
         List<Person> persons = model.getFilteredPersonList();
         Person personToView = null;
+        personToView = retrievePersonToView(model, persons, personToView);
+        checkIfValidPerson(personToView);
 
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToView));
+    }
+
+    private void checkIfValidPerson(Person personToView) throws CommandException {
+        if (personToView == null) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+    }
+
+    private Person retrievePersonToView(Model model, List<Person> persons, Person personToView) {
         for (int i = 0; i < persons.size(); i++) {
             Person p = persons.get(i);
             if (p.getNric().equals(nric)) {
@@ -50,11 +62,7 @@ public class DisplayCommand extends Command {
                 break;
             }
         }
-        if (personToView == null) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
-        }
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToView));
+        return personToView;
     }
 
     @Override
