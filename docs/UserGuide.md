@@ -395,6 +395,8 @@ has been executed.
 Format: `redo`
 
 ![Redo](images/command_result/Redo.png)
+
+
 Following the above example for `undo`, `redo` would subsequently change the name of the patient again.
 <div style="page-break-after: always;"></div>
 
