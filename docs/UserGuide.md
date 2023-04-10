@@ -684,7 +684,7 @@ Tags provide details about an item and make it easy to locate related items that
 
 ## Coming Soon
 
-The following features are planned for the coming update
+The following features are planned for v1.5
 * Edit and add pair by index
 * Delete elderly, volunteers and pairs by index
 * View in-depth pair details (without hovering mouse over them)
