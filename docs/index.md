@@ -14,7 +14,7 @@ If so, PowerCards is the power tool you are looking for.
 - Optimized for those who prefer to work with a Command Line Interface (CLI), PowerCards allows you to make flashcards much faster than traditional flashcard apps ever could.
 - With its clean and intuitive user interface, PowerCards provides a zero-distraction environment during your long study sessions.
 
-Empower your learning, one PowerCard at a time.
+Empower your learning, one PowerCards at a time.
 
 **Acknowledgements**
 
