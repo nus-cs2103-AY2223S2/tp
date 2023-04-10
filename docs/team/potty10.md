@@ -55,6 +55,7 @@ My code contributions can be found on
     * Contributed to Introduction and About Developer Guide [\#106](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/106)
     * Added implementation for `delete-field` command [#122](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/122)
     * Updated UML sequence diagram for `delete-field` command [#94](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/94)
+    * Wrote design tweaks addressing bugs found in PE dry run [#201](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/201)
     
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
