@@ -1114,7 +1114,7 @@ Currently, duplicate Telegram handle and phone fields are allowed. This means th
 However, in reality phone numbers and telegram handles are unique so our future implementations will check that the student list can only contain unique telegram handles and phone numbers.
 
 #### Feature flaw 4
-Currently, the `edit` feature allows editing all fields except for remarks and the only way to edit remarks is by using the `remark` feature which may inconvenience users. We planned to improve the `edit` feature to support `edit INDEX r/`, allowing users to edit their remarks.
+Currently, the `edit` feature allows editing all fields except for remarks and the only way to edit remarks is by using the `remark` feature which may inconvenience users. We planned to improve the `edit` feature to support `edit INDEX r/`, allowing users to edit their remarks directly from the command line.
 
 ### Autocomplete
 #### Feature flaw
