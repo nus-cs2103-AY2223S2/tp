@@ -805,15 +805,14 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    2. Test case: `delete ic/S1234567A`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: Contact with the `NRIC S1234567A` is deleted from the list. Details of the deleted contact shown in the status message. 
 
    3. Test case: `delete ic/0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message. No change made to the list.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `DELETE`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### 
 
     
 ## **Appendix: Planned Enhancements**
