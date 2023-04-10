@@ -395,7 +395,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: filter a student**
+**Use case: Filter a student**
 
 **MSS:**
 
@@ -495,5 +495,3 @@ Our team worked together to overcome these challenges by having regular meetings
 * We plan to enhance the learn feature such that it can be colour coded on the gui based on the importance of the lesson
 * We plan to enhance the mark feature so that it can display all the dates that a student has attended
 * We plan to add a payment feature to track the students that have paid and the amount of money they owe
-
-
