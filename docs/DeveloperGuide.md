@@ -1552,8 +1552,6 @@ Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of
 
 <div style="page-break-after: always;"></div>
 
-Moreover, commands such as `find` and `delete-field` do not consider prefixes such as `c/`, although other commands such as `edit` and `add` do  use the prefix `c/`. In the case of `find` and `delete-field`, it is possible to add the substring `c/` to any of the fields, even though the user could have intended to enter `c/` as a command prefix.
-
 We originally intended for this design to allow maximum flexibility for the user. If the user had entered something wrongly, it is possible to just use the command `edit`. However, this design could have an unintentional side-effect.
 
 To illustrate this side effect, we use an example of the `find` command. `find t/javascript t/react` tries to find entries with either the tag `javascript` or `react` (refer to Figure 20). Tag matching is case-insensitive, so it also tries to find `Javascript` or `React` (refer to Figure 21). Similarly, `delete-field t/javascript t/react` tries to delete entries with either the tag `javascript` or `react` or `Javascript` or `React`.
