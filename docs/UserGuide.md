@@ -111,8 +111,7 @@ The following table provides clarification of the terms commonly used in TutorPr
 ## GUI
 When you first run the app, you may see a display window pop up similar to the one below. We call this window the **Main Window**. 
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** The current version of the window is not resizable. Resizability will be added in future versions!
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The current version of the window is not resizable. Resizability will be added in future versions!
 </div>
 
 ![Starting Display Window](images/GUI.jpg)
@@ -132,8 +131,7 @@ You may also click the quick access buttons one each student card to see how the
 Upon launching the application or executing a command, a welcome page will be displayed in the Detailed Information Section. 
 Each Student card has four buttons, which are profile, homework, lessons, and exams. When a user clicks on any of the buttons, the corresponding information will be presented in the Detailed Information Section.
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Why is the date and time displayed in two different formats?**<br>
+<div markdown="span" class="alert alert-info">:information_source: **Why is the date and time displayed in two different formats?**<br>
 The date and time format in the Detailed Information Section is different from the one used in the `view` commands.
 This is purposely done to make the information more distinct and make sure you never get confused.
 </div>
