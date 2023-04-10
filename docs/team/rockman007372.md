@@ -10,14 +10,14 @@ PowerCards enable university students to create flashcards of their desired topi
 Given below are my contributions to the project.
 
 * **Feature 1**: Make `Card` and `Deck` class immutable.
-    * What it does: Make cards' and decks' attributes `final`. Whenever a card or deck's attribute needs editing, a new instance is created.
-    * Justification: Immutable classes are simpler to use and reason about than mutable classes. Because their state cannot change, we don't need to worry about unexpected side effects or hidden state changes.
-    * Highlights: Since a card is referenced in many internal lists, changing its state leads to unexpected behaviours and produced many bugs. While making Card immutable requires a big refactor of the code thus far, it was worth the effort as the number of bugs were reduced significantly.   
+    * What it does: Make cards' and decks' attributes `final`. 
+    * Justification: Immutable classes are simpler to use and reason about. Because their state cannot change, we don't need to worry about unexpected side effects or hidden state changes.
+    * Highlights: Since a card is referenced in many internal lists, changing its state leads to unexpected behaviours and produced many bugs. The refactoring was heavy, but it was worth the effort as bugs were reduced significantly.   
 
 * **Feature 2**: Refactor `Review` class extensively to follow more OOP principles.
-  * What it does: I did a complete overhaul of `Review` class so that it stores its own `UniqueCardList`, allowing the `Review` class to directly interact with the cards in a review session.
-  * Justification: In earlier iterations, the `Review` sole purpose is to store the Review statistics. All interactions with the cards in review are done through the `ModelManager` class.
-  * Highlights: This reduces the responsibility of `ModelManger` as it does not have to manage a review anymore, thus adhering to the Single Responsibility Principle. I also create and link the `FilteredList<Card>` in `Review` to the UI. Previously, the Review relied on the same `FilteredList<Card>` in `ModelManager`, which results in poorer OOP.
+  * What it does: A complete overhaul of `Review` class so that it stores its own `UniqueCardList` and interact directly with these cards.
+  * Justification: Earlier, the `Review` sole purpose is to store the Review statistics. All interactions with the cards in review are done through the `ModelManager` class.
+  * Highlights: This reduces the responsibility of `ModelManger` as it does not have to manage a review anymore, thus adhering to the Single Responsibility Principle. I also link the `FilteredList<Card>` in `Review` to the UI. 
   * Credits: to Kok Hai for designing and implementing the Review class. 
 
 * **Feature 3**: Tag the cards dynamically during a review.
@@ -48,4 +48,3 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed: [58](https://github.com/AY2223S2-CS2103T-W11-3/tp/pulls?q=is%3Apr+reviewed-by%3Arockman007372) 
-    * Reported bugs and suggestions for other teams during Mock PE.
