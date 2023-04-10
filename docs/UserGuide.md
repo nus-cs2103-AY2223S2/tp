@@ -57,11 +57,11 @@ Apart from being your all-encompassing address book, NeoBook also has an Events 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…​` after them can be used multiple times including zero times.<br>
   e.g. `t/TAG…​` means that we can exclude the tag prefix completely or use it as `t/friend`, `t/friend t/family` etc.
 
-* Items in `{ }` and have a `...` followed after them must be used at least once, and can be used multiple times.<br>
-  e.g. For `editevent INDEX {PREFIX/PARAMETER}...` will allow `editevent 1 r/Weekly` or `editevent 2 d/Do work r/Daily`, but not `editevent 1`.
+* Items in `{ }` and have a `…​` followed after them must be used at least once, and can be used multiple times.<br>
+  e.g. For `editevent INDEX {PREFIX/PARAMETER}…​` will allow `editevent 1 r/Weekly` or `editevent 2 d/Do work r/Daily`, but not `editevent 1`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -176,7 +176,7 @@ Use this command to add him/her to your NeoBook.
 
 #### Syntax
 
-`add n/NAME PREFIX/PARAMETER...`
+`add n/NAME PREFIX/PARAMETER…​`
 
 #### Description
 Here are all the prefixes that can be used:
@@ -292,7 +292,7 @@ Use this command to edit his/her details easily!
 
 #### Syntax
 
-`edit INDEX PREFIX/PARAMETER...`
+`edit INDEX {PREFIX/PARAMETER}…​`
 
 
 #### Description
@@ -361,7 +361,7 @@ Use this command to find contacts by specifying the fields and corresponding key
 
 #### Syntax
 
-`find PREFIX/KEYWORD...`
+`find {PREFIX/KEYWORD}…​`
 
 #### Description
 
@@ -505,19 +505,19 @@ ________________________________________________________________________________
 
 ### NeoBook Command Summary
 
-| Action     | Format, Examples                                                                                                                                |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME PREFIX/PARAMETER...​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                         |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                             |
-| **Edit**   | `edit INDEX [PREFIX/PARAMETERS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                         |
-| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                   |
-| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                               |
-| **Find**   | `find PREFIX/KEYWORD...`<br> e.g., `find n/James Jake mt/CS2103T a/Serangon Central`                                                            |
-| **Select** | `select INDEX` <br> e.g., `select 2`                                                                                                            |
-| **List**   | `list`                                                                                                                                          |
-| **Help**   | `help`                                                                                                                                          |
-| **Exit**   | `exit`                                                                                                                                          |
+| Action     | Format, Examples                                                                                                                              |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME PREFIX/PARAMETER…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                       |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                           |
+| **Edit**   | `edit INDEX {PREFIX/PARAMETERS}…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                       |
+| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                 |
+| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                             |
+| **Find**   | `find {PREFIX/KEYWORD}…​`<br> e.g., `find n/James Jake mt/CS2103T a/Serangon Central`                                                         |
+| **Select** | `select INDEX` <br> e.g., `select 2`                                                                                                          |
+| **List**   | `list`                                                                                                                                        |
+| **Help**   | `help`                                                                                                                                        |
+| **Exit**   | `exit`                                                                                                                                        |
 
 [Back To Contents](#table-of-contents)
 
@@ -588,7 +588,7 @@ Accepted Intervals:
 
 #### Important requirements
 
-1) `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
+1. `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
     * `START TIME` and `END TIME` follows the 24-Hour Clock format e.g. instead of 6:00pm, you must enter 1800.
     * `START DATE & START TIME` must be before `END DATE & END TIME`
     * If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
@@ -596,7 +596,7 @@ Accepted Intervals:
     * `2400` is also accepted as an input for `START TIME` and `END TIME`, this will roll the date input by the user to the next day
         e.g. Inputting `2023-03-10 2400` will be accepted and will be rolled over to `2023-03-11 0000` instead.
 
-2) `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
+2. `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
     * If unspecified, Event will be automatically added as a `One Time Event`.
 
 #### Extra Notes
@@ -650,7 +650,7 @@ Use this command to edit the specified event in your NeoBook.
 
 #### Syntax
 
-`editevent INDEX {PREFIX/PARAMETER}...`
+`editevent INDEX {PREFIX/PARAMETER}…​`
 
 #### Description
 `INDEX` refers to the index of the event you wish to edit in the current displayed list.
@@ -665,8 +665,8 @@ Use this command to edit the specified event in your NeoBook.
 
 #### Important requirements
 
-1)`INDEX` must be a **positive integer** (must be greater than 0).
-2) At least one field must be provided.
+1. `INDEX` must be a **positive integer** (must be greater than 0).
+2. At least one field must be provided.
 
 
 #### Extra Notes
@@ -703,8 +703,8 @@ NAME is the name of the person you want to tag to the event.
 
 
 #### Important requirements
-1) NAME is **case_sensitive**.
-2) NAME must be the name of a contact already registered in NeoBook.
+1. NAME is **case_sensitive**.
+2. NAME must be the name of a contact already registered in NeoBook.
 
 
 #### Example Usages
@@ -743,8 +743,8 @@ The EVENT INDEX is the index of the event you want to tag the person to.
 
 NAME is the name of the person you want to untag from the event.
 #### Important requirements
-1) NAME is **case_sensitive**.
-2) NAME must be the name of a contact already registered in NeoBook and
+1. NAME is **case_sensitive**.
+2. NAME must be the name of a contact already registered in NeoBook and
 tagged to that event.
 
 Examples:
@@ -769,7 +769,7 @@ Examples:
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Event**              | `addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME [r/INTERVAL OF RECURRENCE]` <br> e.g., `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` |   
 | **Delete Event**           | `delevent INDEX` <br/> e,g., `delevent 1`                                                                                                                                                         |
-| **Edit Event**             | `editevent INDEX {PREFIX/PARAMETER}...` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                              |
+| **Edit Event**             | `editevent INDEX {PREFIX/PARAMETER}…​` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                               |
 | **Tag Contact to Event**   | `tagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g., `tagpersonevent et/1 pt/John`                                                                                                                  |
 | **Untag Contact to Event** | `untagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                               |
 [Back To Contents](#table-of-contents)
@@ -797,7 +797,7 @@ Use this command to edit your details easily!
 
 #### Syntax
 
-`edituser {PREFIX/PARAMETER}...`
+`edituser {PREFIX/PARAMETER}…​`
 
 
 #### Description
@@ -918,7 +918,7 @@ ________________________________________________________________________________
 
 | Action    | Format, Examples |
 |-----------|------------------|
-| **tab**   | `tab`            |
+| **tab**   | `tab INDEX`      |
 | **light** | `light`          |
 | **dark**  | `dark`           |
 
