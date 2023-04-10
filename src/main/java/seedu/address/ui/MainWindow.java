@@ -46,8 +46,8 @@ public class MainWindow extends UiPart<Stage> {
     private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private CardListPanel cardListPanel;
-    private UiPart<Region> deckListPanel;
+    private CardListPanel rightPanel;
+    private UiPart<Region> leftPanel;
     private UiPart<Region> rightDeckTitle;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
@@ -147,11 +147,11 @@ public class MainWindow extends UiPart<Stage> {
         rightDeckTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitlePlaceholder.getChildren().add(rightDeckTitle.getRoot());
 
-        cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
-        rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
+        rightPanel = new CardListPanel(logic.getFilteredCardList(), false);
+        rightPanelPlaceholder.getChildren().add(rightPanel.getRoot());
 
-        deckListPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
-        leftPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
+        leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
+        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -236,13 +236,13 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the review stats panel.
      */
     public void handleStartReview() {
-        deckListPanel = new ReviewStatsPanel(logic.getReviewStatsList());
+        leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().clear();
-        leftPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
+        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
-        cardListPanel = new CardListPanel(logic.getReviewCardList(), true);
+        rightPanel = new CardListPanel(logic.getReviewCardList(), true);
         rightPanelPlaceholder.getChildren().clear();
-        rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(rightPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(REVIEW_TITLE);
@@ -261,13 +261,13 @@ public class MainWindow extends UiPart<Stage> {
     public void handleEndReview() {
         updateDeckTitle();
 
-        deckListPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
+        leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().clear();
-        leftPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
+        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
-        cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
+        rightPanel = new CardListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().clear();
-        rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(rightPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(MAIN_TITLE);
