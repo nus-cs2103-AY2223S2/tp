@@ -193,8 +193,7 @@ accomplished the following:
 
 ### Logic component
 
-**API
-** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -233,8 +232,7 @@ How the parsing works:
 
 ### Model component
 
-**API
-** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/UpdatedModelClassDiagram.png" width="450" alt="UpdatedModelClassDiagram"/>
 
@@ -257,8 +255,7 @@ The `Model` component,
 
 ### Storage component
 
-**API
-** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 ![Structure of the Storage](images/StorageClassDiagram.png)
 
@@ -309,7 +306,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ### Add Doctor Feature
 
 #### What it does
-
 {: .no_toc}
 
 Adds a doctor to the bottom of the list of currently existing doctors. Users are able to add any valid doctor to the
@@ -319,7 +315,6 @@ thrown to alert user.
 Example Use: `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the add doctor command, an `AddDoctorCommand` class is created. The `AddDoctorCommand` class extends the
@@ -345,7 +340,6 @@ s/Cardiology y/5 t/surgeon"
 ### Add Patient Feature
 
 #### What it does
-
 {: .no_toc}
 
 Adds a patient to the bottom of the list of currently existing patients. Users are able to add any valid patient to the
@@ -356,7 +350,6 @@ Example
 Use: `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the add patient command, an `AddPatientCommand` class is created. The `AddPatientCommand` class extends
@@ -384,7 +377,6 @@ h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/
 ### Edit Doctor Feature
 
 #### What it does
-
 {: .no_toc}
 
 Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be
@@ -394,7 +386,6 @@ the doctor's index.
 Example Use: `edit-doc 2 n/Gabriel Tan p/12345678 s/Cardiology`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the edit doctor command, an `EditDoctorCommand` class is created. The `EditDoctorCommand` class extends
@@ -429,7 +420,6 @@ The following sequence diagram illustrates how the edit doctor operation works:
 ### Delete Doctor Feature
 
 #### What it does
-
 {: .no_toc}
 
 Deletes a doctor at the specified **one-based index** of list of currently existing/found doctors. Users are able to
@@ -439,7 +429,6 @@ command will not be allowed and an error will be thrown to alert user.
 Example Use: `del-doc 1`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the delete doctor command, a `DeleteDoctorCommand` class is created. The `DeleteDoctorCommand` class
@@ -463,7 +452,6 @@ The following sequence diagram illustrates how the delete doctor operation works
 ### Delete Patient Feature
 
 #### What it does
-
 {: .no_toc}
 
 Deletes a patient at the specified **one-based index** of list of currently existing/found patient. Users are able to
@@ -473,7 +461,6 @@ command will not be allowed and an error will be thrown to alert user.
 Example Use: `del-ptn 1`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the delete doctor command, a `DeletePatientCommand` class is created. The `DeletePatientCommand` class
@@ -497,7 +484,6 @@ The following sequence diagram illustrates how the delete patient operation work
 ### GUI Features
 
 #### Enlarged Info Card feature
-
 {: .no_toc}
 
 As triage staff manage the contacts of doctors and patients, they may wish to pull up
@@ -507,7 +493,6 @@ Docedex has been reserved to show the personal information of the selected docto
 ![](images/NewUi.png)
 
 ##### Brief introduction to the components involved
-
 {: .no_toc}
 
 Let's call the card which displays this information **info cards**. However, the information
@@ -523,7 +508,6 @@ on whether the user has selected a doctor or patient to view.
 [Scroll back to Table of Contents](#table-of-contents)
 
 ##### Exploring the user journey
-
 {: .no_toc}
 
 To explore how this is implemented, we will focus on the user clicking on a `DoctorListViewCell`
@@ -539,7 +523,6 @@ causes the display of information related to the doctor card through the `Enlarg
 [Scroll back to Table of Contents](#table-of-contents)
 
 ##### More details on implementation
-
 {: .no_toc}
 
 Before diving into the details, here are a few key points to note:
@@ -568,7 +551,6 @@ the `EnlargedPatientInfoCard` being populated with the appropriate data and disp
 [Scroll back to Table of Contents](#table-of-contents)
 
 ##### Alternatives considered
-
 {: .no_toc}
 
 In the past, we had a different implementation of this feature, where the `DoctorListViewCell`
