@@ -75,6 +75,7 @@ The layout of these UI parts are defined in matching `.fxml` files that are in t
 As CLIpboard is a multi-page application, it is made up of different UI components corresponding to each page. The UI classes relevant to each page are classified in their own individual packages as shown in Figure 3.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+###### Figure 5
 
 
 The UI also consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `HelpWindow`, and `StatusBarFooter`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
@@ -84,7 +85,7 @@ These parts also remain visible as the user navigates through the different page
 
 ![Homepage](images/UiHomePage.png)
 
-###### Figure 5: CLIpboard landing page*
+###### Figure 6: CLIpboard landing page
 
 The `UiManager` is a controller class containing the `start` method which initialises the UI in the following sequence:
 
@@ -99,7 +100,7 @@ The `MainWindow#fillInnerParts` method will populate the UI by:
 4. Populating the `resultDisplay`
 5. Populating the `statusBarFooter`
 
-As shown in Figure 5, users will be shown the Course Page upon launching the application. The GUI will then refresh accordingly as the user navigates through the different pages in the application.
+As shown in Figure 6, users will be shown the Course Page upon launching the application. The GUI will then refresh accordingly as the user navigates through the different pages in the application.
 
 
 ### Logic component
@@ -109,7 +110,7 @@ As shown in Figure 5, users will be shown the Course Page upon launching the app
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
-###### Figure 6
+###### Figure 7
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `RosterParser` class to parse the user command.
@@ -120,7 +121,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete student 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete course 1` Command](images/DeleteSequenceDiagram.png)
-###### Figure 7
+###### Figure 8
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -128,7 +129,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
-###### Figure 8
+###### Figure 9
 
 How the parsing works:
 * When called upon to parse a user command, the `RosterParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `RosterParser` returns back as a `Command` object.
@@ -138,7 +139,7 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-###### Figure 9
+###### Figure 10
 
 
 The `Model` component,
@@ -159,7 +160,7 @@ Detailed implementation of `Course` can be found under [Implementation section](
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
-###### Figure 10
+###### Figure 11
 
 The `Storage` component,
 * can save both roster data and user preference data in json format, and read them back into corresponding objects.
@@ -184,18 +185,18 @@ This subsection describes implementation details related to `UI`, such as page n
 
 ![Navigation Guide](images/navigation.png)
 
-###### Figure 11: CLIpboard navigation guide
+###### Figure 12: CLIpboard navigation guide
 
-As shown in Figure 11, users can navigate through the application using a combination of `select`, `task`, `session`, and `back` commands.
+As shown in Figure 12, users can navigate through the application using a combination of `select`, `task`, `session`, and `back` commands.
 When a command such as `select` is called, the left pane or the right pane, or both, will be refreshed in `MainWindow`.
 
 
 ![Select Sequence Diagram](images/SelectSequenceDiagram.png)
 
-###### Figure 12: Sequence Diagram for `select`
+###### Figure 13: Sequence Diagram for `select`
 
 
-Figure 12's Sequence Diagram depicts how the `UI`, `Logic`, and `Model` components interact when `select 1` is called on the Course Page. The user's selection path (in this case `Course` -> `Group`) is tracked by the `CurrentSelection` class as they navigate from the Course Page to the Group Page.
+Figure 13's Sequence Diagram depicts how the `UI`, `Logic`, and `Model` components interact when `select 1` is called on the Course Page. The user's selection path (in this case `Course` -> `Group`) is tracked by the `CurrentSelection` class as they navigate from the Course Page to the Group Page.
 
 To display the Group Page after the user selects a `Course` from the Course Page, the `UI` first obtains the `PageType` to be displayed in the GUI from the `Logic` component. Then, the `UI` retrieves the selected `Course` from `CurrentSelection` and subsequently invokes the `showGroupPane` method based on the selected `Course`.
 
@@ -211,25 +212,25 @@ This sequence of interactions is similar across each page navigation.
 
 ![Attendance Page](images/UiAttendancePageDesign.png)
 
-###### Figure 13: Screenshot of Attendance Page*
+###### Figure 14: Screenshot of Attendance Page*
 
 
-In Figure 13, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `SessionListPanel` and an `AttendanceListPanel` respectively.
+In Figure 14, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `SessionListPanel` and an `AttendanceListPanel` respectively.
 The navigation from Session Page to Attendance Page does not close the `SessionListPanel`, instead the `SessionListPanel` remain displayed in the Left Pane and the `AttendanceListPanel` is displayed in the Right Pane.
-However, the current page shown in Figure 13 is still treated as the Attendance Page, hence only commands applicable to the Attendance Page is accepted.
+However, the current page shown in Figure 14 is still treated as the Attendance Page, hence only commands applicable to the Attendance Page is accepted.
 This also applies to the Grades Page, when the `SessionListPanel` is displayed alongside the `GradesListPanel`.
 
 Initially, each student in the Attendance Page will be marked as absent and their individual student cards will be shown in red.
 After marking a student's attendance with the `mark` command, the student card will be changed to green.
 This change occurs immediately after the command execution by generating a new `AttendanceListPanel` when a `mark` command is called.
-Figure 14 shows the Sequence Diagram when a `mark` command is executed.
+Figure 15 shows the Sequence Diagram when a `mark` command is executed.
 
 ![Mark Sequence Diagram](images/MarkSequenceDiagram.png)
 
-###### Figure 14: Sequence Diagram of mark command. Due to Plant UML limitations, the `alt` frame extends slightly beyond the `UI` frame.
+###### Figure 15: Sequence Diagram of mark command. Due to Plant UML limitations, the `alt` frame extends slightly beyond the `UI` frame.
 
-As shown in Figure 14, when a new `AttendanceListPanel` is initialised, an `AttendanceListViewCell` will be created.
-Similar to the sequence described under Figure 12, the `AttendanceListPanel` takes in an `ObservableList<StudentWithAttendance>` and maps each `StudentWithAttendance` into an `AttendanceListViewCell`.
+As shown in Figure 15, when a new `AttendanceListPanel` is initialised, an `AttendanceListViewCell` will be created.
+Similar to the sequence described under Figure 13, the `AttendanceListPanel` takes in an `ObservableList<StudentWithAttendance>` and maps each `StudentWithAttendance` into an `AttendanceListViewCell`.
 Each `StudentWithAttendance` has an `attendance` flag to indicate if they are present or absent for a particular session.
 Based on the flag, either a new `PresentAttendanceListCard` (with a green background) or a new `AbsentAttendanceListCard` (with a red background) will be created for the particular student.
 
@@ -237,12 +238,12 @@ Based on the flag, either a new `PresentAttendanceListCard` (with a green backgr
 
 ![Student Page](images/UiStudentPageDesign.png)
 
-###### Figure 15: Screenshot of Student Page
+###### Figure 16: Screenshot of Student Page
 
-In Figure 15, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `StudentListPanel` and a `StudentViewCard` respectively.
+In Figure 16, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `StudentListPanel` and a `StudentViewCard` respectively.
 The user interface has a straightforward dashboard layout that uses a list panel to display Courses, Groups, Sessions, Tasks, or Students in the Left Pane.
 Since we are on the student page, a list of students is shown.
-Unlike the Attendance and Grades Page, even though both Left and Right Panes are populated, the page shown in Figure 14 is still the Student Page, hence commands which are applicable to the Student Page are accepted here.
+Unlike the Attendance and Grades Page, even though both Left and Right Panes are populated, the page shown in Figure 15 is still the Student Page, hence commands which are applicable to the Student Page are accepted here.
 
 
 ##### Alternative considerations
@@ -250,14 +251,14 @@ Unlike the Attendance and Grades Page, even though both Left and Right Panes are
 
 ![StudentListCard](images/UiStudentListCard.png)
 
-###### Figure 16: A student list card*
+###### Figure 17: A student list card*
 
 Instead of `StudentId`, we initially considered displaying the `Course` and `Group` the student belongs to in their individual student cards.
-However, this information is already displayed in the navigation bar (shown in Figure 14, above the `StudentListPanel` in "CS2103T > T15").
+However, this information is already displayed in the navigation bar (shown in Figure 15, above the `StudentListPanel` in "CS2103T > T15").
 Furthermore, since each `Student` is uniquely identified by their `StudentId` (i.e adding another student with the same `StudentId` to the same `Group` will throw an error message), it would be more useful to display their `StudentId` instead.
 
 Another alternative we considered was displaying the full information of a `Student` in each `StudentListCard`, however doing so will quickly overwhelm the `StudentListPanel` if there were many students in the group.
-As such, we have implemented a separate `StudentViewCard` that will be shown on the Right Pane (as shown in Figure 14) when the user enters a `select` command on the Student Page.
+As such, we have implemented a separate `StudentViewCard` that will be shown on the Right Pane (as shown in Figure 15) when the user enters a `select` command on the Student Page.
 
 #### CLIpboard Theme
 
