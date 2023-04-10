@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-# **Welcome to PetPal**!
+## **Welcome to PetPal**!
 
 ![Logo](images/UI/AlternateLogo.png)
 
