@@ -4,6 +4,13 @@ package fasttrack.logic.commands.list;
 import static fasttrack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fasttrack.logic.commands.list.ListCategoryCommand.MESSAGE_SUCCESS;
 import static fasttrack.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
+import static fasttrack.testutil.TypicalExpenses.APPLE;
+import static fasttrack.testutil.TypicalExpenses.BANANA;
+import static fasttrack.testutil.TypicalExpenses.CHERRY;
+import static fasttrack.testutil.TypicalExpenses.DURIAN;
+import static fasttrack.testutil.TypicalExpenses.ELDERBERRY;
+import static fasttrack.testutil.TypicalExpenses.FIG;
+import static fasttrack.testutil.TypicalExpenses.GRAPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
@@ -37,7 +44,7 @@ public class ListCategoriesCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
         assertEquals(
-                Arrays.asList(TypicalExpenses.getTypicalExpenses()),
+                Arrays.asList(GRAPE, DURIAN, BANANA, APPLE, CHERRY, FIG, ELDERBERRY),
                 model.getFilteredExpenseList());
     }
 }
