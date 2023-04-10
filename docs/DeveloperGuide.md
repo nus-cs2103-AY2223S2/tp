@@ -173,6 +173,7 @@ The permanent storage component:
 The `temporary` component temporarily saves `DengueHotspotTracker` data while the app is running to support `undo` and `redo` commands. To prevent taking up too much memory,
 only up to 10 states of the `DengueHotspotTracker` are stored. This component supports:
 
+
 * undoing and redoing up to a maximum of 10 steps.
 * multiple undo and redo operations at once.
 
