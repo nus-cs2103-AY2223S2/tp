@@ -95,7 +95,7 @@ As seen from the class diagram above, `MainWindow` has composition type relation
 * `CommandBox` - responsible for gathering the user's command input.
 * `HelpWindow` - responsible for the graphical display of the help window.
 * `ListViewPanel` - responsible for the graphical display of the **list view panels**.
-  * 1 each for patients, vaccinations and appointments
+  * 1 each for patients, vaccinations and appointments.
 * `ResultDisplay` - responsible for displaying messages to the user.
 
 The classes mentioned above are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state after `fillInnerParts()` has been called.
@@ -324,10 +324,10 @@ Here's a (partial) class diagram of the Appointment component:
 The `Appointment` component,
 
 * Contains the details of patients' appointment
-  * The patients' `Patient id`
-  * The duration of each appointment (Uses the `start time` and `end time`)
-  * The type and dose of `vaccine` to be administered
-  * The `status` of the appointment
+  * The patients' `Patient id`.
+  * The duration of each appointment (Uses the `start time` and `end time`).
+  * The type and dose of `vaccine` to be administered.
+  * The `status` of the appointment.
 
 #### AppointmentManager
 
@@ -346,11 +346,11 @@ Here's a (partial) class diagram of the Keyword component:
 The `Keyword` component,
 
 * Contains the mapping of a custom keyword to a main keyword
-  * The custom' `<keyword>`
+  * The custom' `<keyword>`.
   * The main `<keyword>`:
-    * `appointment` for `Appointment` class
-    * `patient` for `Patient` class
-    * `vaccination` for `VaxType` class
+    * `appointment` for `Appointment` class.
+    * `patient` for `Patient` class.
+    * `vaccination` for `VaxType` class.
 
 #### KeywordManager
 
@@ -453,10 +453,10 @@ The **Detailing Patients** mechanism is facilitated by `VMS`. It will update the
 
 Given below is an example usage scenario when a user enter `patient detail 1` as a command.
 
-1. The user enters the command in the `UI component`
-2. It will be passed to the `Logic component`
+1. The user enters the command in the `UI component`.
+2. It will be passed to the `Logic component`.
 3. When `DetailCommandParser` receives the information from `PatientParser`, it will invoke the `ParseUtil#parseIndex` to parse PATIENT_ID. It will throw a `ParseException` if there are no args present.
-4. After successfully parsing the args, `FindCommandParser` will create an `DetailCommand` with the parsed index
+4. After successfully parsing the args, `FindCommandParser` will create an `DetailCommand` with the parsed index.
 5. When `DetailCommand#execute` is called, `model#setDetailedPatient` will be called to update the ui to display the Patient requested.
 
 The activity diagram below summarises the action when the patient `DetailCommand` is executed.
@@ -471,8 +471,8 @@ The **Listing Patients** mechanism is facilitated by `VMS`. It will list all the
 
 Given below is an example usage scenario when a user enter `patient list` as a command.
 
-1. The user enters the command in the `UI component`
-2. It will be passed to the `Logic component`
+1. The user enters the command in the `UI component`.
+2. It will be passed to the `Logic component`.
 3. `PatientParser` will invoke `ListCommandParser`, which will create `ListCommand` directly as they do not use any args.
 4. When `ListCommand#execute` is called, `model#updateFilteredPatientList` will be called to update the list with the `PREDICATE_SHOW_ALL_PATIENTS` to display all Patients.
 
@@ -570,8 +570,8 @@ The **Clearing Patients** mechanism is facilitated by `VMS`. It will set the pat
 
 Given below is an example usage scenario when a user enter `patient clear` as a command.
 
-1. The user enters the command in the `UI component`
-2. It will be passed to the `Logic component`
+1. The user enters the command in the `UI component`.
+2. It will be passed to the `Logic component`.
 3. `PatientParser` will invoke `ClearCommand` which will create `ClearCommand` as they do not use any args.
 4. When `ClearCommand#execute` is called, `model#setPatientManager` will be called to update the list a new PatientManger() with no patients.
 
@@ -1244,7 +1244,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Patient**: A person who may receive the vaccination.
 * **Patient/Appointment ID**: A unique serial number for patient/appointment.
-* **VMS**: Vaccination Management System
+* **VMS**: Vaccination Management System.
 
 ## **Appendix: Instructions for manual testing**
 
@@ -1500,12 +1500,12 @@ Before every test case, ensure that the there are no patients and vaccinations.
 1. Add patient "EXTRA" who has taken a vaccination with all required groups and extra.<br>
   `patient add --n EXTRA --p 445 --d 0001-1-1 --b A+ --v EXTRA`
 1. Schedule an appointment for patient "LACKING"<br>
-  `appointment add --p 1 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  `appointment add --p 1 --v TAKING --s 9999-1-1 --e 9999-1-2`.<br>
   **Expected**: Patient cannot take the vaccination
 1. Schedule an appointment for patient "ALL"<br>
-  `appointment add --p 2 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  `appointment add --p 2 --v TAKING --s 9999-1-1 --e 9999-1-2`.<br>
   **Expected**: Appointment added
-1. Schedule an appointment for patient "EXTRA"<br>
+1. Schedule an appointment for patient "EXTRA".<br>
   `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
 
@@ -1529,16 +1529,16 @@ Before every test case, ensure that the there are no patients and vaccinations.
   `patient add --n EXTRA --p 445 --d 0001-1-1 --b A+ --v EXTRA`
 1. Add patient "NONE" who has taken a vaccination with none of the required groups.<br>
   `patient add --n NONE --p 445 --d 0001-1-1 --b A+ --v NONE`
-1. Schedule an appointment for patient "LACKING"<br>
+1. Schedule an appointment for patient "LACKING".<br>
   `appointment add --p 1 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
-1. Schedule an appointment for patient "ALL"<br>
+1. Schedule an appointment for patient "ALL".<br>
   `appointment add --p 2 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
-1. Schedule an appointment for patient "EXTRA"<br>
+1. Schedule an appointment for patient "EXTRA".<br>
   `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
-1. Schedule an appointment for patient "NONE"<br>
+1. Schedule an appointment for patient "NONE".<br>
   `appointment add --p 4 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Patient cannot take the vaccination
 
@@ -1558,13 +1558,13 @@ Before every test case, ensure that the there are no patients and vaccinations.
   `patient add --n PRESENT EXTRA --p 445 --d 0001-1-1 --b A+ --v PRESENT EXTRA`
 1. Add patient "NONE" who has taken a vaccination with a groups that can be present.<br>
   `patient add --n NONE--p 445 --d 0001-1-1 --b A+ --v NONE`
-1. Schedule an appointment for patient "PRESENT"<br>
+1. Schedule an appointment for patient "PRESENT".<br>
   `appointment add --p 1 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Patient cannot take the vaccination
-1. Schedule an appointment for patient "PRESENT EXTRA"<br>
+1. Schedule an appointment for patient "PRESENT EXTRA".<br>
   `appointment add --p 2 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Patient cannot take the vaccination
-1. Schedule an appointment for patient "NONE"<br>
+1. Schedule an appointment for patient "NONE".<br>
   `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
 
