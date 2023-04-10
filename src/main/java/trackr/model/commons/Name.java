@@ -54,8 +54,8 @@ public abstract class Name {
      *
      * @param other The name to compare this name with.
      * @return 1 if this name is lexicographically larger (ignoring case) than the other name,
-     * -1 if this name is lexicographically smaller (ignoring case) than the other name,
-     * 0 if both names are lexicographically equal (ignoring case).
+     *      -1 if this name is lexicographically smaller (ignoring case) than the other name,
+     *      0 if both names are lexicographically equal (ignoring case).
      */
     //@@author liumc-sg
     public int compare(Name other) {
