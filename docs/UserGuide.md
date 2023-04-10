@@ -147,7 +147,7 @@ learn more about new features.
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/94392211 p/98760021`, only `p/91228123` will be taken.
+  e.g. if you specify `p/94392211 p/98760021`, only `p/98760021` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listp`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
