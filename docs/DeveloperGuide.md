@@ -108,7 +108,7 @@ This section gives you an overview of the different components of FastTrack and 
 
 The ***Architecture Diagram*** given below explains the high-level design of the FastTrack and how each component is connected.
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/ArchitectureDiagram.png" width="500" />
 
 
 **Main components of the architecture**
@@ -133,9 +133,9 @@ FastTrack also consists of five other components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-#replace
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="600" />
+
 
 Each of the 5 main components (also shown in the diagram above),
 
@@ -154,9 +154,9 @@ This component is responsible for displaying and interacting with users of FastT
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/ui/Ui.java)
 
-#replace
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="1200" />
+
 
 The UI consists of a `MainWindow` that is made up of the following parts.
 * `CategoryListPanel`
@@ -190,9 +190,9 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component, to help guide you along on how it works:
 
-#ReplaceUMLHere
 
 <img src="images/LogicClassDiagram.png" width="550"/>
+
 
 #### **How the `Logic` component works:**
 1. When `Logic` is called upon to execute a command, it uses the `ExpenseTrackerParser` class to parse the user command.
@@ -202,18 +202,18 @@ Here's a (partial) class diagram of the `Logic` component, to help guide you alo
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delcat 1")` API call.
 
-#ReplaceUMLHere
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-#ReplaceUMLHere
 
 <img src="images/ParserClasses.png" width="600"/>
+
 
 #### **How the parsing works:**
 * When called upon to parse a user command, the `ExpenseTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCategoryParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCategoryCommand`) which the `ExpenseTrackerParser` returns back as a `Command` object.
@@ -222,9 +222,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/model/Model.java)
 
-#ReplaceUMLHere
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="700" />
 
 
 The `Model` component,
@@ -237,21 +236,11 @@ The `Model` component,
 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other four components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-#Check if this is needed anymore
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Category` list in the `ExpenseTracker`, which `Expense` references. This allows `ExpenseTracker` to only require one `Category` object per unique expense, instead of each `Expense` needing their own `Category` objects.<br>
-
-#ReplaceUMLHere
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 ### AnalyticModel component
 
 **API** : [`AnalyticModel.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/model/AnalyticModel.java)
 
-#ReplaceUMLHere
-#This requires brand-new UML diagram of how analyticmodel component works.
 
 The `AnalyticModel` component,
 * contains the expense tracker data (i.e. all `Expense` and `Category` objects, which are respectively contained in `ExpenseList` and `UniqueCategoryList` objects), which are pulled from the `ReadOnlyExpenseTracker` instance. 
@@ -264,9 +253,8 @@ The `AnalyticModel` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/storage/Storage.java)
 
-#ReplaceUMLHere
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="900" />
 
 The `Storage` component,
 * can save both expense tracker data and user preference data in json format, and read them back into corresponding objects.
@@ -872,9 +860,6 @@ The following statistics are calculated and displayed to the user. In FastTrack,
 The current implementation of the expense summary feature requires consistent calculations of the user's expense statistics. As such, an `AnalyticModelManager`, which implements the `AnalyticModel` interface is used to keep track of all of these statistics.
 It contains fields which keep track of each individual statistic as mentioned in the above list, as well as specific methods to perform new calculations and updates to each of these fields.
 
-The following Class Diagram describes the structure of the `AnalyticModelManager`.
-
-// class diagram for AnalyticModelManager
 
 `AnalyticModelManager` requires an instance of `ExpenseTracker` to read and obtain the following unmodifiable, `ObservableList` objects containing data from FastTrack:
 1. `allExpenses`: an `ObservableList` of Expense objects representing all expenses in the expense tracker
