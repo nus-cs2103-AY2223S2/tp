@@ -105,7 +105,9 @@ public class ListObserver implements
                 model.updateAllFilteredListAsHidden();
                 return;
             }
-            model.updateFilteredVideoList(new VideoPredicate(curLecture), editedModule.getCode(), curLecture);
+
+            ReadOnlyLecture editedLecture = editedModule.getLecture(curLecture.getName());
+            model.updateFilteredVideoList(new VideoPredicate(curLecture), editedModule.getCode(), editedLecture);
         }
     }
 
