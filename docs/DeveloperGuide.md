@@ -874,17 +874,27 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    2. Test case: `delete ic/S1234567A`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: Contact with the `NRIC S1234567A` is deleted from the list. Details of the deleted contact shown in the status message. 
 
    3. Test case: `delete ic/0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message. No change made to the list.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `DELETE`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Saving data
 
-1. Dealing with missing/corrupted data files
+    
+## **Appendix: Planned Enhancements**
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Given below are the current known feature flaws and the plans the team have for them in the future versions.
+
+1. The current GUI is not resizable. We plan to add new features; either a dashboard or graph to occupy the extra white space to make it more user-friendly.
+2. The MediConnect currently does not accept name with symbols. We plan to implement that in the next version
+3. Currently, prescriptions do not indicate the doctor that prescribe the medication. We realise this is an important feature to have and plan to implement it in the next version.
+4. The find command currently does not update the display box after filtering the person. We plan to change this in the next version to automatically display the user information after finding the person in the next version.
+5. Currently, MediConnect does not set the person's date of birth as a compulsory field. We plan to make the date of birth a compulsory field in the next version.
+6. Currently, MediConnect does not check for case sensitivity and reads upper case and lower case items as separate items. We plan to allow MediConnect to ignore case sensitivity in the next version. For example, if Paracetmol and paracetamol can be prescribed to the same patient.
+7. Currently, MediConnect does not limit the number of digits in a phone number. We plan to limit the maximum number of phone digits to 15 in the next version.
+8. Currently, MediConnect only take note of the patient's current prescription but does not store a recorded history of the patient's past prescription. We plan to have a prescription history in the next version.
+
 
