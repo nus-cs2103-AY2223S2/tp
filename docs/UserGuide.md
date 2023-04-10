@@ -2,6 +2,9 @@
 layout: page
 title: User Guide
 ---
+#SudoHR User Guide
+
+---
 # Table of contents:
 
 
