@@ -13,7 +13,7 @@ Given below are my contributions to the project.
     * Switch command<br>
   Help the user to easily switch between score text panel and score chart panel. Support both CLI and mouse click.
     * Check command<br>
-  For the user to check a specific student's tasks and scores information.
+  For the user to check a specific student's task/s and score/s information.
     * Filter command<br>
   To filter out student/s from the existing list. Filter key is the tag/s.
     * Score list chart<br>
@@ -27,23 +27,22 @@ Given below are my contributions to the project.
       * Created several GitHub branches for different increments.
     * Group
       * Met the milestone deadlines. 
-      * Used GitHub for increments tracking. 
+      * Used GitHub for progress tracking. 
 
 * **Enhancements to existing features**:
-    * Revamp the existing student list.
+    * Revamped the existing student list UI.
     * UI integration.
-    * Revamp the overall UI layout and make it more responsive
-      * Adjustable window size.
+    * Revamped the overall UI layout and make it more responsive
       * Individual scroll bar for different panels.
       * Allow text wrap and set up display restriction to avoid unwanted text truncate.
 
 * **Documentation**:
     * Updated AboutUs page and README page.
-    * Added a quick user guide inside help window.
-    * User guide
+    * Added a quick user guide inside the help window.
+    * User Guide
       * Added in missing items.
-      * Updated UG to add in more details.
-    * Developer guide
+      * Updated UG with more details.
+    * Developer Guide
       * Helped with generate the Ui chart.
       * Tweaked the DG and relevant guides.
 
@@ -51,7 +50,7 @@ Given below are my contributions to the project.
     * Conceptualized the ideas and came up with the overall UI design.
     * Added several GitHub issues and helped manage the issues through adding labels and milestones.
     * Organized target user stories. 
-    * Created illustrations, including the avatars, student list icons, task list icons, and import/export window icons.
+    * Created illustrations. Including the avatars, student list icons, task list icons, and import/export window icons.
 
 * **Review/mentoring contributions**:
   * Reviewed other teammates' pull requests.
@@ -59,8 +58,8 @@ Given below are my contributions to the project.
 * **Community**:
     * Shared idea and gave suggestions to another group.
     * Contributed to forum discussions
-      * [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/206)
-      * [2](https://github.com/nus-cs2103-AY2223S2/forum/issues/290)
+      * [Published UG and Ui.png tag in ip dashboard not updated](https://github.com/nus-cs2103-AY2223S2/forum/issues/206)
+      * [Default window size](https://github.com/nus-cs2103-AY2223S2/forum/issues/290)
 
 * **Tools**:
     * JavaFX framework
