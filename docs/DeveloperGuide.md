@@ -55,8 +55,8 @@ This guide has been divided into five main parts.
 
 * [Design](#design) discusses the high-level architecture of Mycelium
 * [User Interface](#user-interface) discusses GUI concerns
-* [Command Handling](#command-handling) discusses the execution of commands
 * [Keyboard Interaction](#keyboard-interaction) discusses hotkeys and fuzzy search
+* [Command Handling](#command-handling) discusses the execution of commands
 
 We strive to write each section in a relatively self-contained manner, but some
 cross-referencing might be necessary.
@@ -277,6 +277,7 @@ For demonstration purposes, the following is the Activity Diagram when a `Entity
 For more information about interacting with the tabs using hotkeys, please refer to the
 [Hotkeys with UiEvent](#hotkeys-with-uievents) section.
 
+---
 
 ## Keyboard Interaction
 
@@ -542,6 +543,8 @@ below.
 
 ![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
 
+---
+
 ## Command Handling
 
 ### Command Sequence
@@ -797,6 +800,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should not lose any work in case the application crashes.
 1.  Data persists when the application restarts.
 
+---
+
 ## Glossary
 
 The terms in this glossary are sorted in alphabetical order.
@@ -968,6 +973,8 @@ emails with (ENTER).
 The testing of hotkeys is simple, and you can reference the [user
 guide](https://ay2223s2-cs2103t-w14-1.github.io/tp/UserGuide.html#hotkeys) on
 the expected behaviour of each hotkey.
+
+---
 
 ## Appendix: Documentation, Logging, Testing, Configuration, and DevOps
 
@@ -1226,6 +1233,8 @@ level, the new parser for the `uc` and `up` commands would work like this:
    fields
 1. If they are *not* optional, throw an error and inform the user
 1. Otherwise, proceed to set the fields to `Optional.empty()`
+
+---
 
 ## Appendix: Effort
 
