@@ -276,7 +276,7 @@ The following exceptions may be thrown during this process, namely:
 Given below is an example usage scenario of how the _Edit_ command executes.
 
 -- user input --  
-Step 1. User executes add command with correct and valid arguments.
+Step 1. User executes edit command with correct and valid arguments.
 
 -- `SchedulerParser` --  
 Step 2. Returns new `EditCommandParser`.
