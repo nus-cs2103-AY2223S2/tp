@@ -1,9 +1,9 @@
+# GoodMatch
+
 ---
 layout: page
 title: User Guide
 ---
-
-# GoodMatch
 
 ## **Overview**
 
@@ -13,70 +13,35 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 
 ## Table of Contents
 
-- [GoodMatch](#goodmatch)
-  - [**Overview**](#overview)
-  - [Table of Contents](#table-of-contents)
-  - [User Guide Information](#user-guide-information)
-    - [Purpose of this guide](#purpose-of-this-guide)
-    - [How to use this guide](#how-to-use-this-guide)
-    - [Legends](#legends)
-  - [**Quick Start**](#quick-start)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents-)
-  - [Introduction to GoodMatch](#introduction-to-goodmatch)
-    - [Summary](#summary)
-    - [Listing](#listing)
-      - [Title](#title)
-      - [Description](#description)
-      - [Applicant List](#applicant-list)
-      - [Platforms released](#platforms-released)
-    - [Applicant](#applicant)
-      - [ID](#id)
-    - [Platform](#platform)
-    - [Commands](#commands)
-  - [**Features**](#features)
-    - [Viewing help: `help`](#viewing-help-help)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--1)
-    - [Viewing all job listings: `view`](#viewing-all-job-listings-view)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--2)
-    - [Adding a job listing: `add`](#adding-a-job-listing-add)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--3)
-    - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--4)
-    - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--5)
-    - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing-add_app)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--6)
-    - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing-edit_app)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--7)
-    - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing-del_app)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--8)
-    - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--9)
-    - [Delete a platform from a listing: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--10)
-    - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--11)
-    - [Sorting job listings: `sort`](#sorting-job-listings-sort)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--12)
-    - [Undo latest command: `undo`](#undo-latest-command-undo)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--13)
-    - [Saving the data](#saving-the-data)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--14)
-    - [Editing the data file](#editing-the-data-file)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--15)
-    - [Filtering job listings \[coming soon!\]](#filtering-job-listings-coming-soon)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--16)
-    - [Tagging a job listing \[coming soon\]](#tagging-a-job-listing-coming-soon)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--17)
-  - [**FAQ**](#faq)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--18)
-  - [**Command summary**](#command-summary)
-          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--19)
+- [User Guide Information](#user-guide-information)
+  - [Purpose of this guide](#purpose-of-this-guide)
+  - [How to use this guide](#how-to-use-this-guide)
+  - [Legends](#legends)
+- [Quick Start](#quick-start)
+- [Get to know GoodMatch](#get-to-know-goodmatch)
+- [Features](#features)
+  - [Viewing help: `help`](#viewing-help-help)
+  - [Viewing all job listings: `view`](#viewing-all-job-listings-view)
+  - [Adding a job listing: `add`](#adding-a-job-listing-add)
+  - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
+  - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
+  - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing-add_app)
+  - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing-edit_app)
+  - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing-del_app)
+  - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
+  - [Deleting a platform: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
+  - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
+  - [Sorting job listings: `sort`](#sorting-job-listings-sort)
+  - [Undo latest command: `undo`](#undo-latest-command-undo)
+  - [Exit the application: `exit`](#exit-the-application-exit)
+  - [Saving data](#saving-the-data)
+  - [Editing data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
 
 ---
 
 ## User Guide Information
-
 
 ### Purpose of this guide
 
@@ -86,9 +51,11 @@ Welcome to the user guide for GoodMatch. This guide will help you understand how
 
 To make the most of this guide, start by reading it from beginning to end. If you are an experienced user, you can skip to the [Features](#features) section for a detailed guide. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
 
-Use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
+You can use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
 
 ### Legends
+
+Here is a breakdown of the different symbols we will use throughout this guide.
 
 ✏️ **Format**: Shows you what you should type in order to use a command.
 
@@ -107,20 +74,21 @@ Use the interactive [table of contents](#table-of-contents) to navigate through 
 ## **Quick Start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.2).
+2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.4).
 3. Copy the file to the folder you want to use as the _home folder_ for your GoodMatch.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.
-
-A GUI similar to the one below should appear in a few seconds.
-
-![Mock Up](./images/Ui.png)
+4. Open a command terminal, `cd` (change directory) into the folder (a directory is the same as a folder) you put the jar file in. 
+   1. For example, if your file is in the `Downloads` folder, run `cd ~/Downloads` this changes your directory to the `Downloads` folder on your computer.
+5. After you navigate to the folder that contains `goodmatch.jar`, use the `java -jar goodmatch.jar` command to run the application.</br>A GUI similar to the one below should appear in a few seconds.</br>
+<p>
+  <img class="diagram" src="images/Ui.png" />
+  <em>Example of GUI</em>
+</p>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
-
+</br></br>
 Some example commands you can try:
-
 - `view`: Lists all listings.
-- `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Tom`: Adds a listing called `Chicken Rice Uncle` into the Listing Book.
+- `add t/Software Engineer d/Code well a/Tom p/LinkedIn`: Adds a listing called `Software Engineer` into the Listing Book.
 - `delete 1`: Deletes the 1st listing shown in the current list.
 - `exit`: Exits the app.
 
@@ -130,47 +98,62 @@ Some example commands you can try:
 
 ---
 
-## Introduction to GoodMatch
-
-### Summary
-GoodMatch serves as a platform for hiring managers to manage and keep track of job listings. Essentially, it functions as a list of job listings, whereby details of each listing can be managed via various commands (which will be explained further in later parts of this guide).
+## Get to know GoodMatch
 
 ### Listing
-A job listing is the basic building block of GoodMatch. It helps managers to keep track and display all the details relating to the job. Job listings can be created, deleted, or edited. <br> A job listing in GoodMatch contains the following fields:
+
+A job listing is the basic building block of GoodMatch. It helps you keep track and display all the details relating to the job. You can create, delete, and edit job listings.
+
+A job listing in GoodMatch contains the following fields:
 
 #### Title
-What the job listing is called. It serves as an identifier for a job listing.<br> Some constraints that a job title include:
-- It is **compulsory** in a job listing.
-- Two job listings with the same title cannot exist in GoodMatch at the same time (**no duplicates**).
-- Titles must contain at least one alphanumeric character.
-- Titles should not exceed 100 characters.
+
+The job title is what you want to call the job listing. It serves as an identifier for a job listing.
+
+Some constraints that a job title include:
+- It is **compulsory** in your job listing.
+- You cannot have two job listings with the same title exist in GoodMatch at the same time (**no duplicates**).
+- Your titles should only contain alphabets and numbers.
+- All of your job titles should have a maximum of 100 characters.
 
 #### Description
-A simple description of what the job entails.
-- It is **compulsory** in a job listing.
-- Descriptions must contain at least one alphanumeric character.
-- Descriptions should not exceed 500 characters.
 
-#### Applicant List
-A list of people who applied for the job.
+What is your job listing about? A job description is a simple description of what the job entails.
+- It is **compulsory** in your job listing.
+- All of your job description should have a maximum of 500 characters.
+
+#### Applicants List
+
+When applicants apply for your job listing, you can add them to the job listing!
+
+A list of applicants who applied for your job.
 - It is possible for a job listing to have no applicants.
 
 #### Platforms released
-A list of job platforms on which the job listing has been publicized.
+
+When you post a job listing, you often want to reach a wide audience of potential candidates. 
+To do this, you may publish the job listing on various job platforms, such as job boards or social media platforms. 
+These job platforms that you published on are referred to as "platforms released" for that particular job listing. 
+
+A list of job platforms on which the job listing has been published.
 - It is possible for a job listing to have no platforms released.
 - Platform names in a job listing should be unique
 
 ### Applicant
-An applicant refers to someone who has applied for a job listing. Applicants are displayed according to their names and are specific to each job listing.
+
+An applicant refers to someone who has applied for your job listing.
+
+Applicants are displayed according to their names and are specific to each job listing.
 - An applicant must have a name.
-- An applicant's name must contain only alphanumeric characters.
+- An applicant's name must contain only alphabets and numbers.
 - Applicants with identical names are allowed in the same job listing.
 - Can be managed individually or as a whole list in each job listing.
 
-#### ID
-In a job listing, each applicant will have a unique 4-digit ID, generated automatically by GoodMatch. The ID will be displayed (behind the applicant's name) in the case that there are two or more applicants with identical names in the same listing. 
+#### IDs
+In your job listing, each applicant will have a unique 4-digit ID, generated automatically by GoodMatch. 
 
-<br><br> 
+The ID will be displayed (behind the applicant's name) in the case that there are two or more applicants with identical names in the same listing.
+
 
 > If the listing has only one applicant named *Tom*, the applicant will be displayed as `Tom`.
 
@@ -178,20 +161,26 @@ In a job listing, each applicant will have a unique 4-digit ID, generated automa
 
 
 ### Platform
-A platform refers to a site or avenue in which a job listing has been publicized. Some of the more well known platforms are LinkedIn, Indeed, etc.
+
+A platform refers to a site or avenue in which your job listing has been published. 
+
+Some of the more well known platforms are Linkedin, Indeed, etc.
+
 - A platform must have a name.
 - A platform's name must contain only alphanumeric characters.
 - Platforms in the same listing cannot have identical names (**no duplicates**).
 - Can be managed individually as a whole list in each job listing.
 
 ### Commands
-There are various commands available in GoodMatch which will allow users to manage listings, applicants and platforms. These commands will be discussed in the following sections.
 
+There are various commands available in GoodMatch which will allow users to manage listings, applicants and platforms. 
+
+These commands will be discussed in the following sections.
 
 ---
 
 ## **Features**
-Here is a list of GM features, click on them to jump to the section! Each section describes a command that you can execute in GoodMatch to keep track of your job listings.
+Here is a list of GoodMatch features, click on them to jump to the section! Each section describes a command that you can execute in GoodMatch to keep track of your job listings.
 
 1.  [`help`](#viewing-help-help)
 2.  [`view`](#viewing-all-job-listings-view)
@@ -201,14 +190,14 @@ Here is a list of GM features, click on them to jump to the section! Each sectio
 6.  [`add_app`](#adding-an-applicant-to-listing-add_app)
 7.  [`edit_app`](#editing-an-applicant-of-a-listing-edit_app)
 8.  [`del_app`](#deleting-an-applicant-from-a-listing-del_app)
-9.  [`add_plat`](#adding-a-platform-add_plat)
-10.  [`del_plat`](#delete-a-platform-from-a-listing-del_plat)
+9.  [`add_plat`](#adding-a-platform-add_plat)
+10.  [`del_plat`](#delete-a-platform-from-a-listing-del_plat)
 11.  [`find`](#locating-job-listings-by-title-find)
 12.  [`sort`](#sorting-job-listings-sort)
 13.  [`undo`](#undo-latest-command-undo)
-14.  [Saving data](#saving-the-data)
-15.  [Editing data file](#editing-the-data-file)
-
+14.  [`exit`](#exit-the-application-exit)
+15.  [Saving data](#saving-the-data)
+16.  [Editing data file](#editing-the-data-file)
 
 <div markdown="block" class="alert alert-info">
 
@@ -239,8 +228,10 @@ Here is a list of GM features, click on them to jump to the section! Each sectio
 
 Shows a message explaining how to access the help page.
 
-
-![Help Message](./images/HelpMessage.png)
+<p>
+  <img class="diagram" src="images/helpMessage.png" />
+  <em>Help window that will appear when you run `help`.</em>
+</p>
 
 ✏️ **Format:** `help`
 
@@ -840,29 +831,27 @@ If your changes to the data file makes its format invalid, GoodMatch will discar
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
----
+### Exit the application: `exit`
 
-### Filtering job listings [coming soon!]
+This command exits the application for you! 
 
-Sort job listings by the field specified by the user and display the sorted list of job listings.
+✏️ **Format:** `exit`
 
-✏️ **Format:** `filter attribute/[POSSIBLE_FIELDS] by/[SOME_VALUE]`
+Please refer to the screenshots below to see the various ways you can exit the application.
+
+<p>
+  <img class="diagram" src="images/ExitExample1.png" />
+  <em>Exit the application with the `exit` command</em>
+</p>
+
+<p>
+  <img class="diagram" src="images/ExitExample2.png" />
+  <em>Exit the application by clicking on the File menu and then the Exit button</em>
+</p>
 
 ℹ️ **Notes:**
-
-- The possible fields are: `expiry date` , `num_of_applicants` , `...`
-- Fields have to be numerical
-- Metrics can be more than or less than or equal
-
-📚 **Examples:**
-
-- `filter attribute/num_of_applicants by/>= 5`
-
-###### _< Back to [Table of Contents](#table-of-contents) >_
-
-### Tagging a job listing [coming soon]
-
-Add tags to a job listing for easy reference.
+- This command also closes all GoodMatch windows for you. 
+- For example, if you have the main window and the help window opened, both windows will be closed.
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
@@ -872,6 +861,27 @@ Add tags to a job listing for easy reference.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GoodMatch home folder.
+
+**Q**: Can GoodMatch be used on any operating system?<br>
+**A**: Yes. GoodMatch can be used on any operating system as long as your computer has Java 11 or above.
+
+**Q**: What should I do if I encounter an error or bug in GoodMatch?<br>
+**A**: Report the error! You can report the error at this [link](https://github.com/AY2223S2-CS2103T-W14-3/tp/issues). We will be notified for any issues and get back to you as soon as possible.
+
+**Q**: Can GoodMatch be used by multiple users or on multiple computers?<br>
+**A**: No, GoodMatch can only be used by you. If you want to use it on another computer, set up GoodMatch on the other computer and copy the contents in `[JAR file location]/data/listingbook.json` from the old device to the new device.
+
+**Q**: Is there a limit to the number of job listings or applicants I can add to GoodMatch?<br>
+**A**: There is no limit to the number of job listings or applicants you can add to GoodMatch other than your own computer's storage limits. However, we do recommend you to keep the number of job listings under 1000 for best performance! 
+
+**Q**: Can I customize the appearance of GoodMatch or the data fields for job listings and applicants?<br>
+**A**: No, unfortunately you cannot customize the appearance of GoodMatch but if you have a brilliant suggestion for us, let us know!
+
+**Q**: How often does GoodMatch receive updates or new features?<br>
+**A**: We have a few updates and features in store for you! We are working hard to push them as soon as possible so stay tuned for them!
+
+**Q**: Is there a user forum or support community for GoodMatch?<br>
+**A**: Any questions, suggestions or issues you have can be posted [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/issues). We will be able to answer any concerns that you have there!
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
