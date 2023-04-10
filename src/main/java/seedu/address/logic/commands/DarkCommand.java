@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 
 
 /**
- *
+ *  Command to change to dark theme
  */
 public class DarkCommand extends Command {
     public static final String COMMAND_WORD = "dark";
@@ -18,7 +18,7 @@ public class DarkCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (cssFilePath.equals(model.getCssFilePath())) {
-            return new CommandResult(MESSAGE_ERROR);
+            throw new CommandException(MESSAGE_ERROR);
         } else {
             return new CommandResult(MESSAGE_SUCCESS, true);
         }
