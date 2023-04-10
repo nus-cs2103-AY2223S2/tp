@@ -457,6 +457,12 @@ Format: `ldhc n/DEPARTMENT_NAME [d/DATE]`
 the command will be shown for the given department.
 * The given date must not be before the current date of inputting the command and must be within one year
 of the current date of inputting the command.
+* The date will be deemed invalid if it does not follow the form YYYY-MM-DD or if the date is not within the range
+specified above.
+
+<div markdown="span" class="alert alert-warning">**NOTE:**
+The input date must be of the form YYYY-MM-DD
+</div>
 
 Examples:
 * `ldhc n/Human Resources`
