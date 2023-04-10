@@ -1302,7 +1302,9 @@ The current [build.gradle](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/mas
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
-    jvmArgs "-Dheadless=${project.hasProperty('headless') ? project.headless : false}"
+    jvmArgs "-Dheadless=${project.hasProperty('headless') 
+            ? project.headless 
+            : false}"
     systemProperties = [
             'testfx.robot': 'glass',
             'testfx.headless': 'true',
