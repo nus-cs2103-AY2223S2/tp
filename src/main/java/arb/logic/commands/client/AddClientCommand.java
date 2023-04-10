@@ -33,10 +33,10 @@ public class AddClientCommand extends Command {
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Adds a client to the address book. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "<" + PREFIX_NAME + "NAME> "
+            + "[" + PREFIX_PHONE + "PHONE_NUMBER] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]*\n"
             + "Example: " + MAIN_COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

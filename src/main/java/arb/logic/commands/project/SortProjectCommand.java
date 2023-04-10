@@ -26,7 +26,7 @@ public class SortProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Sorts the project list. "
             + "Parameters: "
-            + PREFIX_OPTION + "OPTION\n"
+            + "<" + PREFIX_OPTION + "OPTION>\n"
             + "The options are \'name\' and \'deadline\' and \'price\'\n"
             + "Example: " + MAIN_COMMAND_WORD + " "
             + PREFIX_OPTION + "name";

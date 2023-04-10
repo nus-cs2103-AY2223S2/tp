@@ -31,7 +31,7 @@ public class DeleteProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD
             + ": Deletes the project identified by the index number used in the displayed list.\n"
-            + "Parameters: INDEX(must be a positive integer)\n"
+            + "Parameters: <index> (must be a positive integer)\n"
             + "Example: " + MAIN_COMMAND_WORD + " 1";
 
     private final Index targetIndex;
