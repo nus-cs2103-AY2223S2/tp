@@ -37,6 +37,7 @@ public class RecurringEventList {
      */
     public void insert(RecurringEvent newEvent) {
         this.recurringEvents.add(newEvent);
+        recurringMask.modifyOccupancy(newEvent, true);
     }
 
     /**
