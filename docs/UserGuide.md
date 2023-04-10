@@ -17,6 +17,9 @@ managers to efficiently delegate tasks in an organised manner.
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## 1. Getting started
 
 #### 1.1 Accessing the app
@@ -110,6 +113,8 @@ You may notice that there are progress bars of different
 <br>- The <span style="color:blue">**blue**</span> colored progress bar indicates that the task is not done, but the deadline has not passed.
 <br>- The circles indicate the percentage of assigned tasks a person has completed. In the example above, Alice Pauline has completed 50% of the tasks assigned to her! Meanwhile, those who either have no tasks assigned or have completed all tasks assigned will have a green circle with the word "done" below!
 </div>
+
+<div style="page-break-after: always;"></div>
 
 If you find yourself forgetting some commands over time, there's no need to worry. Memory leak happens to the best of 
 us. You can simply access the help menu using a simple command: `help` to refresh your memory or even 
