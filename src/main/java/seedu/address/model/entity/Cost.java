@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
 public class Cost {
     public static final String CONSTRAINTS = "Cost should be an integer!";
 
-    private static final int BASE_GOLD_COST = 1;
+    public static final int BASE_GOLD_COST = 1;
 
     private final Integer goldCost;
 

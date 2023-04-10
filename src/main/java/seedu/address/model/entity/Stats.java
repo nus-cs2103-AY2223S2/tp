@@ -6,9 +6,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * Represents the stats of a single character/mob
  */
 public class Stats {
-    private static final int BASE_STRENGTH = 1;
-    private static final int BASE_DEXTERITY = 1;
-    private static final int BASE_INTELLIGENCE = 1;
+    public static final int BASE_STRENGTH = 1;
+    public static final int BASE_DEXTERITY = 1;
+    public static final int BASE_INTELLIGENCE = 1;
 
     private final Integer strength;
     private final Integer dexterity;
