@@ -61,7 +61,7 @@ The user guide will contain certain visuals to aid in conveying information more
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Library.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MyLib.jar` command to run the application.
 
 5. A GUI similar to the one below should appear in a few seconds. You can get an overview of the various components that make up MyLib's GUI [here](#graphical-user-interface).
 
