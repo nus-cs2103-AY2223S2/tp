@@ -17,7 +17,7 @@ You can reach us at the email `darrensim999@gmail.com`
 [[portfolio](team/kevineyo1.md)]
 
 * Role: Team Lead/Developer
-* Responsibilities: Scheduling and tracking
+* Responsibilities: Scheduling and tracking, User Guide
 
 ### Tan Yu Fei
 
