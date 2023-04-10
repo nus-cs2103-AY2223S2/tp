@@ -1312,6 +1312,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC02 - View specific person**<br/>
 **MSS**
 1. User <u>View all persons (UC01)</u>
@@ -1347,7 +1349,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. CoDoc shows an error message.
 
       Use case resumes at step 4.
-  
+
+<div style="page-break-after: always;"></div>
+
 * 4b. Valid `prefixes/ATTRIBUTES` include:
   * `c/COURSE`
   * `n/NAME`
@@ -1379,6 +1383,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4h. Editing the name, year, email, github and linkedin follows the implementation of the course
 
   Use case resumes at step 4.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC04 - Find a person by attribute**<br/>
 **MSS**
@@ -1412,6 +1418,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC05 - Delete a person**<br/>
 **MSS**
@@ -1474,6 +1481,8 @@ testers are expected to do more *exploratory* testing.
 3. _{ more test cases …​ }_
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a person
 
