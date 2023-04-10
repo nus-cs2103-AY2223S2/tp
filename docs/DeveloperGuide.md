@@ -730,6 +730,8 @@ In summary, the activity diagram is as such:
 
 #### **Delete Command**
 
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/DeleteCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/DeleteCommandParser.java)
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <img src="images/DeleteSequenceDiagram.svg" style="width:80%;margin:0 10%">
