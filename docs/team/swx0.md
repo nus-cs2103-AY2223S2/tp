@@ -28,7 +28,8 @@ Given below are my contributions to the project.
     * Allows users to specify Team's name, description and skill requirements (as tags)
     * Able to create teams using `create` command and remove teams using `remove` command
     * After a new team is added in TeamList, users are able to add members to team (by attach corresponding team tag to the Person)
-
+  * Credits:
+    * The implementation for Team and TeamList is adapted from the implementation for Person and PersonList respectively
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=swx0&breakdown=true)
 
@@ -69,9 +70,8 @@ Given below are my contributions to the project.
     * Update Model component diagram to add Team and TeamList, update attributes of Person
     * Add description for create team feature
     * Remove data archiving section
+    * Add 'Sorting Persons' and 'Creating a team' in Instructions for manual testing
 
 * **Community**:
   * Contributed to forum discussions ([\#303](https://github.com/nus-cs2103-AY2223S2/forum/issues/303))
   * Reported bugs and suggestions for other teams in the class (for PE-D: [\#1](https://github.com/swx0/ped/issues/1) [\#2](https://github.com/swx0/ped/issues/2) [\#3](https://github.com/swx0/ped/issues/3) [\#4](https://github.com/swx0/ped/issues/4) [\#5](https://github.com/swx0/ped/issues/5) [\#6](https://github.com/swx0/ped/issues/6))
-
-* _{you can add/remove categories in the list above}_
