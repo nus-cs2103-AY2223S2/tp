@@ -13,7 +13,7 @@ E-Lister is a comprehensive **desktop app**, specially designed for **insurance 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed on your Computer.
 
@@ -42,7 +42,7 @@ E-Lister is a comprehensive **desktop app**, specially designed for **insurance 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -83,7 +83,7 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 
-### Basic operation
+### **Basic operation**
 
 #### Adding a person: `add`
 
@@ -104,15 +104,21 @@ Examples:
 
 ![add example](images/addExample.png)
 
-#### Listing all persons : `list`
+#### Deleting a person : `delete`
 
-Shows a list of all persons in the E-Lister.
+Deletes the specified person from E-Lister.
 
-Format: `list`
+Format: `delete INDEX`
 
-![list](images/listExample.png)
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
-*Why do we need this command?* This is mostly used to refresh the whole list of contacts stored in the app so far after you use **filter** command *(see later)*.
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in E-Lister.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete 6` will delete the 6th person in E-Lister (which is Betsy Crowe in this example).![delete example](images/deleteExample.png)
+
 #### Editing a person : `edit`
 
 Edits an existing person in the E-Lister.
@@ -150,20 +156,15 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 * `find mart On` returns `Martin Henz`, `Ong Wai Kit`
 
-#### Deleting a person : `delete`
+#### Listing all persons : `list`
 
-Deletes the specified person from E-Lister.
+Shows a list of all persons in the E-Lister.
 
-Format: `delete INDEX`
+Format: `list`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+![list](images/listExample.png)
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in E-Lister.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `delete 6` will delete the 6th person in E-Lister (which is Betsy Crowe in this example).![delete example](images/deleteExample.png)
+*Why do we need this command?* This is mostly used to refresh the whole list of contacts stored in the app so far after you use **filter** command *(see later)*.
 
 #### Clearing all entries : `clear`
 
@@ -171,12 +172,12 @@ Clears all entries from E-Lister.
 
 Format: `clear`
 
-### Tag
+### **Tag**
 #### Adding a tag : `tag`
 
 Adds a tag to any given person stored in E-Lister.
 
-Format: `tag INDEX [tagName]`
+Format: `tag INDEX TAG`
 
 * Adds `TAG` to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -201,7 +202,7 @@ Examples:
 * `list` followed by `delete_tag 3 teacher` deletes the tag "teacher" from the 3rd person(only if there's a person with index 3 and carrying tag "teacher").
 * `delete_tag 1 t/billionaire` will delete the tag "billionaire" from the 1st person (which is Alex in this example).![delete_tag example](images/deleteTagExample.png)
 
-### Advanced Operation
+### **Advanced Operations**
 #### Filter by fields : `filter`
 
 Search for persons whose fields all match one or more keywords.
@@ -258,20 +259,6 @@ due to a `freeze` will now be applied.
 
 Format: `unfreeze`
 
-#### Creating a shortcut : `shortcut`
-
-Allows the user to create a shortcut for a command; this shortcut can be used in place of the command.
-
-The shortcut will be saved and can still be used when the user exits E-Lister and re-opens it.
-
-Format: `shortcut ORIGINAL_COMMAND SHORTCUT`
-
-* The shortcut cannot be the same as any existing command or shortcut.
-* The shortcut should only consist of alphanumeric characters.
-
-Examples:
-* `shortcut list lst` will allow the user to input `lst` in place of `list`.
-
 #### Mass operations : `mass`
 
 Takes in a command typically applied to a single target index, and applies it to all _displayed_ persons.
@@ -318,7 +305,21 @@ Format: `redo [NUM]`
 Examples:
 * `redo 3` will redo 3 commands.
 
-### Import&Export CSV file
+#### Creating a shortcut : `shortcut`
+
+Allows the user to create a shortcut for a command; this shortcut can be used in place of the command.
+
+The shortcut will be saved and can still be used when the user exits E-Lister and re-opens it.
+
+Format: `shortcut ORIGINAL_COMMAND SHORTCUT`
+
+* The shortcut cannot be the same as any existing command or shortcut.
+* The shortcut should only consist of alphanumeric characters.
+
+Examples:
+* `shortcut list lst` will allow the user to input `lst` in place of `list`.
+
+### **Import&Export CSV file**
 #### Import data from CSV : `import`
 
 Opens a file chooser to select a CSV file containing relevant data and merges with the existing data.
@@ -347,7 +348,7 @@ Format: `export [shown|all]`
 
 ![export example](images/exportExample.png)
 
-### Input Log
+### **Input Log**
 On the right side of the application, an Input Log section is available & displays successful commands you have previously entered.
 
 *Why do we need this?* Keeping a record of all commands executed in contacts managing app is important for several reasons.
@@ -356,23 +357,23 @@ On the right side of the application, an Input Log section is available & displa
 - Finally, having a record of all commands executed in the app can help identify any issues or areas for improvement in the workflow, allowing the agent to refine their approach and optimize their performance over time.
 
 ![history display](images/historyDisplay.png)
-### Applying Filters Display
+### **Applying Filters Display**
 Right above the History box, you can see another small container where all the filters that were used on your persons list will be displayed
 
 *Why do we need this?* The reasoning is pretty much the same as for History Display, imagine having to filter out your list of 1000 persons with 5 different eligibilities, don't you think it's great idea to have all the filters displayed so that you know what are people showing up in the app?
 
 
-## Exiting the program : `exit`
+## **Exiting the program** : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### **Saving the data**
 
 E-Lister data is saved on the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### **Editing the data file**
 
 E-Lister data is saved as a JSON file `[JAR file location]/data/elister.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -387,28 +388,32 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app on the another computer and overwrite the empty data file it creates with the file that contains the data of your previous E-Lister home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 Action | Format, Examples
 --------|------------------
+**Help** | `help`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL i/INCOME a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague i/10000`
-**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/INCOME] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Export** | `export`
-**Filter** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`<br> e.g., `filter e/.*\.org$ n/rin e/.*\.net$`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List** | `list`
+**Clear** | `clear`
+**Tag** | `tag INDEX TAG` <br> e.g, `tag 2 MIDDLE_CLASS`, `tag 5 teacher`
+**Delete Tag** | `delete_tag INDEX TAG` <br> e.g, `delete_tag 2 MIDDLE_CLASS`, `delete_tag 5 teacher` 
+**Filter** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`<br> e.g., `filter e/.*\.org$ n/rin e/.*\.net$`
 **Freeze** | `freeze`
 **Unfreeze** | `unfreeze`
-**List** | `list`
 **Mass** | `mass COMMAND [ARGS_WITHOUT_INDEX]`<br> e.g., `mass tag Noticed`
 **Undo** | `undo [NUM]`
 **Redo** | `redo [NUM]`
-**Help** | `help`
+**Shortcut** | `shortcut`
+**Import** | `import`
+**Export** | `export`
