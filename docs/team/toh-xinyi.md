@@ -10,10 +10,10 @@ future lessons and have an overall view of their schedule for ease of planning.
 Given below are my contributions to the project.
 
 * **Enhancements added**:
-  * 
-  * [`addtask`](https://ay2223s2-cs2103-w17-1.github.io/tp/UserGuide.html#1-adding-a-task-for-a-student-addtask)
-  * [`deletetask`](https://ay2223s2-cs2103-w17-1.github.io/tp/UserGuide.html#2-deleting-a-task-of-a-student-deletetask)
-  * [`markcomplete`, `marklate`, `markinprogress`](https://ay2223s2-cs2103-w17-1.github.io/tp/UserGuide.html#3-marking-a-task-of-a-student-markcomplete-markinprogress-marklate)
+  * Added task model and related commands to the original model
+    * [`addtask`](https://ay2223s2-cs2103-w17-1.github.io/tp/UserGuide.html#1-adding-a-task-for-a-student-addtask)
+    * [`deletetask`](https://ay2223s2-cs2103-w17-1.github.io/tp/UserGuide.html#2-deleting-a-task-of-a-student-deletetask)
+    * [`markcomplete`, `marklate`, `markinprogress`](https://ay2223s2-cs2103-w17-1.github.io/tp/UserGuide.html#3-marking-a-task-of-a-student-markcomplete-markinprogress-marklate)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
