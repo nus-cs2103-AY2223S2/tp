@@ -6,19 +6,24 @@ title: Developer Guide
 {:toc}
 
 ------------------------------------------------------------------------------------------------------------------------
+# About coNtactUS
 
-coNtactUS is a **university module tracker and timetable/deadline sorting application**, optimized for use via a
-**Command Line Interface (CLI)** while still having the _benefits_ of a **Graphical User Interface (GUI)**. This
-application uses the **AddressBook-Level3** project created by the [SE-EDU initiative](https://se-education.org/)
-as its framework.
+coNtactUS is a module tracker made by NUS computing students, for NUS computing students. It provides a centralised
+platform for students to conveniently store and access information about their modules. coNtactUS is optimised for use 
+via typing instead of clicking, allowing NUS computing students to store and retrieve information faster than ever before.
+Overall, coNtactUS helps students to be the most productive and organised versions of themselves. 
 
+coNtactUS provides support for NUS computing students to keep track of a variety of information related to their modules,
+including but not limited to the following... 
+
+* Lecture and tutorial timeslots
+* Lecture and tutorial venues
+* Deadlines
+* Module official resources
+* Module notes
+* Contact details of Professors and Teaching assistants and more...
 
 <!-- -------------------------------------------------------------------------------------------------------------- -->
-
-------------------------------------------------------------------------------------------------------------------------
-## **Acknowledgements**
-
-No external sources or libraries were used.
 
 ------------------------------------------------------------------------------------------------------------------------
  ## **Setting up, getting started**
@@ -27,62 +32,71 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md) to start dev
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Architecture
+## Architecture
+
+The Architecture Diagram (Figure 1) given below explains the high-level design of the module tracker.
 
 <img src="images/ArchitectureDiagram.png" width="280" />
-Architecture of the module tracker.
 
-The ***Architecture Diagram*** given above explains the high-level design of the module tracker.
+Figure 1: Architecture of the module tracker.
 
-Given below is a quick overview of main components and how they interact with each other.
+## A quick overview of the architecture components
 
-**Main components of the architecture**
+### `Main`
+[`Main`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+works with  [`MainApp`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java)
+and is responsible for: 
+* Initializing the other components in the correct sequence at software launch, and connecting them up with each other.
+* Shutting down the components when the program is closed and invoking cleanup methods where necessary.
 
-**`Main`** has two classes called
-[`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java).
-It is responsible for,
-* At software launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
+### `Commons`
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the module tracker consists of four components.
+### `UI`
+[**`UI`**](#ui-component) is responsible for the user interface of the module tracker.
+### `Logic`
+[**`Logic`**](#logic-component) is responsible for executing commands.
+### `Model`
+[**`Model`**](#model-component) holds the data of the module tracker in memory.
+### `Storage`
+[**`Storage`**](#storage-component) reads data from, and writes data to, the hard disk.
 
-* [**`UI`**](#ui-component): The UI of the module tracker.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the module tracker in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+## How the architecture components interact with each other
 
-**How the architecture components interact with each other**
+To illustrate how the components interact with each other, let us take a look at the scenario where 
+the user issues the command `delete 1` to delete the first module from the list.
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+The *Sequence Diagram* below illustrates this in detail: 
 
 <img src="https://ay2223s2-cs2103t-w10-1.github.io/tp/images/ArchitectureSequenceDiagram.png" width="574" />
 
-Figure 1: How a `delete 1` function is parsed through the different components.
+Figure 2: How the different components interact with each other upon the command `delete 1`
 
-Each of the four main components (also shown in the diagram above),
+## Interfaces that are implemented by the architecture components
 
-* defines its *API* in an `interface` with the same name as the Component.
+Each of the four components `UI`, `Logic`, `Model` and `Storage` (also shown in Figure 2 above),
+
+* defines its *API* in an `interface` with the same name as the component.
 * implements its functionality using a concrete `{Component Name}Manager` class
-* (which follows the corresponding API `interface` mentioned in the previous point.
+which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
 using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given
 component through its interface rather than the concrete class (reason: to prevent outside component's being coupled
-to the implementation of a component), as illustrated in the (partial) class diagram below.
+to the implementation of a component), as illustrated in the (partial) class diagram (Figure 3) below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.
+Figure 3: Relationship between the Interfaces and their concrete classes
+
+
+## Details about each architecture component 
 
 ### UI component
 
 The **API** of this component is specified in
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/tree/master/src/main/java/seedu/address/ui)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 The structure of the UI Component
@@ -731,3 +745,11 @@ Effort required: 8 / 10)
 6. Addition of a Reminder window (Difficulty: 7 / 10, Effort required: 7 / 10)
    * Bla bla
 
+------------------------------------------------------------------------------------------------------------------------
+
+## **Acknowledgements**
+
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
+  [JUnit5](https://github.com/junit-team/junit5)
+
+------------------------------------------------------------------------------------------------------------------------
