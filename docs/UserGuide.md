@@ -111,18 +111,18 @@ This is a definitive list of the different fields each entity has:
 
 Each field accepts a certain type of value and has a number of command terms, as seen below:
 
-| Field            | Command Term         | Value Type           |
-|------------------|----------------------|----------------------|
-| Name             | name                 | Alphanumeric String  | 
-| Strength         | strength, str        | `int`                |
-| Dexterity        | dexterity, dex       | `int`                | 
-| Intelligence     | intelligence         | `int`                |
-| Level            | level                | `int`                |
-| XP               | exp, xp              | `int`                |
-| Challenge Rating | challengerating, cr  | `int`                |
-| Legendary        | isLegendary, legend  | `boolean`            |
-| Tags             | tags, tag            | Alphanumeric Strings |
-| Inventory        | inventory            | Items                |
+| Field            | Command Term          | Value Type           |
+|------------------|-----------------------|----------------------|
+| Name             | name                  | Alphanumeric String  | 
+| Strength         | strength, str         | `int`                |
+| Dexterity        | dexterity, dex        | `int`                | 
+| Intelligence     | intelligence          | `int`                |
+| Level            | level                 | `int`                |
+| XP               | exp, xp               | `int`                |
+| Challenge Rating | challengerating, cr   | `float`              |
+| Legendary        | isLegendary, legend   | true / false         |
+| Tags             | tags, tag             | Alphanumeric Strings |
+| Inventory        | inventory             | Items                |
 
 These values come predefined when an entity is created, and if you want the fields to have different values, then you
 can edit them later in the edit command, which will be mentioned later.
@@ -158,7 +158,7 @@ or Legendary Actions that normal mobs do not have.
 `Tags` are string values used to label entities with extra information you might want to, like if a fish is tasty.
 
 `Inventory` is a list of items that mobs and characters have, basically denoting what items they have on hand currently 
-and can use.
+and can use. Records the total value of every item in the inventory.
 
 
 ## Templates
@@ -184,6 +184,8 @@ with a preferred stat distribution. Templates are pre-determined and cannot be c
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Entities in Reroll are identified by classification and name. Entities with the same name but different classification are valid.
+
+* After creation, entities are modified via the edit mode.
 
 </div>
 
@@ -214,17 +216,6 @@ Format: `list CLASSIFICATION`
 Examples:
 * `list char` shows a list of all characters
 
-### View an entity's details: `view`
-
-A detailed view of a single entity which shows all fields.
-
-Examples:
-* `view char John Cena` shows a detailed view of the character named John Cena.
-
-Format: `view CLASSIFICIATION NAME`
-
-Detailed view may be left by entering the command: `back` or `b` while in detailed view.
-
 ### Editing an entity : `edit`
 
 Enter into edit mode for the specified entity.
@@ -236,9 +227,12 @@ Format: `edit CLASSIFICATION NAME`
   * e.g. `name gilded staff` or `lvl 9000`
   * Put the command word of the field you want to edit into the FIELD portion of the command.
   * If the specified field is unavailable (i.e. hp of an item), no values will be changed.
+  * Multiple tags can be added at once, separated by spaces.
+  * For legendary status, any value other than `true` defaults to false.
 * Inventory has a different command format for adding and removing items from the inventory:
   * `inventory add/remove NAME`
   * e.g. `inventory add fish`
+* Refer to [entity fields](#entity-fields) for more details.
 * Edit mode may be left by entering the command: `back` or `b` while in edit mode.
 
 ### Filter entities by tags : `filter`
@@ -367,7 +361,6 @@ Example: `make char John Cena` -> `m c John Cena`
 | **Find**                      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Large`               |
 | **Show templates**            | `show`                                                              |
 | **Template**                  | `template TEMPLATE_NAME NAME` <br> e.g. `template orc John Cena`    |
-| **View**                      | `view CLASSIFICATION NAME` <br> e.g. `view char John Cena`          |
 | **List entities**             | `list CLASSIFICATION` <br> e.g., `list item`                        |
 | **Help**                      | `help`                                                              |
 | **Filter**                    | `filter TAG [MORE_TAG]` <br> e.g., `filter elite`                   |

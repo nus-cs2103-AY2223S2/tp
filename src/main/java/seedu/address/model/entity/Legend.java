@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
 public class Legend {
     public static final String CONSTRAINTS = "Legendary status should be a boolean!";
 
-    private static final boolean BASE_STATUS = false;
+    public static final boolean BASE_STATUS = false;
 
     private final Boolean status;
 
