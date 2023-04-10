@@ -8,6 +8,9 @@ title: Developer Guide
 
 **MODTrek** is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
 This application is currently geared towards NUS Computer Science Students of the AY2021-2022 cohort only. We hope to expand our application's scope in the coming years.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents <a name="toc"></a>
 
@@ -48,6 +51,8 @@ This application is currently geared towards NUS Computer Science Students of th
    
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Acknowledgements** <a name="acknowledgements"></a>
 
 * The skeleton implementation of [DoughnutChart](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/DoughnutChart.java) in [ProgressSection](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/ProgressSection.java) is adapted from [this stackoverflow post](https://stackoverflow.com/questions/24121580/).
@@ -63,6 +68,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 [Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Design** <a name="design"></a>
 
@@ -116,6 +123,8 @@ The sections below give more details of each component.
 
 [Back to Table of Contents](#toc)
 
+<div style="page-break-after: always;"></div>
+
 ### UI component <a name="ui-component"></a>
 
 **API** : [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/Ui.java)
@@ -157,6 +166,8 @@ The `Ui` component,
 
 [Back to Table of Contents](#toc)
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component <a name="logic-component"></a>
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/logic/Logic.java)
@@ -188,6 +199,8 @@ How the parsing works:
 
 [Back to Table of Contents](#toc)
 
+<div style="page-break-after: always;"></div>
+
 ### Model component <a name="model-component"></a>
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/model/Model.java)
@@ -206,6 +219,8 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 [Back to Table of Contents](#toc)
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component <a name="storage-component"></a>
 
@@ -229,6 +244,8 @@ Classes used by multiple components are in the `seedu.modtrek.commons` package.
 [Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation** <a name="implementation"></a>
 
@@ -277,6 +294,8 @@ The following activity diagram shows what happens when a user executes an `add` 
 ![Activity diagram of add command](images/AddActivityDiagram.png)
 
 [Back to Table of Contents](#toc)
+
+<div style="page-break-after: always;"></div>
 
 ### **Find module feature** <a name="find-module-feature"></a>
 
@@ -328,6 +347,8 @@ The following activity diagram shows what happens when a user executes a `find` 
 ![activity diagram of find command](images/FindActivityDiagram.png)
 
 [Back to Table of Contents](#toc)
+
+<div style="page-break-after: always;"></div>
 
 ### **Delete module feature** <a name="delete-module-feature"></a>
 
@@ -387,6 +408,8 @@ The following activity diagram shows what happens when a user executes a `delete
 
 [Back to Table of Contents](#toc)
 
+<div style="page-break-after: always;"></div>
+
 ### **Sort modules feature** <a name="sort-modules-feature"></a>
 
 #### About this feature
@@ -436,6 +459,8 @@ The following activity diagram shows the logic flow as the user inputs the `sort
 As the user adds more modules, he/she might find it more useful to look at the list of modules in different categories. However, the more useful categorising, in terms of progression, will be by the Semester Year. Therefore, at startup, the module list will be categorised by Semester Year, but this command is implemented to give the user flexibility in their module viewing.
 
 [Back to Table of Contents](#toc)
+
+<div style="page-break-after: always;"></div>
 
 ### **View progress/modules feature** <a name="view-feature"></a>
 
@@ -534,6 +559,8 @@ The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms o
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops** <a name="miscellaneous"></a>
 
 * [Documentation guide](Documentation.md)
@@ -545,6 +572,8 @@ The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms o
 [Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements** <a name="appendix"></a>
 
@@ -567,6 +596,8 @@ The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms o
 * Offers a higher level of convenience, since the user can access module features within clicks on a keyboard
 
 [Back to Table of Contents](#toc)
+
+<div style="page-break-after: always;"></div>
 
 ### User stories <a name="user-stories"></a>
 
@@ -799,6 +830,8 @@ Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements <a name="non-functional-requirements"></a>
 
 1.  The application should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -810,6 +843,8 @@ Use case ends.
 7. The application is not required to handle any conflicts (eg. preclusion, prerequisites, corequisites) for any modules.
 
 [Back to Table of Contents](#toc)
+
+<div style="page-break-after: always;"></div>
 
 ### Glossary <a name="glossary"></a>
 
@@ -831,6 +866,8 @@ Use case ends.
 [Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing** <a name="manual-testing"></a>
 
