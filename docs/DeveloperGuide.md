@@ -202,6 +202,8 @@ An alternative would be for sorting to sort all clients/projects instead of only
 
 Users have the ability to link projects to clients.
 
+<div style="page-break-after: always;"></div>
+
 #### Implementation
 
 When parsing the command to add or edit a project, the parser checks for the existence of client name keywords in the command. If it does, then ArB displays a client list filtered with the provided client name keywords, sets the project to be linked and enters link mode, as shown in the sequence diagram below.
