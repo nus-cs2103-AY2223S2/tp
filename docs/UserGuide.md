@@ -798,8 +798,6 @@ the data of your previous QuickContacts home folder.
 | **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                                                                   |
 | **View pending Meetings**    | `pending`                                                                                                                              |                                                                                                                                                                                                           
 
-<div style="page-break-after: always;"></div>
-
 ### General Commands
 
 | Action             | Format, Examples                                                                                                                                                                                                     |
