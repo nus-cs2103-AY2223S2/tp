@@ -31,6 +31,13 @@ If you're interested in contributing to the Vimification project, this Developer
   * [Non-Functional Requirements](#non-functional-requirements)
   * [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Adding](#adding)
+  * [Inserting](#inserting)
+  * [Deleting](#deleting)
+  * [Filtering](#filtering)
+  * [Sorting](#sorting)
+  * [Refresh](#refresh)
+  * [Help](#help)
 
 ---
 
@@ -968,7 +975,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Adding a task
+### Adding
 1. Adding a task with only title to the task list
    1. Test case: `:a "quiz" `<br>
       Expected: Task with "quiz" as the title added to the task list. 
@@ -1006,7 +1013,7 @@ testers are expected to do more *exploratory* testing.
 
 
 
-### Insert to a task
+### Inserting
 
 1. Inserting deadline to a task
    Prerequisites: there is only one task in the list. 
