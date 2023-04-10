@@ -3,6 +3,7 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
+import seedu.address.model.time.ScheduleWeek;
 
 /**
  * Unmodifiable view of an address book
@@ -20,5 +21,11 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate groups.
      */
     ObservableList<Group> getGroupList();
+
+    /**
+     * Returns current filtered schedule of the address book.
+     */
+    ScheduleWeek getSchedule();
+
 
 }

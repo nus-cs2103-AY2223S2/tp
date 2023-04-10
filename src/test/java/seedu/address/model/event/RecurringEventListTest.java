@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.SampleDateTimeUtil.FIVE_O_CLOCK_VALID;
+import static seedu.address.testutil.SampleDateTimeUtil.FOUR_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.MONDAY_SIX_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.NINE_O_CLOCK_VALID;
+import static seedu.address.testutil.SampleDateTimeUtil.ONE_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.THREE_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.THURSDAY_TWELVE_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.TWELVE_O_CLOCK_VALID;
@@ -95,6 +97,33 @@ class RecurringEventListTest {
 
         assertEquals("Biking\n" + "Canoeing\n",
                 recurringEventList.listBetweenOccurrence(startPeriod, endPeriod));
+    }
+
+    @Test
+    void testInsert() {
+        recurringEventList.insert(new RecurringEventStub("Biking", DayOfWeek.MONDAY,
+                TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime()));
+
+        recurringEventList.insert(new RecurringEventStub("Skiing", DayOfWeek.SATURDAY,
+                NINE_O_CLOCK_VALID.toLocalTime(), TWELVE_O_CLOCK_VALID.toLocalTime()));
+
+    }
+
+    @Test
+    void testcheckClashingRecurringEvent() {
+        recurringEventList.insert(new RecurringEventStub("Biking", DayOfWeek.MONDAY,
+                TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime()));
+
+        String expected = recurringEventList.checkClashingRecurringEvent(new RecurringEventStub("Swimming",
+                DayOfWeek.MONDAY, ONE_O_CLOCK_VALID.toLocalTime(), FOUR_O_CLOCK_VALID.toLocalTime()));
+
+        assertEquals("Event Conflict in Recurring Event List\n" + "1. Biking", expected);
+
+        expected = recurringEventList.checkClashingRecurringEvent(new RecurringEventStub("Swimming",
+                DayOfWeek.MONDAY, THREE_O_CLOCK_VALID.toLocalTime(), FOUR_O_CLOCK_VALID.toLocalTime()));
+
+        assertEquals(null, expected);
+
     }
 
 }

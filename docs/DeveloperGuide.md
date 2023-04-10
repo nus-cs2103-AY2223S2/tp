@@ -121,7 +121,6 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
@@ -501,6 +500,60 @@ respective field requested.
     * Cons:
         * Some part of the code is the same as EditCommand.
 
+### \[Developed\] Adding Recurring Event
+User can add recurring events. Adding a recurring event is almost similar to the adding isolated event except that it is implemented using `AddRecurringEventCommand`,
+`AddRecurringEventCommandParser` and `RecurringEventList`, `TimeMaksk`  classes.
+
+The `AddRecurringEventCommand` receives a recurring event to be added into the person's `RecurringEventList` and updates the `TimeMask` in the perons's `RecurringEventList`.
+
+#### Activity diagram
+The following activity diagram summarises what happens when a user executes an `event_create_recur` command:
+
+<img src="images/AddRecurringEventCommandActivityDiagram.png" width="300" />
+
+The recurring event list is fix to span over 7 days from Monday to Sunday, while the isolated events in the list may span over an infinite amount of days.
+Since there is only 7 days in the recurring event list, it would be guaranteed that the TimeMask will only have a maximum of 7 days. Therefore, updating the 
+TimeMask while adding a recurring event is possible and convenient for finding free time slots.
+
+### Sequence diagram
+The following sequence diagram illustrates the interaction within the Logic component for the execute
+API call.
+
+<img src="images/AddRecurringEventCommandSequenceDiagram.png" width="1000" />
+
+Given below is an example usage scenario and how the command mechanism behaves at each step.
+1. When `LogicManager` is called upon to execute the user's command
+   `event_create_recur 1 ie/biking d/Monday 14:00 t/15:00`, it calls the `AddressBookParser` class to parse the
+   user command.
+2. Since the user command has the `event_create_recur` command word, it is a valid command. The `AddressBookParser` creates an
+   `AddRecurringEventCommandParser` to parse the user input.
+3. The `AddRecurringEventCommandParser` will checks if the command is valid through the `parse()` method.
+   If it parses the command successfully, `AddRecurringEventCommand` is created.
+4. The `AddRecurringEventCommand` instance is then returned to the `LogicManager`.
+5. The `LogicManager` then executes the `AddRecurringEventCommand` instance which add the recurring event to the requested
+   person's `RecurringEventList` and updates the `TimeMask` in the person's `RecurringEventList`.
+6. Execution of `AddRecurringEventCommand` results in a CommandResult created and returned to the LogicManager.
+
+#### Design consideration
+**Aspect: Concern while adding a new command**
+- Workflow must be consistent with other commands.
+
+**Aspect: Should we allow recurring event's duration to span over multiple days**
+
+* **Alternative 1:** Allows recurring events' duration to span over two or more days.
+    * Pros:
+        * Users can just add one recurring event instead of adding the recurring event multiple times.
+    * Cons:
+        * Harder to implement finding free time slots.
+      
+
+* **[Current implementation] Alternative 2:** Only allows recurring event to start and end on the same day.
+    * Pros:
+        * Easy implementation and will be easier to implement find free time slots.
+        * Having an event be fixed to one day is less prone to bugs
+    * Cons:
+        * There will be instances when users will have event that span over multiple days such as studying overnight 
+          from 23:00 to 01:00. Hence, it will reduce the user-friendliness if we restrict isolated events to be only one day long.
 
 ### \[Developed\] Finding free time slots
 This feature allows a user to display unoccupied time slots shared by members of a group.
@@ -575,7 +628,6 @@ Given below is an example usage scenario and how the command mechanism behaves a
 
 * **Justification**
     * To ensure the correctness of our application within the insufficient amount of time remaining, we have decided not to implement this.
-  
 
 ### \[Developed\] Export
 
@@ -1158,9 +1210,42 @@ testers are expected to do more *exploratory* testing.
    Expected: GroupList will list out 1 group with name 'CS2103' and personList will list out all person in group 'CS2103'. 1 group listed shown in status message.
 
 3. Test case: `group_find Bestfriends`<br>
-   Expected: Group and person list will not display anytrhing
-   
-   
+   Expected: Group and person list will not display anything
+
+### Creating an Isolated event
+
+1. Prerequisities: The preloaded data for person are not modified.
+
+2. Test case: `event_create 1 ie/Swimming f/10/04/2025 14:00 t/10/04/2025 16:00`<br>
+   Expected: An Isolated event 'Swimming from: 10/04/2024 14:00 to: 10/04/2025 16:00' will be created for Alex Tan
+
+3. Test case: `event_create 1 ie/Camping f/10/04/2020 14:00 t/13/04/2020 12:00`<br>
+   Expected: Isolated event not created. Status message indicates that event date cannot be before the current time
+
+4. Test case: `event_create 1 ie/Karoke with friends f/13/04/2025 14:00 t/12/04/2025 12:00`<br>
+   Expected: Isolated event not created. Status message indicates that end time should not be earlier than start time.
+
+5. Test case: `event_create 1 ie/Watching movie f/10/04/2025 14:00 t/10/04/2025 16:00`<br>
+   Expected: Isolated event not created. Status message indicates that event has conflict with Isolated Event List followed by
+   the index of the isolated event that it conflicted with and 'Swimming from: 10/04/2024 14:00 to: 10/04/2025 16:00'.
+
+### Creating a Recurring event
+1. Prerequisities: The preloaded data for person are not modified.
+
+2. Test case: `event_create_recur 1 re/CS2103 Lecture d/Friday f/14:00 t/16:00`<br>
+   Expected: A Recurring Event 'CS2103 Lecture on FRIDAY from 14:00' will be created for Alex Tan
+
+3. Test case: `event_create_recur 1 re/CS2101 Lecture d/Tuueeesdayy f/14:00 t/16:00`<br>
+   Expected: Recurring event not created. Status message indicates that the day of the week should be either MONDAY, 
+   TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY or SUNDAY.
+
+4. Test case: `event_create_recur 1 re/CS2103 Tutorial d/Thursday f/10:00 t/09:00`<br>
+   Expected: Recurring event not created. Status message indicates that end time should not be earlier than start time.
+
+5. Test case: `event_create_recur 1 re/Self Studying d/Friday f/12:00 t/15:00`<br>
+   Expected: Recurring event not created. Status message indicates that event has conflict with Recurring Event List followed by
+   the index of the recurring event that it conflicted with and 'CS2103 Lecture on FRIDAY from 14:00 to 16:00.
+
 ### Export a person
 
 1. Export a person while all persons are being shown

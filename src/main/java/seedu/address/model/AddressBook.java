@@ -234,4 +234,12 @@ public class AddressBook implements ReadOnlyAddressBook {
             p.removeExpiredEvent();
         }
     }
+
+    /**
+     * Returns current filtered schedule of the address book.
+     */
+    @Override
+    public ScheduleWeek getSchedule() {
+        return scheduleWeek;
+    }
 }

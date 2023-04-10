@@ -142,8 +142,7 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
             }
 
             if (!(isEventBefore || isEventAfter)) {
-                throw new EventConflictException(MESSAGE_CONSTRAINTS_CLASH
-                        + "\nIsolated Event List:\n" + index + " " + ie);
+                throw new EventConflictException("Isolated Event List:\n" + index + " " + ie);
             }
 
         }
