@@ -1,0 +1,35 @@
+@startuml UiListViewPanelApptObjectDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+
+skinparam arrowThickness 1.1
+
+hide <<hidden>> stereotype
+
+<style>
+    .hidden {
+        BackGroundColor transparent
+        BorderColor transparent
+        FontColor transparent
+        LineColor transparent
+        StereotypeFontColor transparent
+    }
+</style>
+
+Class "<u>appointmentListPanel:ListViewPanel</u>" as ListViewPanel UI_COLOR
+Class "<u>changeProperty:ObjectProperty</u>" as ChangeProperty UI_COLOR
+
+Class "<u>:MapChangeListener</u>" as MapChangeListener UI_COLOR
+Class "<u>filteredAppointmentMap:FilteredIdDataMap</u>" as FilteredIdDataMap MODEL_COLOR
+Class "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+
+ListViewPanel -up-> ChangeProperty
+
+MapChangeListener -down-> ChangeProperty : updates >
+
+FilteredIdDataMap -down-> MapChangeListener : updates >
+
+ModelManager -down-> FilteredIdDataMap
+
+@enduml

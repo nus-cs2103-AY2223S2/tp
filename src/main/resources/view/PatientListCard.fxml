@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane hgap="5.0" minHeight="-Infinity" prefWidth="400.0" vgap="10.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="NEVER" prefWidth="80.0" />
+    <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <HBox prefWidth="390.0" spacing="5.0" GridPane.columnSpan="2147483647">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" styleClass="card-id-holder" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="idLabel" styleClass="card-sub-title" />
+               </children>
+            </VBox>
+            <VBox minHeight="25.0" HBox.hgrow="NEVER">
+               <children>
+                  <Label fx:id="nameLabel" maxWidth="-Infinity" minHeight="-Infinity" prefWidth="305.0" styleClass="card-title" wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Label styleClass="card-attribute-label" text="DOB:" GridPane.rowIndex="1" />
+      <Label fx:id="dobLabel" styleClass="card-value-label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label styleClass="card-attribute-label" text="Blood type:" GridPane.rowIndex="2" />
+      <Label fx:id="bloodTypeLabel" styleClass="card-value-label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label styleClass="card-attribute-label" text="Allergies:" GridPane.rowIndex="3" />
+      <VBox fx:id="allergyBox" maxWidth="305.0" styleClass="card-value-label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label styleClass="card-attribute-label" text="Phone:" GridPane.rowIndex="5" />
+      <Label fx:id="phoneLabel" styleClass="card-value-label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label styleClass="card-attribute-label" text="Vaccines:" GridPane.rowIndex="4" />
+      <VBox fx:id="vaccineBox" maxWidth="305.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>

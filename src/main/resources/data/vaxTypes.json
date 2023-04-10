@@ -1,0 +1,314 @@
+{
+  "types": [
+    {
+      "name": "Dose 1 (Pfizer)",
+      "groups": ["DOSE 1", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 1"]
+        }
+      ],
+      "ingredients": [
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
+      ]
+    },
+    {
+      "name": "Dose 2 (Pfizer)",
+      "groups": ["DOSE 2", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 2"]
+        },
+        {
+          "reqType": "ALL",
+          "reqSet": ["DOSE 1", "Pfizer"]
+        }
+      ],
+      "ingredients": [
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
+      ]
+    },
+    {
+      "name": "Dose 3 (Pfizer)",
+      "groups": ["DOSE 3", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 3"]
+        },
+        {
+          "reqType": "ANY",
+          "reqSet": ["DOSE 2"]
+        }
+      ],
+      "ingredients": [
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
+      ]
+    },
+    {
+      "name": "Dose 4 (Pfizer)",
+      "groups": ["DOSE 4", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 4"]
+        },
+        {
+          "reqType": "ANY",
+          "reqSet": ["DOSE 3"]
+        }
+      ],
+      "ingredients": [
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
+      ]
+    },
+
+
+
+    {
+      "name": "Dose 1 (Moderna)",
+      "groups": ["DOSE 1", "Moderna", "Vaccination"],
+      "minAge": 5,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 1"]
+        }
+      ],
+      "ingredients": [
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
+      ]
+    },
+    {
+      "name": "Dose 2 (Moderna)",
+      "groups": ["DOSE 2", "Moderna", "Vaccination"],
+      "minAge": 5,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 2"]
+        },
+        {
+          "reqType": "ALL",
+          "reqSet": ["DOSE 1", "Moderna"]
+        }
+      ],
+      "ingredients": [
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
+      ]
+    },
+    {
+      "name": "Dose 3 (Moderna)",
+      "groups": ["DOSE 3", "Moderna", "Vaccination"],
+      "minAge": 5,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 3"]
+        },
+        {
+          "reqType": "ANY",
+          "reqSet": ["DOSE 2"]
+        }
+      ],
+      "ingredients": [
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
+      ]
+    },
+    {
+      "name": "Dose 4 (Moderna)",
+      "groups": ["DOSE 4", "Moderna", "Vaccination"],
+      "minAge": 5,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 4"]
+        },
+        {
+          "reqType": "ANY",
+          "reqSet": ["DOSE 3"]
+        }
+      ],
+      "ingredients": [
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
+      ]
+    },
+
+
+
+    {
+      "name": "Dose 1 (Novavax)",
+      "groups": ["DOSE 1", "Novavax", "Vaccination"],
+      "minAge": 18,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 1"]
+        }
+      ],
+      "ingredients": [
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
+      ]
+    },
+    {
+      "name": "Dose 2 (Novavax)",
+      "groups": ["DOSE 2", "Novavax", "Vaccination"],
+      "minAge": 18,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 2"]
+        },
+        {
+          "reqType": "ALL",
+          "reqSet": ["DOSE 1", "Novavax"]
+        }
+      ],
+      "ingredients": [
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
+      ]
+    },
+    {
+      "name": "Dose 3 (Novavax)",
+      "groups": ["DOSE 3", "Novavax", "Vaccination"],
+      "minAge": 18,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 3"]
+        },
+        {
+          "reqType": "ALL",
+          "reqSet": ["DOSE 2"]
+        }
+      ],
+      "ingredients": [
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
+      ]
+    },
+    {
+      "name": "Dose 4 (Novavax)",
+      "groups": ["DOSE 4", "Novavax", "Vaccination"],
+      "minAge": 18,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 4"]
+        },
+        {
+          "reqType": "ALL",
+          "reqSet": ["DOSE 3"]
+        }
+      ],
+      "ingredients": [
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
+      ]
+    }
+  ]
+}

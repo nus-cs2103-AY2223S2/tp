@@ -1,0 +1,23 @@
+@startuml UiDetailedViewPatientObjectDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+
+skinparam arrowThickness 1.1
+
+Class "<u>detailedPatientView:DetailedView</u>" as DetailedView UI_COLOR {
+    -isUpdated: boolean
+    -value: IdData<Patient>
+}
+show DetailedView fields
+
+Class "<u>:ChangeListener</u>" as ChangeListener UI_COLOR
+
+Class "<u>detailPatientProperty:ObjectProperty</u>" as ObjectProperty MODEL_COLOR
+Class "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+
+ModelManager -down-> ObjectProperty
+ObjectProperty -down-> ChangeListener : updates >
+ChangeListener -down-> DetailedView : updates >
+
+@enduml

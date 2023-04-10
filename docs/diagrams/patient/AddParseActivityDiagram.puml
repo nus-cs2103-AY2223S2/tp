@@ -1,0 +1,21 @@
+@startuml AddPatientParseActivityDiagram
+start
+:Check if prefixes are present;
+if () then ([prefixes present])
+  :Parse name;
+  :Parse phone;
+  :Parse date of birth;
+  :Parse blood type;
+  :Parse allergies;
+  :Parse vaccines;
+  if () then ([all prefixes valid])
+    :Create patient object;
+    :Return AddCommand object with patient;
+  else ([else])
+    :Throw ParseException;
+  endif
+else ([else])
+  :Throw ParseException;
+endif
+stop
+@enduml

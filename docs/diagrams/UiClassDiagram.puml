@@ -1,60 +1,60 @@
-@startuml
+@startuml UiClassDiagram
 !include style.puml
+
+skinparam RoundCorner 0
+
 skinparam arrowThickness 1.1
-skinparam arrowColor UI_COLOR_T4
-skinparam classBackgroundColor UI_COLOR
 
-package UI <<Rectangle>>{
-Class "<<interface>>\nUi" as Ui
-Class "{abstract}\nUiPart" as UiPart
-Class UiManager
-Class MainWindow
-Class HelpWindow
-Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
-Class CommandBox
+hide <<hidden>> stereotype
+
+<style>
+    .hidden {
+        BackGroundColor transparent
+        BorderColor transparent
+        FontColor transparent
+        LineColor transparent
+        StereotypeFontColor transparent
+    }
+</style>
+
+Class HiddenOut <<hidden>>
+
+package Ui {
+    Class "<<interface>>\nUi" as Ui UI_COLOR
+    Class UiManager UI_COLOR
+    Class MainWindow UI_COLOR {
+        ~fillInnerParts()
+    }
+    Class ListViewPanel UI_COLOR
+    Class DetailedView UI_COLOR
+    Class HelpWindow UI_COLOR
+    Class CommandBox UI_COLOR
+    Class ResultDisplay UI_COLOR
+    Class ResultMessageBox UI_COLOR
+}
+show MainWindow members
+
+package Logic {
+    Class "<<interface>>\nLogic" as Logic LOGIC_COLOR
+    Class CommandMessage LOGIC_COLOR
 }
 
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
-}
-
-package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
-}
-
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Ui
+HiddenOut .right.> Ui
 
 UiManager .left.|> Ui
-UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
+UiManager -> MainWindow
+UiManager .down.> Logic
 
-PersonListPanel -down-> "*" PersonCard
+MainWindow *-up- "0..3" ListViewPanel
+MainWindow *-up- "0..2" DetailedView
+MainWindow *-up- "0..1" CommandBox
+MainWindow *-up- "0..1" HelpWindow
+MainWindow *-up- "0..1" ResultDisplay
+MainWindow -down-> Logic
 
-MainWindow -left-|> UiPart
+ResultDisplay .right.> ResultMessageBox : uses >
+ResultDisplay .down.> CommandMessage : displays >
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
+ResultMessageBox .down.> CommandMessage
 
-PersonCard ..> Model
-UiManager -right-> Logic
-MainWindow -left-> Logic
-
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
-
-MainWindow -[hidden]-|> UiPart
 @enduml

@@ -1,0 +1,24 @@
+@startuml LogicQueueSequenceDiagram
+!include style.puml
+skinparam RoundCorner 0
+
+box Logic LOGIC_COLOR_T1
+    participant ":LogicManager" as LogicManager LOGIC_COLOR
+    participant "cmdQueue:LinkedBlockingDeque" as CommandQueue LOGIC_COLOR
+end box
+
+[-> LogicManager : queue(cmdInput)
+activate LogicManager
+
+LogicManager -> CommandQueue : add(cmdInput)
+activate CommandQueue
+
+CommandQueue --> LogicManager
+deactivate CommandQueue
+
+ref over LogicManager, CommandQueue : start next command
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml

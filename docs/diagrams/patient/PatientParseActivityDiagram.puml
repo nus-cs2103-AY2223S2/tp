@@ -1,0 +1,37 @@
+@startuml PatientParseSequenceDiagram
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":VmsParser" as VmsParser LOGIC_COLOR
+participant ":PatientParser" as PatientParser LOGIC_COLOR
+participant "a:XYZCommandParser" as XYZCommandParser LOGIC_COLOR
+end box
+
+[-> LogicManager : processCommand("patient XYZ \n˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
+activate LogicManager
+
+LogicManager -> VmsParser : parseCommand("patient XYZ \n˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
+activate VmsParser
+
+VmsParser -> PatientParser : parse("XYZ \n˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
+activate PatientParser
+
+create XYZCommandParser
+PatientParser -> XYZCommandParser : parse("˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
+activate XYZCommandParser
+
+
+XYZCommandParser --> PatientParser : a
+deactivate XYZCommandParser
+XYZCommandParser -[hidden]-> PatientParser : a
+
+PatientParser --> VmsParser : a
+deactivate PatientParser
+
+VmsParser --> LogicManager : a
+deactivate VmsParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

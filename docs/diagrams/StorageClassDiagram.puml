@@ -1,43 +1,97 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor STORAGE_COLOR
+skinparam arrowThickness 1.05
 skinparam classBackgroundColor STORAGE_COLOR
+skinparam RoundCorner 0
+
+hide <<hidden>> stereotype
+
+<style>
+    .hidden {
+        BackGroundColor transparent
+        BorderColor transparent
+        FontColor transparent
+        LineColor transparent
+        StereotypeFontColor transparent
+    }
+</style>
 
 package Storage{
+    Class StorageManager
+    Class "<<interface>>\nStorage" as StorageInterface
 
-package "UserPrefs Storage" #F4F6F6{
-Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
-Class JsonUserPrefsStorage
+    package "Appointment Storage" #F4F6F6{
+        Class "<<interface>>\nAppointmentStorage" as AppointmentStorage
+        Class JsonAppointmentStorage
+        Class JsonSerializableAppointmentManager
+        Class JsonAdaptedAppointmentData
+        Class JsonAdaptedAppointment
+    }
+
+    package "Keyword Storage" #F4F6F6{
+        Class "<<interface>>\nKeywordStorage" as KeywordStorage
+        Class JsonKeywordStorage
+        Class KeywordLoader
+        Class JsonAdaptedKeyword
+    }
+    package "PatientManager Storage" #F4F6F6{
+        Class "<<interface>>\nPatientManagerStorage" as PatientManagerStorage
+        Class JsonPatientManagerStorage
+        Class JsonSerializablePatientManager
+        Class JsonAdaptedPatientData
+        Class JsonAdaptedPatient
+    }
+
+    package "UserPrefs Storage" #F4F6F6{
+        Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+        Class JsonUserPrefsStorage
+    }
+
+    package "VaxType Storage" #F4F6F6{
+        Class "<<interface>>\nVaxTypeStorage" as VaxTypeStorage
+        Class JsonVaxTypeStorage
+        Class VaxTypeLoader
+        Class JsonAdaptedVaxType
+    }
+
 }
 
-Class "<<interface>>\nStorage" as Storage
-Class StorageManager
+Class HiddenOutside <<hidden>>
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
-}
+HiddenOutside .right.> StorageInterface
 
-}
+StorageInterface -down-|> UserPrefsStorage
+StorageInterface -down-|> PatientManagerStorage
+StorageInterface -down-|> KeywordStorage
+StorageInterface -down-|> AppointmentStorage
+StorageInterface -down-|> VaxTypeStorage
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+StorageManager .up.|> StorageInterface
+StorageManager ---> UserPrefsStorage
+StorageManager ---> PatientManagerStorage
+StorageManager ---> KeywordStorage
+StorageManager ---> AppointmentStorage
+StorageManager ---> VaxTypeStorage
 
-StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
-
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonPatientManagerStorage .up.|> PatientManagerStorage
+JsonAppointmentStorage .up.|> AppointmentStorage
+JsonKeywordStorage .up.|> KeywordStorage
+JsonVaxTypeStorage .up.|> VaxTypeStorage
+
+JsonPatientManagerStorage .down.> JsonSerializablePatientManager
+JsonSerializablePatientManager -down-> JsonAdaptedPatientData
+JsonAdaptedPatientData -down-> "1" JsonAdaptedPatient
+
+JsonAppointmentStorage .down.> JsonSerializableAppointmentManager
+JsonSerializableAppointmentManager -down-> JsonAdaptedAppointmentData
+JsonAdaptedAppointmentData -down-> "1" JsonAdaptedAppointment
+
+JsonKeywordStorage .down.> KeywordLoader
+KeywordLoader .down.> "*" JsonAdaptedKeyword
+
+JsonVaxTypeStorage .down.> VaxTypeLoader
+VaxTypeLoader --> JsonAdaptedVaxType
 
 @enduml

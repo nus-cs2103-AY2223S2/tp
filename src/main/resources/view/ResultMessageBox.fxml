@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox maxHeight="-Infinity" minHeight="-Infinity" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" HBox.hgrow="NEVER">
+         <children>
+            <Label fx:id="stateLabel" HBox.hgrow="SOMETIMES">
+               <padding>
+                  <Insets top="5.0" />
+               </padding></Label>
+         </children>
+      </HBox>
+      <HBox HBox.hgrow="ALWAYS">
+         <children>
+            <TextArea fx:id="messageArea" editable="false" maxHeight="-Infinity" minHeight="-Infinity" styleClass="result-message-box" wrapText="true" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+   </children>
+</HBox>

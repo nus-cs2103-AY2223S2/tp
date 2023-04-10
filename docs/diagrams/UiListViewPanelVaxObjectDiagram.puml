@@ -1,0 +1,30 @@
+@startuml UiListViewPanelVaxObjectDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+
+skinparam arrowThickness 1.1
+
+Class "<u>vaxTypeListPanel:ListViewPanel</u>" as ListViewPanel UI_COLOR
+
+Class "<u>changeProperty:ObjectProperty</u>" as ChangeProperty UI_COLOR
+class "<u>:ObservableList</u>" as DisplayList UI_COLOR
+
+Class "<u>:MapChangeListener</u>" as MapChangeListener UI_COLOR
+Class "<u>filteredAppointmentMap:FilteredIdDataMap</u>" as FilteredIdDataMap MODEL_COLOR
+
+Class "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+Class "<u>vaxDisplayList:ObservableList</u>" as ModelList MODEL_COLOR
+
+ListViewPanel --> ChangeProperty
+ListViewPanel --> DisplayList
+
+MapChangeListener --> ChangeProperty : updates >
+FilteredIdDataMap --> MapChangeListener : updates >
+
+ModelManager --> ModelList
+ModelManager --> FilteredIdDataMap
+
+DisplayList --> ModelList : updates >
+
+@enduml

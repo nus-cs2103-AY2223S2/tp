@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" vgap="10.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+      <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" />
+      <RowConstraints valignment="TOP" />
+      <RowConstraints valignment="TOP" />
+   </rowConstraints>
+   <children>
+      <Label fx:id="titleLabel" maxWidth="390.0" minHeight="-Infinity" styleClass="card-title" wrapText="true" GridPane.columnSpan="2147483647" />
+      <Label styleClass="card-attribute-label" text="Age" GridPane.rowIndex="1" />
+      <Label fx:id="ageRangeLabel" maxWidth="-Infinity" minWidth="-Infinity" styleClass="card-value-label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label styleClass="card-attribute-label" text="Group(s)" wrapText="true" GridPane.rowIndex="2" />
+      <VBox fx:id="groupBox" maxWidth="-Infinity" prefWidth="305.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label minHeight="-Infinity" styleClass="card-attribute-label" text="Ingredient(s)" wrapText="true" GridPane.rowIndex="3" />
+      <VBox fx:id="ingredientBox" maxWidth="-Infinity" prefWidth="305.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <VBox spacing="5.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
+         <children>
+            <Label styleClass="card-attribute-title-label" text="History requirement(s)" wrapText="true" />
+            <VBox fx:id="historyBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="390.0" spacing="5.0" />
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>

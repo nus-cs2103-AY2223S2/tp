@@ -1,0 +1,52 @@
+package seedu.vms.commons.core;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Objects;
+import java.util.logging.Level;
+
+/**
+ * Config values used by the app
+ */
+public class Config {
+
+    public static final Path DEFAULT_CONFIG_FILE = Paths.get("config.json");
+
+    // Config values customizable through config file
+    private Level logLevel = Level.INFO;
+
+    public Level getLogLevel() {
+        return logLevel;
+    }
+
+    public void setLogLevel(Level logLevel) {
+        this.logLevel = logLevel;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Config)) { //this handles null as well.
+            return false;
+        }
+
+        Config o = (Config) other;
+
+        return Objects.equals(logLevel, o.logLevel);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(logLevel);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Current log level : " + logLevel);
+        return sb.toString();
+    }
+
+}

@@ -1,0 +1,14 @@
+@startuml DetailPatientActivityDiagram
+start
+if() then ([valid input])
+    if() then ([valid id])
+        :Show patient in UI;
+    else ([else])
+        :Throw CommandExeception;
+    endif;
+else ([else])
+    :Throw ParseException;
+endif;
+:Display message to user;
+stop
+@enduml

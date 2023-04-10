@@ -1,0 +1,56 @@
+@startuml AddKeywordSequenceDiagram
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Model" as Model LOGIC_COLOR
+participant ":VmsParser" as VmsParser LOGIC_COLOR
+participant ":KeywordParser" as KeywordParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":Keyword" as Keyword LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+[-> Model : processCommand("keyword add \n--k patient \n˗˗n p")
+activate Model
+
+Model -> VmsParser : parseCommand("keyword add \n--k patient \n˗˗n p")
+activate VmsParser
+
+VmsParser -> KeywordParser : parse("add \n--k patient \n˗˗n p")
+activate KeywordParser
+
+create AddCommandParser
+KeywordParser -> AddCommandParser : parse("--k patient \n˗˗n p")
+activate AddCommandParser
+
+note right of AddCommandParser: ParseUtil details ommited,\n see activity diagram
+
+create Keyword
+AddCommandParser -> Keyword
+activate Keyword
+
+Keyword --> AddCommandParser
+deactivate Keyword
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser
+deactivate AddCommand
+
+AddCommandParser --> KeywordParser : command
+deactivate AddCommandParser
+AddCommandParser -[hidden]-> KeywordParser
+
+KeywordParser --> VmsParser : command
+deactivate KeywordParser
+
+VmsParser --> Model : parseResult
+deactivate VmsParser
+
+deactivate Model
+
+[<--Model : parseResult
+deactivate Model
+@enduml

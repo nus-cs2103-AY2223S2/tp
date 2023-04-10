@@ -1,0 +1,30 @@
+{
+  "types": [
+    {
+      "name": "UNCHI",
+      "maxAge": 100
+    },
+    {
+      "name": "Dose 1 (Pfizer)",
+      "groups": ["DOSE 1", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 1"]
+        }
+      ],
+      "ingredients": [
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
+      ]
+    }
+  ]
+}

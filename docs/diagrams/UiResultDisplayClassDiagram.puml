@@ -1,0 +1,26 @@
+@startuml UiResultDisplayClassDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+
+skinparam arrowThickness 1.1
+
+package Ui {
+    Class ResultDisplay UI_COLOR {
+        -messageQueue: LinkedBlockingDeque<CommandMessage>
+        +queueMessages(messages: List<CommandMessage>)
+    }
+    Class ResultMessageBox UI_COLOR
+}
+show ResultDisplay members
+
+package Logic {
+    Class CommandMessage LOGIC_COLOR
+}
+
+ResultDisplay .down.> ResultMessageBox : uses >
+ResultDisplay .left.> CommandMessage : displays >
+
+ResultMessageBox .left.> CommandMessage
+
+@enduml
