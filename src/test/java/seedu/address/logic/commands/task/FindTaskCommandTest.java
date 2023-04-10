@@ -88,10 +88,18 @@ public class FindTaskCommandTest {
                 prepareContentPredicate("one"));
         FindTaskCommand findTaskTwoCommand = new FindTaskCommand(prepareTitlePredicate("one"),
                 prepareContentPredicate("two"));
+        FindTaskCommand findTaskThreeCommand = new FindTaskCommand(prepareTitlePredicate("three"),
+                prepareContentPredicate("one"));
+        FindTaskCommand findTaskSameCommand = new FindTaskCommand(prepareTitlePredicate("one"),
+                prepareContentPredicate("one"));
 
         // same object -> returns true
         assertTrue(findTaskOneCommand.equals(findTaskOneCommand));
 
         assertFalse(findTaskOneCommand.equals(findTaskTwoCommand));
+
+        assertFalse(findTaskThreeCommand.equals(findTaskOneCommand));
+
+        assertTrue(findTaskOneCommand.equals(findTaskSameCommand));
     }
 }
