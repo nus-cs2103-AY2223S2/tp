@@ -22,6 +22,9 @@ their assigned tasks.
   * Why: So the user can remove outdated or unwanted tasks.
   * Highlights: The trusty delete function for any instance of task that is created. The app would be too cluttered if tasks were not deletable, and this is a simple but big quality of life change.
   * Pull requests: [\#46](https://github.com/AY2223S2-CS2103T-W15-3/tp/pull/46)
+
+<div style="page-break-after: always;"></div>
+  
 * **Documentation**
   * User guide
     * Added navigability to the UG.
