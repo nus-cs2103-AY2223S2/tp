@@ -8,7 +8,7 @@ Careflow is a desktop application for patient and drug inventory management of m
 
 Careflow can get your patient and drugs management tasks done faster than traditional applications.
 
-###Summary of Contributions
+### Summary of Contributions
 
 * **Major enhancement**:
     * Implement the `Patient` commands and parsers. (Pull request [\#65](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/65), [\#63](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/63))
