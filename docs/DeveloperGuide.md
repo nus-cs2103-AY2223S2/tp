@@ -347,14 +347,14 @@ Taking into consideration the fact that users may make a typo, the time cost of 
     * Harder for users to find the invalid index and correct it.
 * **Alternative 2:** Delete all valid `Person` entries out of the given indexes.
   * Pros:
-    * If command had only minor typos, it might saves the user time editing their command.
+    * If command had only minor typos, it might save the user time editing their command.
   * Cons:
     * Harder to implement as we have to keep track of the valid indexes.
-    * If command unintentionally deletes wrong user, it'll costs the user more time to correct the mistake + retype their correct delete command.
+    * If command unintentionally deletes wrong user, it'll cost the user more time to correct the mistake and retype their correct delete command.
 
 **Aspect: Handling duplicate indexes in delete _(`delete 1 1`)_**
 
-* **Alternative 1: (Current choice)** Do not execute command, give an error message saying that there're duplicate indexes.
+* **Alternative 1: (Current choice)** Do not execute command, give an error message saying that there are duplicate indexes.
   * Pros/Cons:
     * Same as **Aspect: Handling invalid indexes in delete** > **Alternative 1**
 * **Alternative 2:** Delete all unique `Person` entries out of the given indexes.
@@ -465,7 +465,7 @@ Our implementation has some additions such as:
 2. `find PREFIX` across the various attributes of a `Person` other than their `Name` _(eg. find in `Education` or `Address` attributes)_
 
 **Aspect: Command format:**
-* **Alternative 1 (Current choice):** `find PREFIX KEYWORD/PARTIAL_KEYWORD`
+* **Alternative 1 (Current choice):** `find [PREFIX KEYWORD/PARTIAL_KEYWORD]...`
   * Pros:
     * Improves user convenience by giving them flexibility in the completeness of their desired find keyword.
     * Extensible across other attributes.
@@ -473,7 +473,7 @@ Our implementation has some additions such as:
   * Cons:
     * Adds complexity to the implementation as this implementation introduces a lot of potential errors in parsing the user's input.
     * Might be slightly challenging for new users to enter the `PREFIX`.
-* **Alternative 2:** `find KEYWORD/PARTIAL_KEYWORD` (With no `PREFIX`)
+* **Alternative 2:** `find [KEYWORD/PARTIAL_KEYWORD]...` (With no `PREFIX`)
   * Pros:
     * Easier to implement as there is lesser validating done by the app.
     * Provides the user flexibility in searching across all attributes by default.
