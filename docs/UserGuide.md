@@ -460,7 +460,7 @@ section.
 Format: `aetl eid/EMPLOYEE_ID d/DATE`
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
-The employee shouldn't have taken leave on the date provided
+The employee should not have taken leave already on the date provided
 </div>
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
