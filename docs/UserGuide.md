@@ -209,24 +209,45 @@ Examples:
 
 ### Listing all entities of a classification : `list`
 
-Shows a list of all entities in Reroll's database.
+Shows a list of all entities in Reroll's database. If no classification is given, all entities are shown instead.
 
 Format: `list CLASSIFICATION`
 
 Examples:
 * `list char` shows a list of all characters
+* `list mob` shows a list of all mobs
+* `list item` shows a list of all items
+* `list` shows all entities
 
-### Editing an entity : `edit`
+
+### View an entity's details: `view`
+
+A detailed view of a single entity which shows all fields.
+
+Examples:
+* `view char John Cena` shows a detailed view of the character named John Cena.
+
+Format: `view CLASSIFICIATION NAME`
+
+Detailed view may be left by entering the command: `back` or `b` while in detailed view.
+
+### Entering edit mode for an entity : `edit`
 
 Enter into edit mode for the specified entity.
 
 Format: `edit CLASSIFICATION NAME`
+
+Examples:
+* `edit char Mike` will enter edit mode for the character named Mike
+
+### Editing fields in edit mode : `field`
 
 * In edit mode, changes can be made to any of the fields with the following format: <br>
   * `FIELD NEW_VALUE`
   * e.g. `name gilded staff` or `lvl 9000`
   * Put the command word of the field you want to edit into the FIELD portion of the command.
   * If the specified field is unavailable (i.e. hp of an item), no values will be changed.
+  * Shortform names can be used instead to shorten commands. Do check out <a href="#Short-form commands">Short-form commands</a> section for shortform commands!
   * Multiple tags can be added at once, separated by spaces.
   * For legendary status, any value other than `true` defaults to false.
 * Inventory has a different command format for adding and removing items from the inventory:
@@ -235,11 +256,22 @@ Format: `edit CLASSIFICATION NAME`
 * Refer to [entity fields](#entity-fields) for more details.
 * Edit mode may be left by entering the command: `back` or `b` while in edit mode.
 
+Examples:
+* `str 55` changes the strength stat to 55
+* `t undead zombie` assigns the tags `undead` and `zombie` to the entitiy
+* `n tim` changes the name of the entity to tim
+
 ### Filter entities by tags : `filter`
 
-Finds entities who contain the given tags
+Filters the currently selected entities by the given tags. Can be used multiple times to combine filtered tags.
 
 Format: `filter TAG [MORE_TAGS]`
+
+Examples:
+* `filter undead` filters out all currently selected entities without the tag `undead`
+* `filter zombie` filters out all currently selected entities without the tag `zombie`
+*  `filter undead zombie` filters out all currently selected entities without the tags `undead` and `zombie`
+
 
 ### Locating Entity by name: `find`
 
@@ -321,6 +353,7 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Reroll home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+<h2 id="Short-form commands"></h2>
 
 ## Short-form commands
 
