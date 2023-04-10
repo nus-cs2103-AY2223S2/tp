@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Ultron is a **desktop app for compiling job and internship applications, optimized for use through keyboard typing and minimizing mouse clicking.** 
+Ultron is a **desktop app for compiling job and internship applications, optimized for use through keyboard typing and minimizing mouse clicking.**
 
 If you are familiar with the Ultron interface and can type fast, it can help you organise your internship applications in a much more efficient and structured manner compared to traditional methods such as using spreadsheets.
 
@@ -14,22 +14,24 @@ If you are familiar with the Ultron interface and can type fast, it can help you
 - [Table of Contents](#table-of-contents)
 - [Navigation](#navigation)
 - [Glossary](#glossary)
+  - [Opening](#opening)
+  - [Keydate](#keydate)
 - [Quick Start](#quick-start)
-    - [Java Instructions](#java-instructions)
+  - [Java Instructions](#java-instructions)
 - [Features](#features)
-    - [Adding an opening : `add`](#1-adding-an-opening--add)
-    - [Listing all openings : `list`](#2-listing-all-openings--list)
-    - [Editing an opening : `edit`](#3-editing-an-opening--edit)
-    - [Editing an opening's remarks : `remark`](#4-editing-an-openings-remarks--remark)
-    - [Showing full details of opening: `show`](#5-showing-full-details-of-opening--show)
-    - [Listing upcoming dates : `upcoming`](#6-listing-upcoming-dates--upcoming)
-    - [Filtering openings by company or position: `find`](#7-filtering-openings-by-company-or-position--find)
-    - [Filtering openings by status: `status`](#8-filtering-openings-by-status--status)
-    - [Deleting an opening : `delete`](#9-deleting-an-opening--delete)
-    - [Deleting all openings : `clear`](#10-deleting-all-openings--clear)
-    - [Accessing help window : `help`](#11-accessing-help-window--help)
-    - [Exiting the program : `exit`](#12-exiting-the-program--exit)
-    - [Saving the data](#13-saving-the-data)
+  - [1. Adding an opening : `add`](#1-adding-an-opening--add)
+  - [2. Listing all openings : `list`](#2-listing-all-openings--list)
+  - [3. Editing an opening : `edit`](#3-editing-an-opening--edit)
+  - [4. Editing an opening's remarks : `remark`](#4-editing-an-openings-remarks--remark)
+  - [5. Showing full details of opening: `show`](#5-showing-full-details-of-opening-show)
+  - [6. Listing upcoming dates : `upcoming`](#6-listing-upcoming-dates--upcoming)
+  - [7. Filtering openings by company or position: `find`](#7-filtering-openings-by-company-or-position-find)
+  - [8. Filtering openings by status: `status`](#8-filtering-openings-by-status-status)
+  - [9. Deleting an opening : `delete`](#9-deleting-an-opening--delete)
+  - [10. Deleting all openings : `clear`](#10-deleting-all-openings--clear)
+  - [11. Accessing help window : `help`](#11-accessing-help-window--help)
+  - [12. Exiting the program : `exit`](#12-exiting-the-program--exit)
+  - [13. Saving the data](#13-saving-the-data)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
@@ -40,12 +42,15 @@ If you are familiar with the Ultron interface and can type fast, it can help you
 All sections of the User Guide(UG) is organized neatly into the Table of Contents in a hierarchical structure. Clickable text, such as in the Table of Contents, can be used to easily navigate to relevant sections of the UG. Some are also links that will navigate you to relevant websites.
 
 ---
+
 ## Glossary
 
 ### Opening
+
 Representation of an internship application, which contains all relevant information needed in your application journey.
 
 ### Keydate
+
 Representation of important dates or deadlines of key events such as an Online Assessment or Zoom Interview, allowing you to neatly organise and track all dates, past and future.
 
 ---
@@ -54,12 +59,9 @@ Representation of important dates or deadlines of key events such as an Online A
 
 1. Ensure you have Java version `11` or above installed in your Computer. Instructions to check or download Java version `11` can be found [here](#java-instructions).
 
-
 2. Download the latest `ultron.jar` [here](https://github.com/AY2223S2-CS2103T-F12-4/tp/releases/download/v1.3/ultron.jar).
 
-
 3. Copy the file to the folder you want to use as the _home folder_ for your Ultron.
-
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ultron.jar` command to run the application.<br>
    You should see something similar to the image below in a few seconds. Note how the app contains some sample data.<br>
@@ -67,7 +69,6 @@ Representation of important dates or deadlines of key events such as an Online A
 ![Ui](images/InitialScreenUG.png)
 
 5. The app provides you with a text input box at the top for user commands, as well as both a summary list of openings on the left panel and a right panel containing more details of any particular opening.
-
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -85,9 +86,7 @@ Refer to the [Features](#features) below for details of each command.
 For Windows users:
 1. Open the **Windows Start Menu** and launch the **Command Prompt**.
 
-
 2. Type in the `java -version` command to confirm the status of your Java version.
-
 
 3. Example response : `java version "11.0.17"` or `openjdk version "11.0.18"`
     1. If the first number in the number list is `11`, it indicates that you are using Java version `11` and you are done!
@@ -177,7 +176,7 @@ Examples:
 Ultron gives you the option to view all your recorded openings in one window. Just type 'list'
 and the full list of openings will be displayed starting with the earliest added opening. 
 
-💡 **Tip:** You can use `list` to return to the full list of openings after filtering the list using commands like `find` [here](#7-filtering-openings-by-company-or-position--find) and `upcoming` [here](#6-listing-upcoming-dates--upcoming).
+💡 **Tip:** You can use `list` to return to the full list of openings after filtering the list using commands like `find` [here](#7-filtering-openings-by-company-or-position-find) and `upcoming` [here](#6-listing-upcoming-dates--upcoming).
 
 Format: `list`
 

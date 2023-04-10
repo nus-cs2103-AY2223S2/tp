@@ -2,7 +2,10 @@
 layout: page
 title: Developer Guide
 ---
-- Table of Contents
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [**Glossary**](#glossary)
 - [**Setting up, getting started**](#setting-up-getting-started)
 - [**Design**](#design)
   - [Architecture](#architecture)
@@ -44,7 +47,14 @@ title: Developer Guide
   - [**Enhancement 2: Keydates should accept time**](#enhancement-2-keydates-should-accept-time)
   - [**Enhancement 3: Position should allow for special characters**](#enhancement-3-position-should-allow-for-special-characters)
   - [**Enhancement 4: Addition of keydates should be accumulative**](#enhancement-4-addition-of-keydates-should-be-accumulative)
-- [**Glossary**](#glossary)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Glossary**
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Opening**: Item representing an internship opening
+* **Keydate**: Item representing a event tied to a particular date or deadline
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -288,7 +298,6 @@ Step 4. The `MainWindow` class receives the `CommandResult` object and the new f
         * Longer command line with more fields increases the amount the user has to type to use the command. 
 
 ![UI Interaction for the `upcoming 5` Command](images/UpcomingSequenceDiagram.png)
-
 
 ### Status filtering feature
 
@@ -745,11 +754,3 @@ A large part of the project was spent on refactoring the codebase and ensuring p
 1. The current keydates field can be changed using the `edit` command. This change overwrites the current keydates of the opening being edited. This means that users have to re-enter every single past keydate when adding a new one to maintain the history. For example, a user might already have a keydate `OA@2023-11-11` and wants to add `Interview@2023-11-13`, the user will have to enter the command `edit 1 d/OA@2023-11-11 d/Interview@2023-11-13`.
 
 2. We propose to allow edit to still overwrite the keydates, but we add new commands `addkeydate` and `deletekeydate`. These two commands will take in an index and keydates as parameters to add new keydates or delete existing keydates for the indexed opening. Example usages would be `addkeydate 1 Interview@2023-11-13` and `deletekeydate 1 OA@2023-11-11`. It will also be able to take in multiple keydates and function accordingly (all input keydates for `deletekeydate` must be valid, ie if one of them do not exist, command fails).
-
-## **Glossary**
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Opening**: Item representing an internship opening
-* **Keydate**: Item representing a event tied to a particular date or deadline
-
---------------------------------------------------------------------------------------------------------------------
