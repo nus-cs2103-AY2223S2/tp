@@ -54,7 +54,7 @@ We recommend that you follow along the instructions to download and use DHT with
 2. Do have a glance at [Conventions](#conventions) to understand the symbols and formatting used across this guide.
 3. Now that you have had an initial look at DHT, we have a detailed listing of how to understand the user interface [here](#navigating-the-user-interface).
 4. Now that you understand how to use the interface of DHT, you are ready to take a deeper dive into our commands.
-We have some general guidelines on what user input is considered as valid. You should refer to [commands](#commands) to get a detailed coverage of the available commands.
+We have some general guidelines on what user input is considered as valid. You should refer to [Commands](#commands) to get a detailed coverage of the available commands.
 
 ### Conventions
 
@@ -84,25 +84,25 @@ the application.<br>
    A GUI similar to the following image should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](images/Ui.png)<br><br>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will
 open the help window.<br>
    Some example commands you can try:
 
-   * `list`: Lists all cases.
+    * `add n/John Tan p/543299 d/2023 February 13 a/20`: Adds a case named `John Tan` to DHT.
 
-   * `add n/John Tan p/543299 d/2023 February 13 a/20`: Adds a case named `John Tan` to DHT.
+    * `find n/John`: Finds all cases whose name contains `John` (non-case sensitive) and shows it in a filtered list.
 
-   * `delete 3`: Deletes the third case shown in the current list.
+    * `list`: Lists all cases.
 
-   * `find n/John`: Finds all cases whose name contains `John` (non-case sensitive) and shows it in a filtered list.
+    * `delete 1`: Deletes the third case shown in the current list.
 
-   * `clear`: Deletes all cases shown in the current list.
+    * `undo 1`: Undoes one action.
 
-   * `exit`: Exits the app.
+    * `redo 1`: Redoes one action.
 
-   * `undo 5`: Undoes up to five actions.
+    * `clear`: Deletes all cases shown in the current list.
 
-   * `redo 5`: Redoes up to five actions.
+    * `exit`: Exits the app.
 
 6. To learn more about DHT, refer to the [Commands](#commands) section below for details of each command, or the [Command Summary](#command-summary).
 
@@ -129,11 +129,11 @@ Here is the breakdown of an individual **person card**.
 Item | Description
 --------|------------------
 **id** | Current index of the person in the list.
-**Name** | Name of person who got dengue.
-**Age** | Age of the person who got dengue.
-**Postal** | Postal code of the person who got dengue.
-**Date** | Date that the person got dengue.
-**Variant** | Dengue variant of the case (DENV1, DENV2, DENV3, or DENV4).
+**name** | Name of person who got dengue.
+**age** | Age of the person who got dengue.
+**postal** | Postal code of the person who got dengue.
+**date** | Date that the person got dengue.
+**variant** | Dengue variant of the case.
 
 <div style="page-break-after: always;"></div>
 Here is the breakdown of an individual **bin card**.
@@ -143,15 +143,15 @@ Here is the breakdown of an individual **bin card**.
 Item | Description
 --------|------------------
 **id** | Index in the overview list.
-**Overview Category** | Overview category currently being displayed.  <br> :bulb: The default overview category is by location.
-**Bin Name** | Bin that cases belong to in the chosen category.
-**Count** | The number of cases on the displayed list belonging to the bin.
+**overview category** | Overview category currently being displayed.  <br> :bulb: The default overview category is by location.
+**bin name** | Bin that cases belong to in the chosen category.
+**count** | The number of cases on the displayed list belonging to the bin.
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-Please refer to the list of [commands](#commands) for a full explanation.
+Please refer to the list of [Commands](#commands) for a full explanation.
 
 | Action                                                            | Format, Examples                                                                                                                                                                                                                                                                      |
 |-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -218,6 +218,12 @@ Aside from Variants, data fields must contain at least one non-whitespace charac
 * Names must only contain letters and spaces.
 * Longer names may be truncated. To see the full text, resize the app window.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Upper and lower case names are considered as different people:**<br>
+`Nic`, `nic`, `nIc` are all considered as different names.
+</div>
+
 ### Postal code
 * Postal codes must be in one of the following formats:
     * S123456
@@ -261,10 +267,17 @@ Aside from Variants, data fields must contain at least one non-whitespace charac
   * `DENV2`
   * `DENV3`
   * `DENV4`
+* Variants input are case insensitive (i.e. `DenV1` and `deNv4` will be accepted)
 
 ### Indexes
 * Indexes must be a positive integer. Index values can be up to ~2 billion, specifically 2147483647.
 * Index will always refer to the index number shown in the current displayed case list.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about what is counted as a duplicate person:**<br>
+A duplicate person has the same name, same postal code and same age.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -366,7 +379,7 @@ As `list` resets all active filters, one of the most common uses of the `list` c
 You might like to use `list` in conjunction with the following commands:
 * [`delete`](#deleting-cases-delete) to show all the cases as delete follows the index of the current list
 * [`overview`](#changing-the-overview-type-overview), which shows an overview of the cases in the current list view
-* [`find`](#finding-cases-by-prefixes-find) which filters the current list view
+* [`find`](#finding-cases-by-prefixes-find) to show all the cases that is considered when it is called
 
 You may wish to use `list` **before** any of these commands in order to process the *full* list of data within DHT.
 
@@ -378,7 +391,14 @@ You may wish to use `list` **after** any of these commands in order to return to
 
 ### Finding cases by prefixes: `find`
 
-Finds cases which match the given prefixes.
+Finds cases which match the given prefixes from all cases.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+`find` command will search from the entire case list in DHT.
+* It will reset the current find view if you use find with new parameters.
+</div>
 
 Format: `find [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`
 
@@ -386,11 +406,11 @@ Format: `find [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`
 
 **:bulb: Tip:**<br>
 
-The tags for age (`a/AGE`) and date (`d/DATE`) can be replaced with ranges instead to find cases which fall within that range. Use:
+The prefixes for age (`a/AGE`) and date (`d/DATE`) can be replaced with ranges instead to find cases which fall within that range. Use:
 * `[sa/START_AGE] [ea/END_AGE]` for a range of ages
 * `[sd/START_DATE] [ed/END_DATE]` for a range of dates
 
-Be careful not to use both the 'specific' tag and 'range' tags for the same property in one command! e.g. `find a/25 sa/20` will not be accepted.
+Be careful not to use both the 'specific' prefix and 'range' prefixes for the same property in one command! e.g. `find a/25 sa/20` will not be accepted.
 
 </div>
 
@@ -448,8 +468,16 @@ Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 * The user cannot undo/redo actions from a previous session of starting the app.
 * The user cannot undo actions that are more than 10 iterations old.
 * The user cannot undo actions that do not alter the data of DHT, such as `list`, `sort`, `overview` and `find`.
-* An alteration is defined as a process that changes the contents of the list of persons, such as in the form of edits, additions, or deletions to the list
 * Performing a change after undoing will clear any possible `redo` actions.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about what is counted as altering the data of DHT:**<br>
+An alteration is defined as a process that changes the contents of the list of persons in `DengueHotspotTracker`.
+The following are counted as altering: additions, edits or deletions to the person list. 
+
+Importing also counts as updating the person list.
+</div>
 
 Example:
 * `undo` after a `edit 2 n/Betsy Crower v/` command:
@@ -523,17 +551,18 @@ Format: `import [FILENAME]`
 As DHT does not allow cases with duplicate **names, postal codes, and ages**,
 please ensure that the cases you are importing do not conflict with existing data within DHT.
 This applies to **all** cases, not just those currently displayed.
+</div>
+
+<div markdown="span" class="alert alert-warning">
 
 **:exclamation: Caution:**
 DHT only supports import from CSV files, and other file formats are to be used at your own risk.
-
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
 **:bulb: Tip:**
 If you are using Microsoft Excel, you can easily export your data to a CSV file and import it into DHT!
-
 </div>
 
 See [below](#exporting-data-to-csv-file--export) for example CSV files.
