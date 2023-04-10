@@ -976,6 +976,10 @@ Below is the main success scenarios of adding, deleting and listing alarms.
 1.  User requests to add an alarm with specified time and comment.
 2.  TAA adds the new alarm with the time and comment specified.
     Use case ends.
+    
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** The time for alarm has to be an integer.
+</div>
 
 **Extensions**
 
