@@ -358,6 +358,19 @@ When the user starts a review, the left `DeckPanel` is replaced with a `ReviewSt
 
 The flip command (`p`) will toggle between the corresponding `FlippedReviewElement` and `UnflippedReviewElement` of the single displayed `CardElement`.
 
+### Implementation of UI
+
+The UI consists of the `DeckPanel` on the left and the `CardPanel` on the right, along with `CommandBox` and `ResultDisplay`on the bottom. `CommandBox` and `ResultDisplay` are in fixed positions and do not get shifted around or removed in any use case. 
+
+`DeckPanel` and `CardPanel` display modifiable `DeckElement` and `CardElement` objects that are stored as `Javafx ObservableList<>` elements. When these objects are added, deleted, or edited by the user, the changes are reflected immediately in the UI.
+
+Initially, when the user launches Powercards, `DeckPanel` will display all `DeckElement` objects and `CardPanel` displays all `CardElement` objects. They can be modified through commands such as `findDecks`,`findCards`, `editCard`, etc.
+
+When the user starts a review, the left `DeckPanel` is replaced with a `ReviewStatsPanel` to display the relevant information generated during the review. The `CardElement` objects on the right `CardPanel` are replaced with a single `CardElement` object from the selected deck to review. 
+
+The flip command (`p`) will toggle between the corresponding `FlippedReviewElement` and `UnflippedReviewElement` of the single displayed `CardElement`.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
