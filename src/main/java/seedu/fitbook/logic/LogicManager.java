@@ -28,7 +28,7 @@ public class LogicManager implements Logic {
     private final FitBookModel model;
     private final Storage storage;
     private final FitBookParser fitBookParser;
-
+    //@@author
     /**
      * Constructs a {@code LogicManager} with the given {@code FitBookModel} and {@code Storage}.
      */
@@ -37,7 +37,8 @@ public class LogicManager implements Logic {
         this.storage = storage;
         fitBookParser = new FitBookParser();
     }
-
+    
+    //@@author
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
@@ -65,7 +66,8 @@ public class LogicManager implements Logic {
     public ObservableList<Client> getFilteredClientList() {
         return model.getFilteredClientList();
     }
-
+    
+    //@@author
     @Override
     public Path getFitBookFilePath() {
         return model.getFitBookFilePath();
