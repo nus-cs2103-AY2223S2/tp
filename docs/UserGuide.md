@@ -85,6 +85,8 @@ You can click on any of the links below to navigate to the respective sections f
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 # 1 Quick start
 
 ## 1.1 Prerequisites
@@ -343,6 +345,8 @@ Menu Item Card consists of the following components:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 # 2 Commands
 
 <div markdown="block" class="alert alert-info">
@@ -378,6 +382,8 @@ Menu Item Card consists of the following components:
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-tip">
 
@@ -421,13 +427,12 @@ with another existing data in the data list will not be successful. Here's how w
 
 Adding of an information to the specific list. Below are the specific add commands for supplier, order, task and menu item.
 
-:pencil2: Adding of duplicate data is not allowed. Refer to this [table](#20-checking-for-duplicates) to see how duplicates are checked for.
+:pencil2: Note<br>
+Adding of duplicate data is not allowed. Refer to this [table](#20-checking-for-duplicates) to see how duplicates are checked for.
 
 ### 2.1.1 Adding a supplier: `add_supplier`
 
 Adds a supplier to the list of suppliers.
-
-:information_source: **Information**
 
 Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -460,6 +465,8 @@ Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 Adds an order into the list of orders.
 
 Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-tip">
 
