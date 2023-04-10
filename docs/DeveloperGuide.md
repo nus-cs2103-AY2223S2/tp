@@ -1310,3 +1310,9 @@ testers are expected to do more *exploratory* testing.
 
 * FitBook's indexing for negative value and large numbers.
   * FitBook will throw a different error after using a large number (more than Integer.MAX_VALUE) and throw a generic error for negative value. Future enhancement: Deal with this error by using a bigger size class like double and provide a better message for negative value input (even though the current one is correct).
+
+* FitBook's UI commands.
+  * Future enhancement: Add commands that allow users to switch tabs instead of using clicking.
+
+* FitBook showing of corrupted storage.
+  * Future enhancement: Better to show a popup to tell users that the data is corrupted, and it will be using an empty model instead.

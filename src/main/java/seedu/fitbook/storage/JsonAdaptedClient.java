@@ -20,6 +20,7 @@ import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.client.WeightHistory;
 import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineName;
@@ -136,6 +137,12 @@ class JsonAdaptedClient {
         final List<Tag> clientTags = new ArrayList<>();
         final List<Appointment> clientAppointments = new ArrayList<>();
         final List<Weight> clientWeightHistory = new ArrayList<>();
+
+        if (weightHistories.size() != weightHistoriesDate.size()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    WeightHistory.class.getSimpleName()));
+        }
+
         for (int i = 0; i < weightHistories.size(); i++) {
             JsonAdaptedWeightHistory jsonAdaptedWeightHistory = weightHistories.get(i);
             JsonAdaptedWeightDate jsonAdaptedWeightDate = weightHistoriesDate.get(i);
