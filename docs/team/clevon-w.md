@@ -54,6 +54,7 @@ Given below are my contributions to the project.
       * Checked through and edited the next few drafts.
       * Beautified by using screenshots and implementing more "you" language.
     * Developer Guide:
+      * Majority of DG was done by me but the rest of the team helped to check and make edits.
       * Implemented first draft.
       * Implemented second draft.
         * Front matters.
