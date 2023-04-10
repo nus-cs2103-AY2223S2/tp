@@ -1256,7 +1256,7 @@ testers are expected to do more *exploratory* testing.
    8. Test case: `add n/Shaun xxx/` \\
       Expected: No student is added to the list. Same as previous.
 
-   9. Other incorrect add commands to try: `add n/Shaun xxx/INVALID_PARAMETER` (where xxx is any of the valid prefixes, INVALID_PARAMETER is an invalid parameter input for the respective prefix). \\
+   9. Other incorrect `add` commands to try: `add n/Shaun xxx/INVALID_PARAMETER` (where xxx is any of the valid prefixes, INVALID_PARAMETER is an invalid parameter input for the respective prefix). \\
       Expected: Same as previous, except error message is xxx prefix specific.
 
 ### Editing a student entry
@@ -1360,19 +1360,19 @@ testers are expected to do more *exploratory* testing.
   
      Expected: Entries in the x field with data that fully matches with yyy will be shown.
      
-  8. Test case: `filter xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple aaa/xxx) \\
+  8. Test case: `filter xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple `aaa/xxx`) \\
   
-     Expected: Entries that matches with at least one fields of aaa will be shown.
+     Expected: Entries that match with at least one fields of aaa will be shown.
      
   9. Test case: `filter INVALID_PREFIX/KEYWORD` \\
   
-     Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+     Expected: Error message shows `Invalid command format!` followed by the `filter` command format and example.
      
 ### Showing a student entry
 
 1. Showing a student entry while all students are being shown
 
-   1. Prerequisites:  Prerequisites: List all students using the `list` command. At least 1 student in the list.
+   1. Prerequisites: List all students using the `list` command. At least 1 student in the list.
    
    2. Test case: `show 1` \\
       Expected: Student entry at position 1 shows up in the `ResultPersonListPanel` on the bottom right of the window. Details shown includes all non-empty fields and the full (non-truncated) remark if any.
