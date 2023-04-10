@@ -569,8 +569,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. A new version of FAid is released every month.
 5. Data stored is not wiped out outside the program's runtime or in the event of an interrupt.
 6. All non-helper functions implemented in FAid have JavaDoc documentation.
-8. No command should require more than 5 arguments/options.
-9. Every function is deterministic and has a test case with an expected output.
+7. No command should require more than 5 arguments/options.
+8. Every function is deterministic and has a test case with an expected output.
 
 *{More to be added}*
 
