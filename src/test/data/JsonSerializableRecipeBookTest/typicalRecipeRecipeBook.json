@@ -282,7 +282,7 @@
       "name": "Pan-fried camembert sandwich",
       "portion": {
         "lowerRange": 1,
-        "upperRange": 0,
+        "upperRange": -1,
         "portionUnit": "portion"
       },
       "duration": {

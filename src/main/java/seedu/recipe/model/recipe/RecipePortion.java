@@ -34,7 +34,7 @@ public class RecipePortion {
         if (lowerRange < 0) {
             throw new RecipePortionInvalidArgumentException(String.valueOf(upperRange));
         }
-        if (upperRange != 0 && upperRange < lowerRange) {
+        if (upperRange != -1 && upperRange < lowerRange) {
             throw new RecipePortionInvalidArgumentException(String.valueOf(upperRange));
         }
         this.lowerRange = lowerRange;
@@ -65,7 +65,7 @@ public class RecipePortion {
         String unitString = matcher.group(3);
 
         int lower = Integer.parseInt(lowerString);
-        int upper = upperString == null ? 0 : Integer.parseInt(upperString);
+        int upper = upperString == null ? -1 : Integer.parseInt(upperString);
 
         return new RecipePortion(lower, upper, new PortionUnit(unitString));
     }
