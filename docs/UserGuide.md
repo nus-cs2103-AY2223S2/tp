@@ -22,13 +22,15 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
    1. On Windows, you can click the `wheregottime.jar` file to run the application:
    ![WindowsFileExplorerFolder](images/windowsTutorial/WindowsFileExplorerFolder.png)
    2. Alternatively, open a command terminal:
-      1. On Windows: Click the file path bar and type `cmd` and press the `Enter` button to start the command prompt:
+      1. On **Windows**: Click the file path bar and type `cmd` and press the `Enter` button to start the command prompt:
       ![WindowsFileExplorerCMD](images/windowsTutorial/WindowsFileExplorerCMD.png)
       A window similar to the one below should appear:
       ![WindowsCMD](images/windowsTutorial/WindowsCMD.png)
       Run the command `java -jar wheregottime.jar` to start the application:
       ![WindowsJARCommand](images/windowsTutorial/WindowsJARCommand.png)
-      2. On Macs: Control-click on the _home folder_ and click on `New Terminal at Folder`
+      
+      2. On **Macs**: Control-click on the _home folder_ and click on `New Terminal at Folder` </br>
+      **Note: Do not double click on the jar file as the app may not work as intended.**
       ![MacFinder](images/macsTutorial/MacsFinder.png)
       A window similar to the one below should appear:
       ![MacsCMD](images/macsTutorial/MacsCMD.png)
