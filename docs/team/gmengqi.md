@@ -40,7 +40,7 @@ free time slots within a group of NUS friends, and keep track of personal and fr
   - Added documentations for README.md
   - Reviewed teammates' PR. 
   - Completed tasks and milestones before the deadline. 
-  - Created issues on the issue tracker to track tasks/bugs, as seen [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/issues/created_by/@me)
+  - Created issues on the issue tracker to track tasks/bugs, as seen [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/issues/created_by/@gmengqi)
 
 - **Contributions beyond the project team**:
   - Reviewed peers' tP (CS2103T-T12-1)
