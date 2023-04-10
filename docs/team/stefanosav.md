@@ -8,9 +8,8 @@ title: Stefanos Avraam's Project Portfolio Page
 Overview:
 MediConnect is a desktop application used for managing patients and doctors' information.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java, and has about 10 kLoC.
-
-Given below are my contributions to the project.
+It is written in Java, and has about 10 kLoC. <br>
+Given below are my contributions to the project:
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=stefanosav&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 

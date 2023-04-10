@@ -82,7 +82,6 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same NRIC.
      * Returns a list of Appointments.
      */
     public ArrayList<Appointment> getPatientAppointments() {
