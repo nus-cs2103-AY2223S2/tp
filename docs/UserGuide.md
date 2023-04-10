@@ -359,8 +359,6 @@ Format: `mark INDEX`
 Examples:
 - `mark 2` marks task 2 as completed.
 
-<div style="page-break-after: always;"></div>
-
 #### 3.3.7 Unmarking a Task: `unmark`
 
 Unmarks a task in OfficeConnect
