@@ -8,12 +8,6 @@ title: Developer Guide
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
 ## **Preamble**
 This is the developer guide for Patientist, a hospital management system that focuses on CLI-based user interface.
 This guide will provide developers looking to extend the codebase with a diagram-oriented overview of the system's
