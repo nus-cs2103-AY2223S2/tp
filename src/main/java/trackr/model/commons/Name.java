@@ -7,6 +7,7 @@ import static trackr.commons.util.CollectionUtil.requireAllNonNull;
  * Represents a name in the list.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
+//@@author liumc-sg-reused
 public abstract class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -46,14 +47,17 @@ public abstract class Name {
         return name;
     }
 
+    //@@author hmuumyatmoe
+
     /**
      * Compare two names lexicographically (ignoring case).
      *
      * @param other The name to compare this name with.
      * @return 1 if this name is lexicographically larger (ignoring case) than the other name,
-     *         -1 if this name is lexicographically smaller (ignoring case) than the other name,
-     *         0 if both names are lexicographically equal (ignoring case).
+     * -1 if this name is lexicographically smaller (ignoring case) than the other name,
+     * 0 if both names are lexicographically equal (ignoring case).
      */
+    //@@author liumc-sg
     public int compare(Name other) {
         int compareVal = name.compareToIgnoreCase(other.name);
 
@@ -64,6 +68,7 @@ public abstract class Name {
         }
     }
 
+    //@@author liumc-sg-reused
     @Override
     public String toString() {
         return name;
@@ -72,8 +77,8 @@ public abstract class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && name.equals(((Name) other).name)); // state check
+               || (other instanceof Name // instanceof handles nulls
+               && name.equals(((Name) other).name)); // state check
     }
 
     @Override

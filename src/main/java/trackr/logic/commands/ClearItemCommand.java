@@ -20,10 +20,12 @@ public abstract class ClearItemCommand<T extends Item> extends Command {
      *
      * @param modelEnum A representation of the name of the list to clear.
      */
+    //@@author liumc-sg-reused
     public ClearItemCommand(ModelEnum modelEnum) {
         requireNonNull(modelEnum);
         this.modelEnum = modelEnum;
     }
+    //@@author
 
     /**
      * Clears the specified item list.
@@ -31,6 +33,7 @@ public abstract class ClearItemCommand<T extends Item> extends Command {
      * @param model {@code Model} which the command should operate on.
      * @return Success message of the clear operation for display.
      */
+    //@@author liumc-sg-reused
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 /**
  * Unmodifiable view of an item list.
  */
+//@@author liumc-sg-reused
 public interface ReadOnlyItemList<T extends Item> {
 
     /**

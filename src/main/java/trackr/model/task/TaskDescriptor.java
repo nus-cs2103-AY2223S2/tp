@@ -8,6 +8,7 @@ import trackr.model.item.ItemDescriptor;
 /**
  * Stores the details of a task. Each non-empty field value will replace the corresponding field value of the task.
  */
+//@@author liumc-sg-reused
 public class TaskDescriptor implements ItemDescriptor<Task> {
     private TaskName taskName;
     private TaskDeadline taskDeadline;
