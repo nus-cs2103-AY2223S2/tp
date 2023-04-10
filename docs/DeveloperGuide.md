@@ -746,13 +746,13 @@ In the event that a new person is added due to the import:
 #### Design consideration
 
 **Aspect: Importing multiple persons**
-* **Alternative 1:** Export multiple `Person` in one user command.
+* **Alternative 1:** Import multiple `Person` in one user command.
     * Pros:
         * Users can import multiple persons at once instead of importing each person one at a time.
     * Cons:
         * More bug-prone as unable to verify the source of import files, import files could possibly be corrupted.
 
-* **[Current implementation] Alternative 2:** Only allow one person to be exported in one user command.
+* **[Current implementation] Alternative 2:** Only allow one person to be imported in one user command.
     * Pros:
         * Easy to implement.
         * Less bug-prone as import files are less likely to be from external sources.

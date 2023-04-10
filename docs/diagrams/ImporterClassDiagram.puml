@@ -17,6 +17,6 @@ Class ImportCommand #blue
 JsonImporter ..|> Importer
 
 
-ImportCommand .up.> Importer
+ImportCommand .up.> Importer #blue
 
 @enduml

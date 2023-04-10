@@ -18,7 +18,7 @@ Class LogicManager
 }
 
 package Model{
-Class HiddenModel #FFFFFF
+
 }
 
 package Storage{
