@@ -16,31 +16,31 @@ If you're interested in contributing to the Vimification project, this Developer
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
-  * [Architecture](#architecture)
-  * [UI component](#ui-component)
-  * [Logic component](#logic-component)
-  * [Model component](#model-component)
-  * [Storage component](#storage-component)
-  * [Common classes](#common-classes)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
 - [Implementation](#implementation)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
-  * [Product scope](#product-scope)
-  * [User stories](#user-stories)
-  * [Use cases](#use-cases)
-  * [Non-Functional Requirements](#non-functional-requirements)
-  * [Glossary](#glossary)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 ---
 
-
 ## **Acknowledgements**
 
-* This project is based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org/)
-- Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
-- Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
-- Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
+- This project is based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org/)
+
+* Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
+* Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
+* Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
 
 ---
 
@@ -105,26 +105,60 @@ Here's a (partial) class diagram of the `UI` component:
 
 <img src="images/UiClassDiagram.png" width="800" />
 
-`UI` consists of a `MainScreen` that is made up of `TaskListPanel`,`TaskDetailPanel`,`CommandInput`,`CommandResultPanel`,`HelpManualPanel` and `WelcomePanel`.
+The `UI` component uses the JavaFx UI framework and consists of a a `Facade` interface `Ui` that is implemented by the concrete class `UiManager`.
 
-The `UI` component uses the JavaFx UI framework but is modeled to mimic after the structure of the `React.js` framework as closely as possible. The layout of these UI parts are first defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
+`UiManager` consists of a `MainWindow`, which holds all UI `sub-components` of Vimification like `TaskListPanel`,`TaskDetailPanel`,`CommandInput`,`CommandResultPanel`,`HelpManualPanel`, `WelcomePanel`, etc.
 
-`MainScreen` is the component that represents the `Window` and is divided into 3 main parts, as shown in the diagram below.
+**NOTE: Each `sub-component` is created to do one, and only one thing to obey single responsibility principle.**
+
+Within `TaskListPanel` is a `ListView` that could hold multiple `TaskListViewCell` and each `TaskListViewCell` has a `TaskCard`, which represents `Task` and displays a summary of it.
+
+**File Structure**
+In order to represent each sub-component, you need to define 2 things:
+
+1. Controller (located in `src/main/java/vimification/taskui/`) controls the behaviour of the `sub-component.
+2. FXML file (located in `src/main/resources/view`) dictates what to display.
+
+For example, `MainScreen` has a controller [`MainScreen.java`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
+
+**MainScreen Structure**
+`MainScreen` is the main(root) component that holds all other `sub-components` and is divided into 3 main parts(leftComponent, rightComponent,bottomComponent) as shown below.
+`MainScreen` is also a `Facade` component, that helps other `sub-components` communicate with each other.
+<img src="images/ui-component.png" width="800" />
 
 1. `leftComponent`
 2. `rightComponent`
 3. `bottomComponent`
 
+<br>
+
+By breaking MainScreen into 3 parts, it makes it very easy to load and eject `sub-components` (e.g `CommandInput`, `CommandResultPanel`, etc).
+
+The following is a summary of what each part would load/eject.
 `leftComponent` _always_ and _only_ loads the `TaskListPanel` upon initialization.
 
 `bottomComponent` loads the `CommandInput` when the user presses `:` key on their keyboard.
-After the user finishes typing their command in `CommandInput` and presses `Enter`, `bottomComponent` loads `CommandResultPanel` to show the command result at the bottom of the screen.
+After the user finishes typing their command in `CommandInput` and presses `Enter`, `bottomComponent` ejects `CommandInput` and loads `CommandResultPanel` to show the command result at the bottom of the screen.
 
 `rightComponent` loads the `WelcomePanel` when Vimification first launches to show a breif guide to guide the user.
 `rightComponent` loads the `HelpManualPanel` when the user executes the `:help` command using `CommandInput`.
-`rightComponent` loads the `TaskDetailPanel` when the user presses `l` key on their keyboard when they hover over a `TaskCell`(a cell in `TaskListPanel` in `LeftComponent`).
+`rightComponent` loads the `TaskDetailPanel` when the user presses `l` key on their keyboard when they hover over a `TaskListViewCell`(a cell in `TaskListPanel` in `leftComponent`).
 
-All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+`rightComponent` ejects all `sub-components` within it when the user presses the `h` k.
+
+**NOTE: `rightComponent` automatically ejects the previous `sub-component` first when the user tries to load a new `sub-component`.**
+
+All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI and helps us load the FXML file automatically when we call `super(FXML)`, where FXML is the `PATH` of the FXML file for the corresponding `Controller`.
+
+**MainScreen and sub-component responsibility**
+
+1. `MainScreen`: Holds the sub-components and handle `load`/`eject` calls from sub-components.
+2. `CommandInput`: Executes commands using `logic.execute()` and show/hide depending on whether the user has entered Command mode by pressing the `:` key.
+3. `TaskListPanel`: Displays the list of `TaskViewCell` and listens to the user's navigation key and `load`/`eject` rightComponent's `sub-component`.
+4. `TaskListViewCell`: Encapsulates `TaskCard`.
+5. `TaskCard`: Displays a summary of the `Task`.
+6. `HelpManualPanel`: Displays the `UG` when the user executes the command `:help`.
+7. `WelcomeManualPanel`: Displasy the welcome page to the user upon boot up.
 
 The `UI` component:
 
@@ -525,47 +559,47 @@ Note that, the command classes do not interact directly with `TaskList`, but wit
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​ | So that I can…​ |
-| -------- | ------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `* * *` | SoC Student who knows Vim | use my task planner efficiently | reduce time spent on managing my tasks and editing my task planner |
-| `* * *` | SoC Student who knows Vim | list down all the tasks on my to-do list | look at all the things I need to do at one glance |
-| `* * *` | SoC Student who knows Vim | quickly add new tasks that come to my mind | always keep track of all the tasks I need to do especially when many things come to my mind at the same time |
-| `* * *` | SoC Student who knows Vim | keep track of the deadline of a task | always finish my assignments and submissions before their due dates |
-| `* * *` | SoC Student who knows Vim | assign a high priority level to tasks that are more urgent/important | filter/sort the tasks by their priorities later |
-| `* * *` | SoC Student who knows Vim | add labels to a task | filter/sort the tasks by specifying the labels later |
-| `* * *` | SoC Student who knows Vim | mark a task as completed | filter out the incompleted tasks from the completed ones later |
-| `* * *` | SoC Student who knows Vim | unmark a task as not yet completed | change the status of the task back to be not yet completed if I last minute realise that it is still not done but I have previously marked it as completed |
-| `* * *` | SoC Student who knows Vim | insert labels to a task | filter/sort the tasks by specifying the labels later |
-| `* * *`  | SoC Student who knows Vim | insert deadline to a task                                        | keep track of the date that to complete the task          |
-| `* * *`  | SoC Student who knows Vim | edit priority to a task                                          | give higher priority to more important tasks which should be completed first|
-| `* * *`  | SoC Student who knows Vim | delete a task                                                    | remove the tasks that I no longer want them to exist in my task planner |
-| `* * *`  | SoC Student who knows Vim | delete a task’s title, deadline and/or label                     | delete the details if no longer needed                    |
-| `* * *`  | SoC Student who knows Vim | filter for tasks which the descriptions contain certain keywords | find all task with the same keyword                       |
-| `* * *`  | SoC Student who knows Vim | filter for a task based on a specified priority level            | view tasks with higher priority to complete them first    |
-| `* * *`  | SoC Student who knows Vim | filter for tasks based on a specified list of labels                       | view all the tasks in the specified categories            |
-| `* * *`  | SoC Student who knows Vim | filter for all tasks that are not completed                      | view tasks to are not completed                           |
-| `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines before a certain date and time   | view all tasks that need to be done before a certain date and time|
-| `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines after a certain date and time    | find all tasks that need to be done after a certain date and time|
-| `* *` | SoC Student who knows Vim | filter for tasks by deadlines within a specified period of time (by specifying both before and after) | find all tasks that need to be done within that specified period of time while arranging my schedule, allowing me to finish them on time |
-| `* * *`  | SoC Student who knows Vim | edit and delete based on the filtered list                       | make changes to the list of task easily                   |
-| `* * *` | SoC Student who knows Vim | sort tasks by upcoming deadlines | view all the tasks in the order of upcoming deadlines and know which more urgent tasks I should be completing first, allowing me to finish them on time |
-| `* * *` | SoC Student who knows Vim | sort tasks by priorities in descending order | see which are the more important tasks I should focus on completing first |
-| `* * *` | New user | be able to access a briefer version of the user guide without the need to leave the app | save the hassle of leaving and coming back to the app while referring to the user guide |
-| `* * *`  | SoC Student who knows Vim | sort based on the filtered list                                  | sort only the tasks that are from a certain category      |
-| `* * *`  | SoC Student who knows Vim | edit and delete based on the sorted list                         | make changes to the list of task easily                   |
-| `* * *`    | SoC Student who knows Vim | refresh the task list                                            | go to the original task after sorting or filter         |
-| `* * *`  | SoC Student who knows Vim | use macro commands to customise a shortcuts for longer commands  | use a short keyword instead of the full command for recurring tasks |
-| `* *` | SoC Student who knows Vim | mark a task as "in progress" | keep a mental note and come back to the task at a later time if I only halfway done with the task |
-| `* *` | SoC Student who knows Vim | search for all tasks that are currently in progress | come back to these tasks and continue to work on them after I paused them previously |
-| `* *` | SoC Student who knows Vim | edit a task’s title, deadline and/or labels | change the details if added wrongly |
-| `* *` | SoC Student who knows Vim | undo an action | revert to the previous state if I have made a mistake or any unintended change to my tasks in the task planner |
-| `* *` | SoC Student who knows Vim | pre-save the actions of adding or deleting a certain task as shortcuts | save time by streamlining the process of carrying out these actions, as compared to doing it the usual way |
-| `* *` | SoC Student who knows Vim | group the tasks together by their status | identify tasks that are not yet started, tasks that are in progress and tasks that are completed all within a single list using a single action without needing to filter by each of the status |
-| `* *` | SoC Student who knows Vim | view tasks with different priorities using different indicating colors | notice the urgent/important tasks more easily |
-| `* *` | SoC Student who knows Vim | configure the storage location of the file | customise the storage location to my own preference, allowing me to refer to it easily in future |
-| `*` | SoC Student who knows Vim | delete all completed task | remove the completed tasks that I no longer want to track |
-| `*` | SoC Student who knows Vim | add a task that recurs at a specified fixed itme interval | save time as I do not need to repeatedly create the same tasks over and over again |
-| `*` | SoC Student who knows Vim | sort tasks lexicographically or alphabetically | find the tasks that I want to look for more quickly while scrolling through the list of tasks in alphabetical order |
+| Priority | As a …​                   | I want to …​                                                                                          | So that I can…​                                                                                                                                                                                 |
+| -------- | ------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `* * *`  | SoC Student who knows Vim | use my task planner efficiently                                                                       | reduce time spent on managing my tasks and editing my task planner                                                                                                                              |
+| `* * *`  | SoC Student who knows Vim | list down all the tasks on my to-do list                                                              | look at all the things I need to do at one glance                                                                                                                                               |
+| `* * *`  | SoC Student who knows Vim | quickly add new tasks that come to my mind                                                            | always keep track of all the tasks I need to do especially when many things come to my mind at the same time                                                                                    |
+| `* * *`  | SoC Student who knows Vim | keep track of the deadline of a task                                                                  | always finish my assignments and submissions before their due dates                                                                                                                             |
+| `* * *`  | SoC Student who knows Vim | assign a high priority level to tasks that are more urgent/important                                  | filter/sort the tasks by their priorities later                                                                                                                                                 |
+| `* * *`  | SoC Student who knows Vim | add labels to a task                                                                                  | filter/sort the tasks by specifying the labels later                                                                                                                                            |
+| `* * *`  | SoC Student who knows Vim | mark a task as completed                                                                              | filter out the incompleted tasks from the completed ones later                                                                                                                                  |
+| `* * *`  | SoC Student who knows Vim | unmark a task as not yet completed                                                                    | change the status of the task back to be not yet completed if I last minute realise that it is still not done but I have previously marked it as completed                                      |
+| `* * *`  | SoC Student who knows Vim | insert labels to a task                                                                               | filter/sort the tasks by specifying the labels later                                                                                                                                            |
+| `* * *`  | SoC Student who knows Vim | insert deadline to a task                                                                             | keep track of the date that to complete the task                                                                                                                                                |
+| `* * *`  | SoC Student who knows Vim | edit priority to a task                                                                               | give higher priority to more important tasks which should be completed first                                                                                                                    |
+| `* * *`  | SoC Student who knows Vim | delete a task                                                                                         | remove the tasks that I no longer want them to exist in my task planner                                                                                                                         |
+| `* * *`  | SoC Student who knows Vim | delete a task’s title, deadline and/or label                                                          | delete the details if no longer needed                                                                                                                                                          |
+| `* * *`  | SoC Student who knows Vim | filter for tasks which the descriptions contain certain keywords                                      | find all task with the same keyword                                                                                                                                                             |
+| `* * *`  | SoC Student who knows Vim | filter for a task based on a specified priority level                                                 | view tasks with higher priority to complete them first                                                                                                                                          |
+| `* * *`  | SoC Student who knows Vim | filter for tasks based on a specified list of labels                                                  | view all the tasks in the specified categories                                                                                                                                                  |
+| `* * *`  | SoC Student who knows Vim | filter for all tasks that are not completed                                                           | view tasks to are not completed                                                                                                                                                                 |
+| `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines before a certain date and time                                        | view all tasks that need to be done before a certain date and time                                                                                                                              |
+| `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines after a certain date and time                                         | find all tasks that need to be done after a certain date and time                                                                                                                               |
+| `* *`    | SoC Student who knows Vim | filter for tasks by deadlines within a specified period of time (by specifying both before and after) | find all tasks that need to be done within that specified period of time while arranging my schedule, allowing me to finish them on time                                                        |
+| `* * *`  | SoC Student who knows Vim | edit and delete based on the filtered list                                                            | make changes to the list of task easily                                                                                                                                                         |
+| `* * *`  | SoC Student who knows Vim | sort tasks by upcoming deadlines                                                                      | view all the tasks in the order of upcoming deadlines and know which more urgent tasks I should be completing first, allowing me to finish them on time                                         |
+| `* * *`  | SoC Student who knows Vim | sort tasks by priorities in descending order                                                          | see which are the more important tasks I should focus on completing first                                                                                                                       |
+| `* * *`  | New user                  | be able to access a briefer version of the user guide without the need to leave the app               | save the hassle of leaving and coming back to the app while referring to the user guide                                                                                                         |
+| `* * *`  | SoC Student who knows Vim | sort based on the filtered list                                                                       | sort only the tasks that are from a certain category                                                                                                                                            |
+| `* * *`  | SoC Student who knows Vim | edit and delete based on the sorted list                                                              | make changes to the list of task easily                                                                                                                                                         |
+| `* * *`  | SoC Student who knows Vim | refresh the task list                                                                                 | go to the original task after sorting or filter                                                                                                                                                 |
+| `* * *`  | SoC Student who knows Vim | use macro commands to customise a shortcuts for longer commands                                       | use a short keyword instead of the full command for recurring tasks                                                                                                                             |
+| `* *`    | SoC Student who knows Vim | mark a task as "in progress"                                                                          | keep a mental note and come back to the task at a later time if I only halfway done with the task                                                                                               |
+| `* *`    | SoC Student who knows Vim | search for all tasks that are currently in progress                                                   | come back to these tasks and continue to work on them after I paused them previously                                                                                                            |
+| `* *`    | SoC Student who knows Vim | edit a task’s title, deadline and/or labels                                                           | change the details if added wrongly                                                                                                                                                             |
+| `* *`    | SoC Student who knows Vim | undo an action                                                                                        | revert to the previous state if I have made a mistake or any unintended change to my tasks in the task planner                                                                                  |
+| `* *`    | SoC Student who knows Vim | pre-save the actions of adding or deleting a certain task as shortcuts                                | save time by streamlining the process of carrying out these actions, as compared to doing it the usual way                                                                                      |
+| `* *`    | SoC Student who knows Vim | group the tasks together by their status                                                              | identify tasks that are not yet started, tasks that are in progress and tasks that are completed all within a single list using a single action without needing to filter by each of the status |
+| `* *`    | SoC Student who knows Vim | view tasks with different priorities using different indicating colors                                | notice the urgent/important tasks more easily                                                                                                                                                   |
+| `* *`    | SoC Student who knows Vim | configure the storage location of the file                                                            | customise the storage location to my own preference, allowing me to refer to it easily in future                                                                                                |
+| `*`      | SoC Student who knows Vim | delete all completed task                                                                             | remove the completed tasks that I no longer want to track                                                                                                                                       |
+| `*`      | SoC Student who knows Vim | add a task that recurs at a specified fixed itme interval                                             | save time as I do not need to repeatedly create the same tasks over and over again                                                                                                              |
+| `*`      | SoC Student who knows Vim | sort tasks lexicographically or alphabetically                                                        | find the tasks that I want to look for more quickly while scrolling through the list of tasks in alphabetical order                                                                             |
 
 ### Use cases
 
@@ -600,16 +634,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1c1. Vimification shows an error message.
 
     Use case ends.
- 
+
 - 1d. The priority level is invalid.
 
   - 1d1. Vimification shows an error message.
 
     Use case ends.
-    
-- 1e. The status is invalid.
-   - 1e1. Vimification shows an error message.
 
+- 1e. The status is invalid.
+  - 1e1. Vimification shows an error message.
 
 **Use case 2: Delete a task**
 
@@ -633,14 +666,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1b1. Vimification shows an error message.
 
   Use case ends.
-  
+
 **Use case 3: Delete an attribute (deadline and/or label) of a task**
 
 **MSS**
 
-1.  User indicates which task he is referring to by specifying the index of the task. 
-2.  User input the attribute's flag. 
-3.  If user is deleting a label, user input the name of the label to be deleted. 
+1.  User indicates which task he is referring to by specifying the index of the task.
+2.  User input the attribute's flag.
+3.  If user is deleting a label, user input the name of the label to be deleted.
 4.  Vimification uses this index to remove the deadline of the chosen task from the current list of tasks.
 
     Use case ends.
@@ -667,23 +700,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1d. The attribute does not exist.
 
-    - 1d1. Vimification shows an error message.
-   
-  Use case ends.
-  
-  
- - 1e. The attribute (only for label) does not exist.
+  - 1d1. Vimification shows an error message.
 
-    - 1e1. Vimification shows an error message.
-   
   Use case ends.
- 
+
+- 1e. The attribute (only for label) does not exist.
+
+  - 1e1. Vimification shows an error message.
+
+Use case ends.
 
 **Use case 4: Inserting an attribute (deadline and/or label) to a task**
 
 **MSS**
 
-1.  User indicates which task he is referring to by specifying the index of the task. 
+1.  User indicates which task he is referring to by specifying the index of the task.
 2.  User input the attribute's flag and the attribute to be inserted.
 3.  Vimification uses this index to insert the deadline to the chosen task.
 
@@ -711,16 +742,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1d. The attribute (only for deadline) is invalid.
 
-    - 1d1. Vimification shows an error message.
+  - 1d1. Vimification shows an error message.
 
   Use case ends.
-  
+
 - 1e. The attribute is empty.
 
-    - 1e1. Vimification shows an error message.
+  - 1e1. Vimification shows an error message.
 
   Use case ends.
-
 
 **Use case 5: Edit certain attribute of an existing task**
 
@@ -771,15 +801,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1f1. Vimification shows an error message.
 
   Use case ends.
-  
-  
+
 **Use case 6: Filter for tasks based on certain conditions**
 
 **MSS**
 
-1.  User specifies the attribute. The attribute can be either keyword, priority, status, label or before/after a date. User also specifies the conditions for the search. 
-3.  Vimification converts the conditions into a predicate.
-4.  Vimification uses this predicate to filter and search for the tasks that satisfy the specified conditions.
+1.  User specifies the attribute. The attribute can be either keyword, priority, status, label or before/after a date. User also specifies the conditions for the search.
+2.  Vimification converts the conditions into a predicate.
+3.  Vimification uses this predicate to filter and search for the tasks that satisfy the specified conditions.
 
     Use case ends.
 
@@ -815,7 +844,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-
 **Use case 7: Sort the tasks based on certain attribute**
 
 **MSS**
@@ -845,8 +873,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1c1 Vimification shows an error message.
 
     Use case ends.
-    
-    
+
 **Use case 8: Adds a macro command**
 
 **MSS**
@@ -876,7 +903,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1c1 Vimification shows an error message.
 
     Use case ends.
-    
+
 **Use case 9: Use a macro command**
 
 **MSS**
@@ -894,12 +921,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-    
 **Use case 10: Refresh the task list**
 
 **MSS**
 
-1.  User input the command word. 
+1.  User input the command word.
 2.  Vimification displays the original list, without any filtering or sorting, to the user.
 
     Use case ends.
@@ -911,12 +937,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1 Vimification shows an error message.
 
     Use case ends.
-    
+
 **Use case 11: Undo an action**
 
 **MSS**
 
-1.  User input the command word. 
+1.  User input the command word.
 2.  Vimification displays the previous state of the task list to the user.
 
     Use case ends.
@@ -935,14 +961,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **GUI**: Graphical User Interface
 - **UML** Unified Modeling Language
----
 
+---
 
 ## **Appendix: Instructions for manual testing**
 
