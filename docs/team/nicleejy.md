@@ -10,48 +10,38 @@ FastTrack is a desktop application to help you keep track of daily expenses, opt
 
 - Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=nicleejy&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+
 Enhancements implemented:
-
-
-- Helped with implementation of `Category` class.
-
-    - Defined the `Category` class with its fields. (Pull request [#30](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Agitsac))
-    - Edited storage system to accommodate `Category` class. (Pull request [#29](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/29))
-
-
-- Helped with the implementation of `RecurringExpenseManager` class.
-
-    - Edited storage system to accommodate `Category` class. (Pull request [#95](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/95))
-
-
-- Implemented `edit` function for all 3 main classes used (`Category`, `Expense` and `RecurringExpenseManager`)
-
-    - Implemented `EditExpenseCommand` along with its necessary helper parser class. (Pull request [#77](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/79))
-    - Implemented `EditCategoryCommand` along with necessary parser class. (Pull request [#78](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/78))
-    - Implemented `EditRecurringExpenseManagerCommand` along with necessary parser class. (Pull request [#130](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/130))
-
-
-- Added basic startup data that was adapted for FastTrack's usage. (Morphed from AB3's given sample data) (Pull request [#107](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/107))
-
-
-- Added functionality that causes list of `Expense` in FastTrack to be sorted by date upon any operations (adding/deleting expenses) (Pull request [#136](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/136))
-
+- Implemented new category autocomplete feature which allows users to autocomplete category names from a list of suggestions using arrow/enter/tab keys (Pull request [#148](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/148))
+- Added new UI screen for recurring expense feature (Pull request [#145](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/145))
+- Implemented the expense summary statistics feature (Pull request [#111](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/111))
+  - Added new UI section for summary statistics data 
+  - Implemented new `AnalyticModelManager` class to manage expense data state
+  - Utilised Observer Pattern to integrate expense statistics data into `StatisticsPanel` UI component, ensuring statistics are updated in real time 
+- Implemented add expense feature  (Pull request [#72](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/72))
+  - Implemented `AddExpenseCommand` which encapsulates the command request details
+  - Added `ExpenseCommandParser` containing various parser methods to parse dates and prices to interpret the command
+- Added sample data for recurring expenses (Morphed from AB3's given sample data) (Pull request [#224](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/224))
 
 Contributions to the UG:
-- Wrote about features in initial draft and added tables denoting the parameters used as well as simple explanations.
+- Wrote introduction section for the initial draft of the UG (Pull request [#124](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/124))
+- Updated second draft of UG (Pull request [#213](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/213))
+  - Update all feature sections
+  - added FAQ section
+  - Added annotated diagrams for each command and GUI walkthrough
 
 Contributions to the DG:
-- Worked on the Implementations portion of the DG.
-- Wrote about the Effort section of the DG.
-- Sketched multiple sequence diagrams that were translated through PlantUML to be used in the DG.
+- Add expense summary feature and implementation details to DG (Pull request [#110](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/110))
+- Sketched and implemented Activity Diagrams in PlantUML for recurring expense (Pull request [#218](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/218))
+- Add writeup for autocompletion feature in the DG (Pull request [#218](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/218))
 
-Contributions to team-based tasks:
+- Contributions to team-based tasks:
 - Participated in weekly (sometimes biweekly) meetings to discuss project structure and direction.
 - Took part actively in debugging other teammate's issues.
-- Fixed several bugs reported from PE Dry Run ([#167](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/167), [#170](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/170), [#179](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/179)).
+- Fixed [several bugs](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Anicleejy+pe-d) reported from PE Dry Run
 
 Review/Mentoring Contributions:
-- Reviewed multiple PRs made by teammates ([#101](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/101), [#90](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/90), [#72](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/72)).
+- Reviewed [23 PRs](https://github.com/AY2223S2-CS2103T-W09-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me) made by teammates
 
 Contributions beyond team project:
-- Reported bugs for another team during the PE-Dry run (T11-4): HospiSearch.
+- Reported bugs for another team during the PE-Dry run (F10-1): OfficeConnect.

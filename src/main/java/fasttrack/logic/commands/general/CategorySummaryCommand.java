@@ -17,7 +17,7 @@ import fasttrack.ui.ScreenType;
  */
 public class CategorySummaryCommand implements GeneralCommand {
 
-    public static final String COMMAND_WORD = "scat";
+    public static final String COMMAND_WORD = "sumcat";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays summary of category "
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";

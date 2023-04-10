@@ -14,17 +14,22 @@ FastTrack is a desktop application to help you keep track of daily expenses, opt
 The following [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=randallnhr&breakdown=true&sort=groupTitle+dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs%7Efunctional-code%7Etest-code%7Eother) is my code contribution.
 
 #### **Enhancements implemented:**
-* Implemented `addcat` command and parser. (PR)
-  * What it does: This feature allows users of FastTrack to add a new `Category` into FastTrack.
-  * Justification: This allows users to group their expenses and use commands such as `list` to view all expenses under a category. 
-* Implement `delcat` command and parser. (PR)
+* Implemented commands for `Category`
+  * `addcat` - allows users of FastTrack to add a new `Category` into FastTrack.
+  * `delcat` - allows users to delete an existing `Category` in FastTrack. Expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`.
+  * `lcat` - allows users to list all added `Category`, used to determine index for edit and delete category commands.
+* Implemented `delcat` command and parser. (PR)
   * What it does: This feature allows users to delete an existing `Category` in FastTrack. Expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`.
   * Justification: This allows users to delete unnecessary categories. 
-* Implement `lcat` command and parser. (PR)
+* Implemented `lcat` command and parser. (PR)
   * What it does: This feature allows users to list all added `Category`.
   * Justification: Gives users the ability to see all `Category` added in a glance, it is also used in conjuction to `delcat` and `edcat` commands as index of the `Category` is needed.
-* Implement `Budget` class. (PR)
-  * What it does: Allows users to add a monthly budget into FastTrack. This is used in conjunction with the Statistics feature to allow users to 
+* Implemented `Budget` class and linked it to the UI to update statistics. (PR)
+  * What it does: Allows users to add a monthly budget into FastTrack. This is used in conjunction with the Statistics feature to allow users to have an easy way to see how much of the budget has been utilised.
+* Implemented commands for `RecurringExpenseManager`
+  * `addrec` - allows users to add `RecurringExpenseManager` objects into FastTrack
+  * `delrec` - allows users to delete a `RecurringExpenseManager` object.
+  * 
 
 #### **Contributions to the UG:** to be added soon
 
