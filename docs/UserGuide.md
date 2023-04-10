@@ -87,7 +87,7 @@ Is it hard for private tutor such as yourself to keep track of the students' inf
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-[Back to top](#table-of-content)
+[Back to top](#table-of-content)  
 ### Viewing help <a name="help"></a>
 
 Shows a message explaning how to access the help page.
