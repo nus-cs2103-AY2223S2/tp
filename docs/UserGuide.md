@@ -51,12 +51,14 @@ The following callouts can be found throughout our user guide:
 
 In general, the following command format is adopted in FriendlyLink.
 
-| Name     | Meaning                                                                                                         | Notes                                                                                                                                                                                                     | Examples                                                                                                                     |
-|----------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
-| Command  | An instruction given by you to FriendlyLink to perform a specific task.                                         |                                                                                                                                                                                                           | `add_elderly`                                                                                                                | 
-| Prefix   | Refers to characters appearing before a slash in a command. Prefixes label the information that they represent. | * Prefixes should be entered in all **lower case** e.g. `n/Abdul` instead of `N/Abdul`. <br> * Fields after prefixes have leading and trailing whitespaces removed e.g. `n/ Mary` is trimmed to `n/Mary`. | `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.   |
+| Name       | Meaning                                                                                                       | Examples                                                                                                                                                                                      |
+|------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command    | An instruction given by you to FriendlyLink to perform a specific task.                                       | `add_elderly`                                                                                                                                                                                 | 
+| Prefix     | Characters appearing before a slash in a command. Prefixes label the information that they represent.         | `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.                                                                    |
+| Field      | Information following a slash in a command, providing information to the relevant prefix                      | `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`. |
+| Preamble   | Preamble is a special piece of information specified for certain commands that are entered without prefixes.  | `edit_elderly S1234567A n/John Doe` has the preamble `S1234567A` but `edit_elderly n/John Doe S1234567A` is invalid as the preamble `S1234567A` has to come before all other fields.          |
 
-<div markdown="block" class="alert alert-info">:information_source: **Notes**
+<div markdown="block" class="alert alert-info">:information_source: **Notes on Command Format**
 
 * Words that are `CAPITALISED` are placeholders that should be replaced by you.
 * Items in `[square brackets]` are optional.
@@ -66,11 +68,11 @@ In general, the following command format is adopted in FriendlyLink.
 For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]… `, a user may choose to specify
 `example_command 29 n/John Doe t/Hello t/World`. Notice that the prefix `bd` is not specified here, because it is optional.
 
-</div> 
+**Prefix**
+* Prefixes should be entered in all **lower case** e.g. `n/Abdul` instead of `N/Abdul`. 
 
-### Field
-Field refers to information following a slash in a command, providing information to the relevant prefix, such as indicating a volunteer's name, phone number, email and other information.
-* For example, `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`.
+**Fields**
+* Fields after prefixes have leading and trailing whitespaces removed e.g. `n/ Mary` is trimmed to `n/Mary`.
 * Fields can be entered in any order e.g.`n/John Doe p/97129078` or `p/97129078 n/John Doe` is acceptable.
 * If a field is expected only once in the command, but you specify it multiple times, only the last occurrence of the
   field will be taken e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -78,11 +80,10 @@ Field refers to information following a slash in a command, providing informatio
   e.g. if you specify `help 123`, it will be interpreted as `help`.
 * For more information on each specific field, refer to the [Fields](#fields) section.
 
-### Preamble
-Preamble is a special piece of information specified for certain commands that are entered without prefixes.
+**Preamble**
 * They need to be specified right after the [command](#command) word and before any other [Fields](#field)
-  e.g.`edit_elderly S1234567A n/John Doe` has the preamble `S1234567A` but `edit_elderly n/John Doe S1234567A` is invalid
-  as the preamble `S1234567A` has to come before all other fields.
+
+</div>
 
 [Back to top](#table-of-contents)
 
