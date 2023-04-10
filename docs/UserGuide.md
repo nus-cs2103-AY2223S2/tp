@@ -80,7 +80,7 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 
 2. Download the latest `TutorPro.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your address book.
+3. Copy the file to the folder you want to use as the _home folder_ for TutorPro.
 
 4. Open a command terminal, `cd` into the folder in which you put the jar file, and use the `java -jar TutorPro.jar` command to run the application.<br>
    A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -131,7 +131,7 @@ When you first run the app, you may see a display window pop up similar to the o
 
 You may enter the following commands in the Command Box to see how the Display List changes:
 * `list` lists all students.
-* `delete 1` deletes the student with index 1.
+* `delete index/1` deletes the student with index 1.
 
 You may also click the quick access buttons one each student card to see how the Detailed Information Section changes.
 
@@ -157,10 +157,10 @@ Upon clicking the Profile Button, the Detailed Information section will be refre
 
 It includes a homework list, showing all the homework information.
 The icon on the left of each homework represents its status,
-with the tick icon being `done` and the cross-icon being `not done`.
+with the tick icon being `completed` and the cross-icon being `pending`.
 It also has a pie chart which represents a ratio between completed and pending homework.
 
-![Starting Display Window](images/Homework.jpg)
+![Starting Display Window](images/Homework.png)
 
 #### Lessons Page
 
@@ -284,12 +284,15 @@ Format: `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE]
 Example:
 * `new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8` Adds a new student named `John Doe` to TutorPro.
 
+:exclamation: **Caution:** `STUDENT_NAME`, `ADDRESS`, `PHONE` and `EMAIL` should appear exactly once.
+
+
 
 #### View a Student Profile
 
 Displays one or many students' profiles, given parameters.
 
-Format `view-profile [name/STUDENTS_NAME]`
+Format `view-profile [name/STUDENTS_NAME] ...`
 * Shows a list of students that match the given `STUDENT_NAME`
 * If no `STUDENT_NAME` is given, then shows all students.
 
@@ -299,9 +302,13 @@ Example:
 
 ![view-profile.png](images/view-profile.png)
 
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
+
+
 #### Update Student Information
 
-Updates the student's information, given the student's label, field to change, and updated field value
+Updates the student's information, given the student's label, fields to change, and updated field value
 
 Format: `update-info [index/STUDENT INDEX] [field/NEW_INFO] ...`
 
@@ -313,16 +320,20 @@ Examples:
 * `field/NEW_INFO` is to be replaced by one of
   * `name/`
   * `phone/`
-  * `address/`
-  * `school/`
-  * `level/`<br>
+  * `address/`<br>
     And their respective new values.
 * At least one updated parameter has to be present.<br>
 
+<div markdown="span" class="alert alert-info">:information_source: **Why can't I update the School and Grade Level of a Student?**<br>
+When your student changes schools or goes up a grade level, their curriculum will likely change. In that case, you should
+create a fresh new profile for your student, so that all the lessons, exams and homeworks from the previous grade level/school do not 
+get mixed up with the new one. You may then delete the old profile.
+This is purposely done to make the information less cluttered and reduce confusion.
+</div>
 
-:bulb: **Tip:** You can edit multiple fields in a student's profile at once by using several of the above prefixes.
 
-Examples:
+
+:bulb: **Tip:** You can edit multiple fields in a student's profile at once by using several of the above prefixes. For Example:
 * `update-info index/1 name/John` Changes the name of the student at index 1 to `John`.
 * `update-info index/2 name/John address/Block 414` Changes the name and address of a student at index 2 to `John` and `Block 414` respectively.
 
@@ -359,6 +370,9 @@ Examples:
 
 :bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
 
+:bulb: **Tip:** A student cannot have multiple homeworks with the same name,
+even if they have different deadlines.
+
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
 For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
@@ -367,8 +381,6 @@ For example, `john` will match `John Doe` and `john doe`. You can refer to the [
 :exclamation: **Caution:** HOMEWORK_INDEX
 and DEADLINE should all only appear exactly once and should not be empty.
 
-:bulb: **Tip:** A student cannot have multiple homeworks with the same name,
-even if they have different deadlines.
 
 <div style="page-break-after: always;"></div>
 
@@ -543,9 +555,10 @@ However, on the other hand, it is perfectly possible for you to assign the same 
 
 Displays the lessons for a given student/all students.
 
-Format: `view-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON] (optional)[date/DATE] (optional)[done/DONE]`
+Format: `view-lesson [name/STUDENT_NAME] [lesson/LESSON] [date/DATE] [done/DONE]`
 
-* By default, the lessons for all the tutor’s students will be displayed if no parameters are specified.
+* Every parameter is optional.
+* If no parameters are specified, the lessons for all students will be displayed.
 * To view the lessons for specific students, specify the names using `name/STUDENT_NAME`s.
 * To view the lessons whose titles contain a certain keyword/phrase, specify the keyword/phrase using `lesson/LESSON`.
 * To view the lessons for a specific date, specify the date using `date/DATE`.
@@ -638,8 +651,8 @@ Format: `new-exam [name/STUDENT_NAME].. [exam/EXAM_NAME] [start/START_TIME]
 * One or more `STUDENT_NAME` prefixes must be provided. Multiple `STUDENT_NAME` will assign the exam to multiple students.
 * `GRADE` and `WEIGHTAGE` are optional.
 * The format of `GRADE` should be `grade/ACTUAL_SCORE/TOTAL_SCORE`
-* `GRADE` can only be saved if the exam is in the past.
-* `WEIGHTAGE` should be entered as a percentage out of 100 (without the % symbol).
+* `GRADE` can only be saved if the exam is already completed.
+* `WEIGHTAGE` should be entered as a percentage out of 100 (with/without the % symbol).
 
 Examples:
 * `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00`
@@ -659,7 +672,7 @@ You can refer to the [search by name mechanism](#search-by-name-mechanism) for m
 
 Deletes an exam of a student.
 
-Format: `delete-exam [name/STUDENT_NAME].. [index/EXAM_INDEX]`
+Format: `delete-exam [name/STUDENT_NAME] [index/EXAM_INDEX]`
 
 * Removes an exam that TutorPro is currently tracking.
 * At least one student name must be provided.
@@ -670,10 +683,7 @@ Format: `delete-exam [name/STUDENT_NAME].. [index/EXAM_INDEX]`
   and will result in exams of index '1' of students 'John' and 'Faye' being removed from TutorPro.
 
 Examples:
-* `delete-exam name/John Doe index/1`
-* `delete-exam name/John Doe name/Faye Doe index/1` -this command will remove both students John's and Faye's 1st
-  indexed exam, and will behave similarly to `delete-exam name/John Doe index/1` and `delete-exam name/Faye Doe index/1`
-  being run one after another.
+* `delete-exam name/John Doe index/1` - This command will remove student John's 1st indexed exam.
 
 :bulb: **Tip:** You can use the `view-exam` command to view the list of exams the student currently has.
 
@@ -698,8 +708,8 @@ Format: `view-exam [name/STUDENT_NAME].. [date/DATE] [exam/NAME_OF_EXAM] [done/I
 
 
 Examples:
-* `view-exam` -lists all exams currently being tracked by TutorPro
-* `view-exam name/John date/2023-05-01 exam/MYE done/` -list exams attributed to student 'John' on date '2023-05-01'
+* `view-exam` - Lists all exams currently being tracked by TutorPro
+* `view-exam name/John date/2023-05-01 exam/MYE done/` - List exams attributed to student 'John' on date '2023-05-01'
   with description 'MYE' which are undone.
 
 ![view-exam.png](images/view-exam.png)
@@ -710,9 +720,7 @@ Examples:
 For example, `john` will match `John Doe` and `john doe`.
 You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
-:exclamation: **Caution:** The only parameter allowed to have more than one value is `STUDENT_NAME`, any other parameter
-if repeated will have its last repetition taken as the parameter passed. eg. `view-exam date/2023-05-01 date/2023-
-05-02` will behave as `view-exam date/2023-05-02`.
+:exclamation: **Caution:** The only parameter allowed to have more than one value is `STUDENT_NAME`.
 
 #### Edit exam details
 
@@ -724,7 +732,7 @@ Format: `update-exam [name/STUDENT_NAME] [index/EXAM_INDEX] [exam/NEW_EXAM_NAME]
 * Updates the details of an exam tracked by TutorPro.
 * `NEW_EXAM_NAME`, `START_TIME`, `END_TIME`, `WEIGHTAGE` and `GRADE` are the the updated values for this exam and are optional.
 * Of the optional fields, at least one must be provided in order to update the exam.
-* `GRADE` can only be updated after the exam has finished.
+* `GRADE` can only be updated after the exam is already completed.
 * `EXAM_INDEX` is in reference to the indexing of the exams listed when invoking the `view-exam` command on a
   student.
 
@@ -841,7 +849,7 @@ This is a carefully crafted feature that will be explained in the following sect
 #### Duplicate Homework Detection
 * TutorPro identifies homework by its name, since we assume that a student can have multiple homeworks with the same deadline.
 * Since name is the primary key for homework, duplicate homework names are not allowed. For example, if you have a homework named `Math Homework` and you try to add another homework with the same name even with a different deadline, TutorPro will detect that there is a duplicate homework and will not add the homework.
-* If you homework with the same name, we encourage you to add a number to the end of the name to differentiate them. For example, `Math Homework 1` and `Math Homework 2`.
+* If you have homeworks with the same name, we encourage you to add a number to the end of the name to differentiate them. For example, `Math Homework 1` and `Math Homework 2`.
 
 #### Duplicate Lesson Detection
 * TutorPro identifies a lesson by its start time and end time, since we assume that a student can have multiple lessons with the same name, but they can't have two lessons at the same time.
