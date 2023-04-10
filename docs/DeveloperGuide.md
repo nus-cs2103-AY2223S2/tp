@@ -373,6 +373,13 @@ than attempting to perform the undo.
 
 </div>
 
+The following activity diagram shows how the undo operation works:
+
+<p>
+  <img class="diagram" src="images/UndoActivityDiagram.png" />
+  <em>Activity Diagram for the undo command.</em>
+</p>
+
 The following sequence diagram shows how the undo operation works:
 
 <p>
@@ -426,7 +433,14 @@ Please refer to the activity diagram below to see what happens when a user uses 
 
 <p>
   <img class="diagram" src="images/AutocompleteActivityDiagram.png" />
-  <em>Activity Diagram for the autocomplete feature</em>
+  <em>Activity Diagram for the autocomplete feature.</em>
+</p>
+
+The following sequence diagram shows how the autocomplete operation works:
+
+<p>
+  <img class="diagram" src="images/AutocompleteSequenceDiagram.png" />
+  <em>Sequence Diagram for the autocomplete feature.</em>
 </p>
 
 #### Feature Implementation details
