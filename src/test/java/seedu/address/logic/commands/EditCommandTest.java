@@ -6,8 +6,9 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
-import javafx.collections.ObservableList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.UiSwitchMode;
@@ -20,6 +21,8 @@ import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Name;
 import seedu.address.testutil.EntityBuilder;
+
+import javafx.collections.ObservableList;
 
 public class EditCommandTest {
 
