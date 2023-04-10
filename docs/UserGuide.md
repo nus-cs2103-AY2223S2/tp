@@ -1466,8 +1466,6 @@ Clearing all menu items does not invalidate the orders.
 
 </div>
 
-<div style="page-break-after: always;"></div>
-
 ## 2.8 Switch
 
 Allows for you to switch to the tab for view your respective information. You can use the GUI to navigate it as shown [here](#14-navigating-the-user-interface) or use the command shown here.
@@ -1495,6 +1493,8 @@ Syntax: `tab t/TAB`
   Navigates you to the home tab
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.9 Others
 
@@ -1536,8 +1536,6 @@ Note: For any **optional** fields, you can indicate it with a `-` to have it be 
   <br>Figure 2.9.2.1: Example of a valid csv file
 </p>
 
-<div style="page-break-after: always;"></div>
-
 ### 2.9.3 Exiting the program: `exit`
 
 Exits the program.
@@ -1551,6 +1549,8 @@ This section will inform you how the data is saved.
 ## 3.1 Saving of data
 
 All data are saved after any command is executed successfully. There is no need for you to manually save.
+
+<div style="page-break-after: always;"></div>
 
 ## 3.2 Editing the data file
 
@@ -1578,8 +1578,6 @@ If your changes to the data file are invalid, Trackr will discard all data and s
 
 </div>
 
-<div style="page-break-after: always;"></div>
-
 Here is the layout of the data file:
 
 ```json
@@ -1603,6 +1601,9 @@ Here are the respective formats for each of the data types:
     "tagged" : [ "flour" ]
   }
   ```
+  
+  <div style="page-break-after: always;"></div>
+
 * Task<br>
   ```json
   {
