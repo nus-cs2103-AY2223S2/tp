@@ -44,7 +44,7 @@ Summary of Contributions:
       For example, `Range<Integer>` cannot be created, as the constructor of Range is private, and the `.of` method takes in subclasses of `ContinuousData`.
     - Edit name inputs to remove excess whitespaces, and invalidate numerics. For example "22a" is not a valid name. Furthermore, "Michael          Scott   " is read in as "Michael Scott".
     - Edit FXML files in Main Window. Changed icon and title. (Pull Request #37).
-    - Refactor code for project.
+    - Refactor code for project. Postal codes are refactored from phone numbers and can accept "S" or "s" when parsing. Dates are refactored from emails and must be valid (validated through a DateTimeFormatter).
 
 - Project management:
   - Assigned and created issues for possible future implementations.
