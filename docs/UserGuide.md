@@ -455,11 +455,11 @@ MediMate data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 * No special characters is allowed at the start or end of the email `username`. (username@domain.com)
 * No multiple consecutive (More than 1) special characters is allowed at the middle of the email username.
 * Allowed special characters for email are `+` , `_`, `-`, `.`
-  e.g. `abc@gmail.com` is allowed
-  e.g. `a.b.c@gmail.com` is allowed
-  e.g. `ab..c@gmail.com` is not allowed
-  e.g. `abc.@gmail.com` is not allowed
-  e.g. `.abc@gmail.com` is not allowed
+  1. e.g. `abc@gmail.com` is allowed
+  2. e.g. `a.b.c@gmail.com` is allowed
+  3. e.g. `ab..c@gmail.com` is not allowed
+  4. e.g. `abc.@gmail.com` is not allowed
+  5. e.g. `.abc@gmail.com` is not allowed
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
 * Nric has restriction for first letter, where it must be either 'S', 'T' or 'G' (E.g. S9935010Y) and length must be 9.
 * Nric is case-sensitive. Hence, 's' , 't' or 'g' is not allowed for the first letter.
