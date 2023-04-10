@@ -2569,28 +2569,36 @@ Some incorrect commands to try from root context:
 
 | Test Case                                   | Expected Result |
 | ------------------------------------------- | --------------- |
-| `delete CS2040S`                            | CS2040S is deleted |
-| 1. `nav CS2040S` <br> 2. `delete CS2040S /r`| Same as previous |
-| `delete CS2040S, ST2334`                    | CS2040S and ST2334 are deleted |
-| 1. `nav CS2040S` <br> 2. `delete CS2040S, ST2334 /r`| Same as previous |
-| 1. `delete CS2040S` <br> 2. `delete CS2040S` | Alert user that CS2040S does not exist and cannot be deleted. No change made to Le Tracker |
-| 1. `delete CS2040S` <br> 2. `delete CS2040S, ST2334` | Same as previous |
-| 1. `delete CS2040S, ST2334` <br> 2. `delete CS2040S, ST2334` | Alert user that CS2040S and ST2334 do not exist and cannot be deleted. No change made to Le Tracker |
+| `delete CS2040S`                            | **Message:**<br/>`Deleted Module: CS2040S`<br/>**List Updates** Entry for "CS2040S" removed |
+| 1. `nav CS2040S`<br/> 2. `delete CS2040S /r`| **Message:** Same as previous<br/>**List Updates:** Show list of remaining modules, where entry for "CS2040S" is removed |
+| 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `delete CS2040S /r`| Same as previous |
+| 1. `nav ST2334`<br/>2. `delete CS2040S /r` | **Message:** Same as previous<br/>**List Updates:** None |
+| `delete CS2040S, ST2334`                    | **Message:**<br/>`2 Modules deleted（CS2040S, ST2334)`<br/>**List Updates:** Entry for "CS2040S" and "ST2334" are removed |
+| 1. `nav CS2040S`<br/>2. `delete CS2040S, ST2334 /r`| **Message:** Same as previous<br/>**List Updates:** Show list of remaining modules, where entries for "CS2040S" and "ST2334" are removed |
+| 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `delete CS2040S, ST2334 /r`| Same as previous |
+
+Some incorrect commands to try from root context:
+- `delete` (incorrect format)
+- `delete mod23` (invalid module code)
+- `delete CS2040S, CS2040S` (duplicate module code)
+- `delete CS1234` (module does not exist)
 
 ### Delete Lecture(s)
 
 | Test Case                                   | Expected Result |
 | ------------------------------------------- | --------------- |
-| `delete Week 1 /mod CS2040S`                | Week 1 of CS2040S is deleted |
-| 1. `nav CS2040S` <br> 2. `delete Week 1`    | Same as previous |
-| `delete Week 1, Week 2 /mod CS2040S`        | Week 1 and Week 2 of CS2040S are deleted |
-| 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Week 1 /mod CS2040S` | Alert user that Week 1 of CS2040S does not exist and cannot be deleted |
-| 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Week 1, Week 2 /mod CS2040S` | Same as previous |
-| 1. `delete Week 1, Week 2 /mod CS2040S` <br> 2. `delete Week 1, Week 2 /mod CS2040S` | Alert user that Week 1 and Week 2 of CS2040S do not exist and cannot be deleted |
-| `delete Week 1, Week 1, Week 3 /mod CS2040S` | Alert user that Week 1 was duplicated in command |
-| `delete Week 1, Week 1, Week 1 /mod CS2040S` | Same as previous |
-| 1. `delete CS2040S` <br> 2. `delete Week 1 /mod CS2040S` | Alert user that CS2040S does not exist |
-| 1. `delete CS2040S` <br> 2. `delete Week 1, Week 2 /mod CS2040S` | Same as previous |
+| `delete Week 1 /mod CS2040S`                | **Message:**<br/>`Deleted Lecture: Week 1 from Module CS2040S`<br/>**List Updates:** None |
+| 1. `nav CS2040S`<br/> 2. `delete Week 1`    | **Message:** Same as previous<br/>**List Updates:** Entry for "Week 1" removed |
+| 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `delete Week 1 /mod CS2040S`| **Message:** Same as previous<br/>**List Updates:** Show list of remaining lectures of CS2040S, where entry for "Week 1" is removed |
+| 1. `nav CS2040S`<br/>2. `delete Week 1, Week 2 /mod CS2040S`        | **Message:**<br/><code>2 Lectures deleted from Module CS2040S:<br/>Week 1, Week 2</code><br/>**List Updates:** Entry for "Week 1" and "Week 2" removed |
+| 1. `nav CS2040S`<br/>2. `nav Week 2`<br/>3. `delete Week 1, Week 2 /mod CS2040S` | **Message:** Same as previous<br/>**List Updates:** Show list of remaining lectures of CS2040S, where entry for "Week 1" and "Week 2" are removed |
+
+Some incorrect commands to try from root context:
+- `delete Week #1 /mod CS2040S` (invalid lecture format)
+- `delete Week 1 /mod mod23` (invalid module code)
+- `delete Week 1, Week 1 /mod CS2040S` (duplicate lecture names)
+- `delete Topic 1 /mod CS2040S` (lecture does not exist in module)
+- `delete Week 1 /mod NOT123` (module does not exist)
 
 ### Delete Video(s)
 
