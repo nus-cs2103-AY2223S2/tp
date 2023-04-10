@@ -88,7 +88,7 @@ Here is a breakdown of the different symbols we will use throughout this guide.
 </br></br>
 Some example commands you can try:
 - `view`: Lists all listings.
-- `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Tom`: Adds a listing called `Chicken Rice Uncle` into the Listing Book.
+- `add t/Software Engineer d/Code well a/Tom p/LinkedIn`: Adds a listing called `Software Engineer` into the Listing Book.
 - `delete 1`: Deletes the 1st listing shown in the current list.
 - `exit`: Exits the app.
 
