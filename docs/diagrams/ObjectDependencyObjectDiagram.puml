@@ -23,7 +23,7 @@ object "<u>T15:Group</u>" as Group2 {
 
 }
 
-object "<u>Tutorial2:Session</u>" as Session1 {
+object "<u>Tutorial1:Session</u>" as Session1 {
  sessionName = "Tutorial1"
 }
 
