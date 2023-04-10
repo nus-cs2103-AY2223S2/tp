@@ -34,7 +34,7 @@ license, making it open source and available for anyone to use and modify.
     - [Add a `Food`](#add-a-food)
     - [Edit a `Food`](#edit-a-food)
     - [Increase/Decrease quantity of a `Food`](#increasedecrease-quantity-of-a-food)
-    - [View details of a `Food`.](#view-details-of-a-food)
+    - [View details of a `Food`](#view-details-of-a-food)
   - [Tag-related Features](#tag-related-features)
     - [Overview](#overview)
     - [Design considerations:](#design-considerations)
@@ -743,13 +743,13 @@ It has been recognized that some users prefer to utilize specific unit represent
 such as using 1L or 2L to indicate the volume of milk. To accommodate this, future iterations of the system will 
 incorporate alphanumeric representations of `Unit`, enabling users to include such unit specifications.
 
-### Tag
+#### Tag
 The current implementation of tags in WIFE provides basic functionality, including the ability to create a tag, tag or 
 untag a food item with the tag, and delete a tag that is no longer needed. However, to enhance the usability of tags, 
 an additional feature could be added to allow users to edit tags. This would enable users to modify their existing tags,
 rather than having to delete and recreate them if any changes are required.
 
-### Tag Name
+#### Tag Name
 In some cases, users may want to create tags that contain numeric characters. For example, a user may want to tag the
 weight of a food item, such as broccoli, in their fridge with its weight in grams or ounces. To accommodate this use
 case, future iterations of the WIFE system will incorporate alphanumeric representations for tag names. This will allow
@@ -791,11 +791,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | User who likes to cook             | see recipes with the food in my fridge as ingredients | decide what meals I can make                |
 | `*`      | User who does grocery shopping     | generate a grocery list                               | bring it to the supermarket                 |
 
-### Use cases
+### **Use cases**
 
 (For all use cases below, the **System** is the `Well Informed Fridge Environment (WIFE)` and the **Actor** is the `user`, unless specified otherwise)
 
-### **Use case UC01: Add a `Food`**
+#### **Use case UC01: Add a `Food`**
 
 **MSS**
 
@@ -818,7 +818,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     -   \*a2. User confirms the cancellation. <br/>
         Use case ends.
 
-### **Use case UC02: Lists all `Food`**
+#### **Use case UC02: Lists all `Food`**
 
 **MSS**
 
@@ -832,7 +832,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     -   1a1. WIFE displays a message that tells the User that there are no items. <br/>
         Use case ends.
 
-### **Use case UC03: Edit a `Food`**
+#### **Use case UC03: Edit a `Food`**
 
 **MSS**
 
@@ -853,7 +853,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
     * 
-### **Use case UC04: Increase the quantity of a `Food`**
+#### **Use case UC04: Increase the quantity of a `Food`**
 
 **MSS**
 
@@ -874,7 +874,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. WIFE displays a message that tells the user that the specified value is invalid.
       Use case ends.
 
-### **Use case UC05: Decrease the quantity of a `Food`**
+#### **Use case UC05: Decrease the quantity of a `Food`**
 The same as Use Case UC08: Increment the quantity of a `Food`, except that it is to decrease the quantity of a `Food`.
 
 **Additional Extensions**
@@ -899,7 +899,7 @@ The same as Use Case UC08: Increment the quantity of a `Food`, except that it is
     -   1b1. WIFE displays a message that tells the User that the `Food` index provided is invalid. <br/>
         Use case ends.
 
-### **Use case UC07: Create a new tag**
+#### **Use case UC07: Create a new tag**
 
 **MSS**
 
@@ -912,17 +912,17 @@ The same as Use Case UC08: Increment the quantity of a `Food`, except that it is
 
 * 1a. User keyed in an invalid tag name.
     * 1a1. WIFE displays a message that tells the User that there the tag name keyed in by
-    * the user is invalid.
+      the user is invalid.
 
       Use case ends.
 
 * 1b. Tag already exists in WIFE's list of pre-defined tags.
     * 1a1. WIFE displays a message that tells the User that there are already similar tags
-    * in the list, hence, no action will be carried out.
+      in the list, hence, no action will be carried out.
 
       Use case ends.
 
-### **Use case UC08: Tag a `Food`**
+#### **Use case UC08: Tag a `Food`**
 
 **MSS**
 
@@ -941,7 +941,7 @@ The same as Use Case UC08: Increment the quantity of a `Food`, except that it is
 -   3a. The given index is invalid.
 
     -   3a1. WIFE displays an error message to inform the user that the index
-    -   inserted is invalid. </br>
+    inserted is invalid. </br>
         Use case resumes at step 2.
 
 -   4a. Chosen tag is not in the pre-defined list of tags.
@@ -949,7 +949,7 @@ The same as Use Case UC08: Increment the quantity of a `Food`, except that it is
     -   4a2. WIFE asks if the user wish to add the new tags into the tag list. <br/>
         Use case resumes at step 2.
 
-### **Use case UC09: List `Food` by tags**
+#### **Use case UC09: List `Food` by tags**
 
 **MSS**
 
@@ -968,7 +968,7 @@ The same as Use Case UC08: Increment the quantity of a `Food`, except that it is
     -   1b1. WIFE displays `Food` with valid tags. It also tells User which tag is valid or invalid.
         Use case ends.
 
-### **Use case UC10: Delete `Food` by tags**
+#### **Use case UC10: Delete `Food` by tags**
 
 **MSS**
 
@@ -987,7 +987,7 @@ The same as Use Case UC08: Increment the quantity of a `Food`, except that it is
     -   1b1. WIFE deletes and displays `Food` with valid tags.
         Use case ends.
 
-### **Use case UC11: Delete tags**
+#### **Use case UC11: Delete tags**
 
 **MSS**
 
@@ -1006,7 +1006,7 @@ The same as Use Case UC08: Increment the quantity of a `Food`, except that it is
     -   1b1. WIFE ignores invalid tags.
         Use case resumes at step 2.
 
-### **Use case UC12: View help**
+#### **Use case UC12: View help**
 **MSS:**
 1. User asks the WIFE for the help page
 2. WIFE displays all available commands and corresponding formats <br/>
