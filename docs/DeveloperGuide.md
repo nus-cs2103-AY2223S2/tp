@@ -191,7 +191,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/NricModelClassDiagram.png" width="600" />
+<img src="images/NricModelClassDiagram.png" width="800" height="auto"/>
 
 
 The `Model` component,
@@ -207,7 +207,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterNricModelClassDiagram.png" width="500" />
+<img src="images/BetterNricModelClassDiagram.png" width="800" height="auto" />
 
 </div>
 
@@ -554,7 +554,7 @@ The following additional constraints will be applied:
 
 Given below is an updated `Model` component diagram.
 
-<img src="images/NricModelClassDiagram.png" width="450" />
+<img src="images/NricModelClassDiagram.png" width="800" height="auto"/>
 
 #### Design considerations:
 
@@ -850,14 +850,14 @@ testers are expected to do more *exploratory* testing.
 1. Adding a person to HospiSearch
     1. Prerequisites: Current person (identified by `Nric`) does not exist in the database
     2. Test
-       case: `add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+       case: `add i/S1234567A n/John Doe dob/28/12/2001 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA ad/Mary` <br>
        Expected: person above is added to HospiSearch, provided another entry does not have the same `nric`. Timestamp
        in the status bar is updated.
-    3. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+    3. Test case: `add n/John Doe dob/28/12/2001 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA ad/Mary` <br>
        Expected: No person is added. Error details shown in the status message. Status bar remains the same.
-    4. Test case: `add i/S1234567A p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+    4. Test case: `add i/S1234567A dob/28/12/2001 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA ad/Mary` <br>
        Expected: No person is added. Error details shown in the status message. Status bar remains the same.
-    5. Test case: `add S1234567A 98765432 johnd@example.com 311, Clementi Ave 2, #02-25 Male NKDA` <br>
+    5. Test case: `add John Doe S1234567A 28/12/2001 98765432 johnd@example.com 311, Clementi Ave 2, #02-25 Male NKDA ad/Mary` <br>
        Expected: No person is added. Error details shown in the status message. Status bar remains the same.
     6. Other incorrect add commands to try: `add`, `add x/...`, `...` (where x is some invalid tag)
 
@@ -867,10 +867,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. 
 
     1. Test case: `delete i/S1234567A`<br>
-       Expected: Patient record with the specified NRIC will be removed.
+       Expected: Patient record with the specified NRIC will be removed if the person exists in the list.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
@@ -923,7 +923,28 @@ testers are expected to do more *exploratory* testing.
    3. Test case 1.2: `delete i/x`, (replace x with `nric` of the first patient), then `load 1`
       Expected: The state of HospiSearch should be as if the `delete` command was not executed.
 
+### Viewing a patient's record
 
+1. Viewing a particular patient's record
+    1. Prerequisites: There are 1 or more patient records in HospiSearch. <br>
+    2. Test case: `view i/S1234567A` <br>
+   Expected: View pane will reflect the patient with the matching `nric` alongside all his/her attributes.
+
+### Changing between themes
+
+1. Changing to light/dark mode
+    2. Test case: `dark` <br>
+   The theme changes to dark theme as shown below.
+   <br>
+    <img src="images/command_result/dark.png" width="500" height="auto" />
+
+    3. Test case: `light` <br>
+       The theme changes to light theme.
+       <br>
+       <img src="images/command_result/light.png" width="500" height="auto" />
+       
+
+   
 <sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Appendix: Planned Enhancements
@@ -942,7 +963,12 @@ make it such that you can input `Medicine`s with non-alphanumeric characters suc
 4. Currently, you are unable to input `Name`s that contain non-alphanumeric characters.In the future, we plan to
 make it such that you can input `Name`s with non-alphanumeric characters such as "s/o".
 
-5. Currently, whenever a user `views` a patient, the scroll bar will bring you back to the very top of the list of 
+5. Currently, whenever a user `views` a person, the scroll bar will bring you back to the very top of the list of 
 patients. In the future, we will ensure tha the scroll bar remains in position even after running a `view` command.
+
+6. Currently, when adding a person, if the user misses out on a prefix, a generic invalid format command will be 
+generated in the result display box. In the future, we will inform the user of the missing prefix in the result display
+box.
+
 
 <sub>[return to table of contents](#table-of-contents)</sub>
