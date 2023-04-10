@@ -70,13 +70,20 @@ public class Student {
         return Collections.unmodifiableSet(classTags);
     }
 
+    /** Adds a new submission to the student's submission entries. The submission storage strings are unchanged.*/
+    public void addSubmissionEntries(Submission submission) {
+        submissions.addSubmission(submission);
+    }
+
     /**
-     * Adds a new submission to this student.
-     */
+     * Adds a new submission to this student. The record is added to both submission entries and submission storage
+     * strings.
+     * */
     public void addSubmission(Submission submission) {
-        this.submissions.addSubmission(submission);
-        if (!submissionStringArr.contains(submission.toStorageString())) { // if doesn't exist in storage.
-            submissionStringArr.add(submission.toStorageString());
+        submissions.addSubmission(submission);
+        final String submissionStorageStr = submission.toStorageString();
+        if (!submissionStringArr.contains(submissionStorageStr)) { // if doesn't exist in storage.
+            submissionStringArr.add(submissionStorageStr);
         }
     }
 

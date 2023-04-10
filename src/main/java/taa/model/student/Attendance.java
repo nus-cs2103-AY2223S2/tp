@@ -81,11 +81,7 @@ public class Attendance {
         } catch (NumberFormatException e) {
             return false;
         }
-        if (intWeek <= 0 || intWeek > NUM_WEEKS) {
-            System.out.println(week);
-            return false;
-        }
-        return true;
+        return intWeek > 0 && intWeek <= NUM_WEEKS;
     }
 
     /**

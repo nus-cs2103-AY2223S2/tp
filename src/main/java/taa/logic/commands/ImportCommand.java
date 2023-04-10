@@ -206,7 +206,8 @@ public class ImportCommand extends CsvCommand {
         toDel.forEach(model::deleteStudent);
         toDel.forEach(model::deleteStudentSubmission);
         toAdd.forEach(model::addStudent);
-        toAdd.forEach(model::addStudentAssignment);
+        toAdd.forEach(AssignmentList.INSTANCE::addStudentSubmissions);
+        toAdd.forEach(model::updateStudent);
         return new CommandResult(String.format(MSG_SUCC, toAdd.size()));
     }
 }

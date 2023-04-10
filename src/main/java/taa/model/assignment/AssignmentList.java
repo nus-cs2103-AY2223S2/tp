@@ -229,6 +229,16 @@ public class AssignmentList {
         assignments.forEach(a -> a.addStudent(s));
     }
 
+    /** Updates all students' submissions object so that it matches the student's submission storage strings */
+    public void addStudentSubmissions(Student s) {
+        for (String submissionString : s.getSubmissionStorageStrings()) {
+            final Assignment assignment = assignmentMap.get(Submission.getAsgnName(submissionString));
+            if (assignment != null) {
+                assignment.addStudentSubmission(s, submissionString);
+            }
+        }
+    }
+
     /**
      * On startup, this will populate the assignment list and submissions from the submission storage string data held
      * by each student. This is also called when we edit a student.
@@ -257,13 +267,7 @@ public class AssignmentList {
         }
 
         // Step 2: populate each assignment with each student submission.
-        for (Student stu : sl) {
-            for (String submissionString : stu.getSubmissionStorageStrings()) {
-                final String assignmentName = Submission.getAsgnName(submissionString);
-                Assignment toAdd = assignmentMap.get(assignmentName);
-                toAdd.addStudentSubmission(stu, submissionString);
-            }
-        }
+        sl.forEach(this::addStudentSubmissions);
     }
 
     /**
