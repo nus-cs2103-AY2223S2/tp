@@ -85,9 +85,15 @@ The sections below give more details of each component.
 
 **API** : [`Ui.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
+<img src="images/DG-images/UiClassDiagram.png" width="350" />
+
+More detailed Class diagram for Ui component
+
+<img src="images/DG-images/BetterUiClassDiagram.png" width="500" />
+
 The UI consists of a MainWindow that is made up of different parts.
 For instance, `CommandBox`, `ResultDisplay`, `StudentListPanel`, `ScoreListPanel`,
-`TaskListPanel`, `StatusBarFooter` etc. All theses, including the MainWindow,
+`TaskListPanel`, `StatusBarFooter`, `HelpWindow`, `ImportWindow`, `ExportWindow` and `ExportProgressWindow` etc. All theses, including the MainWindow,
 inherit from the abstract UiPart class which captures the commonalities between
 classes that represent parts of visible GUI.
 
@@ -190,25 +196,6 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-#### Design considerations:
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
