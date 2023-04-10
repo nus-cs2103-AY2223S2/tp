@@ -8,11 +8,10 @@ src/main/resources/docs/
 /out/
 /*.iml
 
-# Storage/log files
-/data/
-/config.json
-/preferences.json
-/*.log.*
+## Storage/log files
+#/config.json
+#/preferences.json
+#/*.log.*
 
 # Test sandbox files
 src/test/data/sandbox/
@@ -20,3 +19,7 @@ src/test/data/sandbox/
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+
+# Error logs
+*.log
+/bin

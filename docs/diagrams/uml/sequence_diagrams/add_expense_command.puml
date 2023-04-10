@@ -1,0 +1,91 @@
+@startuml  AddExpenseSequenceDiagram
+!include ../../style.puml
+
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+box Model MODEL_COLOR_T1
+participant "newExpense: Expense" as Expense order 2 MODEL_COLOR
+participant "dataModel: Model" as Model order 3 MODEL_COLOR
+participant "expenseTracker: ExpenseTracker" as ExpenseTracker order 4 MODEL_COLOR
+participant "expenses: ExpenseList" as ExpenseList order 5 MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":AddExpenseCommand" as Command LOGIC_COLOR
+participant ":CommandResult" as Result LOGIC_COLOR
+end box
+
+[->Command: execute(dataModel)
+activate Command
+Command -> Expense: getCategory()
+activate Expense
+Expense --> Command: newCategory
+deactivate Expense
+Command -> Model : getCategoryInstance(newCategory)
+ref over Model, ExpenseTracker
+    get existing category
+end ref
+Model --> Command: existingCategory
+alt existingCategory != null
+    Command -> Expense: setCategory(existingCategory)
+    activate Expense
+    Expense -> Model
+    ref over Model
+        sets category to
+        link to existing one.
+    end ref
+    Model --> Expense
+    Expense --> Command
+    deactivate Expense
+else else
+    Command -> Model
+    activate Model
+    Model -> ExpenseTracker : addCategory(toAdd)
+    activate ExpenseTracker
+
+    ExpenseTracker -> ExpenseList
+    ref over ExpenseList
+        add newCategory to
+        ObservableList<Expense>
+    end ref
+    ExpenseList --> ExpenseTracker
+    ExpenseTracker --> Model
+    deactivate ExpenseTracker
+    Model --> Command
+    deactivate Model
+end
+Command -> Model: addExpense(newExpense)
+activate Model
+Model -> ExpenseTracker: addExpense(newExpense)
+activate ExpenseTracker
+ExpenseTracker -> ExpenseList: add(expense)
+activate ExpenseList
+ExpenseList -> ExpenseList: add newExpense to \nObservableList<Expense>
+ExpenseList --> ExpenseTracker
+deactivate ExpenseList
+ExpenseTracker -> ExpenseList: sortList()
+activate ExpenseList
+ExpenseList -> ExpenseList: sort expenses in \nObservableList<Expense>\nby date
+ExpenseList --> ExpenseTracker
+deactivate ExpenseList
+ExpenseTracker --> Model
+deactivate ExpenseTracker
+Model -> Model: updateFilteredExpenseList\n(PREDICATE_SHOW_ALL_EXPENSES)
+activate Model
+deactivate Model
+Model --> Command
+deactivate Model
+create Result
+Command -> Result
+activate Result
+Result --> Command
+deactivate Result
+[<-- Command: result
+destroy Command
+
+@enduml

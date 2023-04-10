@@ -1,0 +1,44 @@
+@startuml  ListCategorySequenceDiagram
+!include ../../style.puml
+
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+
+
+box Logic LOGIC_COLOR_T1
+participant ":ListCategoryCommand" as ListCategoryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model order 3 MODEL_COLOR
+end box
+
+[-> ListCategoryCommand : execute(model)
+activate ListCategoryCommand
+ListCategoryCommand -> Model : updateFilteredExpenseList(predicate)
+activate Model
+deactivate Model
+create CommandResult
+ListCategoryCommand -> CommandResult
+
+activate CommandResult
+CommandResult --> ListCategoryCommand
+deactivate CommandResult
+[<--ListCategoryCommand : result
+deactivate ListCategoryCommand
+destroy ListCategoryCommand
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+
+@enduml

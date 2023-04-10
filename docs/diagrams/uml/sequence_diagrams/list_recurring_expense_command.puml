@@ -1,0 +1,42 @@
+@startuml  ListRecurringExpensesSequenceDiagram
+!include ../../style.puml
+
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+box Logic LOGIC_COLOR_T1
+participant ":ListRecurringExpenseCommand" as ListRecurringExpenseCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model order 3 MODEL_COLOR
+end box
+
+[-> ListRecurringExpenseCommand : execute(model)
+activate ListRecurringExpenseCommand
+ListRecurringExpenseCommand -> Model : updateFilteredExpenseList(predicate)
+activate Model
+deactivate Model
+create CommandResult
+ListRecurringExpenseCommand -> CommandResult
+
+activate CommandResult
+CommandResult --> ListRecurringExpenseCommand
+deactivate CommandResult
+[<--ListRecurringExpenseCommand : result
+deactivate ListRecurringExpenseCommand
+destroy ListRecurringExpenseCommand
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+
+@enduml

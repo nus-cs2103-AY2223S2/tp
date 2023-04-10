@@ -1,0 +1,75 @@
+@startuml  EditExpenseSequenceDiagram
+!include ../../style.puml
+
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+box Model MODEL_COLOR_T1
+participant "dataModel: Model" as Model order 3 MODEL_COLOR
+participant "expenseTracker: ExpenseTracker" as ExpenseTracker order 4 MODEL_COLOR
+participant "expenses: ExpenseList" as ExpenseList order 5 MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":EditExpenseCommand" as Command LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[->Command: execute(dataModel)
+activate Command
+Command -> Model: getFilteredExpenseList()
+activate Model
+Model --> Command: lastShownExpenseList
+deactivate Model
+Command -> Model: getFilteredCategoryList()
+activate Model
+Model --> Command: lastShownCategoryList
+deactivate Model
+
+Command -> Model
+ref over Model
+    Look for matching category in
+    lastShownCategoryList and
+    retrieve the category list
+end ref
+ref over Model
+    Obtain the expense from lastShownExpenseList
+    using the parsed index
+    Create new expense with the new values
+end ref
+Model --> Command
+
+Command -> Model: setExpense(target, editedExpense)
+activate Model
+Model -> ExpenseTracker: setExpense(target, editedExpense)
+activate ExpenseTracker
+ExpenseTracker -> ExpenseList: setExpense(target, editedExpense)
+activate ExpenseList
+ExpenseList -> ExpenseList: retrieve target's index from \nObservableList<Expense>, \nset editedExpense at index
+ExpenseList --> ExpenseTracker
+deactivate ExpenseList
+ExpenseTracker -> ExpenseList: sortList()
+activate ExpenseList
+ExpenseList -> ExpenseList: sort expenses in \nObservableList<Expense>\nby date
+ExpenseList --> ExpenseTracker
+deactivate ExpenseList
+ExpenseTracker --> Model
+deactivate ExpenseTracker
+Model -> Model: updateFilteredExpenseList\n(PREDICATE_SHOW_ALL_EXPENSES)
+activate Model
+deactivate Model
+Model --> Command
+deactivate Model
+create CommandResult
+Command -> CommandResult
+activate CommandResult
+CommandResult --> Command
+deactivate CommandResult
+' [<-- Command: result
+destroy Command
+
+@enduml

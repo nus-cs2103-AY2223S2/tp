@@ -1,0 +1,35 @@
+@startuml  FindSequenceDiagram
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model order 3 MODEL_COLOR
+end box
+
+[-> FindCommand : execute(model)
+activate FindCommand
+FindCommand -> Model : updateFilteredPersonList(predicate)
+activate Model
+deactivate Model
+create CommandResult
+FindCommand -> CommandResult
+
+activate CommandResult
+CommandResult --> FindCommand
+deactivate CommandResult
+' FindCommand --> [ : result
+[<--FindCommand : result
+deactivate FindCommand
+destroy FindCommand
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+@enduml

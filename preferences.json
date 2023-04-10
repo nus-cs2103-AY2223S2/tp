@@ -1,0 +1,11 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 1000.0,
+    "windowHeight" : 700.0,
+    "windowCoordinates" : {
+      "x" : 208,
+      "y" : 25
+    }
+  },
+  "expenseTrackerFilePath" : "data/fastTrack.json"
+}

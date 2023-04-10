@@ -7,5 +7,6 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "expenseTrackerFilePath" : "data/fastTrack.json"
 }
+

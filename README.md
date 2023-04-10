@@ -1,14 +1,23 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S2-CS2103T-W09-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W09-2/tp/actions)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W09-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103T-W09-2/tp/)
 
-![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+![UiMockup](docs/images/Ui.png)
+
+# FastTrack
+FastTrack is specifically designed to cater to the needs of tech-savvy NUS computing students who are on a tight budget.
+With our expense tracking features, students can easily track their daily expenses and ensure that they are not overspending.
+The Command Line Interface (CLI) and batch logging features make it easy to enter expenses quickly and efficiently.
+which is ideal stressed out undergraduates with limited free times.
+
+### Core Features
+* Log and delete expenses
+* Create and delete expense categories
+* Filter expenses by categories
+* Graphical User Interface (GUI) displaying spending statistics to allows students to view their financial situation at a single glance and understand how to improve their spending habits to keep within predefined budgets
+
+### Aim
+By providing an easy-to-use, feature-rich expense tracker which focuses on speed, the user is able to log expenses quickly and view their spending habits, giving them the best of both worlds.
+
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU Initiative](http://se-education.org).
