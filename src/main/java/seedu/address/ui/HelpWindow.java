@@ -123,17 +123,20 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the user guide in the user's web browser.
+     * Opens the URL in the user's web browser.
      */
     @FXML
     private void openUserGuide() {
+        //@@author jhchee18-reused
+        //Reused from https://github.com/jolynloh/tp/blob/master/src/main/java/seedu/application/ui/HelpWindow.java
+        // with minor modifications
         try {
-            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                 Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
                 logger.info("Opened user guide in web browser.");
             }
         } catch (IOException | URISyntaxException e) {
-            logger.info("Error: could not open user guide.");
+            logger.info("Could not open user guide in browser.");
         }
     }
 }
