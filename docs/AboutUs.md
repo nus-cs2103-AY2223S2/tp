@@ -45,7 +45,7 @@ You can reach us at the github `https://github.com/AY2223S2-CS2103T-F12-2`
 [[portfolio](team/linustws.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Implementing features
 
 ### Yip-Au Hew Kit, Shawn
 
