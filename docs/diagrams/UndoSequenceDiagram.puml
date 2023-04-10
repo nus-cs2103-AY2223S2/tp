@@ -1,53 +1,53 @@
 @startuml
 !include style.puml
 
-box Logic LOGIC_COLOR_T1
+box "Logic component" LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+participant ":VimificationParser" as VimificationParser LOGIC_COLOR
+participant ":UndoCommand" as UndoCommand LOGIC_COLOR
+participant "command:UndoableLogicCommand" as UndoableLogicCommand LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+box "Model component" MODEL_COLOR_T1
+participant "commandStack:CommandStack" as CommandStack MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+
+-> LogicManager : execute("undo")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> VimificationParser : parse("undo")
+activate VimificationParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+VimificationParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> VimificationParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+VimificationParser --> LogicManager
+deactivate VimificationParser
 
-LogicManager -> UndoCommand : execute()
+LogicManager -> UndoCommand : execute(taskList, commandStack)
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
-activate Model
+UndoCommand -> CommandStack : pop()
+activate CommandStack
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+CommandStack --> UndoCommand : command
+deactivate CommandStack
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+UndoCommand -> UndoableLogicCommand : undo(taskList)
+activate UndoableLogicCommand
 
-Model --> UndoCommand
-deactivate Model
+UndoableLogicCommand --> UndoCommand : result
+deactivate UndoableLogicCommand
 
 UndoCommand --> LogicManager : result
 deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
+UndoCommand -[hidden]-> LogicManager
 destroy UndoCommand
 
-[<--LogicManager
+<--LogicManager
 deactivate LogicManager
 @enduml

@@ -1,43 +1,38 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-package Storage{
-
-package "UserPrefs Storage" #F4F6F6{
-Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
-Class JsonUserPrefsStorage
-}
-
-Class "<<interface>>\nStorage" as Storage
-Class StorageManager
-
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
-}
-
+package "Storage component" {
+    Class "<<interface>>\nStorage" as Storage
+    Class StorageManager
+    Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+    Class JsonUserPrefsStorage
+    Class "<<interface>>\nMacroMapStorage" as MacroMapStorage
+    Class JsonMacroMapStorage
+    Class "<<interface>>\nTaskListStorage" as TaskListStorage
+    Class JsonTaskListStorage
+    Class JsonAdaptedTaskList
+    Class JsonAdaptedTask
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
+Storage -right-|> UserPrefsStorage
+Storage -down-|> MacroMapStorage
+Storage -left-|> TaskListStorage
+
 StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
-
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
-
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonMacroMapStorage .up.|> MacroMapStorage
+JsonTaskListStorage .up.|> TaskListStorage
+
+StorageManager -up-> "1" UserPrefsStorage
+StorageManager -up-> "1" MacroMapStorage
+StorageManager -up-> "1" TaskListStorage
+
+JsonTaskListStorage ..> JsonAdaptedTaskList
+JsonAdaptedTaskList --> "*" JsonAdaptedTask
 
 @enduml
