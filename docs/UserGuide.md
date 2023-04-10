@@ -19,7 +19,6 @@ connections_ and _accomplishing your goals_!
 </div>
 
 ---
-<div style="page-break-after: always;"></div>
 
 # Table of Contents
 - [Navigating the User Guide](#navigating-the-user-guide)
@@ -401,7 +400,6 @@ If you need more info on the usage of each command, refer to the relevant sectio
 [Scroll back to top](#table-of-contents)
 
 ---
-<div style="page-break-after: always;"></div>
 
 ## Commands
 
