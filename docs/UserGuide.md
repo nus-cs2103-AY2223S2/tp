@@ -4,9 +4,13 @@ title: User Guide
 ---
 ## <a id="contactus"></a>About coNtactUS
 
-Are you a NUS computing student who is struggling to keep track of your school modules? Are you feeling overwhelmed by the constant influx of weekly lectures, tutorials, deadlines and assignments? Are you finding it hard to keep your module resources and notes well-organised? Fret not! With coNtactUS, you can take the first step towards solving all of your problems. 
+Are you a NUS computing student who is struggling to keep track of your school modules? Are you feeling overwhelmed by 
+the constant influx of weekly lectures, tutorials, deadlines and assignments? Are you finding it hard to keep your 
+module resources and notes well-organised? Fret not! With coNtactUS, you can take the first step towards solving all of 
+your problems. 
 
-coNtactUS is a desktop application created by NUS computing students, specially for NUS computing students, just like you. It is a module tracker that lets you store information related to your modules like: 
+coNtactUS is a desktop application created by NUS computing students, specially for NUS computing students, just like 
+you. It is a module tracker that lets you store information related to your modules like: 
 
 1) Lecture and tutorial timeslots  
 2) Lecture and tutorial venues  
@@ -26,6 +30,8 @@ bringing you one step closer to achieving your goals.
 So, what are you waiting for? Read on to find out more about how to use coNtactUs in this user guide! 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>  
+
 ## <a id="ug"></a>About this user guide
 
 If this is the first time you are using coNtactUS, this user guide provides an excellent starting point for you to
@@ -34,6 +40,10 @@ on your computer.
 
 Alternatively, you may refer to the user guide to quickly view information regarding a particular feature that you are
 unsure of how to use.  
+
+To help you better navigate through our user guide, the [Return to ToC](#table) at the end of each section
+allows you return to the Table of Contents. From there, you can quickly access 
+another section by clicking the respective header.  
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
@@ -55,6 +65,8 @@ that you should pay attention to. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>  
+
 ## <a id="table"></a>Table of Contents
 
 * [**About coNtactUS**](#contactus)
@@ -92,49 +104,57 @@ that you should pay attention to. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="start"></a> Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer. If you are unsure about how to do so, you may refer 
 to [how to check the version of Java on my computer](https://blog.hubspot.com/website/check-java-verison).
 
-2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases). Note 
-that the file is named `coNtactUs.jar`
+2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases). 
+The file is named `coNtactUs.jar`
 
-   <div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
+<div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
 on your computer that you download the coNtactUS.jar file onto. This is relevant for the next step. </div>
 
 3. Run the `coNtactUs.jar` file. If you are unsure of how to do so, you may refer to [how to run a jar file]().
 
-4. You should now see a window similar to the one shown below. 
+4. You should now see a window similar to the one shown below. There will be a reminder pop-up window upon 
+launching the application. The [reminder window](#reminder) will be further discussed later.
 
   <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application 
-for your reference. </div>  
-<br>  
+for your reference. </div>
 
 
 <p align="center">
-  <img src="images/Ui.png">
+  <img height="370" width="370" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
-
 <br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## <a id="ui"></a> Familiarising yourself with the user interface  
 
 In case you are unsure of what you see in front of you now, we have come up with annotations to
 introduce you to the user interface. Do have a look at Figure 2 shown below. 
 
 <p align="center">
-  <img src="images/User_Interface.png">
+  <img height="500" width="700" src="images/User_Interface.png">
 </p>
 
-<div align="center">Figure 2: Annotations about the user interface</div>
+<div align="center">Figure 2: Annotations about the user interface</div>   
+<br>   
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
-<br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="module"></a>Familiarising yourself with a module
 
 To start adding a module, we should first learn about what a module is. In coNtactUS, each module has 8 information 
@@ -149,11 +169,11 @@ fields.
 * REMARK: A remark for the module, if any.
 * RESOURCE: A link to a resource for the module, if any. 
 
-This is all you need to know for the time being. Now let's take a closer look at the commands.
-
-<br>  
+This is all you need to know for the time being. Now let's take a closer look at the commands.  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p> 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="commands"></a>Familiarising yourself with the commands  
 
@@ -180,11 +200,12 @@ command, refer to the next section.
    * `exit` : Exits the application.
 
 <div markdown="span" class="alert alert-primary"> :exclamation: The clear command removes all the modules in the 
-list. Only use it if you are sure! </div> 
+list. Only use it if you are sure! </div>   
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-<br>  
+-------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ## <a id="features"></a>Features  
 
 This section introduces you to detailed information about how to use each command.
@@ -199,7 +220,7 @@ This section introduces you to detailed information about how to use each comman
 * [Help command](#help)
 * [Exit command](#exit)
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
 ### <a id="list"></a>Listing all modules: `list`
@@ -208,9 +229,11 @@ By using the `list` command, you can list all the modules that you have stored i
 
 This is a straightforward command. To use it, all you have to type is `list`
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p> 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="add"></a>Adding a module: `add`  
 
 By using the `add` command, you can add a new module to the module tracker. 
@@ -222,7 +245,8 @@ Take note of the format: `add n/MODULE_NAME t/DESCRIPTION [e/TIMESLOT] [a/VENUE]
 adding a new module. The rest of the fields, such as timeslot, venue, and teacher etc. are optional. 
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: The square brackets indicate that a particular field is optional.
+<div markdown="span" class="alert alert-primary">:bulb: The square brackets indicate that a particular field is 
+optional.
 For example, `[a/VENUE]` indicates that the venue field is optional.
 </div>
 
@@ -232,11 +256,16 @@ Examples of valid usages:
 * `add n/CS2030S t/Lab a/COM1-B112 d/040423 23:59 r/Attendance not compulsory :)`
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762259-5f9f5b2c-18d2-4e9b-9d27-6a07c99c6bcb.png">
+   <img height="400" width="300" src="images/add.png">
 </p>
 
 <div align="center">Figure 3 : Adding a new module into the tracker.</div>  
 <br>  
+
+
+<div style="page-break-after: always;"></div>  
+<br>  
+
 
 Examples of invalid usages: 
 * `add n/CS2103T` - there is no description provided.
@@ -246,9 +275,11 @@ Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t
 `d/DEADLINE`.
 Please refer to [format restrictions](#format) to find out more.
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="delete"></a>Deleting a module: `delete`
 
 By using the `delete` command, you can delete a module from the module tracker.
@@ -264,14 +295,16 @@ Format: `delete INDEX`
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230761749-73b7be3f-117d-42f5-bcc2-a1bbbe63fe6b.png">
+   <img height="400" width="300" src="images/delete.png">
 </p>
 
-<div align="center">Figure 4 : Deleting a module from the tracker.</div>
-
+<div align="center">Figure 4 : Deleting a module from the tracker.</div>  
 <br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="edit"></a>Editing a module: `edit`
 
 By using the `edit` command, you can edit the information for a module that is already listed in the 
@@ -296,13 +329,13 @@ Examples of valid usages:
   module to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762280-a40ed804-c8a7-40cd-87ac-a921654ec1bd.png">
+   <img height="400" width="300" src="images/edit.png">
 </p>
 
 <div align="center">Figure 5 : Editing a module in the tracker.</div>  
 <br>  
 
-  
+
 Examples of invalid usages:
 * `edit 0 n/CS2101 t/Tutorial` - The index must be a positive integer.
 
@@ -311,9 +344,10 @@ Examples of invalid usages:
 Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t/DESCRIPTION`, `e/TIMESLOT`, and
 `d/DEADLINE`. Please refer to [format restrictions](#format) to find out more.
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>  
 
 ### <a id="find"></a>Finding a module: `find`
 
@@ -330,14 +364,16 @@ Examples:
 * `find CS2103T` finds all modules with name and/or description including the word `CS2103T`. 
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762292-af7a1943-277f-499e-835f-0f4fec87f16d.png">
+   <img height="350" width="250" src="images/find.png">
 </p>
 
 <div align="center">Figure 6 : Finding a module in the tracker.</div>
-
 <br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="sort"></a>Sorting the modules: `sort`
 
 By using the `sort` command, you can display the modules in a sorted order by either their `timeslot` 
@@ -347,7 +383,8 @@ Format: `sort timeslot` or `sort deadline`
 
 * The `sort timeslot` command will automatically take into consideration the current time of your computer, 
 and then sort the modules based on their timeslot. 
-* For example, if the current day on your computer is Monday, a module with timeslot `Tuesday 05:00 - 07:00` will be shown before a module with timeslot `Wednesday 06:00 - 08:00`. Similarly, if the current day on your computer is 
+* For example, if the current day on your computer is Monday, a module with timeslot `Tuesday 05:00 - 07:00` will be 
+shown before a module with timeslot `Wednesday 06:00 - 08:00`. Similarly, if the current day on your computer is 
 Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown before a module with timeslot 
 `Thursday 06:00 - 08:00`.
 
@@ -356,21 +393,23 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 * For example, a module with deadline `250623` will be shown before a module with deadline `260623`.
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762314-1a02a759-57a6-45e1-84cc-fad35ef77804.png">
+   <img height="350" width="250" src="images/sort.png">
 </p>
 
-<div align="center">Figure 7 : Sorting the modules in the tracker.</div>
-
+<div align="center">Figure 7 : Sorting the modules based on deadline.</div>
 <br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="clear"></a>Clearing all modules: `clear`
 
 By using the `clear` command, you can remove all the modules from the module tracker. 
 
 * This is a straight-forward command, and all you have to type is `clear`
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 ### <a id="help"></a>Viewing help : `help`
@@ -381,23 +420,26 @@ to use the commands.
 * This is a straight-forward command, and all you have to type is `help`
 
 <p align="center">
-   <img src="images/helpMessage.png">
+   <img height="450" width="400" src="images/helpMessage.png">
 </p>
 
 <div align="center">Figure 8 : Help window.</div>
-
 <br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="exit"></a>Exiting the module tracker: `exit`
 
 By using the `exit` command, you can close and exit the application.
 
 * This is a straight-forward command, and all you have to type is `exit`
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="addfeat"></a>Additional Features 
 
@@ -422,14 +464,16 @@ to display the pop-up window at any other point in time. However, this will be a
 features [coming soon](#coming-soon) if you are interested. 
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png">
+   <img height="250" width="350" src="images/reminder.png">
 </p>
 
 <div align="center">Figure 9 : Reminder window.</div>
-
 <br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>  
+
 ## <a id="format"></a>Format Restrictions 
 
 When keying in input values for certain fields when you [add](#add) or [edit](#edit) 
@@ -470,11 +514,18 @@ key in `230223`. It cannot be blank.
 If you are an advanced user who is concerned about further information regarding how you can use the commands of 
 coNtactUS, read on for the next section. 
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="further-info"></a> Further information about commands 
 <div markdown="block" class="alert alert-info">
+
+* You can have multiple values for ```t/DESCRIPTION``` field, but other fields will
+only take a single value.  
+
+* When you edit, it removes the current values (i.e. the values do not stack).  
 
 * You may supply more than one input value for the `t/DESCRIPTION` field, and both will be recorded. 
 An example would be : `edit 1 t/Difficult module t/Fun module`. The resulting module listing would have 2 
@@ -491,15 +542,17 @@ For example, `edit 1 n/CS1231S t/Math heavy` and `edit 1 t/Math heavy n/CS1231S`
 
 
 * If you provide an input value for commands that do not take in any input value (such as `help`, `list`, `exit` 
-and `clear`), the input value will be ignored. For example, `help 123` will simply be interpreted as `help` by the program.
+and `clear`), the input value will be ignored. For example, `help 123` will simply be interpreted as `help` by the 
+program.
 
 
 </div>
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="input"></a> More examples of valid and invalid input values 
 
@@ -526,7 +579,7 @@ know what information are considered valid and what are not.<br>
       <code>CS 2101</code>
       <code>gea1000</code>
       <code>ST2334</code>
-      <code>Programming Methodology</code>
+      <code>Programming</code>
     </td>
     <td>
       <code> </code>
@@ -618,8 +671,8 @@ know what information are considered valid and what are not.<br>
     <td>RESOURCES</td>
     <td>
       <code>www.google.com</code>
-      <code>WWW.YOUTUBE.COM</code>
       <code>WwW.GmAiL.cOm</code>
+      <code>WWW.YOUTUBE.COM</code>
     </td>
     <td>
       <code> </code>
@@ -627,9 +680,10 @@ know what information are considered valid and what are not.<br>
   </tr>
 </table>  
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
---------------------------------------------------------------------------------------------------------------------  
+------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>   
 
 ## <a id="data"></a>Data Storage 
 
@@ -650,9 +704,11 @@ If your changes to the data file makes its format invalid, coNtactUS will discar
 data file at the next run.
 </div>
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
  --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="limitation"></a>Current product limitations (Important) 
 
 Note that currently, coNtactUS does not enforce any additional checks for conflicting `s/teacher`, `e/timeslot`, 
@@ -669,32 +725,35 @@ Note that currently, coNtactUS does not enforce any additional checks for confli
 
 * It might not make sense to have the same teacher `Bob`, teaching two different classes 
 that are located at different venues (`LT-19` and `COM1-B1`) at the same timing (`Monday 11:00 15:00`). However, we 
-felt that this allows you the flexibility to supply an input value that you desire without being subjected to unnecessary
-conflict checks. After all, `Bob` may be referring to two different persons. 
+felt that this allows you the flexibility to supply an input value that you desire without being subjected to 
+unnecessary
+conflict checks. After all, `Bob` may be referring to two different persons.  
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="coming"></a>Coming soon 
 
 coNtactUS is a continual work in progress, with newer and better features always being built by the development team. 
-Here are some new features that you can look forward to in the near future: 
+Here are some new features you can look forward to in the near future: 
 
-* Currently, the reminder pop-up window only appears when coNtactUS is launched. We understand that you may want to 
-view this reminder pop-up window at any moment while you are using coNtactUs. This is why we will be adding a command
-for you to do so, so you can see the reminders at any time you wish. 
+* Currently, the reminder pop-up window only appears when coNtactUS is launched. You may want to 
+view this reminder pop-up window at any moment while you are using coNtactUs. Hence, we will be adding a command
+for you to do so, so you can see the reminders at any time you wish.   
 
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
  --------------------------------------------------------------------------------------------------------------------
 ## <a id="glossary"></a>Glossary 
 
-If you have any confusion about some of the technical terms used in this user guide, you may 
+If you have any confusion about the technical terms used in this user guide, you may 
 refer to the glossary below.  
 
 #### Attribute  
-Refers to a specific input value from the user that provides details to execute a command. Attributes, except for
-are preceded by their prefixes. Example includes ```n/MODULE_NAME``` and ```d/DEADLINE```. 
+Refers to a specific input value from the user that provides details to execute a command. Attributes
+are preceded by their prefixes. Example includes ```n/MODULE_NAME```. 
 
 #### Command Word  
 Refers to the keyword in a valid user command. Examples include ```add```, ```edit``` and ```delete```.  
@@ -704,13 +763,13 @@ Refers to the application used to track the entries of different modules input b
 
 #### Prefix  
 Refers to a character ending in a slash ("/") that precedes an attribute value. It indicates the type of
-information to follow. Example includes ```a/``` as prefix for ```VENUE``` attribute and ```s/```
-as prefix for ```TEACHER``` attribute.  
+information to follow. Example includes ```a/``` as prefix for the ```VENUE``` attribute.   
 
-<br>  
-
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## <a id="faq"></a>FAQ 
 
@@ -720,7 +779,7 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 
 **Q**: Can I only exit coNtactUS through the `exit` command? <br>
 **A**: Not at all! It is one of the ways you can exit the program. You may also simply close the browser window.  
-<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 ## <a id="command-summary"></a>Command summary 
@@ -736,5 +795,7 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 | **clear**  | `clear`                                                                                                               |
 | **help**   | `help`                                                                                                                |
 | **exit**   | `exit`                                                                                                                |
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 
