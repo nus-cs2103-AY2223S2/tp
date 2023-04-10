@@ -36,10 +36,6 @@ Given below are my contributions to the project.
 * **Project management**:
     * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
-* **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
 * **Documentation**:
     * User Guide:
         * Added Feature List [\#118](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/118)
@@ -53,8 +49,8 @@ Given below are my contributions to the project.
         * Fixed trailing whitespaces arising from Notion conversion [\#84](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/84)
         * Added use case for the `edit_app` feature [\#102](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/102)
         * Added diagrams for `sort` feature [\#205](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/205)
+        * Updated Table of Contents and did cosmetic tweaks to the guide [\#222](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/222)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#29](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/29), [\#78](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/78), [\#79](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/79)
-    * Reported bugs and suggestions for other teams in the class ([PE Dry Run](https://catcher-org.github.io/CATcher/phaseBugReporting))
-
+    * Reported bugs and suggestions for other teams in the class ([1](https://github.com/panpannnnn/ped/issues/1), [2](https://github.com/panpannnnn/ped/issues/2), [3](https://github.com/panpannnnn/ped/issues/3), [4](https://github.com/panpannnnn/ped/issues/4), [5](https://github.com/panpannnnn/ped/issues/5), [6](https://github.com/panpannnnn/ped/issues/6), [7](https://github.com/panpannnnn/ped/issues/7))
