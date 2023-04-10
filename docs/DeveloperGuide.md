@@ -745,7 +745,7 @@ _**MSS**_
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Customer/Client**: Those who placed orders and created work for delivery men.
 * **GUI**: Graphical User Interface
-* **PlantUML**: An open-source tool allowing users to create diagrams from a plain text language. Refer to plantuml.com.
+* **PlantUML**: An open-source tool allowing users to create diagrams from a plain text language. Refer to [PlantUML](https://plantuml.com/).
 * **CLI**: Command Line Interface
 
 --------------------------------------------------------------------------------------------------------------------
