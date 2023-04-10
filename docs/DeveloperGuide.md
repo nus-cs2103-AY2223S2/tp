@@ -252,64 +252,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `MATHUTORING` and the **Actor** is the `Tutor`, unless specified otherwise)
 
-**1. Use case: Delete a student**
-
-**MSS**
-
-1.  Tutor requests to list students.
-2.  MATHUTORING shows a list of students.
-3.  Tutor requests to delete a specific student in the list.
-4.  MATHUTORING deletes the student.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. MATHUTORING shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given command argument(s) are invalid.
-    * 3b1. MATHUTORING shows an error message.
-
-      Use case resumes at step 2.
-
-**2. Use case: Update a student**
-
-**MSS**
-
-1.  Tutor requests to list students.
-2.  MATHUTORING shows a list of students.
-3.  Tutor requests to edit a specific student in the list.
-4.  MATHUTORING edits the student.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. MATHUTORING shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given command argument(s) are invalid.
-
-    * 3b1. MATHUTORING shows an error message.
-
-      Use case resumes at step 2.
-
-**3. Use case: Add a task**
+**1. Use case: Add a task**
 
 **MSS**
 
@@ -350,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**4. Use case: Delete a task**
+**2. Use case: Delete a task**
 
 **MSS**
 
@@ -385,7 +328,7 @@ Use case ends.
 
       Use case ends.
 
-**5. Use case: Mark a task as late**
+**3. Use case: Mark a task as late**
 
 **MSS**
 
@@ -420,7 +363,7 @@ Use case ends.
 
       Use case ends.
 
-**6. Use case: Add a score**
+**4. Use case: Add a score**
 
 **MSS**
 
@@ -450,7 +393,7 @@ Use case ends.
 
       Use case ends.
 
-**7. Use case: Delete a score**
+**5. Use case: Delete a score**
 
 **MSS**
 
@@ -491,7 +434,7 @@ Use case ends.
 
       Use case resumes at step 3.
 
-**8. Use case: Export a student's progress**
+**6. Use case: Export a student's progress**
 
 **MSS**
 
@@ -519,7 +462,7 @@ Use case ends.
 
     Use case resumes at step 5.
 
-**9. Use case: Import application data via CLI**
+**7. Use case: Import application data via CLI**
 
 **MSS**
 
@@ -537,7 +480,7 @@ Use case ends.
 
   Use case resumes at step 1.
 
-**10. Use case: Import application data via GUI**
+**8. Use case: Import application data via GUI**
 
 **MSS**
 
@@ -556,7 +499,7 @@ Use case ends.
 
   Use case resumes at step 3.
 
-**11. Use case: Export application data via CLI**
+**9. Use case: Export application data via CLI**
 
 **MSS**
 
@@ -570,7 +513,7 @@ Use case ends.
 
   Use case resumes at step 1.
 
-**12. Use case: Export application data via GUI**
+**10. Use case: Export application data via GUI**
 
 **MSS**
 
@@ -590,7 +533,7 @@ Use case ends.
 
   Use case ends.
 
-**13. Use case: Export student's progress via CLI**
+**11. Use case: Export student's progress via CLI**
 
 **MSS**
 
@@ -608,7 +551,7 @@ Use case ends.
 
     Use case ends.
 
-**14. Use case: Export student's progress via GUI**
+**12. Use case: Export student's progress via GUI**
 
 **MSS**
 
@@ -649,7 +592,7 @@ Use case ends.
 
     Use case ends.
    
-**15. Use case: Switch panel via CLI**
+**13. Use case: Switch panel via CLI**
 
 **MSS**
    
@@ -665,7 +608,7 @@ Use case ends.
    
   Use case resumes at step 1.
    
-**16. Use case: Switch panel via GUI**
+**14. Use case: Switch panel via GUI**
 
 **MSS**
 
@@ -678,7 +621,7 @@ Use case ends.
    
    Use case ends.
    
-**17. Use case: Filter student list by student tag/s**
+**15. Use case: Filter student list by student tag/s**
 
 **MSS**
    
@@ -701,7 +644,7 @@ Use case ends.
    
   Tutor case resumes at step 1.
    
-**18. Use case: Check a student**
+**16. Use case: Check a student**
 
 **MSS**
    
