@@ -22,6 +22,8 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 7. Additional classes for Storage to support storing different object types
 8. Contributed to remodelling of test files
 
+---
+
 ### Contributions to UG&nbsp;
 1. Participated in drafting [UG (v1.1)](https://docs.google.com/document/d/129glYXctEtL77of9dMmzea-TjVfZh727fVPrv_e9AyI/edit?usp=share_link)
 
