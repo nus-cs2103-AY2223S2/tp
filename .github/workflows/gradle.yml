@@ -24,7 +24,9 @@ jobs:
       - name: Run repository-wide tests
         if: runner.os == 'Linux'
         working-directory:  ${{ github.workspace }}/.github
-        run: ./run-checks.sh
+        run: |
+          sudo apt-get install libgtk-3-0
+          ./run-checks.sh
 
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
