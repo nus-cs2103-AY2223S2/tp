@@ -210,7 +210,10 @@ Here is a list of GoodMatch features, click on them to jump to the section! Each
 
 Shows a message explaining how to access the help page.
 
-![Help Message](./images/helpMessage.png)
+<p>
+  <img class="diagram" src="images/helpMessage.png" />
+  <em>Help window that will appear when you run `help`.</em>
+</p>
 
 ✏️ **Format:** `help`
 
