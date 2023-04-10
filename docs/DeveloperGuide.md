@@ -1290,62 +1290,31 @@ These commands should be tested on the Grades Page.
 ---
 
 ## Appendix: Effort
-Estimating the effort required for a project can be a challenging task. To help evaluators estimate the effort
-required for our project. we have provided the following information.
-
-### Difficulty Level
-Our project involved designing and implementing a comprehensive solution for managing the student roster. This required
-a thorough understanding of the domain and the ability to design object types that accurately represented the various
-entities and relationships involved.
-
-### Challenges Faced
-#### Multiple Object Types
+#### Challenges Faced
+##### Multiple Object Types
 One of the main challenges we faced was establishing dependencies between the various object types in a way that
 ensured consistency and minimized data duplication. This required careful consideration of the various use cases and
-edge cases that could arise during the management of the student roster. Detailed implementation is described under [Implementation](#student-roster-object-types).
+edge cases that could arise during the management of the student roster. This is in contrast to AB3 which has only 1 main object type (`Person`) to manipulate in the `AddressBook`.
+Detailed implementation is described under [Implementation](#student-roster-object-types).
 
-#### Page Navigation
+##### Page Navigation
 As CLIpboard has multiple different pages to display different types of objects at a given time. As such, a way of keeping track of the current page, as well as the possible pages to navigate to, was needed.
 
 Additionally, navigating a page also meant traversing the object hierarchy.
 There had to be a way to store information about which object had been selected, in order to know which object a user command should manipulate. (e.g If the user is on the "Courses" page and selects a course, this selection needs to be saved. Then, further commands performed by the user will execute on the selected course)
 
-In short, page information as well as pointers to the objects selected by the user needed to be maintained. These were achieved through the `CurrentSelection` class, which is tied to a `ModelManager` instance as a field.
-
 Adding page navigation added further challenges, as more factors had to now be considered. These include restricting certain commands to only be allowed on certain pages, commands executing differently depending on the current page, as well as handling the loading of appropriate GUI elements respective to the page.
 
-#### Storage
+##### Storage
 As compared to AB3, CLIpboard maintains several more types of objects to store. These added types of objects needed their own respective classes to serialize them into `json` objects.
 
-The added types also had a specific hierarchy (e.g `Roster` -> `Course` -> `Group` -> `Student`), as well as a deeper serialization depth than AB3, which required further modification to the storage classes to handle.
+The added types also had a specific hierarchy (e.g `Roster` -> `Course` -> `Group` -> `Student`), different data fields, as well as a deeper serialization depth than AB3, which required further modification to the storage classes to handle.
 
-On top of creating the respective `json` serializing classes for each different type of object, each type of object would also have slightly different fields to keep track of, which added further complexity to serializing these objects.
-
-
-### Effort Required
-The effort required for our project can be broken down into the following components:
-- Design: 20%
-- Implementation: 60%
-- Testing: 15%
-- Documentation: 5%
-
-The majority of the effort (60%) was spent on the implementation of the various object types and their dependencies.
-This involved a significant amount of programming and debugging, as well as ongoing refinement of the design as new
-use cases were identified.
-
-### Achievements
+#### Achievements
 Our project has resulted in a comprehensive and user-friendly solution for managing the student roster. The object
 types we have designed accurately represent the various entities and relationships involved, and the established
 dependencies ensure consistency and reduce the risk of data duplication and inconsistencies.
 
-### Reuse
-We did not reuse any external libraries or code in our project. All of the object types and their dependencies were
-designed and implemented from scratch.
+#### Reuse
+All of the object types and their dependencies were designed and implemented from scratch, aside from AB3 implementations.
 
-### Comparison to AB3
-While AB3 deals with only one entity type, our project was more challenging because it deals with multiple entity
-types and requires the establishment of dependencies between them. This required a more complex design and
-implementation effort than would be required for a project dealing with a single entity type.
-
-Overall, our project required a significant amount of effort, but we are confident that the resulting solution is
-robust, scalable, and user-friendly.
