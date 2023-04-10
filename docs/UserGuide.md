@@ -849,6 +849,7 @@ This is a carefully crafted feature that will be explained in the following sect
   * if you have a lesson named `Math Lesson` for `John Doe` on `2023-05-21` from `12:00` to `14:00`
   * you then try to add another lesson with the same name but on `2023-05-24` from `13:00` to `15:00`, TutorPro will not detect that there is a duplicate lesson and will add the lesson.
 
+
 <div style="page-break-after: always;"></div>
 
 #### Duplicate Exam Detection
