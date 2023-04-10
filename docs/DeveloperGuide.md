@@ -1186,9 +1186,41 @@ testers are expected to do more *exploratory* testing.
    8. Test case: `add n/Shaun xxx/` \\
       Expected: No student is added to the list. Same as previous.
 
-   9. Other incorrect add commands to try: `add n/Shaun xxx/INVALID_PARAMETER`, (where xxx is any of the valid prefixes, INVALID_PARAMETER is an invalid parameter input for the respective prefix). \\
+   9. Other incorrect add commands to try: `add n/Shaun xxx/INVALID_PARAMETER` (where xxx is any of the valid prefixes, INVALID_PARAMETER is an invalid parameter input for the respective prefix). \\
       Expected: Same as previous, except error message is xxx prefix specific.
+
+### Editing a student entry
+  
+1. Editing a student while all students are being shown
+
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
    
+   2. Test case: `edit 1 n/Shaun` \\
+      Expected: Student entry at position 1 of the student list will have their name updated to `Shaun`
+   
+   3. Test case: `edit 1 n/Shaun n/Benny` \\
+      Expected: Student entry at position 1 of the student list will have their name updated to the last parameter, `Benny`.
+
+   4. Test case: `edit 1 xxx/PARAMETER...` (where xxx is a valid prefix and PARAMETER is a valid input for the respective prefix and ... indicates any number of additional xxx/PARAMETER) \\
+      Expected: Same as before except updated/added detail(s) are the specified inputs.
+   
+   5. Test case: `edit` \\ 
+      Expected: No student in the list is edited. The error message shown details `Invalid command format!` followed by the `edit` command format and example.
+
+   6. Test case: `edit 1 i/` \\
+      Expected: Same as previous.
+
+   8. Test case: `edit 1` \\
+      Expected: No student in the list is edited. The error message shown states `The person index provided is invalid`.
+
+   9. Test case: `edit xxx` (where xxx is any invalid index such as 0, -1, an index greater than the length of the list) \\
+      Expected: Same as previous.
+   
+   10. Test case: `edit 1 n/???` \\
+       Expected: No student in the list is edited. The error message shown details the requirements for a valid name parameter input.
+   
+   11. Test case: `edit 1 xxx/INVALID_PARATEMER...` (where xxx is a valid prefix and INVALID_PARAMETER is an invalid parameter input for the respective prefix) \\
+       Expected: Similar to previous, except error message is specific to the first prefix with an invalid parameter.
 
 [↑ Back to top](#table-of-contents)
 
