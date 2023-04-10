@@ -361,35 +361,8 @@ Entering `schedule D/SHORTDATE E/EFFORT` generates a new 30-day plan for users b
 
 Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan. [What is a short date?](#q6-what-is-the-difference-between-a-longdate-and-a-shortdate)
 
-<details>
-<summary>How are my plans generated?</summary>
-<br>
-When the schedule command is ran with an <code>E/EFFORT</code> flag, a new 30-day plan is generated, starting from the day the command is run.
-Tasks allocated to a day should not exceed the intended <code>E/EFFORT</code> level indicated.
-<br>
-<br>
-However, if the need arises, the effort allocated for a day can exceed your preferred <code>E/EFFORT</code> level.
-<br>
-<br>
-Task book allocates tasks as such:<br>
-<br>
-
-1. Allocate all events to the day(s) it is supposed to be happening.<br>
-2. Allocate all deadlines to the first day before the deadline (exclusive of due date), such that adding a task to that day does not exceed the user-preferred workload. Otherwise, allocate task to any day before deadline with the least amount of work allocated (in terms of effort).<br>
-3. Allocates each SimpleTask to the most busy day without exceeding desired workload. If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).<br>
-</details>
-<br>
-<details>
-
-<summary>Need more help?</summary>
-<br>
-<b>Displaying Daily Plans</b>
-<br>
-<br>
-Daily Plans can be viewed by entering <code>schedule D/SHORT_DATE</code> or <code>schedule D/SHORT_DATE E/EFFORT</code>, with the former showing an old plan, and the latter showing a newly generated plan.<br>
-As plans are only valid for 30 days from the last time it was generated, you are encouraged to regenerate a plan with an <code>E/EFFORT</code> flag if they do not remember when they last generated their plan.<br>
-<br>
-</details>
+Examples:
+- Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
 
 <br>
 :warning: Valid `D/SHORTDATE` are 30-days from the day plan was generated. Re-scheduling plans multiple times would not make an invalid date become valid.
@@ -399,8 +372,29 @@ As plans are only valid for 30 days from the last time it was generated, you are
 :warning: If an empty plan is shown, it could mean that a plan has not yet been generated. Please enter `schedule D/SHORTDATE E/EFFORT` to generate a new plan. If the plan is still empty after generating a new plan, it means that there are no tasks allocated to that day.
 <br>
 
-Examples:
-- Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
+#### 4.9.1 How are my plans generated?
+
+When the schedule command is ran with an <code>E/EFFORT</code> flag, a new 30-day plan is generated, starting from the day the command is run.
+Tasks allocated to a day should not exceed the intended <code>E/EFFORT</code> level indicated.
+
+However, if the need arises, the effort allocated for a day can exceed your preferred <code>E/EFFORT</code> level.
+
+Task book allocates tasks as such:<br>
+<br>
+
+1. Allocate all events to the day(s) it is supposed to be happening.<br>
+2. Allocate all deadlines to the first day before the deadline (exclusive of due date), such that adding a task to that day does not exceed the user-preferred workload. Otherwise, allocate task to any day before deadline with the least amount of work allocated (in terms of effort).<br>
+3. Allocates each SimpleTask to the most busy day without exceeding desired workload. If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).<br>
+
+
+#### 4.9.2 Need more help?
+<br>
+<b>Displaying Daily Plans</b>
+<br>
+<br>
+Daily Plans can be viewed by entering <code>schedule D/SHORT_DATE</code> or <code>schedule D/SHORT_DATE E/EFFORT</code>, with the former showing an old plan, and the latter showing a newly generated plan.<br>
+As plans are only valid for 30 days from the last time it was generated, you are encouraged to regenerate a plan with an <code>E/EFFORT</code> flag if they do not remember when they last generated their plan.<br>
+<br>
 
 ## 4.10 Subsections
 
