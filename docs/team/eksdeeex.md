@@ -23,6 +23,8 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=eksdeeex&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
+<div style="page-break-after: always;"></div>
+
 * **Project management**:
   * Release of `v1.2` on GitHub.
     * Create `rate` command (Pull Request [#79](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/79))
@@ -50,6 +52,7 @@ Given below are my contributions to the project.
       - `unmark` feature. (Pull Request [#109](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/109))
     * Added UML diagrams to represent application structure, features and flow. (Pull Request [#146](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/146))
 
+<div style="page-break-after: always;"></div>
 
 * **Community**:
   * PRs reviewed and merged:
