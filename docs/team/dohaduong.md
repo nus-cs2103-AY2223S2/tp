@@ -48,7 +48,7 @@ Given below are my contributions to the project.
         * Re-format, touch up, fix minor bugs and finalize UG (PR #200, #205, #260)
       
     * Developer Guide:
-        * Added implementation details and diagrams for `UI component/Timetable Window`, `Logic Component`, `Timetable` and `delete_job` (PR #128, #270. #276)
+        * Added implementation details and diagrams for `UI component/Timetable Window`, `Logic Component`, `Timetable` and `delete_job` (PR #128, #270, #276)
         * Added user stories for timetable, reminder; use cases for timetable and glossary (PR #20, #23, #34, #270)
         * Added Appendix: Effort (PR #270)
 
