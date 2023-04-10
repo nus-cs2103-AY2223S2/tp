@@ -9,24 +9,12 @@ for the clients. The user interacts with it using a CLI, and it has a GUI create
 It is written in Java. <br>
 Given below are my contributions to the project.
 
-* **New Class**: Added *Weight* class to client and enhanced **Add** and **Edit** Command.
-  * What it does: allows the user to add and edit his/her weight.
+* **New Class**: Added *Weight*, *Gender*, *Goal*  class to client and enhanced **Add** and **Edit** Command.
+  * What it does: allows the user to add and edit his/her weight/gender/goal.
   * Justification: This feature improves the product significantly because a user may want to keep track of the
-    weight of his/her clients which makes it easier for the client to keep track.
+    details like weight/gender/goal of his/her clients which makes it easier the trainer to track.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
-* **New Class**: Added *Goal* class to client and enhanced **Add** and **Edit** Command.
-  * What it does: allows the user to add and edit the goal of the client. (Optional attribute)
-  * Justification: This feature improves the product significantly because a user may want set goals of his client
-    so that he can personalize exercises to be able to meet their goals.
-  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-
-* **New Class**: Added *Gender* class to client and enhanced **Add** and **Edit** Command.
-  * What it does: allows the user to add and edit the Gender of the client.
-  * Justification: This feature improves the product significantly because a user may want to keep track of the
-    gender of his/her clients which makes it easier to keep track.
-  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-<div style="page-break-after: always;"></div>
 * **New Feature**: Added *export* and *exportRoutine* functionality.
   * What it does: allows the user to export the compulsory data fields of a client which are Name, Phone Number,Email, Address, Weight and Gender. Also allows the user to export Routine details into a csv file.
   * Justification: This feature improves the product significantly because user gets to save their data into a csv format locally on his computer. Which he/she is then able to open the csv file using applications like Microsoft Excel to do further analysis.
@@ -37,15 +25,10 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because user gets to delete a specific Routine in the Routine Storage.
   * Highlights: It required an in-depth analysis of design alternatives. The implementation too was challenging as it modifies the current Routine's storage.
 
-* **New Feature**: Added *addExercise* functionality for Routine Class.
-  * What it does: allows the user to add exercises to the specific Routine in the Routine Storage, and it will be updated in the current model for Routine.
-  * Justification: This feature improves the product significantly because it allows user to add new Exercises to the specific Routine in the Routine Storage.
+* **New Feature**: Added *addExercise* and *listRoutines* functionality for Routine Class.
+  * What it does: allows the user to list all routines as well as add exercises to the specific Routine in the Routine Storage, and it will be updated in the current model for Routine.
+  * Justification: This feature improves the product significantly because it allows user to add new Exercises to the specific Routine in the Routine Storage as well as see the full Routine list stored in FitBook.
   * Highlights: It required an in-depth analysis of design alternatives. The implementation too was challenging as it modifies the current Routine's storage.
-
-* **New Feature**: Added *listRoutines* functionality for Routine Class.
-  * What it does: allows the user to view all the Routines in FitBook.
-  * Justification: This feature improves the product significantly because it allows user to look at what Routines have been stored in the Routine's Storage.
-  * Highlights: It required an in-depth analysis of design alternatives.
 
 * **New Feature**: Added *findRoutines* and *clearRoutines* functionality for Routine Class.
   * What it does: allows the user to find specific Routines in FitBook by keywords as well as clear all Routines in FitBook.
