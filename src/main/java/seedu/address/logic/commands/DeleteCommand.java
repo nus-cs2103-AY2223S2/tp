@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Entity> listByClassification = model.getListByClassification(classification.toString());
+        ObservableList<Entity> listByClassification = model.getListByClassification(classification);
         Entity toDelete = listByClassification.stream()
                 .filter(entity -> entity.getName().equals(entityName))
                 .findFirst()

@@ -19,7 +19,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            String[] input = args.trim().split(" ");
+            String[] input = args.trim().split(" ", 2);
             Classification classification = ParserUtil.parseClassification(input[0]);
             Name name = ParserUtil.parseName(input[1]);
             return new DeleteCommand(name, classification);

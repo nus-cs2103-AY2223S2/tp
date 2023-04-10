@@ -157,7 +157,7 @@ public interface Model {
     /**
      * Get list of entities by classification
      */
-    ObservableList<Entity> getListByClassification(String classification);
+    ObservableList<Entity> getListByClassification(Classification classification);
 
     /**
      * Get new character using template
