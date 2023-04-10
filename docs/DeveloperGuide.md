@@ -235,23 +235,21 @@ The following sequence diagram shows how the add operation works:
 
 ### Past 30 days weight data graph
 #### Implementation
-The weight data graph will be displayed in a pop-up window in the Ui component. It contains a LineChart of `Date` date against `Number` weight, and is populated 
-with data from XYChart.Series. The data is obtained from the logic component, which provides only past 30 days of weight data in the WeightHistory class.
-
+The Past 30 days weight data graph feature displays a LineChart of the weight data against the date for the past 30 days in a pop-up window. This feature retrieves the weight data from the Logic component and updates the graph with the most recent data.
 
 The following details explain how it works:
 
 * The `WeightHistory` class stores the list of weights and dateTime.
 * The GraphPopup.Scene class sets up the LineChart with x-axis as a `Date` representing date, and y-axis as a `Double` representing the weight measurement on that date.
 * Ensure the XYChart.Series that populates the graph with data is always updated with the most recent data.
-* The `handleStatistics` is called by the MainWindow class to generate the weight data graph in a pop-up window.
+* The `handleStatistics` is called by the MainWindow class to generate the weight data graph in a pop-up window. This method retrieves the weight data from the WeightHistory class and updates the graph with the most recent data using the updateSeries method.
+* The `updateSeries` method in the Logic component updates the `XYChart.Series` that populates the graph with data.
 
-Weight over date and time pop-up windows will display the past 30 days graph automatically. It does so by having the MainWindow class call handle statistics 
-on startup and after execution of commands.
 
-Sequence Diagram for Graph feature.
+Sequence Diagram for Graph feature. The diagram omits some method sequence in the pane, scene and stage as those details are just setting the parts for those classes which will not fit in the sequence diagram
+![GraphSequenceDiagram](images/GraphSequenceDiagram.png)
 
-Step 1: MainWindow requests for a graph pop-up window.
+Step 1: MainWindow requests for a graph pop-up window  by executing the graph command.
 
 Step 2: Logic call the WeightHistory class to generate a list of `Date` date mapped to `Double` weight over 30 days. `handleStatistics` method is called to generate 
 graph. `updateSeries` method is called to ensure the data populating the graph is up-to-date.
@@ -263,6 +261,8 @@ graph. `updateSeries` method is called to ensure the data populating the graph i
     * The user executes the  `addWeight` command to add weights and dates. The execution of the `addWeight` command also
       checks whether the date is valid in the date list. If it is, the weight and date are added to the weight and date list. Otherwise, an error is displayed.
     * The user executes the `graph` command to generate weight data graph in the pop-up windows.
+    * The Past 30 days weight data graph feature retrieves the weight data from the WeightHistory class and updates the graph with the most recent data using the updateSeries method.
+    * The weight data graph is displayed in a pop-up window.
 
 
 * Design Considerations
@@ -293,14 +293,15 @@ The following details explain how it works:
       * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment*
       class.
       * In the *EditCommand* class, the data entered by user is parsed.
-      * If there is no error, the Appointment object is created which triggers the getAppointment() function in Model.
+      * If there is no error, the Appointment object is created which triggers the getAppointment() function in FitBookModel.
       * This function, in turn, calls editCommand() function in FitBook.
       * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the
       appointment date time are valid.
       * If the appointment date and time are valid, they are added to the appointment list, which is then sorted.
       Otherwise, an error message is returned.
 
-Sequence Diagram for Edit Appointment feature.
+The following sequence diagram shows how the `edit` command works with appointment input: edit 1 app/05-05-2023 19:00
+![EditAppointmentSequenceDiagram](images/EditAppointmentSequenceDiagram.png)
 
    * Example Usage Scenario
 
