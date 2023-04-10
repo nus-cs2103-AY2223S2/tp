@@ -251,8 +251,10 @@ Step 10. Add event into Ez-Schedule on all dates to be recurred.
 
 The execution, with Step 9 in further detail, can be seen in the activity diagrams given below.
 
+Activity: Command to recur events
 ![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
 
+Activity: Check for time clash for all recurring dates.
 ![RecurCommandRecurringAddActivityDiagram.png](images/RecurCommandRecurringAddActivityDiagram.png)
 
 ### **Edit Command**
