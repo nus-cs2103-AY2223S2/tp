@@ -583,4 +583,6 @@ Given below are the current known feature flaws and the plans the team have for 
 5. Currently, MediConnect does not set the person's date of birth as a compulsory field. We plan to make the date of birth a compulsory field in the next version.
 6. Currently, MediConnect does not check for case sensitivity and reads upper case and lower case items as separate items. We plan to allow MediConnect to ignore case sensitivity in the next version. For example, if Paracetmol and paracetamol can be prescribed to the same patient.
 7. Currently, MediConnect does not limit the number of digits in a phone number. We plan to limit the maximum number of phone digits to 15 in the next version.
+8. Currently, MediConnect only take note of the patient's current prescription but does not store a recorded history of the patient's past prescription.
+We plan to have a prescription history in the next version.
 
