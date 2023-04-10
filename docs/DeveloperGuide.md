@@ -119,12 +119,30 @@ How the parsing works:
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
-The `Model` component,
+The `Model` component stores:
 
-* stores the LoyaltyLift data i.e., all `Customer` objects (which are contained in a `UniqueCustomerList` object), as well as all `Order` objects (which are contained in a `UniqueOrderList` object)
-* stores the currently 'selected' `Customer` and `Order` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` and `ObservableList<Order>` respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* the unique list of all `Customer` and `Order` objects in a `UniqueCustomerList` and `UniqueOrderList`.
+
+* the current filtered list of `Customer` and `Order` objects as separate `FilteredList<Customer>` and `FilteredList<Order>` objects, which uses the unique lists as their source.
+
+* the current sorted list of `Customer` and `Order` objects as separate `SortedList<Customer>` and `SortedList<Order>` objects, which uses the filtered lists as their source.
+
+  These are exposed to the outside as unmodifiable `ObservableList<Customer>` and `ObservableList<Order>` objects that can be 'observed'
+  
+  e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+* the current 'displayed' `Customer` or `Order` object.
+
+* the list of `Order` objects associated with the current 'displayed' `Customer` as a separate `FilteredList<Order>`
+
+  This is exposed to the outside as an `ObservableList<Order>` object.
+
+* a `UserPref` object that represents the user’s preferences.
+
+  This is exposed to the outside as a `ReadOnlyUserPref` object.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `Model` does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+</div>
 
 ### Storage component
 
@@ -1447,5 +1465,3 @@ While each tier will have some default color, we can also consider including an 
 To complement this new command, we also plan to include a `viewtiers` command to display the existing tiers and a `deletetier` command to remove an existing tier.
 
 [//]: # (@@author)
-
-### 
