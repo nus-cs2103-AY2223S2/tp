@@ -29,6 +29,8 @@ Given below are my contributions to the project.
   * New feature: `TabCommand` that allows users to switch between tabs
     * Justification: Like most applications, users can use `CTRL + TAB` or `ARROW KEYS` to cycle through area of focus. This added feature allow users to skip tabs while using a verbose command. This also further optimises the product for CLI use.
     * Highlight: Used the `Observer / Observable` pattern with JavaFX `SimpleIntegerProperty` to listen to changes in the selected tab index. This decouples `TabCommand` in `Logic` from `Ui` and enforces Law of Demeter. Some commands such as `list`/`find` also snaps to relevant tab for better user experience.
+  * Improve test coverage
+    * Spotted bugs and improved test coverage [\#271](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/271), [\#285](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/285), [\#297](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/297)
 
 * **Review / Peer Help**
   * Helped teammates with debugging and test cases

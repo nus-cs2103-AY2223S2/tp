@@ -2,7 +2,7 @@
 skinparam activityFontSize 20
 skinparam activityArrowFontSize 18
 
-'@@author anonymous-reused
+'@@author HmuuMyatMoe-reused
 'Reused from https://forum.plantuml.net/195/is-there-any-support-for-subactivity-or-the-rake-symbol
 sprite $rake <svg width="20" height="20" viewBox="0 0 20 20">
 <path
