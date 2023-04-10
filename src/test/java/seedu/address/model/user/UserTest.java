@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.OneTimeEvent;
 import seedu.address.model.event.RecurringEvent;
@@ -242,5 +243,37 @@ public class UserTest {
         userWithBothEvents.deleteEvent(ONE_TIME_EVENT);
         assertFalse(userWithBothEvents.hasEvent(RECURRING_EVENT));
         assertFalse(userWithBothEvents.hasEvent(ONE_TIME_EVENT));
+    }
+
+    @Test
+    public void deletePersonFromAllEvents_fromOneTimeEvent() {
+        User user = new UserBuilder().withEvents(ONE_TIME_EVENT).build();
+        assertTrue(user.getEvent(Index.fromZeroBased(0)).getTaggedPeople().stream().anyMatch(p -> p.equals(DANIEL)));
+        user.deletePersonFromAllEvents(DANIEL);
+        assertFalse(user.getEvent(Index.fromZeroBased(0)).getTaggedPeople().stream().anyMatch(p -> p.equals(DANIEL)));
+    }
+
+    @Test
+    public void deletePersonFromAllEvents_fromRecurringEvent() {
+        User user = new UserBuilder().withEvents(RECURRING_EVENT).build();
+        assertTrue(user.getEvent(Index.fromZeroBased(0)).getTaggedPeople().stream().anyMatch(p -> p.equals(DANIEL)));
+        user.deletePersonFromAllEvents(DANIEL);
+        assertFalse(user.getEvent(Index.fromZeroBased(0)).getTaggedPeople().stream().anyMatch(p -> p.equals(DANIEL)));
+    }
+
+    @Test
+    public void deletePersonFromAllEvents_personIsNotTagged() {
+        User user = new UserBuilder().withEvents(RECURRING_EVENT).build();
+        assertFalse(user.getEvent(Index.fromZeroBased(0)).getTaggedPeople().stream().anyMatch(p -> p.equals(BOB)));
+        user.deletePersonFromAllEvents(BOB);
+        assertFalse(user.getEvent(Index.fromZeroBased(0)).getTaggedPeople().stream().anyMatch(p -> p.equals(BOB)));
+    }
+
+    @Test
+    public void deletePersonFromAllEvents_multipleEvents() {
+        User user = new UserBuilder().withEvents(RECURRING_EVENT).withEvents(ONE_TIME_EVENT).build();
+        assertTrue(user.getEvent(Index.fromZeroBased(0)).getTaggedPeople().stream().anyMatch(p -> p.equals(DANIEL)));
+        user.deletePersonFromAllEvents(DANIEL);
+        assertFalse(user.getEvent(Index.fromZeroBased(0)).getTaggedPeople().stream().anyMatch(p -> p.equals(DANIEL)));
     }
 }
