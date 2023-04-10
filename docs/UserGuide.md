@@ -214,7 +214,7 @@ overrides *Mycelium*. So we end up with a project named *Desktop*.
 
 ## Managing Clients
 
-This user guide section outlines how to _create_, _update_, and _delete_ client contacts using command in Mycelium.
+This user guide section outlines how to _create_, _delete_, and _update_ client contacts using command in Mycelium.
 
 <div markdown="span" class="alert alert-success">
 :bulb: After executing a command listed in this section, if you are currently
@@ -693,7 +693,7 @@ Fuzzy searching for clients works exactly the same as fuzzy searching projects.
 Just remember that the query is matched against the clients' names only, and
 not their emails.
 
-### Extracing client and project info
+### Extracting client and project info
 
 While in **search mode**, you can use the (ENTER) key to extract a client's email
 or a project's name. This will automatically switch you back to **command mode**
