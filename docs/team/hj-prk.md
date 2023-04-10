@@ -38,8 +38,9 @@ Given below are my contributions to the project.
         * Added command summary
     * Developer Guide:
         * Added Main Mode features to explain how they work.
-        * Added activity and sequence diagrams for the Main Mode. 
+        * Drew activity and sequence diagrams for the Main Mode. 
         * Added Appendix:Manual Testing for the Main Mode.
+        * Added on Appendix:Effort
 
 * **Community**:
     * Reviewed and approved PRs

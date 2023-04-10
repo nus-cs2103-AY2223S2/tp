@@ -89,6 +89,8 @@ public class AddCardCommandTest {
         // same object -> returns true
         assertEquals(addACommand, addACommand);
 
+        assertNotEquals(addACommand, addBCommand);
+
         // same values -> returns true
         AddCardCommand addGravityCommandCopy = new AddCardCommand(questionGravity);
         assertEquals(addACommand, addGravityCommandCopy);

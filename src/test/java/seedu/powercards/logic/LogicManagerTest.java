@@ -173,11 +173,34 @@ public class LogicManagerTest {
 
     @Test
     public void factoryReset_success() {
-        Model exepctedModel = new ModelManager(new MasterDeck(), model.getUserPrefs());
+        Model expectedModel = new ModelManager(new MasterDeck(), model.getUserPrefs());
         logic.factoryReset();
-        assertEquals(exepctedModel, model);
+        assertEquals(expectedModel, model);
     }
 
+    @Test
+    public void getFilteredDeckList_success() {
+        Model expectedModel = new ModelManager(getTypicalMasterDeck(), model.getUserPrefs());
+        expectedModel.reviewDeck(INDEX_FIRST, List.of(new Tag.TagName[]{Tag.TagName.HARD}));
+        Logic logic = new LogicManager(expectedModel, storage);
+        assertEquals(logic.getFilteredDeckList(), expectedModel.getFilteredDeckList());
+    }
+
+    @Test
+    public void getReviewStatsList_success() {
+        Model expectedModel = new ModelManager(getTypicalMasterDeck(), model.getUserPrefs());
+        expectedModel.reviewDeck(INDEX_FIRST, List.of(new Tag.TagName[]{Tag.TagName.HARD}));
+        Logic logic = new LogicManager(expectedModel, storage);
+        assertEquals(logic.getReviewStatsList(), expectedModel.getReviewStatsList());
+    }
+
+    @Test
+    public void getReviewCardList_success() {
+        Model expectedModel = new ModelManager(getTypicalMasterDeck(), model.getUserPrefs());
+        expectedModel.reviewDeck(INDEX_FIRST, List.of(new Tag.TagName[]{Tag.TagName.HARD}));
+        Logic logic = new LogicManager(expectedModel, storage);
+        assertEquals(logic.getReviewCardList(), expectedModel.getReviewCardList());
+    }
 
     private void assertLogicSuccess(String inputCommand, String expectedMessage,
                                     Logic logic) throws CommandException, ParseException {
