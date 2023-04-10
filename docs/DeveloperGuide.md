@@ -149,11 +149,9 @@ The `Model` component,
 * stores the `Command` object that was last executed, as well as its corresponding command string input, for purposes of accessing previous states (i.e like in the case of `undo` command)
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Course` list in the `CLIpboard`. This allows `CLIpboard` to only require one `Course` object.<br>
+Detailed implementation of `Course` can be found under [Implementation section](#logic-implementation).
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
 
-</div>
 
 
 ### Storage component
