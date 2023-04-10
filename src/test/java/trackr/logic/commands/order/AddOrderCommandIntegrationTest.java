@@ -40,7 +40,7 @@ public class AddOrderCommandIntegrationTest {
 
         assertCommandSuccess(new AddOrderCommand(validOrder),
                 model,
-                String.format(AddItemCommand.MESSAGE_SUCCESS, ModelEnum.ORDER, ModelEnum.ORDER),
+                String.format(AddItemCommand.MESSAGE_SUCCESS, ModelEnum.ORDER, validOrder),
                 expectedModel);
     }
 
