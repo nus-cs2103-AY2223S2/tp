@@ -259,9 +259,9 @@ sequence diagrams. Note that Diagram 3 is a continuation of Diagram 4. <br>
 
 The find meeting feature is handled by the following classes:
 * `FindMeetingCommandParser` - Checks that the command is in the right format, then
-  parses the input to extract PersonID, MeetingID and updated Meeting details.
-    * `FindMeetingCommandParser#parse()` is called and returns an
-      `FindMeetingCommand` object with the extracted PersonID, MeetingID
+  parses the input to extract PersonID, LocalDate.
+* `FindMeetingCommandParser#parse()` is called and returns an
+  `FindMeetingCommand` object with the extracted PersonID or LocalDate
 * `FindMeetingCommand` - The update Meeting command that will be executed by FAid
     * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()` method.
 
