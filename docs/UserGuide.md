@@ -600,6 +600,8 @@ Example:
   * Feeding interval: 2 days 0 hours
   * Tank: Tank with index 1
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a fish: `fish delete`
 
 You can delete a fish from *Fish Ahoy!* with the `fish delete` command.
@@ -932,6 +934,8 @@ Format: `help`
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
