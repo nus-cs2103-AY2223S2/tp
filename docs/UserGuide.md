@@ -256,13 +256,14 @@ Format: `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​`
 
 The following table details the [parameters](#parameter) to be used with the `add-app` command:
 
-| Prefix | Parameter      | Compulsory | Parameter constraints                                                                                                              | 
-|--------|----------------|------------|------------------------------------------------------------------------------------------------------------------------------------|
-| `r/`   | Role           | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                           |
-| `c/`   | Company Name   | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                           |
-| `e/`   | Company Email  | Yes        | Must be of the format: **local-part@domain**. Cannot be empty.                                                                     |
-| `s/`   | Status         | Yes        | Must be one of the four available statuses: **interested**, **applied**, **offered**, **rejected**.<br/>Input is case-insensitive. |
-| `t/`   | Tag            | No         | Must be **alphanumeric** characters only. Cannot be empty.                                                                         |
+| Prefix | Parameter      | Compulsory | Parameter constraints                                                                                                                                                                                                                                                 | 
+|--------|----------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `r/`   | Role           | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                                                                                                                                                              |
+| `c/`   | Company Name   | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                                                                                                                                                              |
+| `e/`   | Company Email  | Yes        | Must be of the format: **local-part@domain**. </br> local-part consists of only alphanumeric and the special characters `+`, `_`, `.`, `-`. Special characters cannot be consecutive, and cannot be the first or last character in local-part. </br> Cannot be empty. |
+| `s/`   | Status         | Yes        | Must be one of the four available statuses: **interested**, **applied**, **offered**, **rejected**.<br/>Input is case-insensitive.                                                                                                                                    |
+| `t/`   | Tag            | No         | Must be **alphanumeric** characters only. Cannot be empty.                                                                                                                                                                                                            |
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tag is an optional field when adding an application. An application can have multiple tags or none at all. 
