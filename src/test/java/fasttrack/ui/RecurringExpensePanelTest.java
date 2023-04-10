@@ -7,8 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
@@ -25,12 +27,22 @@ class RecurringExpensePanelTest {
 
     private RecurringExpensePanel recurringExpensePanel;
     private ObservableList<RecurringExpenseManager> recurringExpenses;
+    private static CountDownLatch latch;
 
     @BeforeEach
     public void setUp() {
         recurringExpenses = FXCollections.observableArrayList(GYM_MEMBERSHIP, NETFLIX_SUBSCRIPTION, RENT);
         // Initialise fake JavaFX environment
         new JFXPanel();
+    }
+
+    @BeforeAll
+    public static void initJFX() throws InterruptedException {
+        latch = new CountDownLatch(1);
+        Platform.startup(() -> {
+            latch.countDown();
+        });
+        latch.await();
     }
 
     @Test

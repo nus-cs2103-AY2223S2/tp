@@ -1,21 +1,22 @@
 package fasttrack.ui;
 
-import static fasttrack.testutil.TypicalCategories.FOOD;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-
+import fasttrack.model.category.Category;
+import javafx.application.Platform;
+import javafx.scene.control.Label;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
-import fasttrack.model.category.Category;
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.scene.control.Label;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+
+import static fasttrack.testutil.TypicalCategories.FOOD;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class CategoryCardTest {
@@ -23,14 +24,22 @@ public class CategoryCardTest {
     private Category category;
     private int displayedIndex;
     private int associatedExpenseCount;
+    private static CountDownLatch latch;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws InterruptedException {
         category = FOOD;
         displayedIndex = 1;
         associatedExpenseCount = 3;
-        // Initialise fake JavaFX environment
-        new JFXPanel();
+    }
+
+    @BeforeAll
+    public static void initJFX() throws InterruptedException {
+        latch = new CountDownLatch(1);
+        Platform.startup(() -> {
+            latch.countDown();
+        });
+        latch.await();
     }
 
     @Test
@@ -83,5 +92,10 @@ public class CategoryCardTest {
         } catch (InterruptedException | ExecutionException e) {
             fail("Assertion error thrown in Platform.runLater thread: " + e.getMessage());
         }
+    }
+
+    @AfterAll
+    public static void stopJFX() {
+        Platform.exit();
     }
 }

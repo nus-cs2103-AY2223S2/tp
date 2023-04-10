@@ -6,28 +6,37 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
 import fasttrack.model.expense.RecurringExpenseManager;
 import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
 import javafx.scene.control.Label;
 
 class RecurringExpenseCardTest {
 
     private RecurringExpenseManager recurringExpenseManager;
     private int displayedIndex;
+    private static CountDownLatch latch;
 
     @BeforeEach
     public void setUp() {
         recurringExpenseManager = GYM_MEMBERSHIP;
         displayedIndex = 1;
-        // Initialise fake JavaFX environment
-        new JFXPanel();
+    }
+
+    @BeforeAll
+    public static void initJFX() throws InterruptedException {
+        latch = new CountDownLatch(1);
+        Platform.startup(() -> {
+            latch.countDown();
+        });
+        latch.await();
     }
 
     @Test
