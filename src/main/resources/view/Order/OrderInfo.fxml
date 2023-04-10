@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane cacheShape="false" fitToWidth="true" hbarPolicy="NEVER" minHeight="100.0" minWidth="300.0" stylesheets="@OrderInfo.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox fx:id="verticalContainer" spacing="10.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" nodeOrientation="LEFT_TO_RIGHT">
+               <children>
+                  <Label fx:id="orderName" styleClass="nameHeader" text="\\$orderName" />
+                  <Separator minWidth="100.0" visible="false" HBox.hgrow="ALWAYS" />
+                  <StackPane alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT">
+                     <children>
+                        <AnchorPane fx:id="orderStatusPlaceholder" StackPane.alignment="CENTER" />
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

@@ -5,55 +5,52 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+Our team was formed to complete a Team Project (tp)
+as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS2103T/software-engineering).
 
 ## Project team
 
-### John Doe
+### Jed Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jednghk.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/jednghk)]
+[[portfolio](team/jednghk.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Ryo Hilmawan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cloudhill.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/CloudHill)]
+[[portfolio](team/cloudhill.md)]
 
 * Role: Developer
-* Responsibilities: UI
+
+### Dawson Nui
+
+<img src="images/infrix.png" width="200px">
+
+[[github](http://github.com/Infrix)]
+[[portfolio](team/infrix.md)]
+
+* Role: Developer
+
+### Javon Teo
+
+<img src="images/javonteo.png" width="200px">
+
+[[github](http://github.com/JavonTeo)]
+[[portfolio](team/javonteo.md)]
+
+* Role: Developer
+
+### Goh Jun Yi
+
+<img src="images/junyi00.png" width="200px">
+
+[[github](http://github.com/Junyi00)]
+[[portfolio](team/junyi00.md)]
+
+* Role: Developer

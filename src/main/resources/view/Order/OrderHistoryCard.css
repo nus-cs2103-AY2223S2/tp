@@ -1,0 +1,11 @@
+.cell_top_label {
+    -fx-font-size: 15;
+}
+
+.cell_top_header_label {
+    -fx-font-weight: bold;
+}
+
+.cell_bottom_label {
+    -fx-font-size: 12;
+}

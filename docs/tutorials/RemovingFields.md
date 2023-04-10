@@ -3,6 +3,9 @@ layout: page
 title: "Tutorial: Removing Fields"
 ---
 
+<div markdown="span" class="alert alert-warning">:exclamation: This tutorial is based on the AddressBook-Level3 project. However, the underlying architecture is largely similar to LoyaltyLift.
+</div>
+
 > Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
 >
 > —  Antoine de Saint-Exupery
@@ -28,7 +31,7 @@ IntelliJ IDEA provides a refactoring tool that can identify *most* parts of a re
 
 ### Assisted refactoring
 
-The `address` field in `Person` is actually an instance of the `seedu.address.model.person.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+The `address` field in `Person` is actually an instance of the `seedu.loyaltylift.model.attribute.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
 * :bulb: To make things simpler, you can unselect the options `Search in comments and strings` and `Search for text occurrences`
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
