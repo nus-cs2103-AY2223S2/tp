@@ -55,4 +55,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/williamhaiweigu.md)]
 
 * Role: Developer
-* Responsibilities:
+* Responsibilities: CSV import & export, JSON interaction improvement, command history navigation, testing.
