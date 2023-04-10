@@ -279,7 +279,7 @@ This section describes some noteworthy details on how certain features are imple
 ## Delete student/parent feature
 
 ### Current Implementation
-PowerConnect allows users to delete:
+PowerConnect allows users to delete a:
 * Student from `UniqueStudentList` of `Class` using their class and index number.
 * Parent from `UniqueParentList` of `Parents` using their name and phone number.
 
