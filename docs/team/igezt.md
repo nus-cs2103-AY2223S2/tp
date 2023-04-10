@@ -48,7 +48,7 @@ Given below are my contributions to the project.
     * Edited documentation for the features `add`, `find` and `edit` of UG (PRs [#200](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/200), [#267](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/267))
     * Edited documentation for data-related section of UG (PRs [#267](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/267), [#269](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/269))
     * Added documentation for the `tagpersonevent` and `light`/`dark` features (PR [#182](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/267))
-    * Made final edits, organized and cleaned up UG (PR [#309](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/309))
+    * Made final edits, organized and cleaned up UG (PR [#309](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/309), [#315](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/315), [#316](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/316))
   * Developer Guide:
     * Add documentation for new Person and Storage models ([#157](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/157))
     * Added documentation for manual testing for the following commands ([#269](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/269))
@@ -58,8 +58,8 @@ Given below are my contributions to the project.
       * EditUserCommand
       * Light/DarkCommand
     * Wrote effort appendix (PR [#307](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/307))
-    * Added export user information proposed feature section (PR [PR [#307](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/307)])
-    * Made final edits, organized and cleaned up DG
+    * Added export user information proposed feature section (PR [#307](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/307)])
+    * Made final edits, organized and cleaned up DG (PR [#319](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/319))
 
 
 
