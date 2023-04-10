@@ -45,7 +45,11 @@ public class EditModeParser {
             + "Use commands of the form FIELD (name of the field you wish to edit) VALUE (desired value). \n"
             + "Example: name Johnny Depp \n"
             + "You may also type 'back' to exit Edit Mode and return to the list view.";
-    public static final String MESSAGE_INVALID_VALUE_FORMAT = "%s is not a valid value for %s!";
+
+    public static final String MESSAGE_INVALID_INVENTORY_COMMAND = "To add or remove an item from the inventory, "
+            + "use the form: inventory add/remove NAME (name "
+            + "of the item to add). \n"
+            + "Example: inventory add Fish";
 
     /**
      * Used for initial separation of command word and args.
@@ -156,6 +160,7 @@ public class EditModeParser {
             throws ParseException, NumberFormatException {
         EditMobDescriptor outData = new EditMobDescriptor();
         switch (fieldWord.toLowerCase()) {
+        case "n":
         case "name":
             if (Name.isValidName(value)) {
                 outData.setName(new Name(value));
@@ -168,16 +173,20 @@ public class EditModeParser {
             Optional<Set<Tag>> tags = parseTagsForEdit(List.of(value.split("\\s+")));
             tags.ifPresent(outData::setTags);
             break;
+        case "s":
         case "str":
         case "strength":
             outData.setStats(new Stats(Integer.valueOf(value),
                     toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
             break;
+        case "d":
         case "dex":
+        case "dexterity":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
                     Integer.valueOf(value), toEdit.getStats().getIntelligence()));
             break;
         case "int":
+        case "intelligence":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
                     toEdit.getStats().getDexterity(), Integer.valueOf(value)));
             break;
@@ -190,6 +199,7 @@ public class EditModeParser {
         case "l":
             outData.setLegend(new Legend(Boolean.parseBoolean(value)));
             break;
+        case "inv":
         case "inventory":
             // Check if add or delete
             Inventory editedInventory = new Inventory(toEdit.getInventory().getItems());
@@ -206,6 +216,7 @@ public class EditModeParser {
             throws ParseException, NumberFormatException {
         EditItemDescriptor outData = new EditItemDescriptor();
         switch (fieldWord.toLowerCase()) {
+        case "n":
         case "name":
             if (Name.isValidName(value)) {
                 outData.setName(new Name(value));
@@ -251,7 +262,7 @@ public class EditModeParser {
     private void parseInventoryCommand(String args, Inventory editInventory) throws ParseException {
         final Matcher matcher = INVENTORY_COMMAND_FORMAT.matcher(args);
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditValueCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INVENTORY_COMMAND));
         }
         final String actionWord = matcher.group("actionWord");
         final String itemName = matcher.group("name").trim();
@@ -271,6 +282,8 @@ public class EditModeParser {
             } else {
                 throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);
             }
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INVENTORY_COMMAND));
         }
     }
 }
