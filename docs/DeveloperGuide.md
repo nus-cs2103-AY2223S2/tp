@@ -190,20 +190,20 @@ Step 1. The user launches the application for the first time. The `UndoManager` 
 `addressBookHistory` containing only the current addressBook state. The `versionTracker` variable is initialized to 
 0, indicating 0 undos have been executed so far, and the version of ModCheck shown is the most recent version.
 
-<img src=images/UndoRedo/UndoRedoState0new.png width = 800 />
+![](images/UndoRedo/UndoRedoState0new.png)
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the address book. 
 The `delete` command calls `UndoManager#addToHistory()`, causing the modified state of the address book after the 
 `delete 5` command executes to be saved in `addressBookHistory`. The `versionTracker` variable stays at 0 as the 
 addressBook state after deleting is still the most recent version.
 
-<img src=images/UndoRedo/UndoRedoState1new.png width = 800 />
+![](images/UndoRedo/UndoRedoState1new.png)
 
 Step 3. The user executes `add n/David …​` to add a new person. 
 The `add` command also calls `UndoManager#addToHistory()`, causing another modified address book state to be saved into 
 the `addressBookHistory`. Similarly, `versionTracker` remains at 0.
 
-<img src=images/UndoRedo/UndoRedoState2new.png width = 800 />
+![](images/UndoRedo/UndoRedoState2new.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it 
 will not call `UndoManager#addToHistory()`, so the address book state will not be saved into the `addressBookHistory`.
@@ -215,7 +215,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 `versionTracker` variable by 1. Internally, the UndoManager will find the first most recent saved history, and 
 returns a copy of the addressBook representing that. 
 
-<img src=images/UndoRedo/UndoRedoState3new.png width = 800 />
+![](images/UndoRedo/UndoRedoState3new.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If `versionHistory` is equal to the 
 number of number of saved histories, there is no more saved history to undo. The `undo` command uses 
@@ -237,14 +237,14 @@ user rather than attempting to perform the redo.
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as 
 `list`, will not call `UndoManager#addToHistory()`. Thus, the `addressBookHistory` remains unchanged.
 
-<img src=images/UndoRedo/UndoRedoState4new.png width = 800 />
+![](images/UndoRedo/UndoRedoState4new.png)
 
 Step 6. The user executes `clear`, which calls `UndoManager#addToHistory()`. Since the `versionTracker` is not 
 0, all address book states from index 0 to one before the current version will be purged, and the versionTracker 
 will be reset to 0. Reason: It no longer makes sense to redo the "untracked heads". This is the behavior that most 
 modern desktop applications follow.
 
-<img src=images/UndoRedo/UndoRedoState5new.png width = 800 />
+![](images/UndoRedo/UndoRedoState5new.png)
 
 Below is the sequence diagram showing how a modification is added to the `undoManager`, using `AddCommand` as an 
 example.
@@ -583,6 +583,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. ModCheck shows an error message.
   * Use case ends.
 
+#### Use case: Load contacts
+
+**MSS**
+
+1. Student requests ModCheck to load contacts.
+2. ModCheck shows a FileChooser and requests student to choose a file to load from.
+3. Student selects a file to load.
+4. ModCheck loads the contacts in the file into its database.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. Student requests to load an invalid file.
+  * 3a1. ModCheck shows an error message.
+
+  Use case ends.
+
+* 3b. Student does not choose a file to load.
+    * 3b1. ModCheck shows an error message.
+  
+  Use case ends.
 
 
 #### Use case: View a person's contact details
