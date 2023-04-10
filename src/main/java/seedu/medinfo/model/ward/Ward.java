@@ -67,21 +67,27 @@ public class Ward {
         return this;
     }
 
-
     /**
      * Returns true if a given occupany can fit in the
      * ward's capacity
+     *
+     * @param occupancy Occupancy to check.
+     * @return If occupancy can fit in the capacity.
      */
     public boolean canSupport(int occupancy) {
         return capacity.getValue() >= occupancy;
     }
 
-    public boolean isFull() {
-        return patients.size() == capacity.getValue();
-    }
+    /**
+     * Returns true if a given String is a valid Ward name.
+     *
+     * @param test String to check.
+     * @return If the String is a valid Ward name.
+     */
     public static boolean isValidWardName(String test) {
         return WardName.isValidWardName(test);
     }
+
     public WardName getName() {
         return value;
     }
@@ -110,28 +116,28 @@ public class Ward {
         return this.equals(other);
     }
 
-    //// list overwrite operations
-
     /**
      * Replaces the contents of the patient list with {@code patients}.
      * {@code patients} must not contain duplicate patients.
+     *
+     * @param patients List of patients to replace with.
      */
     public void setPatients(List<Patient> patients) {
         this.patients.setPatients(patients);
     }
 
-    //// patient-level operations
-
     /**
      * Adds a patient to the ward.
      * The patient must not already exist in the medinfo book.
+     *
+     * @param patient Patient to be added.
      */
-    public void addPatient(Patient p) throws WardFullException {
-        requireNonNull(p);
+    public void addPatient(Patient patient) throws WardFullException {
+        requireNonNull(patient);
         if (patients.size() == capacity.getValue()) {
             throw new WardFullException(value.toString());
         }
-        patients.add(p);
+        patients.add(patient);
     }
 
     /**
@@ -140,6 +146,9 @@ public class Ward {
      * {@code target} must exist in the medinfo book.
      * The patient identity of {@code editedPatient} must not be the same as another
      * existing patient in the medinfo book.
+     *
+     * @param target Target Patient.
+     * @param editedPatient Patient to edit {@code target} to.
      */
     public void setPatient(Patient target, Patient editedPatient) {
         requireNonNull(editedPatient);
@@ -149,12 +158,12 @@ public class Ward {
     /**
      * Removes {@code key} from this {@code Ward}.
      * {@code key} must exist in the medinfo book.
+     *
+     * @param patient Patient to be removed.
      */
-    public void removePatient(Patient key) {
-        patients.remove(key);
+    public void removePatient(Patient patient) {
+        patients.remove(patient);
     }
-
-    //// Util methods
 
     @Override
     public String toString() {
