@@ -38,14 +38,14 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
         - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
     - [Displaying reminders : `remind`](#displaying-the-internship-application-with-the-most-imminent-interview--remind)
-    - [Remove entry(entries)](#delete-an-application-of-internship--delete)
-        - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
-        - [Clear all internship applications : `clear`](#clearing-all-internship-application-entries--clear)
+    - [Remove entry(entries)](#delete-an-internship-application--delete)
+        - [Delete an internship application : `delete`](#delete-an-internship-application--delete)
+        - [Clear all internship applications : `clear`](#clear-all-internship-application-entries--clear)
         - [Clear specific internship applications : `clear_by`](#clear-internship-application-entries-with-keyword--clear_by)
-    - [Revert delete or clear](#revert-a-recent-deleted-internship-application--revert)
+    - [Revert delete or clear](#revert-a-recently-deleted-internship-application--revert)
         - [Revert the most recent delete command : `revert`](#revert-a-recently-deleted-internship-application--revert)
         - [Revert all delete and clear commands : `revert_all`](#revert-all-recently-deleted-or-cleared-internship-applications--revert_all)
-    - [Exit InternEase : `exit`](#exiting-the-program--exit)
+    - [Exit InternEase : `exit`](#exit-the-program--exit)
 
 - [Side Features](#side-features-planning-to-apply-internships)
     - [Task (todo and notes)](#display-lists-of-tasks-todos-and-notes--list_task)
@@ -453,9 +453,9 @@ Examples:
 
 [↑ Back to Features Menu](#features-menu)
 
-### Delete an application of internship : `delete`
+### Delete an internship application : `delete`
 
-Deletes the specified internship application from the list of internships applied
+Deletes the specified internship application from the list of internships applied.
 
 Format: `delete INDEX`
 
@@ -473,7 +473,7 @@ GUI alternative:
 
 ### Clear internship application entries with keyword : `clear_by`
 
-Clear all relevant internship application entries from the internship tracker with specific keyword
+Clear all relevant internship application entries from the internship tracker with specific keyword.
 
 Format: `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
 
@@ -497,7 +497,7 @@ Format: `remind`
 
 [↑ Back to Features Menu](#features-menu)
 
-### Clearing all internship application entries : `clear`
+### Clear all internship application entries : `clear`
 
 Clears all internship application entries from the internship tracker.
 
@@ -507,13 +507,13 @@ Format: `clear`
 
 ### Revert a recently deleted internship application : `revert`
 
-Reverts recent delete command and restores the relevant data to the end of the current internship applications list.
+Reverts the most recent delete command and restores the relevant data to the end of the current internship applications list.
 
 Format: `revert`
 
 Examples:
 1. Assume the most recent delete command was `delete 2` which has data `n/Tech j/Job`, the data was removed from the applications list.
-2. Command `revert` restores the entries at the back the application list, which has effect similar to `add  n/Tech j/Job`.
+2. Command `revert` restores the internship application entry at the back the application list, which has an effect similar to `add  n/Tech j/Job`.
    
 **This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
@@ -521,7 +521,7 @@ Examples:
 
 ### Revert all recently deleted or cleared internship applications : `revert_all`
 
-Reverts all recent delete command or clear command and restores the affected data back to the end of the current internship applications list.
+Reverts all recent delete commands or clear commands and restores the affected data back to the end of the current internship applications list.
 
 Format: `revert_all`
 
@@ -529,7 +529,7 @@ Format: `revert_all`
 
 [↑ Back to Features Menu](#features-menu)
 
-### Exiting the program : `exit`
+### Exit the program : `exit`
 
 Exits the program.
 
@@ -541,20 +541,20 @@ Format: `exit`
 
 ### Display lists of tasks (todos and notes) : `list_task`
 
-Displays the todo list and the note list together
+Displays the todo-list and the note list together.
 
 Format: `list_task`
 
 Examples:
 
-* `list_task` shows all the todos and notes that the user has written all together in one window.
+* `list_task` shows all the todos and notes in one window.
 * If there are no todo and note at the moment, `No task (todo and note) at the moment` will be shown in the result dialog.
 
 [↑ Back to Features Menu](#features-menu)
 
 ### Search for a task (todo and notes) : `find_task`
 
-Searches the recorded lists of todos and notes by keyword (company name in todos and note content in notes)
+Searches the recorded lists of todos and notes by keyword (company name in todos and note content in notes).
 
 Format: `find_task KEYWORD`
 
@@ -568,7 +568,7 @@ Examples:
 
 ### Display a list of todo internship applications : `list_todo`
 
-Displays a list of todo applications (todo internship application)
+Displays a list of todo applications (todo internship application).
 
 Format: `list_todo`
 
@@ -581,7 +581,7 @@ Examples:
 
 ### Add a todo application : `add_todo`
 
-Adds a todo internship application to the todo list
+Adds a todo internship application to the todo list.
 
 Format: `add_todo n/COMPANY_NAME j/JOB_TITLE by/DEADLINE`
 - `DEADLINE` should be in the format yyyy-mm-dd.
@@ -595,7 +595,7 @@ Examples:
 
 ### Edit todo application deadline : `edit_deadline`
 
-Edits the deadline of the specified todo from current available todo list
+Edits the deadline of the specified todo task from current available todo liss.
 
 Format: `edit_deadline INDEX by/DEADLINE`
 - Edits the deadline of the specified `INDEX` to the specified `DEADLINE`.
@@ -611,7 +611,7 @@ Examples:
 
 ### Edit todo note content : `edit_content`
 
-Edits the note content of the specified todo from current available todo list
+Edits the note content of the specified todo task from current available todo list.
 
 Format: `edit_content INDEX c/NOTE_CONTENT`
 - Edits the note content of the specified `INDEX` to the specified `NOTE_CONTENT`.
@@ -635,7 +635,7 @@ Format: `delete_todo INDEX`
 * Deletes the todo application at the specified `INDEX`.
 * The index refers to the index number shown in the displayed todo list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* **Note that this action is irreversible**
+* **This action is irreversible**
 
 Examples:
 * `delete_todo 2` Deletes the 2nd todo application in the todo list.
@@ -644,17 +644,17 @@ Examples:
 
 ### Clear all todo application entries : `clear_todo`
 
-Clears all todo application entries from the todo applications list
+Clears all todo application entries from the todo applications list.
 
 Format: `clear_todo`
 
-**Note that this action is irreversible**
+**This action is irreversible**
 
 [↑ Back to Features Menu](#features-menu)
 
 ### Display list of short note : `list_note`
 
-Displays a list of saved notes
+Displays a list of saved notes.
 
 Format: `list_note`
 
@@ -678,14 +678,14 @@ Examples:
 
 ### Delete a note : `delete_note`
 
-Deletes the specified note from the list of notes
+Deletes the specified note from the list of notes.
 
 Format: `delete_note INDEX`
 
 * Deletes the note at the specified `INDEX`.
 * The index refers to the index number shown in the displayed note list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* **Note that this action is irreversible**
+* **This action is irreversible**
 
 Examples:
 * `delete_note 2` Deletes the 2nd note in the list of notes.
@@ -698,7 +698,7 @@ Clears all notes from the note.
 
 Format: `clear_note`
 
-**Note that this action is irreversible**
+**This action is irreversible**
 
 [↑ Back to Features Menu](#features-menu)
 
