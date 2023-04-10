@@ -148,15 +148,15 @@ How the parsing works:
 
 ![Model class diagram](images/ModelClassDiagram.png)
 
-The `Model` component does the following.
+The `Model` component,
 
-* Stores the address book data 
+* stores the address book data 
   * i.e. all `Person` objects (which are contained in a `UniquePersonList` object).
-* Stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' 
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' 
   * e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* Stores a `UserData` object that contains a `User` object that represents the User's data. This is exposed to the outside as a `ReadOnlyUser` object. 
-* Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* Does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores a `UserData` object that contains a `User` object that represents the User's data. This is exposed to the outside as a `ReadOnlyUser` object. 
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 Within the Model component holds the Person Class.
 
@@ -172,7 +172,7 @@ and Tags. The SuperField class contains a set of values that are a subclass of F
   also allowing for polymorphism.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list and `Modules` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require only one `Tag` object per unique tag or only one `Module` object per unique module, instead of each `Person` needing their own `Tag` or `Module` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -188,7 +188,7 @@ and Tags. The SuperField class contains a set of values that are a subclass of F
 The `Storage` component,
 * can save both address book data, user data and user preference data in json format, and read them back into
 corresponding objects.
-* inherits from `UserDataStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one
+* inherits from `UserDataStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as any of the above
 (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
 that belong to the `Model`). In particular, the changes to the following 5 classes will require a change in their
@@ -456,11 +456,11 @@ Then this String will be displayed as a CommandResult on the UI for the User to 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                                 | I want to …​                                                                                                           | So that I can…​                                |
-| -------- |---------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
-| `* * *`  | Student who often needs help with school work           | I want to be able to see who is likely to be available currently                                                       | Get help as soon as possible                   |
+|----------|---------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
+| `* * *`  | Student who often needs help with school work           | I want to be to find people to get help by looking for people who have taken the same mods as me                       | Get help as soon as possible                   |
 | `* * *`  | Student who often contacts external organisations       | Segregate my contacts into different categories (e.g. friends, family, t-shirt suppliers, bus drivers , sponsors etc.) | Organise my contacts effectively               |
-| `* * *`  | Student sourcing for internships                        | I am able to see Students internship experience                                                                        | To find out more about their interview process |
-| `* * *`  | Student who wants to go for a career fair with somebody | I want to find people who are available at a certain time                                                              | So that I can go to the career fair with them  |
+| `* * *`  | Student sourcing for internships                        | I am able to see who took part in what internship.                                                                     | To find out more about their interview process |
+| `* * *`  | Student who wants to go for a career fair with somebody | I want to make sure I am free at that time.                                                                            | So that I can go to the career fair with them  |
 | `* *`    | Student who made a new connection                       | I want to be able to add a new contact                                                                                 | So that I can save the person’s details        |
 | `*`      | Student who is in to keeping everything in one place    | I like being able to keep everything I need to see in one place                                                        | So that I dont forget anything                 |
 
@@ -652,7 +652,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a person
 1. Adding a person while all persons/no persons are being shown
+
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
+   
    2. Test Cases
       1. **Test case 1**: `add n/Pierce a/Serangoon Central t/Friend t/Genius` 
          - Testing for: Command successful execution
@@ -686,7 +688,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing data of a contact
 1. Edit data of contact.
+
     1. Prerequisites: Non-empty address-book. Navigate to the `Address book` tab using `tab 1`
+   
     2. Test Cases
         1. Test case 1: `edit N n/Pierce`, `edit N a/Serangoon Central`, ... where N is a number between 1 and the number of contacts in the list
             - Testing for: Successful command execution
@@ -706,7 +710,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding a person
 1. Finding a person while all persons are being shown
+
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
+   
    2. Test Cases
       1. Test case 1: `find n/Pi`
          - Testing for: Command successful execution 
@@ -727,20 +733,25 @@ testers are expected to do more *exploratory* testing.
          
          - Testing for: Index specified results in command failure
          - Expected: List does not update. Error details shown in the status message.
+
 2. Find a contact when there are no contacts
+
    1. Prerequisites: Empty addressbook. Navigate to the `Address book` tab using `tab 1`
+
    2. Test Cases
       1. Test case 1: `find n/pierce`
           - Testing for: Successful command execution
           - Expected: Command executes, but list does not change as there are no contacts.
-      3. Test case 5: `find 1 n/Pierce`
+      2. Test case 2: `find 1 n/Pierce`
           - Testing for: Index specified results in command failure
           - Expected: List does not update. Error details shown in the status message.
 
 ## User-related
 ### Editing data of User
 1. Edit data of User specified in Me tab.
+
     1. Prerequisites: Navigate to Me tab using `tab 3`
+
     2. Test Cases
        1. Test case 1: `edituser n/Pierce`, `edituser a/Serangoon Central`, ...
            - Testing for: Successful command execution
@@ -758,29 +769,40 @@ testers are expected to do more *exploratory* testing.
 ## UI-related
 ### Light/Dark mode
 1. Set UI to light mode from dark mode
+
     1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
+
     2. Test Cases
        1. Test case 1: `light`
           - Testing for: Successful command execution
           - Expected: UI updates to light mode
-1. Set UI to light mode from light mode
+
+2. Set UI to light mode from light mode
+
     1. Prerequisites: UI currently in light mode (can be switched using the `light` command)
+
     2. Test Cases
         1. Test case 1: `light`
             - Testing for: Successful command execution
             - Expected: UI updates to light mode
-1. Set UI to dark mode from light mode
+
+3. Set UI to dark mode from light mode
+
     1. Prerequisites: UI currently in light mode (can be switched using the `light` command)
+
     2. Test Cases
         1. Test case 1: `dark`
             - Testing for: Successful command execution
             - Expected: UI updates to dark mode
-1. Set UI to light mode from light mode
-    1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
-    2. Test Cases
-        1. Test case 1: `dark`
-            - Testing for: Successful command execution
-            - Expected: UI updates to dark mode
+
+4. Set UI to light mode from light mode
+
+   1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
+
+   2. Test Cases
+       1. Test case 1: `dark`
+           - Testing for: Successful command execution
+           - Expected: UI updates to dark mode
 
 ### Saving data
 
