@@ -3,9 +3,9 @@ layout: page
 title: Markus Yeo's Project Portfolio Page
 ---
 
-### Project: Dengue Hotspot Tracker
+### Project: DengueHotspotTracker (DHT)
 
-Dengue Hotspot Tracker is a desktop app for managing dengue cases. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 9.5 kLoC.
+DengueHotspotTracker (DHT) is a desktop app for managing dengue cases. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
 
 Given below are my contributions to the project.
 
@@ -32,6 +32,7 @@ Given below are my contributions to the project.
   * Managed `v1.1`-`v1.2` issues.
   * Handled product releases for `v1.1`, `v1.2` and `v1.3` (including uploading and testing of JAR files).
   * Facilitated weekly meetings.
+
 * **Team Tasks**
   * Refactored the entire code base including test cases to be adapted for DengueHotspotTracker.
 
@@ -44,3 +45,16 @@ Given below are my contributions to the project.
     * Added implementation details and UML diagrams of the `import`, `export` and `checkout` features
 * **Community:**
   * PRs reviewed (with non-trivial review comments):
+    * [#72](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/72),
+    [#74](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/74),
+    [#79](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/79),
+    [#124](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/124),
+    [#131](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/131),
+    [#138](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/138),
+    [#142](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/142),
+    [#234](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/234),
+    [#260](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/260),
+    [#277](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/277),
+    [#284](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/284),
+    [#286](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/286)
+  
