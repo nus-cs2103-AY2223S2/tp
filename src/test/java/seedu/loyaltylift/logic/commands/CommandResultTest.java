@@ -3,8 +3,12 @@ package seedu.loyaltylift.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_CUSTOMERS_ONLY;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_ORDERS_ONLY;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.REMOVE_INFO_FROM_VIEW;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,87 +39,91 @@ public class CommandResultTest {
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
 
-        // different showCustomerSelection value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, true, false)));
+        // different ListViewGuiAction value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", LIST_AND_SHOW_CUSTOMER)));
 
-        // different showOrderSelection value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, true)));
+        // different ListViewGuiAction value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", LIST_AND_SHOW_ORDER)));
 
-        // different customer index -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, 0, null)));
+        // different ListViewGuiAction value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", LIST_CUSTOMERS_ONLY)));
 
-        // different order index -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, null, 0)));
+        // different ListViewGuiAction value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", LIST_ORDERS_ONLY)));
+
+        // different ListViewGuiAction value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", REMOVE_INFO_FROM_VIEW)));
     }
 
     @Test
-    public void getCustomerIndex() {
-        Integer index = 1;
-        CommandResult commandResult = new CommandResult("feedback", false, false, index, null);
-        assertEquals(commandResult.getCustomerIndex(), index);
-
-        CommandResult nullCommandResult = new CommandResult("feedback", false, false);
-        assertNull(nullCommandResult.getCustomerIndex());
-
-        CommandResult alsoNullCommandResult = new CommandResult("feedback");
-        assertNull(alsoNullCommandResult.getCustomerIndex());
-    }
-
-    @Test
-    public void getOrderIndex() {
-        Integer index = 1;
-        CommandResult commandResult = new CommandResult("feedback", false, false, null, index);
-        assertEquals(commandResult.getOrderIndex(), index);
-
-        CommandResult nullCommandResult = new CommandResult("feedback", false, false, null, null);
-        assertNull(nullCommandResult.getOrderIndex());
-
-        CommandResult alsoNullCommandResult = new CommandResult("feedback");
-        assertNull(alsoNullCommandResult.getOrderIndex());
-    }
-
-    @Test
-    public void isShowCustomerSelection() {
+    public void isShowCustomerList() {
         CommandResult falseCommandResult = new CommandResult("feedback");
-        assertFalse(falseCommandResult.isShowCustomerSelection());
+        assertFalse(falseCommandResult.isShowCustomerList());
 
-        falseCommandResult = new CommandResult("feedback", true, true, false, true);
-        assertFalse(falseCommandResult.isShowCustomerSelection());
+        falseCommandResult = new CommandResult("feedback", LIST_AND_SHOW_ORDER);
+        assertFalse(falseCommandResult.isShowCustomerList());
 
-        falseCommandResult = new CommandResult("feedback", true, true, null, null);
-        assertFalse(falseCommandResult.isShowCustomerSelection());
+        falseCommandResult = new CommandResult("feedback", LIST_ORDERS_ONLY);
+        assertFalse(falseCommandResult.isShowCustomerList());
 
-        CommandResult trueCommandResult = new CommandResult("feedback", true, true, true, false);
-        assertTrue(trueCommandResult.isShowCustomerSelection());
+        CommandResult trueCommandResult = new CommandResult("feedback", LIST_AND_SHOW_CUSTOMER);
+        assertTrue(trueCommandResult.isShowCustomerList());
 
-        trueCommandResult = new CommandResult("feedback", true, true, 0, null);
-        assertTrue(trueCommandResult.isShowCustomerSelection());
+        trueCommandResult = new CommandResult("feedback", LIST_CUSTOMERS_ONLY);
+        assertTrue(trueCommandResult.isShowCustomerList());
+
+        falseCommandResult = new CommandResult("feedback", REMOVE_INFO_FROM_VIEW);
+        assertFalse(falseCommandResult.isShowCustomerList());
     }
 
     @Test
-    public void isShowOrderSelection() {
+    public void isShowOrderList() {
         CommandResult falseCommandResult = new CommandResult("feedback");
-        assertFalse(falseCommandResult.isShowOrderSelection());
+        assertFalse(falseCommandResult.isShowOrderList());
 
-        falseCommandResult = new CommandResult("feedback", true, true, true, false);
-        assertFalse(falseCommandResult.isShowOrderSelection());
+        falseCommandResult = new CommandResult("feedback", LIST_AND_SHOW_CUSTOMER);
+        assertFalse(falseCommandResult.isShowOrderList());
 
-        falseCommandResult = new CommandResult("feedback", true, true, 0, null);
-        assertFalse(falseCommandResult.isShowOrderSelection());
+        falseCommandResult = new CommandResult("feedback", LIST_CUSTOMERS_ONLY);
+        assertFalse(falseCommandResult.isShowOrderList());
 
-        CommandResult trueCommandResult = new CommandResult("feedback", true, true, null, 0);
-        assertTrue(trueCommandResult.isShowOrderSelection());
+        CommandResult trueCommandResult = new CommandResult("feedback", LIST_AND_SHOW_ORDER);
+        assertTrue(trueCommandResult.isShowOrderList());
 
-        trueCommandResult = new CommandResult("feedback", true, true, false, true);
-        assertTrue(trueCommandResult.isShowOrderSelection());
+        trueCommandResult = new CommandResult("feedback", LIST_ORDERS_ONLY);
+        assertTrue(trueCommandResult.isShowOrderList());
+
+        falseCommandResult = new CommandResult("feedback", REMOVE_INFO_FROM_VIEW);
+        assertFalse(falseCommandResult.isShowOrderList());
+    }
+
+    @Test
+    public void isClearInfoView() {
+        CommandResult falseCommandResult = new CommandResult("feedback");
+        assertFalse(falseCommandResult.isClearInfoView());
+
+        falseCommandResult = new CommandResult("feedback", LIST_AND_SHOW_CUSTOMER);
+        assertFalse(falseCommandResult.isClearInfoView());
+
+        falseCommandResult = new CommandResult("feedback", LIST_CUSTOMERS_ONLY);
+        assertFalse(falseCommandResult.isClearInfoView());
+
+        falseCommandResult = new CommandResult("feedback", LIST_AND_SHOW_ORDER);
+        assertFalse(falseCommandResult.isClearInfoView());
+
+        falseCommandResult = new CommandResult("feedback", LIST_ORDERS_ONLY);
+        assertFalse(falseCommandResult.isClearInfoView());
+
+        CommandResult trueCommandResult = new CommandResult("feedback", REMOVE_INFO_FROM_VIEW);
+        assertTrue(trueCommandResult.isClearInfoView());
     }
 
     @Test
     public void showHelp() {
-        CommandResult trueCommandResult = new CommandResult("feedback", true, false, null, null);
+        CommandResult trueCommandResult = new CommandResult("feedback", true, false);
         assertTrue(trueCommandResult.isShowHelp());
 
-        CommandResult falseCommandResult = new CommandResult("feedback", false, false, null, null);
+        CommandResult falseCommandResult = new CommandResult("feedback", false, false);
         assertFalse(falseCommandResult.isShowHelp());
     }
 
@@ -144,16 +152,19 @@ public class CommandResultTest {
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
 
-        // different showCustomerSelection value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, true, false).hashCode());
+        // different ListViewGuiAction value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", LIST_AND_SHOW_CUSTOMER).hashCode());
 
-        // different showOrderSelection value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false, true).hashCode());
+        // different ListViewGuiAction value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", LIST_AND_SHOW_ORDER).hashCode());
 
-        // different customer index -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, 0, null).hashCode());
+        // different ListViewGuiAction value-> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", LIST_CUSTOMERS_ONLY).hashCode());
 
-        // different order index -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, null, 0).hashCode());
+        // different ListViewGuiAction value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", LIST_ORDERS_ONLY).hashCode());
+
+        // different ListViewGuiAction value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", REMOVE_INFO_FROM_VIEW).hashCode());
     }
 }

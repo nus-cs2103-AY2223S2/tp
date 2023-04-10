@@ -2,6 +2,8 @@ package seedu.loyaltylift.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NOTE_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NOTE_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -13,7 +15,6 @@ import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
@@ -46,12 +47,14 @@ public class SetOrderNoteCommandTest {
         SetOrderNoteCommand setOrderNoteCommand = new SetOrderNoteCommand(indexLastOrder,
                 new Note(VALID_NOTE_B));
 
-        String expectedMessage = String.format(SetOrderNoteCommand.MESSAGE_SET_NOTE_SUCCESS, editedOrder);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(SetOrderNoteCommand.MESSAGE_SET_NOTE_SUCCESS, editedOrder),
+                LIST_AND_SHOW_ORDER);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setOrder(lastOrder, editedOrder);
 
-        assertCommandSuccess(setOrderNoteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(setOrderNoteCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -60,7 +63,8 @@ public class SetOrderNoteCommandTest {
         SetOrderNoteCommand setOrderNoteCommand = new SetOrderNoteCommand(
                 outOfBoundIndex, new Note(VALID_NOTE_B));
 
-        assertCommandFailure(setOrderNoteCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertCommandFailure(setOrderNoteCommand, model,
+                String.format(MESSAGE_INVALID_ORDER_DISPLAYED_INDEX, SetOrderNoteCommand.MESSAGE_USAGE));
     }
 
     @Test

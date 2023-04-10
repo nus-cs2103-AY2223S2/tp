@@ -1,5 +1,6 @@
 package seedu.loyaltylift.logic.commands;
 
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
@@ -32,8 +33,12 @@ public class AddCustomerCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addCustomer(validCustomer);
 
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer),
+                LIST_AND_SHOW_CUSTOMER);
+
         assertCommandSuccess(new AddCustomerCommand(validCustomer), model,
-                String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer), expectedModel);
+                expectedCommandResult, expectedModel);
     }
 
     @Test

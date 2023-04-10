@@ -7,44 +7,65 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as iModel
 Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
+Class UniqueCustomerList
+Class Customer
+Class "Address" as cAddress
 Class Email
-Class Name
+Class "Name" as cName
 Class Phone
-Class Tag
+Class Marked
+Class "Note" as cNote
+Class CustomerType
+Class Points
+
+Class UniqueOrderList
+Class "Name" as oName
+Class "Address" as oAddress
+Class Order
+Class CreatedDate
+Class Quantity
+Class Status
+Class "Note" as oNote
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> iModel
 
 AddressBook .up.|> ReadOnlyAddressBook
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
+ModelManager .up.|> iModel
+iModel .right.> ReadOnlyUserPrefs
+iModel .left.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueCustomerList
+AddressBook *--> "1" UniqueOrderList
+UniqueCustomerList --> "~* all" Customer
+UniqueOrderList --> "~* all" Order
+Customer *--> cName
+Customer *--> Phone
+Customer *--> Email
+Customer *--> cAddress
+Customer *--> Marked
+Customer *--> "*" cNote
+Customer *--> CustomerType
+Customer *--> Points
+Order *--> "1" Customer
+Order *--> "*" oNote
+Order *--> Quantity
+Order *--> oAddress
+Order *--> Status
+Order *--> CreatedDate
+Order *--> oName
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"~* filtered" Person
+ModelManager --> "filtered\n and\nsorted" Customer
+ModelManager --> "filtered\n and sorted" Order
 @enduml

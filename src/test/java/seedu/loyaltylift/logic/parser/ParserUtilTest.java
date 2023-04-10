@@ -20,18 +20,27 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.order.Order;
+import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.tag.Tag;
 
 public class ParserUtilTest {
+
+    private static final String INVALID_QUANTITY_1 = "0";
+    private static final String INVALID_QUANTITY_2 = "1000001";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_CUSTOMER_TYPE = "person";
+    private static final String INVALID_CUSTOMER_POINTS = "-1";
+    private static final String INVALID_ADD_POINTS = "1000000";
     private static final String INVALID_SORT_OPTION = "invalid";
 
+    private static final String VALID_QUANTITY_1 = "1";
+    private static final String VALID_QUANTITY_2 = "1000000";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -40,6 +49,8 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_CUSTOMER_TYPE_IND = "ind";
     private static final String VALID_CUSTOMER_TYPE_ENT = "ent";
+    private static final String VALID_CUSTOMER_POINTS = "100";
+    private static final String VALID_ADD_POINTS = "-500";
     private static final String VALID_SORT_OPTION_NAME = "name";
     private static final String VALID_SORT_OPTION_POINTS = "points";
     private static final String VALID_SORT_OPTION_CREATED_DATE = "created";
@@ -65,6 +76,36 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseQuantity_validWithoutWhitespace_returnsQuantity() throws Exception {
+        Quantity expectedQuantity1 = new Quantity(Integer.parseInt(VALID_QUANTITY_1));
+        assertEquals(expectedQuantity1, ParserUtil.parseQuantity(VALID_QUANTITY_1));
+
+        Quantity expectedQuantity2 = new Quantity(Integer.parseInt(VALID_QUANTITY_2));
+        assertEquals(expectedQuantity2, ParserUtil.parseQuantity(VALID_QUANTITY_2));
+    }
+
+    @Test
+    public void parseQuantity_validWithWhitespace_returnsQuantity() throws Exception {
+        Quantity expectedQuantity1 = new Quantity(Integer.parseInt(VALID_QUANTITY_1));
+        String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY_1 + WHITESPACE;
+        assertEquals(expectedQuantity1, ParserUtil.parseQuantity(quantityWithWhitespace));
+    }
+
+    @Test
+    public void parseQuantity_null_throwsNullPointerException() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity((String) null));
+    }
+
+    @Test
+    public void parseQuantity_invalidValue_throwsParseException() throws Exception {
+        assertThrows(ParseException.class,
+                Quantity.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseQuantity(INVALID_QUANTITY_1));
+
+        assertThrows(ParseException.class,
+                Quantity.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseQuantity(INVALID_QUANTITY_2));
     }
 
     @Test
@@ -220,6 +261,39 @@ public class ParserUtilTest {
     @Test
     public void parseCustomerType_invalidCustomerType_throwsParseException() throws Exception {
         assertThrows(ParseException.class, () -> ParserUtil.parseCustomerType(INVALID_CUSTOMER_TYPE));
+    }
+
+    @Test
+    public void parsePoints_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePoints((String) null));
+    }
+
+    @Test
+    public void parsePoints_invalidPoints_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePoints(INVALID_CUSTOMER_POINTS));
+    }
+
+    @Test
+    public void parsePoints_validPoints() throws Exception {
+        Integer validPoints = Integer.valueOf(VALID_CUSTOMER_POINTS);
+        Points expectedPoints = new Points(validPoints, validPoints);
+        assertEquals(expectedPoints, ParserUtil.parsePoints(VALID_CUSTOMER_POINTS));
+    }
+
+    @Test
+    public void parseAddPoints_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddPoints((String) null));
+    }
+
+    @Test
+    public void parseAddPoints_invalidAddPoints_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePoints(INVALID_ADD_POINTS));
+    }
+
+    @Test
+    public void parseAddPoints_validAddPoints() throws Exception {
+        Integer validAddPoints = Integer.valueOf(VALID_ADD_POINTS);
+        assertEquals(validAddPoints, ParserUtil.parseAddPoints(VALID_ADD_POINTS));
     }
 
     @Test

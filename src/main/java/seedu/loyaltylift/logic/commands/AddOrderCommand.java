@@ -2,10 +2,10 @@ package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,6 @@ import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
-import seedu.loyaltylift.model.order.Status;
 
 /**
  * Adds an order to LoyaltyLift.
@@ -34,6 +33,7 @@ public class AddOrderCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS]";
 
     public static final String MESSAGE_SUCCESS = "New order added: \n%1$s";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists for the customer today";
 
     private final Index customerIndex;
     private final AddOrderDescriptor addOrderDescriptor;
@@ -55,15 +55,20 @@ public class AddOrderCommand extends Command {
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
         if (customerIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
 
         Customer taggedCustomer = lastShownList.get(customerIndex.getZeroBased());
         Order createdOrder = createOrder(taggedCustomer, addOrderDescriptor);
 
+        if (model.hasOrder(createdOrder)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
+        }
+
         model.addOrder(createdOrder);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, createdOrder));
+        model.setOrderToDisplay(createdOrder);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, createdOrder),
+                LIST_AND_SHOW_ORDER);
     }
 
     /**
@@ -77,7 +82,6 @@ public class AddOrderCommand extends Command {
         Name name = addOrderDescriptor.getName();
         Address address = addOrderDescriptor.getAddress().orElse(taggedCustomer.getAddress());
         Quantity quantity = addOrderDescriptor.getQuantity().orElse(new Quantity(1));
-        Status status = new Status();
 
         return new Order(taggedCustomer, name, quantity, address);
     }
