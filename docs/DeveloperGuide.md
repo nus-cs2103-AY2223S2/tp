@@ -8,6 +8,7 @@ title: Developer Guide
 
 **MODTrek** is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
 This application is currently geared towards NUS Computer Science Students of the AY2021-2022 cohort only. We hope to expand our application's scope in the coming years.
+
 -------------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
