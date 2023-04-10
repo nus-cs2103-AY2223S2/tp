@@ -32,6 +32,11 @@ public class UiManager implements Ui {
         this.logic = logic;
     }
 
+    /**
+     * Start the Ui components with the given primary stage.
+     *
+     * @param primaryStage Primary stage of the app.
+     */
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting UI...");
