@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+Class "{abstract}\nCommand" as Command
+Class XYZCommand
+
+package "Parser classes"{
+Class "<<interface>>\nCommandFactory" as CommandFactory
+Class WingmanParser
+Class XYZCommandFactory
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> WingmanParser
+
+WingmanParser .down.> XYZCommandFactory: creates >
+note right of XYZCommandFactory: XYZCommandFactory = AddPlaneCommandFactory, \n LinkCrewCommandFactory etc
+
+XYZCommandFactory ..> XYZCommand : creates >
+WingmanParser ..> Command : returns >
+XYZCommandFactory .up.|> CommandFactory
+XYZCommandFactory --> "1" CommandWord
+XYZCommandFactory --> "1..*" PREFIX_ABC
+note right of PREFIX_ABC: PREFIX_ABC = PREFIX_AGE, \n PREFIX_NAME etc
+XYZCommand -up-|> Command
+@enduml
