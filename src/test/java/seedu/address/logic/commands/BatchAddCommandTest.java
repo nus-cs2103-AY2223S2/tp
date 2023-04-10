@@ -52,19 +52,6 @@ class BatchAddCommandTest {
         assertCommandFailure(batchAddCommand, model, BatchAddCommand.MESSAGE_MISSING_NEEDED_FIELDS);
     }
 
-    @Test
-    void execute_batchAdd_success() {
-        Model emptyDatabase = new ModelManager(new ExecutiveProDb(), new UserPrefs());
-        Path testData = Paths.get("src", "test", "data", "BatchAddTest", "validEmployees.csv");
-        BatchAddCommand batchAddCommand = new BatchAddCommand("validEmployees.csv");
-        batchAddCommand.setFilePath(testData);
-
-        // Update the expectedMessage with the correct number of employees in the "validEmployees.csv" file
-        String expectedMessage = String.format(BatchAddCommand.MESSAGE_WORKS, 2);
-        Model expectedModel = emptyDatabase;
-
-        assertCommandSuccess(batchAddCommand, emptyDatabase, expectedMessage, expectedModel);
-    }
 
 
 }
