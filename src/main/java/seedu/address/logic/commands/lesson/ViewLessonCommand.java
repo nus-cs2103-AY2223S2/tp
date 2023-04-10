@@ -3,8 +3,8 @@ package seedu.address.logic.commands.lesson;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
@@ -29,18 +29,18 @@ public class ViewLessonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all lessons filtered by\n"
         + "* name of student (case-insensitive) and/or\n"
         + "* date and/or\n"
-        + "* subject and/or\n"
+        + "* lesson title and/or\n"
         + "* whether it is done\n"
         + "and displays them as a list with index numbers.\n"
         + "Parameters: "
         + PREFIX_NAME + "STUDENT_NAME "
         + PREFIX_DATE + "DATE "
-        + PREFIX_SUBJECT + "SUBJECT "
+        + PREFIX_LESSON + "LESSON "
         + PREFIX_DONE + "COMPLETED KEYWORD\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_NAME + "John Doe "
         + PREFIX_DATE + "2023-05-21 "
-        + PREFIX_SUBJECT + "Math "
+        + PREFIX_LESSON + "Math "
         + PREFIX_DONE + "done(or not done)";
     private static final String SEPERATOR = "--------------------------------------------------\n";
     private static final Predicate<Lesson> SHOW_ALL_LESSONS = lesson -> true;
