@@ -1,6 +1,6 @@
 package seedu.sudohr.logic.parser.leave;
 
-import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
+import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.sudohr.logic.commands.leave.ListEmployeeInLeaveCommand;
 import seedu.sudohr.logic.parser.Parser;
@@ -27,7 +27,7 @@ public class ListEmployeeInLeaveCommandParser implements Parser<ListEmployeeInLe
             return new ListEmployeeInLeaveCommand(date);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_DATE_FORMAT), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListEmployeeInLeaveCommand.MESSAGE_USAGE), pe);
         }
     }
 }

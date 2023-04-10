@@ -1,6 +1,6 @@
 package seedu.sudohr.logic.parser.leave;
 
-import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
+import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_LEAVE_DATE_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_LEAVE_DATE_LEAVE_TYPE_1;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -26,15 +26,16 @@ public class ListEmployeeInLeaveCommandParserTest {
 
     @Test
     public void parse_fieldsMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_DATE_FORMAT);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ListEmployeeInLeaveCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, "", expectedMessage);
     }
 
     @Test
     public void parse_invalidField_failure() {
-        String expectedMessage = String.format(
-                MESSAGE_INVALID_DATE_FORMAT);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ListEmployeeInLeaveCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, INVALID_LEAVE_DATE_DESC, expectedMessage);
     }
