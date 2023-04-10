@@ -56,11 +56,9 @@ public class ListExpensesCommand implements ListCommand {
         Predicate<Expense> combinedPredicate = PREDICATE_SHOW_ALL_EXPENSES;
         if (categoryPredicate.isPresent()) {
             combinedPredicate = combinedPredicate.and(categoryPredicate.get());
-            model.updateFilteredExpensesList(categoryPredicate.get());
         }
         if (timespanPredicate.isPresent()) {
             combinedPredicate = combinedPredicate.and(timespanPredicate.get());
-            model.updateFilteredExpensesList(timespanPredicate.get());
         }
         model.updateFilteredExpensesList(combinedPredicate);
         return new CommandResult(

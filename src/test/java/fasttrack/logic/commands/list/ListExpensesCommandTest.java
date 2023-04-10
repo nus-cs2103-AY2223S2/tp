@@ -6,9 +6,11 @@ import static fasttrack.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
 import static fasttrack.testutil.TypicalCategories.FOOD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 
+import fasttrack.model.expense.ExpenseInTimespanPredicate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -57,17 +59,17 @@ public class ListExpensesCommandTest {
         assertEquals(Arrays.asList(TypicalExpenses.BANANA, TypicalExpenses.APPLE), model.getFilteredExpenseList());
     }
 
-    //     @Test
-    //     public void execute_listFilterByTimespan_showsExpenses() {
-    //         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 2);
-    //         ExpenseInTimespanPredicate predicate = new ExpenseInTimespanPredicate(LocalDate.of(2023, 3, 13));
+         @Test
+         public void execute_listFilterByTimespan_showsExpenses() {
+             String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 2);
+             ExpenseInTimespanPredicate predicate = new ExpenseInTimespanPredicate(LocalDate.of(2023, 3, 13));
 
-    //         ListExpensesCommand command = new ListExpensesCommand(Optional.empty(), Optional.of(predicate));
-    //         expectedModel.updateFilteredExpensesList(predicate);
-    //         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //         assertEquals(Arrays.asList(TypicalExpenses.GRAPE, TypicalExpenses.DURIAN),
-    //         model.getFilteredExpenseList());
-    //     }
+             ListExpensesCommand command = new ListExpensesCommand(Optional.empty(), Optional.of(predicate));
+             expectedModel.updateFilteredExpensesList(predicate);
+             assertCommandSuccess(command, model, expectedMessage, expectedModel);
+             assertEquals(Arrays.asList(TypicalExpenses.GRAPE, TypicalExpenses.DURIAN),
+             model.getFilteredExpenseList());
+         }
 
     //     @Test
     //     public void execute_listFilterByCategoryByTimespan_showsExpense() {
