@@ -553,6 +553,8 @@ Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 Examples:
 * `listRoutines` followed by `addExercise 1 ex/push ups` adds the exercise `push ups` to the first routine in the exercise routine list in FitBook.
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting an exercise : `deleteExercise`
 
 {% include information.html content="
@@ -585,6 +587,8 @@ Clears all routine entries in FitBook under the `Exercise` Tab.
 
 
 Format: `clearRoutines`
+
+<div style="page-break-after: always;"></div>
 
 #### Exporting routine details : `exportRoutines`
 
