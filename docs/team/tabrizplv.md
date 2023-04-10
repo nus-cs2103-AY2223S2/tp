@@ -17,25 +17,29 @@ https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tabrizplv&breakdown=t
 
 * Implemented Meeting class for v1.2
 * Refactor storage to store and retrieve Meeting objects
-* updateMeeting feature
+* Implemented updateMeeting feature
 
 **Contributions to the UG:**
 
 * Added Draft User Guide
 * Added meetingUpdate section of UG
 * Reformatted UG structure to make it more reader-friendly
+* Added Quick Start section
+* Added Troubleshooting section
 
 **Contributions to the DG:**
+
 * Added updateMeeting feature section
 * Added UML diagram for updateMeeting feature
 
 **Contributions to team-based tasks:**
+
 * Fixed bug where updating meeting of sample data applies changes to all sample data
 * Fixed bug where meetings are not loaded from storage upon application start
 
 **Review/Mentoring Contributions:**
-* Identifying bugs in team's implementations
+
+* Identifying bugs in team's implementations like meetingAdd, meetingRemove and meetingFind
 * Fixed checkstyle issues for team
 * Updated team's unit tests
 
-**Contributions beyond team project:** to be added soon
