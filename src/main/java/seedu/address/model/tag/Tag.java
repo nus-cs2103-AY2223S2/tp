@@ -18,7 +18,7 @@ public class Tag {
         HARD
     }
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either Easy, Medium, or Hard. "
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either 'Easy', 'Medium', or 'Hard'. "
             + "Tag is case-insensitive.";
 
     public static final String VALIDATION_REGEX = "(?i)\\b(easy|medium|hard)\\b";

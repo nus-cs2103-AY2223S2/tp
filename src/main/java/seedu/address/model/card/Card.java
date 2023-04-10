@@ -102,7 +102,6 @@ public class Card {
 
         return otherCard != null
                 && otherCard.getQuestion().equals(getQuestion())
-                && otherCard.getAnswer().equals(getAnswer())
                 && otherCard.getDeck().equals(getDeck());
     }
 

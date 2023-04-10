@@ -22,7 +22,7 @@ public class AddDeckCommand extends Command {
             + "LAK1201";
 
     public static final String MESSAGE_SUCCESS = "New deck created: %1$s";
-    public static final String MESSAGE_DUPLICATE_DECK = "This deck already exists in the deck list";
+    public static final String MESSAGE_DUPLICATE_DECK = "This deck name already exists.";
 
     private final Deck toAdd;
 

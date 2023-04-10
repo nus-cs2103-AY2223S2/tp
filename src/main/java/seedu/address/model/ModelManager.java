@@ -292,6 +292,7 @@ public class ModelManager implements Model {
     @Override
     public void endReview() {
         currReview = null;
+        updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
         if (selectedDeck != null) {
             updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
         } else {
