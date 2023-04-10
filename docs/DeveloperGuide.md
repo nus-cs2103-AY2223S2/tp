@@ -1290,7 +1290,6 @@ These commands should be tested on the Grades Page.
 ---
 
 ## Appendix: Effort
-#### Challenges Faced
 ##### Multiple Object Types
 One of the main challenges we faced was establishing dependencies between the various object types in a way that
 ensured consistency and minimized data duplication. This required careful consideration of the various use cases and
@@ -1298,23 +1297,14 @@ edge cases that could arise during the management of the student roster. This is
 Detailed implementation is described under [Implementation](#student-roster-object-types).
 
 ##### Page Navigation
-As CLIpboard has multiple different pages to display different types of objects at a given time. As such, a way of keeping track of the current page, as well as the possible pages to navigate to, was needed.
+As CLIpboard has multiple different pages to display different types of objects at a given time. So, we needed to keep track of the current page, and the possible pages to navigate to.
 
-Additionally, navigating a page also meant traversing the object hierarchy.
-There had to be a way to store information about which object had been selected, in order to know which object a user command should manipulate. (e.g If the user is on the "Courses" page and selects a course, this selection needs to be saved. Then, further commands performed by the user will execute on the selected course)
+Additionally, navigating a page also meant traversing the object hierarchy, and we had to store a pointer to the objects selected by the user. All these were done through the `CurrentSelection` class.
 
-Adding page navigation added further challenges, as more factors had to now be considered. These include restricting certain commands to only be allowed on certain pages, commands executing differently depending on the current page, as well as handling the loading of appropriate GUI elements respective to the page.
+Adding page navigation added more factors to be considered. These include restricting certain commands to only be allowed on certain pages, commands executing differently depending on the current page, and handling the loading of appropriate GUI elements respective to the page.
 
 ##### Storage
 As compared to AB3, CLIpboard maintains several more types of objects to store. These added types of objects needed their own respective classes to serialize them into `json` objects.
 
 The added types also had a specific hierarchy (e.g `Roster` -> `Course` -> `Group` -> `Student`), different data fields, as well as a deeper serialization depth than AB3, which required further modification to the storage classes to handle.
-
-#### Achievements
-Our project has resulted in a comprehensive and user-friendly solution for managing the student roster. The object
-types we have designed accurately represent the various entities and relationships involved, and the established
-dependencies ensure consistency and reduce the risk of data duplication and inconsistencies.
-
-#### Reuse
-All of the object types and their dependencies were designed and implemented from scratch, aside from AB3 implementations.
 
