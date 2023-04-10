@@ -164,6 +164,15 @@ To provide an example of how this feature works, consider the following usage sc
     * Pros: Will use less resources and time, thus improving system performance.
     * Cons: Requires more complex implementation logic to track and update the modified fields.
 
+### Storage Feature
+
+<img src="./images/StorageClassDiagram.png" width="100%"/>
+
+The Storage Feature handles the below requirements:
+- Saves user preference data in json format, and task list items (events, todos) in ics format
+- To abstract over ics files, we use the ical4j library as a intermediate layer.
+- It depends on the classes in the Model component
+
 ### Planned Enhancements
 1. The base Calendar GUI leaves much to be desired. We plan to implement a more user-friendly GUI, where the calendar entries are color-coded according to priority and status, instead of being expressed textually, to workaround text-wrapping.
 2. We plan to implement a more robust search function, where the user can search for tasks by details other than the title, such as the description, priority, and tags.
