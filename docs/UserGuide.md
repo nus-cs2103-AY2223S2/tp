@@ -514,10 +514,10 @@ The class list is list of the students enrolled in a class. For class lists, you
 
 - Create class list: `create_class`
 - View class statistics: `class_stats`
-- (Random) Groupings: `rand_grp`
 - Adding a student: `add`
 - Deleting a student: `delete`
-- Listing all students in a class: `list`
+- Listing all students in a class: `classlist`
+- List all students: `list`
 - Find student: `find`
 
 #### Create a class list: `create_class`
@@ -526,11 +526,33 @@ Creates a class list to store the information about a group of students.
 
 Format: `create_class LIST_NAME`
 
-- The argument `LIST_NAME` should be the name of the new class list
+- The argument `LIST_NAME` should be the name of the new class list.
 
 Examples:
 
 - `create_class cs6244` creates an empty class list.
+
+#### List students in a class list: `classlist`
+
+List the students in a particular class list.
+
+Format: `create_class LIST_NAME`
+
+- The argument `LIST_NAME` should be the name of the class list which you want to see the students inside.
+
+Examples:
+
+- `classlist cs6244` list the students in class cs6244.
+
+#### List all students in the application: `list`
+
+List all students.
+
+Format: `list`
+
+Examples:
+
+- `list` list all students in the application.
 
 #### Add a student: `add_student`
 
