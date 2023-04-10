@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.score.Score;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
@@ -22,6 +23,7 @@ import seedu.address.model.task.UniqueTaskList;
 public class TypicalMockStudents {
 
     public static final UniqueTaskList typicalTaskList = TypicalMockTasks.getTypicalTasks();
+    public static final List<Score> typicalScoreList = TypicalMockScores.getTypicalScores();
     public static final Student ALICE = mock(Student.class);
     public static final Name ALICE_NAME = spy(new Name("Alice Pauline"));
     public static final Student BENSON = mock(Student.class);

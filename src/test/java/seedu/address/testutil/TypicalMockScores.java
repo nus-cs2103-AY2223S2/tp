@@ -5,6 +5,10 @@ import seedu.address.model.score.Label;
 import seedu.address.model.score.Score;
 import seedu.address.model.score.ScoreValue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static seedu.address.logic.commands.CommandTestUtil.*;
@@ -53,5 +57,13 @@ public class TypicalMockScores {
     public static void setScore4() {
         doReturn(VALID_SCORE_LABEL).when(SCORE_4_NAME).toString();
         doReturn(VALID_SCORE_DATE).when(SCORE_4_DATE).toString();
+    }
+
+    public static List<Score> getTypicalScores() {
+        setScore1();
+        setScore2();
+        setScore3();
+        setScore4();
+        return new ArrayList<>(Arrays.asList(SCORE_1, SCORE_2, SCORE_3, SCORE_4));
     }
 }
