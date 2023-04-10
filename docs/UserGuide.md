@@ -14,6 +14,8 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Before using FitBook, make sure to install **Java** `11` or later version in your Computer. This is required to ensure proper functionality of the application. Please install the correct Java version to use FitBook. 
@@ -114,8 +116,9 @@ When you enter a command into the Command Box of the application, the system wil
 ### Command Box
 The Command Box is where you can type in your commands. To execute the command, simply press the "Enter" button on your keyboard. This will send the command to the system for processing.
 
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -176,6 +179,8 @@ The Command Box is where you can type in your commands. To execute the command, 
 While `All Taken` means for example `add ... t/friends t/VIP ...` both tags will be added to the client.  </div>
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Client Commands
 
@@ -406,6 +411,8 @@ Example:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Exercise Routine Commands
 
 * All routines and exercises must be in AlphaNumeric characters and spaces between characters are allowed.
@@ -581,6 +588,8 @@ Format: `exportRoutines`
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### FitBook Miscellaneous Commands
 
 #### Viewing help : `help`
@@ -635,7 +644,12 @@ If your changes to the data file makes its format invalid, FitBook will discard 
 **Q**: When I try to edit my weight a few times, and it updates in the client panel, but the data does not show up on the graph?<br>
 **A**: To view historical weight data on the line graph, more values of weight must be added using addWeight command. edit command only changes the latest weight of the client.
 
+**Q**: Why is my FitBook empty even though I have data saved in the storage?<br>
+**A**: The format of your json file storage is invalid. Hence, it will create an empty storage system for the FitBook as a measure.
+
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 

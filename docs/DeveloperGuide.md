@@ -1047,7 +1047,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-> **Use case: UC16 - Add Exercise **
+> **Use case: UC16 - Add Exercise**
 
 **MSS**
 
