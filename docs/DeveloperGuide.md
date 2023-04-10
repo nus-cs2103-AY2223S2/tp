@@ -1421,3 +1421,34 @@ A more specific error may be beneficial in bringing a more positive user experie
 In the future, we plan to add an additional check when parsing the command that makes sure
 the user has given a valid positive input for the index, and if not, it will throw an exception that will
 be returned to the user to state specifically that the index they input should be positive.
+
+#### 7. Help: 2 truncated commands in the Help Window
+
+Some users may experience truncated undo and redo commands in the Help Window, possibly due to different screen sizes 
+and resolutions.
+
+![img.png](images/HelpWindowTruncatedCommandError.png)
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to increase the commandColumn's `prefWidth` to `155`. This should resolve the problem.
+
+For now, users can move the bar beside `Command` on the first row to adjust the column's width if needed.
+
+#### 8. Find Command: Grammatical error when only 1 application is listed
+
+When a user uses the find command and only 1 application is listed, display message `1 applications listed` is 
+shown and this is grammatically incorrect.
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we can fix this grammatical error.
+
+#### 9. Duplicate application entries
+
+Currently, sprINT detects duplicate entries when all the fields: `Role`, `Company Name`,
+ `Company Email`, `Tags` (if any) as well as `Application Task` (if any) are the same. This means that 
+an application with the same role, company name and company email can be added which is less than ideal.
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to enhance sprINT to detect duplicate entries based on just `Role`, `Company Name` and 
+`Company Email`. Users will be told that the application already exists when they attempt to add an application that 
+matches an existing entry defined by these two criteria.
