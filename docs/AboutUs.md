@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/laihuiqi.md)]
 
 * Role: Developer
-* Responsibilities: `clear`, `delete` and `exit` feature
+* Responsibilities: `Clear`, `Clear_by`, `Delete`, `Exit`, `Revert`, `Revert_all` and `Task Package` related features
 
 ### Benjamin Wee 
 
