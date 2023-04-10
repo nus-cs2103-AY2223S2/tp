@@ -88,12 +88,30 @@ public class Task {
     }
 
     public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
+
+    public void insertDeadline(LocalDateTime deadline) {
         Objects.requireNonNull(deadline);
+        if (this.deadline != null) {
+            throw new IllegalStateException("The task already has a deadline");
+        }
+        this.deadline = deadline;
+    }
+
+    public void editDeadline(LocalDateTime deadline) {
+        Objects.requireNonNull(deadline);
+        if (this.deadline == null) {
+            throw new IllegalStateException("The task has no deadline");
+        }
         this.deadline = deadline;
     }
 
     public void deleteDeadline() {
-        this.deadline = null;
+        if (deadline == null) {
+            throw new IllegalStateException("The task has no deadline");
+        }
+        deadline = null;
     }
 
     /**

@@ -41,18 +41,18 @@ public class InsertCommand extends UndoableLogicCommand {
      */
     @Override
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
-        actualIndex = targetIndex.getZeroBased();
+        actualIndex = taskList.getLogicSourceIndex(targetIndex.getZeroBased());
         Task oldTask = taskList.get(actualIndex);
         Task newTask = oldTask.clone();
         this.oldTask = oldTask;
         if (request.getInsertedDeadline() != null) {
-            newTask.setDeadline(request.getInsertedDeadline());
+            newTask.insertDeadline(request.getInsertedDeadline());
         }
         request.getInsertedLabels().forEach(newTask::addLabel);
         taskList.set(actualIndex, newTask);
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()),
-                true);
+        return new CommandResult(
+                String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()), true);
     }
 
     /**
