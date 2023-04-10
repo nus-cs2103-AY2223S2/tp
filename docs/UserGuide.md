@@ -793,7 +793,7 @@ Marks video(s) as **watched** in lecture of its specified module.
 
 Marks video(s) as **unwatched** in a lecture of its specified module.
 
-- [<span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>](#video-name-format): The names of videos
+- [<span style="color:#e46c0a">`video_name_1, video_name_2, video_name_3, ...`</span>](#video-name-format): The names of videos
   - Must belong to existing videos in the lecture specified in `lecture_name`
   - Must not contain duplicates
   - For `mark`, must not already be marked
