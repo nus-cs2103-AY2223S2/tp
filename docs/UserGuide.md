@@ -269,7 +269,7 @@ Examples:
 * `find-client name/bob tag/friend` will find any client whose name contains the word `bob` and is tagged with `friend`.
 * `find-client name/bob name/alice tag/friend tag/husband` will find any client whose name contains either `bob` or `alice`, and is tagged with either `friend` or `husband`.
 
-### Sorting all clients
+### Sorting clients
 #### Format: `sort-client`
 
 Short form: `sc`
