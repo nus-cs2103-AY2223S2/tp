@@ -483,6 +483,124 @@ The following sequence diagram illustrates how the delete patient operation work
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+### Assign Patient Feature
+
+#### What it does
+{: .no_toc}
+
+Assigns a patient at the specified **one-based index** of list of currently existing/found patient to a doctor at the specified **one-based index** of list of currently existing/found doctor. If indexes provided are larger or equal to the size of their respective lists, the command will not be allowed and an error will be thrown. If specified patient is already assigned to specified doctor, the command will not be allowed and an error will be thrown.
+
+Example Use: `assign-ptn ptn/1 doc/1`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the assign patient command, a `AssignPatientCommand` class is created. The `AssignPatientCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the patient at specified **one-based index** is assigned to the doctor at specified **one-based index** if both indexes provided are valid and the patient is not assigned to the doctor yet. The `AssignPatientCommand` class creates a new `Patient` object with the specific `Doctor` reference and a new `Doctor` object with the specific `Patient` reference. The previous `Patient` and `Doctor` objects are then replaced with the new `Patient` and `Doctor` objects.
+
+Given below is an example usage scenario of how the assign patient command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `assign-ptn ptn/1 doc/1` to assign the patient at index 1 to the doctor at index 1 (one-based indexing).
+
+Step 3. If the indexes provided are valid and patient is not assigned to doctor yet, the patient at index 1 is replaced with a patient with doctor reference and the doctor at index 1 is replaced with a doctor with patient reference.
+
+The following sequence diagram illustrates how the assign patient operation works:
+
+![](images/AssignPatientSequenceDiagram.png)
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Unassign Patient Feature
+
+#### What it does
+{: .no_toc}
+
+Unassigns a patient at the specified **one-based index** of list of currently existing/found patient from a doctor at the specified **one-based index** of list of currently existing/found doctor. If indexes provided are larger or equal to the size of their respective lists, the command will not be allowed and an error will be thrown. If specified patient is not assigned to specified doctor, the command will not be allowed and an error will be thrown.
+
+Example Use: `unassign-ptn ptn/1 doc/1`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the unassign patient command, a `UnassignPatientCommand` class is created. The `UnassignPatientCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the patient at specified **one-based index** is unassigned from the doctor at specified **one-based index** if both indexes provided are valid and the patient is assigned to the doctor. The `AssignPatientCommand` class creates a new `Patient` object without the specific `Doctor` reference and a new `Doctor` object without the specific `Patient` reference. The previous `Patient` and `Doctor` objects are then replaced with the new `Patient` and `Doctor` objects.
+
+Given below is an example usage scenario of how the unassign patient command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `unassign-ptn ptn/1 doc/1` to unassign the patient at index 1 from the doctor at index 1 (one-based indexing).
+
+Step 3. If the indexes provided are valid and patient is assigned to doctor, the patient at index 1 is replaced with a patient without doctor reference and the doctor at index 1 is replaced with a doctor without patient reference.
+
+The following sequence diagram illustrates how the unassign patient operation works:
+
+![](images/UnassignPatientSequenceDiagram.png)
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Find Doctor Feature
+
+#### What it does
+{: .no_toc}
+
+Finds a doctor with the specified parameters. 
+
+Example Use: `find-doc n/Alice`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the find doctor command, a `FindDoctorCommand` class is created. The `FindDoctorCommand` class takes a predicate created by `DoctorContainsKeywordsPredicate` class. The `FindDoctorCommand` class extends the abstract `Command` class and implements the `execute()` method which updates the model's list of filtered doctors.
+
+Given below is an example usage scenario of how the find doctor command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `find-doc n/Alice` to find a doctor with the name Alice.
+
+Step 3. The model's list of filtered doctors is updated.
+
+The following sequence diagram illustrates how the find doctor operation works:
+
+![](images/FindDoctorSequenceDiagram.png)
+
+*args: Refers to a valid sequence of arguments provided by the user. Example: "n/John Doe p/98765432 e/johnd@example.com
+s/Cardiology y/5 t/surgeon"
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Find Patient Feature
+
+#### What it does
+{: .no_toc}
+
+Finds a patient with the specified parameters.
+
+Example Use: `find-ptn n/Bob`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the find patient command, a `FindPatientCommand` class is created. The `FindPatientCommand` class takes a predicate created by `PatientContainsKeywordsPredicate` class. The `FindPatientCommand` class extends the abstract `Command` class and implements the `execute()` method which updates the model's list of filtered patients.
+
+Given below is an example usage scenario of how the find patient command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `find-ptn n/Bob` to find a patient with the name Bob.
+
+Step 3. The model's list of filtered patients is updated.
+
+The following sequence diagram illustrates how the find patient operation works:
+
+![](images/FindPatientSequenceDiagram.png)
+
+*args: Refers to a sequence of valid arguments provided by the user. Example: "n/John Doe p/98765432 e/jdoe@gmail.com
+h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends"
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### GUI Features
 
 #### Enlarged Info Card feature
@@ -677,7 +795,7 @@ line `"At least one parameter other than INDEX should be provided\n"`.
 
 ## **Appendix B: Product scope**
 
-**Target user profile**
+**Target user profile:**
 We hope to target admin staff within a clinic who have to settle triaging of patients.<br>
 Here are some characteristics of our target user profile: <br>
 
@@ -936,6 +1054,11 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 ## **Appendix G: Effort**
+
+| Feature       | AB3 | Docedex                                |
+|---------------|-----|----------------------------------------|
+| Effort        | 10  |
+| Lines of Code | 10  |
 
 The Docedex project involved a significant effort to adapt the AddressBook-Level3 (AB3) application to a new domain of doctors and patients. One of the major changes was the addition of two new models, Doctor and Patient, which required modifying the existing data model and the associated logic components. Another significant change was the complete redesign of the user interface using JavaFX, which required a significant amount of time and effort to learn and implement.
 
