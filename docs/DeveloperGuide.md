@@ -1032,11 +1032,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Difficulty Level
 * The project was moderately challenging. The initial code base was quite large and complicated. It took us some time to fully understand it and how each component interacted, especially considering there were frameworks used that our team did not have any experience with, such as JavaFX.
-* It took longer to get started on implementing some of our features because we had to decide on the internal structure and how we wanted to proceed considering there was no one best way to do things. For example, the issue of linking projects to clients was complicated and required us to take time to consider a solution that did not introduce too much complexity but still delivered all the functionality we wanted.
+* It took longer to get started on implementing some of our features because we had to decide on the internal structure and how we wanted to proceed considering there was no one best way to do things. We had to come up with solutions that did not introduce too much complexity and was feasible within the deadline but still delivered the functionality we wanted.
 
 ### Challenges Faced
 * Understanding how FXML worked and its syntax. It took a long time and much research to be able to modify the existing user interface to match our new design.
 * Getting started with PlantUML to create diagrams for the updated developer guide required a fair amount of troubleshooting.
+* Making one change often resulted in a cascade of other changes that needed to be made, which hindered our progress initially while we familiarised ourselves with the code base.
 
 ### Effort Required
 * A lot of time to implement natural language processing for parsing deadlines was saved by using the [PrettyTime](https://github.com/ocpsoft/prettytime) library, since it already implements natural language processing. Our work on this can be found in the class [Deadline.java](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/model/project/Deadline.java).
@@ -1045,7 +1046,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Achievements
 * Creating a set of new structures to model the Project class in our own way.
-* Our product manages two entities which have to interact with each other, compared to AB3, which only manages one entity.
+* Our product manages three entities, two of which have to interact with each other, compared to AB3, which only manages one entity.
 
 --------------------------------------------------------------------------------------------------------------------
 
