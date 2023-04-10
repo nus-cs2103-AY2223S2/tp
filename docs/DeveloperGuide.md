@@ -41,11 +41,10 @@ license, making it open source and available for anyone to use and modify.
     - [Create a new tag](#create-a-new-tag)
     - [Tag a `Food`](#tag-a-food)
     - [Untag a `Food`](#untag-a-food)
-    - [List `Food` by tag(s).](#list-foods-by-tags)
-    - [Delete `Food` by tag(s).](#delete-foods-by-tags)
+    - [List `Food` by tag(s).](#list-food-by-tags)
+    - [Delete `Food` by tag(s).](#delete-food-by-tags)
     - [Delete tag(s)](#delete-tags)
   - [Dynamic Help](#dynamic-help)
-    - [Feature Details:](#feature-details)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Future enhancements](#appendix-planned-enhancements)
 - [Appendix: Requirements](#appendix-requirements)
@@ -53,15 +52,15 @@ license, making it open source and available for anyone to use and modify.
   - [User stories](#user-stories)
   - [Use cases](#use-cases)
   - [Use case UC01: Add a `Food`](#use-case-uc01-add-a-food)
-  - [Use case UC02: Lists all `Food`](#use-case-uc02-lists-all-foods)
+  - [Use case UC02: List all `Food`](#use-case-uc02-list-all-food)
   - [Use case UC03: Edit a `Food`](#use-case-uc03-edit-a-food)
   - [Use case UC04: Increase the quantity of a `Food`](#use-case-uc04-increase-the-quantity-of-a-food)
   - [Use case UC05: Decrease the quantity of a `Food`](#use-case-uc05-decrease-the-quantity-of-a-food)
   - [Use case UC06: Delete a `Food`](#use-case-uc06-delete-a-food)
   - [Use case UC07: Create a new tag](#use-case-uc07-create-a-new-tag)
   - [Use case UC08: Tag a `Food`](#use-case-uc08-tag-a-food)
-  - [Use case UC09: List `Food` by tags](#use-case-uc09-list-foods-by-tags)
-  - [Use case UC10: Delete `Food` by tags](#use-case-uc10-delete-foods-by-tags)
+  - [Use case UC09: List `Food` by tags](#use-case-uc09-list-food-by-tags)
+  - [Use case UC10: Delete `Food` by tags](#use-case-uc10-delete-food-by-tags)
   - [Use case UC11: Delete tags](#use-case-uc11-delete-tags)
   - [Use case UC12: View help](#use-case-uc12-view-help)
   - [Non-Functional Requirements](#non-functional-requirements)
@@ -69,24 +68,24 @@ license, making it open source and available for anyone to use and modify.
   - [Initial Launch](#initial-launch)
   - [Tests for Food-related features](#tests-for-food-related-features)
     - [Add a `Food`](#test-to-add-a-food)
-    - [List all `Food`](#test-to-list-all-foods)
+    - [List all `Food`](#test-to-list-all-food)
     - [Edit a `Food`](#test-to-edit-a-food)
     - [Find a `Food`](#test-to-find-a-food)
     - [Increase quantity of a`Food`](#test-to-increase-quantity-of-a-food)
     - [Decrease quantity of a `Food`](#test-to-decrease-quantity-of-a-food)
     - [Delete a `Food`](#test-to-delete-a-food)
-  - [Sort `Food` by expiry date](#test-to-sort-foods-by-expiry-date)
+  - [Sort `Food` by expiry date](#test-to-sort-food-by-expiry-date)
   - [Tag-related features](#tests-for-tag-related-features)
     - [Create a new tag](#test-to-create-a-new-tag)
     - [Tag a `Food`](#test-to-tag-a-food)
     - [Untag a `Food`](#test-to-untag-a-food)
     - [List all tags](#test-to-list-all-tags)
-    - [List `Food` by tag(s)](#test-to-list-foods-by-tags)
-    - [Delete `Food` by tag(s)](#test-to-delete-foods-by-tags)
+    - [List `Food` by tag(s)](#test-to-list-food-by-tags)
+    - [Delete `Food` by tag(s)](#test-to-delete-food-by-tags)
     - [Delete tag(s)](#test-to-delete-tags)
   - [General Features](#tests-for-general-features)
     - [Help](#test-for-help)
-    - [Clear](#test-to-clear-foods)
+    - [Clear](#test-to-clear-wife)
     - [Exit](#test-to-exit)
   - [Glossary](#glossary)
 
@@ -406,7 +405,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![IncreaseQuantityActivityDiagram](images/IncreaseQuantityActivityDiagram.png)
 
 
-#### View details of a `Food`.
+#### View details of a `Food`
 
 **Overview**
 
@@ -455,7 +454,7 @@ The following UML diagram shows `Tag` and its associated class.
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to store the tags for WIFE and each `Food`.**
 
@@ -578,7 +577,7 @@ The activity diagrams of the `untag` and `tag` commands are similar.
 
 ![UntagFoodActivityDiagram](images/UntagFoodActivityDiagram.png)
 
-#### List `Food` by tag(s).
+#### List `Food` by tag(s)
 
 **Overview**
 
@@ -624,7 +623,7 @@ The following activity diagram shows the usage of the `listbytag` command.
 
 ![ListByTagActivityDiagram](images/ListByTagActivityDiagram.png)
 
-#### Delete `Food` by tag(s).
+#### Delete `Food` by tag(s)
 
 **Overview**
 The Delete by tag feature is meant to delete all `Food` by the specified tags.
@@ -806,7 +805,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     -   \*a2. User confirms the cancellation. <br/>
         Use case ends.
 
-### **Use case UC02: Lists all `Food`**
+### **Use case UC02: List all `Food`**
 
 **MSS**
 
@@ -1166,7 +1165,7 @@ Expected Output in Result Display: Listed all food with the following tags:
 #### Test to delete `Food` by tag(s)
 
 <div markdown="block" class="alert alert-info">
-Prerequisite: Ensure you have entered the prerequisite commands mentioned in "List Foods by tag(s).
+Prerequisite: Ensure you have entered the prerequisite commands mentioned in "List Foods by tag(s)"
 Then, enter the `list` command to show all Food items first.
 </div>
 
