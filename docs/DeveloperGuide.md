@@ -11,6 +11,7 @@ title: Developer Guide
 
 * Our application is based on the [AB3](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/)
 * Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
+* Our application's color scheme takes inspiration from the color scheme of Apple's iMessage.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -781,6 +782,26 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `'`<br>
        Expected: Tag the card as hard.
 
+### Appendix: Effort
+
+#### User-friendly UI
+The original AB3 program displays a list of persons in a single panel, which is not practical for a flashcard application where the user needs to manage both decks and cards. In addition, our application requires 2 interfaces for the user, one when the user is managing their cards and decks, and another when they are in a review session.
+To address this, we used a dual panel layout that provides users with useful information side by side, making it easier for them to keep track of their progress and execute commands.
+
+When in main mode (deck selected or unselected), we designed the left dedicated to decks and another on the right dedicated to cards. This design allows the user to easily manage their decks and cards when in main mode.
+<br>
+When in review mode, the left panel shows review statistics while the right panel displays the current card being reviewed. 
+<br>
+
+In terms of colour scheme, we felt that the dark theme of AB3 was uninspiring and designed and implemented our own light theme to give this app a nice, warm and welcoming feel. 
+
+#### Extensive testing
+Our application has a total of 26 unique commands, as compared to 8 unique commands in AB3. With the increased number of commands, along with the increased number of classes to support these commands, means that code coverage is likely to decrease and more testing had to be done.
+* `MAIN_SELECTED_MODE` has a total of 11 accessible commands. 
+* `MAIN_UNSELECTED_MODE` has a total of 11 accessible commands.
+* `REVIEW_MODE` has a total of 9 accessible commands.
+
+As such, we saw this as a valuable opportunity to conduct extensive testing of our application. We achieved this by writing unit and integration tests for our commands, parsers, and model objects. Through this process, we were able to maintain a coverage level of **~70%**, only slightly less than the original **~72%** coverage in AB3. Additionally, we increased the number of test cases from **248** in AB3 to **356** in PowerCards.
 ### Appendix: Planned Enhancement
 In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
 **1. Making the command box scrollable**
