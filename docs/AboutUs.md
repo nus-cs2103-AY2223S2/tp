@@ -12,11 +12,11 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/4ndrelim.png" width="200px">
 
 [[github](https://github.com/4ndrelim)]
-[[portfolio](team/andre.md)]
+[[portfolio](team/4ndrelim.md)]
 
-- Role: Developer
-- Responsibilities: Integration & Tracking
-- In-charge of: Leave features
+- Role: Developer, PR Reviewer
+- Responsibilities: Integration, Testing & Bug Fixing
+- In-charge of: Employee class and related features
 
 ### Kenneth Kiang
 

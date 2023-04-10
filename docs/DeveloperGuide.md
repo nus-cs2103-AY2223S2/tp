@@ -170,14 +170,13 @@ This section describes some noteworthy details, alongside considerations and con
 ### 4.1. Design considerations:
 
 #### 4.1.1. Employee
-An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity), such as an employee id, email address, and phone number.
+An important design consideration to note for Employee is the multiple different fields that qualify as candidate _keys_, such as an employee id, email address, and phone number.
 
-An employee is uniquely identified by his ID field. This field can be used by internal operations without any concern of duplicates and display of the unique employee with the given id.
+These are fields to guard against duplication. An employee's id is any uniquely generated identifier assigned to it by the company upon joining. Two employees should not share email field or phone number as those two fields are understood to be unique.
 
-However, there are other fields to guard against duplication, specifically email and phone number fields.
-For instance, two employees should not share email field or phone number as those two fields are understood to be unique.
+Since any employee can be identified by its id, and it makes semantic sense, we have decided on the id field as the _Primary Key_. This field can be used by internal operations without any concern of duplicates and allow us to easily retrieve and display the unique employee with the given id.
 
-Under this design, SudoHR supports having several employees with the same name fields, without running the risk of retrieving or using the wrong employee's details.
+Under this design, SudoHR supports having several employees with the same name fields, without running the risk of retrieving or using the wrong employee's data.
 
 ##### Cascading employee updates and deletion to department and leave
 An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
@@ -213,6 +212,8 @@ In the future, it would be possible to modify SudoHR to track different types of
 
 ### 4.2. Employee-related features
 
+![EmployeeModelClassDiagram](./images/commands/employee/EmployeeModelClassDiagram.png)
+
 The 'Employee' object represents an Employee in the company. They are all stored in a `UniqueEmployeeList`.
 
 The attributes of an Employee are:
@@ -236,8 +237,11 @@ The attributes of an Employee are:
 The `add` command adds a new employee, with the specified fields, into SudoHR. Note that only the 'Tag' field is optional.
 
 Activity Diagram:
+![AddEmployeeCommand](./images/commands/employee/AddEmployeeActivityDiagram.png)
 
 Sequence Diagram:
+![AddEmployeeCommand](./images/commands/employee/AddEmployeeSequenceDiagram.png)
+
 
 ##### Flow
 1. The user enters the command, eg. `add id/37 n/John p/9861 7251 e/John@nus.com a/nus t/Vegetarian`
@@ -253,6 +257,8 @@ When checking for duplicated fields across employees, the `Id`, `Phone`, and `Em
 This is because `Id` is meant to be the unique identifier for an employee and `Phone` and `Email` fields are understood
 to be unique fields as well.
 
+The Id field is an integer. To avoid ambiguity in interpretation and possible confusion in identifying an employee, we have decided to ignore preceding zeros. 
+For instance, `0007` and `7` are treated as one and the same.
 
 #### 4.2.2 Editing an employee
 
@@ -260,8 +266,11 @@ The `edit` command edits the fields of an existing employee in SudoHR.
 Note that it is mandatory to specify the Id of the employee to be edited and at least one of the fields must be changed.
 
 Activity Diagram:
+![EditEmployeeCommand](./images/commands/employee/EditEmployeeActivityDiagram.png)
 
 Sequence Diagram:
+![EditEmployeeCommand](./images/commands/employee/EditEmployeeSequenceDiagram.png)
+
 
 ##### Flow
 1. The user enters the command, eg. `edit eid/37 p/8461 4872 a/ntu`. The employee with Id 37 will be identified and will have its phone and address fields updated as specified, if it exists in SudoHR.
@@ -288,8 +297,11 @@ While Id is the unique identifier of an employee, there should also be the flexi
 The `del` command deletes an existing employee from SudoHR.
 
 Activity Diagram:
+![DeleteEmployeeCommand](./images/commands/employee/DeleteEmployeeActivityDiagram.png)
 
 Sequence Diagram:
+![DeleteEmployeeCommand](./images/commands/employee/DeleteEmployeeSequenceDiagram.png)
+
 
 ##### Flow
 1. The user enters the command, eg. `del eid/37` where employee with Id 37 is to be removed from SudoHR.
@@ -305,10 +317,6 @@ We need to ensure that if an employee is deleted, it is also removed from being 
 #### 4.2.4 Listing all employees
 The `list` command lists all the employees in SudoHR.
 
-Activity Diagram:
-
-Sequence Diagram:
-
 The call stack is the same as a typical command except that it has no specified parser. 
 Instead, `SudoHrParser` directly returns the command containing the predicate `PREDICATE_SHOW_ALL_EMPLOYEES` specified in the `Model` class.
 
@@ -320,11 +328,7 @@ After that, the command result is returned.
 #### 4.2.5 Finding an employee by ID
 The `feid` command finds and displays an employee with the specified Id in SudoHR.
 
-Activity Diagram:
-
-Sequence Diagram:
-
-##### Flow
+#### Flow
 1. The user enters the command, eg. `feid eid/37` where employee with Id 37 is to be found.
 2. The parser will instantiate the corresponding `Id` object constructed from the argument associated with the prefix `eid/`.
 3. A predicate checking for the specified Id is instantiated and the command is executed with the predicate.
@@ -335,11 +339,7 @@ Sequence Diagram:
 #### 4.2.6 Finding an employee by keyword
 The `find` command finds and displays all employees in SudoHR with some part of their names matching the specified keyword.
 
-Activity Diagram:
-
-Sequence Diagram:
-
-##### Flow
+#### Flow
 1. The user enters the command, eg. `find alex` to look for employees whose name contains 'alex'.
 2. The parser will instantiate a predicate that looks for the specified keyword, constructed from the argument provided, in employee's name field.
 3. The command is executed with the predicate and the `filteredEmployeeList` is updated to contain all of such employees, with the UI displaying the employees to the user.
@@ -1026,7 +1026,7 @@ _{More to be added}_
 
 **Extensions**
 
-- 1a. User gives a name that is not alpha numeric
+- 1a. User gives a name that is not alphanumeric
 
   - 1a1. SudoHr shows an error message.
 
@@ -1483,7 +1483,7 @@ Here are a list of fixes we plan to add in the near future to counter known feat
 
 ### 8.1. Department name constraints
 
-* Department name will be case insensitive as case sensitivity does not create ambiguity between department names.
+* Department name will be case-insensitive as case sensitivity does not create ambiguity between department names.
 For example, 'Marketing' and 'marketing' are clearly the same department.
 
 * Department names will also allow special characters such as '(', ')' and ',' to account for department names with
@@ -1520,5 +1520,7 @@ leave on.
 
 ## 9. **Glossary**
 
-- **Mainstream OS** :Windows, Linux, Unix, OS-X
-- **Private contact detail** : A contact detail that is not meant to be shared with others
+- **Key**: An attribute that helps to uniquely identify an employee
+- **Primary Key**: The selected key that uniquely identifies an employee
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Private contact detail**: A contact detail that is not meant to be shared with others
