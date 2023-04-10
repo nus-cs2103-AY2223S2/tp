@@ -13,11 +13,11 @@ By centralizing all event-related information and tasks in one place, Paidlancer
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
   * `newcontact` Added ability for users to create as well as store a contact in the contact list. (Pull Request [#78](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/78))
     * What it does: Allows user to add a contact to the contact list.
     * Justification: This feature improves the product significantly because a user can keep track of all the contacts in the contact list. This is useful for users who just want to search for the contact.
-    * Highlights: This addition is created with future enhancement in mind. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required huge additions to the main classes such as UI, Model, Storage and more. This addition also required writing a lot of unit testcases. 
+    * Highlights: This addition is created with future enhancement in mind. It required an in-depth analysis of design alternatives.The implementation too was challenging as it required huge additions to the main classes such as UI, Model, Storage and more. This addition also required writing a lot of unit testcases. 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=bryansendeavour&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
@@ -28,8 +28,8 @@ Given below are my contributions to the project.
     * Design and implementation of new GUI (Pull Request [#97](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/97))
   * Release of `v1.3` on GitHub.
     * Design and implementation of improved GUI (Pull Request [#117](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/117))
-    * Enhance `clear` command (Pull Request [#159](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/159)))
-    * Bug fixes Pull Request [#125](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/125)) (Pull Request [#145](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/145)) 
+    * Enhance `clear` command (Pull Request [#159](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/159))
+    * Bug fixes Pull Request [#125](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/125) (Pull Request [#145](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/145)) 
 
 * **Enhancements to existing features**:
   * Enhanced the `clear` command
@@ -43,7 +43,7 @@ Given below are my contributions to the project.
 
 
 * **Community**:
-  * PRs reviewed and merged: 
+  * PRs reviewed and merged:
     * [#13](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/13)
     * [#35](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/35)
     * [#38](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/38)

@@ -5,6 +5,7 @@ import static seedu.event.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import seedu.event.commons.core.index.Index;
 import seedu.event.logic.commands.LinkContactCommand;
 import seedu.event.logic.parser.exceptions.ParseException;
+import seedu.event.model.contact.ContactPhone;
 
 /**
  * Parses input arguments and creates a new LinkContactCommand object.
@@ -24,7 +25,7 @@ public class LinkContactCommandParser implements Parser<LinkContactCommand> {
                         LinkContactCommand.MESSAGE_USAGE));
             }
             Index index = ParserUtil.parseIndex(argarr[0]);
-            String num = argarr[1];
+            ContactPhone num = ParserUtil.parseContactPhone(argarr[1]);
             return new LinkContactCommand(index, num);
         } catch (ParseException pe) {
             throw new ParseException(

@@ -33,11 +33,12 @@ public class ContactPhoneTest {
         assertFalse(ContactPhone.isValidPhone("1234567")); // 7 numbers
         assertFalse(ContactPhone.isValidPhone("1234567 ")); // 7 numbers with space
         assertFalse(ContactPhone.isValidPhone("9312 1534")); // spaces within digits
+        assertFalse(ContactPhone.isValidPhone("1234567890123456")); // 16 numbers
 
         // valid phone numbers
         assertTrue(ContactPhone.isValidPhone("93121534"));
         assertTrue(ContactPhone.isValidPhone("12345678"));
         assertTrue(ContactPhone.isValidPhone("123456789")); // 9 numbers
-        assertTrue(ContactPhone.isValidPhone("124293842033123")); // long phone numbers
+        assertTrue(ContactPhone.isValidPhone("124293842033123")); // 15 numbers
     }
 }

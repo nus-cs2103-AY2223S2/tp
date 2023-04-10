@@ -18,7 +18,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Event> {
     @Override
     public boolean test(Event event) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(event.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsKeywordIgnoreCase(event.getName().fullName, keyword));
     }
 
     @Override

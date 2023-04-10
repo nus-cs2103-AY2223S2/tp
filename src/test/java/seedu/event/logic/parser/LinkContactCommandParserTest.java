@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.event.commons.core.index.Index;
 import seedu.event.logic.commands.LinkContactCommand;
 import seedu.event.logic.parser.exceptions.ParseException;
+import seedu.event.model.contact.ContactPhone;
 
 public class LinkContactCommandParserTest {
 
@@ -27,7 +28,7 @@ public class LinkContactCommandParserTest {
         // no leading and trailing whitespaces
         Index targetIndex = INDEX_FIRST_EVENT;
         LinkContactCommand expectedLinkContactCommand =
-                new LinkContactCommand(targetIndex, "91234567");
+                new LinkContactCommand(targetIndex, new ContactPhone("91234567"));
         assertParseSuccess(parser, "1 91234567", expectedLinkContactCommand);
 
         //Leading and trailing white space
