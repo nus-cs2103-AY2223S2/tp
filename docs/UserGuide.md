@@ -103,7 +103,7 @@ Here is a breakdown of the different symbols and colours we will use throughout 
 
 <div markdown="span" class="alert alert-success">
 
-:bulb: Tips and tricks for enhancing your experience using EduMate.
+:bulb: Tips and tricks to enhance your experience with EduMate
 
 </div>
 
