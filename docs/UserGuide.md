@@ -347,6 +347,8 @@ Menu Item Card consists of the following components:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 # 2 Commands
 
 <div markdown="block" class="alert alert-info">
@@ -374,14 +376,6 @@ Menu Item Card consists of the following components:
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-</div>
-
-<div style="page-break-after: always;"></div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **Notes about the command format:**
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the **last** occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
