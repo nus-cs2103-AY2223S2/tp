@@ -481,6 +481,8 @@ Examples:
 * `find-project tag/personal start/yesterday end/tomorrow` finds any project that is tagged `personal`, and has a deadline that falls between yesterday and tomorrow.
 * `fp st/nd` finds any project that is not done, including overdue ones.
 
+<div style="page-break-after: always;"></div>
+
 ### Sorting projects
 #### Format: `sort-project <option/OPTION>`
 
@@ -493,6 +495,8 @@ Sorts all **currently visible** projects in ascending order by the specified opt
 
 Note:
 * Option matching is case-insensitive. E.g. `option/NAME` and `option/Name` is treated the same as `option/name`.
+
+<div style="page-break-after: always;"></div>
 
 Example:
 
@@ -569,6 +573,8 @@ Exits the program.
 ### Saving the data
 
 ArB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing the data file
 
