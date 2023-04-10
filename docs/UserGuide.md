@@ -444,6 +444,7 @@ Examples:
 - The master list in the student tab will only be sorted if the group selected is all.
 - If the group selected is not all (i.e consultation, lab, or tutorial), the list of students in the event card in the event tab will be sorted, and not the master student list.
 - The sorted list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
+- Sorting an empty group will not throw an error, because technically, the empty group remains sorted.
 
 Format: `sort-student GROUP METRIC SORTING_ORDER`
 For the GROUP, it can be only lab, tutorial, consultation, or all.
