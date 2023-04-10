@@ -931,8 +931,19 @@ Below is the main success scenario of student-related commands.
 
       Use case resumes from step 2.
 
-##### List students
+##### List students in a particular class
 1. User requests to list all students in a class.
+2. TAA shows a list of students and number of students listed.
+
+**Extensions**
+
+* 2a. The classlist name searched does not exist
+    * 2a1. TAA shows an error message. Use case ends.
+
+   Use case ends.
+
+##### List students
+1. User requests to list all students in the entire application
 2. TAA shows a list of students and number of students listed.
 
    Use case ends.
@@ -940,9 +951,6 @@ Below is the main success scenario of student-related commands.
 ##### Search student
 1.  User requests to search for a particular student
 2.  TAA shows the information of the student searched
-
-1. User requests to search for a particular student
-2. TAA shows the information of the student searched
 
    Use case ends.
 
