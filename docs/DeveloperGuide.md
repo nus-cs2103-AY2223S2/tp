@@ -314,6 +314,18 @@ Below is an activity diagram that illustrates the control flow for the Find feat
 
 ![FindTaskActivityDiagram](images/FindActivityDiagram.png)
 
+#### 3.4.2 Design Considerations
+
+**Aspect: Updating GUI**
+
+* **Alternative 1 (current choice):** Displays empty list when no persons are found.
+  * Pros: It provides a consistent user experience, as users can expect the same behavior when searching for people throughout the application.
+  * Cons: An empty list can sometimes appear visually unappealing and may give the impression that the application is not functioning correctly.
+
+* **Alternative 2:** Displays most recent valid search result list when no persons are found.
+  * Pros: Saves time for users who may have previously searched for similar or related information and want to quickly access those results again.
+  * Cons: Could lead to frustration or confusion if users don't understand why they're seeing old results instead of new ones.
+
 ### 3.4 Finding a Task's Assignees
 Syntax: `findt TASKNAME` 
 
@@ -1409,7 +1421,7 @@ testers are expected to do more *exploratory* testing.
      3. Test case: `findp` <br>
         Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
      4. Other incorrect find persons commands to try: `findp !@#`)<br>
-        Expected: No changes in GUI. "No such person found" shown in status message.
+        Expected: No persons are displayed. "No such person found" shown in status message.
   
   2. There are no persons in OfficeConnect with the specified name.
      1. Prerequisites: Only one person can be specified.
@@ -1429,7 +1441,7 @@ testers are expected to do more *exploratory* testing.
      3. Test case: `findt` <br>
         Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
      4. Other incorrect find tasks commands to try: `findt !@#`)<br>
-        Expected: No changes in GUI. "No such task found" shown in status message.
+        Expected: No tasks are displayed. "No such task found" shown in status message.
   
   2. There are no tasks in OfficeConnect with the specified title.
      1. Prerequisites: Only one title can be specified.
