@@ -44,7 +44,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 <img src="images/DG-images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the MATHUTORING.
+The ***Architecture Diagram*** given above explains the high-level design of MATHUTORING.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -712,43 +712,6 @@ testers are expected to do more *exploratory* testing.
    1. Type `exit` in the command box.<br>
    Expected: The application window closes
 
-### Adding a student
-
-1. Adding a student to the student list
-
-   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`<br>
-   Expected: The student is added to the student list. Details of the added student shown in the status message. Student list reverts to show
-   all students.
-
-   3. Test case: `add n/John Doe p/98765432 e/bob@example.com a/Down street #01-01 c/98762837` after entering previous test case<br>
-   Expected: The student is not added to the student list. Error details shown in the status message
-
-### Deleting a student
-
-1. Deleting a student while students are being shown
-
-    1. Prerequisites: List all students using the `list` command. Multiple students in the list. **OR** <br>
-    Filter or find students as desired using the `filter` or `find` commands. Number of students in the list depends on the condition given.
-
-    2. Test case: `delete 1`<br>
-    Expected: If the displayed student list is empty, error details shown in the status message. No student is deleted.
-    Else, the first student is deleted from the displayed list. Details of the deleted student shown in the status message. If the deleted student was being checked
-    using the `check` command, the task list and score list of the student will be cleared.
-
-    3. Test case: `delete 0`<br>
-    Expected: No student is deleted. Error details shown in the status message.
-
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
-    Expected: Similar to previous.
-
-1. Deleting a student being checked
-
-    1. Prerequisites: Check a student using `check` command.
-
-    2. Test case: `delete x` (where x is the index of the student being checked)<br>
-    Expected: The student is deleted from the list. Details of the deleted student shown in the status message. The task list and score list shown
-    will be cleared.
-
 ### Adding a task for a student
 
 1. Adding a task for a student in the student list when the student is being checked
@@ -895,7 +858,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Similar to checking a student for his/her task list and score list, just that the check command is now working on the filtered student list prodcued by the find command.
 
 ### Saving data
-The data will be automaticlly saved by MATHUTORING.
+The data will be automatically saved by MATHUTORING.
    
 --------------------------------------------------------------------------------------------------------------------
 
