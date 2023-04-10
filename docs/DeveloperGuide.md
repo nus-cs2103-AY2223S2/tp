@@ -2,7 +2,6 @@
 layout: page
 title: Developer Guide
 ---
-<div align="center"><h1> Wingman Developer Guide</h1></div>
 
 ## Table of Contents
 
@@ -365,31 +364,33 @@ In our app, we have entities `Flight`, `Plane`, `Location`, `Pilot`, `Crew`, and
 users can add new objects into the database via `add` command.
 
 This feature is enabled by the following classes:
+
 * `AddCommand` - the command that can be executed and adds a new entity
   into the system
 * `AddCommandFactory` - The factory class that creates `AddCommand`
   object, which can be executed to complete the task
 
 When a user enters the command
+
 ```
 add /XYZPrefix {} {XYZ identifier} [/OtherPrefixes {OtherAttributes}...]
 ```
 
 Initially, when the input is received, it is processed by the `Ui` layer, which
-calls the `logic.execute(input)` function and transfers the control to the logic layer. 
+calls the `logic.execute(input)` function and transfers the control to the logic layer.
 The `execute(input)` function in the logic layer then utilizes the
 `WingmanParser` to break down the input into tokens, determine the command's mode,
 such as Crew, Flight, Location, Pilot, or Plane, and identify the command's nature.
 
 The WingmanParser's primary goal is to recognize the command type based on the
-input and return the corresponding command object. For instance, the `AddXYZCommand` 
+input and return the corresponding command object. For instance, the `AddXYZCommand`
 object is returned with the {XYZ identifier} after analyzing the input's
 tokens.
 
 To execute the `DeleteXYZCommand`, the appropriate `XYZManager` is employed.
 Firstly, the `getItem(id)` function is used to
 retrieve the corresponding `XYZ` that needs to be deleted. Next, the `addXYZ(id)`
-function is called, which removes the desired `XYZ` from the Wingman 
+function is called, which removes the desired `XYZ` from the Wingman
 app using the `item.removeItem(id)` method.
 
 Finally, the CommandResult message, indicating a successful deletion, is
@@ -532,11 +533,11 @@ this command is passed from the UI layer to the logic layer similar to the
 way described above, in the 'Unlinking XYZ' section.
 
 At the logic layer, while the sequence of method calls is similar to what is
-described in the 'Adding XYZ' section, the 
-`LinkXYZToFlightCommand.execute(model)` method is called instead of the 
+described in the 'Adding XYZ' section, the
+`LinkXYZToFlightCommand.execute(model)` method is called instead of the
 `UnlinkXYZToFlightCommand.execute(model)` method.
 
-This method then calls the `flight.XYZLink.add(entry.getKey(), entry.getValue())` 
+This method then calls the `flight.XYZLink.add(entry.getKey(), entry.getValue())`
 method where entry refers to one key-value pairing in a mapping of
 `FlightXYZType` keys to `XYZ` values. At this point, the process is at the
 model layer and continues with method calls similar to the ones described in
@@ -663,16 +664,16 @@ discussed in the previous section.
 
 **Rationale**
 
-Since there are associations between flight-related resources and locations, we use this command 
+Since there are associations between flight-related resources and locations, we use this command
 for users to capture such associations. For example, a crew might be staying at some places, then the
-user should be able to link a crew to a few places. 
+user should be able to link a crew to a few places.
 
 **How is this feature implemented?**
 
 This linking feature is implemented in a similar way to the feature that links
-flight-related resources to flights. 
+flight-related resources to flights.
 
-To be more concrete, we will take linking a plane to a location as an example. Linking other entities, 
+To be more concrete, we will take linking a plane to a location as an example. Linking other entities,
 such as crews, pilots, and planes, to locations, are very similar to linking a plane to a location.
 
 This feature is enabled by the following classes in particular:
@@ -690,24 +691,24 @@ linklocation /lo {location-index} /pl {plane-index}
 ```
 
 this command is passed from the UI layer to the logic layer similar to the
-other methods in previous sections. 
+other methods in previous sections.
 
 At the logic layer, the app parses the command with the `parse` command from `WingmanParser`, which
-calls the `parse` method from the `CommandGroup` class. `CommandGroup` class then 
-class the method `parseFactory` from the `FactoryParser` class, which instantiates 
+calls the `parse` method from the `CommandGroup` class. `CommandGroup` class then
+class the method `parseFactory` from the `FactoryParser` class, which instantiates
 an object of class `PlaneLocationLinkCommandFactory`. The object of `PlaneLocationLinkCommandFactory`
-is able to create a command object of type `LinkPlaneToLocationCommand`. 
+is able to create a command object of type `LinkPlaneToLocationCommand`.
 
 This command is passed all the way back to `PlaneLocationLinkCommandFactory`, then
 `FactoryParser`, `CommandGroup`, `WingmanParser`, and finally `LogicManager`.
 
-To execute the command, `LogicManager` calls the `execute` method of the command object, 
+To execute the command, `LogicManager` calls the `execute` method of the command object,
 which gets the `Link` object that contains all the planes linked to the location
 from the `Location` object by calling the method `getPlaneLink`.
-Next, to put the plane into the `Link` object, it calls the `putRevolve` method of 
+Next, to put the plane into the `Link` object, it calls the `putRevolve` method of
 the `planLink` with the plane object as the parameter. One note here is that, the plane object
 is stored in a Map object, so we need to retrieve the plane from the map before sending it
-to `putRevolve`. This can be done with a loop, i.e., iterating all the values in the Map, 
+to `putRevolve`. This can be done with a loop, i.e., iterating all the values in the Map,
 although the Map only contains one value only.
 
 Finally, the command object returns the execution result to `LogicManager`, which
@@ -727,7 +728,7 @@ to the location class.
 **Alternatives that were considered:**
 
 One alternative implementation that was considered was to set the link as an
-attribute in the location class and update it directly with every change. However, 
+attribute in the location class and update it directly with every change. However,
 this approach had a few limitations as discussed in the previous section.
 
 <div style="page-break-after: always;"></div>
@@ -848,6 +849,8 @@ is to make illegal states unrepresentable.
 
 ![Functional Programming](images/FunctionalProgrammingClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ## Appendix: Requirements
 
 ### Product scope
@@ -868,7 +871,7 @@ into consideration such that they can assign tasks to the most appropriate crew
 based on their location
 and availability while optimizing their staff’s physical well-being.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -970,22 +973,22 @@ is the `user`, unless specified otherwise)
 **Extensions**
 
 * 1a. The given plane is invalid.
-    * 1a1. Wingman shows an error message. 
+    * 1a1. Wingman shows an error message.
       Use case resumes at step 1.
 
 * 3a. The given plane is a duplicate of an existing plane.
-    * 3a1. Wingman shows an error message. 
+    * 3a1. Wingman shows an error message.
       Use case resumes at step 3.
 
-The same use cases can be repeated for adding/deleting a pilot/flight. 
+The same use cases can be repeated for adding/deleting a pilot/flight.
 We omit here for brevity.
 
 **Use case: Schedule a flight**
 
 **MSS**
 
-1. User requests to link the departure and the arrival 
-locations to a flight. 
+1. User requests to link the departure and the arrival
+   locations to a flight.
 2. Wingman links the locations to the flight.
 3. User requests to link a pilot to the flight
 4. Wingman links the pilot to the flight.
@@ -994,32 +997,31 @@ locations to a flight.
 7. User requests to link a plane to the flight.
 8. Wingman links the plane to the flight.
 9. User requests to delete the flight.
-10. Wingman deletes the flight. 
+10. Wingman deletes the flight.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. The departure or the arrival location or the flight does not exist,
-or the flight is already linked to locations. 
-  * 1a1. Wingman shows an error message. 
-    Use case resumes at step 1.
-* 3a. The pilot or the flight does not exist, or the flight is already 
-linked to pilots.
-  * 3a1. Wingman shows an error message.
-    Use case resumes at step 3. 
-* 5a. One of the crews does not exist, or the flight does not exist, or the 
-flight is already linked to crews.
-  * 5a1.Wingman shows an error message
-  Use case resumes at step 5.
+  or the flight is already linked to locations.
+    * 1a1. Wingman shows an error message.
+      Use case resumes at step 1.
+* 3a. The pilot or the flight does not exist, or the flight is already
+  linked to pilots.
+    * 3a1. Wingman shows an error message.
+      Use case resumes at step 3.
+* 5a. One of the crews does not exist, or the flight does not exist, or the
+  flight is already linked to crews.
+    * 5a1.Wingman shows an error message
+      Use case resumes at step 5.
 * 7a. The plane or the flight does not exist, or the flight is already linked
-to a plane.
-  * 7a1. Wingman shows an error message.
-  Use case resumes at step 7.
+  to a plane.
+    * 7a1. Wingman shows an error message.
+      Use case resumes at step 7.
 * 9a. The given flight does not exit.
-  * 9a1. Wingman shows an error message
-  Use case resumes at 9. 
-
+    * 9a1. Wingman shows an error message
+      Use case resumes at 9.
 
 <div style="page-break-after: always;"></div>
 
@@ -1041,7 +1043,7 @@ to a plane.
 7. Should be for a single user and should not have any shared file storage
    mechanism
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### Glossary
 
@@ -1190,10 +1192,10 @@ Below, are the details of the planned enhancements:
   bidirectional linking, i.e. extending the navigability of between two
   entities to be bidirectional.
 
-
 <div style="page-break-after: always;"></div>
 
 ## Appendix: Effort
+
 If the efforts required to implement the full AB3 from scratch, we believe our effort
 in this project is almost 20.
 
@@ -1214,6 +1216,7 @@ start-up. Think about it, assuming `A`is linked to `B`, when we load `A` from th
 instantiated, then the `Link` between `A` and `B` cannot be instantiated. To address this, we implemented
 the `Link` in a lazy-evaluation manner, such that it does not require both `A` and `B` to be instantiated
 before the `Link` can be read from the disk. There are other corner cases, such as
+
 * Assuming `A` is linked to `B`, what should happen if one of them is deleted?
 * How many `A`s can we link to `B`? This number may differ for different `A` and `B`.
   How to implement it in systematic manner?
