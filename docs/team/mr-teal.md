@@ -38,16 +38,23 @@ For the `favorites` command, certain recipes which have stars will be shown, and
 to help filtering the recipes.
 
 
-- **Enhancements in existing features**: Make the UI look better & bugs fixing: result box display pattern, title/description/tag name display
+- **Enhancements in existing features**: Fixing bugs coming from PE-D [#218](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/218)
+  1. Long messages in result box need scrolling in two directions.
+  2. Long tag names can only be seen parts.
+  3. In one recipe, steps with the same content will have the same index number shown in UI.
+  
+  - Highlights: Those three bugs are mainly about UI which I'm not quite familiar with even after learning the JavaFX tutorial.
+However, after understanding more about the UI part, and with my own coding experience, I managed to solve them all.
 
 
 - **Documentation**:
   - User Guide:
      * Initial v1.1 skeleton
      * Add command examples and results pictures [#164](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/164)
+     * Remake the command examples and results pictures after decimal points issues are solved [#249](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/249)
   - Developer Guide:
      * Initial v1.1 skeleton
-     * Update Logic part [#116](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/116)
+     * Update Logic part (diagrams and words) [#116](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/116)
      * Add Implementation information and sequence diagrams for `star` and `favorites` commands [#272](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/272)
 
 
