@@ -892,6 +892,10 @@ testers are expected to do more *exploratory* testing.
 
 **Achievements of Project:**
 - Created a working product
+- Experienced using GitHub Issues and PRs
 - Experienced making UML diagrams digitally
+- Practiced debugging & testing skills taught
+- Practiced workflows & design approaches taught
+- Collaborated with a group on a huge project (~13kLoC)
 
 [tp constraints brownfield]: https://nus-cs2103-ay2223s2.github.io/website/admin/tp-constraints.html#constraint-brownfield
