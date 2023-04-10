@@ -31,7 +31,7 @@ Given below are my contributions to the project.
       The feature can be easily integrated into the existing patient record system.
       The implementation of this feature requires careful consideration of the layout and content of the medical certificate, as well as the security of the generated PDF files. 
     * Credits: *{The implementation of the "Create PDF Medical Certificate" feature may require the use of third-party libraries, such as PDFBox, for generating the PDF certificates. PDFBox is an open-source Java library for working with PDF documents. Its use in the implementation of this feature can significantly reduce development time and effort.}*
-* 
+
 * **New Feature**: View Medical Files and PDF Certificates
     * What is does: The "View" feature allows users to view files in the application. The user can select a file to view, and the file will open in a new window, allowing the user to read, review, or edit the contents of the file.
     * Justification: The ability to view medical files and PDF certificates is essential for healthcare providers who need to access patient information quickly and efficiently. This feature can help to streamline communication between healthcare providers and ensure that patient information is easily accessible.
