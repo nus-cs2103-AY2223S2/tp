@@ -223,6 +223,7 @@ This is because the status of `Homework` is determined by the user, (using mark 
 Therefore, we use different terms to avoid confusion.
 </div>
 
+
 <div style="page-break-after: always;"></div>
 
 ## Commands
