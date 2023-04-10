@@ -1177,20 +1177,35 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.  \\
       Expected: The most recent window size and location is retained.
 
-### Deleting a student
+### Deleting a student / multiple students
 
 1. Deleting a student while all students are being shown
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    2. Test case: `delete 1`  \\
-      Expected: First entry is deleted from the list. Details of the deleted contact shown in the status message.
+      Expected: First entry is deleted from the list. Details of the deleted student shown in the status message.
 
    3. Test case: `delete 0` \\
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) \\
       Expected: Similar to previous.
+2. Deleting multiple students while all students are being shown
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   2. Test case: `delete 1 2`  \\
+      Expected: First and second entries are deleted from the list. Details of the deleted students shown in the status message.
+   3. Test case: `delete 0 1`  \\
+      Expected: No students are deleted. Error details shown in the status message. Status bar remains the same.
+3. Deleting one / multiple student(s) while on a filtered list
+   1. Prerequisites: Filter the students using the `find` or `filter` command such that there are at least **2** students in the filtered list.
+   2. Test case: `delete 1`  \\
+      Expected: First entry is deleted from the list. Details of the deleted student shown in the status message.
+   3. Test case: `delete 1 2`  \\
+      Expected: First and second entries deleted from the list. Details of the deleted students shown in the status message.
+   4. Test case: `delete 0 1`  \\
+      Expected: No students are deleted. Error details shown in the status message. Status bar remains the same.
+
 
 ### Adding a student
 
