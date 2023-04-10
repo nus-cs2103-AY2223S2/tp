@@ -191,10 +191,17 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Feature : `add`
 
+This feature allows the user to add new employees to the ExecutivePro database.
+
 #### Implementation
-This section explains the implementation of the `add` feature.
-The command takes in one parameter which is the employee name, executing the command leads to the addition of an
-employee into the ExecutivePro database.
+This command takes in several compulsory parameters:<br>
+`NAME`, `PHONE_NUMBER`, `DEPARTMENT`, and `PAYROLL`
+
+
+together with several optional parameters:<br>
+`EMAIL`, `ADDRESS`, `LEAVE_COUNT`, `DATE_OF_BIRTH`, `DATE_OF_JOINING`, and any number of `TAG`s.
+
+Executing the command adds the specified employee into the ExecutivePro database, with the provided details.
 
 Below is a sequence diagram and the explanation of `add` command.
 
@@ -233,6 +240,10 @@ Moving on to the implementation, some things to note.
 
 _Pre-requisites: User has a CSV file filled with whatever information they want to `batchadd`
 and has stored it in the `/data` folder of the repository._
+
+This command takes in one parameter, the filename of the CSV file.
+
+Executing the command imports the CSV file with the specified filename that is inside the `/data` folder.
 
 Below is a sequence diagram and the explanation of `batchadd` command.
 
@@ -296,6 +307,10 @@ Moving on to the implementation, some things to note.
 - As of now, our feature only accommodates exporting to a CSV file.
 
 #### Implementation:
+
+This command takes in one parameter, which is the desired output filename.
+
+Executing the command exports the ExecutivePro database as a CSV file with the specified filename.
 
 Below is a sequence diagram and the explanation of `batchexport` command.
 
@@ -392,11 +407,15 @@ Step 6. `storage#saveExecutiveProDb()` is then called, and updates the storage t
 
 ### Delete Feature : `delete`
 
+This feature allows the user to delete an employee from the ExecutivePro database,
+for example if an employee quits the company, or if an employee has been wrongly added.
+
 #### Implementation
 
-This section explains the implementation of the `delete` feature.
-The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee
-with that specific employee ID
+This command takes in one parameter which is the employee ID.
+
+Executing this command leads to the removal of the employee with that specific employee ID.
+
 Below is a sequence diagram and the explanation of `delete` command.
 
 ![DeleteCommand](images/DeleteSequenceDiagram.png)
@@ -420,12 +439,15 @@ Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage t
 --------------------------------------------------------------------------------------------------------------------
 
 ### List Feature: `list`
-This command displays the details of all employees in order of their employee ID.
+This command displays the details of all employees in the ExecutivePro database, in order of their employee ID.
 
 #### Implementation
 
+This command takes in no parameters.
+
 The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
 When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
+Executing this command sets the `Predicate` such that all employees are displayed.
 
 Below is a sequence diagram and the explanation of the `list` command.
 
@@ -450,8 +472,12 @@ This command changes the appearance of ExecutivePro's GUI to the specified theme
 
 #### Implementation
 
+This command takes in one parameter which is the theme name, either `light` or `dark`.
+
 The appearance of ExecutivePro's GUI is determined by the CSS stylesheets used by its JavaFX `Scene`.
-The `theme` command changes the GUI theme by swapping out these CSS stylesheets for the appropriate stylesheets matching the specified theme, as shown below.
+Executing this command changes the GUI theme by swapping out these CSS stylesheets for the appropriate stylesheets matching the specified theme.
+
+Below is a sequence diagram and the explanation of `delete` command.
 
 ![ThemeCommand](images/ThemeSequenceDiagram.png)
 
@@ -475,9 +501,12 @@ Note: ExecutivePro currently only accepts images in the `.jpg`, `.jpeg`, or `.pn
 
 #### Implementation
 
+This command takes in one parameter which is the employee ID.
+
 `Employee` objects have a `picturePath` field that represents the file path where the employee's profile picture is stored on the user's computer.
-The `setpicture` feature makes use of the [`edit` feature](#edit-feature--edit) to set the `picturePath` of an `Employee` to the file path of the selected image,
-as shown below:
+Executing this command makes use of the [`edit` feature](#edit-feature--edit) to set the `picturePath` of an `Employee` to the file path of the selected image.
+
+Below is a sequence diagram and the explanation of `setpicture` command.
 
 ![SetPictureCommand](images/SetPictureSequenceDiagram.png)
 
@@ -499,9 +528,12 @@ Note that if the employee's `picturePath` is set to the empty String, the pictur
 --------------------------------------------------------------------------------------------------------------------
 
 ### Find Feature: `find`
-This command displays all employees whose full names partially or fully match the keyword inputed by the user.
+This command displays all employees whose full names partially or fully match the keyword inputted by the user.
 
 #### Implementation
+
+This command takes in an optional asterisk (`*`) parameter, to indicate whether employees must match _all_ or _any_ of the keywords,
+followed by one or more keywords to search for.
 
 The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
 When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
@@ -533,6 +565,10 @@ This command displays all employees who satisfy the criteria inputted by the use
 
 
 #### Implementation
+This command takes in three parameters:
+- a filter parameter (`pr` for payroll or `l` for remaining leaves)
+- a boolean operator (`>`, `<`, or `=`)
+- and a non-negative integer comparison amount.
 
 The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
 When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
