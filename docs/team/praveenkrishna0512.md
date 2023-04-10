@@ -26,31 +26,41 @@ My code contributions can be visualised through [RepoSense](https://nus-cs2103-a
 
 Here is a summary of the enhancements I implemented.
 
-User Interface
-  - Modify User Interface to display information of doctors and patients
-
-Storage
-  - Enable proper saving and loading of Doctor and Patient objects
+- **User Interface**
+  - Implemented a doctors and patients list to show all doctors and patients in Docedex respectively
+    - This list is responsive to user commands, such as finding doctors
+  - Implemented a panel to show all information about a doctor or patient, upon user selection
+- **Storage**
+  - Enabled proper saving and loading of Doctor and Patient objects
 
 #### Contributions to the UG
 
 Here are my contributions to the UG
-- Implementing the template of the UG
-- Adding a section on Navigating the GUI
-- Adding description for **_Saving the data file_** and **_Editing the data file_**
+- Polished up the [front matters](../UserGuide.md#welcome-to-docedex) of the UG
+- Added a section on [Navigating the GUI](../UserGuide.md#navigating-the-graphical-user-interface-gui),
+  which includes a quick orientation and some notes about the GUI to clarify any confusion
+- Added sections on [saving the data file](../UserGuide.md#saving-the-data)
+  and [editing the data file](../UserGuide.md#editing-the-data-file)
+- Added answers to [FAQs](../UserGuide.md#faq) under the *Using Docedex* subsection
 
 #### Contributions to the DG
 
 Here are my contributions to the DG
 
 Sections
-  - Aided in crafting and formatting of [user stories](../DeveloperGuide.md#user-stories)
-  - Aided in crafting and formatting of [use cases](../DeveloperGuide.md#use-cases)
-  - Detailed the implementation of the Enlarged Info Card
-under [GUI Features](../DeveloperGuide.md#gui-features)
+  - Provided design details and documentation about the [Ui](../DeveloperGuide.md#ui-component)
+  and [Storage](../DeveloperGuide.md#storage-component) components.
+  - Detailed the implementation of the Enlarged Info Card feature
+  under [GUI Features](../DeveloperGuide.md#gui-features)
+  - Detailed Problem 1 and 2 under [Appendix A: Planned Enhancements](../DeveloperGuide.md#appendix-a-planned-enhancements)
+  - Aided in crafting and formatting of [user stories](../DeveloperGuide.md#appendix-c-user-stories)
+  - Aided in crafting and formatting of [use cases](../DeveloperGuide.md#appendix-d-use-cases)
 
 UML diagrams
-  - Sequence diagrams under [GUI Features](../DeveloperGuide.md#gui-features)
+  - Class diagrams under sections on [Ui](../DeveloperGuide.md#ui-component)
+    and [Storage](../DeveloperGuide.md#storage-component) components.
+  - Sequence diagrams under sections on [Ui](../DeveloperGuide.md#ui-component) component
+  and [GUI Features](../DeveloperGuide.md#gui-features)
 
 #### Contributions to team-based tasks
 
