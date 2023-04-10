@@ -12,8 +12,7 @@ if () then ([VALID task name])
         :Display an empty list;
     endif
 else ([else])
-    :OfficeConnect shows user
-            the correct syntax;
+    :Display an empty tasklist;
 endif
 
 stop
