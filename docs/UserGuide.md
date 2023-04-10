@@ -34,8 +34,14 @@ Apart from being your all-encompassing address book, NeoBook also has an Events 
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   *  `edit 3 n/pierce` : Edits the 3rd contact's name on the current list to pierce
+   * `edit 3 n/pierce` : Edits the 3rd contact's name on the current list to pierce
+   
+   * `tab 2` : Navigates to the events tab
+   
+   * `addevent d/Do Work! s/2023-04-10 1200 e/2023-04-10 1400 r/Daily` : Adds an event with a description of "Do work!" on 2023-04-10 from 1200 to 1400 and will recur daily.
 
+   * `tab 1` : Navigates to the contacts tab
+   
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
@@ -91,7 +97,7 @@ Use these tabs to toggle between the NeoBook, Events and your own information!
 
 ____________________________________________________________________________________________________________________
 
-### UI Breakdown For `NeoBook`
+### UI Breakdown For `Address Book`
 
 ![neobook](images/userguide/neobook.png)
 
@@ -134,7 +140,7 @@ ________________________________________________________________________________
 
 <hr style="border:2px solid gray">
 
-## NeoBook Features
+## Address Book Features
 
 ____________________________________________________________________________________________________________________
 
@@ -503,7 +509,7 @@ Use this command to exit the application!
 ____________________________________________________________________________________________________________________
 
 
-### NeoBook Command Summary
+### Address Book Command Summary
 
 | Action     | Format, Examples                                                                                                                              |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
