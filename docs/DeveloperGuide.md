@@ -241,9 +241,11 @@ Just like other commands, the `Command#execute()` method of `UpdateMeetingComman
 information on how the `Logic` component handles a command.
 
 The parsing and execution of updateMeeting command can be shown with the following
-sequence diagram:
+sequence diagrams:
 
 ![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram1.png)
+
+![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram2.png)
 
 ### 6. Find Meeting Feature
 
