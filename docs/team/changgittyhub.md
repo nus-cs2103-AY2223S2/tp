@@ -9,11 +9,11 @@ Trackr is a desktop tracking application used to keep track of order, menu, supp
 
 Given below are my contributions to the project.
 
-* Added `Menu` Model including all field classes [\#177](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/177), [#107] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/107)
-* Updated Storage related classes to allow for the storage of `Menu` objects [\#114] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/114)
-* Completed `add`, `delete`, `edit` and `find` commands for `Menu` objects
+* Added `Menu` Model including all field classes [\#177](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/177)
+* Updated Storage related classes to allow for the storage of `Menu` objects [\#177](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/177)
+* Completed `add`, `delete`, `edit` and `find` commands for `Menu` objects [\#177](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/177)
 * Completed `edit` and `find` commands for `Order` objects [\#134](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/134)
-* Contributed to `Calculate Menu Item Profit` feature [\178] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/178)
+* Contributed to `Calculate Menu Item Profit` feature [\#177](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/177)
   * Justification: Allow users to view their profit for each item on the menu.This sets up the foundation for the `Homepage Profit` feature that allows to view total profit from all orders.
 * Maintain code quality
   * Refactor methods to obey OOP principles [\#281](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/281)
@@ -31,7 +31,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed project documentation (UG & DG)
-    * Checked and updated UG to match with actual product []()
+    * Checked and updated UG to match with actual product [\#274](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/274)
   * Helped to do minutes during meetings and send important information into Telegram group chat.
   * Assisted in assigning Issues [\#146](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/146) [\#143](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/143)
 
