@@ -448,6 +448,7 @@ Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 * The user cannot undo/redo actions from a previous session of starting the app.
 * The user cannot undo actions that are more than 10 iterations old.
 * The user cannot undo actions that do not alter the data of DengueHotspotTracker, such as `list`, `sort`, `overview` and `find`.
+* An alteration is defined as a process that changes the contents of the list of persons, such as in the form of edits, additions, or deletions to the list
 * Performing a change after undoing will clear any possible `redo` actions.
 
 Example:
