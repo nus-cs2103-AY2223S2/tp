@@ -280,7 +280,7 @@ It is recommended to store the images using the folder instead. <br>
 6.You **SHOULD** choose **VALID** values (positive numbers) for `Age` although you are **NOT LIMITED** to setting it to **0** or other non-conventional values like **999**.<br>
 7.PowerConnect does not verify if the input phone number is valid for the country (e.g. Singapore), please ensure that you input the phone number correctly.<br>
 8.Phone numbers should only contain numbers and must be at least 3 digits long. <br>
-9. As we **ALLOW** you to create `CCA` containing **numbers** due to our beliefs that **CCAs* could have **numbers**, it is **HENCE** reliant on you to ensure the field for `CCA` is keyed in correctly. <br>
+9. As we **ALLOW** you to create `CCA` containing **numbers** due to our beliefs that `CCAs` could have **numbers**, it is **HENCE** reliant on you to ensure the field for `CCA` is keyed in correctly. <br>
 10. By default, `Attendance` is set to `F`, representing **ABSENT**. <br>
 11. Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis (midnight at 0000 hours).
 </div>
@@ -312,13 +312,13 @@ Examples:
 Date is in DD/MM/YYYY format. <br>
 This date can be set to: <br>
 * T (Indicates that the student was present today) <br>
-* F (Default when adding student) <br>
+* F (Default when adding student) <br> 
 * Specific date (Used when you want to update the attendance of the student in the past)<br><br>
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis (0000 hours). Hence, updating `Attendance` for past dates will not be reflected in the application. It is however still be **SAVED** in PowerConnect. Future releases will further improve the `Attendance` feature, allowing teachers to view **PAST** attendances. <br><br>
-Future release of PowerConnect will also provide you with a wider range of attendance **TYPES* to choose from for a particular `Student`'s attendance, such as `Late`, `Left school early`, `On MC`. <br><br>
+Future release of PowerConnect will also provide you with a wider range of attendance **TYPES** to choose from for a particular `Student`'s attendance, such as `Late`, `Left school early`, `On MC`. <br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -351,7 +351,7 @@ Examples:
 * `New homework added:`
 ![add homework image](images/addhomework.png)
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 * Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.<br>
    * Duplicate test/homework is checked through having the same name. <br>
 * hwdone is compulsory for homework.<br>
@@ -493,7 +493,7 @@ Examples:
 * `student 3B find Joseph`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
-To list back all students, use the [general list](#listing)command! <br><br>
+To list back all students, use the [general list](#listing) command! <br><br>
 </div>
 
 **Expected Outcome:**
@@ -617,9 +617,9 @@ Format: `parent find <NAME>  `
 Examples:
 * `parent find Russel`
 * `parent find Joseph`
-*
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
-To list back all parent, use the [general list](#listing)command! <br><br>
+To list back all parent, use the [general list](#listing) command! <br><br>
 </div>
 
 **Expected Outcome:**
@@ -653,9 +653,10 @@ Examples:
 
 ![parent_delete_success](images/parentDeleteSuccess.png)
 
-**Note:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BOUND* to him/her. System will display an error message for this. <br><br>
    ![parent_delete_attach_fail](images/parentdeleteattach.png)
+</div>
 [Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
@@ -725,7 +726,6 @@ PowerConnect data are saved in the [hard disk](#glossary) automatically after an
 ## Editing the data file
 
 PowerConnect data are saved as a [JSON](#glossary) file `[JAR file location]/data/parents.json` and `[JAR file location]/data/pcclass.json` for respectively parents/NOKs and students. <br>
-Advanced users are welcome to update data directly by editing that data file.addressbook.json`. <br>
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -766,7 +766,7 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 
 1. In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
 
-2. Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEX>.png` <br>
+2. Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEX_NUMBER>.png` <br>
 
     Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br><br>
 
@@ -776,7 +776,7 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 3. Inside the images' folder, create a folder called `student` and `parent` if it does not exist.
 ![image2 message](images/images2.png)
 
-    Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEX>.png`
+    Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEX_NUMBER>.png`
 ![imagestudent message](images/imagestudent.png)
 
     Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
