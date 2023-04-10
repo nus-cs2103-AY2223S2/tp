@@ -7,10 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ExitCommand;
@@ -18,14 +14,12 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.student.StudentAddCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
-import seedu.address.logic.commands.student.StudentFindCommand;
 import seedu.address.logic.commands.student.StudentListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.student.ClassContainsKeywordsPredicate;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
-import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.StudentUtil;
 
