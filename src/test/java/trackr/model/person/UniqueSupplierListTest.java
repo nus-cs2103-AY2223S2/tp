@@ -20,7 +20,7 @@ import trackr.model.item.exceptions.ItemNotFoundException;
 import trackr.testutil.SupplierBuilder;
 
 public class UniqueSupplierListTest {
-
+    //@@author arkarsg-reused
     private final UniqueSupplierList uniqueSupplierList = new UniqueSupplierList();
 
     @Test
@@ -168,6 +168,7 @@ public class UniqueSupplierListTest {
                         uniqueSupplierList.asUnmodifiableObservableList().remove(0));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void equals() {
         uniqueSupplierList.add(ALICE);

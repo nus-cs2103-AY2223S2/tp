@@ -7,6 +7,7 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+//@@author liumc-sg-reused
 public class PersonEmailTest {
 
     @Test
@@ -80,6 +81,7 @@ public class PersonEmailTest {
         assertFalse(personEmail.equals(1)); //different type
     }
 
+    //@@author liumc-sg
     @Test
     public void hashCode_success() {
         String email = "test@test";
