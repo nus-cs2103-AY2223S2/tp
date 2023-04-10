@@ -294,8 +294,9 @@ public class FindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code CodeContainsKeywordsPredicate
-     * or LectureNameContainsKeywordsPredicate or VideoNameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code ModuleContainsKeywordsPredicate or ModuleTagContainsKeywordsPredicate
+     * or LectureNameContainsKeywordsPredicate or LectureTagContainsKeywordsPredicate
+     * or VideoNameContainsKeywordsPredicate or VideoTagContainsKeywordsPredicate}.
      */
     private Predicate<?> preparePredicate(String userInput, DisplayListLevel level, boolean hasByTag) {
         String trimmedInput = userInput.trim();
