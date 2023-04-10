@@ -33,9 +33,7 @@ import taa.model.student.Submissions;
 import taa.model.student.UniqueStudentList;
 import taa.model.tag.Tag;
 
-/**
- * Import student data in CSV format from file.
- */
+/** Import student data in CSV format from file.*/
 public class ImportCommand extends CsvCommand {
     public static final String COMMAND_WORD = "import";
     public static final String MSG_USAGE = COMMAND_WORD + ": Import data in CSV format from file. Parameter: FILE_PATH";
