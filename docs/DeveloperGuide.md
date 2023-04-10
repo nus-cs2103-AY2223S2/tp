@@ -581,4 +581,6 @@ Given below are the current known feature flaws and the plans the team have for 
 3. Currently, prescriptions do not indicate the doctor that prescribe the medication. We realise this is an important feature to have and plan to implement it in the next version.
 4. The find command currently does not update the display box after filtering the person. We plan to change this in the next version to automatically display the user information after finding the person in the next version.
 5. Currently, MediConnect does not set the person's date of birth as a compulsory field. We plan to make the date of birth a compulsory field in the next version.
+6. Currently, MediConnect does not check for case sensitivity and reads upper case and lower case items as separate items. We plan to allow MediConnect to ignore case sensitivity in the next version. For example, if Paracetmol and paracetamol can be prescribed to the same patient.
+7. Currently, MediConnect does not limit the number of digits in a phone number. We plan to limit the maximum number of phone digits to 15 in the next version.
 
