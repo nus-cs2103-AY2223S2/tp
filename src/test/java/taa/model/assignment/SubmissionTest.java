@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import taa.model.assignment.exceptions.InvalidGradeException;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 
@@ -22,8 +23,8 @@ class SubmissionTest {
 
     @BeforeEach
     void setUp() {
-        student = new Student(new Name("John Doe"), "0;0;0;0;0;0;0;0;0;0;0;0",
-                "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1", new ArrayList<>(), new HashSet<>());
+        student = new Student(new Name("John Doe"), Attendance.ORIGINAL_ATD,
+                Attendance.ORIGINAL_PP, new ArrayList<>(), new HashSet<>());
         assignment = new Assignment("Test Assignment", 10);
         submission = new Submission(student, assignment);
         student.addSubmission(submission);

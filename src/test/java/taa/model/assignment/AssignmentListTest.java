@@ -18,6 +18,7 @@ import taa.model.assignment.exceptions.AssignmentNotFoundException;
 import taa.model.assignment.exceptions.DuplicateAssignmentException;
 import taa.model.assignment.exceptions.InvalidGradeException;
 import taa.model.assignment.exceptions.SubmissionNotFoundException;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 
@@ -43,13 +44,13 @@ class AssignmentListTest {
     @Test
     void checkValidStorage() {
         // Add test here.
-        assertTrue(1 == 1);
+        assertEquals(1, 1);
     }
 
     @Test
     void testValidCsvSubmissions() {
         // Add test here.
-        assertTrue(1 == 1);
+        assertEquals(1, 1);
     }
 
     @Test
@@ -76,8 +77,8 @@ class AssignmentListTest {
     void grade() throws DuplicateAssignmentException, InvalidGradeException,
             AssignmentNotFoundException, SubmissionNotFoundException {
         // Test the method that grades a submission
-        Student student = new Student(new Name("John Doe"), "0;0;0;0;0;0;0;0;0;0;0;0",
-                "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1", new ArrayList<>(), new HashSet<>());
+        Student student = new Student(new Name("John Doe"), Attendance.ORIGINAL_ATD,
+                Attendance.ORIGINAL_PP, new ArrayList<>(), new HashSet<>());
         assignmentList.add("Assignment 1", studentList, 100);
         assignmentList.addStudent(student);
         assignmentList.grade("Assignment 1", student, 80, false);
@@ -90,8 +91,8 @@ class AssignmentListTest {
     void ungrade() throws DuplicateAssignmentException, InvalidGradeException,
             AssignmentNotFoundException, SubmissionNotFoundException {
         // Test the method that removes a grade from a submission
-        Student student = new Student(new Name("John Doe"), "0;0;0;0;0;0;0;0;0;0;0;0",
-                "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1", new ArrayList<>(), new HashSet<>());
+        Student student = new Student(new Name("John Doe"), Attendance.ORIGINAL_ATD,
+                Attendance.ORIGINAL_PP, new ArrayList<>(), new HashSet<>());
         assignmentList.add("Assignment 1", studentList, 100);
         assignmentList.addStudent(student);
         assignmentList.grade("Assignment 1", student, 80, false);
@@ -102,9 +103,9 @@ class AssignmentListTest {
     @Test
     void list() throws DuplicateAssignmentException {
         // Test case for listing all assignments
-        Student alice = new Student(new Name("Alice"), "0;0;0;0;0;0;0;0;0;0;0;0", "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1",
+        Student alice = new Student(new Name("Alice"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP,
                 new ArrayList<>(), new HashSet<>());
-        Student bob = new Student(new Name("Bob"), "0;0;0;0;0;0;0;0;0;0;0;0", "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1",
+        Student bob = new Student(new Name("Bob"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP,
                 new ArrayList<>(), new HashSet<>());
         assignmentList.add("Assignment 1", studentList, 100);
         assignmentList.add("Assignment 2", studentList, 100);
@@ -114,42 +115,42 @@ class AssignmentListTest {
         assertTrue(assignmentList.list().contains("Assignment 1"));
         assertTrue(assignmentList.list().contains("Assignment 2"));
         assertFalse(assignmentList.list().contains("Assignment 3"));
-        assertTrue(assignmentList.list().split("Alice").length == 3);
-        assertTrue(assignmentList.list().split("Bob").length == 3);
+        assertEquals(3, assignmentList.list().split("Alice").length);
+        assertEquals(3, assignmentList.list().split("Bob").length);
     }
     @Test
     void deleteStudentTest() throws DuplicateAssignmentException {
-        Student alice = new Student(new Name("Alice"), "0;0;0;0;0;0;0;0;0;0;0;0", "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1",
+        Student alice = new Student(new Name("Alice"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP,
                 new ArrayList<>(), new HashSet<>());
-        Student bob = new Student(new Name("Bob"), "0;0;0;0;0;0;0;0;0;0;0;0", "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1",
+        Student bob = new Student(new Name("Bob"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP,
                 new ArrayList<>(), new HashSet<>());
         assignmentList.add("Assignment 1", studentList, 100);
         assignmentList.add("Assignment 2", studentList, 100);
         assignmentList.addStudent(alice);
         assignmentList.addStudent(bob);
-        assertTrue(assignmentList.getAssignments()[0].getSubmissions().size() == 2);
+        assertEquals(2, assignmentList.getAssignments()[0].getSubmissions().size());
         assignmentList.deleteStudent(alice);
-        assertTrue(assignmentList.getAssignments()[0].getSubmissions().size() == 1);
+        assertEquals(1, assignmentList.getAssignments()[0].getSubmissions().size());
     }
 
     @Test
     void addStudentTest() throws DuplicateAssignmentException {
-        Student alice = new Student(new Name("Alice"), "0;0;0;0;0;0;0;0;0;0;0;0", "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1",
+        Student alice = new Student(new Name("Alice"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP,
                 new ArrayList<>(), new HashSet<>());
-        Student bob = new Student(new Name("Bob"), "0;0;0;0;0;0;0;0;0;0;0;0", "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1",
+        Student bob = new Student(new Name("Bob"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP,
                 new ArrayList<>(), new HashSet<>());
         assignmentList.add("Assignment 1", studentList, 100);
         assignmentList.add("Assignment 2", studentList, 100);
         assignmentList.addStudent(alice);
-        assertTrue(assignmentList.getAssignments()[0].getSubmissions().size() == 1);
+        assertEquals(1, assignmentList.getAssignments()[0].getSubmissions().size());
         assignmentList.addStudent(bob);
-        assertTrue(assignmentList.getAssignments()[1].getSubmissions().size() == 2);
+        assertEquals(2, assignmentList.getAssignments()[1].getSubmissions().size());
     }
 
     @Test
     void initFromStorageTest() {
         // Add test here.
-        assertTrue(1 == 1);
+        assertEquals(1, 1);
     }
 
     @Test

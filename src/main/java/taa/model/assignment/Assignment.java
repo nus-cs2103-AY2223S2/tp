@@ -108,6 +108,7 @@ public class Assignment {
         Submission sub = new Submission(stu, this, isGraded, isLateSubmission, Integer.parseInt(words[3].trim()));
         submissions.add(sub);
         submissionMap.put(stu, sub);
+        stu.addSubmissionEntries(sub);
     }
 
     /**

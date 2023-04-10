@@ -3,6 +3,7 @@ package taa.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import taa.model.student.Student;
@@ -14,7 +15,7 @@ import taa.model.student.UniqueStudentList;
  */
 //Credits: Solution below are adapted from original AB3 codes, with significant modifications.
 public class ClassList implements ReadOnlyStudentList {
-
+    public static final String STR_SEP = ";";
     private final UniqueStudentList students;
     private final String className;
     private int studentCount;
@@ -44,19 +45,13 @@ public class ClassList implements ReadOnlyStudentList {
         resetData(toBeCopied);
     }
 
-    /**
-     * Returns true if both persons have the same name.
-     */
+    /** @return true iff both persons have the same name. */
     public boolean isSameClassList(ClassList otherClassList) {
-        if (otherClassList == this) {
-            return true;
-        }
-
-        return otherClassList != null
-                && otherClassList.getClassId() == (getClassId());
+        return otherClassList == this || (otherClassList != null
+                && Objects.equals(otherClassList.getClassName(), getClassName()));
     }
 
-    public String getClassId() {
+    public String getClassName() {
         return this.className;
     }
 

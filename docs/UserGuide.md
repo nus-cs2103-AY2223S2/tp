@@ -93,11 +93,11 @@ They can also be used to denote keys that should be held together, at the same t
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the latest `taa.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases).
+2. Download the latest `taa.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TAA.
+3. Copy the file to the folder you want to use as the _home folder_ for your TAA.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taa.jar` command to run
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taa.jar` command to run
    the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](./images/Ui.png)
@@ -107,7 +107,7 @@ They can also be used to denote keys that should be held together, at the same t
    : TAA window
    </em></figcaption>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open
+5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open
    the help window.<br>
    Some example commands you can try:
 
@@ -119,7 +119,8 @@ They can also be used to denote keys that should be held together, at the same t
 
     * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
+7. Use <Button>↑</Button> and <Button>↓</Button> to navigate through command history.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -747,21 +748,21 @@ Acceptable CSV format example: (suppose assignment x, y, and z is already added 
 
 ```
 Technoblade,1;0;0;1;1;1;0;1;0;0;0;0,-1;0;-1;2;-1;-1;-1;-1;200;-1;-1;-1,"x,0,0,1;y,0,0,2;z,0,0,3;",Tut1;Tut2;
- Dream Was Taken,    1  ;0;0 ; 1;1;1; 0;1  ;0;0;0;0,-1;0; -1;2;-1;-1;-1  ;-1;200;-1;-1;-1,"  x ,0, 0,2;y,0 ,0,100 ; z,0  ,  0,0 ;  ", Tut2   ;Tut3;
-Tommy In It,,-1;0;-1;2;-1;-1;-1;-1;2;-1;-1;-1,"x,0,0,15;z,0,0,0;",Lab
+ Dream Was Taken,    1  ;0;0 ; 1;1;1; 0;1  ;0;0;0;0,-1;0; -1;2;-1;-1;-1  ;-1;200;-1;-1;-1,"  x ,0, 0,2;y,1 ,0,100 ; z,0  ,  0,0 ;  ", Tut2   ;Tut3;
+Tommy In It,,-1;0;-1;2;-1;-1;-1;-1;2;-1;-1;-1,"x,1,0,15;z,1,1,180;",Lab
 Wilbur Soot,1;0;0;1;1;1;0;1;0;0;0;0, ,"y,0,0,0", ;Tut2;
-Philza Minercaft,,,,
+Ph1LzA,,,,
 ```
 
 Excel spreadsheet format that exports acceptable CSV files: (please ignore the first empty row)
 
-|                  |                              |                                      |                                    |             |
-|------------------|------------------------------|--------------------------------------|------------------------------------|-------------|
-| Technoblade      | 1;0;0;1;1;1;0;1;0;0;0;0      | -1;0;-1;2;-1;-1;-1;-1;200;-1;-1;-1   | x,0,0,1;y,0,0,2;z,0,0,3;           | Tut1;Tut2;  |
-| Dream Was Taken  | 1 ;0;0 ; 1;1;1; 0;1 ;0;0;0;0 | -1;0; -1;2;-1;-1;-1 ;-1;200;-1;-1;-1 | x ,0, 0,2;y,0 ,0,100 ; z,0 , 0,0 ; | Tut2 ;Tut3; |
-| Tommy In It      |                              | -1;0;-1;2;-1;-1;-1;-1;2;-1;-1;-1     | x,0,0,15;z,0,0,0;                  | Lab         |
-| Wilbur Soot      | 1;0;0;1;1;1;0;1;0;0;0;0      |                                      | y,0,0,0                            | ;Tut2;      |
-| Philza Minercaft |                              |                                      |                                    |             |
+|                 |                                |                                       |                                      |               |
+|-----------------|--------------------------------|---------------------------------------|--------------------------------------|---------------|
+| Technoblade     | 1;0;0;1;1;1;0;1;0;0;0;0        | -1;0;-1;2;-1;-1;-1;-1;200;-1;-1;-1    | x,0,0,1;y,0,0,2;z,0,0,3;             | Tut1;Tut2;    |
+| Dream Was Taken | 1  ;0;0 ; 1;1;1; 0;1  ;0;0;0;0 | -1;0; -1;2;-1;-1;-1  ;-1;200;-1;-1;-1 | x ,0, 0,2;y,1 ,0,100 ; z,0  ,  0,0 ; | Tut2   ;Tut3; |
+| Tommy In It     |                                | -1;0;-1;2;-1;-1;-1;-1;2;-1;-1;-1      | x,1,0,15;z,1,1,180;                  | Lab           |
+| Wilbur Soot     | 1;0;0;1;1;1;0;1;0;0;0;0        |                                       | y,0,0,0                              | ;Tut2;        |
+| Ph1LzA          |                                |                                       |                                      |               |
 
 #### Import data in CSV format: `import`
 
