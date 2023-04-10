@@ -1,0 +1,17 @@
+@startuml
+!pragma useVerticalIf on
+
+:User enters search command;
+if () then ( [else])
+  :Error: Invalid command provided;
+  stop
+( [At least one keyword is provided]) elseif () then ( [else])
+  :Error: Invalid command format;
+  stop
+ else ( [Keyword is provided for every field mentioned])
+endif
+  :Search command successfully executes.
+Filtered list based on given keywords is displayed.;
+stop
+
+@enduml

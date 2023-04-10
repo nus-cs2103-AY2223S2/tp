@@ -14,12 +14,20 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
+package "ConnectUs Storage" #F4F6F6{
+Class "<<interface>>\nConnectUsStorage" as ConnectUsStorage
+Class JsonConnectUsStorage
+Class JsonSerializableConnectUs
 Class JsonAdaptedPerson
-Class JsonAdaptedTag
+Class JsonAdaptedModule
+Class JsonAdaptedCca
+Class JsonAdaptedMajor
+Class JsonAdaptedRemark
+Class JsonAdaptedAddress
+Class JsonAdaptedEmail
+Class JsonAdaptedPhone
+Class JsonAdaptedBirthday
+Class JsonAdaptedSocialMedia
 }
 
 }
@@ -29,15 +37,32 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" ConnectUsStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> ConnectUsStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonConnectUsStorage .up.|> ConnectUsStorage
+JsonConnectUsStorage ..> JsonSerializableConnectUs
+JsonSerializableConnectUs --> "*" JsonAdaptedPerson
+
+JsonAdaptedBirthday -[hidden]up-> JsonAdaptedPhone
+JsonAdaptedSocialMedia -[hidden]up-> JsonAdaptedEmail
+
+JsonAdaptedPerson --> "0..1" JsonAdaptedAddress
+JsonAdaptedPerson --> "0..1" JsonAdaptedEmail
+JsonAdaptedPerson --> "0..1" JsonAdaptedPhone
+JsonAdaptedPerson --> "0..1" JsonAdaptedBirthday
+JsonAdaptedPerson --> "0..1" JsonAdaptedSocialMedia
+
+
+JsonAdaptedMajor -[hidden]up-> JsonAdaptedModule
+JsonAdaptedRemark -[hidden]up-> JsonAdaptedCca
+
+JsonAdaptedPerson --> "*" JsonAdaptedModule
+JsonAdaptedPerson --> "*" JsonAdaptedCca
+JsonAdaptedPerson --> "0..2" JsonAdaptedMajor
+JsonAdaptedPerson --> "*" JsonAdaptedRemark
 
 @enduml

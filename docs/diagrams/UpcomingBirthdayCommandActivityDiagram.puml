@@ -1,0 +1,22 @@
+@startuml
+!pragma useVerticalIf on
+
+start
+:User enters upcoming-b command;
+while (Still have Persons in full list?)
+  :Check Birthday of Person;
+  if () then ([else])
+  :Don't add Person to filtered list;
+  stop
+  ([Birthday is not empty]) elseif () then ([else])
+  :Don't add Person to filtered list;
+  stop
+  else ([Birthday is within the next 60 days])
+  :Add Person to filtered list;
+
+  endif
+endwhile
+
+stop
+
+@enduml

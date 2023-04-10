@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ng Jia Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gremmyz.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/gremmyz)]
+[[portfolio](team/gremmyz.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Overall project coordination, documentation, UI
 
-### Johnny Doe
+### Lavanya Mishra
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lava-iris.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Lava-Iris)]
+[[portfolio](team/lava-iris.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Deliverables and deadlines, Model
 
-### James Doe
+### Zhan Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/salty-flower.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/salty-flower)]
+[[portfolio](team/salty-flower.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing, Commons
+
+### Samarth Verma
+
+<img src="images/vsamarth.png" width="200px">
+
+[[github](https://github.com/vsamarth)]
+[[portfolio](team/vsamarth.md)]
+
+* Role: Developer
+* Responsibilities: Integration, Logic
+
+### Saha Manasij
+
+<img src="images/saha9616.png" width="200px">
+
+[[github](http://github.com/Saha9616)]
+[[portfolio](team/saha9616.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality, Storage
