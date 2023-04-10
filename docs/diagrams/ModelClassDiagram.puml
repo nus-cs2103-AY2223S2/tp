@@ -16,6 +16,7 @@ Class UniquePatientList
 Class Patient
 Class UniqueWardList
 Class Ward
+Class Capacity
 Class WardName
 Class Nric
 Class Name
