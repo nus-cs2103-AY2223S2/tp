@@ -9,6 +9,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import fasttrack.commons.core.Messages;
 import fasttrack.commons.core.index.Index;
@@ -138,5 +139,16 @@ public class EditRecurringExpenseManagerCommand implements EditCommand {
         return new CommandResult(
                 String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_RECURRING, generatorToEdit),
                 ScreenType.RECURRING_EXPENSE_SCREEN);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        EditRecurringExpenseManagerCommand otherTypeCasted = (EditRecurringExpenseManagerCommand) other;
+        return targetIndex.equals(otherTypeCasted.targetIndex)
+                && (Objects.equals(newExpenseName, otherTypeCasted.newExpenseName))
+                && (Objects.equals(newExpenseAmount, otherTypeCasted.newExpenseAmount))
+                && (Objects.equals(newExpenseEndDate, otherTypeCasted.newExpenseEndDate))
+                && (Objects.equals(newExpenseCategoryInString, otherTypeCasted.newExpenseCategoryInString))
+                && (Objects.equals(newFrequencyInString, otherTypeCasted.newFrequencyInString));
     }
 }

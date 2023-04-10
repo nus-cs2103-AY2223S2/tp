@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import fasttrack.commons.core.Messages;
 import fasttrack.commons.core.index.Index;
@@ -117,5 +118,21 @@ public class EditExpenseCommand implements EditCommand {
         return new CommandResult(
             String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_EXPENSE, newExpense),
             ScreenType.EXPENSE_SCREEN);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof EditExpenseCommand)) {
+            return false;
+        }
+        EditExpenseCommand otherTypeCasted = (EditExpenseCommand) other;
+        return targetIndex.equals(otherTypeCasted.targetIndex)
+                && (Objects.equals(newExpenseName, otherTypeCasted.newExpenseName))
+                && (Objects.equals(newExpenseAmount, otherTypeCasted.newExpenseAmount))
+                && (Objects.equals(newExpenseDate, otherTypeCasted.newExpenseDate))
+                && (Objects.equals(newExpenseCategoryInString, otherTypeCasted.newExpenseCategoryInString));
     }
 }
