@@ -425,6 +425,8 @@ with another existing data in the data list will not be successful. Here's how w
 | Tasks      | they have the same task names (case-insensitive) and deadlines.             |
 | Menu items | they have the same item names (with matching cases).                        |
 
+<div style="page-break-after: always;"></div>
+
 ## 2.1 Add
 
 Adding of an information to the specific list. Below are the specific add commands for supplier, order, task and menu item.
@@ -472,8 +474,6 @@ Adds an order into the list of orders.
 
 Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="block" class="alert alert-tip">
 
 :information_source: **Information**
@@ -517,6 +517,8 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * Status: `In Progress`
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 2.1.3 Adding a task: `add_task`
 
@@ -1396,6 +1398,8 @@ Clears all order entries from the order list.
 
 Syntax: `clear_order`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-example">
 
 :clipboard: **Example 1: Standard command**
@@ -1528,6 +1532,8 @@ Note: For any **optional** fields, you can indicate it with a `-` to have it be 
   <br>Figure 2.9.2.1: Example of a valid csv file
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ### 2.9.3 Exiting the program: `exit`
 
 Exits the program.
@@ -1567,6 +1573,8 @@ Please proceed with caution.
 If your changes to the data file are invalid, Trackr will discard all data and start with an empty data file at the next run.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here is the layout of the data file:
 
