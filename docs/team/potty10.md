@@ -31,14 +31,16 @@ My code contributions can be found on
     test cases for UI components such as in the class `InternshipCardTest` and `CommandBoxTest`.
   * Worked with my teammate, Eugene, to implement this.
   * GUI testing improved code coverage for InternBuddy.
-  
+
 * **Enhancements to existing features**:
   * Added date labels to UI, so that users understand what the dates mean. [\#57](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/57), [\#138](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/138)
   * Added a feature where clicking on an internship entry updates the right panel with the selected internship. [\#150](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/150)
   * Refactored Status as a set of final constant strings, mitigating misuse of Status strings.  [\#57](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/57)
   * Fixed a bug where the right panel does not reset after clear. [\##128](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/128)
+
 ### Documentation
-* **Contributed to About Us page**
+
+* **About Us page**
   [\#18](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/18)
   * Collected my team photos and drafted the About Us page.
 
