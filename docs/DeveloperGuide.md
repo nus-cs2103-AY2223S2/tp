@@ -867,6 +867,32 @@ testers are expected to do more *exploratory* testing.
        Since it is not one of the five recent scores, score chart and score table statistic summary will remain the same.
        Student's name and details of the deleted score shown in the status message.
        The deleted score is removed from the displayed score list of the checked student.
+   
+### Checking a student
+
+1. Checking a student for his/her task list and score list
+   
+   1. Test case: `check x 1`<br>
+   The first student in the student list will be checked. Student's task list and score list will then be displaied on the right side of the windows.
+   
+   2. Test case: `check x 0`<br>
+   Expected: No student will be checked, the task list and score list will not be updated. Error details shown in the status message.
+   
+   3. Test case: `check x -10`<br>
+   Expected: No student will be checked, the task list and score list will not be updated. Error details shown in the status message.
+   
+   4. Test case: Other incorrect check commands to try:`check`, `check x`, `check x y`, `...` (where y is larger than the checked student's task list size)<br>
+   Expected: Similar to previous.
+   
+2. Check a student for his/her task list and score list after filter
+   
+   1. Prerequisites: Filter the student list with one or more keywords k using `filter` command. 
+   Expected: Similar to checking a student for his/her task list and score list, just that the check command is now working on the filtered student list produced by the filter command.
+   
+3. Check a student for his/her task list and score list after find
+   
+   1. Prerequisites: Check a student with index x using `check` command. Checked student have one or more tasks.
+   Expected: Similar to checking a student for his/her task list and score list, just that the check command is now working on the filtered student list prodcued by the find command.
 
 ### Saving data
 
