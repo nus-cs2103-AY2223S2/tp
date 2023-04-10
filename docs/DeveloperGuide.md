@@ -25,7 +25,7 @@ If you're eager to get started with TeachMeSenpai, head over to [Setting up, get
 * All icons used are taken from [flaticon]
 * The autocompletion feature was inspired by a similar feature in [AY2223S1-CS2103T-T12-2's tp][T12-2]. We started out with their code, and slowly _(and almost completely)_ overhauled, including refactoring, bug-fixing, adding asserts, and changing the behaviour of the feature to suit our needs.
 * The idea of adding the placeholder text _(eg. the `NAME` in `n/NAME`)_ to the `Prefix` class also came from [AY2223S1-CS2103T-T12-2's tp][T12-2], which gave us the idea to further add more things to the prefix _(like whether the prefix is optional)_, although that was our idea.
-* The undo and redo features were reused with minor modifications from [AY2223S1-CS2103T-W17-4's tp][W17-4], which was adapted from the proposed implementation in AB3's Developer Guide [DG][DG]. The changes include renaming, some different implementation, and modification to include of a variable to track the undone/redone commands in the `VersionedAddressBook` class.
+* The undo and redo features were reused with modifications from [AY2223S1-CS2103T-W17-4's tp][W17-4], which was adapted from the proposed implementation in AB3's Developer Guide [DG][DG]. The changes include renaming, some different implementation, and modification to include of a variable to track the undone/redone commands in the `VersionedAddressBook` class.
 
 [SE-EDU initiative]: https://se-education.org/
 [JavaFX]: https://openjfx.io/
@@ -1085,6 +1085,25 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
+
+Evolving AB3 into TeachMeSenpai had a set of challenges and obstacles our team had to work around.
+
+The initial difficulty faced involved getting used to the forking workflow of the project as Git was still new to most of the group.
+There were also concerns around `remark` feature as our team initially intended for it to be a text box within TeachMeSenpai's MainWindow.
+However, as our team was not familiar with JavaFX, it was not as feasible as the pop-up text box window our team settled on. We also included keyboard shortcuts for exiting the pop-up window to not compromise our goal of creating an app targeted at fast-typists.
+
+One challenge we ran into during the project surfaced after an initial testing of our app where we discovered some inconsistent error handling. However, due to time constraints, we were not able to enhance the specificity of our error messages.
+If given more time, this would be an aspect our team would not have compromised. The time constraint also resulted in the inability to refactor a large portion of AB3's code to be specific to our app (Student, and StudentBook instead of Person, and AddressBook).
+However, since our priority was to evolve AB3 to meet the needs of teaching assistants, we prioritised the functionality of our app over the backend details. If given more time, we would definitely have refactored the code.
+
+Lastly, TeachMeSenpai was no easy feat and a portion of the app contains code adapted and reused from past semester's projects.
+
+Our autocomplete feature was inspired by a similar feature in [AY2223S1-CS2103T-T12-2's tp][T12-2]. We started our with their code, and slowly but surely revamped the code.
+This included refactoring, bug-fixing, adding asserts and changing the behaviour of the feature to suit our needs such as prefixes, commands, and parameters specific to our app.
+The idea of adding the placeholder text to the `Prefix` class also came from [AY2223S1-CS2103T-T12-2's tp][T12-2], which gave us the idea to add onto the prefix (like whether the prefix is optional), although the initial idea for optional prefixes was our idea.
+
+Finally, the undo and redo features were reused with modifications from  [AY2223S1-CS2103T-W17-4's tp][W17-4], which was adapted from the proposed implementation in AB3's Developer Guide [DG][DG] as well. The changes include renaming, some different implementation, bug fixing, and modification to include a variable to track the undone/redone commands in the `VersionedAddressBook` class.
+We also encapsulated the `CommandHistory` within the `VersionedAddressBook`.
 
 
 
