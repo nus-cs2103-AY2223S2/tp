@@ -77,7 +77,7 @@ Apart from being your all-encompassing address book, NeoBook also has an Events 
 </div>
 
 
-____________________________________________________________________________________________________________________
+<hr style="border:2px solid gray">
 
 
 ## User Interface
