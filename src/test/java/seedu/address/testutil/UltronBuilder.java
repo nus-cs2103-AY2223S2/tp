@@ -16,8 +16,8 @@ public class UltronBuilder {
         ultron = new Ultron();
     }
 
-    public UltronBuilder(Ultron addressBook) {
-        this.ultron = addressBook;
+    public UltronBuilder(Ultron ultron) {
+        this.ultron = ultron;
     }
 
     /**

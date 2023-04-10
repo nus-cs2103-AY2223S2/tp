@@ -5,8 +5,7 @@ title: Varstak's Project Portfolio Page
 
 ### Project: Ultron
 
-Ultron is a system which helps students keep track of their internship applications by helping them
-sort their internships and check the status of each application.
+Ultron is a system that assists students in tracking their internship applications by organizing their internships and monitoring the status of each application. 
 
 Given below are my contributions to the project.
 
@@ -27,6 +26,8 @@ Given below are my contributions to the project.
       * Added Upcoming feature to the User guide with its specifications.
       * Updated the whole User Guide to match the intended functionality of the application.
       * Added screenshots and visuals to the user guide so that users can better visualise the features.
+    * Developer Guide Changes
+      * Added the implementation of upcoming command and elaborated on the design considerations. 
 
 * **Enhancements to existing features**:
   * Fixed bugs with side panel not showing when add command is used without any optional fields.
@@ -34,7 +35,8 @@ Given below are my contributions to the project.
   * Created sample data for Ultron. Refactored existing AB3 methods to display sample data to match specifications for keydates and the removal of tags.
 
 * **Documentation**:
-  * To be added soon
+  * Refactored documentation for the `list` command
 
 * **Community**:
-  * To be added soon
+  * Reviewed PRs for multiple commands, as well as PRs related to the User guide. 
+  * Found 5 bugs during the Practical Assessment Dry Run and reviewed an application by one of my coursemates. 
