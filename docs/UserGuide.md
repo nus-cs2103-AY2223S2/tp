@@ -350,11 +350,7 @@ The employee with the provided employee ID would have their fields edited accord
 --------------------------------------------------------------------------------------------------------------------
 ### Taking Leave : `leave`
 
-There are plenty of instances where employees take leave, and it is such a tedious task to manage employee leaves. ExecutivePro allows you to help your employees take leave so you no longer have to manually track remaining leaves for each employee. Note that the `leave` command can only help an employee take leave, if you want to reset or increase an employee's leave count, use the `edit` command above instead.
-
-:bulb:
-**For resetting or increasing an employee's leave count:**
-Use the `edit` command above instead. (`leave` can only help an employee take leave)
+There are plenty of instances where employees take leave, and it is such a tedious task to manage employee leaves. ExecutivePro allows you to help your employees take leave so you no longer have to manually track remaining leaves for each employee. Note that for resetting or increasing an employee's leave count use the `edit` command above instead. (`leave` can only help an employee take leave).
 
 Format: `leave EMPLOYEE_ID l/LEAVE_COUNT`
 
