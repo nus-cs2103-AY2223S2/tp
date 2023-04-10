@@ -301,6 +301,7 @@ The following diagram shows the structure of the implementation of Statuses, as 
 ![](images/StatusDiagram.png)
 
 #### Lead Status feature
+By: Jing Jie
 
 The Lead Status feature aims to provide information about the contact based on when the status was last set.
 It is represented by the `LeadStatus status` attribute in a `Person`, which contains a `LeadStatusName` and
@@ -472,7 +473,7 @@ _{more aspects and alternatives to be added}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                   | I want to …​                                                                                   | So that I can…​                                                          |
-| -------- | ------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| -------- | ------------------------- |------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
 | `* * *`  | new user                  | see usage instructions                                                                         | refer to instructions when I forget how to use the App                   |
 | `* * *`  | salesperson               | add a new client                                                                               | keep track of all my clients                                             |
 | `* * *`  | salesperson               | view all my clients                                                                            | have access to each and every client                                     |
@@ -487,8 +488,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | new user                  | import my current database                                                                     |                                                                          |
 | `*`      | salesperson               | record down all transactions with clients                                                      |                                                                          |
 | `*`      | salesperson               | search through transactions based on an existing contact's name, while also seeing the contact | conveniently refer to persons' and transactions' info on the same screen |
-| `*`      | forgetful salesperson     | add tasks for each contact                                                                     | refer to the tasks of each person to be done                             |
-| `*`      | salesperson               | clear tasks for each contact                                                                   | edit the tasks and add new tasks for the contact                         |
+| `*`      | forgetful salesperson     | add tasks for a contact                                                                        | keep track of the tasks to be done for the contact                       |
+| `*`      | salesperson               | clear tasks for a contact                                                                      | remove all the irrelevant tasks from the tasklist of the contact         |
 
 ### Use cases
 
@@ -637,47 +638,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 4a1. SalesPunch alerts the user that the lead status is the same.  
     Use case resumes at step 2
 
-**Use case: Add tasks for a person**
+**Use case: Add tasks for a contact**
 
 **MSS**
 
-1.  User adds task to a person
-2.  SalesPunch updates the tasklist of the person in the contact list
+1.  User adds task to a contact
+2.  SalesPunch adds the task to the tasklist of the person in the contact list
 
     Use case ends.
 
-**Extensions**
-
-- 1a. User is able to add more types of tasks to a person.
-
-  - 1a1. SalesPunch requests for the correct data.
-  - 1a2. User enters new data.
-  - Steps 1a1-1a2 are repeated until the data entered is correct.
-  - Use case resumes from step 2.
-
-  Use case ends.
-
-**Use case: Edit tasks**
+**Use case: Clear tasks for a contact**
 
 **MSS**
 
-1.  User clears tasks for a person
-2.  SalesPunch updates the tasklist of the person in the contact list
-3.  User adds new tasks for a person
-4.  SalesPunch updates the tasklist of the person in the contact list
+1.  User clears tasks for a contact
+2.  SalesPunch clears the tasklist to be empty for the person in the contact list
 
     Use case ends.
 
-**Extensions**
-
-- 1a. User is able to edit the specific task directly.
-
-  - 1a1. SalesPunch requests for the correct data.
-  - 1a2. User enters new data.
-  - Steps 1a1-1a2 are repeated until the data entered is correct.
-  - Use case resumes from step 2.
-
-  Use case ends.
 
 **Use case: Add a transaction**
 
@@ -745,8 +723,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2a. The list is empty.
 
   Use case ends.
-
-
 
 
 ### Non-Functional Requirements
@@ -841,11 +817,37 @@ features to add and delete.
 
 ### Challenges Faced
 
-Find and Searching Features: There was a medium challenge faced when implementing the different searching features as one had to work within the several abstraction layers for the already implemented basic `find` feature to further extend it. Additionally, there were added difficulty learning to manipulate the different data types such as `Set<>`, `Person` and `Transaction`. Learning to manipulate using higher order functions and streams to manipulate the data in the correct data type and return the correct data type. 
+**Find and Searching Features**: There was a medium challenge faced when implementing the different searching features as one had to work within the several abstraction layers for the already implemented basic `find` feature to further extend it. Additionally, there were added difficulty learning to manipulate the different data types such as `Set<>`, `Person` and `Transaction`. Learning to manipulate using higher order functions and streams to manipulate the data in the correct data type and return the correct data type.   
+
+**Statuses**: Restricting the domain of possible statuses to a fixed number, while implementing timestamps, meant that 
+statuses are more complex than simple descriptive `String`s that are implemented in other attributes, such as Tasks and 
+Company, for example. A validation regex cannot be used directly for the names of each status, since each status has 
+as timestamp component, thus the use of enums and mappings to each name was required, increasing the complexity of 
+the implementation of statuses.
 
 ## **Appendix: Planned Enhancements**
 
 <!-- This section may contain up to team_size x 2 enhancements e.g., a 5-person team can have up to 10 enhancements. -->
 
-1. The user should be able to have autocomplete suggestions on the command line when they press tab so that the user can do faster data entry.
-2. The user should be able to have basic natural language processing and processing in the command line so that the commands are less restrictive, then the user would have a better experience and easier to use on a daily basis. For e.g. `create a new contact named Alex` may be a valid contact name insertion versus using the standard `add n/Name ...` command.
+1. The user should be able to have autocomplete suggestions on the command line when they press tab so that the user can
+    do faster data entry.
+2. The user should be able to have basic natural language processing and processing in the command line so that the 
+   commands are less restrictive, then the user would have a better experience and easier to use on a daily basis. 
+   For e.g. "create a new contact named Alex" may be a valid contact name insertion versus using the standard 
+   add n/Name command.
+3. The user should be able to have various types of tasks and have deadlines and importance associated with the tasks 
+   such that the tasklist feature is more useful. Having deadlines associated will also allow the user to receive 
+   notifications and reminders for when the task is due, helping the user better keep track of the tasks that they need 
+   to do for each contact. Having the importance tied to each task will also allow the user to view the tasks and 
+   determine which are the important tasks at a quick glance, helping the user decide how to clear the tasks. 
+4. The user should be able to edit the tasks in the tasklist. Currently, the user is only able to add a task and clear 
+   all tasks. Being able to edit tasks will allow the user to edit the information of the tasks if the information was 
+   keyed in wrongly or there are updates to the task.
+5. Each transaction and contacts are intended to share a tight relationship. Enforcing references from transactions to 
+    contacts and vice versa can be encapsulated in a PersonTransactionRelation class, and manipulation of both the list of
+    persons and transactions can be handled by the relation. This allows the implementation of more complex commands that
+    involve both classes:
+   - deleting a Person should delete all of their Transactions
+   - maintaining a count of the number of Past Transactions with each Person within the Person
+   - merging commands such as `list` and `listtxn` into a single command to show both lists.
+   - manipulating both ListPanels in the UI for Persons and Transactions for these merged commands
