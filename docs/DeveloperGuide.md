@@ -7,12 +7,6 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -121,17 +115,11 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person` and has references to all the `Meeting` objects of every `Person`. (which are all contained in a `UniquePersonList` object).
+* stores the currently 'selected' `Person` and `Meeting` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` and `ObservableList<MeetingWithPerson>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Note: `MeetingWithPerson` is a child class of `Meeting` that also stores a reference to the parent `Parent` object. This is done so the UI can display information about the `Person` to meet.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `PolicyTag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `PolicyTag` object per unique tag, instead of each `Person` needing their own `PolicyTag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -177,9 +165,13 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
   for the day specified
 
 After being parsed, the `AddMeetingCommand#execute()` method is called, scheduling a meeting for the specified person.
-The following sequence diagram illustrates the description for adding meeting:
+The following sequence diagrams illustrates the description for adding meeting. Diagram 1 is a continuation of Diagram 2:
 
-![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.PNG)
+**Diagram 1**
+![AddMeetingSequenceDiagram](images/AddMeetingParseSequenceDiagram.PNG)
+
+**Diagram 2**
+![AddMeetingExecuteSequenceDiagram](images/AddMeetingExecuteSequenceDiagram.PNG)
 
 #### 2.2 Design Consideration
 
@@ -189,8 +181,8 @@ The following sequence diagram illustrates the description for adding meeting:
   - Pros: Shorter command for user to type
   - Cons: Harder to implement to address for cases where meeting goes past midnight (signifiying a new day).
 
-- **Alternative 2(current choice)**: `INDEX md/ [DESC] ms/ [START DATE & TIME] me/ [END DATE & TIME]` command format 
-  
+- **Alternative 2(current choice)**: `INDEX md/ [DESC] ms/ [START DATE & TIME] me/ [END DATE & TIME]` command format
+
   - Pros: Simpler to implement; can account for meetings that go past midnight
   - Cons: Longer command for user to type
 
@@ -212,6 +204,18 @@ After being parsed, the `RemoveMeetingCommand#execute()` method is called, remov
 for the specified person. The following sequence diagram illustrates the description for removing meeting:
 
 ![RemoveMeetingSequenceDiagram](images/RemoveMeetingSequenceDiagram.PNG)
+
+#### 3.2 Design consideration
+
+**Aspect: meetingRemove format:**
+
+- **Alternative 1(current choice)**: `meetingRemove CLIENT_INDEX MEETING_INDEX` command format; MEETING_INDEX refers to the internal meeting list of `Person`
+    - Pros: Simpler to implement
+    - Cons: Can cause more confusion
+
+- **Alternative 2(future plan)**: `meetingRemove MEETING_INDEX` command format; MEETING_INDEX refers to the meeting list in Meeting List Panel instead
+    - Pros: Easier to use
+    - Cons: Required overhaul of implementation of meetingRemove (To be implemented in future version)
 
 ### 4. Region Feature
 
@@ -241,9 +245,13 @@ Just like other commands, the `Command#execute()` method of `UpdateMeetingComman
 information on how the `Logic` component handles a command.
 
 The parsing and execution of updateMeeting command can be shown with the following
-sequence diagram:
+sequence diagrams. Note that Diagram 3 is a continuation of Diagram 4. <br>
 
+**Diagram 3**
 ![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram1.png)
+
+**Diagram 4**
+![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram2.png)
 
 ### 6. Find Meeting Feature
 
@@ -289,9 +297,25 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
   * updates list of `Person` objects with a filtered list of `Person` objects with matching policy names
 
 After being parsed, the `FindPolicyCommand#execute()` method is called, a filtered list of `Person` objects with matching
-policy names are displayed. The following sequence diagram illustrates the description for finding policy:
+policy names are displayed. The following sequence diagram illustrates the description for finding policy. Diagram 5 is followed by Diagram 6:
 
-![FindPolicySequenceDiagram](images/FindPolicySequenceDiagram.PNG)
+**Diagram 5**
+![FindPolicyParseSequenceDiagram](images/FindPolicyParseSequenceDiagram.png)
+
+**Diagram 6**
+![FindPolicyExecuteSequenceDiagam](images/FindPolicyExecuteSequenceDiagram.PNG)
+
+#### 8.2 Design consideration
+
+**Aspect: How PolicyTag works:**
+
+- **Alternative 1(current choice)**: Convert `Tag` class to `PolicyTag`
+    - Pros: Just simple refactoring of class name
+    - Cons: Allows keywords not related to financial policies to be parsed
+
+- **Alternative 2(future plan)**: Ensure `PolicyTag` accepts a set of names only
+
+    - Pros: Ensures PolicyTag names have financial policies only
 
 ### \[Proposed\] Undo/redo feature
 
@@ -613,4 +637,16 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+## Appendix: Planned/Proposed Enhancements to known Feature Flaws
+
+1. Currently, the meetings in the list shown by `listMeeting` command is unsorted as it can affect other commands adversely. We plan to sort meetings in that list by chronological order without affecting other commands.
+2. Currently, meetingRemove and meetingUpdate has `CLIENT_INDEX` and `MEETING_INDEX` as inputs. `MEETING_INDEX` refers to the the index of meeting list given by `meetingFind CLIENT_INDEX`. We plan to rework meetingRemove and meetingUpdate to take in only one index instead of two indexes - the sole index will refer to
+the list shown by `listMeeting`.
+3. Currently, PolicyTag accepts any keywords to be set as the name. We plan to rework PolicyTag to only allow a set of PolicyTag names to accept only financial policies
+4. Currently there is no way to manually set the region of a person, and addresses that the detector doesn't recognise will be
+   defaulted to Unknown. One possible enhancement is to allow a `setRegion` command that allows users to set region manually
+   and also edit regions that the detector has detected wrongly.
+5. The `DESCRIPTION` parameter of all meeting commands will take in more than just alphanumberical inputs. However, we intend to
+rework this so that it will only be able to accept alphanumerical inputs.

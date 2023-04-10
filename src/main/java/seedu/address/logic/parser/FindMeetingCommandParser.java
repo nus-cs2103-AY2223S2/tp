@@ -24,9 +24,9 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
             throw new ParseException(
                     String.format(MESSAGE_MISSING_ARGUMENTS, FindMeetingCommand.MESSAGE_USAGE)
             );
-        } else if (split.length >1 && split[1].startsWith("-")) {
+        } else if (split.length > 1 && split[1].startsWith("-")) {
             throw new ParseException("Please input a valid person index");
-        }else if (userInput.contains("-")) {
+        } else if (userInput.contains("-")) {
             LocalDate meetingStart = ParserUtil.parseDate(userInput);
             return new FindMeetingCommand(meetingStart);
         }

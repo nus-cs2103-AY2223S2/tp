@@ -227,6 +227,7 @@ public class ParserUtil {
         }
         return LocalDateTime.of(year, month, day, startHour, startMinute);
     }
+
     /**
      * Parses a {@code String} into a {@code LocalDate}
      *
@@ -241,7 +242,8 @@ public class ParserUtil {
         String[] dates = input[1].split("-");
         if (dates.length != 3) {
             throw new ParseException("Date format is DD-MM-YYYY");
-        } try {
+        }
+        try {
             int day = Integer.parseInt(dates[0]);
             int month = Integer.parseInt(dates[1]);
             int year = Integer.parseInt(dates[2]);
@@ -258,6 +260,10 @@ public class ParserUtil {
         }
         return LocalDate.of(year, month, day);
     }
+
+    /**
+     * Parses an index string into an {@code Index}
+     */
     public static Index parsePersonIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
