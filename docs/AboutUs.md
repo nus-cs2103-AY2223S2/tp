@@ -11,7 +11,7 @@ Tan Jun Da - `jundatan@hotmail.com`
 
 Darius Ng - `darius-ng@live.com`
 
-Kalaris Ng - `to be added`
+Kalaris Ng - `kalarisng@u.nus.edu`
 
 JiaHui Liao - `e0775484@nus.edu.sg`
 
