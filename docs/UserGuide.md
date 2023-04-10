@@ -447,7 +447,7 @@ Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 * `INTEGER` must be a strictly positive integer.
 * The user cannot undo/redo actions from a previous session of starting the app.
 * The user cannot undo actions that are more than 10 iterations old.
-* The user cannot undo actions that do not change the data of DengueHotspotTracker, such as `list` and `find`.
+* The user cannot undo actions that do not alter the data of DengueHotspotTracker, such as `list`, `sort` and `find`.
 * Performing a change after undoing will clear any possible `redo` actions.
 
 Example:
