@@ -704,7 +704,7 @@ testers are expected to do more *exploratory* testing.
         4. Test case 4: `edit M n/Pierce`, ... where M is a number not between 1 and the number of contacts in the list
             - Testing for: Unspecified field results in command failure
             - Expected: Contacts do not update. Error details shown in the status message.
-        5. Test case 4: `edit`
+        5. Test case 5: `edit`
             - Testing for: No fields specified results in command failure
             - Expected: User does not update. Error details shown in the status message.
 
@@ -747,7 +747,36 @@ testers are expected to do more *exploratory* testing.
           - Expected: List does not update. Error details shown in the status message.
 
 ### Favouriting/Unfavouriting a contact
+1. Favouriting a contact
 
+   1. Prerequisites: Non-empty address book with only 1 contact. Navigate to the `Address book` tab using `tab 1`
+
+   2. Test Cases
+      1. Test case 1: `fav 1`
+         - Testing for: Successful Command Execution
+         - Expected: Contact at index 1 on the list will be favourited and a Star emoji will appear on their Person Card and their Person Card will appear in a Favourite List.
+      2. Test case 2: `fav 2`
+          - Testing for: Index Specified Results in Command Failure
+          - Expected: No changes to list and Favourite Contact List. Error details shown in the status message.
+      3. Test case 3: `fav 1` when Contact at Index 1 is already favourited 
+          - Testing for: Successful Command Execution
+          - Expected: Contact at index 1 on the list will remain favourited and will pass as Successful Command Execution. Same result as Test Case 1.
+
+2. Unfavouriting a contact
+
+   1. Prerequisites: Non-empty address book with only 1 contact. Navigate to the `Address book` tab using `tab 1`
+   
+   2. Test Cases
+      1. Test case 1: `unfav 1` when Contact at Index 1 is already favourited
+          - Testing for: Successful Command Execution
+          - Expected: Contact at index 1 on the list will be unfavourited and the Star emoji will be removed on their Person Card and their Person Card will disappear in the Favourite List.
+      2. Test case 2: `unfav 2`
+          - Testing for: Index Specified Results in Command Failure
+          - Expected: No changes to list and Favourite Contact List. Error details shown in the status message.
+      3. Test case 3: `unfav 1` when Contact at Index 1 is already unfavourited
+          - Testing for: Successful Command Execution
+          - Expected: Contact at index 1 on the list will remain unfavourited and will pass as Successful Command Execution. Same result as Test Case 1.
+      
 ### Selecting a contact
 1. Select a contact while no other contact has been selected
 
@@ -789,10 +818,65 @@ testers are expected to do more *exploratory* testing.
 ## Events-related
 
 ### Adding an event
+1. Adding an Event to the Events Tab.
+
+   1. Prerequisites: Navigate to the Events Tab using `tab 2` or clicking it.
+   
+   2. Test Cases
+      1. **Test Case 1** `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
+         - Testing for: Command Successful Execution
+         - Expected: A Weekly Event is added to the Events Tab.
+      2. **Test Case 2** `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600`
+         - Testing for: Command Successful Execution
+         - Expected: An One-Time Event is added to the Events Tab.
+      3. **Test Case 3** `addevent d/CS2103T Lecture e/2023-03-10 1600 r/Weekly`
+         - Testing for: No Start Date and Time Specified
+         - Expected: No Event is added. Error details show in the status message.
+      4. **Test Case 4** `addevent d/CS2103T Lecture s/2023-03-10 1400 r/Weekly`
+         - Testing for: No End Date and Time Specified
+         - Expected: No Event is added. Error details show in the status message.
+      5. **Test Case 5** `addevent s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
+         - Testing for: No Description Specified
+         - Expected: No Event is added. Error details show in the status message.
+      6. **Test Case 6** `addevent d/CS2103T Lecture s/2023-03-10 1800 e/2023-03-10 1600 r/Weekly`
+         - Testing for: Start Date Time is after End Date Time
+         - Expected: No Event is added. Error details show in the status message.
 
 ### Deleting an event
 
+1. Deleting an Event while all Events are being shown.
+
+   1. Prerequisites: Navigate to the Events Tab using `tab 2` or clicking it.
+   
+   2. Test Cases
+      1. **Test Case 1**: `delevent 1`
+         - Testing for: Command successful execution
+         - Expected: Event at Index 1 will be deleted from the list. Details of the event will be shown in the status message. Existing Events Index will be updated.
+      2. **Test Case 2**: `delevent 0`
+         - Testing for: Erroneous index results in command failure
+         - Expected: No event is deleted. Error details shown in the status message.
+      3. **Other test cases**: `delevent`, `delevent x` (where x is larger than the list size), `delevent -1`
+          - Testing for: Erroneous index results in command failure
+          - Expected: Similar to test case 2
+
 ### Editing an event
+1. Edit data of Event.
+
+    1. Prerequisites: Non-empty Events Tab. Navigate to the `Event` tab using `tab 2`
+    
+    2. Test Cases
+        1. Test case 1: `editevent N d/CS2103T Lecture`, `editevent N r/Weekly`, ... where N is a number between 1 and the number of Event in the list
+            - Testing for: Successful command execution
+            - Expected: Field of first Event updates to that specified in the command
+        2. Test case 2: `editevent 1 x d/CS2103T Lecture`, ... where x is anything that does not have a field specifier.
+            - Testing for: Unspecified field results in command failure
+            - Expected: Events do not update. Error details shown in the status message.
+        3. Test case 3: `editevent M d/CS2103T Lecture`, ... where M is a number not between 1 and the number of Events in the list
+             - Testing for: Unspecified field results in command failure
+             - Expected: Events do not update. Error details shown in the status message.
+        4. Test case 4: `editevent`
+             - Testing for: No fields specified results in command failure
+             - Expected: Event does not update. Error details shown in the status message.
 
 ### Tagging a contact to an event
 1. Tagging a valid contact to an event
