@@ -340,7 +340,7 @@ Creates a new session and adds it to the session list.
 Format: `create-session n/NAME s/SESSION l/LOCATION`
 
 * The session list must not already have a session with the same name.
-* Datetime format must be `DD-MM-YYYY HH:mm`.
+* Datetime format must be `DD-MM-YYYY HH:mm`, with the time following the 24-hour format. <br>(e.g. 14:00 meaning 2 p.m.)
 
 Examples:<br>
 * `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2`<br>

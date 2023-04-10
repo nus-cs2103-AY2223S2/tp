@@ -215,7 +215,7 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 Step 1. The Coach launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial `AddressBook` state, and the `currentStatePointer` pointing to that single `AddressBook` state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
-
+<div style="page-break-after: always;"></div>
 Step 2. The Coach executes `delete 5` command to delete the 5th athlete in the `AddressBook`. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the `AddressBook` after the `delete 5` command executes to be saved in the `AddressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted `AddressBook` state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
@@ -262,7 +262,7 @@ Step 6. The Coach executes `clear`, which calls `Model#commitAddressBook()`. Sin
 The following activity diagram summarizes what happens when a Coach executes a new command:
 
 <img src="images/CommitActivityDiagram.png" width="250" />
-
+<div style="page-break-after: always;"></div>
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -290,7 +290,7 @@ It supports the following sub-features:
 To better understand how each sub-feature is implemented, we need to have a better picture of the attributes of `Session` object.
 
 <img src="images/SessionClassDiagram.png" width="" />
-
+<div style="page-break-after: always;"></div>
 As seen above, a `Session` needs a:
 * `SessionName`: to uniquely identify a `Session`
 * `Location`: extra information for the Coach
@@ -318,7 +318,6 @@ To enable this feature, we need to have a data structure that can store referenc
 
 <img src="images/StudentAddRemoveSequenceDiagram.png" width="" />
 
-<div style="page-break-after: always;"></div>
 
 Step 1. The coach decides to create a new `Session` object named "Hall". A session is initialized, creating an empty `AttendanceMap`.
 
@@ -427,22 +426,36 @@ These are the ways that a user can use the `Calendar Pop-up` feature:
 ## **Appendix: Planned Enhancements**
 
 1. **The names of the individual tag and session-related commands are inconsistent.**<br>
-   For example, creating a new athlete uses `add`, while a new `Session` uses `create-session`, and adding an athlete to a `Session` uses `student-add`.<br>
+   For example, creating a new athlete uses `add`, while a new session uses `create-session`, and adding an athlete to a session uses `student-add`.<br>
    We plan on standardising the names to `add`, `add-session`, and `add-athlete` to avoid confusion.
 
-2. **Displayed messages cannot be seen entirely in the output box without scrolling.**<br>
+2. **UI inconsistencies may not be user-friendly.**<br>
    This is especially the case when the message is long (i.e. an error message).<br>
    We plan on adjusting the app UI such that the features scale according to the size of the window, including the output box which will display its entire contents without needing to scroll through it.
 
 3. **The app cannot be navigated solely through keyboard input alone.**<br>
-   Mouse clicks are still required to select an athlete/`Session` even after using keyboard shortcuts to switch tabs.
+   Mouse clicks are still required to select an athlete/session even after using keyboard shortcuts to switch tabs.
    This may make it inconvenient for those who may prefer CLI apps.<br>
    We plan on making the app completely navigable through keyboard input while also allowing one to click parts of the GUI.
 
 4. **Once created, a session cannot be edited.**<br>
-   This makes it inconvenient for the user when they mistakenly create a `Session` with the wrong details.
+   This makes it inconvenient for the user when they mistakenly create a session with the wrong details.
    Hence, we plan on adding a `session-edit` command.<br>
    This will allow users to edit created sessions and not have to create new ones entirely.
+
+5. **More error messages could be added to cover all possible invalid inputs.**<br>
+   When entering a wrongly formatted command, SportSync displays a generic message stating that the command format is wrong.<br>
+   We plan on adding more error messages that precisely state how the command format is wrong, to improve user understanding.<br>
+   e.g. "Wrong command format: Datetime should be in format DD-MM-YYYY HH:mm"
+
+6. **Session panel user experience could be improved.**<br>
+   Currently, the sessions in the session panel need to stay selected to see their analytics.<br>
+   If the user clicks the command box while a session is selected, the analytics are cleared.<br>
+   We plan on making the analytics stay present at all times unless when clicking and selecting a different session so users can better reference their analytics.
+
+8. **Help command could be more helpful.**<br>
+   Help command only opens a window for users to copy a link to the User Guide.<br>
+   We plan on making the help command display all possible user command formats so the user does not need to exit the app to find help.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -529,6 +542,7 @@ one tag is created and added to the contact list.
     * 2c1. SportSync shows an error message specifying how the detail is of the wrong format.<br>
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case UC03 - Delete an athlete from the contact list
 
@@ -549,7 +563,6 @@ one tag is created and added to the contact list.
     * 2a1. SportSync shows an error message stating the index is out of bounds.<br>
       Use case resumes at step 1.
 
-<div style="page-break-after: always;"></div>
 
 #### Use case UC04 - Edit an athlete's details
 
@@ -580,6 +593,7 @@ one tag is created and added to the contact list.
     * 2a1. SportSync shows an error message specifying how the field is of the wrong format.<br>
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case UC05 - Find an athlete in the contact list
 
@@ -617,6 +631,7 @@ one tag is created and added to the contact list.
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case UC08 - Sort the contact list by a specified attribute, in ascending order.
 
@@ -636,7 +651,6 @@ one tag is created and added to the contact list.
     * 2a1. SportSync displays an error message.<br>
       Use case resumes at step 1.
 
-<div style="page-break-after: always;"></div>
 
 #### Use case UC09 - Show all athletes belonging to one or more tags.
 
@@ -658,7 +672,7 @@ one tag is created and added to the contact list.
     * 2b1. SportSync shows an error message stating that the tag does not exist.<br>
       Use case resumes at step 1.
 
-
+<div style="page-break-after: always;"></div>
 #### Use case UC10 - Undo a command
 
 **MSS**
@@ -894,7 +908,8 @@ testers are expected to do more *exploratory* testing.
    
     3. Repeat steps 1-2 with `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2` to add `Hall` to your session list.<br>
        Expected: `Hall` remains in the session list, signifying a successful save.
-
+<div style="page-break-after: always;"></div>
+    
 ### Deleting an athlete
 
 1. **Deleting an athlete while all athletes are being shown**
