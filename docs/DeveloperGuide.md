@@ -797,16 +797,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. placeholder
     * 1a1. placeholder
 
-#### Use case: Import/export/checkout data
+#### Use case: Import data
 
 **MSS**
 
-1. placeholder
+1. User requests to import list of cases from filepath
+2. DengueHotspotTracker updates case list with new list of cases
+
+   Use case ends.
 
 **Extensions**
 
-* 1a. placeholder
-    * 1a1. placeholder
+* 1a. The filepath is invalid
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
+
+* 1a. The filepath contains an empty file or in the incorrect format
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
+
+#### Use case: Export/checkout data
+
+**MSS**
+
+1.  User requests to list cases
+2.  DengueHotspotTracker shows a list of cases
+3.  User requests to export list of cases or checkout overview
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The filepath is invalid
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
+
+* 1a. The file at given filepath is used by another application
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
