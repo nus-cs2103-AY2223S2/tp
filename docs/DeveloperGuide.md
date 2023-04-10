@@ -255,7 +255,7 @@ The following diagram summarises the sequence of events happening during the exe
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
 ![AddCommandActivityDiagram](images/AddActivityDiagram.png)
 
-#### 3.3.1 Design Consideration
+#### 3.1.1 Design Consideration
 
 #### Option 1 (current choice):
 * Currently, the user can add multiple tasks with different names but same other fields in the task command.
