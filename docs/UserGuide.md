@@ -70,7 +70,7 @@ Use the interactive [table of contents](#table-of-contents) to navigate through 
 ## **Quick Start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.2).
+2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.4).
 3. Copy the file to the folder you want to use as the _home folder_ for your GoodMatch.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.
 
