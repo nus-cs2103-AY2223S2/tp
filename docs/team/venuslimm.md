@@ -37,28 +37,28 @@ Given below are my contributions to the project.
   * Released [v1.2.1](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.2.1) on GitHub.
 
 * **Contributions to the Developer Guide**
-  * Design section: **Model component** ([#64](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/64))
+  * Design section: _**Model component**_ ([#64](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/64))
     * Updated information on Model to include the newly added `Event` objects.
     * Redrew [class diagram for Model](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/ModelClassDiagram.png).
-  * Implementation section: **Add event feature** section ([#70](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/70))
+  * Implementation section: _**Add event feature**_ section ([#70](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/70))
     * Added information on how `addevent` command works.
     * Drew [sequence diagram for addevent](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/AddEventSequenceDiagram.png).
-  * Implementation section: **Sort events feature** section ([#70](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/70))
+  * Implementation section: _**Sort events feature**_ section ([#70](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/70))
     * Added information on how `sortevent` command works.
     * Drew [sequence diagram for sortevent](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/SortEventSequenceDiagram.png).
-  * Appendix section: **Instructions for manual testing**
-    * Updated **Launch and shutdown** ([#85](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/85)).
-    * Updated **Saving data** ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
-    * Added **Adding an event** ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
-    * Added **Sorting event list** ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
-  * Appendix section: **Planned Enhancements**
-    * Added **Person name will not be case-sensitive** ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
+  * Appendix section: _**Instructions for manual testing**_
+    * Updated _**Launch and shutdown**_ ([#85](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/85)).
+    * Updated _**Saving data**_ ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
+    * Added _**Adding an event**_ ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
+    * Added _**Sorting event list**_ ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
+  * Appendix section: _**Planned Enhancements**_
+    * Added _**Person name will not be case-sensitive**_ ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
 
 * **Contributions to the User Guide**
-  * **Quick start** section ([#73](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/73), [#85](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/85))
+  * _**Quick start**_ section ([#73](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/73), [#85](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/85))
     * Updated to match our current application.
-  * **Adding a new event** section ([#31](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/31))
-  * **Sorting events** section ([#73](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/73))
+  * _**Adding a new event**_ section ([#31](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/31))
+  * _**Sorting events**_ section ([#73](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/73))
 
 * **Contributions to team-based tasks**
   * Updated [README.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/README.md) and [index.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/index.md) badges.
