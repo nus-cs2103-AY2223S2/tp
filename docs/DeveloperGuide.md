@@ -812,6 +812,8 @@ An example is given below.
 If users are interested in knowing more about the events, 
 they can use the `find` command or click on the calendar date box to view the event details.
 
+<div style="page-break-after: always;"></div>
+
 **Increase flexibility in event names**
 
 Currently, event names only support alphanumeric characters and spaces. 
@@ -906,6 +908,8 @@ testers are expected to do more *exploratory* testing.
 **Result:**
 * The `Event` will be added repeatedly until the specified end date
 * Details of all the `Event` is also added to the Events Panel and the Calendar
+
+<div style="page-break-after: always;"></div>
 
 #### Scenario 2
 {: .no_toc}  
