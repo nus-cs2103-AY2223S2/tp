@@ -15,7 +15,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.appointment.Appointment;
 
 /**
- * Adds an Appointment to a speciic client in the program.
+ * Adds an Appointment to a specific client in the program.
  */
 public class AddAppointmentCommand extends Command {
 
