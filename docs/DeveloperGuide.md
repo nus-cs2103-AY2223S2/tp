@@ -157,14 +157,13 @@ This section describes some noteworthy details, alongside considerations and con
 ### 4.1. Design considerations:
 
 #### 4.1.1. Employee
-An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity), such as an employee id, email address, and phone number.
+An important design consideration to note for Employee is the multiple different fields that qualify as candidate _keys_, such as an employee id, email address, and phone number.
 
-An employee is uniquely identified by his ID field. This field can be used by internal operations without any concern of duplicates and display of the unique employee with the given id.
+These are fields to guard against duplication. An employee's id is any uniquely generated identifier assigned to it by the company upon joining. Two employees should not share email field or phone number as those two fields are understood to be unique.
 
-However, there are other fields to guard against duplication, specifically email and phone number fields.
-For instance, two employees should not share email field or phone number as those two fields are understood to be unique.
+Since any employee can be identified by its id, and it makes semantic sense, we have decided on the id field as the _Primary Key_. This field can be used by internal operations without any concern of duplicates and allow us to easily retrieve and display the unique employee with the given id.
 
-Under this design, SudoHR supports having several employees with the same name fields, without running the risk of retrieving or using the wrong employee's details.
+Under this design, SudoHR supports having several employees with the same name fields, without running the risk of retrieving or using the wrong employee's data.
 
 ##### Cascading employee updates and deletion to department and leave
 An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
