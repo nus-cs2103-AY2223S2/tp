@@ -299,6 +299,7 @@ You are able to specify paramters like:
 * Description
 * Tank Index (to relate task to a tank)
 * Priority Level (Low / Medium / High)
+<div style="page-break-after: always;"></div>
 
 #### How `TaskAddCommand` is executed
 When the command `task add <description>` is invoked it first goes through the main parser `AddressBookParser`, after
@@ -522,10 +523,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all fish using the `list fishes` command. Multiple fish in the list.
 
    1. Test case: `fish delete 1`<br>
-      Expected: First fish is deleted from the list. Details of the deleted fish shown in the status message.
+      Expected: First fish deleted from the list. Details of deleted fish shown in status message.
 
    1. Test case: `fish delete 0`<br>
-      Expected: No fish is deleted. Error details shown in the status message. Fish panels remains the same.
+      Expected: No fish deleted. Error details shown in status message. Fish panels remains the same.
 
    1. Other incorrect delete commands to try: `fish delete`, `fish delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
