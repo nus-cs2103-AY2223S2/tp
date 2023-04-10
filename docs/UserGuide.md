@@ -510,6 +510,8 @@ Please do not tamper with the data as it might cause corruption of the data, whi
 If your changes to the data file makes its format invalid, OfficeConnect will discard all data and start with an empty data file at the next run.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 3.6.4 Light theme support
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The keyboard shortcut for the light mode function is assigned to the F2 key.
