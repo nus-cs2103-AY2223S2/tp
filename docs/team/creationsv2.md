@@ -68,7 +68,7 @@ Given below are my contributions to the project.
     * Added implementation details for using `tag` as patient conditions. [#86](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/86/files)
     * Added local testing details for `add` command. [#110](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/110)
     * General formatting aesthetic changes/fixes. [#20](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/20), [#97](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/97)
-    , [#126](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/126), [#214](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/214)
+    , [#126](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/126), [#214](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/214), [#234](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/234)
 
 
 * **Documentation**:
