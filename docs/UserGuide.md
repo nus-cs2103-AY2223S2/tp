@@ -363,7 +363,7 @@ Both commands will result in a Help Window appearing which shows the various com
 
 ### Exit Button
 
-Clicking the Exit Button will allow users to quit EduMate.
+Clicking the Exit Button will allow you to quit EduMate.
 
 [Return to the top](#table-of-contents)
 
@@ -1083,7 +1083,7 @@ Using the `load` command in EduMate, you can easily load a previously saved data
 
 #### Suggest places to meet with your contacts `meet`, `study`, `eat`
 
-The `meet` command in EduMate is used to suggest suitable meet-up locations and times for users and their contacts, based on various criteria such as availability and proximity. It is useful for finding a mutually convenient time and place to meet up with friends or study partners. EduMate also offers more specialised commands such as `eat` for suggesting places to eat and `study` for suggesting places to study.
+The `meet` command in EduMate is used to suggest suitable meet-up locations and times for you and your contacts, based on various criteria such as availability and proximity. It is useful for finding a mutually convenient time and place to meet up with friends or study partners. EduMate also offers more specialised commands such as `eat` for suggesting places to eat and `study` for suggesting places to study.
 
 <div markdown="block" class="alert alert-info">
 

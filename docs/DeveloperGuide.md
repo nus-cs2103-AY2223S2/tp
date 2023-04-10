@@ -1093,7 +1093,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 ## **Recommenders**
 
-**API** : `Recommender.java`
+**API** : [`Recommender.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/recommender/Recommender.java)
 
 <img src="images/RecommenderClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
