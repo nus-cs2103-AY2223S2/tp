@@ -16,7 +16,7 @@ title: Developer Guide
     2. [Deleting XYZ](#2-deleting-xyz)
     3. [Linking XYZ to a flight](#3-linking-xyz-to-a-flight)
     4. [Unlinking XYZ from a flight](#4-unlinking-xyz-from-a-flight)
-    5. [Displaying flights across all modes](#5-displaying-flights-across-all-modes)
+    5. [Displaying item list of all modes](#5-displaying-item-list-of-all-modes)
 - **[Appendix: Requirements](#appendix--requirements)**
 
 <div style="page-break-after: always;"></div>
@@ -120,6 +120,10 @@ Description coming soon - to be updated after adjusting for code duplication
 <p align="center">
 <img src="images/WingmanModelClassDiagram.png" width="478" alt="UI Class diagram">
 </p>
+
+The `Model` package consists of a `Model Manager`, which stores the `UserPref` and `Wingman` data.
+`Wingman` data is stored in 5 separate `ItemManager` objects (one for each resource type),
+each of which has an `UniqueList` object.
 
 The `Model` component,
 
