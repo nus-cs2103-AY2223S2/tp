@@ -192,6 +192,7 @@ public class MainWindow extends UiPart<Stage> {
         tankListPanel.refresh();
         taskListPanel.refresh();
         fishListPanel.refresh();
+        executeFeedingReminderInitMainWindow();
     }
 
     public FishListPanel getFishListPanel() {
