@@ -57,7 +57,10 @@ have fun using Pied Piper and may all your future endeavors be elevated with our
   - [7.2 Deleting a person](#72-deleting-a-person)
   - [7.3 Clear people data](#73-clearing-people-data)
   - [7.4 Edit a person](#74-editing-a-person)
+
 ---
+
+<div style="page-break-after: always"></div>
 
 # 1. Acknowledgements
 
@@ -81,6 +84,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 [↑ Return to table of contents](#table-of-contents)
 
 ---
+
+<div style="page-break-after: always"></div>
 
 # 3. Design
 
@@ -133,6 +138,8 @@ The sections below give more details of each component.
 [↑ Return to start of section](#3-design)
 
 [↑ Return to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ## 3.2 UI component
 
@@ -195,6 +202,8 @@ How the parsing works:
 
 [↑ Return to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ## 3.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -226,6 +235,8 @@ without depending on other components)
 
 [↑ Return to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ##  3.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -252,6 +263,8 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 [↑ Return to table of contents](#table-of-contents)
 
 ---
+
+<div style="page-break-after: always"></div>
 
 # 4. Implementation
 
@@ -297,6 +310,8 @@ The following sequence diagram shows how the addition operation works:
 
 [↑ Return to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ### 4.1.2 Add Person feature
 
 The implementation of the add person function is facilitated by `LogicManager`. It takes user input as 5 arguments, the command word being either `add`. The second argument is the `name`, the third argument is the `phone number`, the fourth argument is the `email`, and the fifth argument is the `address`. The `role` argument is optional and can be added by adding the argument `r/ROLE`.
@@ -326,6 +341,8 @@ The following sequence diagram shows how the addition operation works:
 [↑ Return to start of section](#4-implementation)
 
 [↑ Return to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ### 4.1.3 Delete/deletetask feature
 
@@ -359,6 +376,8 @@ The following sequence diagram shows how the delete operation works:
 [↑ Return to start of section](#4-implementation)
 
 [↑ Return to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ### 4.1.4 Assign Task feature
 
@@ -396,6 +415,8 @@ The following sequence diagram shows how the assignment operation works:
 [↑ Return to start of section](#4-implementation)
 
 [↑ Return to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ### 4.1.5 Mark/Unmark Task feature
 
@@ -438,6 +459,7 @@ The following sequence diagram shows how the mark/unmark operation works:
 
 [↑ Return to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
 
 ### 4.1.6 Review feature
 
@@ -460,9 +482,6 @@ Step 5. `LogicManager` then calls `execute` in `ReviewCommand`, which carries ou
 This method goes through the `UniqueTaskList` in `TaskBook` and checks for any tasks that are marked as complete, or score is not given. After, it checks for any tasks that are assigned to a person and calculates the average score of the tasks assigned to each person.
 It then returns a `CommandResult` to be displayed to the user to acknowledge whether the averge score of each person has been calculated.
 
-
-
-
 The following sequence diagram shows how the review operation works:
 
 <img src="images/ReviewSequenceDiagram.png"/>
@@ -471,8 +490,7 @@ The following sequence diagram shows how the review operation works:
 
 [↑ Return to table of contents](#table-of-contents)
 
-
-
+<div style="page-break-after: always"></div>
 
 ## 4.2 Proposed implementation of future features:
 
@@ -497,11 +515,9 @@ The following sequence diagram shows how the review operation works:
 
 [↑ Return to table of contents](#table-of-contents)
 
-
-
-
-
 ---
+
+<div style="page-break-after: always"></div>
 
 # 5. Documentation, logging, testing, configuration, dev-ops
 
@@ -514,6 +530,8 @@ The following sequence diagram shows how the review operation works:
 [↑ Return to table of contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 # 6. Appendix: Requirements
 
@@ -537,6 +555,8 @@ The following sequence diagram shows how the review operation works:
 
 [↑ Return to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ## 6.2 User Stories
 
 **Priorities**: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -558,6 +578,8 @@ The following sequence diagram shows how the review operation works:
 [↑ Return to start of section](#6-appendix-requirements)
 
 [↑ Return to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ## 6.3 Use cases
 
@@ -667,6 +689,8 @@ The following sequence diagram shows how the review operation works:
 
 [↑ Return to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ## 6.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -689,6 +713,8 @@ The following sequence diagram shows how the review operation works:
 [↑ Return to table of contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 # 7. Appendix: Instructions for manual testing
 
@@ -719,6 +745,8 @@ testers are expected to do more *exploratory* testing.
 [↑ Return to start of section](#7-appendix-instructions-for-manual-testing)
 
 [↑ Return to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ## 7.2 Deleting a person
 
@@ -752,6 +780,8 @@ testers are expected to do more *exploratory* testing.
 [↑ Return to start of section](#7-appendix-instructions-for-manual-testing)
 
 [↑ Return to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ## 7.3 Clearing people data
 
