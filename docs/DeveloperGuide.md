@@ -199,7 +199,7 @@ pairs will be automatically removed as well.
 ### Command Recommendation and Autocompletion of Field's Prefixes
 
 Both autocompletion and recommendation is facilitated by `CommandRecommendationEngine.java`. The Logic component registers 
-individual command parsers, which implement the Parser interface, to enable recommendations of command inputs. Each parser,
+individual command parsers, which implement the `Parser` interface, to enable recommendations of command inputs. Each parser,
 such as `{XYZ}CommandParser`, specifies how recommendation should differ for a specific command by overriding the 
 `Parser#getCommandInfo` method. When the user types a valid command, the `CommandBox` UI component detects the keystroke 
 through its `KeyPressedHandler` and triggers the `CommandRecommendationEngine#generateCommandRecommendations` method. 
