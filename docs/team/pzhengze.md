@@ -21,7 +21,7 @@ Check out my code contributions [here](https://nus-cs2103-ay2223s2.github.io/tp-
 
 * **Storage Component**
 
-  Changes made by [`Lin Chieh`](https://github.com/AY2223S2-CS2103T-T12-1/tp/blob/master/docs/team/euph00.md) to the `Model`
+  Changes made by [`Lin Chieh`](https://ay2223s2-cs2103t-t12-1.github.io/tp/team/euph00.html) to the `Model`
   component to cater to the new hierarchial structure of `Patientist` necessitated a change to the `Storage`
   component to be able to save into a Json file and load the saved Json file back into `Patientist`.
   * Added capability to convert `Ward`s into a Json file.
@@ -37,9 +37,9 @@ Check out my code contributions [here](https://nus-cs2103-ay2223s2.github.io/tp-
   * Updated `Add` command to create new `Patient`s.
   * Updated `Edit` command to edit all personal details(`Name`, `Phone`, `Email`, `Address`, `Tag`) of a `Person` except their `ID`.
   * Updated `Delete` command to be able to delete a `Person` from `Patientist`.
-  * Updated `ListWardPatients` command created by [`Glenn`](https://github.com/AY2223S2-CS2103T-T12-1/tp/blob/master/docs/team/glennongjunjie.md)
+  * Updated `ListWardPatients` command created by [`Glenn`](https://ay2223s2-cs2103t-t12-1.github.io/tp/team/glennongjunjie.html)
     to work with updated `Model`.
-  * Updated `View` command created by [`Jin`](https://github.com/AY2223S2-CS2103T-T12-1/tp/blob/master/docs/team/jinnieshin.md)
+  * Updated `View` command created by [`Jin`](https://ay2223s2-cs2103t-t12-1.github.io/tp/team/jinnieshin.html)
     to display by index.
   * Added capability to add/delete `Status` to/from a `Patient`.
   * Added capability to add/delete `Ward` to/from `Patientist`.
