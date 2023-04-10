@@ -649,14 +649,16 @@ Examples:
 - `sort id` will sort list of students alphanumerically according to student ID.
 
 ![image](./images/UiStudentSortName.png)
+###### Figure 7
 ![image](./images/UiStudentSortId.png)
+###### Figure 8
 
 [Back to list of commands](#commands)
 
 ### Displays a student's information: `select`
 
 ![image](./images/UiStudentView.png)
-###### Figure 7
+###### Figure 9
 
 Select a particular student and display his / her particulars.
 
@@ -727,7 +729,7 @@ photo will be displayed in the profile of student with student ID `A0123456X`
 ### Viewing a student's attendance throughout the course: `attendance`
 
 ![image](./images/UiStudentAttendanceView.png)
-###### Figure 8
+###### Figure 10
 
 Shows a summary of a student's attendance in the view pane.
 
@@ -744,7 +746,7 @@ attendance
 ## Session Page Commands
 
 ![image](./images/UiSessionPage.png)
-###### Figure 9
+###### Figure 11
 
 ### Adding a session: `add session`
 
@@ -835,7 +837,7 @@ Examples:
 
 ## Attendance Page Commands
 ![images](./images/UiAttendancePage.png)
-###### Figure 10
+###### Figure 12
 
 ### Marking selected students as present: `mark`
 
@@ -874,7 +876,7 @@ Examples:
 Displays the overall attendance of the session you are at in the command box. (Pictured below.)
 
 ![image](images/UiAttendance.png)
-###### Figure 11
+###### Figure 13
 
 Format:
 ```
@@ -887,7 +889,7 @@ attendance
 
 ## Task Page Commands
 ![image](./images/UiTaskPage.png)
-###### Figure 12
+###### Figure 14
 
 ### Adding a task: `add task`
 
@@ -976,7 +978,7 @@ Examples:
 
 ## Grades Page Commands
 ![images](./images/UiGradesPage.png)
-###### Figure 13
+###### Figure 15
 
 ### Assigning a grade to student: `assign`
 Assigns a grade to a student.
