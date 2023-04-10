@@ -2356,6 +2356,7 @@ Maintainability:
 
 ### Glossary
 
+- **Argument**: A key value pair, of the format `/{key} {value}`, specified in the user's input (e.g. `/mod CS2040S`). It is commonly referred to by the `/{key}` portion (e.g. `/mod`)
 - **Context**: A *module code* or *module code - lecture name* pair that represents a location in the module-lecture-video hierarchy
 - **Current Working Context**: A specified context that allows the navigation system to inject `/mod` or `/lec` prefixes into the user's command
 - **Lecture**: A lecture of a module
