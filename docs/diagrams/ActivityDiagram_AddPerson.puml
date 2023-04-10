@@ -18,7 +18,7 @@ if () then ([Parser returns AddCommand])
     :Add person to TeamBuilder;
     :Person stored in storage;
     :PersonCard of newly added person displayed in Ui;
-else ([Parser throws exception])])
+else ([Parser throws exception])
     :Display error message;
 endif
 stop

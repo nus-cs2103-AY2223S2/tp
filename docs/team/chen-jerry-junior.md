@@ -1,6 +1,6 @@
 ---
 layout: page
-title: See Chen Jiarui's Project Portfolio Page
+title: Chen Jiarui's Project Portfolio Page
 ---
 
 ### Project: Team Builder
