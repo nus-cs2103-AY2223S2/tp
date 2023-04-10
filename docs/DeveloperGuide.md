@@ -543,36 +543,33 @@ Unlike other commands, the GUI display of the overview is maintained by the `Ove
 
 Given below is an example usage scenario for the active functionality and how the overview mechanism behaves at each step.
 
-It would be helpful to note that `DengueHotspotTrackerParser#parseCommand()` is called from `LogicManager#execute()`, which is in turn called from `MainWindow#executeCommand()` when the user inputs a command via the CLI. However, for the sake of brevity, we will only focus on the path and parts of interest.
+It would be helpful to note that `DengueHotspotTrackerParser#parseCommand()` is called from `LogicManager#execute()`, which is in turn called from `MainWindow#executeCommand()` when the user inputs a command via the CLI. Many other mechanisms occur in these methods but , for the sake of brevity, we will only focus on the paths and parts of interest.
 
 Step 1. The user executes the `overview a/` command to change the overview to split the data based on age group.
 
-Step 2. `LogicManager#execute()` sends this input to `DengueHotspotTrackerParser#parseCommand()`, which parses the full command.
+Step 2. `DengueHotspotTrackerParser#parseCommand()` detects the `overview` command word and passes the argument `a/` to the `OverviewCommandParser`.
 
-Step 3. `DengueHotspotTrackerParser#parseCommand()` detects the `overview` command word and passes the argument `a/` to the `OverviewCommandParser`.
+Step 3. `OverviewCommandParser#parse()` is called. Detecting the `a/` argument as the prefix for `Age`, it constructs an `OverviewCommand` with a new empty `AgeOverview` and overview type `"AGE"` as arguments.
 
-Step 4. `OverviewCommandParser#parse()` is called. Detecting the `a/` argument, it constructs an `OverviewCommand` with a new empty `AgeOverview` and overview type `"AGE"` as arguments.
-
-Step 5. `OverviewCommand#execute()` calls `ModelManager#setOverview()` and changes the `Overview` stored in `ModelManager` to the empty `AgeOverview` instance.
+Step 4. `OverviewCommand#execute()` calls `ModelManager#setOverview()` and changes the `Overview` stored in `ModelManager` to the empty `AgeOverview` instance.
 
 The following sequence diagram shows how the active overview operation works:
 
-<>
+![OverviewActiveSequenceDiagram](images/OverviewActiveSequenceDiagram.png)
 
 We continue with this example to show the passive functionality.
 
-Step 6. Next, `LogicManager#getOverview()` calls `ModelManager#getOverview()`.
+Step 5. Next, `LogicManager#getOverview()` calls `ModelManager#getOverview()`.
 
-Step 7. `Overview#update()` updates the new empty `AgeOverview` (or whichever `Overview` instance is present) with the current filtered list of `Person` instances in `ModelManager`.
+Step 6. `AgeOverview#update()` updates the new empty `AgeOverview` (or whichever `Overview` instance is present) with the current filtered list of `Person` instances in `ModelManager`.
 
-Step 8. `AgeOverview` creates a new `AgeAnalyst` instance with this list. This begins the construction of a list of new empty `DataBin` instances, and the list of `Person` instances is iterated through to fill up the matching `DataBin` via `DataBin#addPerson()`.
+Step 7. `AgeOverview` creates a new `AgeAnalyst` instance with this list. This begins the construction of a list of new empty `DataBin` instances, and the list of `Person` instances is iterated through to fill up the matching `DataBin` via `DataBin#addPerson()`.
 
-Step 9. This `AgeOverview` is then passed back to `MainWindow`, and `OverviewDisplay#updateOverviewDisplay()` updates the GUI's display with the appropriate title, subtitle, and contents from the `AgeOverview`.
+Step 8. This `AgeOverview` is then passed back to `MainWindow`, and `OverviewDisplay#updateOverviewDisplay()` updates the GUI's display with the appropriate title, subtitle, and contents from the `AgeOverview`.
 
 Once again, the following sequence diagram shows how the passive overview operation works:
 
-<>
-
+![OverviewPassiveSequenceDiagram](images/OverviewPassiveSequenceDiagram.png)
 
 #### Design considerations
 
