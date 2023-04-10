@@ -324,29 +324,23 @@ The following sequence diagram shows how the `edit` command works with appointme
 
 The proposed find mechanism is facilitated by `FitBook`. It implements the following operations:
 
-* `FitBook#getFilteredClientList()` — Retrieves the client list.
 * `FitBook#updateFilteredClientList(Predicate<Client> predicate)` — Filters the client list with the given predicate.
 
 These operations are exposed in the  `FitBookModel` interface as `FitBookModel#getFilteredClientList()`, `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)` respectively.
 
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the initial
-FitBook state, and the `currentStatePointer` pointing to that single FitBook state.
+Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the initial FitBook state.
 
 ![FindState0](images/FindState0.png)
 
 Step 2. The user executes `find n/alex n/john` command to find all clients with "alex" or "john" in their name in the
-FitBook. The `find` command calls `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)`, causing the
-modified state of the FitBook after the `find n/alex` command executes to be saved in the `fitBookStateList`, and the
-`currentStatePointer` is shifted to the newly inserted FitBook state.
+FitBook. The `find` command calls `FindCommandParser`, causing the command to be parsed and checked for any errors before executing the command.
 
-Step 3. The user now decides that he does not need to find the details of the client named "John". The user executes
-`find n/alex`, causing another the current FitBook state to be deleted, and a new FitBook state added into the
-`fitBookStateList`.
+Step 3. After the command is parsed and there are no errors in the format of the command, `FindCommand#execute()` is called, which
+calls `FitBook#updateFilteredClientList(Predicate<Client> predicate)`.
 
-Step 4. The user now needs to view all of his clients' details again. The user executes `listClients` which will shift
-the `currentStatePointer` to the first FitBook state, and restores the FitBook to that state.
+Step 4. The user now wishes to find clients with phone number '91234567'. The user executes `find p/91234567` and the process restarts at step 2.
 
 The following sequence diagram shows how the find operation works:
 
@@ -368,6 +362,15 @@ The following sequence diagram shows how the find operation works:
     * Pros: Better performance.
     * Cons: May result in high memory usage as each new state has to be saved.
 
+**Aspect: How find filters by keyword:**
+
+* **Alternative 1 (current choice):** Finds using predicates i.e. `n/`, `p/`, `add/`…​
+    * Pros: User-friendly.
+    * Cons: Harder implementation due to the need to create specific predicates e.g. `NameContainsKeywordsPredicate`, `EmailContainsKeywordsPredicate`.
+
+* **Alternative 2:** Finds using only keywords.
+    * Pros: Easy to implement.
+    * Cons: Poor design which may give rise to higher chances of errors in the future. This implementation may also be confusing for users.
 
 ### Add Exercise feature
 
