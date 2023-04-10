@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
@@ -39,7 +39,7 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
     public ViewLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_SUBJECT,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_LESSON,
             PREFIX_DONE);
 
         if (!argMultimap.getPreamble().isEmpty()) {
@@ -48,7 +48,7 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
         }
 
         Predicate<Student> namePredicate;
-        Predicate<Lesson> subjectPredicate = lesson -> true;
+        Predicate<Lesson> lessonPredicate = lesson -> true;
         Predicate<Lesson> donePredicate = lesson -> true;
         List<String> nameList = new ArrayList<>();
         boolean defaultPredicateFlag;
@@ -65,10 +65,6 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         ViewLessonCommand.MESSAGE_USAGE));
                 }
-                int spaceIndex = name.indexOf(" ");
-                //                if (spaceIndex != -1) {
-                //                    name = name.substring(0, spaceIndex);
-                //                }
                 nameKeywords.set(i, name);
             }
             nameList = nameKeywords;
@@ -79,9 +75,9 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
             defaultPredicateFlag = true;
         }
 
-        if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
-            String subject = argMultimap.getValue(PREFIX_SUBJECT).get();
-            subjectPredicate = new LessonSubjectPredicate(subject);
+        if (argMultimap.getValue(PREFIX_LESSON).isPresent()) {
+            String lessonSubject = argMultimap.getValue(PREFIX_LESSON).get();
+            lessonPredicate = new LessonSubjectPredicate(lessonSubject);
         }
 
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
@@ -98,10 +94,10 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
             String date = argMultimap.getValue(PREFIX_DATE).get();
             LocalDate targetDate = ParserUtil.parseDate(date);
             LessonBelongsToDatePredicate datePredicate = new LessonBelongsToDatePredicate(targetDate);
-            return new ViewLessonCommand(nameList, namePredicate, datePredicate, subjectPredicate, donePredicate,
+            return new ViewLessonCommand(nameList, namePredicate, datePredicate, lessonPredicate, donePredicate,
                 defaultPredicateFlag);
         } else {
-            return new ViewLessonCommand(nameList, namePredicate, subjectPredicate, donePredicate,
+            return new ViewLessonCommand(nameList, namePredicate, lessonPredicate, donePredicate,
                 defaultPredicateFlag);
         }
     }
