@@ -267,7 +267,7 @@ model is given below. It has a `Tag` list in the `ModuleTracker`, which `Module`
 to only require one `Tag` object per unique tag, instead of each `Module` needing their own `Tag` objects.<br>
 
 
-<img src="images/BetterModelClassDiagram.png" width="650">
+<img src="images/BetterModelClassDiagram.png" width="690">
 
 A more OOP model of the Model component.
 
