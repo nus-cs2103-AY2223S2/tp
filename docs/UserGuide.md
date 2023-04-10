@@ -23,7 +23,6 @@ You can click on any of the links below to navigate to the respective sections f
 # Table of Contents
 
 <!-- TOC -->
-
 * [1 Quick start](#1-quick-start)
   * [1.1 Prerequisites](#11-prerequisites)
     * [1.1.1 Java](#111-java)
@@ -82,7 +81,6 @@ You can click on any of the links below to navigate to the respective sections f
 * [6 Summary](#6-summary)
 * [6.1 Prefix Summary](#61-prefix-summary)
   * [6.2 Command Summary](#62-command-summary)
-
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -473,6 +471,8 @@ Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 Adds an order into the list of orders.
 
 Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-tip">
 
