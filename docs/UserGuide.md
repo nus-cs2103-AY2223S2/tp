@@ -6,7 +6,7 @@ title: User Guide
 <!-- omit from toc -->
 ## **Table of Contents**
 
-- [Introduction](#introduction)
+- [**Introduction**](#introduction)
   - [What is AIMS?](#what-is-aims)
   - [Our Target](#our-target)
   - [User Guide](#user-guide)
@@ -34,18 +34,23 @@ title: User Guide
 - [**Command Summary**](#command-summary)
 
 ---
-## Introduction
+
+## **Introduction**
 
 ### What is AIMS?
+
 Army Information Management System (AIMS) is **the** desktop app built for army admin clerks, intended to make your life easier. With an emphasis of proper checking and validation of contact information, AIMS eradicates time wasted on dealing with erroneous data and ensures that contact information can be collected properly on the first try. AIMS is optimized for use via a **Command Line Interface** (**CLI**) while still having the benefits of a **Graphical User Interface** (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI apps.
 
 ### Our Target
+
 AIMS was designed to achieve **3 main targets:**
-1. Allow you **conveniently** access information of individual soldiers (With simple to use [find](#locating-persons-by-any-field--find) and [filter](#locating-persons-using-filters-on-fields--filter) commands and a optimally placed [favorites](#adding-a-person-to-favorites--favorite) sidebar).
+
+1. Allow you **conveniently** access information of individual soldiers (With simple to use [find](#locating-persons-by-any-field--find) and [filter](#locating-persons-using-filters-on-fields--filter) commands and a optimally placed [favorites](#toggling-the-favorite-status-of-a-person--favorite) sidebar).
 2. Ensure that your **data is properly and efficiently checked and validated** before storing.
 3. Keep your **transition** from other contact storage applications as **smooth as possible** through our [import CSV feature](#importing-multiple-persons-from-a-csv-file--importcsv).
 
 ### User Guide
+
 This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples. The user guide designed to help all army admin clerks adopt, learn and master AIMS. Mastering the use of AIMS will vastly improve your experience tackling the administrative flow of managing contact information. For the best learning experience, we recommend leaving this guide open for reference during your first few uses of AIMS. Let's start your journey with AIMS today!
 
 For a more technical and comprehensive overview of AIMS's codebase, please refer to our [Developer Guide](DeveloperGuide.md).
@@ -75,6 +80,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
   <div style="text-align: center;">
     <img src="images/Ui.png">
     <p style="font-style: italic;"><br>Default state of the app on startup</p>
@@ -159,6 +165,7 @@ Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EM
 </div>
 
 Examples:
+
 - `add r/3SG n/Lawrence Tay u/1 GDS e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 t/PlatoonSergeant t/AllergySeafood`<br>
   Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.<br>
   <div style="text-align: center;">
@@ -211,7 +218,7 @@ Step-by-step example of converting and importing an Excel spreadsheet:
     <br>
   </div>
 
-4. Open AIMS. Into the command box input `importcsv ` followed by pasting the path to the CSV file. Remove any inverted commas at the front and end of the path that might be added by copy and pasting.
+4. Open AIMS. Into the command box input `importcsv` followed by pasting the path to the CSV file. Remove any inverted commas at the front and end of the path that might be added by copy and pasting.
 
   <div style="text-align: center;">
     <img src="images/demoImportcsvCommand.png">
@@ -294,7 +301,7 @@ If your clipboard is accessible, a success message will be displayed.
     Email: berniceyu@example.com
     Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
     Tags: [colleagues][friends]
-     ```
+    ```
 
 - `copy 2` <br>
 If your clipboard is not accessible, the information will be displayed in the message box which can be manually selected and copied.
@@ -340,6 +347,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - Persons matching at least one keyword will be returned. (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` and `Bo Hans`)
 
 Example:
+
 - `find live delta` <br>
 3 persons will be found:
   - `Charlotte Oliveiro` (name matches `live`)
@@ -367,6 +375,7 @@ Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/CO
 - At **least** one of the optional fields must be provided.
 
 Example:
+
 - `filter a/street r/sg` <br>
 2 persons named `David Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
   <div style="text-align: center;">
@@ -458,7 +467,7 @@ Format: `favorite INDEX`
 
 Example:
 
-- `favorite 3`<br> 
+- `favorite 3`<br>
 The third person in the existing main list will be added to and pinned in the favorites list.<br>
   <div style="text-align: center;">
     <img src="images/favorite3.png">
