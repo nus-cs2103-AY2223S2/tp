@@ -233,12 +233,36 @@ public class ParserUtil {
      * @param date String of meeting start
      * @return meeting date parsed to LocalDate
      */
-    public static LocalDate parseDate(String date) {
+    public static LocalDate parseDate(String date) throws ParseException {
         String[] input = date.split(" ");
-        String[] dates = input[0].split("-");
+        if (input.length != 2) {
+            throw new ParseException("Please input a valid date or person index!");
+        }
+        String[] dates = input[1].split("-");
+        if (dates.length != 3) {
+            throw new ParseException("Date format is DD-MM-YYYY");
+        } try {
+            int day = Integer.parseInt(dates[0]);
+            int month = Integer.parseInt(dates[1]);
+            int year = Integer.parseInt(dates[2]);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException("Please input valid numbers for dates!");
+        }
         int day = Integer.parseInt(dates[0]);
         int month = Integer.parseInt(dates[1]);
         int year = Integer.parseInt(dates[2]);
+        try {
+            LocalDate ld = LocalDate.of(year, month, day);
+        } catch (DateTimeException e) {
+            throw new ParseException(e.getMessage());
+        }
         return LocalDate.of(year, month, day);
+    }
+    public static Index parsePersonIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException("Please input a valid date or person index!");
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 }
