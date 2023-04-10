@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to view all internships 
     * What it does: allows the user to view all internships saved in TinS. Only internship position, company and
-      associated tags are displayed in the List Panel ().
+      associated tags are displayed in the List Panel.
     * Justification: This feature is vital for users to efficiently use TinS as it displays only essential information
       of all internship a user has, avoiding screen clutter.
 
