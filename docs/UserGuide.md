@@ -734,9 +734,17 @@ Example: sort f/applicants
 
 ### Undo latest command: `undo`
 
-Undo the latest command.
+You can undo your latest executed command that 
+modifies the listing book using our `undo` command.
 
 ✏️ **Format:** `undo`
+
+ℹ️ **Notes:**
+- Commands that are not undoable include:
+  - `help`, `view`, `exit`, `find` & `sort`.
+- `Undo` still works after a `find` command, to visually see the effects of 
+`undo` execute a `view` command.
+  
 
 🎯 **Expected Output:**
 
@@ -745,6 +753,22 @@ Previous change should be reversed and a confirmation message will show:
 ```ignorelang
 Undo success
 ```
+
+❌ **Possible Errors:**
+If there aren't any commands that can be undone (i.e. when you first open GoodMatch or when all 
+undoable commands have been undone), an error message will be shown:
+
+<p>
+  <img class="diagram" src="images/UndoError.png"/>
+  <em>Undo error message</em>
+</p>
+
+❗**Caution** 
+`undo` is irreversible. If you want to reverse an `undo` you can retype the command that was undone.
+
+❗**Caution**
+Once you exit GoodMatch, all command history will be wiped.
+Meaning you can't undo commands executed before the app was closed.
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
