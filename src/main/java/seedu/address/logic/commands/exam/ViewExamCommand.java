@@ -93,7 +93,7 @@ public class ViewExamCommand extends Command {
      * Executes the view-exam command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return feedback message of the operation result for display
+     * @return feedback message of the operation result for display.
      * @throws CommandException if an error occurs during command execution.
      */
     @Override
