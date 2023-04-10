@@ -2626,27 +2626,43 @@ Some incorrect commands to try from root context:
 
 | Test Case                                    | Expected Result |
 | -------------------------------------------- | --------------- |
-| `mark Vid 1 /mod CS2040S /lec Week 1`        | Vid 1 of CS2040S Week 1 marked as watched |
-| 1. `nav CS2040S` <br> 2. `mark Vid 1 /lec Week 1` | Same as previous | <!--TODO: do we need this?-->
-| 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `mark Vid 1` | Same as previous |
-| `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as watched |
-| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as watched |
-| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
-| 1. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Alert user that Vid 1 and Vid 2 of CS2040S were already marked as watched |
-| `mark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
-| `mark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
+| `mark Vid /mod CS2040S /lec Week 6`        | **Message:**<br/>`Successfully marked 1 Video in Lecture Week 6 Module CS2040S: Vid`<br/>**List Updates:** Watch progress of entry for "CS2040S" updated to show a full bar with `Covered 6/6 lectures` |
+| 1. `nav CS2040S`<br/>2. `mark Vid /lec Week 6` | **Message:** Same as previous<br/>**List Updates:** Watch progress of entry for "Week 6" is updated to show a full bar with `Watched 1/1 videos` |
+| 1. `nav CS2040S`<br/>2. `nav Week 6` <br> 3. `mark Vid` | **Message:** Same as previous<br/>**List Updates:** Watch progress of entry for "Vid" is updated to show `Watched` |
+| 1. `nav ST2334`<br/>2. `mark Vid /mod CS2040S /lec Week 6` | **Message:** Same as previous<br/>**List Updates:** None |
+| 1. `nav CS2040S`<br/>2. `nav Week 6`<br/>3. `add Vid 2`<br/>4. `mark Vid, Vid2`| **Message:** `Successfully marked 2 Videos in Lecture Week 6 Module CS2040S: Vid, Vid 2`<br/>**List Updates:** Watch progress of entries "Vid" and "Vid 2" are updated to show `Watched` |
+
+Some incorrect commands to try from root context:
+- `mark` (invalid command format)
+- `mark V!d /mod CS2040S /lec Week 6` (invalid video name format)
+- `mark Vid /mod CS2040S /lec Week #6` (invalid lecture name format)
+- `mark Vid /mod mod123 /lec Week 6` (invalid module code format)
+- `mark Vid, Vid /mod CS2040s /lec Week 6` (duplicate video names)
+- `mark VidNotExist /mod CS2040S /lec Week 6` (video does not exist in lecture)
+- `mark Vid /mod CS2040S /lec LecDoesNotExist` (lecture does not exist in module)
+- `mark Vid /mod NOT123 /lec Week 6` (module does not exist)
+- `mark Vid 1 /mod CS2040S /lec Week 1` (video already marked)
+- `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` (videos already marked)
 
 ### Unmark a Video
 
 | Test Case                                    | Expected Result |
 | -------------------------------------------- | --------------- |
-| `unmark Vid 1 /mod CS2040S /lec Week 1`      | Vid 1 of CS2040S Week 1 marked as unwatched |
-| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as unwatched |
-| `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as unwatched |
-| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
-| 1. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
-| `unmark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
-| `unmark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
+| `unmark Vid 1 /mod CS2040S /lec Week 1`      | **Message:**<br/>`Successfully unmarked Video in Lecture Week 1 Module CS2040S: Vid 1`<br/>**List Updates:** Watch progress of entry for "CS2040S" is updated to show a less filled bar with `Covered 4/6 lectures` |
+| 1. `nav CS2040S`<br/>2. `unmark Vid 1 /lec Week 1`| **Message:** Same as previous<br/>**List Updates:** Watch progress of entry for "Week 1" is updated to show a half full bar with `Watched 1/2 videos` |
+| 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `unmark Vid 1, Vid 2` | **Message:**<br/>`Successfully unmarked 2 Videos in Lectre Week 1 Module CS2040S: Vid 1, Vid 2`<br/>**List Updates:** Watch progress of entries for "Vid 1" and "Vid 2" are updated to show `Not Watched` |
+| 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `unmark Vid 1, Vid 2`<br/>4. `unmark Vid 1, Vid 2` | Same as previous |
+
+Some incorrect commands to try from root context:
+- `unmark` (invalid command format)
+- `unmark V!d 1 /mod CS2040S /lec Week 1` (invalid video name format)
+- `unmark Vid 1 /mod CS2040S /lec Week #1` (invalid lecture name format)
+- `unmark Vid 1 /mod mod123 /lec Week 1` (invalid module code format)
+- `unmark Vid 1, Vid 1 /mod CS2040s /lec Week 1` (duplicate video names)
+- `unmark VidNotExist /mod CS2040S /lec Week 1` (video does not exist in lecture)
+- `unmark Vid 1 /mod CS2040S /lec LecDoesNotExist` (lecture does not exist in module)
+- `unmark Vid 1 /mod NOT123 /lec Week 1` (module does not exist)
+- `unmark Vid /mod CS2040S /lec Week 6` (video already unmarked)
 
 ### Tag a Module
 
