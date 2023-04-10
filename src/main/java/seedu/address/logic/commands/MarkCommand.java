@@ -31,10 +31,11 @@ public class MarkCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
+
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
     private final Index taskIndex;
 
-    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
 
     /**
      * Creates a MarkCommand object to mark the task at specified {@code Index}.
