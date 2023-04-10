@@ -17,7 +17,7 @@ else ([else])
     :Get zero-based index;
     :Update ObservableTabIndex to the index;
     :Listener in Ui observes the change;
-    if () then ([No change in 
+    if () then ([No change in
     ObservableTabIndex])
         :Same Tab is shown;
         stop
