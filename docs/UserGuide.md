@@ -88,6 +88,7 @@ The information below specifies parameter description, constraints and usage thr
 
 #### Patient Parameters
 
+
 | Parameter | Description                             | Constraints                                                                                                                                 | Valid Examples        | Invalid Examples   |
 |-----------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|--------------------|
 | h/        | Height of the patient in metres (m)     | 3-digit number with 2 decimal places representing patient's height in metres                                                                | 1.63, 1.99            | 1, 1.2, 1.234      |
@@ -95,6 +96,41 @@ The information below specifies parameter description, constraints and usage thr
 | d/        | Diagnosis                               | Alphanumeric characters (a to z, A to Z, 0 to 9)                                                                                            | Fever, Cancer         | 发烧                 |
 | st/       | Status                                  | Can only take one of the following values: Inpatient, Outpatient, Observation, Emergency Department, Intensive Care Unit, Transitional Care | Inpatient, Outpatient | Baymax, HelloWorld |
 
+
+## **Command format**
+
+| Format                                                                                                       | Explanation                                                                  | Examples                                                                                          |
+|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| Words in `UPPER_CASE`                                                                                        | These are parameter values that are supplied by the user                     | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
+| Items in square brackets                                                                                     | These are optional parameters (can be left empty by user)                    | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
+| Items with `…`​ after them                                                                                   | These are parameters that can be used multiple times (or omitted completely) | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
+| Parameters can be in any order.                                                                              | N/A                                                                          | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
+| If a parameter is **expected only once** and entered multiple times, only the latest occurrence is accepted. | N/A                                                                          | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
+| Extraneous parameters for commands that do not take in parameters will be ignored.                           | N/A                                                                          | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+---
+
+## **Command Summary**
+
+| Command               | Shorthand   | What it does                                                                              |
+|-----------------------|-------------|-------------------------------------------------------------------------------------------|
+| `add-doc / add-ptn`   | `ad / ap`   | Adds a doctor or patient into Docedex.                                                    |
+| `edit-doc / edit-ptn` | `ed / ep`   | Edits the specified doctor or patient.                                                    |
+| `del-doc / del-ptn`   | `dd / dp`   | Removes the specified doctor or patient from Docedex. **This action cannot be undone.**   |
+| `find-doc / find-ptn` | `fd / fp`   | Finds the doctor(s) and patient(s) which matches the search query.                        |
+| `list-doc / list-ptn` | `lsd / lsp` | Lists all doctors or patients.                                                            |
+| `assign-ptn`          | `asn`       | Assigns a patient to a doctor.                                                            |
+| `unassign-ptn`        | `uasn`      | Unassigns a patient from a doctor.                                                        |
+| `sd / sp`             | `sd / sp`   | Selects the specified doctor or patient and displays the person's information on the GUI. |
+| `help`                | N/A         | Displays the link to the User Guide.                                                      |
+| `clear`               | N/A         | Clears all entries from Docedex. **This action cannot be undone.**                        |
+| `exit`                | N/A         | Exits the application (equivalent to closing the application).                            |
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+---
 
 ## **Navigating the Graphical User Interface (GUI)**
 
@@ -123,7 +159,7 @@ Here is a quick summary of each GUI component within Docedex.
 
 ### Notes about the GUI (Please Read!)
 
-#### Selecting doctors or patients through commands**
+#### Selecting doctors or patients through commands
 
 Certain commands involve the selection of doctors
 and patients immediately after they are entered.
@@ -138,22 +174,20 @@ no patients, and thus the Patient List will be empty.
 
 This behaviour will also exist if the user adds a patient instead too.
 
-<div markdown="block" class="alert alert-error">
+<div markdown="span" class="alert alert-error">
 Some users have mentioned being alarmed by sudden disappearances of
 their Doctor Cards and Patient Cards within their respective lists
 after entering certain commands. The explainer above details why this happens.
 Fret not, as this is part of the functionality of Docedex. Your storage is still secure.
 </div>
 
-#### Unselecting doctors or patients**
+#### Unselecting doctors or patients
 
 Unselecting doctors and patients is currently not supported in Docedex. If you wish to
 look through all the doctors and patients in Docedex, please use the
 [`list-doc`](#listing-all-doctors) and [`list-ptn`](#listing-all-patients) commands instead.
 
 [Scroll back to Table of Contents](#table-of-contents)
-
----
 
 ## **Notes about the command format**
 
@@ -244,7 +278,7 @@ This is a tutorial for **first-time** Docedex users.
 Adding doctor command, also calls select doctor to display the recently added information in the Enlarged Contact Card.
 **If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -273,7 +307,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Edit doctor command, also calls select doctor to display the recently updated information in the Enlarged Contact Card.
 **If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -331,7 +365,7 @@ Examples:
 Selecting doctor command displays only the recently queried doctor's information in the Enlarged Contact Card.
 **If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 
@@ -361,7 +395,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Adding patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 **If no doctors appear in the doctors list**, it is because the patient has not been assigned to any doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -379,7 +413,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Assign patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -397,7 +431,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Unassign (undo assignment) patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to (if no doctors are displayed, the patient is assigned to no doctors).
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -426,7 +460,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Edit patient command, also calls select patient to display the recently updated information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to (if no doctors are displayed, the patient has not been assigned to any doctor). 
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -480,7 +514,7 @@ Examples:
 Selecting patient command only displays the recently queried patients' information in the Enlarged Contact Card.
 **If no doctors appear in the doctors list**, it is because the patient has not been assigned to any doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -571,8 +605,9 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 **A**: Delete the `docedex.json` file (stored at `[JAR file location]/data/docedex.json`) from the computer that you wish to use Docedex on. Then, copy over the `docedex.json` file from the computer which you no longer wish to use Docedex on. After which, boot up Docedex to check whether your doctor information is properly loaded into the new computer.
 
 ### Using Docedex
-**Q**: I entered a command and my doctor/patient list was cleared. What happenned?
-**A**: Within the [Notes about the GUI](#notes-about-the-gui) section, refer to the
-subsection titled _"Selecting doctors or patients through commands"_ for an explanation of why this occurs.
+**Q**: I entered a command and my doctor/patient list was cleared. What happened?<br>
+**A**: Refer to the subsection titled
+[Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
+for an explanation of why this occurs.
 
 [Scroll back to Table of Contents](#table-of-contents)
