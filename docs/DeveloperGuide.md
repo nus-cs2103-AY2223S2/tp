@@ -674,7 +674,6 @@ person.
 <div style="page-break-after: always;"></div>
 
 Given below is an activity diagram to illustrate the behaviour of adding Person within `Logic`.
-
 ![Add Activity Diagram](images/AddActivityDiagram.png)
 <img src="images/createAttributes.png" width="170">
 
