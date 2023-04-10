@@ -10,12 +10,13 @@ import com.calendarfx.model.Entry;
 import com.calendarfx.view.YearMonthView;
 import com.calendarfx.view.popover.DatePopOver;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.ReadOnlyAppointmentList;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * A Calendar card that displays appointments in the appointment list.
@@ -69,19 +70,20 @@ public class CalendarCard extends UiPart<Region> {
      *
      * @param appointmentList The appointment list to be added to the calendar.
      */
-    public static void addAppointmentsToCalendar(ReadOnlyAppointmentList appointmentList) {
+    public static void addAppointmentsToCalendar(ObservableList<Appointment> appointmentList) {
         if (source.getCalendars() != null) {
             source.getCalendars().clear();
         }
         Calendar calendar = new Calendar("Task");
-        for (int i = 0; i < appointmentList.getAppointmentList().size(); i++) {
-            String entryTitle = appointmentList.getAppointmentList().get(i).getPatientName().fullName + ", "
-                + appointmentList.getAppointmentList().get(i).getTimeslot().toString();
+        for (Appointment appointment : appointmentList) {
+            String entryTitle = appointment.getPatientName().fullName + ", "
+                    + appointment.getTimeslot().toString();
             Entry<String> entry = new Entry<>(entryTitle);
-            entry.setInterval(appointmentList.getAppointmentList().get(i).getTimeslot().startingDateTime,
-                appointmentList.getAppointmentList().get(i).getTimeslot().endingDateTime);
+            entry.setInterval(appointment.getTimeslot().startingDateTime,
+                    appointment.getTimeslot().endingDateTime);
             calendar.addEntry(entry);
         }
+
         source.getCalendars().add(calendar);
     }
 

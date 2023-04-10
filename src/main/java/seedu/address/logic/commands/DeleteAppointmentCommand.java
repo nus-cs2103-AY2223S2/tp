@@ -38,7 +38,7 @@ public class DeleteAppointmentCommand extends Command {
         }
         Appointment appointmentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteAppointment(appointmentToDelete);
-        CalendarCard.addAppointmentsToCalendar(model.getAppointmentList());
+        CalendarCard.addAppointmentsToCalendar(model.getFilteredAppointmentList());
         return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
     }
     @Override

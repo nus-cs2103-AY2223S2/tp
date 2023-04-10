@@ -35,7 +35,7 @@ public class FindAppointmentCommand extends Command {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
         if (CalendarCard.getIsInstantiated()) {
-            CalendarCard.addAppointmentsToCalendar(model.getAppointmentList());
+            CalendarCard.addAppointmentsToCalendar(model.getFilteredAppointmentList());
         }
         return new CommandResult(
             String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, model.getFilteredAppointmentList().size()));

@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
 
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-        CalendarCard.addAppointmentsToCalendar(logic.getAppointmentList());
+        CalendarCard.addAppointmentsToCalendar(logic.getFilteredAppointmentList());
         CalendarCard calendarCard = new CalendarCard();
         calendarPlaceholder.getChildren().add(calendarCard.getRoot());
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
