@@ -44,7 +44,6 @@ _With MediConnect, managing your healthcare practice has never been easier._
    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -74,6 +73,8 @@ _With MediConnect, managing your healthcare practice has never been easier._
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 | Field            | Prefix | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Address**      | a/     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -85,6 +86,8 @@ _With MediConnect, managing your healthcare practice has never been easier._
 | **NRIC**         | ic/    | 1. Should be 9 characters long. <br> 2. The first character must be one of [S,T,F,G,M], followed by 7 numerical digits and ending with [A-Z].                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | **Phone Number** | p/     | 1. Should only contain numbers. <br> 2. Should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **Tag**          | t/     | Should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a person: `add a patient`, `add a doctor`
 
@@ -103,6 +106,8 @@ Examples:
 * `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician` adds the doctor `Sarah Tan` to the list.
 
 <img src="images/AddPatient.png" width="450" />
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a person by NRIC : `delete`
 
