@@ -1206,7 +1206,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `deletep`, `deletep x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### 7.3 Assigning a task to a person
+### 7.3 Assigning a Task to a Person
 
 1. Assigning a task to a person while all tasks and persons are being shown
 
@@ -1239,7 +1239,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
      
-### 7.5 Marking a Task as completed
+### 7.5 Marking a Task as Completed
 
 1. Marking a task that has not been assigned to any persons as completed
 
@@ -1263,7 +1263,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the task that is marked shown in the feedback message. A green tick will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
 
-### 7.6 Unmarking a Task as not completed
+### 7.6 Unmarking a Task as not Completed
 
 1. Unmarking a task that has not been assigned to any persons as not completed yet
 
@@ -1330,7 +1330,7 @@ testers are expected to do more *exploratory* testing.
       Expected: All tasks stored in OfficeConnect are listed. "Listed all task" shown in feedback message.
 
 
-### 7.10 Filtering Persons by tag
+### 7.10 Filtering Persons by Tag
 
 1. There are persons in OfficeConnect with the specified tag.
    1. Prerequisites: Only one tag can be specified. 
@@ -1406,7 +1406,7 @@ testers are expected to do more *exploratory* testing.
      3. Test case: `pi INDEX` (replace INDEX with an invalid person index) <br>
         Expected: No person details are displayed. "Person index is invalid" shown in feedback message.
 
-### 7.13 Edit task 
+### 7.13 Edit Task 
 
   1. Task to be edited is available in OfficeConnect
      1. Prerequisites: The specified task index is invalid
@@ -1418,7 +1418,7 @@ testers are expected to do more *exploratory* testing.
      2. Test case: `editt 0`
      3. Expected: "The task index provided is invalid" shown in feedback message.
 
-### 7.14 Find persons by name
+### 7.14 Find Persons by Name
 
   1. There are persons in OfficeConnect with the specified name.
      1. Prerequisites: Only one person can be specified.
@@ -1438,7 +1438,7 @@ testers are expected to do more *exploratory* testing.
      4. Other incorrect find persons commands to try: `findp !@#`)<br>
         Expected: No persons are displayed. "No such person found" shown in feedback message.
 
-### 7.15 Find tasks by title
+### 7.15 Find Tasks by Title
 
   1. There are tasks in OfficeConnect with the specified title.
      1. Prerequisites: Only one title can be specified.
