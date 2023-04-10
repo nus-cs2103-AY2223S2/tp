@@ -1155,6 +1155,7 @@ Customer and order data are saved in the hard disk automatically after any comma
 **A**: Assuming the customer is at position 1 in your customer list, you can execute the command `setnotec 1 nt/` to clear the current notes for a customer.
 
 ### Orders
+{: .no_toc}
 
 **Q**: Why are orders deleted or missing after deleting a customer with `deletec`? <br />
 **A**: Orders are closely tied to a customer in LoyaltyLift. Once a customer has been removed, all the customer's orders needs to be cleared. If this is not ideal, we recommend avoiding deleting any customers.
@@ -1166,6 +1167,7 @@ Customer and order data are saved in the hard disk automatically after any comma
 **A**: With the `revo` command, you can quickly revert the order's last status change you have made with `advo` or `cancelo`!
 
 ### Rewards
+{: .no_toc}
 
 **Q**: Are the reward tiers of my customers based on the cumulated points or the current points they have? <br />
 **A**: Currently, LoyaltyLift determines the tiers of your customers by the **cumulated points**. However, if you feel that a customer no longer deserves the tier, you can use `setpoints` to replace both his current and cumulated points so that it would be below the threshold of the tier!
