@@ -97,6 +97,7 @@ using the `LogicManager.java` class which follows the `Logic` interface. The com
 in the (partial) class diagram below.
 
 <img src="images/OfficeComponentManagers.png" width="750" />
+<div style="page-break-after: always;"></div>
 
 ### 2.2 UI component
 
