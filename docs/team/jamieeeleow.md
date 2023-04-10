@@ -29,13 +29,7 @@ coNtactUS is written in Java. Given below are my contributions to the project.
   entering their input and the app should provide a convenient way to rectify them.
   User should also be able to add information to an existing module and the app
   should have a command allowing additional details to be added.  
-
 <br>  
-
-<div style="page-break-after: always;"></div>  
-
-<br>  
-  
 * **Feature Enhancement**: Modify Deadline and TimeSlot attributes to store LocalDateTime rather than a String.
 [#53](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/53) [#56](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/56)
   * What it does: allows comparison of deadlines and timeslots among modules.
