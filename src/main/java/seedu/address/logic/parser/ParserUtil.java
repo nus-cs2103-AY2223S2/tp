@@ -218,7 +218,6 @@ public class ParserUtil {
      * @return a CCA
      * @throws ParseException
      */
-
     public static Cca parseCca(String cca) throws ParseException {
         requireNonNull(cca);
         String trimmedCca = cca.trim();
