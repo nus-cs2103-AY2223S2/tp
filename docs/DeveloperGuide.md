@@ -305,6 +305,10 @@ The command execution flow is as given below
 6. Based on the filtered elderly and volunteers a predicate to get the related pairs is created and ```updateFilteredPairList``` of ```Model``` is called.
 7. ```CommandResult``` with the sizes of the 3 filtered lists is created and returned.
 
+The class diagram below shows the relation of predicates to ```FindCommandParser``` and ```FindCommand```.
+
+<img src="images/developerGuide/FindCommandClassDiagram.png" width="700" />
+
 Design decisions:
 - Name, address, email, phone, tags and medical qualification attributes allow substring searching.
   - Easier to search with only partial information available.
@@ -696,7 +700,37 @@ Preconditions: Person is already in FL.
 * 1a. FL detects missing arguments or an error in the entered command.
     * 1a1. FL feedbacks that entered command is incorrect.
 
-**Use case: UC11- View statistics**
+**Use case: UC11- View paired persons**
+
+**MSS**
+
+1. User enters the command to list all paired persons.
+2. FL shows all the paired elderly, paired volunteers and all pairs.
+3. User sees all paired persons and all pairs in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+**Use case: UC12- View unpaired persons**
+
+**MSS**
+
+1. User enters the command to list all unpaired persons.
+2. FL shows all the unpaired elderly, unpaired volunteers and all pairs.
+3. User sees all unpaired persons and all pairs in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+**Use case: UC13- View statistics**
 
 **MSS**
 
@@ -711,7 +745,7 @@ Preconditions: Person is already in FL.
 * 1a. FL detects an error in the entered command.
     * 1a1. FL feedbacks that entered command is incorrect.
 
-**Use case: UC12- Look up Help Page**
+**Use case: UC14- Look up Help Page**
 
 **MSS**
 
@@ -726,7 +760,7 @@ Preconditions: Person is already in FL.
 * 1a. FL detects an error in the entered command.
     * 1a1. FL feedbacks that entered command is incorrect.
 
-**Use case: UC13- Exit the app**
+**Use case: UC15- Exit the app**
 
 **MSS**
 
