@@ -47,9 +47,9 @@ public class EditCommand extends Command {
     private final EditPatientDescriptor editPatientDescriptor;
 
     /**
-     * @param index                 of the patient in the filtered patient list to
-     *                              edit
-     * @param editPatientDescriptor details to edit the patient with
+     * Constructs {@code EditCommand} to edit {@code Patient} at specified index.
+     * @param index Index of the {@code Patient} to be edited in the list.
+     * @param editPatientDescriptor Description of the {@code Patient} details to be edited.
      */
     public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
         requireNonNull(index);
@@ -59,6 +59,12 @@ public class EditCommand extends Command {
         this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
     }
 
+    /**
+     * Executes the {@code EditCommand} on the given model.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult which is the result of the operation.
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

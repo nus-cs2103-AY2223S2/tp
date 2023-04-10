@@ -33,6 +33,9 @@ public class WardName {
 
     /**
      * Returns true if a given string is a valid ward name.
+     *
+     * @param test String to be tested.
+     * @return if the given string is a valid ward name.
      */
     public static boolean isValidWardName(String test) {
         return test.matches(VALIDATION_REGEX);

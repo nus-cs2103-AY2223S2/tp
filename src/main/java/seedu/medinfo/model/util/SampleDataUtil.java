@@ -14,6 +14,11 @@ import seedu.medinfo.model.ward.WardName;
  * Contains utility methods for populating {@code MedInfo} with sample data.
  */
 public class SampleDataUtil {
+
+    /**
+     * Sample Patients for testing.
+     * @return Array of sample Patients.
+     */
     public static Patient[] getSamplePatients() {
         return new Patient[] {
             new Patient(new Nric("S1234567A"), new Name("Alex Yeoh"), new Status("RED"),
@@ -26,6 +31,10 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Sample Wards for testing.
+     * @return Array of sample Wards.
+     */
     public static Ward[] getSampleWards() {
         return new Ward[] {
             new Ward(new WardName("Waiting Room")),
@@ -36,6 +45,10 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Creates a {@code ReadOnlyMedInfo} with the sample data in this class.
+     * @return ReadOnlyMedInfo with sample data initialized.
+     */
     public static ReadOnlyMedInfo getSampleMedInfo() throws CommandException {
         MedInfo sampleAb = new MedInfo();
         for (Ward sampleWard : getSampleWards()) {

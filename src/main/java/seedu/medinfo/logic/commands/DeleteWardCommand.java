@@ -11,7 +11,7 @@ import seedu.medinfo.model.Model;
 import seedu.medinfo.model.ward.Ward;
 
 /**
- * Deletes a ward identified using it's displayed index from MedInfo.
+ * Deletes a ward identified using its displayed index from MedInfo.
  */
 public class DeleteWardCommand extends Command {
 
@@ -26,10 +26,20 @@ public class DeleteWardCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Constructs a new {@code DeleteWardCommand} to delete the {@code Ward} at the specified index.
+     * @param targetIndex Index of the {@code Ward} to be deleted in the list.
+     */
     public DeleteWardCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the {@code DeleteWardCommand} on the given model.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult which is the result of the operation.
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -48,7 +58,6 @@ public class DeleteWardCommand extends Command {
         if (wardToDelete.getOccupancy() > 0) {
             throw new CommandException(Messages.MESSAGE_DELETE_WARD_WITH_PATIENTS);
         }
-
 
         model.deleteWard(wardToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_WARD_SUCCESS, wardToDelete));

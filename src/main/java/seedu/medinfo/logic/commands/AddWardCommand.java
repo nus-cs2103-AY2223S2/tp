@@ -9,7 +9,7 @@ import seedu.medinfo.model.Model;
 import seedu.medinfo.model.ward.Ward;
 
 /**
- * Adds a patient to MedInfo.
+ * Adds a ward to MedInfo.
  */
 public class AddWardCommand extends Command {
 
@@ -28,13 +28,19 @@ public class AddWardCommand extends Command {
     private final Ward toAdd;
 
     /**
-     * Creates an AddWardCommand to add the specified {@code Patient}
+     * Constructs a new {@code AddWardCommand} to add the specified {@code Ward}.
      */
     public AddWardCommand(Ward ward) {
         requireNonNull(ward);
         toAdd = ward;
     }
 
+    /**
+     * Executes the {@code AddWardCommand} on the given model.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult which is the result of the operation.
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

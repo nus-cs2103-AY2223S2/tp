@@ -8,6 +8,7 @@ import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.Comparator;
 
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.Model;
 import seedu.medinfo.model.patient.Patient;
 
@@ -66,12 +67,17 @@ public class SortCommand extends Command {
 
     private final Comparator<Patient> comparator;
 
+    /**
+     * Constructs a {@code SortCommand} to sort {@code Patients} by the given field in the given order.
+     * @param field The {@code Patient} field to be sorted by.
+     * @param order The order for {@code Patients} to be displayed.
+     */
     public SortCommand(Field field, Order order) {
         this.comparator = generateComparator(field, order);
     }
 
     /**
-     * Generates a Comparator for Patients based on parameters.
+     * Generates a Comparator for {@code Patients} based on parameters.
      *
      * @param field field of attribute to be compared
      * @param order order of sorting
@@ -108,6 +114,12 @@ public class SortCommand extends Command {
         }
     }
 
+    /**
+     * Executes the {@code SortCommand} on the given model.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult which is the result of the operation.
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

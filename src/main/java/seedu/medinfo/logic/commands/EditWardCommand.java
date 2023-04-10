@@ -42,9 +42,9 @@ public class EditWardCommand extends Command {
     private final EditWardDescriptor editWardDescriptor;
 
     /**
-     * @param index              of the ward in the filtered ward list to
-     *                           edit
-     * @param editWardDescriptor details to edit the ward with
+     * Constructs {@code EditWardCommand} to edit {@code Ward} at specified index.
+     * @param index Index of the {@code Ward} to be edited in the list.
+     * @param editWardDescriptor Description of the {@code Ward} details to be edited.
      */
     public EditWardCommand(Index index, EditWardDescriptor editWardDescriptor) {
         requireNonNull(index);
@@ -54,6 +54,12 @@ public class EditWardCommand extends Command {
         this.editWardDescriptor = new EditWardDescriptor(editWardDescriptor);
     }
 
+    /**
+     * Executes the {@code EditWardCommand} on the given model.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult which is the result of the operation.
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

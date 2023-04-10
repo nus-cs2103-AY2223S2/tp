@@ -37,20 +37,22 @@ public class UniqueWardList implements Iterable<Ward> {
     private final ObservableList<Ward> internalList = FXCollections.observableArrayList();
     private final ObservableList<Ward> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
-
     private static final WardName WAITING_ROOM = new WardName("Waiting Room");
+
     /**
-     * Initializes empty wardlist.
+     * Constructor for a UniqueWardList.
      */
     public UniqueWardList() {
 
     }
 
     /**
-     * Initializes NEW wardlist with default Waiting Room ward with capacity of 10
+     * Constructor for a NEW UniqueWardList with default Waiting Room ward with capacity of 10
      * inside.
+     *
+     * @return New UniqueWardList with default Waiting Room.
      */
-    public UniqueWardList NewUniqueWardList() {
+    public static UniqueWardList NewUniqueWardList() {
         Ward WaitingRoom = new Ward(WAITING_ROOM);
         UniqueWardList NewUniqueWardList = new UniqueWardList();
         NewUniqueWardList.add(WaitingRoom);
@@ -59,13 +61,17 @@ public class UniqueWardList implements Iterable<Ward> {
 
     /**
      * Returns size of list.
+     *
+     * @return Size of List.
      */
     public int size() {
         return internalList.size();
     }
 
     /**
-     * Returns total capacity of all wards.
+     * Returns total capacity of all wards in the list.
+     *
+     * @return Total capacity of all wards.
      */
     public int capacity() {
         int capacity = 0;
@@ -78,6 +84,9 @@ public class UniqueWardList implements Iterable<Ward> {
 
     /**
      * Returns specified ward to edit.
+     *
+     * @param wardName String name of ward to be edited.
+     * @return Target ward.
      */
     public Ward getWard(String wardName) {
         return internalList.get(internalList.indexOf(wardWithName(wardName)));
@@ -86,6 +95,8 @@ public class UniqueWardList implements Iterable<Ward> {
     /**
      * Returns true if the list contains an equivalent ward as the given
      * {@code Ward}.
+     *
+     * @param toCheck Ward to be checked.
      */
     public boolean contains(Ward toCheck) {
         requireNonNull(toCheck);
@@ -95,6 +106,8 @@ public class UniqueWardList implements Iterable<Ward> {
     /**
      * Returns true if the list contains an equivalent ward as the given
      * {@code String}.
+     *
+     * @param toCheckName String to be checked.
      */
     public boolean contains(String toCheckName) {
         requireNonNull(toCheckName);
@@ -106,6 +119,8 @@ public class UniqueWardList implements Iterable<Ward> {
     /**
      * Adds a ward to the list.
      * The ward must not already exist in the list.
+     *
+     * @param toAdd Ward to be added.
      */
     public void add(Ward toAdd) {
         requireNonNull(toAdd);
@@ -117,7 +132,7 @@ public class UniqueWardList implements Iterable<Ward> {
     /**
      * Adds patient p to their assigned ward.
      *
-     * @param p
+     * @param p Patient to be added.
      */
     public void addPatient(Patient p) throws CommandException, WardFullException {
         requireNonNull(p);
@@ -133,6 +148,9 @@ public class UniqueWardList implements Iterable<Ward> {
      * {@code target} must exist in the list.
      * The ward identity of {@code editedWard} must not be the same as another
      * existing ward in the list.
+     *
+     * @param target        Target ward.
+     * @param editedWard    Ward to edit {@code target} to.
      */
     public void setWard(Ward target, Ward editedWard) {
         requireAllNonNull(target, editedWard);
@@ -162,6 +180,9 @@ public class UniqueWardList implements Iterable<Ward> {
      * Replaces the ward {@code target} in the target's ward with
      * {@code editedPatient}.
      * {@code target} must exist in the ward.
+     *
+     * @param target        Target patient
+     * @param editedPatient Patient to edit {@code target} to.
      */
     public void setPatient(Patient target, Patient editedPatient) throws CommandException, WardFullException {
         String targetName = target.getWardNameString();
@@ -197,6 +218,8 @@ public class UniqueWardList implements Iterable<Ward> {
     /**
      * Removes the equivalent ward from the list.
      * The ward must exist in the list.
+     *
+     * @param toRemove Ward to be removed.
      */
     public void remove(Ward toRemove) {
         requireNonNull(toRemove);
@@ -207,6 +230,8 @@ public class UniqueWardList implements Iterable<Ward> {
 
     /**
      * Removes the equivalent patient from their assigned ward.
+     *
+     * @param toRemove Patient to be removed.
      */
     public void remove(Patient toRemove) {
         requireNonNull(toRemove);
@@ -217,6 +242,11 @@ public class UniqueWardList implements Iterable<Ward> {
         internalList.set(index, targetWard);
     }
 
+    /**
+     * Replaces the entire ward list with {@code replacement}.
+     *
+     * @param replacement Ward list to be replaced with.
+     */
     public void setWards(UniqueWardList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -225,6 +255,8 @@ public class UniqueWardList implements Iterable<Ward> {
     /**
      * Replaces the contents of this list with {@code wards}.
      * {@code wards} must not contain duplicate wards.
+     *
+     * @param wards Ward list to be replaced with.
      */
     public void setWards(List<Ward> wards) {
         requireAllNonNull(wards);
@@ -233,6 +265,23 @@ public class UniqueWardList implements Iterable<Ward> {
         }
 
         internalList.setAll(wards);
+    }
+
+    /**
+     * Returns true if {@code patients} contains only unique patients.
+     *
+     * @param wards Ward list to be checked.
+     * @return If the ward list contains only unique patients.
+     */
+    private boolean wardsAreUnique(List<Ward> wards) {
+        for (int i = 0; i < wards.size() - 1; i++) {
+            for (int j = i + 1; j < wards.size(); j++) {
+                if (wards.get(i).isSameWard(wards.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -258,19 +307,4 @@ public class UniqueWardList implements Iterable<Ward> {
     public int hashCode() {
         return internalList.hashCode();
     }
-
-    /**
-     * Returns true if {@code patients} contains only unique patients.
-     */
-    private boolean wardsAreUnique(List<Ward> wards) {
-        for (int i = 0; i < wards.size() - 1; i++) {
-            for (int j = i + 1; j < wards.size(); j++) {
-                if (wards.get(i).isSameWard(wards.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
 }

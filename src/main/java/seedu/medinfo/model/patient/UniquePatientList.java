@@ -56,6 +56,7 @@ public class UniquePatientList implements Iterable<Patient> {
     /**
      * Returns true if the list contains an equivalent patient as the given
      * argument.
+     * @param toCheck Patient to be checked.
      */
     public boolean contains(Patient toCheck) {
         requireNonNull(toCheck);
@@ -65,6 +66,7 @@ public class UniquePatientList implements Iterable<Patient> {
     /**
      * Returns true if the list contains a patient with equivalent NRIC as the given
      * argument.
+     * @param toCheck Patient to be checked.
      */
     public boolean containsNric(Patient toCheck) {
         requireNonNull(toCheck);
@@ -74,6 +76,7 @@ public class UniquePatientList implements Iterable<Patient> {
     /**
      * Adds a patient to the list.
      * The patient must not already exist in the list.
+     * @param toAdd Patient to be added.
      */
     public void add(Patient toAdd) {
         requireNonNull(toAdd);
@@ -107,6 +110,7 @@ public class UniquePatientList implements Iterable<Patient> {
     /**
      * Removes the equivalent patient from the list.
      * The patient must exist in the list.
+     * @param toRemove Patient to be removed.
      */
     public void remove(Patient toRemove) {
         requireNonNull(toRemove);
@@ -115,6 +119,11 @@ public class UniquePatientList implements Iterable<Patient> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     * {@code replacement} must not contain duplicate patients.
+     * @param replacement List of patients to be set.
+     */
     public void setPatients(UniquePatientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -123,19 +132,19 @@ public class UniquePatientList implements Iterable<Patient> {
     /**
      * Replaces the contents of this list with {@code patients}.
      * {@code patients} must not contain duplicate patients.
+     * @param patients List of patients to be set.
      */
     public void setPatients(List<Patient> patients) {
         requireAllNonNull(patients);
         if (!patientsAreUnique(patients)) {
             throw new DuplicatePatientException();
         }
-
         internalList.setAll(patients);
     }
 
     /**
      * Sorts the patient list with {@code comparator}.
-     * @param comparator
+     * @param comparator Comparator used.
      */
     public void sortPatients(Comparator<Patient> comparator) {
         requireNonNull(comparator);
@@ -144,10 +153,10 @@ public class UniquePatientList implements Iterable<Patient> {
     }
 
     /**
-     * Sorts the list of patients and replace the original list.
-     * @param observableList
-     * @param comparator
-     * @return
+     * Sorts the list of patients and returns the sorted list.
+     * @param observableList List to be sorted.
+     * @param comparator Comparator used.
+     * @return The sorted list.
      */
     private static ArrayList<Patient> replaceSort(
             ObservableList<Patient> observableList, Comparator<Patient> comparator) {

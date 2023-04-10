@@ -3,7 +3,7 @@ package seedu.medinfo.logic.parser.exceptions;
 import seedu.medinfo.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a parse error encountered by a parser.
+ * Signals a parse error encountered by a parser.
  */
 public class ParseException extends IllegalValueException {
 

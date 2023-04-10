@@ -45,6 +45,42 @@ public class Status {
         return false;
     }
 
+    /**
+     * Returns description of the status code.
+     *
+     * @return Description of status code.
+     */
+    public String getDesc() {
+        switch(value) {
+            case "GREEN":
+                return "STABLE";
+            case "YELLOW":
+                return "SERIOUS";
+            case "RED":
+                return "CRITICAL";
+            default:
+                return "UNKNOWN";
+        }
+    }
+
+    /**
+     * Returns the numeric value of each status.
+     *
+     * @return Numeric value of each status.
+     */
+    public Integer getValue() {
+        switch ((value)) {
+            case "GREEN":
+                return 1;
+            case "YELLOW":
+                return 2;
+            case "RED":
+                return 3;
+            default:
+                return 0;
+        }
+    }
+
     @Override
     public String toString() {
         return value;
@@ -60,41 +96,5 @@ public class Status {
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    /**
-     * Returns description of the status code.
-     *
-     * @return Description of status code.
-     */
-    public String getDesc() {
-        switch(value) {
-        case "GREEN":
-            return "STABLE";
-        case "YELLOW":
-            return "SERIOUS";
-        case "RED":
-            return "CRITICAL";
-        default:
-            return "UNKNOWN";
-        }
-    }
-
-    /**
-     * Returns the numeric value of each status.
-     *
-     * @return Numeric value of each status.
-     */
-    public Integer getValue() {
-        switch ((value)) {
-        case "GREEN":
-            return 1;
-        case "YELLOW":
-            return 2;
-        case "RED":
-            return 3;
-        default:
-            return 0;
-        }
     }
 }
