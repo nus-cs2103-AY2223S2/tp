@@ -266,11 +266,8 @@ public class ArchiveTest {
      * A stub class to throw an {@code IOException} when the save and read method is called.
      */
     private static class StorageStubThrowIoe extends StorageStub {
-        private final Path archivePath;
-        private ReadOnlyTracker tracker;
         public StorageStubThrowIoe(Path archivePath) {
-            this.archivePath = archivePath;
-            this.tracker = new Tracker();
+            new Tracker();
         }
 
         @Override
@@ -290,9 +287,8 @@ public class ArchiveTest {
     private static class StorageStubThrowDataConversionError extends StorageStub {
         private static final Path TEST_DATA_FOLDER = Paths.get("src",
                 "test", "data", "JsonTrackerStorageTest");
-        private ReadOnlyTracker tracker;
         public StorageStubThrowDataConversionError() {
-            this.tracker = new Tracker();
+            new Tracker();
         }
 
         @Override

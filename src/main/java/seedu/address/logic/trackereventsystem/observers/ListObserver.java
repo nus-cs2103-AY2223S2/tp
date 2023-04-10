@@ -16,8 +16,8 @@ import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoPredicate;
 
 /**
- * Represents a list observer that responds to on module edited and on
- * lecture edited events.
+ * Represents a list observer that responds to on-module-edited, on-lecture-edited
+ * and on-video-edited events.
  */
 public class ListObserver implements
         OnModuleEditedEventObserver, OnLectureEditedEventObserver, OnVideoEditedEventObserver {
