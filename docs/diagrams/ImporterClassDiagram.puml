@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor #purple
+skinparam classBackgroundColor #purple
+
+package Importer {
+
+Class "<<interface>>\nImporter" as Importer
+Class JsonImporter
+}
+
+package Logic{
+Class ImportCommand #blue
+}
+
+JsonImporter ..|> Importer
+
+
+ImportCommand .up.> Importer #blue
+
+@enduml
