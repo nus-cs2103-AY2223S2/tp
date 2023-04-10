@@ -1,15 +1,15 @@
 package seedu.address.logic.commands.jobs;
 
-import seedu.address.logic.commands.person.ClearCommand;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import seedu.address.logic.commands.person.ClearCommand;
 
 public class ImportDeliveryJobCommandTest {
     @Test

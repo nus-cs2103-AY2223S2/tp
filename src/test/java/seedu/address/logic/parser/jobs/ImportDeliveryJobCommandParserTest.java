@@ -1,9 +1,6 @@
 package seedu.address.logic.parser.jobs;
 
-import seedu.address.logic.commands.jobs.ImportDeliveryJobCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.jobs.DeliveryJob;
-import seedu.address.model.person.Person;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,8 +10,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.person.Person;
 
 public class ImportDeliveryJobCommandParserTest {
 
