@@ -1234,8 +1234,8 @@ Our organisation primarily utilised `JUnit5` for conducting unit tests. `JUnit5`
 
 Each individual unit of the program is tested to ensure each piece works correctly and stubs are commonly used to test the units in isolation.
 
-Unit tests were implemented as new features were added in, to ensure that any new chang statues will have tests to ensure 
-older features are working as intended. Unit tests were also changed and added on as the product progressed, to ensure
+Unit tests were implemented as features were added in, to ensure that as the product evolves, these features will have tests to ensure 
+that they are still working as intended. Unit tests were also changed and added on as the product progressed, to ensure
 that the features were tested more thoroughly as the team learned new testing types and techniques.
 
 
