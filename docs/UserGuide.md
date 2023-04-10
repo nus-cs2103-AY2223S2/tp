@@ -165,6 +165,7 @@ command to list recurring expenses.
 The features of FastTrack can be divided into 4 groups, **Category Features**, **Expense Features**, **General Features** and **Expense Statistics Feature**. With these 4 groups in mind, remembering the different commands becomes extremely convenient, as each group contains mainly 4 types of operations - add, delete, edit and list!
 
 ### Commands
+
 | [**Category**](#category-features)                        | [**One-Time Expenses**](#one-time-expenses)                          | [**Recurring Expenses**](#recurring-expenses)                      | [**General**](#general-features)                    |
 |-----------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------|-----------------------------------------------------|
 | [Add a category](#adding-a-category-addcat)               | [Add an expense](#adding-an-expense-add)                             | [Add a recurring expense](#adding-a-recurring-expense-addrec)      | [Set a budget](#setting-a-budget-set)               |
@@ -173,7 +174,9 @@ The features of FastTrack can be divided into 4 groups, **Category Features**, *
 | [List categories](#listing-categories-lcat)               | [Find an expense by keyword](#search-for-an-expense-by-keyword-find) | [List recurring expenses](#listing-recurring-expenses-lrec)        | [Exit FastTrack](#exiting-fasttrack-exit)           |
 | [View category summary](#viewing-category-summary-sumcat) | [List expenses](#listing-expenses-list)                              |                                                                    | [View help](#viewing-help-help)                     |
 
+
 ### Other Notable Features
+
 | [**Expense Statistics Feature**](#expense-statistics-feature)                       |
 |-------------------------------------------------------------------------------------|
 | [Monthly spending statistic](#monthly-spending-statistic)                           |
@@ -413,6 +416,7 @@ Simply specify the start date, interval (daily, weekly, monthly, yearly), and en
 
 
 #### Recurring Expenses
+
 | Feature                                                              | Command Format                                                                        | Example                                                        |
 |----------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------|
 | [**List Recurring Expense**](#listing-recurring-expenses-lrec)       | `lrec`                                                                                | `lrec`                                                         |
