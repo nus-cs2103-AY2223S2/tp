@@ -234,7 +234,8 @@ Here is a list of GM features, click on them to jump to the section! Each sectio
 
 Shows a message explaining how to access the help page.
 
-![Help Message](./images/helpMessage.png)
+
+![Help Message](./images/HelpMessage.png)
 
 ✏️ **Format:** `help`
 
