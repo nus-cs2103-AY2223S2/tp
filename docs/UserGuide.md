@@ -57,7 +57,7 @@ Let's dive in!
  A note looks like this.
 </div>
 
-* **Tip**: Useful information to help you enhance your skills with CLIpboard will be shown like this:
+* **Tip**: Useful information to help you enhance your skills with CLIpboard.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A tip looks like this.
