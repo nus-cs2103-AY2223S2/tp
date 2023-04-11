@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+//@@author astraxq
 /**
  * Represents a Score's date in the Score object.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
@@ -49,6 +50,7 @@ public class Date {
         }
     }
 
+    //@@author QQH0828
     /**
      * Returns true if the date is not a future date.
      */

@@ -35,6 +35,7 @@ public class UniqueScoreList implements Iterable<Score> {
         return internalList.stream().anyMatch(toCheck::isSameScore);
     }
 
+    //@@author astraxq
     /**
      * Adds a score to the list.
      * The score must not already exist in the list.
@@ -49,6 +50,7 @@ public class UniqueScoreList implements Iterable<Score> {
         FXCollections.reverse(internalList);
     }
 
+    //@@author astraxq
     /**
      * Removes the equivalent score from the list.
      * The score must exist in the list.
@@ -60,6 +62,7 @@ public class UniqueScoreList implements Iterable<Score> {
         }
     }
 
+    //@@author astraxq
     /**
      * Returns the backing score list as an unmodifiable {@code ObservableList}.
      */

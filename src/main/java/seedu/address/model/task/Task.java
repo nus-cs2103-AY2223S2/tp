@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import seedu.address.model.student.Name;
 
+//@@author astraxq
 /**
  * Represents a Task in the mathutoring.
  * Guarantees: immutable; fields are validated; details are present and not null;
@@ -54,6 +55,7 @@ public class Task implements Comparable<Task> {
         this.creationDate = creationDate;
     }
 
+    //@@author toh-xinyi
     /**
      * Marks the task as completed.
      */
@@ -61,6 +63,7 @@ public class Task implements Comparable<Task> {
         status = TaskStatus.COMPLETE;
     }
 
+    //@@author toh-xinyi
     /**
      * Marks the task as late.
      */
@@ -68,6 +71,7 @@ public class Task implements Comparable<Task> {
         status = TaskStatus.LATE;
     }
 
+    //@@author toh-xinyi
     /**
      * Marks the task as in progress.
      */
@@ -83,6 +87,7 @@ public class Task implements Comparable<Task> {
         return status;
     }
 
+    //@@author toh-xinyi
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
@@ -120,6 +125,7 @@ public class Task implements Comparable<Task> {
         return Objects.hash(taskName, status, creationDate);
     }
 
+    //@@author toh-xinyi
     @Override
     public int compareTo(Task other) {
         if (this.status.equals(other.status)) {

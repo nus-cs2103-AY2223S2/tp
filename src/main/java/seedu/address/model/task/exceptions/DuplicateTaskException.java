@@ -1,5 +1,6 @@
 package seedu.address.model.task.exceptions;
 
+//@@author astraxq
 /**
  * Signals that the operation will result in duplicate Tasks (Tasks are considered duplicates if they have the same
  * identity).
