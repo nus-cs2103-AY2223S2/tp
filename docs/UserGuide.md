@@ -523,7 +523,7 @@ Sorts internship applications in the order you desire. Please refer to the scena
 how `sort` behaves with different parameters. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-While you can't undo a sort command, if you wish to go back to the default view, you can just use the `list` command.
+While you can't undo a sort command, you can simply use the `list` command if you wish to return to the default list and order of applications.
 </div>
 
 Format: `sort SEQUENCE ORDER`
@@ -554,9 +554,16 @@ If there are no applications that have tasks associated with them, an empty list
 The applications will be sorted by their task's deadline according to the specified sequence. Should there be two applications with
 the same deadline, the application entry that is more recently created will show up higher in the list.
 
-Examples:
-* `sort a deadline` will fetch and display **all applications with task deadlines**. Those with earlier deadlines will be higher up in the list.
-* `sort d alphabetical` will rearrange **applications currently displayed in the Application List Panel** in descending alphabetical order. (Z to A)
+For example, suppose both Amazon and Apple have recently reached out to you for an interview on the 23rd and 27th April respectively. You add these as tasks to the existing applications
+to Amazon and Apple (you can refer to [the section on `add-task`](#421-adding-a-task--add-task) for more information on how to do so).
+
+Afterwards, you can use `sort a deadline` to select these applications with tasks. If you don't have any other applications with outstanding tasks, 
+you can see that only the applications to Amazon and Apple are listed.
+Also, since `a` asks for an ascending sequence, the closer deadline, which is 23rd April for the interview with Amazon, shows up first in the list:
+
+Other examples:
+* `sort d deadline` will fetch and display **all applications with task deadlines**, except those with further deadlines will be higher up in the list instead.
+* `sort a alphabetical` will rearrange **applications currently displayed in the Application List Panel** in the usual alphabetical order. (A to Z)
 
 #### *Return to the [Table of Contents](#table-of-contents).*
 
