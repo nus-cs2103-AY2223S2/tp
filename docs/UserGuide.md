@@ -2,24 +2,23 @@
 layout: page
 title: User Guide
 ---
-
-|
 ## Welcome
+
 <div style="display: flex; align-items: center; padding-right: 30;">
   <p>CLIpboard is a user-friendly desktop application that helps educators manage their students' particulars.
     <br>
+    ClIpboard is great for you if:
+    1. You have to manage multiple classes
+    2. You prefer typing
+    3. You dislike dealing with boring spreadsheets
     <br>
-In this guide, we will walk you through the entire CLIpboard experience, whether you're a beginner learning to set up, or you're looking to take your skills to the next level, you're in the right place.</p>
+
+  In this guide, we will walk you through the entire CLIpboard experience, whether you're a beginner learning to set up, or you're looking to take your skills to the next level, you're in the right place.</p>
+    <img src="./images/clipboard1.png" alt="image description" align="right" width="100" height="102" style="margin-left: 20;"/>
 </div>
-|<img src="./images/clipboard1.png" alt="image description" align="right" width="100" height="102" style="margin-left: 20;"/> |
 
 Let's dive in!
---------------------------------------------------------------------------------------------------------------
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Table of Contents](#table-of-contents)
+- [Definitions](#definitions)
 - [Quick Start](#quick-start)
 - [Visual Guide](#visual-guide)
 - [Fields for Student Commands](#fields-for-student-commands)
@@ -36,11 +35,39 @@ Let's dive in!
 - [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------
+## Definitions
+* *Command*: A line of text that CLIpboard recognises as an action to execute.
+* *Path*: A line of text that describes a file location on a computer.
+  * Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path that
+  * Can be obtained by clicking
+* *Navigate*: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or `back` commands).
+* Text formatted like `this` represents a program-related element. Depending on context, it can mean:
+  1. A command that CLIpboard recognises
+    * Example: `add group t15-4` is a valid command you can execute.
+  2. A file path
+  3. A keyboard key
+* *Note*: Important information to be aware of.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+ A note looks like this.
+</div>
 
+* *Tip*: Useful information to help you enhance your skills with CLIpboard, will be shown like this:
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A tip looks like this.
+</div>
+
+* *Caution*: Critical information about how CLIpboard behaves. Disregarding these might cause CLIpboard to not behave as you would expect.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+A caution looks like this.
+</div>
+
+* See [Glossary](#glossary) section for more detailed and specific definitions.
+
+--------------------------------------------------------------------------------------------------------------
 ## Quick Start
 
-1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest clipboard.jar from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
+1. Ensure you have Java 11 or above installed on your Computer.
+2. Download the latest `clipboard.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your CLIpboard.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
 <br>e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
@@ -132,7 +159,7 @@ List of commands:
 
 - [General Commands: ](#general-commands)
     - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
-    - [Displaying the previous page you were at: ](#displaying-the-previous-page-you-were-at-back) `back`
+    - [`back`](#displaying-the-previous-page-you-were-at-back)
     - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
     - [Opening help window: ](#opening-help-window-help) `help`
     - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
@@ -1004,7 +1031,6 @@ Examples:
 | **Group**             | A group of students in a Course that can be categorised according to their tutorial, project group, etc.  | T15, Team15                             |
 | **Session**           | A period of class for a Group which can be tutorial session, lab session etc.                             | Tutorial1, Lab3                         |
 | **Task**              | An assignment dedicated to a Group which can be presentation, reflection etc.                             | OP1, Critical Reflection 2              |
-| **Path**              | A string of characters used to uniquely identify a location in a directory structure.                     | C:/Users/AlexYeoh/Desktop/A0123456X.png |
 | **Absolute Path**     | A path that always contains the root element and the complete directory list required to locate the file. | C:/Users/AlexYeoh/Desktop/A0123456X.png |
 | **Relative Path**     | A hierarchical path that locates a file or folder on a file system starting from the current directory.   | ../A1234567X.png                        |
 | **Special Character** | A character that does not fall under the category of either alphabet or a number.                         | -,+,*                                   |
