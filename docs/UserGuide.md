@@ -8,7 +8,6 @@ title: User Guide
   <p>CLIpboard is a user-friendly desktop application that helps educators manage their students' particulars. </p>
   <img src="./images/clipboard1.png" alt="image description" align="right" width="100" height="102"/>
 </div>
-
 ClIpboard is great for you if:
 
 1. You have to manage lots of students and classes
