@@ -37,8 +37,7 @@ Let's dive in!
 ## Definitions
 * **Command**: A line of text that CLIpboard recognises as an action to execute.
 * **Path**: A line of text that describes a file location on a computer.
-  * Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path that
-  * Can be obtained by clicking
+  * Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
 * **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`] commands).
 * Text formatted like `this` represents a program-related element. Depending on context, it can mean:
   1. A command that CLIpboard recognises
@@ -73,7 +72,7 @@ A caution looks like this.
 <br>A GUI similar to [<i>Figure 1</i>](#introduction) should appear in a few seconds.
 <br><i>Note how the app contains some sample data.</i>
 5. You will start on the `Course page` (Refer to [<i>Figure 3</i>](#navigation-guide) below for the Navigation Guide).
-6. Type your command in the command box (Refer to [<i>Figure 2</i>](#figure2) below in the Visual Guide) and press Enter/Return to execute it.
+6. Type your command in the command box (Refer to [<i>Figure 2</i>](#visual-guide) below in the Visual Guide) and press Enter/Return to execute it.
 <br>e.g. typing `help` and pressing the Enter/Return key will open the help window.
     <br>Some example commands you can try:
    1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
@@ -93,8 +92,8 @@ of the basic elements and features of the product's interface, making it easier 
 product effectively.
 
 <a name="figure2"></a>
-<img src="./images/VisualGuide.png" width="500" height="406"/>
-<span style="font-size: 8px; font-style: italic;">Figure 2</span>
+<img src="./images/VisualGuide.png" width="650" height="529"/>
+<span style="font-size: 10px; font-style: italic;">Figure 2</span>
 
 1. Using the File and Help Tabs
    * If you want to close the app, simply click on `File > Exit` with your mouse. To open the help window, click on
