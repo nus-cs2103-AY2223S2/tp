@@ -41,20 +41,16 @@ Let's dive in!
 
 * **Command**: A line of text that CLIpboard recognises as an action to execute.
 * **Path**: A line of text that describes a file location on a computer.
-
     * Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
 * **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`](#displaying-the-previous-page-you-were-at-back) commands).
 * Text formatted like `this` represents a program-related element. Depending on context, it can mean:
-
   1. A command that CLIpboard recognises
-
-    * Example: `add group t15-4` is a valid command you can execute.
-
+      - Example: `add group t15-4` is a valid command you can execute.
   2. A file path
   3. A keyboard key
   4. An element in the visual interface (See the [Visual Guide](#visual-guide) section for more details)
 * **">" (Forward Angle Bracket)**: Indicates a sequence of actions for you to take.
-      * Example: "Click on `File > Exit`" means you should click on `File`, then `Exit`.
+      - Example: "Click on `File > Exit`" means you should click on `File`, then `Exit`.
 * **Note**: Important information to be aware of.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -98,8 +94,6 @@ A caution looks like this.
    5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. `Lim Kim Choo`) should be back on the list.
    6. `exit` : Exits the app.
 3. Refer to the [commands list](#commands) below for a detailed description for each command.
-
----
 ### Visuals
 Before diving in, it might be useful to take a moment to understand some of CLIpboard's visual elements. It will make it an even more of a breeze to use CLIpboard effectively!
 <a name="figure2"></a>
@@ -132,9 +126,7 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
 9. Checking the CLIppy Indicator
    * The CLIppy Indicator can help you know whether you are typing in a command correctly.
    * When you enter a correct command, CLIppy will be happy. If you have a command failure, CLIppy will be sad.
-
 ### Navigation
-
 Navigating between pages is made effortless with CLIpboard's intuitive navigation commands.
 Simply choose from a selection of `select`, `back`, `session`, or `task` commands.
 
