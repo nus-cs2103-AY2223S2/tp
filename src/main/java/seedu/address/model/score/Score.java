@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
+//@@author astraxq
 /**
  * Represents a Score in the mathutoring.
  * Guarantees: immutable; fields are validated; details are present and not null;
@@ -60,6 +61,7 @@ public class Score {
         return this.scoreDate.getDate();
     }
 
+    //@@author QQH0828
     /**
      * Returns true if both scores have the same date.
      */

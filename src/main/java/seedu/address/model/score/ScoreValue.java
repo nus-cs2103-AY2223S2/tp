@@ -3,6 +3,7 @@ package seedu.address.model.score;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author astraxq
 /**
  * Represents a Score's value in the Score object.
  * Guarantees: immutable; is valid as declared in {@link #isValidScoreValue(String)}
