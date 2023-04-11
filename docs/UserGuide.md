@@ -90,9 +90,9 @@ A caution looks like this.
 Look through the visual guide before you get started. It will provide you with a clear and easy-to-follow overview
 of the basic elements and features of the product's interface, making it easier for you to navigate and use the
 product effectively.
-
 <a name="figure2"></a>
 <img src="./images/VisualGuide.png" width="650" height="529"/>
+<br>
 <span style="font-size: 10px; font-style: italic;">Figure 2</span>
 
 1. Using the File and Help Tabs
@@ -140,7 +140,8 @@ Simply use a combination of `select`, `back`, `session`, and `task` commands.
 If you need more information on how to use these commands, just refer to our handy navigation guide below (Figure 3).
 
 <a name="figure3"></a>
-<img src="./images/navigationguide.png" width="500" height="406"/>
+<img src="./images/navigationguide.png" width="650" height="530"/>
+<br>
 <span style="font-size: 8px; font-style: italic;">Figure 3</span>
 
 Here is an example workflow to help you better understand the Navigation Guide (Figure 3) better:
