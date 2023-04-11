@@ -21,6 +21,12 @@ import seedu.sprint.model.application.AlphabeticalComparator;
 import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 import seedu.sprint.testutil.InternshipBookBuilder;
 
+/**
+ * Test cases for ModelManager.
+ * Reused and Adapted from a past CS2103T project - PleaseHireUs
+ * at https://github.com/AY2223S1-CS2103T-W17-4/tp/blob/master/src/test/java/seedu/phu/model/ModelManagerTest.java
+ * with some minor modifications.
+ */
 public class ModelManagerTest {
 
     private ModelManager modelManager;
