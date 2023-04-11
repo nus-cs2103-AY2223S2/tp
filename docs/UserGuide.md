@@ -94,6 +94,7 @@ A caution looks like this.
    5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. `Lim Kim Choo`) should be back on the list.
    6. `exit` : Exits the app.
 3. Refer to the [commands list](#commands) below for a detailed description for each command.
+
 ### Visuals
 Before diving in, it might be useful to take a moment to understand some of CLIpboard's visual elements. It will make it an even more of a breeze to use CLIpboard effectively!
 <a name="figure2"></a>
@@ -126,6 +127,7 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
 9. Checking the CLIppy Indicator
    * The CLIppy Indicator can help you know whether you are typing in a command correctly.
    * When you enter a correct command, CLIppy will be happy. If you have a command failure, CLIppy will be sad.
+
 ### Navigation
 Navigating between pages is made effortless with CLIpboard's intuitive navigation commands.
 Simply choose from a selection of `select`, `back`, `session`, or `task` commands.
