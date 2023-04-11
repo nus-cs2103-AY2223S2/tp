@@ -41,7 +41,7 @@ Let's dive in!
 
 * **Command**: A line of text that CLIpboard recognises as an action to execute.
 * **Path**: A line of text that describes a file location on a computer.
-    * Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
+    - Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
 * **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`](#displaying-the-previous-page-you-were-at-back) commands).
 * Text formatted like `this` represents a program-related element. Depending on context, it can mean:
   1. A command that CLIpboard recognises
@@ -50,7 +50,7 @@ Let's dive in!
   3. A keyboard key
   4. An element in the visual interface (See the [Visual Guide](#visual-guide) section for more details)
 * **">" (Forward Angle Bracket)**: Indicates a sequence of actions for you to take.
-      - Example: "Click on `File > Exit`" means you should click on `File`, then `Exit`.
+    - Example: "Click on `File > Exit`" means you should click on `File`, then `Exit`.
 * **Note**: Important information to be aware of.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
