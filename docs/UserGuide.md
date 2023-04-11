@@ -6,10 +6,10 @@ title: User Guide
 ## Welcome
 <div>
   <p>CLIpboard is a user-friendly desktop application that helps educators manage their students' particulars.
+    <br>
 
-<br/>
 In this guide, we will walk you through the entire CLIpboard experience, whether you're a beginner learning to set up, or you're looking to take your skills to the next level, you're in the right place.</p>
-  <img src="./images/Ui.png" alt="image description" align="right" />
+  <img src="./images/clipboard1.png" alt="image description" align="right" />
 </div>
 
 
