@@ -3,15 +3,17 @@ layout: page
 title: User Guide
 ---
 
-## Introduction
+## Welcome
+<div>
+  <p>CLIpboard is a user-friendly desktop application that helps educators manage their students' particulars.
 
-CLIpboard is a desktop app that helps educators (like you!), especially those that tutor multiple classes, by managing their students’ particulars<strong> in an organised manner.</strong>
+<br/>
+In this guide, we will walk you through the entire CLIpboard experience, whether you're a beginner learning to set up, or you're looking to take your skills to the next level, you're in the right place.</p>
+  <img src="./images/Ui.png" alt="image description" align="right" />
+</div>
 
-CLIpboard is designed to work efficiently through typing keyword commands and also has a user-friendly interface with graphical elements. It can get your student management tasks done faster than traditional apps.
 
-CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard can work even faster.
-
-![image](./images/Ui.png)
+Let's dive in!
 ###### Figure 1
 
 --------------------------------------------------------------------------------------------------------------
@@ -649,16 +651,14 @@ Examples:
 - `sort id` will sort list of students alphanumerically according to student ID.
 
 ![image](./images/UiStudentSortName.png)
-###### Figure 7
 ![image](./images/UiStudentSortId.png)
-###### Figure 8
 
 [Back to list of commands](#commands)
 
 ### Displays a student's information: `select`
 
 ![image](./images/UiStudentView.png)
-###### Figure 9
+###### Figure 7
 
 Select a particular student and display his / her particulars.
 
@@ -729,7 +729,7 @@ photo will be displayed in the profile of student with student ID `A0123456X`
 ### Viewing a student's attendance throughout the course: `attendance`
 
 ![image](./images/UiStudentAttendanceView.png)
-###### Figure 10
+###### Figure 8
 
 Shows a summary of a student's attendance in the view pane.
 
@@ -746,7 +746,7 @@ attendance
 ## Session Page Commands
 
 ![image](./images/UiSessionPage.png)
-###### Figure 11
+###### Figure 9
 
 ### Adding a session: `add session`
 
@@ -837,7 +837,7 @@ Examples:
 
 ## Attendance Page Commands
 ![images](./images/UiAttendancePage.png)
-###### Figure 12
+###### Figure 10
 
 ### Marking selected students as present: `mark`
 
@@ -876,7 +876,7 @@ Examples:
 Displays the overall attendance of the session you are at in the command box. (Pictured below.)
 
 ![image](images/UiAttendance.png)
-###### Figure 13
+###### Figure 11
 
 Format:
 ```
@@ -889,7 +889,7 @@ attendance
 
 ## Task Page Commands
 ![image](./images/UiTaskPage.png)
-###### Figure 14
+###### Figure 12
 
 ### Adding a task: `add task`
 
@@ -978,7 +978,7 @@ Examples:
 
 ## Grades Page Commands
 ![images](./images/UiGradesPage.png)
-###### Figure 15
+###### Figure 13
 
 ### Assigning a grade to student: `assign`
 Assigns a grade to a student.
