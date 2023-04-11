@@ -35,27 +35,27 @@ Let's dive in!
 
 --------------------------------------------------------------------------------------------------------------
 ## Definitions
-* *Command*: A line of text that CLIpboard recognises as an action to execute.
-* *Path*: A line of text that describes a file location on a computer.
+* **Command**: A line of text that CLIpboard recognises as an action to execute.
+* **Path**: A line of text that describes a file location on a computer.
   * Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path that
   * Can be obtained by clicking
-* *Navigate*: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or `back` commands).
+* **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or `back` commands).
 * Text formatted like `this` represents a program-related element. Depending on context, it can mean:
   1. A command that CLIpboard recognises
     * Example: `add group t15-4` is a valid command you can execute.
   2. A file path
   3. A keyboard key
-* *Note*: Important information to be aware of.
+* **Note**: Important information to be aware of.
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
  A note looks like this.
 </div>
 
-* *Tip*: Useful information to help you enhance your skills with CLIpboard, will be shown like this:
+* **Tip**: Useful information to help you enhance your skills with CLIpboard, will be shown like this:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A tip looks like this.
 </div>
 
-* *Caution*: Critical information about how CLIpboard behaves. Disregarding these might cause CLIpboard to not behave as you would expect.
+* **Caution**: Critical information about how CLIpboard behaves. Disregarding these might cause CLIpboard to not behave as you would expect.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 A caution looks like this.
 </div>
