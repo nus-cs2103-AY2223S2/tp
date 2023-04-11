@@ -5,15 +5,17 @@ title: User Guide
 ## Welcome
 
 <div style="display: flex; align-items: center; padding-right: 30;">
-  <p>CLIpboard is a user-friendly desktop application that helps educators manage their students' particulars.
+  <pre>CLIpboard is a user-friendly desktop application that helps educators manage their students' particulars.
     <br>
-    ClIpboard is great for you if:
-    1. You have to manage multiple classes
-    2. You prefer typing
-    3. You dislike dealing with boring spreadsheets
+    <br>
+    ClIpboard is great for you if: <br>
+      1. You have to manage multiple classes
+      2. You prefer typing
+      3. You dislike dealing with boring spreadsheets
+    <br>
     <br>
 
-  In this guide, we will walk you through the entire CLIpboard experience, whether you're a beginner learning to set up, or you're looking to take your skills to the next level, you're in the right place.</p>
+  In this guide, we will walk you through the entire CLIpboard experience, whether you're a beginner learning to set up, or you're looking to take your skills to the next level, you're in the right place.</pre>
     <img src="./images/clipboard1.png" alt="image description" align="right" width="100" height="102" style="margin-left: 20;"/>
 </div>
 
@@ -61,7 +63,7 @@ A tip looks like this.
 A caution looks like this.
 </div>
 
-* See [Glossary](#glossary) section for more detailed and specific definitions.
+* See the [Glossary](#glossary) section for more detailed and specific definitions.
 
 --------------------------------------------------------------------------------------------------------------
 ## Quick Start
