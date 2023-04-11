@@ -5,11 +5,15 @@ plugins {
     id 'application'
     id 'jacoco'
 }
+run {
+    enableAssertions = true
+}
 
 mainClassName = 'seedu.address.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
+
 
 repositories {
     mavenCentral()
@@ -41,6 +45,7 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
+    testImplementation 'junit:junit:4.13.1'
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
@@ -66,7 +71,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'PowerConnect.jar'
 }
 
 defaultTasks 'clean', 'test'

@@ -1,0 +1,26 @@
+@startuml
+start
+:Users keys in the student delete command;
+
+if () then ([User keys in a valid command format])
+    :Retrieve student from UniqueStudentList with student class and index number;
+    if () then ([Student can be found in the list])
+        :Retrieve parent of deleted student;
+        if () then ([Parent of deleted student can be found])
+            :Delete student from the list;
+            :Update parent to unbind deleted student from parent;
+        else ([else])
+            :Display parent not found message;
+        stop
+        endif
+    else ([else])
+        :Display student not found message;
+    stop
+    endif
+else ([else])
+    :Display invalid command format msg;
+stop
+endif
+:Display student delete success message;
+stop
+@enduml

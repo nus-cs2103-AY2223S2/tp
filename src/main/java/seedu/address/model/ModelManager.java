@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,33 +12,79 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Class;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PcClass;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.ReadOnlyPcClass;
+import seedu.address.model.person.parent.Parent;
+import seedu.address.model.person.parent.Parents;
+import seedu.address.model.person.parent.ReadOnlyParents;
+import seedu.address.model.person.student.IndexNumber;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.UniqueStudentList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the PowerConnect data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private Parents parents;
+    private final PcClass pcClass;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+
+    private FilteredList<Student> filteredStudents;
+
+    private FilteredList<Parent> filteredParents;
+
+    /**
+     * Initializes a ModelManager with the given PowerConnect and userPrefs.
+     */
+    public ModelManager(ReadOnlyPcClass readOnlyPcClass, ReadOnlyParents readOnlyParents, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(readOnlyParents, readOnlyPcClass, userPrefs);
+
+        logger.fine("Initializing with classes: " + readOnlyPcClass
+                + " and parents: " + readOnlyParents
+                + " and user prefs " + userPrefs);
+
+
+        this.pcClass = new PcClass(readOnlyPcClass);
+        this.parents = new Parents(readOnlyParents);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
+        filteredParents = new FilteredList<>(this.parents.getParentList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given PowerConnect and userPrefs.
+     */
+    public ModelManager(ReadOnlyPcClass readOnlyPcClass, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(readOnlyPcClass, userPrefs);
+        logger.fine("Initializing with classes: " + readOnlyPcClass
+                + " and user prefs " + userPrefs);
+        this.pcClass = new PcClass(readOnlyPcClass);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
+    }
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyParents readOnlyParents, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(readOnlyParents, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("parents: " + readOnlyParents
+                + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.pcClass = null;
+        this.parents = new Parents(readOnlyParents);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredParents = new FilteredList<>(this.parents.getParentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new PcClass(), new Parents(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -64,87 +111,243 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+    /**
+     * Returns the user prefs' pcclass file path.
+     */
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPcClassFilePath() {
+        return userPrefs.getPcClassFilePath();
     }
 
+    /**
+     * Replaces parent data with the data in {@code parent}.
+     *
+     * @param readOnlyParents
+     */
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setParents(ReadOnlyParents readOnlyParents) {
+        this.parents.resetData(readOnlyParents);
     }
 
-    //=========== AddressBook ================================================================================
 
+    /**
+     * Returns the PCClass
+     */
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyPcClass getPcClass() {
+        return pcClass;
     }
 
+    /**
+     * Returns the Parents
+     */
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyParents getParents() {
+        return parents;
     }
 
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in the PCClass.
+     *
+     * @param student must not be null.
+     * @return true if a student with the same identity as {@code student} exists in the PCClass.
+     */
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return Class.getAllStudents().contains(student);
     }
 
+    /**
+     * Returns student with the same index number and Class as {@code student} exists in the PCClass.
+     *
+     * @param indexNumber must not be null.
+     * @param studentClass must not be null.
+     * @return stuent with the same index number and Class as {@code student} exists in the PCClass.
+     */
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public Student getStudent(IndexNumber indexNumber, Class studentClass) {
+        requireAllNonNull(indexNumber, studentClass);
+        UniqueStudentList students = Class.getAllStudents();
+
+        for (Student student : students) {
+            IndexNumber currStudentIndexNumber = student.getIndexNumber();
+            Class currStudentClass = student.getStudentClass();
+
+            boolean isSameIndexNumber = currStudentIndexNumber.equals(indexNumber);
+            boolean isSameStudentClass = currStudentClass.equals(studentClass);
+
+            if (isSameIndexNumber && isSameStudentClass) {
+                return student;
+            }
+        }
+        return null;
     }
 
+    /**
+     * Returns true if a parent with the same identity as {@code parent} exists in the address book.
+     *
+     * @param parent must not be null.
+     * @return true if a parent with the same identity as {@code parent} exists in the address book.
+     */
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasParent(Parent parent) {
+        requireNonNull(parent);
+        return parents.getParentList().contains(parent);
     }
 
+    /**
+     * Returns true if a parent with the same identity as {@code parent} exists in the PowerConnect.
+     *
+     * @param name must not be null.
+     * @param phone must not be null.
+     * @return true if a parent with the same identity as {@code parent} exists in the PowerConnect.
+     */
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public Parent getParent(Name name, Phone phone) {
+        requireAllNonNull(name, phone);
+        ObservableList<Parent> parentList = parents.getParentList();
+        for (Parent parent : parentList) {
+            Name currParentName = parent.getName();
+            Phone currParentPhoneNumber = parent.getPhone();
 
-        addressBook.setPerson(target, editedPerson);
+            boolean isSameName = currParentName.equals(name);
+            boolean isSamePhoneNumber = currParentPhoneNumber.equals(phone);
+
+            if (isSameName && isSamePhoneNumber) {
+                return parent;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Deletes the given student.
+     * The person must exist in the address book.
+     *
+     * @param target
+     */
+    @Override
+    public void deleteStudent(Student target) {
+        for (Class c : pcClass.getClassList()) {
+            if (c.isSameClass(target.getStudentClass())) {
+                c.removeStudent(target);
+            }
+        }
+    }
+
+    /**
+     * Deletes the given parent.
+     *
+     * @param parent must exist in the address book.
+     */
+    @Override
+    public void deleteParent(Parent parent) {
+        parents.removeParent(parent);
+    }
+
+    /**
+     * Adds the given student.
+     * {@code student} must not already exist in the address book.
+     *
+     * @param student
+     */
+    @Override
+    public void addStudent(Student student, Class c) {
+        c.addStudent(student);
+        pcClass.addClass(c);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    /**
+     * Adds the given parent.
+     *
+     * @param parent must not already exist in the address book.
+     */
+    @Override
+    public void addParent(Parent parent) {
+        parents.addParent(parent);
+    }
+
+    /**
+     * Replaces the given student {@code target} with {@code editedStudent}.
+     * {@code target} must exist in the PCClass.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the pcclass.
+     *
+     * @param target        must exist in the address book.
+     * @param editedStudent must not be the same as another existing student in the address book.
+     */
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+        Class cTarget = Class.of(target.getStudentClass().getClassName());
+        cTarget.removeStudent(target);
+        Class cEdit = Class.of(editedStudent.getStudentClass().getClassName());
+        cEdit.addStudent(editedStudent);
+    }
+
+
+
+    /**
+     * Replaces the given parent {@code target} with {@code editedParent}.
+     * @param target must exist in the address book.
+     * @param editedParent must not be the same as another existing parent in the address book.
+     */
+    @Override
+    public void setParent(Parent target, Parent editedParent) {
+        requireAllNonNull(target, editedParent);
+        parents.setParent(target, editedParent);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public ObservableList<Parent> getFilteredParentList() {
+        return filteredParents;
+    }
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
+        filteredStudents.setPredicate(predicate);
+    }
+    @Override
+    public void updateFilteredStudentListFind(Predicate<Student> predicate, Class sc) {
+        requireNonNull(predicate);
+        filteredStudents = new FilteredList<>(sc.getStudents().asUnmodifiableObservableList());
+        filteredStudents.setPredicate(predicate);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
+    public void updateFilteredParentList(Predicate<Parent> predicate) {
+        requireNonNull(predicate);
+        filteredParents.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+        ModelManager that = (ModelManager) o;
+        return Objects.equals(parents, that.parents)
+                && Objects.equals(pcClass, that.pcClass)
+                && Objects.equals(userPrefs, that.userPrefs)
+                && Objects.equals(filteredStudents, that.filteredStudents)
+                && Objects.equals(filteredParents, that.filteredParents);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(parents, pcClass, userPrefs, filteredStudents, filteredParents);
+    }
 }

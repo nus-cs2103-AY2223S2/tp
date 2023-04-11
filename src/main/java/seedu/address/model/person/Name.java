@@ -35,9 +35,21 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
+        if (isDefaultName(test)) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given string is the default string given when a name isn't given by user.
+     *
+     * @param test String value to test.
+     * @return Boolean value true if the string given is the default string by the system.
+     */
+    public static boolean isDefaultName(String test) {
+        return test.equals("Insert new name here!");
+    }
 
     @Override
     public String toString() {

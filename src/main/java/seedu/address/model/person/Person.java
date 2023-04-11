@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.parent.Parent;
+import seedu.address.model.person.student.IndexNumber;
+import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -14,16 +17,30 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    protected Phone phone;
 
     // Data fields
     private final Address address;
+    private final Comment comment;
+    private final Email email;
+    private final Name name;
     private final Set<Tag> tags = new HashSet<>();
+    private Class sc;
+    private IndexNumber indexNumber;
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Comment comment) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.comment = comment;
+    }
     /**
      * Every field must be present and not null.
      */
@@ -34,6 +51,22 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.comment = new Comment();
+    }
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Class sc,
+                  IndexNumber indexNumber) {
+        requireAllNonNull(name, phone, email, address, tags, sc, indexNumber);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.comment = new Comment();
+        this.sc = sc;
+        this.indexNumber = indexNumber;
     }
 
     public Name getName() {
@@ -50,6 +83,16 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+    public Class getStudentClass() {
+        return sc;
+    }
+    public IndexNumber getIndexNumber() {
+        return indexNumber;
     }
 
     /**
@@ -69,6 +112,19 @@ public class Person {
             return true;
         }
 
+        if (otherPerson instanceof Student) {
+            return otherPerson != null
+                    && otherPerson.getStudentClass().equals(getStudentClass())
+                    && otherPerson.getIndexNumber().equals(getIndexNumber());
+        }
+
+        if (otherPerson instanceof Parent) {
+            return otherPerson != null
+                    && otherPerson.getName().equals(getName())
+                    && otherPerson.getPhone().equals(getPhone());
+        }
+
+        //Need to rethink what constitutes same student
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
     }
@@ -119,5 +175,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }

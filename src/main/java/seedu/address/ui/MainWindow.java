@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,6 +17,15 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.exceptions.DuplicateParentException;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.DuplicatePhoneException;
+import seedu.address.model.person.exceptions.DuplicateStudentException;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.UniqueStudentList;
+import seedu.address.ui.parent.ParentListPanel;
+import seedu.address.ui.student.StudentListPanel;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +42,9 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+
+    private StudentListPanel studentListPanel;
+    private ParentListPanel parentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,6 +57,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane personListPanelPlaceholder;
 
+    @FXML
+    private StackPane studentListPanelPlaceholder;
+
+    @FXML
+    private StackPane parentListPanelPlaceholder;
     @FXML
     private StackPane resultDisplayPlaceholder;
 
@@ -110,13 +128,31 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        UniqueStudentList list = new UniqueStudentList();
+        for (int i = 0; i < logic.getPcClass().getClassList().size(); i++) {
+            UniqueStudentList curr = logic.getPcClass().getClassList().get(i).getStudents();
+            Iterator<Student> it = curr.iterator();
+            while (it.hasNext()) {
+                list.add(it.next());
+            }
+        }
+        try {
+            studentListPanel = new StudentListPanel(list.asUnmodifiableObservableList());
+            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        } catch (IndexOutOfBoundsException id) {
+            studentListPanel = new StudentListPanel(null);
+            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        }
+        parentListPanel = new ParentListPanel(logic.getFilteredParentList());
+        parentListPanelPlaceholder.getChildren().add(parentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getPcClassFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -163,10 +199,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -185,12 +217,44 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            UniqueStudentList list = new UniqueStudentList();
+            if (commandResult.isFind()) {
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            } else {
 
+                for (int i = 0; i < logic.getPcClass().getClassList().size(); i++) {
+                    UniqueStudentList curr = logic.getPcClass().getClassList().get(i).getStudents();
+                    Iterator<Student> it = curr.iterator();
+                    while (it.hasNext()) {
+                        list.add(it.next());
+                    }
+                }
+
+                studentListPanel = new StudentListPanel(list.asUnmodifiableObservableList());
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } catch (DuplicatePersonException d) {
+            logger.info("Duplicate person: " + commandText);
+            resultDisplay.setFeedbackToUser(d.getMessage());
+            throw d;
+        } catch (DuplicatePhoneException dp) {
+            logger.info("Duplicate phone number: " + commandText);
+            resultDisplay.setFeedbackToUser(dp.getMessage());
+            throw dp;
+        } catch (DuplicateStudentException dse) {
+            logger.info("Duplicate student: " + commandText);
+            resultDisplay.setFeedbackToUser(dse.getMessage());
+            throw dse;
+        } catch (DuplicateParentException dpe) {
+            logger.info("Duplicate parent: " + commandText);
+            resultDisplay.setFeedbackToUser(dpe.getMessage());
+            throw dpe;
         }
     }
 }

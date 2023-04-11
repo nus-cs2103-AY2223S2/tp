@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":StudentGradeCommand" as StudentGradeCommand LOGIC_COLOR
+participant "editedStudent:Student" as editedStudent LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":Test" as Test LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> ParserUtil : parseTest("in/25 test/CA1 score/75", 75")
+activate ParserUtil
+
+create Test
+ParserUtil -> Test: new Test("CA1", 75)
+activate Test
+Test --> ParserUtil: test
+deactivate Test
+
+<-- ParserUtil : test
+deactivate ParserUtil
+-> StudentGradeCommand
+
+create StudentGradeCommand
+activate StudentGradeCommand
+
+create editedStudent
+StudentGradeCommand -> editedStudent
+activate editedStudent
+editedStudent --> StudentGradeCommand : editedStudent
+deactivate editedStudent
+
+StudentGradeCommand --> Model : setStudent
+activate Model
+Model --> StudentGradeCommand
+deactivate Model
+
+StudentGradeCommand --> Model: updateFilteredStudentList
+activate Model
+Model --> StudentGradeCommand
+deactivate Model
+
+<-- StudentGradeCommand  : commandResult
+deactivate StudentGradeCommand
+
+@enduml

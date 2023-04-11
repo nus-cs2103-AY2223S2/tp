@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<HBox id="cardPane" fx:id="cardPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER">
+        <padding>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+        </padding>
+        <children>
+            <Circle fx:id="circle" radius="70" stroke="BLACK" strokeType="INSIDE" />
+        </children>
+    </VBox>
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="105"  GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="id" style="-fx-text-fill: black;" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+                </Label>
+                <Label fx:id="name" style="-fx-text-fill: black;" text="\$first">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font></Label>
+                <Text text="Index:" />
+                <Label fx:id="index" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$index">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font></Label>
+            </HBox>
+
+            <HBox>
+                <Text text="Class:    " />
+                <Label fx:id="className" lineSpacing="100.0" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$class">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font></Label>
+                <Text text="    " />
+            </HBox>
+            <HBox>
+                <Text text="Age:    " />
+                <Label fx:id="age" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$age" />
+            </HBox>
+            <HBox>
+                <Text text="Attendance:    " />
+                <Label fx:id="attendance" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$attendance" />
+            </HBox>
+            <HBox>
+                <Text text="Gender:   " />
+                <Label fx:id="sex" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$sex">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font></Label>
+            </HBox>
+            <HBox>
+                <Text text="Email:    " />
+                <Label fx:id="email" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$email" />
+            </HBox>
+            <HBox>
+                <Text text="NOK name:    " />
+                <Label fx:id="parentName" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$parentName" />
+            </HBox>
+            <HBox>
+                <Text text="NOK phone number:    " />
+                <Label fx:id="parentPhoneNumber" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$parentPhoneNumber" />
+            </HBox>
+            <HBox>
+                <Text text="Relationship:    " />
+                <Label fx:id="rls" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$rls" />
+            </HBox>
+            <HBox>
+                <Text text="Phone:    " />
+                <Label fx:id="phone" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$phone" />
+            </HBox>
+            <HBox>
+                <Text text="Residential Address:    " />
+                <Label fx:id="address" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$address" />
+            </HBox>
+            <HBox>
+                <Text text="CCA:    " />
+                <Label fx:id="cca" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$cca" />
+            </HBox>
+            <HBox>
+                <Text text="Comments:    " />
+                <Label fx:id="comment" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$cca" />
+            </HBox>
+            <HBox>
+                <Text text="Tests:    " />
+            <GridPane fx:id="tests" prefHeight="11.0" prefWidth="285.0" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                <Text text="Homework:    " />
+                <GridPane fx:id="homework" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            </HBox>
+         <padding>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+         </padding>
+        </VBox>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+</HBox>

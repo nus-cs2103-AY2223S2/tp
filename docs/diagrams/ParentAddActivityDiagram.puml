@@ -1,0 +1,35 @@
+@startuml
+start
+:User launches the application;
+
+if () then ([User executes the parent add command])
+    if () then ([found phone number in \nexisting parents/NOKs])
+        : Output message = \n Error message indicating\n duplicate parent creation;
+    else if () then ([invalid phone number \n/ name / inputs])
+        : Output message = \n Invalid command format \n + Example of Parent Add Command;
+    else ([else])
+        : Retrieves parent/NOK information \n from user's input;
+        : Creates new parent/NOK with retrieved information;
+        : Automatically saves all changes into storage files \n (parents.json);
+        : Output message = \n Parent/NOK has been successfully;
+    endif
+else ([User executes student add/edit command])
+    if () then ([valid parent/NOK input given])
+        if () then ([parent/NOK info found \n in existing parents])
+            : Retrieves the parent/NOK \n and binds student and parent/NOK;
+            : Automatically saves all changes into storage file \n (parents.json and pcclass.json);
+            : Output message = \n Student Add Command's output message;
+        else ([else])
+            : Retrieves parent/NOK information from user's input;
+            : Creates new parent/NOK with retrieved information;
+            : Binds student and parent/NOK;
+            : Automatically saves all changes into storage file \n (parents.json and pcclass.json);
+            : Output message = \n Student Add Command's output message;
+        endif
+    else ([else)
+        : Output message = \n Invalid command format \n + Example of Student Add Command;
+    endif
+endif
+    :PowerConnect displays output message to User;
+stop
+@enduml

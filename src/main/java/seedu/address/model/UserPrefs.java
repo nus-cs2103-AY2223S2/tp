@@ -14,7 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path pcClassFilePath = Paths.get("data" , "pcclass.json");
+    private Path parentsFilePath = Paths.get("data" , "parents.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +36,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setParentsFilePath(newUserPrefs.getParentsFilePath());
+        setPcClassFilePath(newUserPrefs.getPcClassFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,40 +49,73 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    /**
+     * Returns the PCClass file path.
+     * @return the PCClass file path.
+     */
+    public Path getPcClassFilePath() {
+        return pcClassFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    /**
+     * Returns the parents file path.
+     * @return the parents file path.
+     */
+    public Path getParentsFilePath() {
+        return parentsFilePath;
     }
 
+    /**
+     * Sets the PCClass file path.
+     * @param pcClassFilePath the new PCClass file path.
+     */
+    public void setPcClassFilePath(Path pcClassFilePath) {
+        requireNonNull(pcClassFilePath);
+        this.pcClassFilePath = pcClassFilePath;
+    }
+
+    /**
+     * Sets the parents file path.
+     * @param parentsFilePath the new parents file path.
+     */
+    public void setParentsFilePath(Path parentsFilePath) {
+        requireNonNull(parentsFilePath);
+        this.parentsFilePath = parentsFilePath;
+    }
+
+    /**
+     * Returns true if both user prefs have the same data.
+     * @param o the other object to compare with.
+     * @return true if both user prefs have the same data.
+     */
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (!(other instanceof UserPrefs)) { //this handles null as well.
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
-        UserPrefs o = (UserPrefs) other;
-
-        return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+        UserPrefs userPrefs = (UserPrefs) o;
+        return Objects.equals(guiSettings, userPrefs.guiSettings)
+                && Objects.equals(pcClassFilePath, userPrefs.pcClassFilePath)
+                && Objects.equals(parentsFilePath, userPrefs.parentsFilePath);
     }
 
+    /**
+     * Returns the hashcode of the user prefs.
+     * @return the hashcode of the user prefs.
+     */
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, pcClassFilePath, parentsFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + pcClassFilePath + " " + parentsFilePath);
         return sb.toString();
     }
 

@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package Storage{
+
+package "UserPrefs Storage" #F4F6F6{
+Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+Class JsonUserPrefsStorage
+}
+
+Class "<<interface>>\nStorage" as Storage
+Class StorageManager
+
+package "Academics Storage" #F4F6F6{
+Class JsonAdaptedAssignment
+Class JsonAdaptedAttendance
+Class JsonAdaptedHomework
+Class JsonAdaptedTest
+
+}
+
+package "Parents Storage" #F4F6F6{
+Class "<<interface>>\nParentStorage" as ParentStorage
+Class JsonParentsStorage
+Class JsonSerializableParent
+}
+package "Class Storage" #F4F6F6{
+Class "<<interface>>\nPcClassStorage" as PcClassStorage
+Class JsonAdaptedClass
+Class JsonPcClassStorage
+Class JsonSerializablePcClass
+}
+package "Person Storage" #F4F6F6{
+Class JsonAdaptedParent
+Class JsonAdaptedStudent
+Class JsonAdaptedTag
+}
+
+StorageManager .left.|> Storage
+ParentStorage <-up- StorageManager
+PcClassStorage <-up- StorageManager
+UserPrefsStorage <-up- StorageManager
+JsonUserPrefsStorage .up.|> UserPrefsStorage
+JsonParentsStorage .up.|> ParentStorage
+JsonPcClassStorage .up.|> PcClassStorage
+JsonParentsStorage .down.> JsonSerializableParent
+JsonPcClassStorage .down.> JsonSerializablePcClass
+JsonSerializablePcClass -down-> "*" JsonAdaptedClass
+JsonAdaptedClass -down-> "*" JsonAdaptedStudent
+JsonSerializableParent -down-> "*" JsonAdaptedParent
+JsonAdaptedStudent -down-> "*" JsonAdaptedTag
+JsonAdaptedStudent -down-> "*" JsonAdaptedAttendance
+JsonAdaptedStudent -down-> "*" JsonAdaptedAssignment
+JsonAdaptedAssignment -down-> "*" JsonAdaptedHomework
+JsonAdaptedAssignment -down-> "*" JsonAdaptedTest
+
+
+
+@enduml

@@ -5,55 +5,48 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Pang Chin Kiat, Vincent
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/securespider.png" width="200px">
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/securespider)]
+[[portfolio](team/securespider.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Scheduling and tracking
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+### Ma Yuanxin
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="./images/mayuanxin1234.png" width="200px">
+
+[[github](https://github.com/mayuanxin1234)]
+[[portfolio](team/mayuanxin1234.md)]
+
+*  Role: Developer
+*  Responsibilities: Deliverables and deadlines, and Integration
+
+
+### Lim Diat Bbin
+
+<img src="./images/diatbbin.png" width="200px">
+
+[[github](https://github.com/Diatbbin)]
+[[portfolio](team/diatbbin.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Finding bugs and Documentation
 
-### James Doe
+### Yeo Wen Jue
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mrtwit99.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/MrTwit99)]
+[[portfolio](team/mrtwit99.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation
