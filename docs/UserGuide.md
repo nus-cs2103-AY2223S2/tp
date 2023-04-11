@@ -10,7 +10,7 @@ title: User Guide
 </div>
 
 ClIpboard is great for you if:
-1. You have to manage multiple classes
+1. You have to manage lots of students and classes
 2. You prefer typing
 3. You dislike dealing with boring spreadsheets
 
@@ -93,8 +93,8 @@ of the basic elements and features of the product's interface, making it easier 
 product effectively.
 
 <a name="figure2"></a>
-<img src="./images/VisualGuide.png" width="1280" height="1040"/>
-<span style="font-size: 20px; font-style: italic;">Figure 2</span>
+<img src="./images/VisualGuide.png" width="500" height="406"/>
+<span style="font-size: 8px; font-style: italic;">Figure 2</span>
 
 1. Using the File and Help Tabs
    * If you want to close the app, simply click on `File > Exit` with your mouse. To open the help window, click on
