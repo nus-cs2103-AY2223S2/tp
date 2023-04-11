@@ -42,19 +42,19 @@ Let's dive in!
 * **Command**: A line of text that CLIpboard recognises as an action to execute.
 * **Path**: A line of text that describes a file location on a computer.
 
-  * Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
+    * Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
 * **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`](#displaying-the-previous-page-you-were-at-back) commands).
 * Text formatted like `this` represents a program-related element. Depending on context, it can mean:
 
   1. A command that CLIpboard recognises
 
-  * Example: `add group t15-4` is a valid command you can execute.
+    * Example: `add group t15-4` is a valid command you can execute.
 
   2. A file path
   3. A keyboard key
   4. An element in the visual interface (See the [Visual Guide](#visual-guide) section for more details)
 * **">" (Forward Angle Bracket)**: Indicates a sequence of actions for you to take.
-  * Example: "Click on `File > Exit`" means you should click on `File`, then `Exit`.
+      * Example: "Click on `File > Exit`" means you should click on `File`, then `Exit`.
 * **Note**: Important information to be aware of.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -82,15 +82,15 @@ A caution looks like this.
 2. Download the latest `clipboard.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your CLIpboard.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
-   `<br>`e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
-   `<br>`A GUI similar to [`<i>`Figure 1`</i>`](#introduction) should appear in a few seconds.
-   `<br><i>`Note how the app contains some sample data.`</i>`
+   <br>e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
+   <br>A GUI similar to [*Figure 1(TO FIX)*](#to fix) should appear in a few seconds.
+   <br>*Note how the app contains some sample data.*
 
 ### Quick Start
 1. When you first launch CLIpboard, you will be brought to the `Course page`.
 2. Type your command in the `command box` and press Enter/Return to execute it.
-   `<br>`e.g. typing `help` and pressing the Enter/Return key will open the help window.
-   `<br>`Some example commands you can try:
+   <br>e.g. typing `help` and pressing the Enter/Return key will open the help window.
+   <br>Some example commands you can try:
    1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
    2. `select 1` : Selects the first group displayed (eg. `T15`) on the `Group Page`. You will be redirected to the `Student Page`.
    3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list on the `Student Page`.
@@ -112,7 +112,7 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
    * To get help using CLIpboard, click on `Help > Help`.
 2. Using the `Page Tabs`
    * The `Page Tabs` give you a quick summary of the page you're on.
-   * Refer to the [`<i>`Figure 3`</i>`](#navigation) below for the Navigation Guide to the different pages in CLIpboard.
+   * Refer to the [*Figure 3*](#navigation) below for the Navigation Guide to the different pages in CLIpboard.
 3. Using the `Navigation Bar`
    * You can see the courses and groups you have selected and the page you are currently on in the Navigation Bar.
 4. Using the `Left Pane`
@@ -228,19 +228,19 @@ List of commands:
 
 <div markdown="block" class="alert alert-info">
 
-**ℹ️ Notes about the command format:**`<br>`
+**ℹ️ Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` and angle brackets `<>` are the parameters to be supplied by the user.`<br>`
+* Words in `UPPER_CASE` and angle brackets `<>` are the parameters to be supplied by the user.<br>
   e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
-* Items in square brackets are optional.`<br>`
+* Items in square brackets are optional.<br>
   e.g `[n/<NAME>] [p/<PHONE_NUMBER>]` can be used as `n/John Doe p/88886886` or as `n/John Doe`.
-* Items with `…` after them can be used multiple times.`<br>`
+* Items with `…` after them can be used multiple times.<br>
   e.g. `mark <INDEX>…` can be used as `mark 1`, `mark 1,2,3` etc.
-* Parameters can be in any order.`<br>`
+* Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.`<br>`
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `back`, `exit` and `clear`) will be ignored.`<br>`
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `back`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
