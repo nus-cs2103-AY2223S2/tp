@@ -140,8 +140,9 @@ Moving between pages is easy with our navigation tools.
 Simply use a combination of `select`, `back`, `session`, and `task` commands.
 If you need more information on how to use these commands, just refer to our handy navigation guide below (Figure 3).
 
-![image](./images/navigation.png)
-###### Figure 3
+<a name="figure3"></a>
+<img src="./images/navigationguide.png" width="500" height="406"/>
+<span style="font-size: 8px; font-style: italic;">Figure 3</span>
 
 Here is an example workflow to help you better understand the Navigation Guide (Figure 3) better:
 1. Start at the Course Page where you see two modules displayed.
