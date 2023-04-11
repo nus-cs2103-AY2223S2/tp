@@ -138,13 +138,13 @@ Here's a handy navigation map to get around CLIpboard.
 <br>
 <span style="font-size: 13px; font-style: italic;">`Figure 3
 
-Here's an example workflow that might help you better understand the figure above:<br>
+Here's a hypothetical workflow that might help you better understand the figure above:<br>
 *Say you wish to assign the grades for a task in one of your tutorial groups.*
 1. You'll first start on the `Course Page`.
-2. Enter the command `select 1` to select the *first* course. You'll then be brought to the `Group Page` to view the groups of your selected course.
-3. Then, enter the command `task 2`, and you'll be brought to the `Task Page` of the selected group. Here, you can choose from the tasks that are available, and subsequently give the grades for your individual students.
+2. Enter the command `select 1` to select the *first* course in the course list. You'll then be brought to the `Group Page` to view the groups of your selected course.
+3. You see now that the group you wish to select is the *second* group in the list, so you enter the command `task 2`, and you'll be brought to the `Task Page` of your selected group. Here, you can choose from the tasks that are available, and subsequently enter the grades for your individual students.
 
-*Now, you realize you've made a mistake, and instead you wish to mark the attendance for another group.*
+*Now, you wish to work on something else, like marking the attendance for another group.*
 4. From where we left off, simply enter the command `back` and you'll be brought back to the `Group Page`.
 5. From here, you can use `session 4` to view the `Session Page` of the fourth group, and you can then mark their attendance for a selected session.
 
