@@ -1,7 +1,8 @@
 ---
 layout: page
 title: MediMate's User Guide
----
+--- 
+## Introduction
 MediMate (MM) is a cross-platform desktop application designed to help medical professionals efficiently manage patient data.
 Whether you currently use paper records, electronic records, or other applications to store patient information,
 MM provides an effective solution for updating, accessing, and adding new patient details easily.
@@ -16,8 +17,10 @@ allowing users to access their patient data from any device they choose.
 By using MM, medical professionals can manage patient data more efficiently and effectively, which can lead to better patient outcomes.
 
 ## Table of Contents
-
-- [Quick Start](#quick-start)
+- [Introduction](#introduction) 
+  - [How to use the User Guide](#how-to-use-the-user-guide) 
+  - [Quick Start](#quick-start) 
+  - [Glossary](#glossary)
 - [Features](#features)
   - [Help](#help)
   - [Add a patient](#add-a-patient--add)
@@ -44,7 +47,22 @@ By using MM, medical professionals can manage patient data more efficiently and 
 - [Command Summary](#command-summary)
 
 ---
-## Quick Start
+### How to use the User Guide 
+How to Use the User Guide
+
+This user guide is intended to provide you with clear and concise instructions on how to use MediMate (MM) to manage patient data. To make the most out of this guide, follow these tips:
+
+1. Start with the table of contents: The table of contents provides an overview of the guide's sections and subsections. This will help you locate the information you need quickly and easily. 
+2. Identify your specific needs: Identify the task you need to complete in MM and locate the corresponding section of the guide.
+For example, if you need to add a new patient, find the "Add a patient" section. 
+3. Read the section carefully: Read the section carefully and ensure that you understand the instructions before proceeding. Take note of any important warnings, tips, or notes. 
+4. Follow the step-by-step instructions: Follow the step-by-step instructions provided in the section. Use the visual and/or textual cues to indicate which graphics go with which set of instructions. 
+5. Use the glossary: If you encounter unfamiliar terms or phrases, consult the glossary at the end of the guide for their definitions. 
+6. Use the hyperlinks: The guide contains hyperlinks that can take you to other relevant sections of the guide or external resources. Use them when necessary or expected.
+
+By following these tips, you can effectively use this guide to manage patient data in MediMate. If you encounter any issues or have any questions, please consult the troubleshooting section or contact the MediMate support team for assistance.
+
+###  Quick Start
 
 1. To check if you have Java `11` or above installed on your computer, open a command terminal and type the command `java -version`.
    If Java is installed, the terminal will display the version number.
@@ -72,7 +90,29 @@ By using MM, medical professionals can manage patient data more efficiently and 
    * `delete 3` : Deletes the 3rd patient shown in the current list.
    * `exit` : Exits the app.
 
-* Refer to the [Features](#features) below for details of each command.
+* Refer to the [Features](#features) below for details of each command. 
+
+### Glossary 
+* Add - A command or button function that allows users to add a patient to the MediMate application.
+* Alphabetical order - A way of organizing data or information in order based on the letters of the alphabet.
+* Appointment - A scheduled meeting between a patient and a medical professional for medical evaluation, diagnosis, or treatment.
+* CLI - Stands for Command-Line Interface, a text-based interface used to interact with the computer or software.
+* Clear - A command that clears all entries in the MediMate application.
+* Delete - A command that allows users to remove a patient or medical file from the MediMate application.
+* Exit - A command that closes the MediMate application.
+* FAQ - Stands for Frequently Asked Questions, a section that provides answers to common questions about the MediMate application.
+* Find - A command that allows users to locate a patient by name in the MediMate application. 
+* Help - A command that provides assistance or guidance on how to use the MediMate application. 
+* List - A command that displays all patients in the MediMate application. 
+* Mark - A command that allows users to mark an appointment with a patient in the MediMate application. 
+* Medical certificate - A legal document issued by a medical professional to certify that a patient has been medically evaluated, diagnosed, or treated. 
+* Medical file - A record of a patient's medical history, including past illnesses, treatments, and diagnoses. 
+* Quick Start - A section that provides a brief overview of the MediMate application and its key features. 
+* Save - A command that allows users to save changes made to patient information or medical files in the MediMate application. 
+* Search - A command that allows users to search for patients with appointments on a specified date in the MediMate application. 
+* Show - A command that displays a patient's information in the MediMate application. 
+* Tag - A label or marker used to identify and organize patient data in MediMate. 
+* Upload - A command that allows users to upload a patient's medical file to the MediMate application.
 
 ---
 ## Features
@@ -122,17 +162,10 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITI
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` This contains strictly required information to identify a patient.
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison 
-    p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
-* `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01`
-
-1. The first example contains strictly required information to identify a patient.
-2. The second example contains more information relevant to that patient.
-3. The third example demonstrates how using an invalid prefix can cause the add command to fail or produce unexpected results.
-   This will cause MediMate to assume that `A/John street, block 123, #01-01` is part of the email address, rather than the address.
-   This will cause the add command not recognized correctly.
-   To avoid this issue, make sure that you use the correct prefixes and follow the correct format when using the add command.
+    p/1234567 ag/12 m/cough nric/S9935010Y t/criminal` This contains more information relevant to that patient.
+* `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01` This demonstrates how using an invalid prefix can cause the add command to fail or produce unexpected results.
 
 Adds a patient to MediMate through button method:
 
@@ -164,7 +197,7 @@ Shows a list of all patients in MediMate by their name in alphabetical order.
 </div>
 
 1. As shown in the screenshot below, once `list_name` command is entered,
-   **Zoe** moved from the first index to the last index, as Zoe is the last according to alphabetical order.
+   **Zoe** moved from the first index to the third index, as Zack is arranged according to alphabetical order.
 
 ### Show a patient's information: `show`
 
@@ -182,16 +215,14 @@ E.g. `show 1` will display the patient information at the right panel
 
 Edits an existing patient in the patient list:
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ag/AGE] [m/MEDICAL_CONDITION] [nric/NRIC_NUMBER] [t/TAG]…`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ag/AGE] [m/MEDICAL_CONDITION] [nric/NRIC_NUMBER] [t/TAG]…` 
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
   The index **must be a positive integer** 1, 2, 3, …
-* When index 0 is provided, it will display `Invalid Command Format` as 0 will not exist in the system.
-* When index is more than the number of patients in MediMate, result display will show **The person Index provided is invalid**.
 * Specify the field you want to edit (name, phone, email, address, age, medical condition, nric, or tag) followed by the
   new value. At least one of the optional fields must be provided.
 * Existing values will be updated to the user input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the patient will be removed. (i.e adding of tags is not cumulative.)
 * You can remove all the patient’s tags by typing `t/` without
   specifying any tags after it.
 * You can remove all the patient's medical condition by typing `m/` without specifying any letter(s) after it.
@@ -221,17 +252,23 @@ Format: `makeApp INDEX /from {startTime} /to {endTime}`
 
 * Makes/Reschedule an appointment with a patient at the specified `INDEX`. The index refers to the index number shown in the
   displayed patient list. The index **must be a positive integer** 1, 2, 3, …
-* startTime and endTime should be on the same date
+* startTime and endTime should be on the same date, and in 24-hour clock format.
 * startTime has to be earlier than the endTime else appointment will not be created.
 * If a patient already had an appointment, it will reschedule this appointment
 * Appointment will not be created if the timing clash with the doctor's existing appointment timing
 
 Examples:
 
-* `makeApp 5 /from 2023-08-15 1430 /to 2023-08-15 1630` Makes an Appointment with 5th patient, starting from
-  14:30 to 16:30 on 2023-08-15
+<div style="display:flex;">
+    <img src="images/userGuide/makeApp_button1.png" style="width:50%; padding-right:10px;">
+    <img src="images/userGuide/makeApp_button2.png" style="width:50%; padding-left:10px;">
+</div>
 
-Make an appointement to MediMate through button method:
+* `makeApp 1 /from 2023-04-13 1400 /to 2023-04-13 1430` Makes an Appointment with 1st patient, starting from
+  14:00 to 14:30 on 2023-04-13. 
+* The time is in the format of `2023-04-13T14:00`, where `2023-04-13` stands for the appointment date and `T14:00` stands for the time in 24-hour clock format. 
+
+Make an appointment to MediMate through button method:
 
 ![Appointment_Button](images/userGuide/Appointment_1.png "Appointment Button")
 
@@ -258,7 +295,7 @@ Format: `markApp INDEX`
 
 Examples:
 
-* `markApp 5` Marks an appointment with 5th patient as done.
+* `markApp 3` Marks an appointment with 3rd patient as done.
 
 ### Create a Medical Certificate for patient: `create`
 
@@ -285,7 +322,7 @@ Create a PDF Medical Certificate for a patient button method:
 
 ![Create_Popup](images/userGuide/Create_2.png "Create Popup")
 2. A popup window appear, as shown in the screenshot above. Fill in all the blanks namely: Medical Condition, Doctor Name, and Duration (Number of days) and click **Generate MC**. Now, you have successfully generated a MC.
-3. When using the button method to make an appointment, it is required to input the patient's medical condition, and the maximum allowed number of characters for this field is 200.
+3. When using the button method to make an appointment, it is required to input the patient's medical condition, and the maximum allowed number of characters for this blank is 200.
 4. When using the button method to specify the doctor's name for an appointment, the maximum allowed number of characters is 25.
 
 ### View the Medical File of a patient: `view`
@@ -355,10 +392,13 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
+<div style="display:flex;">
+    <img src="images/userGuide/find_before.png" style="width:50%; padding-right:10px;">
+    <img src="images/userGuide/find_after.png" style="width:50%; padding-left:10px;">
+</div> 
 
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/userGuide/find.png)
+1. `find Carl Zoe` will return on `Carl` and `Zoe` respectively on Medimate.
+
 
 ### Searching patients with Appointment on specified date: `searchDate`
 
@@ -366,13 +406,16 @@ Lists all patients with appointment on specified date
 
 Format: `searchDate {DATE}`
 
-* Lists all patients with appointment on the specified date, and it will be sorted from earliest to latest appointment time to reduce and prevent clashing of appointment time.
-* Date need to be in YYYY-MM-DD format.
+* Lists all patients with appointment on the specified date, and it will be sorted from earliest to latest appointment time, for easier scheduling of new appointment.
+* `DATE` need to be in YYYY-MM-DD format.
 
 Examples:
+<div style="display:flex;">
+    <img src="images/userGuide/searchDate_before.png" style="width:50%; padding-right:10px;">
+    <img src="images/userGuide/searchDate_after.png" style="width:50%; padding-left:10px;">
+</div> 
+* `searchDate 2023-04-13` lists one patient with appointment on 2023-04-13.<br>
 
-* `searchDate 2023-05-20` lists three patients with appointment on 2023-05-20 and the appointments are sorted based on the time of the appointments, starting from the earliest appointment and going to the latest appointment.<br>
-  ![result for 'find alex david'](images/userGuide/searchDate.png)
 
 ### Deleting a patient : `delete`
 
