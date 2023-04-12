@@ -472,7 +472,7 @@ Examples:
 
 ### Deleting a group: `delete group`
 
-Deletes a group from the list of groups in the group page.
+To remove a group from a selected course, use this command to delete it.
 
 **Command Format:**
 
@@ -482,21 +482,19 @@ delete group <INDEX>
 
 Examples:
 
-- `delete group 1` will delete the first group listed in the group list panel of CLIpboard.
+- `delete group 1` will delete the first group listed in the group list.
 
 [Back to list of features](#features)
 
 ### Editing a group: `edit group`
 
-Edits an existing group in the group list.
+Use this command to edit the name of an existing group.
 
 **Command Format:**
 
 ```
 edit group <INDEX> <NEW GROUP NAME>
 ```
-
-- Edits the group name of the group at index specified in `<INDEX>`.
 
 Examples:
 
@@ -514,8 +512,6 @@ Selects an existing group to display its corresponding Student Page.
 select <INDEX>
 ```
 
-- Selects the group at index specified in `<INDEX>` and displays list of students in that group.
-
 Examples:
 
 - `select 1` will return a list of students from the first group.
@@ -523,8 +519,7 @@ Examples:
 [Back to list of features](#features)
 
 ### Displaying sessions of a group: `session`
-
-Selects an existing group to display its corresponding Session Page.
+Use this command to view the sessions of a particular group.
 
 **Command Format:**
 
@@ -532,22 +527,19 @@ Selects an existing group to display its corresponding Session Page.
 session <INDEX>
 ```
 
-- Selects the group at index specified in `<INDEX>` and displays list of sessions in that group.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+  Adding a new student to a group will automatically add them to all existing sessions, but deleting a student from a group will NOT delete them from existing sessions (To preserve historical data).
+</div>
+<br>
 
 Examples:
 
 - `session 1` will return a list of sessions from the first group.
 
-<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
- Adding new student under a group will propagate to session, but deleting a student will NOT propagate to session.
-</div>
-<br>
-
 [Back to list of features](#features)
 
 ### Displaying tasks of a group: `task`
-
-Selects an existing group to display its corresponding Task Page.
+Use this command to view the tasks of a particular group.
 
 **Command Format:**
 
@@ -555,16 +547,14 @@ Selects an existing group to display its corresponding Task Page.
 task <INDEX>
 ```
 
-- Selects group at index specified in `<INDEX>` and displays list of tasks assigned to that group.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+  Adding a new student to a group will automatically add them to all existing tasks, but deleting a student from a group will NOT delete them from existing tasks (To preserve historical data).
+</div>
+<br>
 
 Examples:
 
 - `task 1` will return a list of tasks for the first group.
-
-<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
- Adding new student under a group will propagate to task, but deleting a student will NOT propagate to task.
-</div>
-<br>
 
 [Back to list of features](#features)
 
