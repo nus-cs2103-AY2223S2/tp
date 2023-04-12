@@ -368,7 +368,7 @@ Examples:
 [Back to list of features](#features)
 
 ### Deleting a course: `delete course`
-If you wish to remove a course, use this command to delete it.
+Removes a course from your course list.
 
 **Command Format:**
 
@@ -384,7 +384,7 @@ Examples:
 
 ### Editing a course: `edit course`
 
-Use this command to edit the name of an existing course.
+Use this command to change the course code of an existing course.
 
 **Command Format:**
 
@@ -399,8 +399,7 @@ Examples:
 [Back to list of features](#features)
 
 ### Finding a course: `find course`
-
-Finds course(s) that contains any of the given keywords(s) in the module code.
+Use this command to filter your course list to show only courses that contain specific keywords.
 
 **Command Format:**
 
@@ -422,7 +421,7 @@ Example:
 [Back to list of features](#features)
 
 ### Selecting a course: `select`
-To view the groups within a course, use `select` to select a course. This navigates you to its corresponding `Group Page`.
+This command allows you to select a course and navigates you to its corresponding `Group Page`.
 
 **Command Format:**
 
@@ -448,7 +447,7 @@ A `Group Page` typically looks like this:
 
 ### Adding a group: `add group`
 
-Adds a new group to a selected course.
+To add a new group, use this command to add it to a selected course.
 
 **Command Format:**
 
@@ -472,7 +471,7 @@ Examples:
 
 ### Deleting a group: `delete group`
 
-To remove a group from a selected course, use this command to delete it.
+Removes a group from a selected course.
 
 **Command Format:**
 
@@ -518,7 +517,7 @@ Examples:
 
 [Back to list of features](#features)
 
-### Displaying sessions of a group: `session`
+### Displaying the Sessions of a Group: `session`
 Use this command to view the sessions of a particular group.
 
 **Command Format:**
@@ -528,7 +527,7 @@ session <INDEX>
 ```
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-  Adding a new student to a group will automatically add them to all existing sessions, but deleting a student from a group will NOT delete them from existing sessions (To preserve historical data).
+  Adding a new student to a group will automatically add them to all existing sessions, but deleting a student from a group will NOT delete them from existing sessions (to preserve historical data).
 </div>
 <br>
 
@@ -538,7 +537,7 @@ Examples:
 
 [Back to list of features](#features)
 
-### Displaying tasks of a group: `task`
+### Displaying the Tasks of a Group: `task`
 Use this command to view the tasks of a particular group.
 
 **Command Format:**
@@ -548,7 +547,7 @@ task <INDEX>
 ```
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-  Adding a new student to a group will automatically add them to all existing tasks, but deleting a student from a group will NOT delete them from existing tasks (To preserve historical data).
+  Adding a new student to a group will automatically add them to all existing tasks, but deleting a student from a group will NOT delete them from existing tasks (to preserve historical data).
 </div>
 <br>
 
@@ -559,8 +558,8 @@ Examples:
 [Back to list of features](#features)
 
 ### Finding a group: `find group`
-
-Finds group(s) that contains any of the given keywords(s) in the group name.
+Use `find group` to
+Find group(s) that contains any of the given keywords(s) in the group name.
 
 **Command Format:**
 
@@ -580,18 +579,15 @@ Examples:
 ---
 
 ## Managing Students
-
-To manage your students, you will have to be on the `Student Page`, which typically looks like this:
+In the following sections, you will find the features that are available to you on the `Student Page`.
+A `Student Page` typically looks like this:
 
 <img src="./images/UiStudentPage.png" width="650" height="529"/>
 <br>
-<span style="font-size: 10px; font-style: italic;">Figure 6</span>
-
-The following sections contain the features that are available to you on the `Student Page`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
   Some commands for managing students require multiple parameters.<br>
-  As described in [Understanding Command Formats](#understanding-command-formats), these parameters would require specific prefixes to indicate the type of information they represent. There are also some restrictions on the input for these parameters.<br>
+  As described in [Understanding Command Formats](#understanding-command-formats), these parameters would require specific prefixes to indicate the type of information they represent. There are also some restrictions on the inputs for these parameters.<br>
 
   **Please refer to the table below**
 </div>
@@ -602,12 +598,12 @@ The following sections contain the features that are available to you on the `St
 | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | n/     | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | p/     | Phone Number                | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| e/     | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints:`` 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. `` 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: `` - end with a domain label at least 2 characters long `` - have each domain label start and end with alphanumeric characters `` - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| e/     | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints: <br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br/> - end with a domain label at least 2 characters long <br/> - have each domain label start and end with alphanumeric characters <br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
 | sid/   | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ### Adding a student: `add student`
 
-Adds a student to the student roster.
+Adds a student to a selected group.
 
 **Command Format:**
 
