@@ -161,7 +161,63 @@ Here's a hypothetical workflow that might help you better understand the figure 
 
 ---
 
+## Features
+
+Here is a list of features that CLIpboard supports:
+- [General Features: ](#general-commands)
+  - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
+  - [`back`](#displaying-the-previous-page-you-were-at-back)
+  - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
+  - [Opening help window: ](#opening-help-window-help) `help`
+  - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
+  - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
+  - [Exiting the program: ](#exiting-the-program-exit) `exit`
+- [Managing Courses: ](#course-page-commands)
+  - [Adding a course: ](#adding-a-course-add-course) `add course`
+  - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
+  - [Editing a course: ](#editing-a-course-edit-course) `edit course`
+  - [Selecting a course to display its Group Page: ](#selecting-a-course-select) `select`
+  - [Finding a course: ](#finding-a-course-find-course) `find course`
+- [Managing Groups: ](#group-page-commands)
+  - [Adding a group: ](#adding-a-group-add-group) `add group`
+  - [Deleting a group: ](#deleting-a-group-delete-group) `delete group`
+  - [Editing a group: ](#editing-a-group-edit-group) `edit group`
+  - [Selecting a group to display its Student Page: ](#selecting-a-group-select) `select`
+  - [Displaying sessions of a group: ](#displaying-sessions-of-a-group-session) `session`
+  - [Displaying tasks of a group: ](#displaying-tasks-of-a-group-task) `task`
+  - [Finding a group: ](#finding-a-group-find-group) `find group`
+- [Managing Students: ](#students-page-commands)
+  - [Adding a student: ](#adding-a-student-add-student) `add student`
+  - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
+  - [Editing a student: ](#editing-a-student-edit-student) `edit student`
+  - [Copying a student&#39;s email: ](#copying-a-students-email-copy) `copy`
+  - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find-student) `find student`
+  - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
+  - [Displays a student&#39;s information:  ](#displays-a-students-information-select) `select`
+  - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
+  - [Upload a student&#39;s photo: ](#uploading-a-students-photo-upload) `upload`
+  - [Displays a summary of a student&#39;s attendance: ](#viewing-a-students-attendance-throughout-the-course-attendance) `attendance`
+- [Managing Sessions: ](#session-page-commands)
+  - [Adding a session: ](#adding-a-session-add-session) `add session`
+  - [Deleting a session: ](#deleting-a-session-delete-session) `delete session`
+  - [Editing a session: ](#editing-a-session-edit-session) `edit session`
+  - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking-select) `select`
+  - [Finding a session: ](#finding-a-session-find-session) `find session`
+  - [Managing Attendance: ](#attendance-page-commands)
+    - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
+    - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
+    - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session-attendance) `attendance`
+- [Managing Tasks: ](#task-page-commands)
+  - [Adding a task: ](#adding-a-task-add-task) `add task`
+  - [Deleting a task: ](#deleting-a-task-delete-task) `delete task`
+  - [Editing a task: ](#editing-a-task-edit-task) `edit task`
+  - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
+  - [Finding a task: ](#finding-a-task-find-task) `find task`
+  - [Managing Grades: ](#grades-page-commands)
+    - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
+
 ## Commands
+Features in CLIpboard are supported by commands.
 Commands are like giving instructions to CLIpboard on what to do.
 
 A typical command would look like this:
@@ -181,63 +237,7 @@ Putting it together for the above example, `find course` would tell CLIpboard th
     * e.g. if you input the command `help 123`, CLIpboard will interpret it simply as `help`.
 </div>
 
-Here is a list of commands that CLIpboard understands:
-- [General Commands: ](#general-commands)
-  - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
-  - [`back`](#displaying-the-previous-page-you-were-at-back)
-  - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
-  - [Opening help window: ](#opening-help-window-help) `help`
-  - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
-  - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
-  - [Exiting the program: ](#exiting-the-program-exit) `exit`
-- [Course Page Commands: ](#course-page-commands)
-  - [Adding a course: ](#adding-a-course-add-course) `add course`
-  - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
-  - [Editing a course: ](#editing-a-course-edit-course) `edit course`
-  - [Selecting a course to display its Group Page: ](#selecting-a-course-select) `select`
-  - [Finding a course: ](#finding-a-course-find-course) `find course`
-- [Group Page Commands: ](#group-page-commands)
-  - [Adding a group: ](#adding-a-group-add-group) `add group`
-  - [Deleting a group: ](#deleting-a-group-delete-group) `delete group`
-  - [Editing a group: ](#editing-a-group-edit-group) `edit group`
-  - [Selecting a group to display its Student Page: ](#selecting-a-group-select) `select`
-  - [Displaying sessions of a group: ](#displaying-sessions-of-a-group-session) `session`
-  - [Displaying tasks of a group: ](#displaying-tasks-of-a-group-task) `task`
-  - [Finding a group: ](#finding-a-group-find-group) `find group`
-- [Students Page Commands: ](#students-page-commands)
-  - [Adding a student: ](#adding-a-student-add-student) `add student`
-  - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
-  - [Editing a student: ](#editing-a-student-edit-student) `edit student`
-  - [Copying a student&#39;s email: ](#copying-a-students-email-copy) `copy`
-  - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find-student) `find student`
-  - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
-  - [Displays a student&#39;s information:  ](#displays-a-students-information-select) `select`
-  - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
-  - [Upload a student&#39;s photo: ](#uploading-a-students-photo-upload) `upload`
-  - [Displays a summary of a student&#39;s attendance: ](#viewing-a-students-attendance-throughout-the-course-attendance) `attendance`
-- [Session Page Commands: ](#session-page-commands)
-  - [Adding a session: ](#adding-a-session-add-session) `add session`
-  - [Deleting a session: ](#deleting-a-session-delete-session) `delete session`
-  - [Editing a session: ](#editing-a-session-edit-session) `edit session`
-  - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking-select) `select`
-  - [Finding a session: ](#finding-a-session-find-session) `find session`
-- [Attendance Page Commands: ](#attendance-page-commands)
-  - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
-  - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
-  - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session-attendance) `attendance`
-- [Task Page Commands: ](#task-page-commands)
-  - [Adding a task: ](#adding-a-task-add-task) `add task`
-  - [Deleting a task: ](#deleting-a-task-delete-task) `delete task`
-  - [Editing a task: ](#editing-a-task-edit-task) `edit task`
-  - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
-  - [Finding a task: ](#finding-a-task-find-task) `find task`
-- [Grades Page Commands: ](#grades-page-commands)
-  - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
-
-### Understanding Command Formats :
-<div markdown="span" class="alert alert-info">
-  :information_source: **Note:** It is important to enter commands exactly in their required formats in order for CLIpboard to understand them.<br>
-</div>
+### Understanding Command Formats
 
   - **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).<br>
     - e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
@@ -254,9 +254,13 @@ Here is a list of commands that CLIpboard understands:
   - **Parameters can be input in any order**<br>
     - If the command format specifies the required parameters as `n/NAME p/PHONE_NUMBER`, an alternative format like `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+<div markdown="span" class="alert alert-info">
+  :information_source: **Note:** It is important to enter commands exactly in their required formats in order for CLIpboard to understand them.<br>
+</div>
+
 ---
 
-## General Commands
+## General Features
 General commands are commands that may be used anywhere on CLIpboard, regardless of the page you're on.
 
 ### Showing the home page (Course Page): `home`
@@ -269,7 +273,7 @@ Brings you to the home page, which is the `Course Page` of CLIpboard.
 home
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#commands)
 
 ### Going back to the previous page: `back`
 
@@ -346,13 +350,14 @@ exit
 
 ---
 
-## Course Page Commands
-These are commands that are only available on the `Course Page`, which typically looks like this:
+## Managing Courses
+To manage your courses, you will have to be on the `Course Page`, which typically looks like this:
 
 <img src="./images/UiCoursePage.png" width="650" height="529"/>
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 4</span>
 
+This section contains the features that are available to you on the `Course Page`.
 ### Adding a course: `add course`
 
 Adds a course to the list of courses in the course page.
@@ -457,12 +462,14 @@ Examples:
 
 ---
 
-## Group Page Commands
+## Managing Groups
+To manage your groups, you will have to be on the `Group Page`, which typically looks like this:
 
-![image](./images/UiGroupPage.png)
+<img src="./images/UiGroupPage.png" width="650" height="529"/>
+<br>
+<span style="font-size: 10px; font-style: italic;">Figure 5</span>
 
-###### Figure 5
-
+This section contains the features that are available to you on the `Group Page`.
 ### Adding a group: `add group`
 
 Adds a group to the list of groups in the group page.
@@ -613,11 +620,14 @@ Examples:
 
 ---
 
-## Students Page Commands
+## Managing Students
+To manage your students, you will have to be on the `Student Page`, which typically looks like this:
 
-![image](./images/UiStudentPage.png)
+<img src="./images/UiStudentPage.png" width="650" height="529"/>
+<br>
+<span style="font-size: 10px; font-style: italic;">Figure 6</span>
 
-###### Figure 6
+This section contains the features that are available to you on the `Student Page`.
 
 ### Adding a student: `add student`
 
@@ -826,12 +836,11 @@ Examples:
 [Back to list of commands](#commands)
 
 ### Viewing a student's attendance throughout the course: `attendance`
+Shows a summary of a student's attendance in the `View Pane` like this:
 
-![image](./images/UiStudentAttendanceView.png)
-
-###### Figure 8
-
-Shows a summary of a student's attendance in the view pane.
+<img src="./images/UiStudentAttendanceView.png" width="650" height="529"/>
+<br>
+<span style="font-size: 10px; font-style: italic;">Figure 8</span>
 
 **Command Format:**
 
@@ -845,11 +854,14 @@ attendance
 
 ---
 
-## Session Page Commands
+## Managing Sessions
+To manage your sessions of a paritcular group, you will have to be on its respective `Session Page`, which typically looks like this:
 
-![image](./images/UiSessionPage.png)
+<img src="./images/UiSessionPage.png" width="650" height="529"/>
+<br>
+<span style="font-size: 10px; font-style: italic;">Figure 9</span>
 
-###### Figure 9
+This section contains the features that are available to you on the `Session Page`.
 
 ### Adding a session: `add session`
 
@@ -909,24 +921,6 @@ Examples:
 
 [Back to list of commands](#commands)
 
-### Selecting a session to start attendance-taking: `select`
-
-Selects an existing session to start taking attendance for that session by displaying Student Page of that session on the right panel.
-
-**Command Format:**
-
-```
-select <INDEX>
-```
-
-- Selects session at specified index and displays list of students in that session.
-
-Examples:
-
-- `select 1` will return a list of students from the first session.
-
-[Back to list of commands](#commands)
-
 ### Finding a session: `find session`
 
 Finds session(s) that contains any of the given keywords(s) in the session name.
@@ -947,15 +941,36 @@ Examples:
 
 [Back to list of commands](#commands)
 
+### Selecting a session to start attendance-taking: `select`
+
+Selects an existing session to start taking attendance for that session by displaying Student Page of that session on the right panel.
+
+**Command Format:**
+
+```
+select <INDEX>
+```
+
+- Selects session at specified index and displays list of students in that session.
+
+Examples:
+
+- `select 1` will return a list of students from the first session.
+
+[Back to list of commands](#commands)
+
 ---
 
-## Attendance Page Commands
+## Managing the Attendance of a Session
+To manage the attendance of a particular session, you will have to be on its respective `Attendance Page`, which typically looks like this:
 
-![images](./images/UiAttendancePage.png)
+<img src="./images/UiAttendancePage.png" width="650" height="529"/>
+<br>
+<span style="font-size: 10px; font-style: italic;">Figure 10</span>
 
-###### Figure 10
+This section contains the features that are available to you on the `Attendance Page`.
 
-### Marking selected students as present: `mark`
+### Marking students as present: `mark`
 
 Marks selected students' attendance as present for current session.
 
@@ -973,7 +988,8 @@ Examples:
 
 [Back to list of commands](#commands)
 
-### Marking selected students as absent: `unmark`
+### Marking students as absent: `unmark`
+ADD NOTE THAT STUDENTS ARE ABSENT BY DEFAULT
 
 Marks selected students' attendance as absent for current session.
 
@@ -993,11 +1009,11 @@ Examples:
 
 ### View the overall attendance of the session: `attendance`
 
-Displays the overall attendance of the session you are at in the command box. (Pictured below.)
+Displays the overall attendance of the session you are at in the command box, which will be shown like this:
 
-![image](images/UiAttendance.png)
-
-###### Figure 11
+<img src="./images/UiAttendance.png" width="650" height="529"/>
+<br>
+<span style="font-size: 10px; font-style: italic;">Figure 11</span>
 
 **Command Format:**
 
@@ -1009,11 +1025,14 @@ attendance
 
 ---
 
-## Task Page Commands
+## Managing Tasks
+To manage the tasks of a particular group, you will have to be on its respective `Task Page`, which typically looks like this:
 
-![image](./images/UiTaskPage.png)
+<img src="./images/UiTaskPage.png" width="650" height="529"/>
+<br>
+<span style="font-size: 10px; font-style: italic;">Figure 12</span>
 
-###### Figure 12
+This section contains the features that are available to you on the `Task Page`.
 
 ### Adding a task: `add task`
 
@@ -1073,24 +1092,6 @@ Examples:
 
 [Back to list of commands](#commands)
 
-### Selecting a task to assign grades: `select`
-
-Selects an existing task to assign students their grades for that task, by displaying the Student Page on the right panel.
-
-**Command Format:**
-
-```
-select <INDEX>
-```
-
-- Selects task at specified index and displays list of students with the task.
-
-Examples:
-
-- `select 1` will return a list of students who was assigned the first task on the list.
-
-[Back to list of commands](#commands)
-
 ### Finding a task: `find task`
 
 Finds task(s) that contains any of the given keywords(s) in the task name.
@@ -1111,11 +1112,34 @@ Examples:
 
 [Back to list of commands](#commands)
 
-## Grades Page Commands
+### Selecting a task to assign grades: `select`
 
-![images](./images/UiGradesPage.png)
+Selects an existing task to assign students their grades for that task, by displaying the Student Page on the right panel.
 
-###### Figure 13
+**Command Format:**
+
+```
+select <INDEX>
+```
+
+- Selects task at specified index and displays list of students with the task.
+
+Examples:
+
+- `select 1` will return a list of students who was assigned the first task on the list.
+
+[Back to list of commands](#commands)
+
+## Managing the Grades of a Task
+To manage the grades of a particular task, you will have to be on its respective `Grades Page`, which typically looks like this:
+
+<img src="./images/UiGradesPage.png" width="650" height="529"/>
+<br>
+<span style="font-size: 10px; font-style: italic;">Figure 13</span>
+
+This section contains the features that are available to you on the `Grades Page`.
+
+ADD CAUTION THAT GRADES ARE 0 BY DEFAULT
 
 ### Assigning a grade to student: `assign`
 
