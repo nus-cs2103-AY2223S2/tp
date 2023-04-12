@@ -99,7 +99,7 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
 <a name="figure2"></a>
 <img src="./images/VisualGuide.png" width="650" height="529"/>
 <br>
-<span style="font-size: 10px; font-style: italic;">Figure 2
+<span style="font-size: 10px; font-style: italic;">Figure 2</span>
 
 1. Using the `File and Help` Tabs
    * To exit CLIpboard, click on `File > Exit`.
@@ -136,7 +136,7 @@ Here's a handy navigation map to get around CLIpboard.
 <a name="figure3"></a>
 <img src="./images/navigationguide.png" width="650" height="530"/>
 <br>
-<span style="font-size: 13px; font-style: italic;">`Figure 3
+<span style="font-size: 13px; font-style: italic;">Figure 3</span>
 
 Here's a hypothetical workflow that might help you better understand the figure above:<br>
 *Say you wish to assign the grades for a task in one of your tutorial groups.*
@@ -175,10 +175,10 @@ Putting it together for the above example, `find course` would tell CLIpboard th
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:** <br>
 
-  * If a parameter is expected only once by a command but multiple instances of it are specified, only the last occurrence of the parameter will be taken.<br>
+  * If a command expects a parameter to be input only once, but multiple instances of it are included, only the last occurence of the parameter will be taken.<br>
     * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-  * Extraneous parameters for commands that do not expect parameters (such as `help`, `back`, `exit` and `clear`) will be ignored.<br>
-    * e.g. if a command `help 123` is input by the user, CLIpboard will interpreted it simply as `help`.
+  * Extraneous parameters for commands that do not expect any parameters will be ignored.<br>
+    * e.g. if you input the command `help 123`, CLIpboard will interpret it simply as `help`.
 </div>
 
 Here is a list of commands that CLIpboard understands:
@@ -239,7 +239,7 @@ Here is a list of commands that CLIpboard understands:
   :information_source: **Note:** It is important to enter commands exactly in their required formats in order for CLIpboard to understand them.<br>
 </div>
 
-  - **Supplementary command information**: Represented in uppercase and enclosed by angle brackets (`<>`).<br>
+  - **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).<br>
     - e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
   - **Square brackets (`[]`)**: Parameters in square brackets are optional.<br>
     - e.g If the parameters are specified as `[n/<NAME>] [p/<PHONE_NUMBER>]`, omitting these parameters are acceptable.
@@ -257,14 +257,13 @@ Here is a list of commands that CLIpboard understands:
 ---
 
 ## General Commands
+General commands are commands that may be used anywhere on CLIpboard, regardless of the page you're on.
 
-Before navigating through the different pages in CLIpboard, you may familiarise yourself with general commands and features that can be used on any page.
+### Showing the home page (Course Page): `home`
 
-### Displaying the home page (Course Page): `home`
+Brings you to the home page, which is the `Course Page` of CLIpboard.
 
-Goes back to the home page, which is the Course Page of CLIpboard.
-
-Format:
+**Command Format:**
 
 ```
 home
@@ -272,11 +271,11 @@ home
 
 [Back to list of commands](#commands)
 
-### Displaying the previous page you were at: `back`
+### Going back to the previous page: `back`
 
-Goes back to the previous page you were at.
+Brings you back to the previous page you were at.
 
-Format:
+**Command Format:**
 
 ```
 back
@@ -286,7 +285,7 @@ back
 
 ### Undoing the last command you did: `undo`
 
-Format:
+**Command Format:**
 
 ```
 undo
@@ -295,10 +294,9 @@ undo
 [Back to list of commands](#commands)
 
 ### Opening help window: `help`
-
 Opens a window showing the list of commands available in the current page, as well as a link to this User Guide.
 
-Format:
+**Command Format:**
 
 ```
 help
@@ -324,7 +322,7 @@ Clears all entries in the list pane of the current page.
 After the <code>clear</code> command is executed, all entries in the current page will be deleted.
 </div>
 
-Format:
+**Command Format:**
 
 ```
 clear
@@ -338,7 +336,7 @@ Accidentally cleared your data? Don't worry, try <code>undo</code> command!
 
 ### Exiting the program: `exit`
 
-Format:
+**Command Format:**
 
 ```
 exit
@@ -349,16 +347,17 @@ exit
 ---
 
 ## Course Page Commands
+These are commands that are only available on the `Course Page`, which typically looks like this:
 
-![image](./images/UiCoursePage.png)
-
-###### Figure 4
+<img src="./images/UiCoursePage.png" width="650" height="529"/>
+<br>
+<span style="font-size: 10px; font-style: italic;">Figure 4</span>
 
 ### Adding a course: `add course`
 
 Adds a course to the list of courses in the course page.
 
-Format:
+**Command Format:**
 
 ```
 add course <COURSE>
@@ -388,7 +387,7 @@ Course code can have special characters! i.e. "AY2223S2-CS2103T"
 
 Deletes a course from the list of courses in the course page.
 
-Format:
+**Command Format:**
 
 ```
 delete course <INDEX>
@@ -404,7 +403,7 @@ Examples:
 
 Edits an existing course in the course list.
 
-Format:
+**Command Format:**
 
 ```
 edit course <INDEX> <NEW COURSE NAME>
@@ -422,7 +421,7 @@ Examples:
 
 Selects an existing course to display its corresponding Group Page.
 
-Format:
+**Command Format:**
 
 ```
 select <INDEX>
@@ -440,7 +439,7 @@ Examples:
 
 Finds course(s) that contains any of the given keywords(s) in the module code.
 
-Format:
+**Command Format:**
 
 ```
 find course <KEYWORD> [<MORE_KEYWORDS>]
@@ -468,7 +467,7 @@ Examples:
 
 Adds a group to the list of groups in the group page.
 
-Format:
+**Command Format:**
 
 ```
 add group <GROUP>
@@ -499,7 +498,7 @@ Group names can have special characters! i.e. "AY2223S2-T15"
 
 Deletes a group from the list of groups in the group page.
 
-Format:
+**Command Format:**
 
 ```
 delete group <INDEX>
@@ -515,7 +514,7 @@ Examples:
 
 Edits an existing group in the group list.
 
-Format:
+**Command Format:**
 
 ```
 edit group <INDEX> <NEW GROUP NAME>
@@ -533,7 +532,7 @@ Examples:
 
 Selects an existing group to display its corresponding Student Page.
 
-Format:
+**Command Format:**
 
 ```
 select <INDEX>
@@ -551,7 +550,7 @@ Examples:
 
 Selects an existing group to display its corresponding Session Page.
 
-Format:
+**Command Format:**
 
 ```
 session <INDEX>
@@ -574,7 +573,7 @@ Examples:
 
 Selects an existing group to display its corresponding Task Page.
 
-Format:
+**Command Format:**
 
 ```
 task <INDEX>
@@ -597,7 +596,7 @@ Examples:
 
 Finds group(s) that contains any of the given keywords(s) in the group name.
 
-Format:
+**Command Format:**
 
 ```
 find group <KEYWORD> [<MORE_KEYWORDS>]
@@ -624,7 +623,7 @@ Examples:
 
 Adds a student to the student roster.
 
-Format:
+**Command Format:**
 
 ```
 add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
@@ -649,7 +648,7 @@ The same student can exist in different groups, because that student can be in t
 
 Deletes a student from the student roster.
 
-Format:
+**Command Format:**
 
 ```
 delete student <INDEX>
@@ -665,7 +664,7 @@ Examples:
 
 Did your student change their phone number, or you realised you misspelled their name? Do not worry, because you can easily change this with the edit command.
 
-Format:
+**Command Format:**
 
 ```
 edit student <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
@@ -691,7 +690,7 @@ Examples:
 
 Copies a student's email to your clipboard.
 
-Format:
+**Command Format:**
 
 ```
 copy <INDEX>
@@ -707,7 +706,7 @@ Examples:
 
 Finds students whose names or student IDs contain any of the given keywords(s).
 
-Format:
+**Command Format:**
 
 ```
 find student <KEYWORD> [<MORE_KEYWORDS>]
@@ -729,7 +728,7 @@ Examples:
 
 Sorts list of students in student roster.
 
-Format:
+**Command Format:**
 
 ```
 sort <CATEGORY>
@@ -755,7 +754,7 @@ Examples:
 
 Select a particular student and display his / her particulars.
 
-Format:
+**Command Format:**
 
 ```
 select <INDEX>
@@ -802,7 +801,7 @@ Accidentally deleted a remark? Don't worry, Try using <code>undo</code> command!
 
 Uploads a student's photo to be displayed in the student roster.
 
-Format:
+**Command Format:**
 
 ```
 upload <LOCAL_FILE_PATH>
@@ -834,7 +833,7 @@ Examples:
 
 Shows a summary of a student's attendance in the view pane.
 
-Format:
+**Command Format:**
 
 ```
 attendance
@@ -856,7 +855,7 @@ attendance
 
 Adds a session to the list of session in the session page.
 
-Format:
+**Command Format:**
 
 ```
 add session <SESSION>
@@ -882,7 +881,7 @@ Session names can have special characters! i.e. "AY2223S2-Tutorial15"
 
 Deletes a session from the list of session in the session page.
 
-Format:
+**Command Format:**
 
 ```
 delete session <INDEX>
@@ -898,7 +897,7 @@ Examples:
 
 Edits an existing session in the session list.
 
-Format:
+**Command Format:**
 
 ```
 edit session <INDEX> <NEW SESSION NAME>
@@ -914,7 +913,7 @@ Examples:
 
 Selects an existing session to start taking attendance for that session by displaying Student Page of that session on the right panel.
 
-Format:
+**Command Format:**
 
 ```
 select <INDEX>
@@ -932,7 +931,7 @@ Examples:
 
 Finds session(s) that contains any of the given keywords(s) in the session name.
 
-Format:
+**Command Format:**
 
 ```
 find session <KEYWORD> [<MORE_KEYWORDS>]
@@ -960,7 +959,7 @@ Examples:
 
 Marks selected students' attendance as present for current session.
 
-Format:
+**Command Format:**
 
 ```
 mark <INDEX>
@@ -978,7 +977,7 @@ Examples:
 
 Marks selected students' attendance as absent for current session.
 
-Format:
+**Command Format:**
 
 ```
 unmark <INDEX>
@@ -1000,7 +999,7 @@ Displays the overall attendance of the session you are at in the command box. (P
 
 ###### Figure 11
 
-Format:
+**Command Format:**
 
 ```
 attendance
@@ -1020,7 +1019,7 @@ attendance
 
 Adds a new task into the task page.
 
-Format:
+**Command Format:**
 
 ```
 add task <TASK NAME>
@@ -1046,7 +1045,7 @@ Task names can have special characters! i.e. "AY2223S2-Midterm Practice Paper"
 
 Deletes a task from the current list of tasks.
 
-Format:
+**Command Format:**
 
 ```
 delete task <INDEX>
@@ -1062,7 +1061,7 @@ Examples:
 
 Edits an existing task in the task list.
 
-Format:
+**Command Format:**
 
 ```
 edit task <INDEX> <NEW TASK NAME>
@@ -1078,7 +1077,7 @@ Examples:
 
 Selects an existing task to assign students their grades for that task, by displaying the Student Page on the right panel.
 
-Format:
+**Command Format:**
 
 ```
 select <INDEX>
@@ -1096,7 +1095,7 @@ Examples:
 
 Finds task(s) that contains any of the given keywords(s) in the task name.
 
-Format:
+**Command Format:**
 
 ```
 find task <KEYWORD> [<MORE_KEYWORDS>]
@@ -1122,7 +1121,7 @@ Examples:
 
 Assigns a grade to a student.
 
-Format:
+**Command Format:**
 
 ```
 assign <INDEX> <GRADE>
