@@ -20,18 +20,21 @@ Let's dive in!
 
 - [Definitions](#definitions)
 - [Getting Started](#getting-started)
-- [Setting Up](#setting-up)
-- [Quick Start](#quick-start)
-- [Fields for Student Commands](#fields-for-student-commands)
-- [List of Commands](#commands)
-  - [General Commands](#general-commands)
-  - [Course Page Commands](#course-page-commands)
-  - [Group Page Commands](#group-page-commands)
-  - [Students Page Commands](#students-page-commands)
-  - [Session Page Commands](#session-page-commands)
-  - [Attendance Page Commands](#attendance-page-commands)
-  - [Task Page Commands](#task-page-commands)
-  - [Grades Page Commands](#grades-page-commands)
+  - [Setting Up](#setting-up)
+  - [Quick Start](#quick-start)
+  - [Visual Guide](#visuals)
+  - [Navigation Guide](#navigation)
+- [Features](#features)
+  - [Commands](#commands)
+    - [Understanding Command Formats](#understanding-command-formats)
+  - [General Features](#general-features)
+  - [Managing Courses](#managing-courses)
+  - [Managing Groups](#managing-groups)
+  - [Managing Students](#managing-students)
+  - [Managing Sessions](#managing-sessions)
+  - [Managing Attendance](#managing-the-attendance-of-a-session)
+  - [Managing Tasks](#managing-tasks)
+  - [Managing Grades](#managing-the-grades-of-a-task)
 - [Glossary](#glossary)
 
 ---
@@ -227,9 +230,8 @@ Putting it together for the above example, `find course` would tell CLIpboard th
 ---
 
 ## General Features
-General commands are commands that may be used anywhere on CLIpboard, regardless of the page you're on.
-
-### Showing the home page (Course Page): `home`
+General features are features that may be used anywhere on CLIpboard, regardless of the page you're on.
+### Showing the home page (`Course Page`): `home`
 
 Brings you to the home page, which is the `Course Page` of CLIpboard.
 
@@ -274,16 +276,6 @@ help
 
 [Back to list of commands](#commands)
 
-### Scrolling through command history: `UP` or `DOWN` arrow key
-
-Scrolls through past commands in command box.
-
-- Similar to Linux command-line interface, use the up or down arrow keys to scroll through previously typed commands in the command box.
-- You may use the `LEFT` or `RIGHT` arrow keys to edit the command first.
-- Press `ENTER` to execute the command.
-
-[Back to list of commands](#commands)
-
 ### Clearing all entries: `clear`
 
 Clears all entries in the list pane of the current page.
@@ -311,6 +303,16 @@ Accidentally cleared your data? Don't worry, try <code>undo</code> command!
 ```
 exit
 ```
+
+[Back to list of commands](#commands)
+
+### Scrolling through command history: `UP` or `DOWN` arrow key
+
+Scrolls through past commands that you used.
+
+- Similar to Linux command-line interface, use the `UP` or `DOWN` arrow keys to scroll through previously typed commands in the command box.
+- You may use the `LEFT` or `RIGHT` arrow keys to edit the command first.
+- Press `ENTER` to execute the command.
 
 [Back to list of commands](#commands)
 
@@ -599,12 +601,12 @@ The following sections contain the features that are available to you on the `St
   Before delving in, it is important to note that some commands for managing students require multiple parameters. As described in [Understanding Commands](#understanding-commands), these parameters would require specific prefixes to indicate the type of information they represent. There are also some restrictions on the input for these parameters. Please refer to the table below.
 </div>
 
-| Prefix | Prefix meaning              | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| n/     | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| p/     | Phone Number                | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| e/     | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints:`` 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. `` 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: `` - end with a domain label at least 2 characters long `` - have each domain label start and end with alphanumeric characters `` - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| sid/   | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Prefix | Prefix meaning | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------ | -------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/     | Name           | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| p/     | Phone Number   | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| e/     | Email          | Emails should be of the format local-part@domain and adhere to the following constraints: <br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br/> - end with a domain label at least 2 characters long <br/> - have each domain label start and end with alphanumeric characters <br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| sid/   | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 ### Adding a student: `add student`
 
 Adds a student to the student roster.
