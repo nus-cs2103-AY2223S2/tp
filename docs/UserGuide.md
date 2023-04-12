@@ -184,7 +184,8 @@ with in no time. You are also welcome to revisit this section again anytime.
 Before we delve into the individual features, here are some useful notes about the general format of all commands in 
 sprINT:
 
-**:information_source: Notes about the command format:**<br>
+<div markdown="span" class="alert alert-info">:information_source:
+Notes about the command format
 
 * **You cannot add more than 2147483647 applications, and you cannot delete or edit applications that have index greater than 2147483647.**
 If you are a normal human being, we do not foresee this to be an issue for you!<br>
@@ -222,7 +223,7 @@ occurrence of the prefix `r/`.
 * **Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.**<br>
   e.g. if you specify `help 123` as your command, it will be interpreted as `help`, and the help command executes.
 
-
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -304,7 +305,12 @@ through the contract and find yourself satisfied with the salary and employee be
 want to update the status of your application, and also add a few tags to indicate the decent terms of the contract.
 You can make these changes to your existing application using the command: `edit-app 1 s/offered t/goodSalary t/goodWelfare`
 (assuming that the application is showing up as the first one on the Application List Panel).
+
+Please refer to the screenshots below for the before and after comparison of the execution of the edit-app command.
+
+**Insert screenshots here.**
 </div>
+
 
 Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]​`
 
@@ -654,6 +660,11 @@ This includes the total number of applications currently displayed in the Applic
 breakdown of these applications by status (shown both in numbers and as a pie chart).
 
 Format: no command is needed. Statistics information is recomputed and regenerated upon every command execution. 
+
+Refer to the screenshots below for the before and after comparison of the Statistics panel, after an application's
+status was changed from `interested` to `applied`.
+
+**Insert screenshots here.**
 
 #### 4.4.5 Clearing all applications : `clear`
 
