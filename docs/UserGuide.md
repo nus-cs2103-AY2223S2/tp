@@ -334,7 +334,7 @@ exit
 
 ## Managing Courses
 In the following sections, you will find the features that are available to you on the `Course Page`.
-The `Course Page`, typically looks like this:
+A `Course Page` typically looks like this:
 
 <img src="./images/UiCoursePage.png" width="650" height="529"/>
 <br>
@@ -351,12 +351,10 @@ If you're teaching a new course, you can use this command to add it to the `Cour
 add course <COURSE>
 ```
 
-- Adding a course with the same module code is not allowed.
-  - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message inside the result display.
-
-<div markdown="block" class="alert alert-info">
-This command is case-sensitive.<br>
-e.g. <code>CS2103T</code> and <code>cs2103t</code> are treated as different courses.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+  * Adding courses with the same course codes is not allowed.
+  * Course codes can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
+  * This command is case-sensitive. e.g. "CS2103T" and "cs2103t" are treated as different courses.
 </div>
 
 Examples:
@@ -364,9 +362,6 @@ Examples:
 - `add course CS2103T` will add a new course with module code `CS2103T`
 - `add course CS2105` will add a new course with module code `CS2105`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-  Course codes can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
-</div>
 
 <br>
 
@@ -399,7 +394,30 @@ edit course <INDEX> <NEW COURSE NAME>
 
 Examples:
 
-- `edit course 1 CS2106` will rename the first course listed in the course list to `CS2106`.
+- `edit course 1 CS2106` will rename the first course listed in the course list to "CS2106".
+
+[Back to list of features](#features)
+
+### Finding a course: `find course`
+
+Finds course(s) that contains any of the given keywords(s) in the module code.
+
+**Command Format:**
+
+```
+find course <KEYWORD> [<MORE_KEYWORDS>]
+```
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+
+* This command is case-insensitive. (e.g. `find course CS2103T` and `find course cs2103t` will give you the same result)
+* Keywords are separated by spaces.
+</div>
+
+Example:
+  If my course list contains 2 courses "CS2103T" and "CS2101":
+  - `find course CS` will show "CS2103T", "CS2101".
+  - `find course 03` will show "CS2103T".
 
 [Back to list of features](#features)
 
@@ -418,31 +436,11 @@ Examples:
 
 [Back to list of features](#features)
 
-### Finding a course: `find course`
-
-Finds course(s) that contains any of the given keywords(s) in the module code.
-
-**Command Format:**
-
-```
-find course <KEYWORD> [<MORE_KEYWORDS>]
-```
-
-- This command is case-insensitive. (e.g. `find course CS2103T` and `find course cs2103t` will give you the same result)
-- Keywords are separated by spaces.
-
-Example:
-  If my course list contains 2 courses "CS2103T" and "CS2101":
-  - `find course CS` will show "CS2103T", "CS2101".
-  - `find course 03` will show "CS2103T".
-
-[Back to list of features](#features)
-
 ---
 
 ## Managing Groups
 In the following sections, you will find the features that are available to you on the `Group Page`.
-The `Group Page`, typically looks like this:
+A `Group Page` typically looks like this:
 
 <img src="./images/UiGroupPage.png" width="650" height="529"/>
 <br>
@@ -450,7 +448,7 @@ The `Group Page`, typically looks like this:
 
 ### Adding a group: `add group`
 
-Adds a group to the list of groups in the group page.
+Adds a new group to a selected course.
 
 **Command Format:**
 
@@ -458,13 +456,10 @@ Adds a group to the list of groups in the group page.
 add group <GROUP>
 ```
 
-- Adding a group with the same group name is not allowed.
-  - For example, if a group with group name `T15` already exists in CLIpboard,
-    entering `add group T15` will display an error message inside the result display.
-
-<div markdown="block" class="alert alert-info">
-This command is case-sensitive.<br>
-e.g. <code>T15</code> and <code>t15</code> are treated as different groups.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+  * Adding groups with the same group name is not allowed.
+  * Group names can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
+  * This command is case-sensitive. e.g. "CS2103T" and "cs2103t" are treated as different courses.
 </div>
 
 Examples:
@@ -472,11 +467,6 @@ Examples:
 - `add group T15` will add a new group with group name `T15`
 - `add group L08` will add a new group with group name `L08`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-  Group names can contain alphanumeric and special characters. e.g. "AY2223S2-T15"
-</div>
-
-<br>
 
 [Back to list of features](#features)
 
