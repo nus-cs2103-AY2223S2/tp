@@ -239,7 +239,7 @@ To help you understand how CLIpboard recognises commands, these are some of the 
 - **Index**: CLIpboard displays items like courses and groups as numbered lists. The *index* of an item in the list might be required as a parameter for some commands.
   - e.g. if the specified command format is `delete course <INDEX>`, and you enter `delete course 3`, CLIpboard will delete the *third* course in the course list.
 - **Multiple Parameters**: Some commands require multiple parameters. In such cases, each parameter would require a specific corresponding prefix to denote the type of information it is.
-  - e.g When adding a student, there may be multiple pieces of information to tied to a student.
+  - e.g When adding a student, there may be multiple pieces of information tied to a student.
     Thus, a typical command for adding a student might look like `add student n/john doe p/12345678`.
     In this command,
     - The prefix `n/` in `n/john doe` tells CLIpboard that this parameter is the student's name.
@@ -328,8 +328,11 @@ Be very careful with this command. Deleted data may not be recovered after closi
 
 ### Scrolling through command history: `UP` or `DOWN` arrow key
 
-You're feeling lazy and the commands you need to run are only slightly different from each other. No fret. You can scroll through your past commands using the `UP` or `DOWN` arrow keys. You may then use the `LEFT` or `RIGHT` arrow keys to edit your previous command.
-Finally, press `ENTER` to execute the command.
+You're feeling lazy and the commands you need to run are only slightly different from each other. No fret.
+
+1. You can scroll through your past commands using the `UP` or `DOWN` arrow keys.
+2. You may then use the `LEFT` or `RIGHT` arrow keys to edit your previous command.
+3. Finally, press `ENTER` to execute the command.
 
 [Back to list of features](#features)
 
