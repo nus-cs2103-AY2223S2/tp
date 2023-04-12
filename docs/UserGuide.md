@@ -303,12 +303,11 @@ through the contract and find yourself satisfied with the salary and employee be
 want to update the status of your application, and also add a few tags to indicate the decent terms of the contract.
 You can make these changes to your existing application using the command: `edit-app 1 s/offered t/goodSalary t/goodWelfare`
 (assuming that the application is showing up as the first one on the Application List Panel).
+</div>
 
 Please refer to the screenshots below for the before and after comparison of the execution of the edit-app command.
 
 **Insert screenshots here.**
-</div>
-
 
 Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]​`
 
