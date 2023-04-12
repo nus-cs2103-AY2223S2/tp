@@ -26,7 +26,6 @@ Let's dive in!
   - [Navigation Guide](#navigation)
 - [Features](#features)
   - [Commands](#commands)
-    - [Understanding Command Formats](#understanding-command-formats)
   - [General Features](#general-features)
   - [Managing Courses](#managing-courses)
   - [Managing Groups](#managing-groups)
@@ -83,16 +82,16 @@ A caution looks like this.
 2. Download the latest `clipboard.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your CLIpboard.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
-   `<br>`e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
-   `<br>`A GUI similar to [*Figure 1(TO FIX)*](#to fix) should appear in a few seconds.
-   `<br>`*Note how the app contains some sample data.*
+   <br>e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
+   <br>A GUI similar to [*Figure 1(TO FIX)*](#to fix) should appear in a few seconds.
+   <br>*Note how the app contains some sample data.*
 
 ### Quick Start
 
 1. When you first launch CLIpboard, you will be brought to the `Course page`.
 2. Type your command in the `command box` and press Enter/Return to execute it.
-   `<br>`e.g. typing `help` and pressing the Enter/Return key will open the help window.
-   `<br>`Some example commands you can try:
+   <br>e.g. typing `help` and pressing the Enter/Return key will open the help window.
+   <br>Some example commands you can try:
    1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
    2. `select 1` : Selects the first group displayed (eg. `T15`) on the `Group Page`. You will be redirected to the `Student Page`.
    3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list on the `Student Page`.
@@ -107,10 +106,10 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
 
 The image below depicts how some of the visual elements are referred to in this guide.
 
-`<a name="figure2"></a>`
-`<img src="./images/VisualGuide.png" width="650" height="529"/>`
-`<br>`
-`<span style="font-size: 10px; font-style: italic;">`Figure 2
+<a name="figure2"></a>
+<img src="./images/VisualGuide.png" width="650" height="529"/>
+<br>
+<span style="font-size: 10px; font-style: italic;">Figure 2</span>
 
 ### Navigation
 
@@ -119,12 +118,11 @@ Simply choose from a selection of `select`, `back`, `session`, or `task` command
 
 Here's a handy navigation map to get around CLIpboard.
 
-`<a name="figure3"></a>`
-`<img src="./images/navigationguide.png" width="650" height="530"/>`
-`<br>`
-`<span style="font-size: 13px; font-style: italic;">`Figure 3
+<a name="figure3"></a>
+<img src="./images/navigationguide.png" width="650" height="530"/>
+<br>
 
-Here's a hypothetical workflow that might help you better understand the figure above:`<br>`
+Here's a hypothetical workflow that might help you better understand the figure above:<br>
 *Say you wish to assign the grades for a task in one of your tutorial groups.*
 
 1. You'll first start on the `Course Page`.
@@ -142,10 +140,10 @@ Here's a hypothetical workflow that might help you better understand the figure 
 Here is a list of features that CLIpboard supports:
 
 - [General Features: ](#general-commands)
-  - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
+  - [Displaying the home page: ](#displaying-the-home-page-home) `home`
   - [Displaying the previous page: ](#displaying-the-previous-page-you-were-at-back) `back`
   - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
-  - [Opening help window: ](#opening-help-window-help) `help`
+  - [Help: ](#help-help) `help`
   - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
   - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
   - [Exiting the program: ](#exiting-the-program-exit) `exit`
@@ -199,7 +197,7 @@ Features in CLIpboard are supported by commands.
 Commands are like giving instructions to CLIpboard on what to do.
 
 A typical command would look like this:
-`<br>`
+<br>
 `<img src="./images/typicalcommand.png" width="400" height="138"/>`
 
 **Command keyword(s)**: Typically 1 or 2 words, they specify the type of action for CLIpboard to execute
@@ -209,20 +207,20 @@ Putting it together for the above example, `find course` would tell CLIpboard th
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:** <br>
 
-* If a command expects a parameter to be input only once, but multiple instances of it are included, only the last occurence of the parameter will be taken.`<br>`
+* If a command expects a parameter to be input only once, but multiple instances of it are included, only the last occurence of the parameter will be taken.<br>
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous parameters for commands that do not expect any parameters will be ignored.`<br>`
+* Extraneous parameters for commands that do not expect any parameters will be ignored.<br>
   * e.g. if you input the command `help 123`, CLIpboard will interpret it simply as `help`.
 
 </div>
 
 #### Understanding Command Formats
 
-- **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).`<br>`
+- **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).<br>
   - e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
-- **Square brackets (`[]`)**: Parameters in square brackets are optional.`<br>`
+- **Square brackets (`[]`)**: Parameters in square brackets are optional.<br>
   - e.g If the parameters are specified as `[n/<NAME>] [p/<PHONE_NUMBER>]`, omitting these parameters are acceptable.
-- **Elipses(`...`)**: Parameters postfixed by `…` can have multiple inputs.`<br>`
+- **Elipses(`...`)**: Parameters postfixed by `…` can have multiple inputs.<br>
   - e.g. `mark <INDEX>…` can be used as `mark 1` or `mark 1,2,3` etc.
 - **Multiple Parameters**: Some commands require multiple parameters. In such cases, each parameter would require a specific corresponding prefix to denote the type of information it is.
   - e.g When adding a student, there may be multiple pieces of information to tied to a student.
@@ -230,7 +228,7 @@ Putting it together for the above example, `find course` would tell CLIpboard th
     In this command,
     - The prefix `n/` in `n/john doe` tells CLIpboard that this parameter is the student's name.
     - The prefix `p/` in `p/12345678` tells CLIpboard that this parameter is the student's phone number.
-- **Parameters can be input in any order**`<br>`
+- **Parameters can be input in any order**<br>
   - If the command format specifies the required parameters as `n/NAME p/PHONE_NUMBER`, an alternative format like `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 <div markdown="span" class="alert alert-info">
@@ -243,7 +241,7 @@ Putting it together for the above example, `find course` would tell CLIpboard th
 
 General features are features that may be used anywhere on CLIpboard, regardless of the page you're on.
 
-### Showing the home page (`Course Page`): `home`
+### Showing the home page: `home`
 
 Brings you to the home page, which is the `Course Page` of CLIpboard.
 
@@ -268,6 +266,7 @@ back
 [Back to list of features](#features)
 
 ### Undoing the last command you did: `undo`
+Because everyone makes mistakes.
 
 **Command Format:**
 
@@ -277,9 +276,8 @@ undo
 
 [Back to list of features](#features)
 
-### Opening help window: `help`
-
-Opens a window showing the list of commands available on your current page, as well as a link to this User Guide.
+### Help: `help`
+When you're feeling lost with what to do, or if you're how to do something, use this command to open the `Help Window` showing the list of commands available on your current page, as well as a link to this User Guide.
 
 **Command Format:**
 
