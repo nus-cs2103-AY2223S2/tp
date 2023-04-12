@@ -132,7 +132,7 @@ Here's a hypothetical workflow that might help you better understand the figure 
 Here is a list of features that CLIpboard supports:
 - [General Features: ](#general-commands)
   - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
-  - [`back`](#displaying-the-previous-page-you-were-at-back)
+  - [Displaying the previous page: ](#displaying-the-previous-page-you-were-at-back) `back`
   - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
   - [Opening help window: ](#opening-help-window-help) `help`
   - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
@@ -169,20 +169,20 @@ Here is a list of features that CLIpboard supports:
   - [Editing a session: ](#editing-a-session-edit-session) `edit session`
   - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking-select) `select`
   - [Finding a session: ](#finding-a-session-find-session) `find session`
-  - [Managing Attendance: ](#attendance-page-commands)
-    - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
-    - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
-    - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session-attendance) `attendance`
+- [Managing Attendance: ](#attendance-page-commands)
+  - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
+  - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
+  - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session-attendance) `attendance`
 - [Managing Tasks: ](#task-page-commands)
   - [Adding a task: ](#adding-a-task-add-task) `add task`
   - [Deleting a task: ](#deleting-a-task-delete-task) `delete task`
   - [Editing a task: ](#editing-a-task-edit-task) `edit task`
   - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
   - [Finding a task: ](#finding-a-task-find-task) `find task`
-  - [Managing Grades: ](#grades-page-commands)
-    - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
+- [Managing Grades: ](#grades-page-commands)
+  - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
 
-## Commands
+### Commands
 Features in CLIpboard are supported by commands.
 Commands are like giving instructions to CLIpboard on what to do.
 
@@ -203,7 +203,7 @@ Putting it together for the above example, `find course` would tell CLIpboard th
     * e.g. if you input the command `help 123`, CLIpboard will interpret it simply as `help`.
 </div>
 
-### Understanding Command Formats
+#### Understanding Command Formats
 
   - **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).<br>
     - e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
@@ -323,7 +323,7 @@ To manage your courses, you will have to be on the `Course Page`, which typicall
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 4</span>
 
-This section contains the features that are available to you on the `Course Page`.
+The following sections contain the features that are available to you on the `Course Page`.
 ### Adding a course: `add course`
 
 Adds a course to the list of courses in the course page.
@@ -435,7 +435,7 @@ To manage your groups, you will have to be on the `Group Page`, which typically 
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 5</span>
 
-This section contains the features that are available to you on the `Group Page`.
+The following sections contain the features that are available to you on the `Group Page`.
 ### Adding a group: `add group`
 
 Adds a group to the list of groups in the group page.
@@ -593,7 +593,7 @@ To manage your students, you will have to be on the `Student Page`, which typica
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 6</span>
 
-This section contains the features that are available to you on the `Student Page`.
+The following sections contain the features that are available to you on the `Student Page`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
   Before delving in, it is important to note that some commands for managing students require multiple parameters. As described in [Understanding Commands](#understanding-commands), these parameters would require specific prefixes to indicate the type of information they represent. There are also some restrictions on the input for these parameters. Please refer to the table below.
@@ -734,11 +734,10 @@ Examples:
 
 ### Displays a student's information: `select`
 
-![image](./images/UiStudentView.png)
-
-###### Figure 7
-
 Select a particular student and display his / her particulars.
+The selected student will be shown like this:
+
+<img src="./images/UiStudentView.png" width="650" height="529"/>
 
 **Command Format:**
 
@@ -778,7 +777,7 @@ Examples:
 - `remark 2` will delete the remark from the second student listed in the student list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Accidentally deleted a remark? Don't worry, Try using <code>undo</code> command!
+  Accidentally deleted a remark? Don't worry, Try using <code>undo</code> command!
 </div>
 
 [Back to list of commands](#commands)
@@ -812,11 +811,9 @@ Examples:
 [Back to list of commands](#commands)
 
 ### Viewing a student's attendance throughout the course: `attendance`
-Shows a summary of a student's attendance in the `View Pane` like this:
+Shows a summary of a student's attendance like this:
 
 <img src="./images/UiStudentAttendanceView.png" width="650" height="529"/>
-<br>
-<span style="font-size: 10px; font-style: italic;">Figure 8</span>
 
 **Command Format:**
 
@@ -824,7 +821,7 @@ Shows a summary of a student's attendance in the `View Pane` like this:
 attendance
 ```
 
-- To mark a student's attendance for a particular session, you can navigate to the [Attendance Page](#attendance-page-commands).
+TO ADD NOTE: To mark a student's attendance for a particular session, you can navigate to the [Attendance Page](#attendance-page-commands).
 
 [Back to list of commands](#commands)
 
@@ -837,8 +834,7 @@ To manage your sessions of a paritcular group, you will have to be on its respec
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 9</span>
 
-This section contains the features that are available to you on the `Session Page`.
-
+The following sections contain the features that are available to you on the `Session Page`.
 ### Adding a session: `add session`
 
 Adds a session to the list of session in the session page.
@@ -944,8 +940,7 @@ To manage the attendance of a particular session, you will have to be on its res
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 10</span>
 
-This section contains the features that are available to you on the `Attendance Page`.
-
+The following sections contain the features that are available to you on the `Attendance Page`.
 ### Marking students as present: `mark`
 
 Marks selected students' attendance as present for current session.
@@ -1008,8 +1003,7 @@ To manage the tasks of a particular group, you will have to be on its respective
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 12</span>
 
-This section contains the features that are available to you on the `Task Page`.
-
+The following sections will contain the features that are available to you on the `Task Page`.
 ### Adding a task: `add task`
 
 Adds a new task into the task page.
@@ -1113,7 +1107,7 @@ To manage the grades of a particular task, you will have to be on its respective
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 13</span>
 
-This section contains the features that are available to you on the `Grades Page`.
+The following sections contain the features that are available to you on the `Grades Page`.
 
 ADD CAUTION THAT GRADES ARE 0 BY DEFAULT
 
