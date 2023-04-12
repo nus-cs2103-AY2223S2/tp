@@ -169,10 +169,16 @@ A typical command would look like this:
 <img src="./images/typicalcommand.png" width="400" height="138"/>
 
 **Command keyword(s)**: Typically 1 or 2 words, they specify the type of action for CLIpboard to execute
-**Supplementary command information**: These are additional context about a command you wish to execute. Conventionally, these are referred to as "arguments" or "parameters".
+**Supplementary command information**: These provide additional context about a command you wish to execute. Conventionally, these are referred to as "arguments" or "parameters".
 
 Putting it together for the above example, `find course` would tell CLIpboard that you're looking for a course, and "cs2101" tells CLIpboard which specific course you're looking for.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution: <br>**
+  * If a parameter is expected only once by a command but multiple instances of it are specified, only the last occurrence of the parameter will be taken.<br>
+    - e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  * Extraneous parameters for commands that do not expect parameters (such as `help`, `back`, `exit` and `clear`) will be ignored.<br>
+    - e.g. if a command `help 123` is input by the user, CLIpboard will interpreted it simply as `help`.
+</div>
 
 Here is a list of commands that CLIpboard understands:
 - [General Commands: ](#general-commands)
@@ -227,33 +233,27 @@ Here is a list of commands that CLIpboard understands:
 - [Grades Page Commands: ](#grades-page-commands)
   - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
 
----
-
+### Understanding Command Formats :
 <div markdown="span" class="alert alert-info">
-  :information_source: **Note:** It is important to enter commands exactly as their specified formats in order for CLIpboard to understand them.<br>
+  :information_source: **Note:** It is important to enter commands exactly in their required formats in order for CLIpboard to understand them.<br>
 </div>
-The terminologies and formatting used to describe command formats are as follows:
-  - *Supplementary command information* are represented in uppercase and enclosed by angle brackets (`<>`).<br>
+
+  - **Supplementary command information**: Represented in uppercase and enclosed by angle brackets (`<>`).<br>
     - e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
-  - Parameters in square brackets are optional.<br>
+  - **Square brackets (`[]`)**: Parameters in square brackets are optional.<br>
     - e.g `[n/<NAME>] [p/<PHONE_NUMBER>]` can be used as `n/John Doe p/88886886` or as `n/John Doe`.
-  - Items with `…` after them can be used multiple times.<br>
-    - e.g. `mark <INDEX>…` can be used as `mark 1`, `mark 1,2,3` etc.
-  - Some commands require multiple parameters. In such cases, each parameter would require a specific corresponding prefix to denote the type of information it is.
+  - **Elipses(`...`)**: Parameters postfixed by `…` can have multiple inputs.<br>
+    - e.g. `mark <INDEX>…` can be used as `mark 1` or `mark 1,2,3` etc.
+  - **Multiple Parameters**: Some commands require multiple parameters. In such cases, each parameter would require a specific corresponding prefix to denote the type of information it is.
     - e.g When adding a student, there may be multiple pieces of information to tied to a student.
       Thus, a typical command for adding a student might look like `add student n/john doe p/12345678`.
         In this command,
         - The prefix `n/` in `n/john doe` tells CLIpboard that this parameter is the student's name.
         - The prefix `p/` in `p/12345678` tells CLIpboard that this parameter is the student's phone number.
-  - Parameters can be input in any order.<br>
+  - **Parameters can be input in any order**<br>
     - If the command format specifies the required parameters as `n/NAME p/PHONE_NUMBER`, an alternative format like `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-    - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-    - e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-  - Extraneous parameters for commands that do not take in parameters (such as `help`, `back`, `exit` and `clear`) will be ignored.<br>
-    - e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-</div>
+---
 
 ## General Commands
 
