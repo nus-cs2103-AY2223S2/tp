@@ -351,7 +351,7 @@ If you're teaching a new course, you can use this command to add it to the `Cour
 add course <COURSE>
 ```
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
   * Adding courses with the same course codes is not allowed.
   * Course codes can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
   * This command is case-sensitive. e.g. "CS2103T" and "cs2103t" are treated as different courses.
@@ -407,11 +407,12 @@ Use this command to filter your course list to show only courses that contain sp
 find course <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
 * This command is case-insensitive. (e.g. `find course CS2103T` and `find course cs2103t` will give you the same result)
 * Keywords are separated by spaces.
 </div>
+<br>
 
 Example:
   If my course list contains 2 courses "CS2103T" and "CS2101":
@@ -455,7 +456,7 @@ To add a new group, use this command to add it to a selected course.
 add group <GROUP>
 ```
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
   * Adding groups with the same group name is not allowed.
   * Group names can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
   * This command is case-sensitive. e.g. "CS2103T" and "cs2103t" are treated as different courses.
@@ -558,8 +559,7 @@ Examples:
 [Back to list of features](#features)
 
 ### Finding a group: `find group`
-Use `find group` to
-Find group(s) that contains any of the given keywords(s) in the group name.
+Use this command to filter your group list to show only groups that contain specific keywords.
 
 **Command Format:**
 
@@ -567,8 +567,11 @@ Find group(s) that contains any of the given keywords(s) in the group name.
 find group <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
-- This command is case-insensitive. (e.g. `find group T15` and `find group t15` will give you the same result)
-- Keywords are separated by spaces.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* This command is case-insensitive. (e.g. `find course T15` and `find course T15` will give you the same result)
+* Keywords are separated by spaces.
+</div>
 
 Examples:
 
@@ -611,7 +614,7 @@ Use this command to add a new student to a selected group.
 add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
 ```
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
   * Adding students with the same student id is not allowed.
   * The same student can exist in multiple groups. For example, a student can be in both tutorial group "T1" and a project group "Team15" at the same time.
@@ -650,16 +653,15 @@ If your student has changed their phone number, you may edit it, or any other st
 ```
 edit student <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
 ```
-<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-* At least one field `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
-* Fields entered following `edit <INDEX>` will replace the original fields.
-* Fields not entered will not replace the original fields.
+  * At least one field `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
+  * Fields entered following `edit <INDEX>` will replace the original fields.
+  * Fields not entered will not replace the original fields.
 </div>
 <br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
-Made a typo? Try the <code>undo</code> command!
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Made a typo? Try the <code>undo</code> command!
 </div>
 
 Examples:
@@ -688,14 +690,14 @@ Examples:
 
 ### Finding students by name or student ID: `find student`
 
-Filters your student list to show only students whose names or student IDs contain any of the given keywords(s).
+Filters your student list to show only students whose names or student IDs contain any of the given keywords.
 
 **Command Format:**
 
 ```
 find student <KEYWORD> [<MORE_KEYWORDS>]
 ```
-<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
 * You can find students using either `name` or `student ID` for the keyword(s).
 * Keywords are separated by spaces.
@@ -713,7 +715,7 @@ Examples:
 
 ### Sorting list of students: `sort`
 
-You can sort your students either by their names or their student id.
+You can sort your students either by their names or their student ID.
 
 **Command Format:**
 
@@ -795,19 +797,19 @@ Uploads a student's photo to be displayed in the student roster.
 ```
 upload <LOCAL_FILE_PATH>
 ```
-<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-* File path to the photo can be either [absolute file path or relative file path](#glossary).
 * For an image to be displayed as the profile picture of a student in CLIpboard, the image must be named after the said
   student's student ID and must be a `.png` file (i.e. `<STUDENT_ID>.png`)
 * If a new image with the same name as an existing image in CLIpboard is uploaded, the existing photo will be replaced.
 </div>
 <br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 
+* File path to the photo can be either [absolute file path or relative file path](#glossary).
 * If you're on Windows, you can get the file path of a file by clicking it with `SHIFT + Right-Click > 'Copy as Path'`.
-* You can upload the student images before actually adding the student. CLIpboard will still match the images to the student once they're added (if the file name matches their student id).
+* You can upload the student images before actually adding the student. CLIpboard will still match the images to the student once they're added (if the file name matches their student ID).
 </div>
 <br>
 
@@ -830,7 +832,9 @@ Shows a summary of a student's attendance like this:
 attendance
 ```
 
-TO ADD NOTE: To mark a student's attendance for a particular session, you can navigate to the [Attendance Page](#attendance-page-commands).
+<div markdown="block" class="alert alert-info">:information_source: **Note:** To edit a student's attendance for a particular session, you can navigate to their [Attendance Page](#attendance-page-commands).
+</div>
+<br>
 
 [Back to list of features](#features)
 
@@ -838,17 +842,14 @@ TO ADD NOTE: To mark a student's attendance for a particular session, you can na
 
 ## Managing Sessions
 
-To manage your sessions of a paritcular group, you will have to be on its respective `Session Page`, which typically looks like this:
-
+In the following sections, you will find the features that are available to you on the `Session Page`.
+A `Session Page` typically looks like this:
 <img src="./images/UiSessionPage.png" width="650" height="529"/>
 <br>
-<span style="font-size: 10px; font-style: italic;">Figure 9</span>
-
-The following sections contain the features that are available to you on the `Session Page`.
 
 ### Adding a session: `add session`
 
-Adds a session to the list of session in the session page.
+Adds a new session to a selected group.
 
 **Command Format:**
 
@@ -856,26 +857,24 @@ Adds a session to the list of session in the session page.
 add session <SESSION>
 ```
 
-- Adding a session with the same session name is not allowed.
-  - For example, if a session with name `Tutorial1` already exists in CLIpboard,
-    entering `add session Tutorial1` will display an error message inside the result display.
-  - Whitespaces are not allowed in session names.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* Adding sessions with the same session name is not allowed.
+* Session names can contain alphanumeric and special characters. e.g. "T15-Session-1.2"
+* This command is case-sensitive. e.g. "session1" and "SESSION1" are treated as different sessions.
+</div>
+<br>
 
 Examples:
 
 - `add session Tutorial4`
 - `add session Lab3`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-  Session names can contain alphanumeric and special characters. e.g. "T15-Session-1.2"
-</div>
-
-
 [Back to list of features](#features)
 
 ### Deleting a session: `delete session`
 
-Deletes a session from the list of session in the session page.
+Removes a session from a selected group.
 
 **Command Format:**
 
@@ -907,7 +906,7 @@ Examples:
 
 ### Finding a session: `find session`
 
-Finds session(s) that contains any of the given keywords(s) in the session name.
+Use this command to filter your session list to show only sessions that contain specific keywords.
 
 **Command Format:**
 
@@ -915,9 +914,13 @@ Finds session(s) that contains any of the given keywords(s) in the session name.
 find session <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
-- This command is case-insensitive. (e.g. `find session tutorial1` and `find session Tutorial1`
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* This command is case-insensitive. (e.g. `find session tutorial1` and `find session Tutorial1`
   will give you the same result)
-- Keywords are separated by spaces.
+* Keywords are separated by spaces.
+</div>
+<br>
 
 Examples:
 
@@ -927,15 +930,13 @@ Examples:
 
 ### Selecting a session to start attendance-taking: `select`
 
-Selects an existing session to start taking attendance for that session by displaying Student Page of that session on the right panel.
+This command allows you to select a session and view its student attendance.
 
 **Command Format:**
 
 ```
 select <INDEX>
 ```
-
-- Selects session at specified index and displays list of students in that session.
 
 Examples:
 
@@ -947,13 +948,10 @@ Examples:
 
 ## Managing the Attendance of a Session
 
-To manage the attendance of a particular session, you will have to be on its respective `Attendance Page`, which typically looks like this:
-
+In the following sections, you will find the features that are available to you after you have selected a session while on the `Session Page`.
+Your current page would look similar to this:
 <img src="./images/UiAttendancePage.png" width="650" height="529"/>
 <br>
-<span style="font-size: 10px; font-style: italic;">Figure 10</span>
-
-The following sections contain the features that are available to you on the `Attendance Page`.
 
 ### Marking students as present: `mark`
 
@@ -999,7 +997,6 @@ Displays the overall attendance of the session you are at in the command box, wh
 
 <img src="./images/UiAttendance.png" width="650" height="529"/>
 <br>
-<span style="font-size: 10px; font-style: italic;">Figure 11</span>
 
 **Command Format:**
 
@@ -1012,18 +1009,14 @@ attendance
 ---
 
 ## Managing Tasks
-
-To manage the tasks of a particular group, you will have to be on its respective `Task Page`, which typically looks like this:
-
+In the following sections, you will find the features that are available to you on the `Task Page`.
+A `Task Page` typically looks like this:
 <img src="./images/UiTaskPage.png" width="650" height="529"/>
 <br>
-<span style="font-size: 10px; font-style: italic;">Figure 12</span>
-
-The following sections will contain the features that are available to you on the `Task Page`.
 
 ### Adding a task: `add task`
 
-Adds a new task into the task page.
+Adds a new task to a selected group.
 
 **Command Format:**
 
@@ -1031,25 +1024,23 @@ Adds a new task into the task page.
 add task <TASK NAME>
 ```
 
-- Adding a task with the same task name is not allowed.
-  - For example, if a task with name `OP1` already exists in CLIpboard,
-    entering `add task OP1` will display an error message inside the result display.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* Adding tasks with the same task name is not allowed.
+* Task names can contain alphanumeric, special characters and white spaces. e.g. "AY2223S2-Midterm Practice Paper"
+* This command is case-sensitive. e.g. "task1" and "TASK1" are treated as different tasks.
+</div>
 
 Examples:
 
 - `add task OP3`
 - `add task Critical Reflection 3`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-  Task names can contain alphanumeric and special characters. e.g. "AY2223S2-Midterm Practice Paper"
-</div>
-<br>
-
 [Back to list of features](#features)
 
 ### Deleting a task: `delete task`
 
-Deletes a task from the current list of tasks.
+Removes a task from a selected group.
 
 **Command Format:**
 
@@ -1081,7 +1072,7 @@ Examples:
 
 ### Finding a task: `find task`
 
-Finds task(s) that contains any of the given keywords(s) in the task name.
+Use this command to filter your task list to show only tasks that contain specific keywords.
 
 **Command Format:**
 
@@ -1089,9 +1080,13 @@ Finds task(s) that contains any of the given keywords(s) in the task name.
 find task <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
-- This command is case-insensitive. (e.g. `find task op1` and `find task OP1`
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* This command is case-insensitive. (e.g. `find task op1` and `find task OP1`
   will give you the same result)
-- Keywords are separated by spaces.
+* Keywords are separated by spaces.
+</div>
+<br>
 
 Examples:
 
@@ -1101,7 +1096,7 @@ Examples:
 
 ### Selecting a task to assign grades: `select`
 
-Selects an existing task to assign students their grades for that task, by displaying the Student Page on the right panel.
+This command allows you to select a task and view the grades of the students in your selected group.
 
 **Command Format:**
 
@@ -1118,16 +1113,14 @@ Examples:
 [Back to list of features](#features)
 
 ## Managing the Grades of a Task
-
-To manage the grades of a particular task, you will have to be on its respective `Grades Page`, which typically looks like this:
-
+In the following sections, you will find the features that are available to you after you have selected a task while on the `Task Page`.
+Your current page would look similar to this:
 <img src="./images/UiGradesPage.png" width="650" height="529"/>
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 13</span>
 
-The following sections contain the features that are available to you on the `Grades Page`.
-
-ADD CAUTION THAT GRADES ARE 0 BY DEFAULT
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** The grades for all students will be set to ZERO when a task is created. Make sure to check that you have assigned grades to all students, so that no one's grade is accidentally left as 0.
+</div>
 
 ### Assigning a grade to student: `assign`
 
@@ -1138,9 +1131,7 @@ Assigns a grade to a student.
 ```
 assign <INDEX> <GRADE>
 ```
-
-- Assigns a grade to the student specified at `<INDEX>` as seen from the Student Page on the right.
-- Grade must be a number between `0 and 100`, inclusive of `0 and 100`.
+- Grade must be a number between `0 and 100`.
 
 Examples:
 
