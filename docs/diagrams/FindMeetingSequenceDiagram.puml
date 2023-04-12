@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindMeetingCommandParser" as FindMeetingCommandParser LOGIC_COLOR
+
+participant "c:FindMeetingCommand" as FindMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("meetingFind 22-05-2023")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("meetingFind 22-05-2023")
+activate AddressBookParser
+
+create FindMeetingCommandParser
+AddressBookParser -> FindMeetingCommandParser
+activate FindMeetingCommandParser
+
+FindMeetingCommandParser --> AddressBookParser
+deactivate FindMeetingCommandParser
+
+AddressBookParser -> FindMeetingCommandParser : parse(meetingFind 22-05-2023)
+activate FindMeetingCommandParser
+
+
+
+
+
+create FindMeetingCommand
+FindMeetingCommandParser -> FindMeetingCommand
+activate FindMeetingCommand
+
+FindMeetingCommand --> FindMeetingCommandParser : c
+deactivate FindMeetingCommand
+
+FindMeetingCommandParser --> AddressBookParser : c
+deactivate FindMeetingCommandParser
+FindMeetingCommandParser -[hidden]-> AddressBookParser
+destroy FindMeetingCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> FindMeetingCommand : execute(model)
+activate FindMeetingCommand
+
+
+FindMeetingCommand -> Model : updateFilteredMeetingList()
+deactivate Model
+
+create CommandResult
+FindMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindMeetingCommand
+deactivate CommandResult
+
+FindMeetingCommand --> LogicManager : result
+deactivate FindMeetingCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

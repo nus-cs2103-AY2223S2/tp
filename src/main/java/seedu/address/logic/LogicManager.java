@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -14,6 +15,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -51,6 +53,8 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
+        model.refreshFilteredMeetingList();
+
         return commandResult;
     }
 
@@ -77,5 +81,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<MeetingWithPerson> getFilteredMeetingList() {
+        return model.getFilteredMeetingList();
+    }
+    @Override
+    public ObservableList<MeetingWithPerson> updateFilteredMeetingList(Predicate<MeetingWithPerson> predicate) {
+        model.updateFilteredMeetingList(predicate);
+        return model.getFilteredMeetingList();
     }
 }

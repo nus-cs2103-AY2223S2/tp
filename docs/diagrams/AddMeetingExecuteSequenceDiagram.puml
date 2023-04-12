@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box Logic #C8C8FA
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddMeetingCommand" as AddMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+box end
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+box end
+
+activate LogicManager
+
+LogicManager -> AddMeetingCommand : execute(model)
+activate AddMeetingCommand
+
+AddMeetingCommand -> Model : addMeeting(personToEdit, meeting)
+activate Model
+
+AddMeetingCommand <-- Model
+deactivate Model
+
+AddMeetingCommand -> Model : updateFilteredPersonList()
+activate Model
+
+AddMeetingCommand <-- Model
+deactivate Model
+
+AddMeetingCommand -> Model : updateFilteredMeetingList()
+activate Model
+
+AddMeetingCommand <-- Model
+deactivate Model
+
+create CommandResult
+AddMeetingCommand -> CommandResult : CommandResult()
+activate CommandResult
+
+CommandResult --> AddMeetingCommand
+deactivate CommandResult
+
+AddMeetingCommand --> LogicManager : result
+deactivate AddMeetingCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml
