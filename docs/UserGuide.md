@@ -45,7 +45,7 @@ Let's dive in!
 * **Command**: A line of text that CLIpboard recognises as an instruction to execute.
 * **Path**: A line of text that describes a file location on a computer.
   - Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
-* **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`](#displaying-the-previous-page-you-were-at-back) commands)
+* **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`](#going-back-to-the-previous-page-back) commands)
 * Text formatted like `this` represents a program-related element. Depending on context, it can mean:
   1. A command that CLIpboard recognises
      - Example: `add group t15-4` is a valid command you can execute.
@@ -86,7 +86,7 @@ A caution looks like this.
 
 #### Launching CLIpboard
 *Option 1*:
-* Double-click on `clipboard.jar` to run it. If this does not work, go to option 2.
+* Double-click on `clipboard.jar` to run it. If this does not work, go to *Option 2*.
 
 *Option 2*:
 1. Open a command terminal. [Guide to open a command terminal](https://www.ionos.com/help/email/troubleshooting-mail-basicmail-business/access-the-command-prompt-or-terminal/#:~:text=Open%20Command%20Prompt%20in%20Windows,cmd%22%20and%20then%20click%20OK.).
@@ -144,7 +144,7 @@ Here's a hypothetical workflow that might help you better understand the figure 
 
 *Now, you wish to work on something else, like marking the attendance for another group.*
 4. From where we left off, simply enter the command `back` and you'll be brought back to the `Group Page`.
-5. From here, you can use `session 4` to view the `Session Page` of the fourth group, and you can then mark their attendance for a selected session.
+5. From here, you can use `session 4` to view the `Session Page` of the fourth group, and you can then mark their attendance for your selected session.
 
 ---
 
@@ -202,7 +202,7 @@ Here is a list of amazing features that CLIpboard supports:
   - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
   - [Finding a task: ](#finding-a-task-find-task) `find task`
 - [Managing Grades: ](#managing-the-grades-of-a-task)
-  - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
+  - [Assigning a grade: ](#assigning-a-grade-to-a-student-assign) `assign`
 
 ### Commands
 
@@ -220,7 +220,7 @@ Putting it all together for the above example, `find course` would tell CLIpboar
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:** <br>
 
-* If a command expects a parameter to be input only once, but multiple instances of it are included, only the last occurence of the parameter will be taken.<br>
+* If a command expects a parameter to be input only once, but multiple instances of it are included, only the last occurrence of the parameter will be taken.<br>
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not expect any parameters will be ignored.<br>
   * e.g. if you input the command `help 123`, CLIpboard will interpret it simply as `help`.
@@ -231,7 +231,7 @@ Putting it all together for the above example, `find course` would tell CLIpboar
 To help you understand how CLIpboard recognises commands, these are some of the conventions used in this guide when specifying command formats.
 
 - **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).<br>
-  - e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
+  - e.g. in `add course <COURSE>`, `<COURSE>` is a parameter. `<COURSE>` can be replaced with a course name to form the command `add course CS2103T`.
 - **Square brackets (`[]`)**: Parameters in square brackets are optional.<br>
   - e.g If the parameters are specified as `[n/<NAME>] [p/<PHONE_NUMBER>]`, omitting these parameters are acceptable.
 - **Elipses(`...`)**: Parameters postfixed by `…` can have multiple inputs.<br>
@@ -679,7 +679,7 @@ edit student <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUM
 Examples:
 
 - `edit student 1 n/John Doe` will replace the name of your first student listed in your student list to `John Doe`.
-- `edit student 4 p/99887766 e/john@gmail.com` will replace the phone number and email of your fourth student listed in your student list to `99887766` and `john@gmail.com` respectively.
+- `edit student 4 p/99887766 e/john@gmail.com` will replace the phone number and email of your fourth student listed in your student list with `99887766` and `john@gmail.com` respectively.
 
 [Back to list of features](#features)
 
@@ -969,7 +969,7 @@ Your current page would look similar to this:
 
 ### Marking students as present: `mark`
 
-Marks selected students' attendance as present for current session.
+This marks your selected students' attendance as present for your selected session.
 
 **Command Format:**
 
@@ -987,7 +987,7 @@ Examples:
 
 ### Marking students as absent: `unmark`
 
-Marks selected students' attendance as absent for current session.
+This marks your selected students' attendance as absent for your selected session.
 
 **Command Format:**
 
@@ -1045,7 +1045,7 @@ add task <TASK NAME>
 
 Examples:
 
-- `add task OP3`
+- `add task OP3` will add a new task named "OP3".
 - `add task Critical Reflection 3`
 
 [Back to list of features](#features)
@@ -1062,7 +1062,7 @@ delete task <INDEX>
 
 Examples:
 
-- `delete task 1` will delete the first task listed.
+- `delete task 1` will delete your first task listed.
 
 [Back to list of features](#features)
 
@@ -1078,7 +1078,7 @@ edit task <INDEX> <NEW TASK NAME>
 
 Examples:
 
-- `edit task 1 CA5` will rename the first task listed to `CA5`.
+- `edit task 1 CA5` will rename your first task listed to `CA5`.
 
 [Back to list of features](#features)
 
@@ -1102,13 +1102,13 @@ find task <KEYWORD> [<MORE_KEYWORDS>]
 
 Examples:
 
-- `find task 1` returns `OP1` and `Critical Reflection 1`.
+- `find task 1` will show `OP1` and `Critical Reflection 1`.
 
 [Back to list of features](#features)
 
 ### Selecting a task to assign grades: `select`
 
-This command allows you to select a task and view the grades of the students with that task.
+This command allows you to select a task and view the grades of your students with that task.
 
 **Command Format:**
 
@@ -1120,7 +1120,7 @@ select <INDEX>
 
 Examples:
 
-- `select 1` will return a list of students who was assigned the first task on the list.
+- `select 1` will show a list of students who were assigned the first task on the list.
 
 [Back to list of features](#features)
 
@@ -1135,7 +1135,7 @@ Your current page would look similar to this:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** The grades for all students will be set to ZERO when a task is created. Make sure to check that you have assigned grades to all students, so that no one's grade is accidentally left as 0.
 </div>
 
-### Assigning a grade to student: `assign`
+### Assigning a grade to a student: `assign`
 
 This assigns a grade to a student.
 
@@ -1151,7 +1151,7 @@ assign <INDEX> <GRADE>
 Examples:
 
 - `assign 1 78` will assign the first student on the Student Page the grade of 78.
-- `assign 3 0` will assign the third student on the Studet Page the grade of 0.
+- `assign 3 0` will assign the third student on the Student Page the grade of 0.
 
 [Back to list of features](#features)
 
