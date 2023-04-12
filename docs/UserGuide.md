@@ -957,7 +957,7 @@ Examples:
 
 ---
 
-## Managing the Attendance of a Session
+## Managing the attendance of a session
 
 In the following sections, you will find the features that are available to you after you have selected a session while on the `Session Page`.
 Your current page would look similar to this:
@@ -1123,6 +1123,8 @@ Examples:
 - `select 1` will return a list of students who was assigned the first task on the list.
 
 [Back to list of features](#features)
+
+---
 
 ## Managing the Grades of a Task
 In the following sections, you will find the features that are available to you after you have selected a task while on the `Task Page`.
