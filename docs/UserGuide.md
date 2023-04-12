@@ -173,11 +173,12 @@ A typical command would look like this:
 
 Putting it together for the above example, `find course` would tell CLIpboard that you're looking for a course, and "cs2101" tells CLIpboard which specific course you're looking for.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution: <br>**
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:** <br>
+
   * If a parameter is expected only once by a command but multiple instances of it are specified, only the last occurrence of the parameter will be taken.<br>
-    - e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+    * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
   * Extraneous parameters for commands that do not expect parameters (such as `help`, `back`, `exit` and `clear`) will be ignored.<br>
-    - e.g. if a command `help 123` is input by the user, CLIpboard will interpreted it simply as `help`.
+    * e.g. if a command `help 123` is input by the user, CLIpboard will interpreted it simply as `help`.
 </div>
 
 Here is a list of commands that CLIpboard understands:
@@ -241,7 +242,7 @@ Here is a list of commands that CLIpboard understands:
   - **Supplementary command information**: Represented in uppercase and enclosed by angle brackets (`<>`).<br>
     - e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
   - **Square brackets (`[]`)**: Parameters in square brackets are optional.<br>
-    - e.g `[n/<NAME>] [p/<PHONE_NUMBER>]` can be used as `n/John Doe p/88886886` or as `n/John Doe`.
+    - e.g If the parameters are specified as `[n/<NAME>] [p/<PHONE_NUMBER>]`, omitting these parameters are acceptable.
   - **Elipses(`...`)**: Parameters postfixed by `…` can have multiple inputs.<br>
     - e.g. `mark <INDEX>…` can be used as `mark 1` or `mark 1,2,3` etc.
   - **Multiple Parameters**: Some commands require multiple parameters. In such cases, each parameter would require a specific corresponding prefix to denote the type of information it is.
