@@ -603,7 +603,7 @@ A `Student Page` typically looks like this:
 
 ### Adding a student: `add student`
 
-Adds a student to a selected group.
+Use this command to add a new student to a selected group.
 
 **Command Format:**
 
@@ -611,26 +611,23 @@ Adds a student to a selected group.
 add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
 ```
 
-- Adding a student with the same student ID is not allowed.
-  - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message inside the result display.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+
+  * Adding students with the same student id is not allowed.
+  * The same student can exist in multiple groups. For example, a student can be in both tutorial group "T1" and a project group "Team15" at the same time.
+</div>
+<br>
 
 Examples:
 
 - `add student n/Tan Wei Xuan p/81776544 e/twx@example.com sid/A6788796F`
 - `add student n/Amirul Bin Othman p/98884417 e/amirul@example.com sid/A1324356G`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-  The same student can exist in multiple groups. For example, a student can be in both tutorial group "T1" and a project group "Team15" at the same time.
-</div>
-
-
-<br>
-
 [Back to list of features](#features)
 
 ### Deleting a student: `delete student`
 
-Deletes a student from the student roster.
+Removes a student from a selected group.
 
 **Command Format:**
 
@@ -646,21 +643,23 @@ Examples:
 
 ### Editing a student: `edit student`
 
-If your student has changed their phone number, or if you misspelled their name, you may edit them with this command.
+If your student has changed their phone number, you may edit it, or any other student information with this command.
 
 **Command Format:**
 
 ```
 edit student <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
 ```
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 
-- Edits student at index specified in `<INDEX>`.
-- At least one field `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
-- Fields entered following `edit <INDEX>` will replace the original fields.
-- Fields not entered will not replace the original fields.
+* At least one field `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
+* Fields entered following `edit <INDEX>` will replace the original fields.
+* Fields not entered will not replace the original fields.
+</div>
+<br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Made a typo? Try <code>undo</code> command!
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+Made a typo? Try the <code>undo</code> command!
 </div>
 
 Examples:
@@ -672,7 +671,8 @@ Examples:
 
 ### Copying a student's email: `copy`
 
-Copies a student's email to your clipboard.
+To quickly get the email of a student, use this command to copy a student's email.
+Then, just use `CTRL+V` or `Right-Click > Paste` to paste their email.
 
 **Command Format:**
 
@@ -682,23 +682,26 @@ copy <INDEX>
 
 Examples:
 
-- `copy 1` will copy the email of the first student in the list to your clipboard.
+- `copy 1` will copy the email of the first student in your student list to your clipboard.
 
 [Back to list of features](#features)
 
 ### Finding students by name or student ID: `find student`
 
-Finds students whose names or student IDs contain any of the given keywords(s).
+Filters your student list to show only students whose names or student IDs contain any of the given keywords(s).
 
 **Command Format:**
 
 ```
 find student <KEYWORD> [<MORE_KEYWORDS>]
 ```
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 
-- You can find students using either `name` or `student ID` for the keyword(s).
-- Keywords are separated by spaces.
-- This command is key-insensitive.
+* You can find students using either `name` or `student ID` for the keyword(s).
+* Keywords are separated by spaces.
+* Keywords are case-insensitive.
+</div>
+<br>
 
 Examples:
 
@@ -710,29 +713,30 @@ Examples:
 
 ### Sorting list of students: `sort`
 
-Sorts list of students in student roster.
+You can sort your students either by their names or their student id.
 
 **Command Format:**
 
 ```
 sort <CATEGORY>
 ```
-
-- Current possible categories are `name` and `id`
+- `<CATEGORY>` is either `name` or `id`
 
 Examples:
 
 - `sort name` will sort list of students alphabetically according to name.
 - `sort id` will sort list of students alphanumerically according to student ID.
 
-![image](./images/UiStudentSortName.png)
-![image](./images/UiStudentSortId.png)
+<img src="./images/UiStudentSortName.png" width="650" height="529"/>
+<br>
+<img src="./images/UiStudentSortId.png" width="650" height="529"/>
+<br>
 
 [Back to list of features](#features)
 
 ### Displays a student's information: `select`
 
-Select a particular student and display his / her particulars.
+This command allows you to select a student and displays their full particulars.
 The selected student will be shown like this:
 
 <img src="./images/UiStudentView.png" width="650" height="529"/>
@@ -745,38 +749,40 @@ select <INDEX>
 
 Examples:
 
-- `select 1` will select the 1st student in the student list and display his / her particulars on the view panel on the right.
+- `select 1` will select the first student in the student list and display his / her particulars on the view panel on the right.
 
 [Back to list of features](#features)
 
 ### Adding or deleting a remark: `remark`
 
-Format for adding / editing a remark:
+You can use this command to add, edit or remove remarks from a student.
+
+**Command Format for Adding/Editing a remark:**
 
 ```
 remark <INDEX> [<REMARK>]
 ```
 
-- Adds a remark to student in the student list whose index is specified in the `<INDEX>` field.
-- If there is already an existing remark, this command will replace current remark with `<REMARK>`.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** If there is already an existing remark, it will be replaced with the new remark.
+</div>
 
-Format for deleting a remark:
+
+**Command Format for deleting a remark:**
 
 ```
 remark <INDEX>
 ```
 
-- Deletes a remark from a student in the student list whose index is specified in the `<INDEX>` field.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+  Accidentally deleted a remark? Don't worry, Try using the <code>undo</code> command!
+</div>
+<br>
 
 Examples:
 
 - `remark 1 Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student
   listed in the student list.
 - `remark 2` will delete the remark from the second student listed in the student list.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-  Accidentally deleted a remark? Don't worry, Try using <code>undo</code> command!
-</div>
 
 [Back to list of features](#features)
 
@@ -789,17 +795,21 @@ Uploads a student's photo to be displayed in the student roster.
 ```
 upload <LOCAL_FILE_PATH>
 ```
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 
-- File path to the photo can be either absolute file path or relative file path.
-- For student photo to be displayed as the profile picture of a student in CLIpboard, photo must be named after the said
-  student's student ID (i.e. `<STUDENT_ID>.png`)
-- If a new photo with the same name as an existing photo in CLIpboard is uploaded, existing photo will be replaced.
-- Only images of file type `.png` can be uploaded
+* File path to the photo can be either [absolute file path or relative file path](#glossary).
+* For an image to be displayed as the profile picture of a student in CLIpboard, the image must be named after the said
+  student's student ID and must be a `.png` file (i.e. `<STUDENT_ID>.png`)
+* If a new image with the same name as an existing image in CLIpboard is uploaded, the existing photo will be replaced.
+</div>
+<br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Images not named correctly can still be uploaded (e.g. <code>Alex.png</code>), but only those named correctly
-(e.g. <code>A0123456X.png</code>) will be displayed in the profile of corresponding student.
+
+* If you're on Windows, you can get the file path of a file by clicking it with `SHIFT + Right-Click > 'Copy as Path'`.
+* You can upload the student images before actually adding the student. CLIpboard will still match the images to the student once they're added (if the file name matches their student id).
 </div>
+<br>
 
 Examples:
 
