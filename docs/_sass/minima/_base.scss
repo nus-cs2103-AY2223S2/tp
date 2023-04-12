@@ -103,7 +103,7 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: $base-font-weight;
+  font-weight: $bold-font-weight;
 }
 
 
@@ -253,7 +253,7 @@ table {
     }
   }
   th, td {
-    padding: ($spacing-unit / 3) ($spacing-unit / 2);
+    padding: ($spacing-unit / 4) ($spacing-unit / 3);
   }
   th {
     background-color: $table-header-bg-color;
@@ -288,7 +288,7 @@ table {
     text-align: center;
   }
   .site-header:before {
-    content: "AB-3";
+    content: "MATHUTORING";
     font-size: 32px;
   }
 }

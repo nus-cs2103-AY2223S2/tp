@@ -17,6 +17,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Score list tab should switch. */
+    private final boolean tabSwitch;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +27,20 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.tabSwitch = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with switch field.
+     *
+     * @param feedbackToUser The feedback to user.
+     * @param tabSwitch If the tab should be switched.
+     */
+    public CommandResult(String feedbackToUser, boolean tabSwitch) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.tabSwitch = tabSwitch;
     }
 
     /**
@@ -44,6 +61,15 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    /**
+     * Returns tab should be switched.
+     *
+     * @return Boolean value to indicate the tab should be switched.
+     */
+    public boolean isTabSwitch() {
+        return tabSwitch;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
@@ -7,8 +8,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyMathutoring;
+import seedu.address.model.student.Student;
 
 /**
  * API of the Logic component
@@ -24,19 +26,30 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Mathutoring.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getMathutoring()
      */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ReadOnlyMathutoring getMathutoring();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Sets the mathutoring to the given mathutoring.
      */
-    Path getAddressBookFilePath();
+    void setMathutoring(ReadOnlyMathutoring mathutoring) throws CommandException;
+
+    /**
+     * Stores the mathutoring data to the given file path.
+     */
+    void storeMathutoring(Path filePath) throws IOException;
+
+
+    /** Returns an unmodifiable view of the filtered list of students */
+    ObservableList<Student> getFilteredStudentList();
+
+    /**
+     * Returns the user prefs' math tutoring file path.
+     */
+    Path getMathutoringFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +60,15 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the student that user want to check.
+     *
+     * @return the student being selected by the user.
+     */
+
+    Student findCheckedStudent();
+
+    void exportProgress(Student target, String completePath) throws IOException;
+
 }

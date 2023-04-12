@@ -65,4 +65,13 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if {@code s} represents two non-blank strings separated by a white space
+     */
+    public static boolean isTwoIndexString(String s) {
+        requireNonNull(s);
+
+        return s.split("\\s+").length == 2;
+    }
 }

@@ -1,0 +1,75 @@
+#copyButton, #helpMessage {
+    -fx-text-fill: white;
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 12pt;
+    -fx-text-alignment: center;
+}
+
+.heading_label {
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4A4A4A;
+    -fx-padding: 0 0 0 0;
+}
+
+.containerButton {
+    -fx-background-color: #d1ceee;
+    -fx-font-size: 16pt;
+    -fx-text-fill: #5058a3;
+    -fx-background-radius: 10;
+}
+
+.containerButton:hover {
+    -fx-background-color: #dad8e9;
+}
+
+.containerButton:armed {
+    -fx-background-color: #d1ceee;
+}
+
+#submitButton {
+    -fx-background-color: #605BF1;
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+}
+
+#submitButton:hover {
+    -fx-background-color: #7773f1;
+}
+
+#submitButton:armed {
+    -fx-background-color: #605BF1;
+}
+
+
+#cancelButton {
+    -fx-background-color: #8a8a8a;
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+}
+
+#cancelButton:hover {
+    -fx-background-color: #c4c0c0;
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+}
+
+#cancelButton:armed {
+    -fx-background-color: #8a8a8a;
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+}
+
+#feedbackLabel {
+    -fx-text-fill: #9e9e9e;
+    -fx-font-style: italic;
+}
+
+#helpMessageContainer {
+    -fx-background-color: #605BF1;
+}

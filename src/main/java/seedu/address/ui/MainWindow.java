@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -29,11 +30,16 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private int tabNumber = 0;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ImportWindow importWindow;
+    private ExportWindow exportWindow;
+    private TaskListPanel taskListPanel;
+    private ScoreListPanel scoreListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +48,25 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private MenuItem importMenuItem;
+
+    @FXML
+    private MenuItem exportMenuItem;
+
+    @FXML
+    private StackPane studentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane scoreListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -65,7 +83,25 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        Consumer<String> message;
+
+        // Listener for ImportWindow such that the GUI will be updated after the import is done
+        message = new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+                try {
+                    executeCommand(s);
+                    importWindow.handleSuccess();
+                } catch (CommandException | ParseException e) {
+                    importWindow.handleError(e.getMessage());
+                }
+            }
+        };
+
         helpWindow = new HelpWindow();
+        importWindow = new ImportWindow(message);
+        exportWindow = new ExportWindow(this.logic);
+
     }
 
     public Stage getPrimaryStage() {
@@ -106,21 +142,38 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    private void fillScoreAndTask() {
+        Consumer<Integer> callBack = new Consumer<Integer>() {
+            @Override
+            public void accept(Integer tabNumber) {
+                setTabNumber(tabNumber);
+            }
+        };
+
+        taskListPanel = new TaskListPanel(logic.findCheckedStudent());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+        scoreListPanel = new ScoreListPanel(logic.findCheckedStudent(), tabNumber, callBack);
+        scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic);
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMathutoringFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        fillScoreAndTask();
     }
 
     /**
@@ -145,6 +198,31 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+
+    }
+
+    /**
+     * Opens the file explorer to select a file to import into the application.
+     */
+    @FXML
+    public void handleImport() {
+        if (!importWindow.isShowing()) {
+            importWindow.show();
+        } else {
+            importWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the file explorer to select a directory to export the application's data to.
+     */
+    @FXML
+    public void handleExport() {
+        if (!exportWindow.isShowing()) {
+            exportWindow.show();
+        } else {
+            exportWindow.focus();
+        }
     }
 
     void show() {
@@ -160,11 +238,19 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        importWindow.hide();
+        exportWindow.hide();
+        studentListPanel.hideExportProgressWindow();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Sets tab number.
+     *
+     * @param tabNumber The tab number expected.
+     */
+    private void setTabNumber(int tabNumber) {
+        this.tabNumber = tabNumber;
     }
 
     /**
@@ -185,6 +271,12 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            if (commandResult.isTabSwitch()) {
+                tabNumber = (tabNumber == 0) ? 1 : 0;
+            }
+
+            fillScoreAndTask();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

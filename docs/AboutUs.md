@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Toh Xin Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/toh-xinyi.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/toh-xinyi)]
+[[portfolio](team/toh-xinyi.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of Storage
 
-### Jean Doe
+### Gwyneth Guo Bai Ling
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gwynethguo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/gwynethguo)]
+[[portfolio](team/gwynethguo.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: In charge of Model
+
+### Li Yuxuan
+
+<img src="images/carrieli1015.png" width="200px">
+
+[[github](http://github.com/carrieli1015)]
+[[portfolio](team/carrieli1015.md)]
+
+* Role: Developer
+* Responsibilities: In charge of UI
+
+### Qiu Qianhui
+
+<img src="images/qqh0828.png" width="200px">
+
+[[github](http://github.com/qqh0828)]
+[[portfolio](team/qqh0828.md)]
+
+* Role: Developer
+* Responsibilities: In charge of Logic
+
+### Quek Jing Ling, Brian
+
+<img src="images/astraxq.png" width="200px">
+
+[[github](http://github.com/astraxq)]
+[[portfolio](team/astraxq.md)]
+
+* Role: Developer
+* Responsibilities: In charge of UI
