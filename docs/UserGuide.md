@@ -265,7 +265,7 @@ Brings you back to the previous page you were at.
 back
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Undoing the last command you did: `undo`
 
@@ -275,7 +275,7 @@ back
 undo
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Opening help window: `help`
 
@@ -287,7 +287,7 @@ Opens a window showing the list of commands available on your current page, as w
 help
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Clearing all entries: `clear`
 
@@ -307,7 +307,7 @@ clear
 Accidentally cleared your data? Don't worry, just run the <code>undo</code> c!
 </div>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Exiting the program: `exit`
 
@@ -317,17 +317,17 @@ Accidentally cleared your data? Don't worry, just run the <code>undo</code> c!
 exit
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Scrolling through command history: `UP` or `DOWN` arrow key
 
-Scrolls through past commands that you used.
+You can scroll through the past commands that you used.
 
-- Similar to Linux command-line interface, use the `UP` or `DOWN` arrow keys to scroll through previously typed commands in the command box.
-- You may use the `LEFT` or `RIGHT` arrow keys to edit the command first.
+- Use the `UP` or `DOWN` arrow keys to scroll through previously typed commands.
+- You may then use the `LEFT` or `RIGHT` arrow keys to edit the command.
 - Press `ENTER` to execute the command.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ---
 
@@ -364,12 +364,13 @@ Examples:
 - `add course CS2103T` will add a new course with module code `CS2103T`
 - `add course CS2105` will add a new course with module code `CS2105`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Course code can have special characters! i.e. "AY2223S2-CS2103T"
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+  Course codes can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
 </div>
+
 <br>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Deleting a course: `delete course`
 
@@ -385,7 +386,7 @@ Examples:
 
 - `delete course 1` will delete the first course listed in the course list.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Editing a course: `edit course`
 
@@ -403,7 +404,7 @@ Examples:
 
 - `edit course 1 CS2106` will rename the first course listed in the course list to `CS2106`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Selecting a course: `select`
 
@@ -421,7 +422,7 @@ Examples:
 
 - `select 1` will display a list of groups from the first course.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Finding a course: `find course`
 
@@ -441,7 +442,7 @@ Examples:
 - `find course CS` returns `CS2103T`, `CS2101`.
 - `find course 03` returns `CS2103T`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ---
 
@@ -479,12 +480,13 @@ Examples:
 - `add group T15` will add a new group with group name `T15`
 - `add group L08` will add a new group with group name `L08`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Group names can have special characters! i.e. "AY2223S2-T15"
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+  Group names can contain alphanumeric and special characters. e.g. "AY2223S2-T15"
 </div>
+
 <br>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Deleting a group: `delete group`
 
@@ -500,7 +502,7 @@ Examples:
 
 - `delete group 1` will delete the first group listed in the group list panel of CLIpboard.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Editing a group: `edit group`
 
@@ -518,7 +520,7 @@ Examples:
 
 - `edit group 1 T16` will rename the first group listed in the group list to `T16`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Selecting a group: `select`
 
@@ -536,7 +538,7 @@ Examples:
 
 - `select 1` will return a list of students from the first group.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Displaying sessions of a group: `session`
 
@@ -559,7 +561,7 @@ Examples:
 </div>
 <br>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Displaying tasks of a group: `task`
 
@@ -582,7 +584,7 @@ Examples:
 </div>
 <br>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Finding a group: `find group`
 
@@ -601,7 +603,7 @@ Examples:
 
 - `find group 15` returns `T15`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ---
 
@@ -616,7 +618,10 @@ To manage your students, you will have to be on the `Student Page`, which typica
 The following sections contain the features that are available to you on the `Student Page`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
-  Before delving in, it is important to note that some commands for managing students require multiple parameters. As described in [Understanding Commands](#understanding-commands), these parameters would require specific prefixes to indicate the type of information they represent. There are also some restrictions on the input for these parameters. Please refer to the table below.
+  Some commands for managing students require multiple parameters.<br>
+  As described in [Understanding Command Formats](#understanding-command-formats), these parameters would require specific prefixes to indicate the type of information they represent. There are also some restrictions on the input for these parameters.<br>
+
+  **Please refer to the table below**
 </div>
 <br>
 
@@ -646,12 +651,14 @@ Examples:
 - `add student n/Tan Wei Xuan p/81776544 e/twx@example.com sid/A6788796F`
 - `add student n/Amirul Bin Othman p/98884417 e/amirul@example.com sid/A1324356G`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-The same student can exist in different groups, because that student can be in tutorial group T1 and project group Team15 at the same time.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+  The same student can exist in multiple groups. For example, a student can be in both tutorial group "T1" and a project group "Team15" at the same time.
 </div>
+
+
 <br>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Deleting a student: `delete student`
 
@@ -667,11 +674,11 @@ Examples:
 
 - `delete student 1` will delete the first student listed in the student list panel of CLIpboard.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Editing a student: `edit student`
 
-Did your student change their phone number, or you realised you misspelled their name? Do not worry, because you can easily change this with the edit command.
+If your student has changed their phone number, or if you misspelled their name, you may edit them with this command.
 
 **Command Format:**
 
@@ -693,7 +700,7 @@ Examples:
 - `edit student 1 n/John Doe` will replace the name of the first student listed in the student list to `John Doe`.
 - `edit student 4 p/99887766 e/john@gmail.com` will replace the phone number and email of the fourth student listed in the student list to `99887766` and `john@gmail.com` respectively.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Copying a student's email: `copy`
 
@@ -709,7 +716,7 @@ Examples:
 
 - `copy 1` will copy the email of the first student in the list to your clipboard.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Finding students by name or student ID: `find student`
 
@@ -731,7 +738,7 @@ Examples:
 - `find student Alex Yu` returns `Alex Yeoh`, `Bernice Yu`.
 - `find student A123` returns students whose student ID contains `A123`, such as `A123` and `A1234567X`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Sorting list of students: `sort`
 
@@ -753,7 +760,7 @@ Examples:
 ![image](./images/UiStudentSortName.png)
 ![image](./images/UiStudentSortId.png)
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Displays a student's information: `select`
 
@@ -772,7 +779,7 @@ Examples:
 
 - `select 1` will select the 1st student in the student list and display his / her particulars on the view panel on the right.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Adding or deleting a remark: `remark`
 
@@ -803,7 +810,7 @@ Examples:
   Accidentally deleted a remark? Don't worry, Try using <code>undo</code> command!
 </div>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Uploading a student's photo: `upload`
 
@@ -831,7 +838,7 @@ Examples:
 - `upload C:/Users/AlexYeoh/Desktop/A0123456X.png` will upload `A0123456X.png` to the CLIpboard data folder and the
   photo will be displayed in the profile of student with student ID `A0123456X`
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Viewing a student's attendance throughout the course: `attendance`
 
@@ -847,7 +854,7 @@ attendance
 
 TO ADD NOTE: To mark a student's attendance for a particular session, you can navigate to the [Attendance Page](#attendance-page-commands).
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ---
 
@@ -881,11 +888,12 @@ Examples:
 - `add session Tutorial4`
 - `add session Lab3`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Session names can have special characters! i.e. "AY2223S2-Tutorial15"
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+  Session names can contain alphanumeric and special characters. e.g. "T15-Session-1.2"
 </div>
 
-[Back to list of commands](#commands)
+
+[Back to list of features](#features)
 
 ### Deleting a session: `delete session`
 
@@ -901,7 +909,7 @@ Examples:
 
 - `delete session 1` will delete the first session listed in the session list panel of CLIpboard.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Editing a session: `edit session`
 
@@ -917,7 +925,7 @@ Examples:
 
 - `edit session 1 Tutorial1` will rename the first session listed to `Tutorial1`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Finding a session: `find session`
 
@@ -937,7 +945,7 @@ Examples:
 
 - `find session 1` returns `Tutorial1` and `Lab1`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Selecting a session to start attendance-taking: `select`
 
@@ -955,7 +963,7 @@ Examples:
 
 - `select 1` will return a list of students from the first session.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ---
 
@@ -985,7 +993,7 @@ Examples:
 - `mark 1` will mark the first student as present.
 - `mark 2, 4, 5, 6` will mark the 2nd, 4th, 5th and 6th students as present.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Marking students as absent: `unmark`
 
@@ -1005,7 +1013,7 @@ Examples:
 - `unmark 1` will mark the first student as absent.
 - `unmark 2,3,4` will mark the 2nd, 3rd and 4th students as absent.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### View the overall attendance of the session: `attendance`
 
@@ -1021,7 +1029,7 @@ Displays the overall attendance of the session you are at in the command box, wh
 attendance
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ---
 
@@ -1054,12 +1062,12 @@ Examples:
 - `add task OP3`
 - `add task Critical Reflection 3`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Task names can have special characters! i.e. "AY2223S2-Midterm Practice Paper"
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+  Task names can contain alphanumeric and special characters. e.g. "AY2223S2-Midterm Practice Paper"
 </div>
 <br>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Deleting a task: `delete task`
 
@@ -1075,7 +1083,7 @@ Examples:
 
 - `delete task 1` will delete the first task listed.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Editing a task: `edit task`
 
@@ -1091,7 +1099,7 @@ Examples:
 
 - `edit task 1 CA5` will rename the first task listed to `CA5`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Finding a task: `find task`
 
@@ -1111,7 +1119,7 @@ Examples:
 
 - `find task 1` returns `OP1` and `Critical Reflection 1`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Selecting a task to assign grades: `select`
 
@@ -1129,7 +1137,7 @@ Examples:
 
 - `select 1` will return a list of students who was assigned the first task on the list.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ## Managing the Grades of a Task
 
@@ -1161,7 +1169,7 @@ Examples:
 - `assign 1 78` will assign the first student on the Student Page the grade of 78.
 - `assign 3 0` will assign the third student on the Studet Page the grade of 0.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ---
 
