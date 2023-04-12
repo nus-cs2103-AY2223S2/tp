@@ -49,7 +49,7 @@ public class Date {
             return false;
         }
     }
-
+    //@@author astraxq
     //@@author QQH0828
     /**
      * Returns true if the date is not a future date.
@@ -62,7 +62,8 @@ public class Date {
         }
         return true;
     }
-
+    //@@author QQH0828
+    //@@author astraxq
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -81,3 +82,4 @@ public class Date {
     }
 
 }
+//@@author astraxq

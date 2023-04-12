@@ -50,7 +50,6 @@ public class UniqueScoreList implements Iterable<Score> {
         FXCollections.reverse(internalList);
     }
 
-    //@@author astraxq
     /**
      * Removes the equivalent score from the list.
      * The score must exist in the list.
@@ -62,13 +61,13 @@ public class UniqueScoreList implements Iterable<Score> {
         }
     }
 
-    //@@author astraxq
     /**
      * Returns the backing score list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Score> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
+    //@@author astraxq
 
     /**
      * Gets the sorted score list with recent score at front.

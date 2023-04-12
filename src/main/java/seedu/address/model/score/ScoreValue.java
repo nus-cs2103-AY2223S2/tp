@@ -54,3 +54,4 @@ public class ScoreValue {
         return value.toString();
     }
 }
+//@@author astraxq
