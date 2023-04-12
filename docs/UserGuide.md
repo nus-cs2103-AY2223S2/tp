@@ -77,14 +77,27 @@ A caution looks like this.
 ## Getting started
 
 ### Setting up
-
+#### Installation
 1. Ensure you have Java 11 or above installed on your Computer.
 2. Download the latest `clipboard.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
-3. Copy the file to the folder you want to use as the *home folder* for your CLIpboard.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
-   <br>e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
-   <br>A GUI similar to [*Figure 1(TO FIX)*](#to fix) should appear in a few seconds.
-   <br>*Note how the app contains some sample data.*
+3. Copy `clipboard.jar` to the folder you want to use as the home folder of CLIpboard.
+
+#### Launching CLIpboard
+*Option 1*:
+Double-click on `clipboard.jar` to run it. If this does not work, go to option 2.
+
+*Option 2*:
+1. Open a command terminal. (Guide to open a command terminal)[https://www.ionos.com/help/email/troubleshooting-mail-basicmail-business/access-the-command-prompt-or-terminal/#:~:text=Open%20Command%20Prompt%20in%20Windows,cmd%22%20and%20then%20click%20OK.].
+2. Copy the file path of the **folder** you put `clipboard.jar` in.
+    * [Guide For Windows](https://www.howtogeek.com/670447/how-to-copy-the-full-path-of-a-file-on-windows-10/)
+    * [Guide For MacOS](https://support.apple.com/en-sg/guide/mac-help/mchlp1774/mac#:~:text=Show%20the%20path%20to%20a%20file%20or%20folder&text=Choose%20View%20%3E%20Show%20Path%20Bar,bottom%20of%20the%20Finder%20window.)
+    * [Guide For Linux](https://www.tutorialspoint.com/get-the-full-path-of-a-file-in-linux)
+3. In the command terminal, type `cd <FILE_PATH>`, where `<FILE_PATH>` is the file path you found in step 2.
+4. Type `java -jar clipboard.jar` into the command terminal and press `Enter` to launch CLIpboard.&nbsp;
+
+If you're successful, you should see something like this:
+<img src="./images/Ui.png" width="650" height="529"/>
+*CLIpboard contains some sample data if there is no initial data, as is the case when you first launch it.*
 
 ### Quick Start
 
@@ -106,10 +119,8 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
 
 The image below depicts how some of the visual elements are referred to in this guide.
 
-<a name="figure2"></a>
 <img src="./images/VisualGuide.png" width="650" height="529"/>
 <br>
-<span style="font-size: 10px; font-style: italic;">Figure 2</span>
 
 ### Navigation
 
@@ -118,7 +129,6 @@ Simply choose from a selection of `select`, `back`, `session`, or `task` command
 
 Here's a handy navigation map to get around CLIpboard.
 
-<a name="figure3"></a>
 <img src="./images/navigationguide.png" width="650" height="530"/>
 <br>
 
@@ -339,7 +349,6 @@ A `Course Page` typically looks like this:
 
 <img src="./images/UiCoursePage.png" width="650" height="529"/>
 <br>
-<span style="font-size: 10px; font-style: italic;">Figure 4</span>
 
 
 
@@ -445,7 +454,6 @@ A `Group Page` typically looks like this:
 
 <img src="./images/UiGroupPage.png" width="650" height="529"/>
 <br>
-<span style="font-size: 10px; font-style: italic;">Figure 5</span>
 
 ### Adding a group: `add group`
 
@@ -808,7 +816,6 @@ upload <LOCAL_FILE_PATH>
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 
-* File path to the photo can be either [absolute file path or relative file path](#glossary).
 * If you're on Windows, you can get the file path of a file by clicking it with `SHIFT + Right-Click > 'Copy as Path'`.
 * You can upload the student images before actually adding the student. CLIpboard will still match the images to the student once they're added (if the file name matches their student ID).
 </div>
@@ -1118,7 +1125,6 @@ In the following sections, you will find the features that are available to you 
 Your current page would look similar to this:
 <img src="./images/UiGradesPage.png" width="650" height="529"/>
 <br>
-<span style="font-size: 10px; font-style: italic;">Figure 13</span>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** The grades for all students will be set to ZERO when a task is created. Make sure to check that you have assigned grades to all students, so that no one's grade is accidentally left as 0.
 </div>
@@ -1151,7 +1157,5 @@ Examples:
 | **Group**             | A group of students in a Course that can be categorised according to their tutorial, project group, etc.  | T15, Team15                             |
 | **Session**           | A period of class for a Group which can be tutorial session, lab session etc.                             | Tutorial1, Lab3                         |
 | **Task**              | An assignment dedicated to a Group which can be presentation, reflection etc.                             | OP1, Critical Reflection 2              |
-| **Absolute Path**     | A path that always contains the root element and the complete directory list required to locate the file. | C:/Users/AlexYeoh/Desktop/A0123456X.png |
-| **Relative Path**     | A hierarchical path that locates a file or folder on a file system starting from the current directory.   | ../A1234567X.png                        |
 | **Special Character** | A character that does not fall under the category of either alphabet or a number.                         | -,+,*                                   |
 | **Student ID**        | A unique identification number given to a student.                                                        | A1234567X                               |
