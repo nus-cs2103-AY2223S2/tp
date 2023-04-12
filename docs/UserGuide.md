@@ -198,7 +198,7 @@ Commands are like giving instructions to CLIpboard on what to do.
 
 A typical command would look like this:
 <br>
-`<img src="./images/typicalcommand.png" width="400" height="138"/>`
+<img src="./images/typicalcommand.png" width="400" height="138"/>
 
 **Command keyword(s)**: Typically 1 or 2 words, they specify the type of action for CLIpboard to execute
 **Supplementary command information**: These provide additional context about a command you wish to execute. Conventionally, these are referred to as "arguments" or "parameters".
@@ -222,6 +222,8 @@ Putting it together for the above example, `find course` would tell CLIpboard th
   - e.g If the parameters are specified as `[n/<NAME>] [p/<PHONE_NUMBER>]`, omitting these parameters are acceptable.
 - **Elipses(`...`)**: Parameters postfixed by `…` can have multiple inputs.<br>
   - e.g. `mark <INDEX>…` can be used as `mark 1` or `mark 1,2,3` etc.
+- **Index**: CLIpboard displays items like courses and groups as numbered lists. The *index* of an item in the list might be required as a parameter for some commands.
+  - e.g. if the specified command format is `delete course <INDEX>`, and you enter `delete course 3`, CLIpboard will delete the *third* course in the course list.
 - **Multiple Parameters**: Some commands require multiple parameters. In such cases, each parameter would require a specific corresponding prefix to denote the type of information it is.
   - e.g When adding a student, there may be multiple pieces of information to tied to a student.
     Thus, a typical command for adding a student might look like `add student n/john doe p/12345678`.
@@ -268,6 +270,8 @@ back
 ### Undoing the last command you did: `undo`
 Because everyone makes mistakes.
 
+You may `undo` up to 5 previous commands.
+
 **Command Format:**
 
 ```
@@ -277,7 +281,8 @@ undo
 [Back to list of features](#features)
 
 ### Help: `help`
-When you're feeling lost with what to do, or if you're how to do something, use this command to open the `Help Window` showing the list of commands available on your current page, as well as a link to this User Guide.
+When you're feeling lost or unsure of how to do something, use this command to open the help window.
+There, you can see a list of available commands on your current page, as well as a link to this User Guide.
 
 **Command Format:**
 
@@ -289,10 +294,14 @@ help
 
 ### Clearing all entries: `clear`
 
-Clears all entries in the list pane of the current page.
+Clears all entries in the list of the current page. Useful for when you've ended the curriculum and you wish to delete all data.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Accidentally cleared your data? Don't worry, just run the <code>undo</code> command!
+</div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-After the <code>clear</code> command is executed, all entries on your current page will be deleted.
+Be very careful with this command. Deleted data may not be recovered after closing the application or if you've gone beyond the `undo` limit.
 </div>
 
 **Command Format:**
@@ -301,14 +310,18 @@ After the <code>clear</code> command is executed, all entries on your current pa
 clear
 ```
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Accidentally cleared your data? Don't worry, just run the <code>undo</code> c!
-</div>
+[Back to list of features](#features)
+
+### Scrolling through command history: `UP` or `DOWN` arrow key
+
+You can scroll through your past commands using the `UP` or `DOWN` arrow keys.
+You may then use the `LEFT` or `RIGHT` arrow keys to edit the command.
+Press `ENTER` to execute the command.
 
 [Back to list of features](#features)
 
 ### Exiting the program: `exit`
-
+Goodbye!
 **Command Format:**
 
 ```
@@ -317,31 +330,20 @@ exit
 
 [Back to list of features](#features)
 
-### Scrolling through command history: `UP` or `DOWN` arrow key
-
-You can scroll through the past commands that you used.
-
-- Use the `UP` or `DOWN` arrow keys to scroll through previously typed commands.
-- You may then use the `LEFT` or `RIGHT` arrow keys to edit the command.
-- Press `ENTER` to execute the command.
-
-[Back to list of features](#features)
-
 ---
 
 ## Managing Courses
-
-To manage your courses, you will have to be on the `Course Page`, which typically looks like this:
+In the following sections, you will find the features that are available to you on the `Course Page`.
+The `Course Page`, typically looks like this:
 
 <img src="./images/UiCoursePage.png" width="650" height="529"/>
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 4</span>
 
-The following sections contain the features that are available to you on the `Course Page`.
+
 
 ### Adding a course: `add course`
-
-Adds a course to the list of courses in the course page.
+If you're teaching a new course, you can use this command to add it to the `Course Page`.
 
 **Command Format:**
 
@@ -371,8 +373,7 @@ Examples:
 [Back to list of features](#features)
 
 ### Deleting a course: `delete course`
-
-Deletes a course from the list of courses in the course page.
+If you wish to remove a course, use this command to delete it.
 
 **Command Format:**
 
@@ -388,15 +389,13 @@ Examples:
 
 ### Editing a course: `edit course`
 
-Edits an existing course in the course list.
+Use this command to edit the name of an existing course.
 
 **Command Format:**
 
 ```
 edit course <INDEX> <NEW COURSE NAME>
 ```
-
-- Edits the module code of the course at index `<INDEX>`.
 
 Examples:
 
@@ -405,16 +404,13 @@ Examples:
 [Back to list of features](#features)
 
 ### Selecting a course: `select`
-
-Selects an existing course to display its corresponding Group Page.
+To view the groups within a course, use `select` to select a course. This navigates you to its corresponding `Group Page`.
 
 **Command Format:**
 
 ```
 select <INDEX>
 ```
-
-- Selects course at index specified in `<INDEX>` and displays list of groups from that course.
 
 Examples:
 
@@ -435,24 +431,22 @@ find course <KEYWORD> [<MORE_KEYWORDS>]
 - This command is case-insensitive. (e.g. `find course CS2103T` and `find course cs2103t` will give you the same result)
 - Keywords are separated by spaces.
 
-Examples:
-
-- `find course CS` returns `CS2103T`, `CS2101`.
-- `find course 03` returns `CS2103T`.
+Example:
+  If my course list contains 2 courses "CS2103T" and "CS2101":
+  - `find course CS` will show "CS2103T", "CS2101".
+  - `find course 03` will show "CS2103T".
 
 [Back to list of features](#features)
 
 ---
 
 ## Managing Groups
-
-To manage your groups, you will have to be on the `Group Page`, which typically looks like this:
+In the following sections, you will find the features that are available to you on the `Group Page`.
+The `Group Page`, typically looks like this:
 
 <img src="./images/UiGroupPage.png" width="650" height="529"/>
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 5</span>
-
-The following sections contain the features that are available to you on the `Group Page`.
 
 ### Adding a group: `add group`
 
