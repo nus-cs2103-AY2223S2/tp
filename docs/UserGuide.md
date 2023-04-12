@@ -67,7 +67,7 @@ details about who this guide is meant for and how to navigate this guide effecti
 
 ### **2.1 Target Audience**
 This user guide is meant for anyone who wants to use sprINT. It is designed to provide clear and concise instructions
-for beginners to kickstart their sprINT journey, as well as for existing or more advanced users who wish to explore 
+for **beginners** to kickstart their sprINT journey, as well as for **existing or more advanced users** who wish to explore 
 the full range of features that sprINT has to offer. Whether you are a new or seasoned sprINT user, this guide will be 
 your best companion to help you get the most out of sprINT. 
 
@@ -108,7 +108,13 @@ Cautions are in place to warn you of potential pitfalls you may encounter, espec
 **Caution:** Stop and read carefully when you see this!
 </div>
 
-<div style="page-break-after: always;"></div>
+**Use Case**
+
+Use cases provide examples of specific situations in which a feature would be useful or necessary.
+
+<div markdown="span" class="alert alert-success">:grey_question:
+**Use Case:** Refer to these use cases for ideas on how you might want to use a feature in your own sprINT journey!
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -150,7 +156,7 @@ on your device, the app will contain some sample applications already.<br>
 
 ### **3.2 The User Interface**
 
-We understand that using an app for the first time can be a daunting experience. This is why we created this entire 
+We understand that using an app for the first time can be a daunting experience. This is why we created this  
 section for you to quickly get acquainted with sprINT's user interface.
 
 The following diagram illustrates the general layout of sprINT's app window. 
@@ -178,7 +184,8 @@ with in no time. You are also welcome to revisit this section again anytime.
 Before we delve into the individual features, here are some useful notes about the general format of all commands in 
 sprINT:
 
-**:information_source: Notes about the command format:**<br>
+<div markdown="span" class="alert alert-info">:information_source:
+**Notes about the command format:**<br>
 
 * **You cannot add more than 2147483647 applications, and you cannot delete or edit applications that have index greater than 2147483647.**
 If you are a normal human being, we do not foresee this to be an issue for you!<br>
@@ -216,6 +223,8 @@ occurrence of the prefix `r/`.
 * **Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.**<br>
   e.g. if you specify `help 123` as your command, it will be interpreted as `help`, and the help command executes.
 
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ### **3.4 Short Tutorial**
@@ -237,6 +246,7 @@ section on **[Features](#4-features)**.
 #### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## **4. Features**
@@ -419,10 +429,12 @@ This sub-section consists of commands that are related to managing [tasks](#task
 
 Adds a new task to an existing application.
 
+<div markdown="span" class="alert alert-success">:grey_question: **Use Case:**
 Suppose you recently applied to `Google` for their `Software Engineer` role, and made an entry for it in the 
 internship book. Then, `Google` reached out to you for a technical interview on the 24th of July, 2023. You can add this
 as a task to the existing application entry using the command: `add-task 1 d/Technical Interview by/24-07-2023`
 (assuming that it is showing up as the first application on the Application List Panel). 
+</div>
 
 Format: `add-task INDEX d/DESCRIPTION by/DEADLINE`
 
@@ -436,7 +448,6 @@ The following table details the [parameters](#parameter) to be used with the `ad
 Additional things to note:
 * `INDEX` refers to the index of the application you wish to add a task to, as shown in the Application Card. It must be a **positive
   [integer](#integer).**
-* `INDEX` must be of a positive value (1 and above).
 * `INDEX` cannot be greater than 2147483647.
 
 You can see how the new task will appear in the updated Application Card, following the scenario given above:
@@ -445,6 +456,13 @@ You can see how the new task will appear in the updated Application Card, follow
 #### 4.2.2 Editing a task : `edit-task`
 
 Edits an existing task for the application that you specify.
+
+<div markdown="span" class="alert alert-success">:grey_question: **Use Case:**
+Suppose you created a task several days ago for an upcoming `Interview` on 24 July 2023 for your application to the
+`Software Engineer` role at `Google`. However, you just received an email notifying you that the interview would be
+rescheduled to 30 July. You can modify the deadline of the existing task using the command: `edit-task 1 by/30-07-2023`
+(assuming that the application is showing up as the first one on the Application List Panel).
+</div>
 
 Format: `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]`
 
@@ -466,6 +484,12 @@ Examples:
 #### 4.2.3 Deleting a task : `delete-task`
 
 Deletes an existing task from the specified application.
+
+<div markdown="span" class="alert alert-success">:grey_question: **Use Case:**
+Suppose you have just completed your interview for your application to the `Software Engineer` role at `Google`. 
+You can choose to remove the task from the application entry using the command: `delete-task 1` (assuming that the
+application is showing up as the first one on the Application List Panel).
+</div>
 
 Format: `delete-task INDEX`
 
