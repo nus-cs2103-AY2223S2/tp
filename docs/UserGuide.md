@@ -147,7 +147,7 @@ Here is a list of features that CLIpboard supports:
   - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
   - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
   - [Exiting the program: ](#exiting-the-program-exit) `exit`
-- [Managing Courses: ](#course-page-commands)
+- [Managing Courses: ](#managing-courses)
   - [Adding a course: ](#adding-a-course-add-course) `add course`
   - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
   - [Editing a course: ](#editing-a-course-edit-course) `edit course`
@@ -168,11 +168,11 @@ Here is a list of features that CLIpboard supports:
   - [Copying a student&#39;s email: ](#copying-a-students-email-copy) `copy`
   - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find-student) `find student`
   - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
-  - [Displays a student&#39;s information:  ](#displays-a-students-information-select) `select`
+  - [Display a student's information:  ](#display-a-students-information-select) `select`
   - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
-  - [Upload a student&#39;s photo: ](#uploading-a-students-photo-upload) `upload`
-  - [Displays a summary of a student&#39;s attendance: ](#viewing-a-students-attendance-throughout-the-course-attendance) `attendance`
-- [Managing Sessions: ](#session-page-commands)
+  - [Upload a student's photo: ](#uploading-a-students-photo-upload) `upload`
+  - [Display a summary of a student's attendance: ](#viewing-a-students-attendance-throughout-the-course-attendance) `attendance`
+- [Managing Sessions: ](#managing-sessions)
   - [Adding a session: ](#adding-a-session-add-session) `add session`
   - [Deleting a session: ](#deleting-a-session-delete-session) `delete session`
   - [Editing a session: ](#editing-a-session-edit-session) `edit session`
@@ -182,13 +182,13 @@ Here is a list of features that CLIpboard supports:
   - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
   - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
   - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session-attendance) `attendance`
-- [Managing Tasks: ](#task-page-commands)
+- [Managing Tasks: ](#managing-tasks)
   - [Adding a task: ](#adding-a-task-add-task) `add task`
   - [Deleting a task: ](#deleting-a-task-delete-task) `delete task`
   - [Editing a task: ](#editing-a-task-edit-task) `edit task`
   - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
   - [Finding a task: ](#finding-a-task-find-task) `find task`
-- [Managing Grades: ](#grades-page-commands)
+- [Managing Grades: ](#managing-the-grades-of-a-task)
   - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
 
 ### Commands
@@ -296,6 +296,12 @@ help
 
 Clears all entries in the list of the current page. Useful for when you've ended the curriculum and you wish to delete all data.
 
+**Command Format:**
+
+```
+clear
+```
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Accidentally cleared your data? Don't worry, just run the <code>undo</code> command!
 </div>
@@ -303,12 +309,6 @@ Accidentally cleared your data? Don't worry, just run the <code>undo</code> comm
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Be very careful with this command. Deleted data may not be recovered after closing the application or if you've gone beyond the `undo` limit.
 </div>
-
-**Command Format:**
-
-```
-clear
-```
 
 [Back to list of features](#features)
 
@@ -322,6 +322,7 @@ Press `ENTER` to execute the command.
 
 ### Exiting the program: `exit`
 Goodbye!
+
 **Command Format:**
 
 ```
@@ -655,9 +656,9 @@ edit student <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUM
 ```
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-  * At least one field `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
-  * Fields entered following `edit <INDEX>` will replace the original fields.
-  * Fields not entered will not replace the original fields.
+  * At least one parameter `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
+  * Parameters entered following `edit <INDEX>` will replace the original fields.
+  * Parameters not entered will not replace the original fields.
 </div>
 <br>
 
@@ -736,7 +737,7 @@ Examples:
 
 [Back to list of features](#features)
 
-### Displays a student's information: `select`
+### Display a student's information: `select`
 
 This command allows you to select a student and displays their full particulars.
 The selected student will be shown like this:
@@ -790,7 +791,7 @@ Examples:
 
 ### Uploading a student's photo: `upload`
 
-Uploads a student's photo to be displayed in the student roster.
+Uploads a student's photo to be displayed as their profile picture when you select them.
 
 **Command Format:**
 
@@ -961,7 +962,7 @@ Marks selected students' attendance as present for current session.
 
 ```
 mark <INDEX>
-mark <INDEX>, <INDEX>, ...
+mark <INDEX>...
 ```
 
 Examples:
