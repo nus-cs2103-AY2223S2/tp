@@ -41,13 +41,13 @@ Let's dive in!
 * **Command**: A line of text that CLIpboard recognises as an instruction to execute.
 * **Path**: A line of text that describes a file location on a computer.
     - Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
-* **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`](#displaying-the-previous-page-you-were-at-back) commands).
+* **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`](#displaying-the-previous-page-you-were-at-back) commands)
 * Text formatted like `this` represents a program-related element. Depending on context, it can mean:
   1. A command that CLIpboard recognises
       - Example: `add group t15-4` is a valid command you can execute.
   2. A file path
   3. A keyboard key
-  4. An element in the visual interface (See the [Visual Guide](#visual-guide) section for more details)
+  4. An element in the visual interface (See the [Visuals](#visuals) section for more details)
 * **">" (Forward Angle Bracket)**: Indicates a sequence of actions for you to take.
     - Example: "Click on `File > Exit`" means you should click on `File`, then `Exit`.
 * **Note**: Important information to be aware of.
@@ -96,36 +96,13 @@ A caution looks like this.
 
 ### Visuals
 Before diving in, it might be useful to take a moment to understand some of CLIpboard's visual elements. It will make it an even more of a breeze to use CLIpboard effectively!
+
+The image below depicts how some of the visual elements are referred to in this guide.
+
 <a name="figure2"></a>
 <img src="./images/VisualGuide.png" width="650" height="529"/>
 <br>
 <span style="font-size: 10px; font-style: italic;">Figure 2</span>
-
-1. Using the `File and Help` Tabs
-   * To exit CLIpboard, click on `File > Exit`.
-   * To get help using CLIpboard, click on `Help > Help`.
-2. Using the `Page Tabs`
-   * The `Page Tabs` give you a quick summary of the page you're on.
-   * Refer to the [*Figure 3*](#navigation) below for the Navigation Guide to the different pages in CLIpboard.
-3. Using the `Navigation Bar`
-   * You can see the courses and groups you have selected and the page you are currently on in the Navigation Bar.
-4. Using the `Left Pane`
-   * This is where you can find your list of added page objects such as `Courses`, `Groups`, `Students`, `Sessions`,
-     and `Tasks`.
-5. Using the `Right Pane`
-   * The `Right Pane` will appear when you are on the `Attendance Page` or `Tasks Page`. It will show the list of
-     students to mark their attendance or assign them a grade.
-6. Entering commands in the `Command Box`
-   * To enter a command, type it into the `Command Box`.
-7. Viewing the outcome of your commands in the `Result Display`
-   * After entering a command, you can view whether it was successful in the `Result Display`.
-   * If your command failed, you can also find help messages with valid arguments here.
-8. Checking the Status Bar Footer
-   * The Status Bar Footer displays the file path from which the data is being loaded or saved in relation to the
-     location of `clipboard.jar`.
-9. Checking the CLIppy Indicator
-   * The CLIppy Indicator can help you know whether you are typing in a command correctly.
-   * When you enter a correct command, CLIppy will be happy. If you have a command failure, CLIppy will be sad.
 
 ### Navigation
 Navigating between pages is made effortless with CLIpboard's intuitive navigation commands.
@@ -147,17 +124,6 @@ Here's a hypothetical workflow that might help you better understand the figure 
 *Now, you wish to work on something else, like marking the attendance for another group.*
 4. From where we left off, simply enter the command `back` and you'll be brought back to the `Group Page`.
 5. From here, you can use `session 4` to view the `Session Page` of the fourth group, and you can then mark their attendance for a selected session.
-
----
-
-## Fields for Student Commands
-
-| Prefix | Prefix meaning              | Character Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| n/     | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| p/     | Phone Number                | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| e/     | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints:`` 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. `` 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: `` - end with a domain label at least 2 characters long `` - have each domain label start and end with alphanumeric characters `` - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| sid/   | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ---
 
@@ -629,6 +595,16 @@ To manage your students, you will have to be on the `Student Page`, which typica
 
 This section contains the features that are available to you on the `Student Page`.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+  Before delving in, it is important to note that some commands for managing students require multiple parameters. As described in [Understanding Commands](#understanding-commands), these parameters would require specific prefixes to indicate the type of information they represent. There are also some restrictions on the input for these parameters. Please refer to the table below.
+</div>
+
+| Prefix | Prefix meaning              | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| n/     | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| p/     | Phone Number                | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| e/     | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints:`` 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. `` 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: `` - end with a domain label at least 2 characters long `` - have each domain label start and end with alphanumeric characters `` - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| sid/   | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 ### Adding a student: `add student`
 
 Adds a student to the student roster.
