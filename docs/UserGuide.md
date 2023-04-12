@@ -43,16 +43,16 @@ Let's dive in!
 
 * **Command**: A line of text that CLIpboard recognises as an instruction to execute.
 * **Path**: A line of text that describes a file location on a computer.
-    - Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
+  - Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
 * **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`](#displaying-the-previous-page-you-were-at-back) commands)
 * Text formatted like `this` represents a program-related element. Depending on context, it can mean:
   1. A command that CLIpboard recognises
-      - Example: `add group t15-4` is a valid command you can execute.
+     - Example: `add group t15-4` is a valid command you can execute.
   2. A file path
   3. A keyboard key
   4. An element in the visual interface (See the [Visuals](#visuals) section for more details)
 * **">" (Forward Angle Bracket)**: Indicates a sequence of actions for you to take.
-    - Example: "Click on `File > Exit`" means you should click on `File`, then `Exit`.
+  - Example: "Click on `File > Exit`" means you should click on `File`, then `Exit`.
 * **Note**: Important information to be aware of.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -74,21 +74,25 @@ A caution looks like this.
 * Please see the [Glossary](#glossary) section for more detailed and specific definitions.
 
 ---
+
 ## Getting started
+
 ### Setting up
+
 1. Ensure you have Java 11 or above installed on your Computer.
 2. Download the latest `clipboard.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your CLIpboard.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
-   <br>e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
-   <br>A GUI similar to [*Figure 1(TO FIX)*](#to fix) should appear in a few seconds.
-   <br>*Note how the app contains some sample data.*
+   `<br>`e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
+   `<br>`A GUI similar to [*Figure 1(TO FIX)*](#to fix) should appear in a few seconds.
+   `<br>`*Note how the app contains some sample data.*
 
 ### Quick Start
+
 1. When you first launch CLIpboard, you will be brought to the `Course page`.
 2. Type your command in the `command box` and press Enter/Return to execute it.
-   <br>e.g. typing `help` and pressing the Enter/Return key will open the help window.
-   <br>Some example commands you can try:
+   `<br>`e.g. typing `help` and pressing the Enter/Return key will open the help window.
+   `<br>`Some example commands you can try:
    1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
    2. `select 1` : Selects the first group displayed (eg. `T15`) on the `Group Page`. You will be redirected to the `Student Page`.
    3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list on the `Student Page`.
@@ -98,28 +102,31 @@ A caution looks like this.
 3. Refer to the [commands list](#commands) below for a detailed description for each command.
 
 ### Visuals
+
 Before diving in, it might be useful to take a moment to understand some of CLIpboard's visual elements. It will make it an even more of a breeze to use CLIpboard effectively!
 
 The image below depicts how some of the visual elements are referred to in this guide.
 
-<a name="figure2"></a>
-<img src="./images/VisualGuide.png" width="650" height="529"/>
-<br>
-<span style="font-size: 10px; font-style: italic;">Figure 2</span>
+`<a name="figure2"></a>`
+`<img src="./images/VisualGuide.png" width="650" height="529"/>`
+`<br>`
+`<span style="font-size: 10px; font-style: italic;">`Figure 2
 
 ### Navigation
+
 Navigating between pages is made effortless with CLIpboard's intuitive navigation commands.
 Simply choose from a selection of `select`, `back`, `session`, or `task` commands.
 
 Here's a handy navigation map to get around CLIpboard.
 
-<a name="figure3"></a>
-<img src="./images/navigationguide.png" width="650" height="530"/>
-<br>
-<span style="font-size: 13px; font-style: italic;">Figure 3</span>
+`<a name="figure3"></a>`
+`<img src="./images/navigationguide.png" width="650" height="530"/>`
+`<br>`
+`<span style="font-size: 13px; font-style: italic;">`Figure 3
 
-Here's a hypothetical workflow that might help you better understand the figure above:<br>
+Here's a hypothetical workflow that might help you better understand the figure above:`<br>`
 *Say you wish to assign the grades for a task in one of your tutorial groups.*
+
 1. You'll first start on the `Course Page`.
 2. Enter the command `select 1` to select the *first* course in the course list. You'll then be brought to the `Group Page` to view the groups of your selected course.
 3. You see now that the group you wish to select is the *second* group in the list, so you enter the command `task 2`, and you'll be brought to the `Task Page` of your selected group. Here, you can choose from the tasks that are available, and subsequently enter the grades for your individual students.
@@ -133,6 +140,7 @@ Here's a hypothetical workflow that might help you better understand the figure 
 ## Features
 
 Here is a list of features that CLIpboard supports:
+
 - [General Features: ](#general-commands)
   - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
   - [Displaying the previous page: ](#displaying-the-previous-page-you-were-at-back) `back`
@@ -186,12 +194,13 @@ Here is a list of features that CLIpboard supports:
   - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
 
 ### Commands
+
 Features in CLIpboard are supported by commands.
 Commands are like giving instructions to CLIpboard on what to do.
 
 A typical command would look like this:
-<br>
-<img src="./images/typicalcommand.png" width="400" height="138"/>
+`<br>`
+`<img src="./images/typicalcommand.png" width="400" height="138"/>`
 
 **Command keyword(s)**: Typically 1 or 2 words, they specify the type of action for CLIpboard to execute
 **Supplementary command information**: These provide additional context about a command you wish to execute. Conventionally, these are referred to as "arguments" or "parameters".
@@ -200,28 +209,29 @@ Putting it together for the above example, `find course` would tell CLIpboard th
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:** <br>
 
-  * If a command expects a parameter to be input only once, but multiple instances of it are included, only the last occurence of the parameter will be taken.<br>
-    * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-  * Extraneous parameters for commands that do not expect any parameters will be ignored.<br>
-    * e.g. if you input the command `help 123`, CLIpboard will interpret it simply as `help`.
+* If a command expects a parameter to be input only once, but multiple instances of it are included, only the last occurence of the parameter will be taken.`<br>`
+  * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* Extraneous parameters for commands that do not expect any parameters will be ignored.`<br>`
+  * e.g. if you input the command `help 123`, CLIpboard will interpret it simply as `help`.
+
 </div>
 
 #### Understanding Command Formats
 
-  - **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).<br>
-    - e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
-  - **Square brackets (`[]`)**: Parameters in square brackets are optional.<br>
-    - e.g If the parameters are specified as `[n/<NAME>] [p/<PHONE_NUMBER>]`, omitting these parameters are acceptable.
-  - **Elipses(`...`)**: Parameters postfixed by `…` can have multiple inputs.<br>
-    - e.g. `mark <INDEX>…` can be used as `mark 1` or `mark 1,2,3` etc.
-  - **Multiple Parameters**: Some commands require multiple parameters. In such cases, each parameter would require a specific corresponding prefix to denote the type of information it is.
-    - e.g When adding a student, there may be multiple pieces of information to tied to a student.
-      Thus, a typical command for adding a student might look like `add student n/john doe p/12345678`.
-        In this command,
-        - The prefix `n/` in `n/john doe` tells CLIpboard that this parameter is the student's name.
-        - The prefix `p/` in `p/12345678` tells CLIpboard that this parameter is the student's phone number.
-  - **Parameters can be input in any order**<br>
-    - If the command format specifies the required parameters as `n/NAME p/PHONE_NUMBER`, an alternative format like `p/PHONE_NUMBER n/NAME` is also acceptable.
+- **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).`<br>`
+  - e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
+- **Square brackets (`[]`)**: Parameters in square brackets are optional.`<br>`
+  - e.g If the parameters are specified as `[n/<NAME>] [p/<PHONE_NUMBER>]`, omitting these parameters are acceptable.
+- **Elipses(`...`)**: Parameters postfixed by `…` can have multiple inputs.`<br>`
+  - e.g. `mark <INDEX>…` can be used as `mark 1` or `mark 1,2,3` etc.
+- **Multiple Parameters**: Some commands require multiple parameters. In such cases, each parameter would require a specific corresponding prefix to denote the type of information it is.
+  - e.g When adding a student, there may be multiple pieces of information to tied to a student.
+    Thus, a typical command for adding a student might look like `add student n/john doe p/12345678`.
+    In this command,
+    - The prefix `n/` in `n/john doe` tells CLIpboard that this parameter is the student's name.
+    - The prefix `p/` in `p/12345678` tells CLIpboard that this parameter is the student's phone number.
+- **Parameters can be input in any order**`<br>`
+  - If the command format specifies the required parameters as `n/NAME p/PHONE_NUMBER`, an alternative format like `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 <div markdown="span" class="alert alert-info">
   :information_source: **Note:** It is important to enter commands exactly in their required formats in order for CLIpboard to understand them.<br>
@@ -230,7 +240,9 @@ Putting it together for the above example, `find course` would tell CLIpboard th
 ---
 
 ## General Features
+
 General features are features that may be used anywhere on CLIpboard, regardless of the page you're on.
+
 ### Showing the home page (`Course Page`): `home`
 
 Brings you to the home page, which is the `Course Page` of CLIpboard.
@@ -266,7 +278,8 @@ undo
 [Back to list of commands](#commands)
 
 ### Opening help window: `help`
-Opens a window showing the list of commands available in the current page, as well as a link to this User Guide.
+
+Opens a window showing the list of commands available on your current page, as well as a link to this User Guide.
 
 **Command Format:**
 
@@ -281,7 +294,7 @@ help
 Clears all entries in the list pane of the current page.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-After the <code>clear</code> command is executed, all entries in the current page will be deleted.
+After the <code>clear</code> command is executed, all entries on your current page will be deleted.
 </div>
 
 **Command Format:**
@@ -291,7 +304,7 @@ clear
 ```
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Accidentally cleared your data? Don't worry, try <code>undo</code> command!
+Accidentally cleared your data? Don't worry, just run the <code>undo</code> c!
 </div>
 
 [Back to list of commands](#commands)
@@ -319,6 +332,7 @@ Scrolls through past commands that you used.
 ---
 
 ## Managing Courses
+
 To manage your courses, you will have to be on the `Course Page`, which typically looks like this:
 
 <img src="./images/UiCoursePage.png" width="650" height="529"/>
@@ -326,6 +340,7 @@ To manage your courses, you will have to be on the `Course Page`, which typicall
 <span style="font-size: 10px; font-style: italic;">Figure 4</span>
 
 The following sections contain the features that are available to you on the `Course Page`.
+
 ### Adding a course: `add course`
 
 Adds a course to the list of courses in the course page.
@@ -431,6 +446,7 @@ Examples:
 ---
 
 ## Managing Groups
+
 To manage your groups, you will have to be on the `Group Page`, which typically looks like this:
 
 <img src="./images/UiGroupPage.png" width="650" height="529"/>
@@ -438,6 +454,7 @@ To manage your groups, you will have to be on the `Group Page`, which typically 
 <span style="font-size: 10px; font-style: italic;">Figure 5</span>
 
 The following sections contain the features that are available to you on the `Group Page`.
+
 ### Adding a group: `add group`
 
 Adds a group to the list of groups in the group page.
@@ -589,6 +606,7 @@ Examples:
 ---
 
 ## Managing Students
+
 To manage your students, you will have to be on the `Student Page`, which typically looks like this:
 
 <img src="./images/UiStudentPage.png" width="650" height="529"/>
@@ -600,13 +618,16 @@ The following sections contain the features that are available to you on the `St
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
   Before delving in, it is important to note that some commands for managing students require multiple parameters. As described in [Understanding Commands](#understanding-commands), these parameters would require specific prefixes to indicate the type of information they represent. There are also some restrictions on the input for these parameters. Please refer to the table below.
 </div>
+<br>
 
-| Prefix | Prefix meaning | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------ | -------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/     | Name           | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| p/     | Phone Number   | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| e/     | Email          | Emails should be of the format local-part@domain and adhere to the following constraints: <br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br/> - end with a domain label at least 2 characters long <br/> - have each domain label start and end with alphanumeric characters <br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| sid/   | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+
+| Prefix | Prefix meaning              | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| n/     | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| p/     | Phone Number                | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| e/     | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints:`` 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. `` 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: `` - end with a domain label at least 2 characters long `` - have each domain label start and end with alphanumeric characters `` - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| sid/   | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+
 ### Adding a student: `add student`
 
 Adds a student to the student roster.
@@ -813,6 +834,7 @@ Examples:
 [Back to list of commands](#commands)
 
 ### Viewing a student's attendance throughout the course: `attendance`
+
 Shows a summary of a student's attendance like this:
 
 <img src="./images/UiStudentAttendanceView.png" width="650" height="529"/>
@@ -830,6 +852,7 @@ TO ADD NOTE: To mark a student's attendance for a particular session, you can na
 ---
 
 ## Managing Sessions
+
 To manage your sessions of a paritcular group, you will have to be on its respective `Session Page`, which typically looks like this:
 
 <img src="./images/UiSessionPage.png" width="650" height="529"/>
@@ -837,6 +860,7 @@ To manage your sessions of a paritcular group, you will have to be on its respec
 <span style="font-size: 10px; font-style: italic;">Figure 9</span>
 
 The following sections contain the features that are available to you on the `Session Page`.
+
 ### Adding a session: `add session`
 
 Adds a session to the list of session in the session page.
@@ -936,6 +960,7 @@ Examples:
 ---
 
 ## Managing the Attendance of a Session
+
 To manage the attendance of a particular session, you will have to be on its respective `Attendance Page`, which typically looks like this:
 
 <img src="./images/UiAttendancePage.png" width="650" height="529"/>
@@ -943,6 +968,7 @@ To manage the attendance of a particular session, you will have to be on its res
 <span style="font-size: 10px; font-style: italic;">Figure 10</span>
 
 The following sections contain the features that are available to you on the `Attendance Page`.
+
 ### Marking students as present: `mark`
 
 Marks selected students' attendance as present for current session.
@@ -962,6 +988,7 @@ Examples:
 [Back to list of commands](#commands)
 
 ### Marking students as absent: `unmark`
+
 ADD NOTE THAT STUDENTS ARE ABSENT BY DEFAULT
 
 Marks selected students' attendance as absent for current session.
@@ -999,6 +1026,7 @@ attendance
 ---
 
 ## Managing Tasks
+
 To manage the tasks of a particular group, you will have to be on its respective `Task Page`, which typically looks like this:
 
 <img src="./images/UiTaskPage.png" width="650" height="529"/>
@@ -1006,6 +1034,7 @@ To manage the tasks of a particular group, you will have to be on its respective
 <span style="font-size: 10px; font-style: italic;">Figure 12</span>
 
 The following sections will contain the features that are available to you on the `Task Page`.
+
 ### Adding a task: `add task`
 
 Adds a new task into the task page.
@@ -1103,6 +1132,7 @@ Examples:
 [Back to list of commands](#commands)
 
 ## Managing the Grades of a Task
+
 To manage the grades of a particular task, you will have to be on its respective `Grades Page`, which typically looks like this:
 
 <img src="./images/UiGradesPage.png" width="650" height="529"/>
