@@ -60,7 +60,7 @@ public class Score {
     public LocalDate getLocalDate() {
         return this.scoreDate.getDate();
     }
-
+    //@@author astraxq
     //@@author QQH0828
     /**
      * Returns true if both scores have the same date.
@@ -73,7 +73,8 @@ public class Score {
         return otherScore != null
                 && otherScore.getDate().equals(getDate());
     }
-
+    //@@author QQH0828
+    //@@author astraxq
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -104,3 +105,4 @@ public class Score {
         return builder.toString();
     }
 }
+//@@author astraxq

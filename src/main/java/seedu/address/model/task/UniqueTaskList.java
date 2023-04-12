@@ -81,6 +81,7 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new TaskNotFoundException();
         }
     }
+    //@@author astraxq
 
     //@@author toh-xinyi
     /**
@@ -96,7 +97,6 @@ public class UniqueTaskList implements Iterable<Task> {
         Collections.sort(internalList);
     }
 
-    //@@author toh-xinyi
     /**
      * Marks the given task from the list as in progress.
      * The task must exist in the list.
@@ -110,7 +110,6 @@ public class UniqueTaskList implements Iterable<Task> {
         Collections.sort(internalList);
     }
 
-    //@@author toh-xinyi
     /**
      * Marks the given task from the list as late.
      * The task must exist in the list.
@@ -123,7 +122,9 @@ public class UniqueTaskList implements Iterable<Task> {
         toMark.markTaskAsLate();
         Collections.sort(internalList);
     }
+    //@@author toh-xinyi
 
+    //@@author astraxq
     public void setTasks(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -196,3 +197,4 @@ public class UniqueTaskList implements Iterable<Task> {
         return internalList.get(index);
     }
 }
+//@@author astraxq

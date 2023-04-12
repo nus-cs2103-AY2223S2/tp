@@ -10,3 +10,4 @@ public class DuplicateScoreException extends RuntimeException {
         super("Operation would result in duplicate scores");
     }
 }
+//@author astraxq

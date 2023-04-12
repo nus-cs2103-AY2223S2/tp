@@ -54,7 +54,7 @@ public class Task implements Comparable<Task> {
         this.status = status;
         this.creationDate = creationDate;
     }
-
+    //@@author astraxq
     //@@author toh-xinyi
     /**
      * Marks the task as completed.
@@ -63,7 +63,6 @@ public class Task implements Comparable<Task> {
         status = TaskStatus.COMPLETE;
     }
 
-    //@@author toh-xinyi
     /**
      * Marks the task as late.
      */
@@ -71,14 +70,14 @@ public class Task implements Comparable<Task> {
         status = TaskStatus.LATE;
     }
 
-    //@@author toh-xinyi
     /**
      * Marks the task as in progress.
      */
     public void markTaskAsInProgress() {
         status = TaskStatus.INPROGRESS;
     }
-
+    //@@author toh-xinyi
+    //@@author astraxq
     public Name getName() {
         return taskName;
     }
@@ -86,12 +85,15 @@ public class Task implements Comparable<Task> {
     public TaskStatus getStatus() {
         return status;
     }
+    //@@author astraxq
 
     //@@author toh-xinyi
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
+    //@@author toh-xinyi
 
+    //@@author astraxq
     /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.
@@ -124,6 +126,7 @@ public class Task implements Comparable<Task> {
     public int hashCode() {
         return Objects.hash(taskName, status, creationDate);
     }
+    //@@author astraxq
 
     //@@author toh-xinyi
     @Override
@@ -133,7 +136,9 @@ public class Task implements Comparable<Task> {
         }
         return this.status.compareTo(other.status);
     }
+    //@@author toh-xinyi
 
+    //@@author astraxq
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -144,3 +149,4 @@ public class Task implements Comparable<Task> {
         return builder.toString();
     }
 }
+//@@author astraxq
