@@ -38,7 +38,7 @@ Let's dive in!
 
 ## Definitions
 
-* **Command**: A line of text that CLIpboard recognises as an action to execute.
+* **Command**: A line of text that CLIpboard recognises as an instruction to execute.
 * **Path**: A line of text that describes a file location on a computer.
     - Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
 * **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`](#displaying-the-previous-page-you-were-at-back) commands).
@@ -162,9 +162,17 @@ Here's a hypothetical workflow that might help you better understand the figure 
 ---
 
 ## Commands
+Commands are like giving instructions to CLIpboard on what to do.
 
-List of commands:
+A typical command would look like this:
+<img src="./images/typicalcommand.png" width="400" height="138"/>
 
+**Command keyword(s)**: Typically 1 or 2 words, they specify the type of action for CLIpboard to execute
+**Supplementary command information**: These are additional context about a command you wish to execute.
+
+Putting it together for the above example, `find course` would tell CLIpboard that you're looking for a course, and "cs2101" tells CLIpboard which specific course you're looking for.
+
+Here is a list of commands that CLIpboard understands:
 - [General Commands: ](#general-commands)
   - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
   - [`back`](#displaying-the-previous-page-you-were-at-back)
@@ -218,6 +226,10 @@ List of commands:
   - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
 
 ---
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+ A note looks like this.
+</div>
 
 <div markdown="block" class="alert alert-info">
 
