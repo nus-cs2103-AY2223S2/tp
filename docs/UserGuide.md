@@ -8,13 +8,15 @@ title: User Guide
   <p>CLIpboard is a user-friendly desktop application that helps educators manage their students' particulars. </p>
   <img src="./images/clipboard1.png" alt="image description" align="right" width="100" height="102"/>
 </div>
-ClIpboard is great for you if:
+CLIpboard was created with love by real teachers who faced the everyday challenge of managing large amounts of class information. We hope that CLIpboard will be able to serve you as reliably as it has for us.
+
+ClIpboard will be great for you too if:
 
 1. You have to manage lots of students and classes
 2. You prefer typing
 3. You dislike dealing with boring spreadsheets
 
-In this guide, we will walk you through the entire CLIpboard experience, whether you're a beginner learning to set up, or you're looking to take your skills to the next level, you're in the right place.
+In this guide, we will walk you through the entire CLIpboard experience, whether you're a beginner learning to set up, or you're an advanced user looking to take your skills to the next level, you're in the right place.
 
 Let's dive in!
 
@@ -84,10 +86,10 @@ A caution looks like this.
 
 #### Launching CLIpboard
 *Option 1*:
-Double-click on `clipboard.jar` to run it. If this does not work, go to option 2.
+* Double-click on `clipboard.jar` to run it. If this does not work, go to option 2.
 
 *Option 2*:
-1. Open a command terminal. (Guide to open a command terminal)[https://www.ionos.com/help/email/troubleshooting-mail-basicmail-business/access-the-command-prompt-or-terminal/#:~:text=Open%20Command%20Prompt%20in%20Windows,cmd%22%20and%20then%20click%20OK.].
+1. Open a command terminal. [Guide to open a command terminal](https://www.ionos.com/help/email/troubleshooting-mail-basicmail-business/access-the-command-prompt-or-terminal/#:~:text=Open%20Command%20Prompt%20in%20Windows,cmd%22%20and%20then%20click%20OK.).
 2. Copy the file path of the **folder** you put `clipboard.jar` in.
     * [Guide For Windows](https://www.howtogeek.com/670447/how-to-copy-the-full-path-of-a-file-on-windows-10/)
     * [Guide For MacOS](https://support.apple.com/en-sg/guide/mac-help/mchlp1774/mac#:~:text=Show%20the%20path%20to%20a%20file%20or%20folder&text=Choose%20View%20%3E%20Show%20Path%20Bar,bottom%20of%20the%20Finder%20window.)
@@ -95,15 +97,16 @@ Double-click on `clipboard.jar` to run it. If this does not work, go to option 2
 3. In the command terminal, type `cd <FILE_PATH>`, where `<FILE_PATH>` is the file path you found in step 2.
 4. Type `java -jar clipboard.jar` into the command terminal and press `Enter` to launch CLIpboard.&nbsp;
 
-If you're successful, you should see something like this:
+If you see something like this, you're good to go!<br>
 <img src="./images/Ui.png" width="650" height="529"/>
+<br>
 *CLIpboard contains some sample data if there is no initial data, as is the case when you first launch it.*
 
 ### Quick Start
 
 1. When you first launch CLIpboard, you will be brought to the `Course page`.
-2. Type your command in the `command box` and press Enter/Return to execute it.
-   <br>e.g. typing `help` and pressing the Enter/Return key will open the help window.
+2. Type your command in the `command box` and press `Enter/Return` to execute it.
+   <br>e.g. typing `help` and pressing the `Enter/Return` key will open the help window.
    <br>Some example commands you can try:
    1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
    2. `select 1` : Selects the first group displayed (eg. `T15`) on the `Group Page`. You will be redirected to the `Student Page`.
@@ -111,7 +114,7 @@ If you're successful, you should see something like this:
    4. `delete student 3` : Deletes the 3rd student (eg. `Lim Kim Choo`) shown in the student list.
    5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. `Lim Kim Choo`) should be back on the list.
    6. `exit` : Exits the app.
-3. Refer to the [commands list](#commands) below for a detailed description for each command.
+3. Refer to the [Features](#features) section below for a detailed description for each command.
 
 ### Visuals
 
@@ -147,7 +150,7 @@ Here's a hypothetical workflow that might help you better understand the figure 
 
 ## Features
 
-Here is a list of features that CLIpboard supports:
+Here is a list of amazing features that CLIpboard supports:
 
 - [General Features: ](#general-commands)
   - [Displaying the home page: ](#displaying-the-home-page-home) `home`
@@ -191,7 +194,7 @@ Here is a list of features that CLIpboard supports:
 - [Managing Attendance: ](#attendance-page-commands)
   - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
   - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
-  - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session-attendance) `attendance`
+  - [View the overall attendance of a session: ](#view-the-overall-attendance-of-a-session-attendance) `attendance`
 - [Managing Tasks: ](#managing-tasks)
   - [Adding a task: ](#adding-a-task-add-task) `add task`
   - [Deleting a task: ](#deleting-a-task-delete-task) `delete task`
@@ -213,7 +216,7 @@ A typical command would look like this:
 **Command keyword(s)**: Typically 1 or 2 words, they specify the type of action for CLIpboard to execute
 **Supplementary command information**: These provide additional context about a command you wish to execute. Conventionally, these are referred to as "arguments" or "parameters".
 
-Putting it together for the above example, `find course` would tell CLIpboard that you're looking for a course, and "cs2101" tells CLIpboard which specific course you're looking for.
+Putting it all together for the above example, `find course` would tell CLIpboard that you're looking for a course, and "cs2101" tells CLIpboard which specific course you're looking for.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:** <br>
 
@@ -225,6 +228,7 @@ Putting it together for the above example, `find course` would tell CLIpboard th
 </div>
 
 #### Understanding Command Formats
+To help you understand how CLIpboard recognises commands, these are some of the conventions used in this guide when specifying command formats.
 
 - **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).<br>
   - e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
@@ -251,7 +255,7 @@ Putting it together for the above example, `find course` would tell CLIpboard th
 
 ## General Features
 
-General features are features that may be used anywhere on CLIpboard, regardless of the page you're on.
+General features are features that may be used anywhere on CLIpboard, regardless of what page you're on.
 
 ### Showing the home page: `home`
 
@@ -324,14 +328,13 @@ Be very careful with this command. Deleted data may not be recovered after closi
 
 ### Scrolling through command history: `UP` or `DOWN` arrow key
 
-You can scroll through your past commands using the `UP` or `DOWN` arrow keys.
-You may then use the `LEFT` or `RIGHT` arrow keys to edit the command.
-Press `ENTER` to execute the command.
+You're feeling lazy and the commands you need to run are only slightly different from each other. No fret. You can scroll through your past commands using the `UP` or `DOWN` arrow keys. You may then use the `LEFT` or `RIGHT` arrow keys to edit your previous command.
+Finally, press `ENTER` to execute the command.
 
 [Back to list of features](#features)
 
 ### Exiting the program: `exit`
-Goodbye!
+Goodbye! We hope you've enjoyed using CLIpboard 😄
 
 **Command Format:**
 
@@ -362,7 +365,7 @@ add course <COURSE>
 ```
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
-  * Adding courses with the same course codes is not allowed.
+  * Adding courses with the same course code is not possible.
   * Course codes can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
   * This command is case-sensitive. e.g. "CS2103T" and "cs2103t" are treated as different courses.
 </div>
@@ -378,7 +381,7 @@ Examples:
 [Back to list of features](#features)
 
 ### Deleting a course: `delete course`
-Removes a course from your course list.
+If you're done teaching a course, you can remove it with this command.
 
 **Command Format:**
 
@@ -388,7 +391,7 @@ delete course <INDEX>
 
 Examples:
 
-- `delete course 1` will delete the first course listed in the course list.
+- `delete course 1` will delete the first course listed in your course list.
 
 [Back to list of features](#features)
 
@@ -404,12 +407,12 @@ edit course <INDEX> <NEW COURSE NAME>
 
 Examples:
 
-- `edit course 1 CS2106` will rename the first course listed in the course list to "CS2106".
+- `edit course 1 CS2106` will rename your first course listed in your course list to "CS2106".
 
 [Back to list of features](#features)
 
 ### Finding a course: `find course`
-Use this command to filter your course list to show only courses that contain specific keywords.
+You can filter your course list to show only courses that contain specific keywords.
 
 **Command Format:**
 
@@ -425,7 +428,7 @@ find course <KEYWORD> [<MORE_KEYWORDS>]
 <br>
 
 Example:
-  If my course list contains 2 courses "CS2103T" and "CS2101":
+  If your course list contains 2 courses "CS2103T" and "CS2101":
   - `find course CS` will show "CS2103T", "CS2101".
   - `find course 03` will show "CS2103T".
 
@@ -457,7 +460,7 @@ A `Group Page` typically looks like this:
 
 ### Adding a group: `add group`
 
-To add a new group, use this command to add it to a selected course.
+Use this command to a new group to a course you've selected.
 
 **Command Format:**
 
@@ -466,7 +469,7 @@ add group <GROUP>
 ```
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
-  * Adding groups with the same group name is not allowed.
+  * Adding groups with the same group name is not possible.
   * Group names can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
   * This command is case-sensitive. e.g. "CS2103T" and "cs2103t" are treated as different courses.
 </div>
@@ -481,7 +484,7 @@ Examples:
 
 ### Deleting a group: `delete group`
 
-Removes a group from a selected course.
+This removes a group from your selected course.
 
 **Command Format:**
 
@@ -491,7 +494,7 @@ delete group <INDEX>
 
 Examples:
 
-- `delete group 1` will delete the first group listed in the group list.
+- `delete group 1` will delete the first group listed in your group list.
 
 [Back to list of features](#features)
 
@@ -507,13 +510,13 @@ edit group <INDEX> <NEW GROUP NAME>
 
 Examples:
 
-- `edit group 1 T16` will rename the first group listed in the group list to `T16`.
+- `edit group 1 T16` will rename the first group listed in your group list to `T16`.
 
 [Back to list of features](#features)
 
 ### Selecting a group: `select`
 
-Selects an existing group to display its corresponding Student Page.
+This command allows you to select a group and navigates you to its corresponding `Student Page`.
 
 **Command Format:**
 
@@ -523,7 +526,7 @@ select <INDEX>
 
 Examples:
 
-- `select 1` will return a list of students from the first group.
+- `select 1` will show you your list of students from the first group.
 
 [Back to list of features](#features)
 
@@ -543,7 +546,7 @@ session <INDEX>
 
 Examples:
 
-- `session 1` will return a list of sessions from the first group.
+- `session 1` will show you your list of sessions from the first group.
 
 [Back to list of features](#features)
 
@@ -563,12 +566,12 @@ task <INDEX>
 
 Examples:
 
-- `task 1` will return a list of tasks for the first group.
+- `task 1` will show you your list of tasks for the first group.
 
 [Back to list of features](#features)
 
 ### Finding a group: `find group`
-Use this command to filter your group list to show only groups that contain specific keywords.
+You can filter your group list to show only groups that contain specific keywords.
 
 **Command Format:**
 
@@ -625,7 +628,7 @@ add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-  * Adding students with the same student id is not allowed.
+  * Adding students with the same student id is not possible.
   * The same student can exist in multiple groups. For example, a student can be in both tutorial group "T1" and a project group "Team15" at the same time.
 </div>
 <br>
@@ -639,7 +642,7 @@ Examples:
 
 ### Deleting a student: `delete student`
 
-Removes a student from a selected group.
+This removes a student from a selected group.
 
 **Command Format:**
 
@@ -649,7 +652,7 @@ delete student <INDEX>
 
 Examples:
 
-- `delete student 1` will delete the first student listed in the student list panel of CLIpboard.
+- `delete student 1` will delete your first student listed in your student list.
 
 [Back to list of features](#features)
 
@@ -675,15 +678,15 @@ edit student <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUM
 
 Examples:
 
-- `edit student 1 n/John Doe` will replace the name of the first student listed in the student list to `John Doe`.
-- `edit student 4 p/99887766 e/john@gmail.com` will replace the phone number and email of the fourth student listed in the student list to `99887766` and `john@gmail.com` respectively.
+- `edit student 1 n/John Doe` will replace the name of your first student listed in your student list to `John Doe`.
+- `edit student 4 p/99887766 e/john@gmail.com` will replace the phone number and email of your fourth student listed in your student list to `99887766` and `john@gmail.com` respectively.
 
 [Back to list of features](#features)
 
 ### Copying a student's email: `copy`
 
 To quickly get the email of a student, use this command to copy a student's email.
-Then, just use `CTRL+V` or `Right-Click > Paste` to paste their email.
+Then, simply use `CTRL+V` or `Right-Click > Paste` to paste their email.
 
 **Command Format:**
 
@@ -693,13 +696,13 @@ copy <INDEX>
 
 Examples:
 
-- `copy 1` will copy the email of the first student in your student list to your clipboard.
+- `copy 1` will copy the email of your first student in your student list to your clipboard.
 
 [Back to list of features](#features)
 
 ### Finding students by name or student ID: `find student`
 
-Filters your student list to show only students whose names or student IDs contain any of the given keywords.
+You can filter your student list to show only students whose names or student IDs contain any of the given keywords.
 
 **Command Format:**
 
@@ -735,8 +738,8 @@ sort <CATEGORY>
 
 Examples:
 
-- `sort name` will sort list of students alphabetically according to name.
-- `sort id` will sort list of students alphanumerically according to student ID.
+- `sort name` will sort your list of students alphabetically according to name.
+- `sort id` will sort your list of students alphanumerically according to student ID.
 
 <img src="./images/UiStudentSortName.png" width="650" height="529"/>
 <br>
@@ -747,7 +750,7 @@ Examples:
 
 ### Display a student's information: `select`
 
-This command allows you to select a student and displays their full particulars.
+This command allows you to select a student and display their full particulars.
 The selected student will be shown like this:
 
 <img src="./images/UiStudentView.png" width="650" height="529"/>
@@ -799,7 +802,7 @@ Examples:
 
 ### Uploading a student's photo: `upload`
 
-Uploads a student's photo to be displayed as their profile picture when you select them.
+You can upload an image to be displayed as a student's profile picture.
 
 **Command Format:**
 
@@ -830,7 +833,7 @@ Examples:
 
 ### Viewing a student's attendance throughout the course: `attendance`
 
-Shows a summary of a student's attendance like this:
+You can view a summary of a student's attendance like this:
 
 <img src="./images/UiStudentAttendanceView.png" width="650" height="529"/>
 
@@ -857,7 +860,7 @@ A `Session Page` typically looks like this:
 
 ### Adding a session: `add session`
 
-Adds a new session to a selected group.
+This adds a new session to your selected group.
 
 **Command Format:**
 
@@ -867,7 +870,7 @@ add session <SESSION>
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-* Adding sessions with the same session name is not allowed.
+* Adding sessions with the same session name is not possible.
 * Session names can contain alphanumeric and special characters. e.g. "T15-Session-1.2"
 * This command is case-sensitive. e.g. "session1" and "SESSION1" are treated as different sessions.
 </div>
@@ -882,7 +885,7 @@ Examples:
 
 ### Deleting a session: `delete session`
 
-Removes a session from a selected group.
+This removes a session from your selected group.
 
 **Command Format:**
 
@@ -898,7 +901,7 @@ Examples:
 
 ### Editing a session: `edit session`
 
-Edits an existing session in the session list.
+You can edit the name of an existing session in your session list.
 
 **Command Format:**
 
@@ -908,13 +911,13 @@ edit session <INDEX> <NEW SESSION NAME>
 
 Examples:
 
-- `edit session 1 Tutorial1` will rename the first session listed to `Tutorial1`.
+- `edit session 1 Tutorial1` will rename your first session listed to `Tutorial1`.
 
 [Back to list of features](#features)
 
 ### Finding a session: `find session`
 
-Use this command to filter your session list to show only sessions that contain specific keywords.
+You can filter your session list to show only sessions that contain specific keywords.
 
 **Command Format:**
 
@@ -948,7 +951,7 @@ select <INDEX>
 
 Examples:
 
-- `select 1` will return a list of students from the first session.
+- `select 1` will return a list of your students from the first session.
 
 [Back to list of features](#features)
 
@@ -960,6 +963,9 @@ In the following sections, you will find the features that are available to you 
 Your current page would look similar to this:
 <img src="./images/UiAttendancePage.png" width="650" height="529"/>
 <br>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** The attendance for all students will be set to ABSENT when a session is created. Make sure to check that you have marked the attendance of all students, so that no one's attendance is accidentally left as absent.
+</div>
 
 ### Marking students as present: `mark`
 
@@ -975,13 +981,11 @@ mark <INDEX>...
 Examples:
 
 - `mark 1` will mark the first student as present.
-- `mark 2, 4, 5, 6` will mark the 2nd, 4th, 5th and 6th students as present.
+- `mark 2,4,5,6` will mark the 2nd, 4th, 5th and 6th students as present.
 
 [Back to list of features](#features)
 
 ### Marking students as absent: `unmark`
-
-ADD NOTE THAT STUDENTS ARE ABSENT BY DEFAULT
 
 Marks selected students' attendance as absent for current session.
 
@@ -989,19 +993,19 @@ Marks selected students' attendance as absent for current session.
 
 ```
 unmark <INDEX>
-unmark <INDEX>, <INDEX>, ...
+unmark <INDEX>...
 ```
 
 Examples:
 
-- `unmark 1` will mark the first student as absent.
-- `unmark 2,3,4` will mark the 2nd, 3rd and 4th students as absent.
+- `unmark 1` will mark your 1st student as absent.
+- `unmark 2,3,4` will mark your 2nd, 3rd and 4th students as absent.
 
 [Back to list of features](#features)
 
-### View the overall attendance of the session: `attendance`
+### View the overall attendance of a session: `attendance`
 
-Displays the overall attendance of the session you are at in the command box, which will be shown like this:
+You can view the overall attendance of a session that you've selected, which will be shown like this:
 
 <img src="./images/UiAttendance.png" width="650" height="529"/>
 <br>
@@ -1024,7 +1028,7 @@ A `Task Page` typically looks like this:
 
 ### Adding a task: `add task`
 
-Adds a new task to a selected group.
+This adds a new task to your selected group.
 
 **Command Format:**
 
@@ -1034,7 +1038,7 @@ add task <TASK NAME>
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-* Adding tasks with the same task name is not allowed.
+* Adding tasks with the same task name is not possible.
 * Task names can contain alphanumeric, special characters and white spaces. e.g. "AY2223S2-Midterm Practice Paper"
 * This command is case-sensitive. e.g. "task1" and "TASK1" are treated as different tasks.
 </div>
@@ -1048,7 +1052,7 @@ Examples:
 
 ### Deleting a task: `delete task`
 
-Removes a task from a selected group.
+This removes a task from your selected group.
 
 **Command Format:**
 
@@ -1064,7 +1068,7 @@ Examples:
 
 ### Editing a task: `edit task`
 
-Edits an existing task in the task list.
+You can edit the name of an existing task in your task list.
 
 **Command Format:**
 
@@ -1080,7 +1084,7 @@ Examples:
 
 ### Finding a task: `find task`
 
-Use this command to filter your task list to show only tasks that contain specific keywords.
+You can filter your task list to show only tasks that contain specific keywords.
 
 **Command Format:**
 
@@ -1104,7 +1108,7 @@ Examples:
 
 ### Selecting a task to assign grades: `select`
 
-This command allows you to select a task and view the grades of the students in your selected group.
+This command allows you to select a task and view the grades of the students with that task.
 
 **Command Format:**
 
@@ -1131,14 +1135,16 @@ Your current page would look similar to this:
 
 ### Assigning a grade to student: `assign`
 
-Assigns a grade to a student.
+This assigns a grade to a student.
 
 **Command Format:**
 
 ```
 assign <INDEX> <GRADE>
 ```
-- Grade must be a number between `0 and 100`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** A grade must be a number between `0 and 100`.
+</div>
+<br>
 
 Examples:
 
