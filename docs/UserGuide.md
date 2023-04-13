@@ -124,7 +124,7 @@ You can enter your user commands in this section.
           from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest `ExecutivePro.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ExecutivePro.
+3. Copy the jar file to the folder you want to use as the _main folder_ for your ExecutivePro. This folder can be on your Desktop or any location you prefer.
 
 <div markdown="block" class="alert alert-info">
 
