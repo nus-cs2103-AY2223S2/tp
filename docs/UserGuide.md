@@ -129,7 +129,7 @@ launching the application. The [reminder window](#reminder) will be further disc
 
 
 <p align="center">
-  <img width="896" height="848" src="images/Ui.png">
+  <img src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the software.</div>
@@ -277,7 +277,6 @@ Please refer to [format restrictions](#format) to find out more.
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ### <a id="delete"></a>Deleting a module: `delete`
 
@@ -294,7 +293,7 @@ Format: `delete INDEX`
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
 <p align="center">
-   <img src="images/delete.png">
+   <img width="836" height="627" src="images/delete.png">
 </p>
 
 <div align="center">Figure 4 : Deleting a module from the tracker.</div>
