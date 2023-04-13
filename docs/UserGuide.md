@@ -274,7 +274,9 @@ The following table details the [parameters](#parameter) to be used with the `ad
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Tag is an optional field when adding an application. An application can have multiple tags or none at all. 
+Tag is an optional field when adding an application. An application can have multiple tags or none at all, as seen in
+the image below.
+![Tag](images/tag)
 If you forgot to add a tag to your application after it's been created, or wish to add even more tags, refer to the
 section [here](#414-managing-application-tags-with-add-app-and-edit-app) on managing application tags.
 </div>
@@ -453,6 +455,10 @@ as a task to the existing application entry using the command: `add-task 1 d/Tec
 (assuming that it is showing up as the first application on the Application List Panel). 
 </div>
 
+You may refer to the screenshots below for the before and after comparison of the execution of the `add-task` command.
+
+![BeforeAfterAddTask](images/BeforeAfterAddTask.png)
+
 Format: `add-task INDEX d/DESCRIPTION by/DEADLINE`
 
 The following table details the [parameters](#parameter) to be used with the `add-app` command:
@@ -467,8 +473,6 @@ Additional things to note:
   [integer](#integer).**
 * `INDEX` cannot be greater than 2147483647.
 
-You can see how the new task will appear in the updated Application Card, following the scenario given above:
-![UiAfterAddTask](images/UiAfterAddTask.png)
 
 #### 4.2.2 Editing a task : `edit-task`
 
@@ -544,13 +548,7 @@ Format: `list`
 
 Finds internship applications with information containing any of the given keywords **amongst all existing applications**.
 <div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
-Exams are nearing and you are extremely busy! You want to know which internship offers you have at hand so you can accept one of the offers. Using `find s/offered`, the applications with companies that have responded with an offer will be listed. Thanks to this, you can see all your offers at a quick glance! :v:</div>
-
-<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
-Suppose you want to know which internship offers you have at hand so that you can accept one quickly and focus on 
-preparing for your upcoming Final Examinations. You can find the companies that have responded with an offer using 
-the command: `find s/offered` command. 
-</div>
+Suppose exams are nearing and you are extremely busy! You want to know which internship offers you have at hand so you can accept one of the offers. Using `find s/offered`, the applications with companies that have responded with an offer will be listed. Thanks to this, you can see all your offers at a quick glance! :v:</div>
 
 You may refer to the screenshots below for the before and after comparison of the execution of the `find` command.
 ![BeforeAfterFind](images/BeforeAfterFind.png)
