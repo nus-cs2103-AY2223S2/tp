@@ -17,4 +17,11 @@ Therefore, our app aims to help these students by tracking and recording their a
 
 **Acknowledgements**
 
+* sprINT is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/)
+  project created by the SE-EDU initiative.
+* sprINT's logo is made using Canva.
+* The undo and redo feature (including the code and implementation details) are reused with minimal changes from the
+  [AddressBook-Level4](https://github.com/se-edu/addressbook-level4) project by the SE-EDU initiative.
+* The class diagram of the Model component is adapted from a past CS2103T project
+  [PleaseHireUs](https://ay2223s1-cs2103t-w17-4.github.io/tp/), ([DG](https://ay2223s1-cs2103t-w17-4.github.io/tp/DeveloperGuide.html)).
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)

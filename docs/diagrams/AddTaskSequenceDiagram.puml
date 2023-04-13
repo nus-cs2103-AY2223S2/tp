@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
 participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
 participant ":EditApplicationDescriptor" as EditApplicationDescriptor LOGIC_COLOR
-participant "a:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+participant ":AddTaskCommand" as AddTaskCommand LOGIC_COLOR
 participant ":EditApplicationCommand" as EditApplicationCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -15,16 +15,21 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add-task 1 d/Interview by/30-12-2023")
+note left of LogicManager #aqua
+Let user input be: <str>
+str = "d/Interview by/30-12-2023"
+end note
 
-LogicManager -> InternshipBookParser : parseCommand("add-task 1 d/Interview by/30-12-2023")
+[-> LogicManager : execute("add-task 1 {str}")
+
+LogicManager -> InternshipBookParser : parseCommand("add-task 1 {str}")
 
 create AddTaskCommandParser
 InternshipBookParser -> AddTaskCommandParser
 
 AddTaskCommandParser --> InternshipBookParser
 
-InternshipBookParser -> AddTaskCommandParser : parse("1 d/Interview by/30-12-2023")
+InternshipBookParser -> AddTaskCommandParser : parse("1 {str}")
 activate AddTaskCommandParser
 
 create EditApplicationDescriptor
@@ -38,16 +43,16 @@ create AddTaskCommand
 AddTaskCommandParser -> AddTaskCommand
 activate AddTaskCommand
 
-AddTaskCommand --> AddTaskCommandParser : a
+AddTaskCommand --> AddTaskCommandParser : addTaskCommand
 deactivate AddTaskCommand
 
-AddTaskCommandParser --> InternshipBookParser : a
+AddTaskCommandParser --> InternshipBookParser : addTaskCommand
 deactivate AddTaskCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddTaskCommandParser -[hidden]-> InternshipBookParser
 destroy AddTaskCommandParser
 
-InternshipBookParser --> LogicManager : d
+InternshipBookParser --> LogicManager : addTaskCommand
 deactivate InternshipBookParser
 
 LogicManager -> AddTaskCommand : execute()

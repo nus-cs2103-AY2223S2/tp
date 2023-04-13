@@ -36,6 +36,8 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_TASK_DOES_NOT_EXIST = "This application does not have an existing task ";
+    public static final String MESSAGE_DUPLICATE_APPLICATION = "This application already exists in the internship book";
+
     private final Index targetIndex;
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -65,6 +67,13 @@ public class EditTaskCommand extends Command {
         }
 
         Application editedApplication = createEditedApplication(applicationToEditTask, editTaskDescriptor);
+
+
+        if (model.hasApplication(editedApplication)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
+        }
+
+
         model.setApplication(applicationToEditTask, editedApplication);
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         model.commitInternshipBookChange();

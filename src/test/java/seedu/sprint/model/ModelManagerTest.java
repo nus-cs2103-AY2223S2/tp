@@ -16,9 +16,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.commons.core.GuiSettings;
+import seedu.sprint.logic.parser.SortCommandParser.SortingSequence;
+import seedu.sprint.model.application.AlphabeticalComparator;
 import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 import seedu.sprint.testutil.InternshipBookBuilder;
 
+/**
+ * Test cases for ModelManager.
+ * Reused and Adapted from a past CS2103T project - PleaseHireUs
+ * at https://github.com/AY2223S1-CS2103T-W17-4/tp/blob/master/src/test/java/seedu/phu/model/ModelManagerTest.java
+ * with some minor modifications.
+ */
 public class ModelManagerTest {
 
     private ModelManager modelManager;
@@ -84,20 +92,26 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasApplication_applicationNotInInternshipBook_returnsFalse() {
-        assertFalse(modelManager.hasApplication(BYTEDANCE));
-    }
-
-    @Test
     public void hasApplication_applicationInInternshipBook_returnsTrue() {
         modelManager.addApplication(BYTEDANCE);
         assertTrue(modelManager.hasApplication(BYTEDANCE));
     }
 
     @Test
+    public void hasApplication_applicationNotInInternshipBook_returnsFalse() {
+        assertFalse(modelManager.hasApplication(BYTEDANCE));
+    }
+
+    @Test
     public void getFilteredInternshipList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> modelManager.getFilteredApplicationList().remove(0));
+    }
+
+    @Test
+    public void getSortedInternshipList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getSortedApplicationList().remove(0));
     }
 
     @Test
@@ -169,6 +183,10 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         String[] keywords = BYTEDANCE.getCompanyName().name.split("\\s+");
         modelManager.updateFilteredApplicationList(new ApplicationContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(internshipBook, userPrefs)));
+
+        // different sortedList -> returns false
+        modelManager.updateSortedApplicationList(new AlphabeticalComparator(SortingSequence.ASCENDING));
         assertFalse(modelManager.equals(new ModelManager(internshipBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

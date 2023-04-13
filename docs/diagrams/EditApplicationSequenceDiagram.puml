@@ -2,28 +2,28 @@
 !include style.puml
 
 box ApplicationLogic LOGIC_COLOR_T1
-participant ":ApplicationLogicManager" as ApplicationLogicManager LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
 participant ":EditApplicationCommandParser" as EditApplicationCommandParser LOGIC_COLOR
 participant "d:EditApplicationCommand" as EditApplicationCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box ApplicationModel MODEL_COLOR_T1
-participant ":ApplicationModel" as ApplicationModel MODEL_COLOR
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
 participant ":Application" as Application MODEL_COLOR
 end box
 
-note left of ApplicationLogicManager #aqua
+note left of LogicManager #aqua
 Let user input be <str>
 str = "1 r/SYSTEMS ANALYST c/HRT
 e/HRThires@gmail.com s/applied"
 end note
 
-[-> ApplicationLogicManager : execute("edit {str}")
-activate ApplicationLogicManager
+[-> LogicManager : execute("edit {str}")
+activate LogicManager
 
-ApplicationLogicManager -> InternshipBookParser : parseCommand("edit {str}")
+LogicManager -> InternshipBookParser : parseCommand("edit {str}")
 activate InternshipBookParser
 
 create EditApplicationCommandParser
@@ -56,17 +56,17 @@ deactivate EditApplicationCommandParser
 EditApplicationCommandParser -[hidden]-> InternshipBookParser
 destroy EditApplicationCommandParser
 
-InternshipBookParser --> ApplicationLogicManager : editCommand
+InternshipBookParser --> LogicManager : editCommand
 deactivate InternshipBookParser
 
-ApplicationLogicManager -> EditApplicationCommand : execute()
+LogicManager -> EditApplicationCommand : execute()
 activate EditApplicationCommand
 
-EditApplicationCommand -> ApplicationModel : editApplication(app)
-activate ApplicationModel
+EditApplicationCommand -> Model : editApplication(app)
+activate Model
 
-ApplicationModel --> EditApplicationCommand
-deactivate ApplicationModel
+Model --> EditApplicationCommand
+deactivate Model
 
 create CommandResult
 EditApplicationCommand -> CommandResult
@@ -75,10 +75,10 @@ activate CommandResult
 CommandResult --> EditApplicationCommand
 deactivate CommandResult
 
-EditApplicationCommand --> ApplicationLogicManager : result
+EditApplicationCommand --> LogicManager : result
 deactivate EditApplicationCommand
 
-[<--ApplicationLogicManager
-deactivate ApplicationLogicManager
+[<--LogicManager
+deactivate LogicManager
 
 @enduml

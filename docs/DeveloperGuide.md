@@ -9,15 +9,17 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **1. Introduction**
 
 ### 1.1 About sprINT 
 
 **sprINT** is an **internship-tracking application** that was created to assist students in their internship hunt. 
 
-Students often face a great administrative burden in keeping track of the high volume of job or internship 
+Students often face a great administrative burden in keeping track of the high volume of internship 
 applications. With sprINT, students can easily manage details of their internship applications, including the company, 
-contacts, status and task deadlines.
+company contact information, status and task deadlines.
 
 ### 1.2 About this guide
 
@@ -29,10 +31,18 @@ It is intended for:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **2. Acknowledgements**
 
-sprINT is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) 
-project created by the SE-EDU initative. 
+* sprINT is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) 
+project created by the SE-EDU initiative.
+* sprINT's logo is made using Canva. 
+* The undo and redo feature (including the code and implementation details) are reused with minimal changes from the
+[AddressBook-Level4](https://github.com/se-edu/addressbook-level4) project by the SE-EDU initiative.
+* The class diagram of the Model component is adapted from a past CS2103T project 
+[PleaseHireUs](https://ay2223s1-cs2103t-w17-4.github.io/tp/), ([DG](https://ay2223s1-cs2103t-w17-4.github.io/tp/DeveloperGuide.html)). 
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,6 +51,8 @@ project created by the SE-EDU initative.
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **4. Design**
 ### 4.1 Architecture
@@ -59,14 +71,14 @@ It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#46-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#42-ui-component): The UI of the App.
+* [**`Logic`**](#43-logic-component): The command executor.
+* [**`Model`**](#44-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#45-storage-component): Reads data from, and writes data to, the hard disk.
 
 
 **How the architecture components interact with each other**
@@ -78,13 +90,17 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
+
+<div style="page-break-after: always;"></div>
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.2 UI component
 
@@ -103,6 +119,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Application` objects residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3 Logic component
 
 The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/logic/Logic.java).
@@ -117,11 +135,13 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add an application).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete-app 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete-app 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteApplicationCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -133,6 +153,8 @@ How the parsing works:
 * When called upon to parse a user command, the `InternshipBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddApplicationCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddApplicationCommand`) which the `InternshipBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddApplicationCommandParser`, `DeleteApplicationCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.4 Model component
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/model/Model.java).
 
@@ -143,8 +165,10 @@ The `Model` component,
 
 * stores the internship book data i.e., all `Application` objects (which are contained in a `UniqueApplicationList` object).
 * stores the currently 'selected' `Application` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Application>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores a `UserPrefs` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPrefs` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.5 Storage component
 
@@ -168,12 +192,18 @@ Classes used by multiple components are in the `seedu.sprint.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In the sequence diagrams included in
+sections 5.1-5.4 and 5.6, the lifeline for `XYZCommandParser` (e.g. `AddApplicationCommandParser`) should end at the 
+destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 ### 5.1 Add Application feature
 
 #### About
 The add application command is a core feature of sprINT, allowing users to easily keep track of their internship
 applications. By issuing the command with the appropriate prefixes, users can input the key details of their application,
-including the role, company, email, and status. 
+including the role, company, company email, and status. 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** While `task` is also a field associated
 with an application, users are only allowed to add a task to an application via the 
@@ -186,7 +216,7 @@ time to monitor their progress.
 #### Usage
 To add an application in sprINT, simply issue the command in the following format:
 
-`add-app r/[role] c/[company name] e/[company email] s/[status]`
+`add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​`
 
 Here's a breakdown of what each prefix means:
 
@@ -223,10 +253,11 @@ the logic behind adding the associated application instance to the existing `Int
 the execution of the command. 
 11. The Ui component displays the contents of the `CommandResult` to the User.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
-application list to the User, should the add command execute successfully. If an error occurred during execution, the corresponding
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly added application
+and its details to the user, should the add command execute successfully. If an error occurred during execution, the corresponding
 exception that was thrown and the error message will be displayed to the user.</div>
 
+<div style="page-break-after: always;"></div>
 
 For a more graphical illustration of how an add application command is processed, please refer to the following
 sequence diagram:
@@ -245,7 +276,7 @@ can edit any field(s) of an existing application to update it or rectify input e
 #### Usage
 To edit an application in sprINT, simply issue the command in the following format:
 
-`edit-app INDEX r/[role] c/[company name] e/[company email] s/[status]`
+`edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]`
 
 Apart from `INDEX`, all other fields are optional. However, at least one of the optional fields must be provided.
 
@@ -282,12 +313,12 @@ sequence diagram:
 ### 5.3 Find Application feature
 
 #### About
-The find command is a feature that enables users to search for a specific application within the internship book.
+The find command is a feature that enables users to search for a specific application within all the existing applications in the internship book.
 
 Users can locate the application by providing its index and optionally using the parameters `r/`, `c/`, and `s/` to 
 refine their search. These parameters correspond to the role, company, and status fields in the internship book, 
 allowing for customised searches. Without any of the required prefixes, it will do a global search for the
-keyword in all fields of the applications.
+keyword in all fields of all the applications.
 
 #### Usage
 To find an application in sprINT, issue the command in the following format:
@@ -298,7 +329,7 @@ Here's a breakdown of what each prefix means:
 
 - `r/` - finds the role of the application.
 - `c/` - finds the company name of the application.
-- `s/` - finds the status of the application. The only valid values are "interested", "applied", "rejected" and "offered".
+- `s/` - finds the [status](#status) of the application. The only valid values are "interested", "applied", "rejected" and "offered".
 
 When no prefix is specified, the keywords are searched in the role, company name and status fields of applications.
 
@@ -335,8 +366,14 @@ sequence diagram:
 ### 5.4 Sort Applications feature
 
 #### About
-The sort command is a feature that enables users to rearrange the list of applications they see on the GUI.
-The following table details the parameters to be used with the `sort` command:
+The sort command is a feature that enables users to select and rearrange the list of applications they see on the GUI.
+
+#### Usage
+To sort applications in sprINT, use the command in the following format:
+
+`sort SEQUENCE ORDER`
+
+The following table explains the parameters to be used with the `sort` command:
 
 | Parameter | Compulsory | Constraints                                 | 
 |-----------|------------|---------------------------------------------|
@@ -344,13 +381,14 @@ The following table details the parameters to be used with the `sort` command:
 | Order     | Yes        | Must be either `alphabetical` or `deadline` |
 
 Examples:
-- `sort a deadline` will sort applications by the deadline of their upcoming tasks in ascending order (i.e. from earliest 
+- `sort a deadline` will select all applications in the internship book that has tasks (and therefore, deadlines) 
+and sorts them by the deadline of their upcoming tasks in ascending order (i.e. from earliest 
 to latest). 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only applications that have a task 
 associated will be displayed in the sorted list. Those without an associated task will **not** be shown.</div> 
 
-- `sort d alphabetical` will sort applications by the role in descending order (from Z to A). If there are two or more 
+- `sort d alphabetical` will sort the currently displayed application entries on the GUI by the role in descending order (from Z to A). If there are two or more 
 applications with the same role, their company name will be used as a tiebreaker. 
 
 
@@ -358,7 +396,7 @@ applications with the same role, their company name will be used as a tiebreaker
 The sort application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
 
 Given below are the steps that illustrate the interaction between the components when it receives a valid sort
-command from the user.
+command from the user to sort the current list of entries **alphabetically**.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
 2. The command is processed as a value of type `String`, and is passed to `LogicManager` via its `execute()` method.
@@ -383,6 +421,14 @@ command from the user.
     the execution of the command.
 17. The Ui component displays the contents of the `CommandResult` to the User.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For `sort a deadline` and `sort d deadline`,
+there is an extra step in step 13 where `updateFilteredApplicationList` in `ModelManager` is first called to select applications
+in the entire internship book that has outstanding tasks (and therefore, deadlines) first, before `updateSortedApplicationList` is called
+to sort these applications by deadline.
+</div>
+
+<div style="page-break-after: always;"></div>
+
 For a more graphical illustration of how a sort command is processed, please refer to the following
 sequence diagram:
 
@@ -395,20 +441,6 @@ implements the `Comparator<Application>` interface.
 2. Modify `SortCommandParser` to accept a new sorting order.
 3. Modify `SortCommand`. Specifically, its enum class `SortingOrder` should be expanded to accept a new enum values for your new sorting order.
 Also, modify its constructor so that it can create a comparator of the newly created `Comparator` class for `SortCommand`.
-
-#### Relation with `list` command
-The implementation of the `sort` command shares some similarities with the `list` command.
-The `list` command lists all applications in the order of creation; i.e., applications that are more recently added
-will be shown higher up in the list.
-The execution of these commands is essentially a two-step process of first **filtering** and then **storing**: 
-1. `LogicManager` takes the internal list that keeps track of all the applications. It stores a **filtered** version of this
-list in `FilteredList`.
-2. `LogicManager` then takes the `FilteredList` and stores a **sorted** version of this list in `SortedList`.
-
-See the following activity diagram that illustrates this workflow with some example executions of the `sort`, `find`
-and `list` commands:
-
-![CommandExecutionWorkflow](images/CommandExecutionWorkflow.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -491,6 +523,8 @@ Step 6. The user executes `clear`, which calls `Model#commitInternshipBook()`. S
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/CommitActivityDiagram.png" width="250" />
@@ -539,7 +573,9 @@ The add task mechanism is facilitated by the Ui, Logic and Model components of s
 class (`AddTaskCommandParser`), the steps taken when it receives a valid add task command from the user are largely 
 similar to the [edit application](#52-edit-application-feature) command, since the add task feature uses existing logic
 from `EditApplicationCommand` under the hood (for why this is the case, refer to 
-[Design Considerations](#design-considerations)).
+[Design Considerations](#design-considerations-1)).
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram provides a graphical illustration of how the add task operation works:
 
@@ -600,15 +636,19 @@ This is what allows the Ui Component, `MainWindow`, to detect that a request to 
 from the user.
 </div> 
 
+<div style="page-break-after: always;"></div>
+
 For a more graphical illustration of how the exit sprINT command is processed, please refer to the following
 sequence diagram:
 
 ![ExitSprintSequenceDiagram](images/ExitSprintSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **6. Documentation, logging, testing, configuration, dev-ops**
 
+Here are some guides that may help you during your development process:
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
@@ -616,6 +656,7 @@ sequence diagram:
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **7. Glossary**
 
@@ -648,6 +689,7 @@ Command Line Interface
 Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **8. Appendix: Requirements**
 
@@ -657,7 +699,7 @@ Windows, Linux, Unix, OS-X
 
 * is a student going to or is currently applying for internships
 * has a need to manage a significant number of internship applications
-* prefer desktop apps over other types of apps
+* prefers desktop apps over other types of apps
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -688,6 +730,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* `     | neat user             | clear my internship book                         | restart the whole process of tracking my internship applications                             |
 | `* `     | user                  | tag an application                               | label them as I wish                                                                         |
 | `* `     | data-oriented user    | view statistics of all my application entries    | get the general idea of how well I'm doing in my internship hunt                             |
+
+<div style="page-break-after: always;"></div>
 
 ### 8.3 Use Cases
 
@@ -750,6 +794,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case resumes at step 1.
 
+* 2c. User did not provide at least one field to edit.
+  * 2c1. sprINT shows an error message.
+
+    Use case resumes at step 1. 
+
 ---
 
 **Use case: UC03 - Delete an application entry**
@@ -784,8 +833,9 @@ ___
 
 **MSS**
 
-1. User provides task details (description, deadlines) and specifies the application to add this task to.
-2. sprINT adds the task to the specified application and shows the updated list of application entries.
+1. sprINT displays a list of current application entries. 
+2. User provides task details (description, deadline) and specifies the application to add this task to.
+3. sprINT adds the task to the specified application and shows the updated list of application entries.
 
    Use case ends.
 
@@ -887,7 +937,7 @@ ___
 
 1. User requests to find applications using the role, company name, and/or the application
 status as the keyword.
-2. sprINT displays the filtered list of entries.
+2. sprINT displays all applications in the internship book that have fields which contain the corresponding keyword(s).
 
    Use case ends.
 
@@ -898,9 +948,9 @@ status as the keyword.
 
     Use case resumes at step 1.
 
-* 2a. No matching applications are found and the filtered list is empty.
+* 2a. No matching applications are found and the list shown is empty.
   
-  Use case resumes at step 2.
+  Use case ends.
 
 ---
 
@@ -910,7 +960,7 @@ status as the keyword.
 
 1. sprINT displays a list of current application entries.
 2. User requests to sort applications by alphabetical order.
-3. sprINT displays the sorted list of entries.
+3. sprINT displays the same list of entries in step 1, but sorted.
 
     Use case ends.
 
@@ -918,7 +968,7 @@ status as the keyword.
 
 * 2a. User requests to sort applications by order of deadline of their upcoming task, with applications that have
 upcoming tasks of closer deadlines being showed first.
-  * 2a1. sprINT shows list of entries that have tasks (and therefore deadlines). 
+  * 2a1. sprINT shows list of existing entries in the entire internship book that have tasks (and therefore deadlines). 
   This list is sorted with earlier deadlines being showed first.
 
       Use case ends.
@@ -929,7 +979,7 @@ upcoming tasks of closer deadlines being showed first.
 
 **MSS**
 
-1. User requests to list all applications in the internship book.
+1. User requests to list all existing applications in the internship book.
 2. sprINT displays the full list of entries, in the order of when they are added. 
 (i.e., More recently added entries are shown first.)
 
@@ -1040,136 +1090,143 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Before each of the following test scenarios, 
+ensure that your sprINT application is launched and opened on your device.
+
+</div>
+
 ### Adding an application
 
-Before each test scenario, ensure that your sprINT application is launched and opened on your device.
+Prerequisites: sprINT's main window is launched and opened.
 
-1. Editing an application to sprINT while all applications are shown.
+1. Test case 1: `add-app c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
+    Expected: A new application is added to sprINT. Details of the newly added application shown in the Command Result Box.
 
-    1. Prerequisites: sprINT's main window is launched and opened.
-
-    2. Test case: `add-app c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
-        Expected: A new application is added to sprINT. Details of the newly added application shown in the status message.
-
-    3. Test case: `add-app 1 c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
-       Expected: No application is added due to **Invalid Command Format**. Add application command does not accept an 
-   `INDEX` parameter. Error details shown in the status message.
+2. Test case 2: `add-app 1 c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
+   Expected: No application is added due to **Invalid Command Format**. Add application command does not accept an 
+`INDEX` parameter. Error details shown in the Command Result Box.
    
-   4. Test case: `add-app c/NUS r/Teaching Assistant s/offered t/school t/nsws` <br>
-        Expected: No application is added due to **Invalid Command Format**. The `Company Email` prefix and input is missing
-   from the command. `Company Email` is a compulsory input parameter for the add application command.
-
+3. Test case 3: `add-app c/NUS r/Teaching Assistant s/offered t/school t/nsws` <br>
+     Expected: No application is added due to **Invalid Command Format**. The `Company Email` prefix and input is missing
+from the command. `Company Email` is a compulsory input parameter for the add application command.
 
 ### Editing an application
 
-Before each test scenario, ensure that your sprINT application is launched and opened on your device.
+Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
-1. Editing an application while all applications are being shown
+1. Test case 1: `edit-app 1 c/NTU`<br>
+   Expected: First application is edited from the list. Details of the edited application shown in the Command Result Box. 
 
-    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+2. Test case 2: `edit-app 2 c/HelloCompany s/Rejected`<br>
+   Expected: Second application is edited from the list. Details of the edited application shown in the Command Result Box. Pie chart changes accordingly.
 
-    2. Test case: `edit-app 1 c/NTU`<br>
-       Expected: First application is edited from the list. Details of the edited application shown in the status message. 
+3. Test case 3: `edit-app 0 c/HelloCompany`<br>
+   Expected: No application is edited due to **Invalid Command Format**.`INDEX` parameter provided must be positive for edit-app commands. Error details shown in the Command Result Box.
 
-    3. Test case: `edit-app 2 c/HelloCompany s/Rejected`<br>
-       Expected: Second application is edited from the list. Details of the edited application shown in the status message. Pie chart changes accordingly.
-   4. Test case: `edit-app 0 c/HelloCompany`<br>
-      Expected: No application is edited due to **Invalid Command Format**.`INDEX` parameter provided must be positive for edit-app commands. Error details shown in the status message.
-
-   5. Other incorrect delete commands to try: `edit-app`, `edit-app x`, `...` (where x is larger than the list size)<br>
-         Expected: Similar to the above test case for `delete-app 0`.
-   
-
-### Finding an application
-
-1. Finding an application while all applications are being shown.
-
-    1. Prerequisites: List of applications is displayed through means like `list` or `sort`.
-
-    1. Test case: `find r/SWE`<br>
-       Expected: Finds all the applications with the role containing SWE. The number of applications found is shown in the status message.
-
-    1. Test case: `find c/Google`<br>
-      Expected: Finds all the applications with the company name containing Google. The number of applications found is shown in the status message.
-
-    1. Test case: `find s/Offered`<br>
-      Expected: Finds all the applications with the `Offered` status. The number of applications found is shown in the status message.
-
-    1. Test case: `find r/SWE c/Google s/Offered`<br>
-       Expected: Finds all the applications with the role of `SWE`, company name containing `Google` and `Offered` status. Number of applications found is shown in the status message.
-
-    1. Test case: `find`<br>
-      Expected: No application is found. Invalid command error is shown in the status message. Status bar remains the same, with the input command highlighted in red.
-
-### Help
-
-1. Opening the help window for a summary of commands and their formats.
-
-    1. Prerequisites: sprINT's main window is working.
-
-    1. Test case: Enter `help` command<br>
-       Expected: Pop-up window for a summary of help commands and their formats is shown, and `Opened Help window.` is shown in the status message.
-
-    1. Test case: Manually clicking on the help button on the Toolbar<br>
-       Expected: Pop-up window for a summary of help commands and their formats is shown.
-
-    1. Test case: Enter `help [keyword]` command, where keyword can comprise some characters.<br>
-       Expected: Pop-up window for a summary of help commands and their formats is shown, because the first word is recognised as the command by design, and `Opened Help window.` is shown in the status message.
-
-   1. Test case: Enter `help123` command<br>
-      Expected: No Pop-up window is shown, `Unknown command` is displayed in the status message as the word is recognised to be an invalid command.
+4. Other incorrect `edit-app` commands to try: `edit-app`, `edit-app x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to the above test case for `edit-app 0 c/HelloCompany`.
 
 ### Deleting an application
 
-1. Deleting an application while all applications are being shown
+Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
-   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+1. Test case 1: `delete-app 1`<br>
+   Expected: First application is deleted from the list. Details of the deleted application shown in the Command Result Box. Timestamp in the status bar is updated.
 
-   2. Test case: `delete-app 1`<br>
-      Expected: First application is deleted from the list. Details of the deleted application shown in the status message. Timestamp in the status bar is updated.
+2. Test case 2: `delete-app 0`<br>
+   Expected: No application is deleted. Error details shown in the Command Result Box.
 
-   3. Test case: `delete-app 0`<br>
-      Expected: No application is deleted. Error details shown in the status message. 
+3. Other incorrect `delete-app` commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to the above test case for `delete-app 0`.
 
-   4. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to the above test case for `delete-app 0`.
+### Finding an application
+
+Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+
+1. Test case 1: `find r/SWE`<br>
+   Expected: Finds all the applications with the role containing SWE. The number of applications found is shown in the Command Result Box.
+
+2. Test case 2: `find c/Google`<br>
+   Expected: Finds all the applications with the company name containing Google. The number of applications found is shown in the Command Result Box.
+
+3. Test case 3: `find s/Offered`<br>
+   Expected: Finds all the applications with the `Offered` status. The number of applications found is shown in the Command Result Box.
+
+4. Test case 4: `find r/SWE c/Google s/Offered`<br>
+   Expected: Finds all the applications with the role of `SWE`, company name containing `Google` and `Offered` status. Number of applications found is shown in the Command Result Box.
+
+5. Test case 5: `find`<br>
+   Expected: No application is found. Invalid command error is shown in the Command Result Box. Status bar remains the same, with the input command highlighted in red.
+
+### Help
+
+Opening the help window for a summary of commands and their formats.
+
+Prerequisites: sprINT's main window is open.
+
+1. Test case 1: Enter `help` command<br>
+   Expected: Pop-up window for a summary of help commands and their formats is shown, and `Opened Help window.` is shown in the Command Result Box.
+
+2. Test case 2: Manually clicking on the help button on the Toolbar<br>
+   Expected: Pop-up window for a summary of help commands and their formats is shown.
+
+3. Test case 3: Enter `help [keyword]` command, where keyword can comprise some characters.<br>
+   Expected: Pop-up window for a summary of help commands and their formats is shown, because the first word is recognised as the command by design, and `Opened Help window.` is shown in the Command Result Box.
+
+4. Test case 4: Enter `help123` command<br>
+   Expected: No pop-up window is shown, `Unknown command` is displayed in the Command Result Box as the word is recognised to be an invalid command.
 
 ### Sorting the application list
 
 1. Sorting the application list while all applications are being shown
 
-   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list. Multiple applications with tasks (and deadlines).
+    Prerequisites: List all applications using the `list` command. Multiple applications in the list. Multiple applications with tasks (and deadlines).
    
-   2. Test case: `sort a alphabetical` <br>
+   1. Test case 1: `sort a alphabetical` <br>
       Expected: Applications are listed in alphabetical order of their role from A to Z. 
       Applications with the same role will have their company name as a tiebreaker.
 
-   3. Test case: `sort d alphabetical` <br>
+   2. Test case 2: `sort d alphabetical` <br>
       Expected: Same behaviour as the test case for `sort a alphabetical`. Except that the alphabetical order is now
       in reverse from Z to A.
 
-   4. Test case: `sort a deadline` <br>
+   3. Test case 3: `sort a deadline` <br>
       Expected: Applications without tasks are **not** shown. Applications with tasks are listed by order of the deadline of their task. 
       Applications with closer deadlines will be shown first.
 
-   5. Test case: `sort d deadline` <br>
+   4. Test case 4: `sort d deadline` <br>
       Expected: Same behaviour as the test case for `sort a deadline`. Except that the order is in reverse;
       applications with further deadlines will be shown first.
    
-   6. Other incorrect sort commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
+   5. Other incorrect `sort` commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
       `sort` (nothing specified), `...` <br>
-      Expected: No sorting is done and application list remains the same. Error details shown in the status message.
+      Expected: No sorting is done and application list remains the same. Error details shown in the Command Result Box.
       
-2. Sorting the application list when it is a filtered state, due to a previously executed `find` command
+2. Sorting the application list when it is a **filtered** state, due to a previously executed `find` command
 
-   1. Prerequisites: Multiple applications in the current displayed list. Multiple applications with tasks (and deadlines).
-   
-   2. Valid test cases: Same as the test cases mentioned in steps 2-5 for sorting while all applications are being shown <br>
-      Expected: Same behaviour as when sorting while all applications are being shown. <br> Additionally, check that no application entries that are not in the currently displayed list of applications
-      shows up after sorting.
+    Prerequisites: Multiple applications in the current displayed list. Multiple applications with tasks (and deadlines).
 
-   3. Other incorrect sort commands to try:  Same as the invalid test cases mentioned in step 6 for sorting while all applications are being shown <br>
-      Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the status message.
+    1. Test case 1: `sort a alphabetical` <br>
+       Expected: The current filtered list of applications will be sorted in alphabetical order of their role from A to Z.
+       Applications with the same role will have their company name as a tiebreaker.
+
+    2. Test case 2: `sort d alphabetical` <br>
+       Expected: Same behaviour as the test case for `sort a alphabetical`. Except that the alphabetical order is now
+       in reverse from Z to A.
+
+    3. Test case 3: `sort a deadline` <br>
+       Expected: Applications without tasks are **not** shown. **All** existing applications in the internship book 
+       that have tasks are listed, in the order of the deadline of their task.
+       Applications with closer deadlines will be shown first.
+
+    4. Test case 4: `sort d deadline` <br>
+       Expected: Same behaviour as the test case for `sort a deadline`. Except that the order is in reverse;
+       applications with further deadlines will be shown first.
+
+    5. Other incorrect `sort` commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
+       `sort` (nothing specified), `...` <br>
+       Expected: No sorting is done and application list remains the same. Error details shown in the Command Result Box.
 
 ### Listing all applications
 
@@ -1178,68 +1235,69 @@ in the **default order**, meaning the order in which they were added. (i.e., mor
 
 1. Listing all applications after list has been filtered with a `find` command
 
-   1. Prerequisites: Multiple applications in the original full list. From there, select one or more applications with `find [keyword(s)]`.  
+   Prerequisites: Multiple applications in the original full list. From there, select one or more applications with `find [keyword(s)]`.  
 
-   2. Test case: `list` <br>
+   1. Test case: `list` <br>
       Expected: The displayed list should return to the original full list of applications, in the default order.
 
 2. Listing all applications after list has been sorted with a `sort` command
 
-   1. Prerequisites: Multiple applications in the original full list. From there, the list is sorted with one of the following:
-      * `sort a deadline`
-      * `sort d deadline`
-      * `sort a alphabetical`
-      * `sort d alphabetical`
+   Prerequisites: Multiple applications in the original full list. From there, the list is sorted with one of the following:
+   * `sort a deadline`
+   * `sort d deadline`
+   * `sort a alphabetical`
+   * `sort d alphabetical`
    
-   2. Test case: `list` <br>
+   1. Test case: `list` <br>
       Expected: The displayed list should return to the original full list of applications, in the default order.
 
 3. Listing all applications after list has been filtered and sorted with a series of `find` and `sort` commands
 
-   1. Prerequisites: Multiple applications in the original full list. From there, execute any sequence of `find` and `sort` commands <br>
-      Example: `find r/SWE` followed by `sort a deadline`
+   Prerequisites: Multiple applications in the original full list. From there, execute any sequence of `find` and `sort` commands <br>
+   Example: `find r/SWE` followed by `sort a deadline`
    
-   2. Test case: `list` <br>
+   1. Test case: `list` <br>
       Expected: The displayed list should return to the original full list of applications, in the default order.
 
 
-### Deleting all applications
+### Clearing all applications
 Before each test scenario, execute `list` beforehand and take note of the **original full list of applications**. If your original list is empty, 
 please add dummy applications by executing the `add-app` command.
 
-1. Clearing all applications 
-   1. Prerequisites: There is **at least 1** application present in sprINT.
-   2. Test case: `clear` <br>
-      Expected: All applications in sprINT will be deleted. 
-   3. Test case: `clear [keyword]`, where keyword can be any combination of characters. <br>
-      Expected: All applications in sprINT will be deleted. By default, only the first expression in the input is recognised
-   as the command. In this case, it is `clear`.
-   4. Test case: `clear1234`. <br>
-      Expected: Applications will not be deleted. In this case, the first expression is recognised as `clear1234`, which is an invalid command.
-   Error message `Unknown command` will be displayed in the status message.
+Prerequisites: There is **at least 1** application present in sprINT.
+
+1. Test case 1: `clear` <br>
+   Expected: All applications in sprINT will be deleted. 
+2. Test case 2: `clear [keyword]`, where keyword can be any combination of characters. <br>
+   Expected: All applications in sprINT will be deleted. By default, only the first expression in the input is recognised
+as the command. In this case, it is `clear`.
+3. Test case 3: `clear1234`. <br>
+   Expected: Applications will not be deleted. In this case, the first expression is recognised as `clear1234`, which is an invalid command.
+Error message `Unknown command` will be displayed in the Command Result Box.
 
 
 ### Adding a task
-Prerequisites for test cases: there are at least 2 applications in the internship book, and the first 2 applications 
+Prerequisites: There are at least 2 applications in the internship book, and the first 2 applications 
 do not have a task. 
 
 1. Test case 1: `add-task 1 d/Interview by/31-03-2023` 
 
    Expected: A new task is added to the first application on the list. Details of the newly added task shown in the 
-   status message.
+   Command Result Box.
 
 2. Test case 2: `add-task 2`
 
    Expected: No task is added due to **Invalid Command Format**. The `Description` and `Deadline` prefixes and inputs
    are missing from the command. `Description` and `Deadline` are compulsory input parameters for the add task command. 
-   Error details shown in the status message. 
+   Error details shown in the Command Result Box. 
 
 3. Test case 3: `add-task 2 d/Online Assessment by/33-05-2023`
 
-   Expected: No task is added due to invalid date input (non-existent date). Error details shown in the status message.
+   Expected: No task is added due to invalid date input (non-existent date). Error details shown in the Command Result Box.
 
 ### Editing a task
-Prerequisites for test cases: there are at least 2 applications in the internship book, and the first 2 applications
+
+Prerequisites: There are at least 2 applications in the internship book, and the first 2 applications
 have an existing task. 
 
 1. Test case 1: `edit-task 1 by/Online Interview`
@@ -1255,21 +1313,21 @@ have an existing task.
 3. Test case 3: `edit-task 2 by/20042023`
 
    Expected: The task for the second application is not edited due to invalid date input (incorrect format). Error 
-   details shown in the status message.
+   details shown in the Command Result Box.
 
 ### Deleting a task
 
-Prerequisites for test cases: there are at least 2 applications in the internship book, the first application has
+Prerequisites: There are at least 2 applications in the internship book, the first application has
 an existing task and the second application does not have an existing task.
 
 1. Test case 1: `delete-task 1`
 
-   Expected: The task for the first application is deleted. Details of the deleted task shown in the status message.
+   Expected: The task for the first application is deleted. Details of the deleted task shown in the Command Result Box.
    Timestamp in the status bar is updated.
 
 2. Test case 2: `delete-task 2`
 
-   Expected: No task is deleted (no existing task). Error details shown in the status message. 
+   Expected: No task is deleted (no existing task). Error details shown in the Command Result Box. 
 
 3. Test case 3: `delete-task 0`
 
@@ -1278,7 +1336,7 @@ an existing task and the second application does not have an existing task.
 
 ### Undo
 
-Prerequisites for test cases: You must have made a command that is of type add/edit/delete app or tasks, or the clear command.
+Prerequisites: You must have made a command that is of type add/edit/delete app or tasks, or the clear command.
 
 1. Test case 1: `undo`
 
@@ -1290,7 +1348,7 @@ Prerequisites for test cases: You must have made a command that is of type add/e
 
 ### Redo
 
-Prerequisites for test cases: You must have called undo as the previous command.
+Prerequisites: You must have called undo as the previous command.
 
 1. Test case 1: `redo`
 
@@ -1301,18 +1359,16 @@ Prerequisites for test cases: You must have called undo as the previous command.
    Expected: The previous command that you undone has been redone. Note that this is because all inputs after the redo command is ignored.
 
 ### Exiting sprINT
-Before each test scenario, ensure that sprINT application is launched and opened on your device.
 
-1. Exiting sprINT
-    1. Prerequisites: sprINT's main window is launched and opened.
-   2. Test case: `exit` <br>
-      Expected: The sprINT application will close.
-   3. Test case: `exit [keyword]`, where keyword can be any combination of characters. <br>
-      Expected: The sprINT application will close. By default, only the first expression in the input is recognised as the command. In this case,
-   it is `exit`.
-   4. Test case: `exit1234`. <br>
-      Expected: sprINT application remains open. In this case, the first expression is recognised as `exit1234`, which is an invalid command.
-    Error message `Unknown command` will be displayed in the status message.
+Prerequisites: sprINT's main window is launched and opened.
+1. Test case 1: `exit` <br>
+   Expected: The sprINT application will close.
+2. Test case 2: `exit [keyword]`, where keyword can be any combination of characters. <br>
+   Expected: The sprINT application will close. By default, only the first expression in the input is recognised as the command. In this case,
+it is `exit`.
+3. Test case 3: `exit1234`. <br>
+   Expected: sprINT application remains open. In this case, the first expression is recognised as `exit1234`, which is an invalid command.
+ Error message `Unknown command` will be displayed in the Command Result Box.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -1336,10 +1392,10 @@ In the future, we plan to inform the user through the Command Result Box that th
 In the `execute` function of `SortCommand`, check for the size of the currently displayed application list. Craft an appropriate message
 as part of the `CommandResult` to inform the user that they have no applications with deadlines to display and sort.
 
-#### 2. Edit operations display misleading status message when edited values are the same as the original values 
+#### 2. Edit operations display misleading message when edited values are the same as the original values 
 
 At present, the application treats any edit made by the user to a task or application as a modification, **regardless of 
-whether the new value is identical to the original value**. As a result, the status message displayed after a user 
+whether the new value is identical to the original value**. As a result, the message displayed in the Command Result Box after a user 
 carries out such an operation suggests that the task or application was edited, even though the fields remain the same 
 in reality. While this does not affect the functionality of the commands themselves, it could potentially confuse 
 the user.
@@ -1365,42 +1421,42 @@ wraps around when the window is resized below a certain width. This way, users c
 they have applied to. We also plan to increase the minimum window height to ensure that the pie chart stays within
 the Statistics Display Panel. 
 
-#### 4. Role of application gets truncated if it exceeds a certain length
+#### 4. Application parameters gets truncated if it exceeds a certain length
 
-When a user enters a role name that exceeds a certain length, the last part of the label is truncated and cannot be 
-viewed by the user. This is illustrated in the screenshot below.
+Our current product does not set a character limit for the various fields of an Application. As such, if the parameter
+length is sufficiently long, it is possible for the last part of the corresponding label to be truncated as it exceeds
+the boundaries of the ApplicationCard. Refer to the following illustrations.
 
 ![LongRoleName.png](images/LongRoleName.png)
 
-While such role names of such length are uncommon, it is not impossible. 
-
-**Potential Enhancement and Suggested Implementation:** <br>
-In the future, we plan to have the role name wrap around (i.e. continue on a second line) if it goes beyond a certain
-length to provide better readability. 
-
-#### 5. Applications tags gets truncated if tags are too long or too many tags are added
-
-When a user adds a large number of tags to a single application, or when each tag is excessively lengthy, the display
-of the tags is truncated at the edge of the `ApplicationCard`. This results in the User not being able to view all tags
-completely. Refer to the screenshot below for an illustration of said problem.
+When a user enters a role name that exceeds a certain length, the last part of the label is truncated and cannot be
+viewed by the user.
 
 ![LongAndMultipleTags.png](images/LongAndMultipleTags.png)
 
-While such situations are uncommon, it is not impossible.
+When a user adds a large number of tags to a single application, or when each tag is excessively lengthy, the display
+of the tags is truncated and cannot be viewed by the user.
+
+<div markdown="span" class="alert alert-info">:information_source: Note: 
+These examples are not exhaustive. The same issue also applies for the other application fields.
+</div>
 
 **Potential Enhancement and Suggested Implementation:** <br>
-This issue is caused by the `Flowpane` GUI entity (used for encapsulating tags) sharing the same `VBox` as the
-`Label` GUI entity (used for encapsulating application Role). As seen from the previous point, the Role field suffers
-from a similar truncation issue. 
+In the future, we plan to have the parameter Label's wrap around (i.e. continue on a second line) if it goes beyond the
+ApplicationCard boundaries, to provide better readability for Users.
 
-To further illustrate this, refer to the screenshot below.
-![TagWrapAround.png](images/TagWrapAround.png)
+#### 5. Error message not specific enough when the Company Email parameter does not follow the required format.
 
-We observe that with a reasonable length for the application Role, the wrap around structure for the tags already exists, and kicks in automatically.
-Therefore, we could resolve this by specifying and refurnishing the boundaries for the shared `VBox`, such that it is not too dynamic and 
-dependent on the Role length.
-This enables the automatic wrap around to be applied to both the Tags and Role fields, preventing the truncation issue which
-would negatively affect user's readability.
+The current displayed error message, as shown in the screenshot below, does not provide the user with sufficient details
+as to what is required of the input email format. This includes missing information such as what special characters
+are allowed and certain compulsory characters such as `@`.
+
+![EmailErrorMessage.png](images/EmailErrorMessage.png)
+
+**Potential Enhancement and Suggested Implementation:** <br>
+We intend to implement our Company Email input validation according to the standard local-part@domain
+[convention](https://en.wikipedia.org/wiki/Email_address). As such, user's may refer to the link for a more comprehensive
+and explicit explanation of the expected email format.
 
 #### 6. Integer overflow, zero or negative index error message for commands that take in an index (`edit-app`, `edit-task`, `delete-app`, `delete-task`) not specific enough
 
@@ -1412,6 +1468,47 @@ invalid command format, instead of being specific that the index given is invali
 A more specific error may be beneficial in bringing a more positive user experience.
 
 **Potential Enhancement and Suggested Implementation:** <br>
-In the future, we plan to add an additional check when parsing the command that makes sure
-the user has given a valid positive input for the index, and if not, it will throw an exception that will
-be returned to the user to state specifically that the index they input should be positive.
+In the future, we plan to have the command box display the error message: “The application index provided is invalid.” instead.
+
+<div style="page-break-after: always;"></div>
+
+#### 7. Undo command description appears truncated in Help Window
+
+Some users may see a truncated undo command in the Help Window as seen in the screenshot below, possibly due to different screen sizes 
+and resolutions.
+
+![img.png](images/HelpWindowTruncatedCommandError.png)
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to increase the commandColumn's `prefWidth` to `155`. This should resolve the problem.
+
+For now, users can move the bar beside `Command` on the first row to adjust the column's width if needed.
+
+#### 8. Grammatical error in message returned by find command when only 1 application is listed
+
+When a user uses the find command and only 1 application is listed, the message that is displayed 
+(`1 applications listed`) is grammatically incorrect.
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we will rectify the grammatical error.
+
+#### 9. Limitation of duplicate application entries detection
+
+Currently, sprINT detects duplicate entries when the following fields - `Role`, `Company Name`,
+ `Company Email`, `Tags` (if any) as well as `Application Task` (if any) - are the same. This means that 
+an application with the same role, company name and company email can be added, which may not be ideal.
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to enhance sprINT to detect duplicate entries based on just `Role`, `Company Name` and 
+`Company Email`. Users will be told that the application already exists when they attempt to add an application that 
+matches an existing entry defined by these 3 criteria.
+
+#### 10. Overzealous input validation for tags and role, company name and task description fields
+
+Currently, sprINT only allows alphanumeric values for `Tags`, `Role`, `Company Name` and `Task Description`. 
+Special characters like `/`, `-`, `&` etc. are not accepted. While this will not affect most use cases, we understand 
+that there might be a small number of instances where special characters are contained in these fields. 
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to allow these 4 fields to accept input containing special characters too to account for 
+a greater range of use cases and for greater user convenience. 

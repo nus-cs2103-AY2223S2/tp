@@ -16,7 +16,7 @@ participant ":AlphabeticalComparator" as AlphabeticalComparator MODEL_COLOR
 end box
 
 note left of LogicManager #aqua
-Let user input be: sort <str>
+Let user input be: <str>
 str = "a alphabetical"
 end note
 
@@ -50,16 +50,16 @@ activate AlphabeticalComparator
 AlphabeticalComparator --> SortCommand : comparator
 deactivate AlphabeticalComparator
 
-SortCommand --> SortCommandParser : SortCommand
+SortCommand --> SortCommandParser : sortCommand
 deactivate SortCommand
 
-SortCommandParser --> InternshipBookParser : SortCommand
+SortCommandParser --> InternshipBookParser : sortCommand
 deactivate SortCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SortCommandParser -[hidden]-> InternshipBookParser
 destroy SortCommandParser
 
-InternshipBookParser --> LogicManager : SortCommand
+InternshipBookParser --> LogicManager : sortCommand
 deactivate InternshipBookParser
 
 LogicManager -> SortCommand : execute()

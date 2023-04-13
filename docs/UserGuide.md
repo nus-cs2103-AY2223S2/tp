@@ -30,10 +30,15 @@ title: User Guide
     * [4.3.1 Listing all applications](#431-listing-all-applications--list)
     * [4.3.2 Finding applications](#432-finding-applications--find)
     * [4.3.3 Sorting applications](#433-sorting-applications--sort)
-  * [4.4 Miscellaneous Commands](#44-miscellaneous-commands)
+  * [4.4 Miscellaneous](#44-miscellaneous)
     * [4.4.1 Viewing help](#441-viewing-help--help)
     * [4.4.2 Undoing a command](#442-undoing-a-command--undo)
     * [4.4.3 Redoing a command](#443-redoing-a-command--redo)
+    * [4.4.4 Viewing application statistics](#444-viewing-application-statistics)
+    * [4.4.5 Clearing all applications](#445-clearing-all-applications--clear)
+    * [4.4.6 Exiting the program](#446-exiting-the-program--exit)
+    * [4.4.7 Saving the data](#447-saving-the-data)
+    * [4.4.8 Editing the data file](#448-editing-the-data-file-for-advanced-users)
 * [5. FAQ](#5-faq)
 * [6. Glossary](#6-glossary)
 * [7. Command Summary](#7-command-summary)
@@ -62,7 +67,7 @@ details about who this guide is meant for and how to navigate this guide effecti
 
 ### **2.1 Target Audience**
 This user guide is meant for anyone who wants to use sprINT. It is designed to provide clear and concise instructions
-for beginners to kickstart their sprINT journey, as well as for existing or more advanced users who wish to explore 
+for **beginners** to kickstart their sprINT journey, as well as for **existing or more advanced users** who wish to explore 
 the full range of features that sprINT has to offer. Whether you are a new or seasoned sprINT user, this guide will be 
 your best companion to help you get the most out of sprINT. 
 
@@ -103,7 +108,13 @@ Cautions are in place to warn you of potential pitfalls you may encounter, espec
 **Caution:** Stop and read carefully when you see this!
 </div>
 
-<div style="page-break-after: always;"></div>
+**Scenario**
+
+Scenarios provide examples of specific situations in which a feature would be useful or necessary.
+
+<div markdown="span" class="alert alert-success">:grey_question:
+**Scenario:** Refer to these scenarios for ideas on how you might want to use a feature in your own sprINT journey!
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -145,7 +156,7 @@ on your device, the app will contain some sample applications already.<br>
 
 ### **3.2 The User Interface**
 
-We understand that using an app for the first time can be a daunting experience. This is why we created this entire 
+We understand that using an app for the first time can be a daunting experience. This is why we created this  
 section for you to quickly get acquainted with sprINT's user interface.
 
 The following diagram illustrates the general layout of sprINT's app window. 
@@ -156,15 +167,15 @@ The table below describes the function(s) of each component. Don't worry if you'
 remember everything; sprINT is designed to have an intuitive interface that should allow you to familiarise yourself
 with in no time. You are also welcome to revisit this section again anytime. 
 
-| No. | Component                | Description                                                                                                                                                                                                              |
-|-----| :------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | Toolbar                  | Contains buttons to exit sprINT (access by clicking the File button) and view help information quickly.                                                                                                                  |
-| 2   | Application List Panel   | Displays the list of all/filtered/sorted applications, depending on the issued command.                                                                                                                                  |
-| 3   | Application Card         | Displays information about each application, including the role, company, company email, status and tags or outstanding task (if any).                                                                                   |
-| 4   | Statistics Display Panel | Displays statistics about your internship applications, including a pie chart that updates automatically after every command you execute (so there's no need to worry about updating it manually). _Pretty neat, right?_ |
-| 5   | Command Result Box       | Displays feedback immediately after executing a command, indicating if it executed successfully, or if not, what went wrong (e.g. incorrect command format).                                                             |
-| 6   | Command Box              | This is where you type all your commands; press Enter on your keyboard to execute them.                                                                                                                                  |
-| 7   | Storage File Path        | Displays the path of your sprINT storage file.                                                                                                                                                                           |
+| No. | Component                | Description                                                                                                                                                                                                                    |
+|-----| :------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Toolbar                  | Contains buttons to exit sprINT (access by clicking the File button) and view help information quickly.                                                                                                                        |
+| 2   | Application List Panel   | Displays the list of all/filtered/sorted applications, depending on the issued command.                                                                                                                                        |
+| 3   | Application Card         | Displays information about each application, including the role, company, company email, status and tags or outstanding task (if any).                                                                                         |
+| 4   | Statistics Display Panel | Displays [statistics](#444-viewing-application-statistics) about your internship applications, including a pie chart that updates automatically after every command you execute (so there's no need to worry about updating it manually). _Pretty neat, right?_ |
+| 5   | Command Result Box       | Displays feedback immediately after executing a command, indicating if it executed successfully, or if not, what went wrong (e.g. incorrect command format).                                                                   |
+| 6   | Command Box              | This is where you type all your commands; press Enter on your keyboard to execute them.                                                                                                                                        |
+| 7   | Storage File Path        | Displays the path of your sprINT storage file.                                                                                                                                                                                 |
 
 <div style="page-break-after: always;"></div>
 
@@ -173,7 +184,7 @@ with in no time. You are also welcome to revisit this section again anytime.
 Before we delve into the individual features, here are some useful notes about the general format of all commands in 
 sprINT:
 
-**:information_source: Notes about the command format:**<br>
+:information_source:Notes about the command format
 
 * **You cannot add more than 2147483647 applications, and you cannot delete or edit applications that have index greater than 2147483647.**
 If you are a normal human being, we do not foresee this to be an issue for you!<br>
@@ -211,6 +222,7 @@ occurrence of the prefix `r/`.
 * **Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.**<br>
   e.g. if you specify `help 123` as your command, it will be interpreted as `help`, and the help command executes.
 
+
 <div style="page-break-after: always;"></div>
 
 ### **3.4 Short Tutorial**
@@ -232,6 +244,7 @@ section on **[Features](#4-features)**.
 #### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## **4. Features**
@@ -251,13 +264,14 @@ Format: `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​`
 
 The following table details the [parameters](#parameter) to be used with the `add-app` command:
 
-| Prefix | Parameter      | Compulsory | Parameter constraints                                                                                                              | 
-|--------|----------------|------------|------------------------------------------------------------------------------------------------------------------------------------|
-| `r/`   | Role           | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                           |
-| `c/`   | Company Name   | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                           |
-| `e/`   | Company Email  | Yes        | Must be of the format: **local-part@domain**. Cannot be empty.                                                                     |
-| `s/`   | Status         | Yes        | Must be one of the four available statuses: **interested**, **applied**, **offered**, **rejected**.<br/>Input is case-insensitive. |
-| `t/`   | Tag            | No         | Must be **alphanumeric** characters only. Cannot be empty.                                                                         |
+| Prefix | Parameter      | Compulsory | Parameter constraints                                                                                                                                                                                                                                            | 
+|--------|----------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `r/`   | Role           | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                                                                                                                                                         |
+| `c/`   | Company Name   | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                                                                                                                                                         |
+| `e/`   | Company Email  | Yes        | Must be of the format: **local-part@domain**. <br/> local-part consists of only alphanumeric and the special characters `+`, `_`, `.`, `-`. Special characters cannot be consecutive, and cannot be the first or last character in local-part. <br/> Cannot be empty. |
+| `s/`   | Status         | Yes        | Must be one of the four available statuses: **interested**, **applied**, **offered**, **rejected**.<br/>Input is case-insensitive.                                                                                                                               |
+| `t/`   | Tag            | No         | Must be **alphanumeric** characters only. Cannot be empty.                                                                                                                                                                                                       |
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tag is an optional field when adding an application. An application can have multiple tags or none at all. 
@@ -275,12 +289,25 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
+
 #### 4.1.2 Editing an application : `edit-app`
 
 Edits an existing application in your internship book. 
 
 Spotted a typo in an existing entry, or want to update the status of an application? No problem! Just specify the index 
 and parameter(s) of the application you wish to edit, and `edit-app` will fix it for you. 
+
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
+Suppose you have just received an offer for your application to the `Data Analyst Intern` role at `Shopee`. You looked
+through the contract and find yourself satisfied with the salary and employee benefits. At this point, you may
+want to update the status of your application, and also add a few tags to indicate the decent terms of the contract.
+You can make these changes to your existing application using the command: `edit-app 1 s/offered t/goodSalary t/goodWelfare`
+(assuming that the application is showing up as the first one on the Application List Panel).
+</div>
+
+Please refer to the screenshots below for the before and after comparison of the execution of the edit-app command.
+
+**Insert screenshots here.**
 
 Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]​`
 
@@ -307,6 +334,14 @@ Deletes the application you specify from your internship book.
 
 This feature will come in handy if you no longer wish to keep track of an application, maybe because it is no longer
 available or relevant to you. 
+
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
+Suppose you applied to the `Algorithm Analyst Intern` role at `Hudson River Trading` more than 3 months ago, but 
+have yet to receive a follow-up email from the company. At this point, maybe you decide to focus your efforts elsewhere
+and do not intend to track this particular application anymore. You can choose to delete this application using
+the command `delete-app 1` (assuming that the application is currently showing up as the first one on the Application
+List Panel).
+</div>
 
 Format: `delete-app INDEX`
 
@@ -413,10 +448,12 @@ This sub-section consists of commands that are related to managing [tasks](#task
 
 Adds a new task to an existing application.
 
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
 Suppose you recently applied to `Google` for their `Software Engineer` role, and made an entry for it in the 
 internship book. Then, `Google` reached out to you for a technical interview on the 24th of July, 2023. You can add this
 as a task to the existing application entry using the command: `add-task 1 d/Technical Interview by/24-07-2023`
 (assuming that it is showing up as the first application on the Application List Panel). 
+</div>
 
 Format: `add-task INDEX d/DESCRIPTION by/DEADLINE`
 
@@ -430,7 +467,6 @@ The following table details the [parameters](#parameter) to be used with the `ad
 Additional things to note:
 * `INDEX` refers to the index of the application you wish to add a task to, as shown in the Application Card. It must be a **positive
   [integer](#integer).**
-* `INDEX` must be of a positive value (1 and above).
 * `INDEX` cannot be greater than 2147483647.
 
 You can see how the new task will appear in the updated Application Card, following the scenario given above:
@@ -439,6 +475,13 @@ You can see how the new task will appear in the updated Application Card, follow
 #### 4.2.2 Editing a task : `edit-task`
 
 Edits an existing task for the application that you specify.
+
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
+Suppose you created a task several days ago for an upcoming `Interview` on 24 July 2023 for your application to the
+`Software Engineer` role at `Google`. However, you just received an email notifying you that the interview would be
+rescheduled to 30 July. You can modify the deadline of the existing task using the command: `edit-task 1 by/30-07-2023`
+(assuming that the application is showing up as the first one on the Application List Panel).
+</div>
 
 Format: `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]`
 
@@ -460,6 +503,12 @@ Examples:
 #### 4.2.3 Deleting a task : `delete-task`
 
 Deletes an existing task from the specified application.
+
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
+Suppose you have just completed your interview for your application to the `Software Engineer` role at `Google`. 
+You can choose to remove the task from the application entry using the command: `delete-task 1` (assuming that the
+application is showing up as the first one on the Application List Panel).
+</div>
 
 Format: `delete-task INDEX`
 
@@ -495,7 +544,7 @@ Format: `list`
 
 #### 4.3.2 Finding applications : `find`
 
-Finds internship applications with information containing any of the given keywords.
+Finds internship applications with information containing any of the given keywords **amongst all existing applications**.
 
 Format: `find keywords(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
 
@@ -513,12 +562,12 @@ Examples:
 
 #### 4.3.3 Sorting applications : `sort`
 
-Sorts internship applications in the order you desire.
+Sorts internship applications in the order you desire. Please refer to the scenarios below to understand 
+how `sort` behaves with different parameters. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-While you can't undo a sort command, if you wish to go back to the default view, you can just use the `list` command.
+While you can't undo a sort command, you can simply use the `list` command if you wish to return to the default list and order of applications.
 </div>
-
 
 Format: `sort SEQUENCE ORDER`
 
@@ -530,23 +579,41 @@ The following table details the parameters to be used with the `sort` command:
 | Order     | Yes        | Must be either `alphabetical` or `deadline`.|
 
 Additional things to note: 
-* `a` and `d` for `SEQEUENCE` refer to **ascending** and **descending** respectively.
-* Currently, there are two orders you can choose for `ORDER`: `alphabetical` and `deadline`
-1. Choosing `alphabetical` will sort applications by their roles in alphabetical order. Should
-   there be multiple application entries with the same role, they will be ranked alphabetically by their company names.
-2. Choosing `deadline` will display applications with tasks (and therefore, deadlines) only. (Therefore, if you have no applications with no deadlines,
-an empty list will be displayed.) The applications will be sorted by their task's deadline. 
+* `a` and `d` for `SEQUENCE` refer to **ascending** and **descending** respectively.
+* Currently, there are two `ORDER`s you can choose from: `alphabetical` and `deadline`.
 
-Examples:
-* `sort a deadline` will show only applications with task deadlines. Those with earlier deadlines will be higher up in the list.
-* `sort d alphabetical` will show all applications in descending alphabetical order. (Z to A)
+**Scenario 1: Sorting current list of applications by role name**
+
+Choosing `alphabetical` will sort applications **currently displayed in the Application List Panel** by their roles in alphabetical order according to the specified sequence. Should
+there be multiple application entries with the same role, their company names will be used as a tiebreaker.
+In the event that there is still a tie (i.e., two applications with same role, same company), then they will be ranked in the order of when they are created;
+more recently created application entries will be shown higher up in the list.
+
+**Scenario 2: Sorting all applications by task deadline**
+
+Choosing `deadline` will retrieve and display **all existing applications with tasks** (and therefore, deadlines). 
+If there are no applications that have tasks associated with them, an empty list will be displayed.
+
+The applications will be sorted by their task's deadline according to the specified sequence. Should there be two applications with
+the same deadline, the application entry that is more recently created will show up higher in the list.
+
+For example, suppose both Amazon and Apple have recently reached out to you for an interview on the 23rd and 27th April respectively. You add these as tasks to the existing applications
+to Amazon and Apple (you can refer to [the section on `add-task`](#421-adding-a-task--add-task) for more information on how to do so).
+
+Afterwards, you can use `sort a deadline` to select these applications with tasks. If you don't have any other applications with outstanding tasks, 
+you can see that only the applications to Amazon and Apple are listed.
+Also, since `a` asks for an ascending sequence, the closer deadline, which is 23rd April for the interview with Amazon, shows up first in the list:
+
+Other examples:
+* `sort d deadline` will fetch and display **all applications with task deadlines**, except those with further deadlines will be higher up in the list instead.
+* `sort a alphabetical` will rearrange **applications currently displayed in the Application List Panel** in the usual alphabetical order. (A to Z)
 
 #### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-### 4.4 Miscellaneous Commands
+### 4.4 Miscellaneous
 
 #### 4.4.1 Viewing help : `help`
 
@@ -582,7 +649,21 @@ If you executed another command immediately after undo, you will no longer be ab
 
 Format: `redo`
 
-#### 4.4.4 Clearing all applications : `clear`
+#### 4.4.4 Viewing application statistics 
+
+Displays statistics information for the current list of applications shown in the Application List Panel.  
+
+This includes the total number of applications currently displayed in the Application List Panel, as well as a 
+breakdown of these applications by status (shown both in numbers and as a pie chart).
+
+Format: no command is needed. Statistics information is recomputed and regenerated upon every command execution. 
+
+Refer to the screenshots below for the before and after comparison of the Statistics panel, after an application's
+status was changed from `interested` to `applied`.
+
+**Insert screenshots here.**
+
+#### 4.4.5 Clearing all applications : `clear`
 
 Clears all existing application entries.
 
@@ -593,7 +674,7 @@ The `clear` command must be used with extreme caution, as it might potentially l
 If you accidentally issued the `clear` command, use the `undo` command to revert to the previous state.
 </div>
 
-#### 4.4.5 Exiting the program : `exit`
+#### 4.4.6 Exiting the program : `exit`
 
 Exits the program.
 Alternatively, you can exit the program by clicking the top-right X button to close the window. sprINT updates
@@ -601,12 +682,12 @@ your data [periodically](#446-saving-the-data), so you don't have to worry about
 
 Format: `exit`
 
-#### 4.4.6 Saving the data
+#### 4.4.7 Saving the data
 
 Changes you've made  to your applications are automatically saved in your local storage after each command you execute
 that modifies the application data. There is no need to save manually.
 
-#### 4.4.7 Editing the data file **(for Advanced users)**
+#### 4.4.8 Editing the data file **(for Advanced users)**
 
 Data in the internship book are actually saved as a JSON file `[JAR file location]/data/sprint.json`. 
 Advanced users are welcome to update their data directly by editing that data file.
@@ -691,22 +772,22 @@ sprINT can process your data more quickly!
 
 ## **7. Command Summary**
 
-| Action                      | Can undo?          | Format, Examples                                                                                                                                                         |
-|-----------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action                      | Can undo?          | Format, Examples                                                                                                                                                       |
+|-----------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add** <br/> Application   | :heavy_check_mark: | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
-| **Edit**<br/> Application   | :heavy_check_mark: | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@gmail.com`                         |
-| **Delete**<br/> Application | :heavy_check_mark: | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                             |
-| **Add** <br/> Task          | :heavy_check_mark: | `add-task INDEX d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task 1 d/Technical Interview by/01-05-2023`                                                                    |
-| **Edit** <br/> Task         | :heavy_check_mark: | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                                    |
-| **Delete** <br/> Task       | :heavy_check_mark: | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                           |
-| **List**                    | :x:                | `list`                                                                                                                                                                   |
-| **Find**                    | :x:                | `find [keyword(s)]` <br/> e.g. `find Meta` <br/> `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`                     |
-| **Sort**                    | :x:                | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                              |
-| **Help**                    | :x:                | `help`                                                                                                                                                                   |
-| **Undo**                    | :x:                | `undo`                                                                                                                                                                   |
-| **Redo**                    | :heavy_check_mark: | `redo`                                                                                                                                                                   |
-| **Clear**                   | :heavy_check_mark: | `clear`                                                                                                                                                                  |
-| **Exit**                    | :x:                | `exit`                                                                                                                                                                   |
+| **Edit**<br/> Application   | :heavy_check_mark: | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@gmail.com`                       |
+| **Delete**<br/> Application | :heavy_check_mark: | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                           |
+| **Add** <br/> Task          | :heavy_check_mark: | `add-task INDEX d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task 1 d/Technical Interview by/01-05-2023`                                                                  |
+| **Edit** <br/> Task         | :heavy_check_mark: | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                                  |
+| **Delete** <br/> Task       | :heavy_check_mark: | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                         |
+| **List**                    | :x:                | `list`                                                                                                                                                                 |
+| **Find**                    | :x:                | `find keyword(s)` <br/> e.g. `find Meta` <br/> `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`                     |
+| **Sort**                    | :x:                | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                            |
+| **Help**                    | :x:                | `help`                                                                                                                                                                 |
+| **Undo**                    | :x:                | `undo`                                                                                                                                                                 |
+| **Redo**                    | :heavy_check_mark: | `redo`                                                                                                                                                                 |
+| **Clear**                   | :heavy_check_mark: | `clear`                                                                                                                                                                |
+| **Exit**                    | :x:                | `exit`                                                                                                                                                                 |
 
 #### *Return to the [Table of Contents](#table-of-contents).*
 
