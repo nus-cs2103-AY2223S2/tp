@@ -389,7 +389,7 @@ Examples:
 
 ## 2.13 Listing tasks: `list`
 
-Shows all tasks.
+Shows all persons.
 
 Format: `list`
 
@@ -397,7 +397,7 @@ Format: `list`
 
 ## 2.14 Viewing persons: `view`
 
-Shows all persons.
+Shows all tasks.
 
 Format: `view`
 
