@@ -305,9 +305,9 @@ You can make these changes to your existing application using the command: `edit
 (assuming that the application is showing up as the first one on the Application List Panel).
 </div>
 
-Please refer to the screenshots below for the before and after comparison of the execution of the edit-app command.
+You may refer to the screenshots below for the before and after comparison of the execution of the `edit-app` command.
 
-**Insert screenshots here.**
+![BeforeAfterEditApp](images/BeforeAfterEditApp.png)
 
 Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]​`
 
@@ -315,7 +315,6 @@ Additional things to note:
 * `INDEX` refers to the index of the application to edit, as shown in the Application Card. It must be a **positive 
   [integer](#integer).**
 * **At least one** of the optional fields must be provided.
-* `INDEX` must be of a positive value (1 and above).
 * `INDEX` cannot be greater than 2147483647.
 * Existing values of the application entry will be updated to what you have inputted.
 * Refer to the following section [here](#414-managing-application-tags-with-add-app-and-edit-app)
@@ -348,7 +347,6 @@ Format: `delete-app INDEX`
 Additional things to note: 
 * `INDEX` refers to the index of the application to delete, as shown on the Application Card. It must be a **positive
   [integer](#integer).**
-* `INDEX` must be of a positive value (1 and above).
 * `INDEX` cannot be greater than 2147483647.
 
 Examples:
@@ -488,7 +486,6 @@ Format: `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]`
 Additional things to note:
 * `INDEX` refers to the index of the application you wish to edit the task of, as shown in the Application Card. It must be a **positive
   [integer](#integer).**
-* `INDEX` must be of a positive value (1 and above).
 * `INDEX` cannot be greater than 2147483647.
 * **At least one** of the optional parameters must be provided.
 * Existing description and/or deadline of the task will be updated to what you have inputted.
@@ -514,7 +511,6 @@ Format: `delete-task INDEX`
 
 * `INDEX` refers to the index of the application you wish to delete the task from, as shown in the Application Card. It must be a **positive
   [integer](#integer).**
-* `INDEX` must be of a positive value (1 and above).
 * `INDEX` cannot be greater than 2147483647.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -535,6 +531,8 @@ after the execution of the `find` command.
 
 ### 4.3 Managing Display of Applications
 
+This sub-section consists of commands that can affect the view of applications in the Application List Panel.
+
 #### 4.3.1 Listing all applications : `list`
 
 Shows you a list of all your internship applications, in the order of when they are added. Application
@@ -545,6 +543,15 @@ Format: `list`
 #### 4.3.2 Finding applications : `find`
 
 Finds internship applications with information containing any of the given keywords **amongst all existing applications**.
+
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
+Suppose you want to know which internship offers you have at hand so that you can accept one quickly and focus on 
+preparing for your upcoming Final Examinations. You can find the companies that have responded with an offer using 
+the command: `find s/offered` command. 
+</div>
+
+You may refer to the screenshots below for the before and after comparison of the execution of the `find` command.
+![BeforeAfterFind](images/BeforeAfterFind.png)
 
 Format: `find keywords(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
 
@@ -591,18 +598,19 @@ more recently created application entries will be shown higher up in the list.
 
 **Scenario 2: Sorting all applications by task deadline**
 
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
+Suppose you have several tasks like interviews and online assessments coming up, but you can't remember the exact dates, 
+which applications these tasks are for or which deadline comes first. To retrieve and view all applications with tasks in
+ascending order of deadline (i.e. from earliest to latest), you can use the command: `sort a deadline`.
+</div>
+
+![BeforeAfterSort](images/BeforeAfterSort.png)
+
 Choosing `deadline` will retrieve and display **all existing applications with tasks** (and therefore, deadlines). 
 If there are no applications that have tasks associated with them, an empty list will be displayed.
 
 The applications will be sorted by their task's deadline according to the specified sequence. Should there be two applications with
 the same deadline, the application entry that is more recently created will show up higher in the list.
-
-For example, suppose both Amazon and Apple have recently reached out to you for an interview on the 23rd and 27th April respectively. You add these as tasks to the existing applications
-to Amazon and Apple (you can refer to [the section on `add-task`](#421-adding-a-task--add-task) for more information on how to do so).
-
-Afterwards, you can use `sort a deadline` to select these applications with tasks. If you don't have any other applications with outstanding tasks, 
-you can see that only the applications to Amazon and Apple are listed.
-Also, since `a` asks for an ascending sequence, the closer deadline, which is 23rd April for the interview with Amazon, shows up first in the list:
 
 Other examples:
 * `sort d deadline` will fetch and display **all applications with task deadlines**, except those with further deadlines will be higher up in the list instead.
@@ -614,6 +622,8 @@ Other examples:
 <div style="page-break-after: always;"></div>
 
 ### 4.4 Miscellaneous
+
+This sub-section consists of other miscellaneous commands in sprINT.
 
 #### 4.4.1 Viewing help : `help`
 
@@ -627,8 +637,14 @@ Format: `help`
 Undoes the previous command that you have typed in.
 
 <div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
-Suppose you have received good news that your application to Microsoft was successful, and you were offered the position. Hooray! You excitedly update the status of your application, but you accidentally typed the wrong index `edit-app 3 s/offered`, when the correct index should be 4. Luckily, you can quickly undo this error by simply typing `undo`, and now you can proceed to type the correct command.
+Suppose you have received good news that your application to Microsoft was successful, and you were offered the 
+position. Hooray! You excitedly update the status of your application, but you accidentally typed the wrong index 
+`edit-app 3 s/offered`, when the correct index should be 4. Luckily, you can quickly undo this error simply by using 
+the command: `undo`. Now, you can proceed to type the correct command.
 </div>
+
+You may refer to the screenshots below for the before and after comparison of the execution of the `undo` command.
+![BeforeAfterUndo](images/BeforeAfterUndo.png)
 
 Note that you can append extra characters after undo, but all these characters will be ignored, and the basic undo command will be executed.
 
@@ -661,10 +677,10 @@ breakdown of these applications by status (shown both in numbers and as a pie ch
 
 Format: no command is needed. Statistics information is recomputed and regenerated upon every command execution. 
 
-Refer to the screenshots below for the before and after comparison of the Statistics panel, after an application's
+You may refer to the screenshots below for the before and after comparison of the Statistics panel, after an application's
 status was changed from `interested` to `applied`.
 
-**Insert screenshots here.**
+![BeforeAfterStatistics](images/BeforeAfterStatistics.png)
 
 #### 4.4.5 Clearing all applications : `clear`
 
@@ -793,6 +809,3 @@ sprINT can process your data more quickly!
 | **Exit**                    | :x:                | `exit`                                                                                                                                                                 |
 
 #### *Return to the [Table of Contents](#table-of-contents).*
-
-<div style="page-break-after: always;"></div>
-
