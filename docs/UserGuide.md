@@ -108,12 +108,12 @@ Cautions are in place to warn you of potential pitfalls you may encounter, espec
 **Caution:** Stop and read carefully when you see this!
 </div>
 
-**Use Case**
+**Scenario**
 
-Use cases provide examples of specific situations in which a feature would be useful or necessary.
+Scenarios provide examples of specific situations in which a feature would be useful or necessary.
 
 <div markdown="span" class="alert alert-success">:grey_question:
-**Use Case:** Refer to these use cases for ideas on how you might want to use a feature in your own sprINT journey!
+**Scenario:** Refer to these scenarios for ideas on how you might want to use a feature in your own sprINT journey!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -184,8 +184,7 @@ with in no time. You are also welcome to revisit this section again anytime.
 Before we delve into the individual features, here are some useful notes about the general format of all commands in 
 sprINT:
 
-<div markdown="span" class="alert alert-info">:information_source:
-**Notes about the command format:**<br>
+:information_source:Notes about the command format
 
 * **You cannot add more than 2147483647 applications, and you cannot delete or edit applications that have index greater than 2147483647.**
 If you are a normal human being, we do not foresee this to be an issue for you!<br>
@@ -223,7 +222,6 @@ occurrence of the prefix `r/`.
 * **Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.**<br>
   e.g. if you specify `help 123` as your command, it will be interpreted as `help`, and the help command executes.
 
-</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -291,12 +289,25 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
+
 #### 4.1.2 Editing an application : `edit-app`
 
 Edits an existing application in your internship book. 
 
 Spotted a typo in an existing entry, or want to update the status of an application? No problem! Just specify the index 
 and parameter(s) of the application you wish to edit, and `edit-app` will fix it for you. 
+
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
+Suppose you have just received an offer for your application to the `Data Analyst Intern` role at `Shopee`. You looked
+through the contract and find yourself satisfied with the salary and employee benefits. At this point, you may
+want to update the status of your application, and also add a few tags to indicate the decent terms of the contract.
+You can make these changes to your existing application using the command: `edit-app 1 s/offered t/goodSalary t/goodWelfare`
+(assuming that the application is showing up as the first one on the Application List Panel).
+</div>
+
+Please refer to the screenshots below for the before and after comparison of the execution of the edit-app command.
+
+**Insert screenshots here.**
 
 Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]​`
 
@@ -323,6 +334,14 @@ Deletes the application you specify from your internship book.
 
 This feature will come in handy if you no longer wish to keep track of an application, maybe because it is no longer
 available or relevant to you. 
+
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
+Suppose you applied to the `Algorithm Analyst Intern` role at `Hudson River Trading` more than 3 months ago, but 
+have yet to receive a follow-up email from the company. At this point, maybe you decide to focus your efforts elsewhere
+and do not intend to track this particular application anymore. You can choose to delete this application using
+the command `delete-app 1` (assuming that the application is currently showing up as the first one on the Application
+List Panel).
+</div>
 
 Format: `delete-app INDEX`
 
@@ -429,7 +448,7 @@ This sub-section consists of commands that are related to managing [tasks](#task
 
 Adds a new task to an existing application.
 
-<div markdown="span" class="alert alert-success">:grey_question: **Use Case:**
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
 Suppose you recently applied to `Google` for their `Software Engineer` role, and made an entry for it in the 
 internship book. Then, `Google` reached out to you for a technical interview on the 24th of July, 2023. You can add this
 as a task to the existing application entry using the command: `add-task 1 d/Technical Interview by/24-07-2023`
@@ -457,7 +476,7 @@ You can see how the new task will appear in the updated Application Card, follow
 
 Edits an existing task for the application that you specify.
 
-<div markdown="span" class="alert alert-success">:grey_question: **Use Case:**
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
 Suppose you created a task several days ago for an upcoming `Interview` on 24 July 2023 for your application to the
 `Software Engineer` role at `Google`. However, you just received an email notifying you that the interview would be
 rescheduled to 30 July. You can modify the deadline of the existing task using the command: `edit-task 1 by/30-07-2023`
@@ -485,7 +504,7 @@ Examples:
 
 Deletes an existing task from the specified application.
 
-<div markdown="span" class="alert alert-success">:grey_question: **Use Case:**
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
 Suppose you have just completed your interview for your application to the `Software Engineer` role at `Google`. 
 You can choose to remove the task from the application entry using the command: `delete-task 1` (assuming that the
 application is showing up as the first one on the Application List Panel).
@@ -638,6 +657,11 @@ This includes the total number of applications currently displayed in the Applic
 breakdown of these applications by status (shown both in numbers and as a pie chart).
 
 Format: no command is needed. Statistics information is recomputed and regenerated upon every command execution. 
+
+Refer to the screenshots below for the before and after comparison of the Statistics panel, after an application's
+status was changed from `interested` to `applied`.
+
+**Insert screenshots here.**
 
 #### 4.4.5 Clearing all applications : `clear`
 
