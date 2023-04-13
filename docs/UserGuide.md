@@ -111,8 +111,8 @@ If you see something like this, you're good to go!<br>
    1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
    2. `select 1` : Selects the first group displayed (eg. `T15`) on the `Group Page`. You will be redirected to the `Student Page`.
    3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list on the `Student Page`.
-   4. `delete student 3` : Deletes the third student (eg. `Lim Kim Choo`) shown in the student list.
-   5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. `Lim Kim Choo`) should be back on the list.
+   4. `delete student 3` : Deletes the third student (eg. "Lim Kim Choo") shown in the student list.
+   5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. "Lim Kim Choo") should be back on the list.
    6. `exit` : Exits the app.
 3. Refer to the [Features](#features) section below for a detailed description for each command.
 
