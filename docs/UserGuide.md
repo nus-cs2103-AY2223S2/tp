@@ -95,23 +95,23 @@ A caution looks like this.
     * [Guide For MacOS](https://support.apple.com/en-sg/guide/mac-help/mchlp1774/mac#:~:text=Show%20the%20path%20to%20a%20file%20or%20folder&text=Choose%20View%20%3E%20Show%20Path%20Bar,bottom%20of%20the%20Finder%20window.)
     * [Guide For Linux](https://www.tutorialspoint.com/get-the-full-path-of-a-file-in-linux)
 3. In the command terminal, type `cd <FILE_PATH>`, where `<FILE_PATH>` is the file path you found in step 2.
-4. Type `java -jar clipboard.jar` into the command terminal and press `Enter` to launch CLIpboard.&nbsp;
+4. Type `java -jar clipboard.jar` into the command terminal and press `ENTER` to launch CLIpboard.&nbsp;
 
 If you see something like this, you're good to go!<br>
-<img src="./images/Ui.png" width="650" height="529"/>
+<img src="./images/UiCoursePage.png" width="650" height="529"/>
 <br>
 *CLIpboard contains some sample data if there is no initial data, as is the case when you first launch it.*
 
 ### Quick Start
 
 1. When you first launch CLIpboard, you will be brought to the `Course page`.
-2. Type your command in the `command box` and press `Enter/Return` to execute it.
-   <br>e.g. typing `help` and pressing the `Enter/Return` key will open the help window.
+2. Type your command in the [`Command Box`](#visuals) and press `ENTER/RETURN` to execute it.
+   <br>e.g. typing `help` and pressing the `ENTER/RETURN` key will open the help window.
    <br>Some example commands you can try:
    1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
    2. `select 1` : Selects the first group displayed (eg. `T15`) on the `Group Page`. You will be redirected to the `Student Page`.
    3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list on the `Student Page`.
-   4. `delete student 3` : Deletes the 3rd student (eg. `Lim Kim Choo`) shown in the student list.
+   4. `delete student 3` : Deletes the third student (eg. `Lim Kim Choo`) shown in the student list.
    5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. `Lim Kim Choo`) should be back on the list.
    6. `exit` : Exits the app.
 3. Refer to the [Features](#features) section below for a detailed description for each command.
@@ -213,7 +213,7 @@ A typical command would look like this:
 <br>
 <img src="./images/typicalcommand.png" width="400" height="138"/>
 
-**Command keyword(s)**: Typically 1 or 2 words, they specify the type of action for CLIpboard to execute
+**Command keyword(s)**: Typically 1 or 2 words, they specify the type of action for CLIpboard to execute.<br>
 **Supplementary command information**: These provide additional context about a command you wish to execute. Conventionally, these are referred to as "arguments" or "parameters".
 
 Putting it all together for the above example, `find course` would tell CLIpboard that you're looking for a course, and "cs2101" tells CLIpboard which specific course you're looking for.
@@ -231,10 +231,10 @@ Putting it all together for the above example, `find course` would tell CLIpboar
 To help you understand how CLIpboard recognises commands, these are some of the conventions used in this guide when specifying command formats.
 
 - **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).<br>
-  - e.g. in `add course <COURSE>`, `<COURSE>` is a parameter. `<COURSE>` can be replaced with a course name to form the command `add course CS2103T`.
+  - e.g. in `add course <COURSE>`, `<COURSE>` is a parameter. `<COURSE>` can be replaced with a course code to form the command `add course CS2103T`.
 - **Square brackets (`[]`)**: Parameters in square brackets are optional.<br>
   - e.g If the parameters are specified as `[n/<NAME>] [p/<PHONE_NUMBER>]`, omitting these parameters are acceptable.
-- **Elipses(`...`)**: Parameters postfixed by `…` can have multiple inputs.<br>
+- **Elipses(`…`)**: Parameters postfixed by `…` can have multiple inputs.<br>
   - e.g. `mark <INDEX>…` can be used as `mark 1` or `mark 1,2,3` etc.
 - **Index**: CLIpboard displays items like courses and groups as numbered lists. The *index* of an item in the list might be required as a parameter for some commands.
   - e.g. if the specified command format is `delete course <INDEX>`, and you enter `delete course 3`, CLIpboard will delete the *third* course in the course list.
@@ -284,7 +284,10 @@ back
 ### Undoing the last command you did: `undo`
 Because everyone makes mistakes.
 
-You may `undo` up to 5 previous commands.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You may `undo` up to 5 previous commands.
+</div>
+<br>
+
 
 **Command Format:**
 
@@ -321,7 +324,7 @@ Accidentally cleared your data? Don't worry, just run the <code>undo</code> comm
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Be very careful with this command. Deleted data may not be recovered after closing the application or if you've gone beyond the `undo` limit.
+Be very careful with this command. Deleted data may not be recovered after closing the application or if you've gone beyond the `undo` limit (`undo` only works up to 5 previous commands).
 </div>
 
 [Back to list of features](#features)
@@ -368,15 +371,17 @@ add course <COURSE>
 ```
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
   * Adding courses with the same course code is not possible.
   * Course codes can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
-  * This command is case-sensitive. e.g. "CS2103T" and "cs2103t" are treated as different courses.
+  * Course codes cannot contain white spaces.
+  * Course codes are case-sensitive. e.g. "CS2103T" and "cs2103t" are treated as different courses.
 </div>
 
 Examples:
 
-- `add course CS2103T` will add a new course with module code `CS2103T`
-- `add course CS2105` will add a new course with module code `CS2105`
+- `add course CS2103T` will add a new course with course code `CS2103T`
+- `add course CS2105` will add a new course with course code `CS2105`
 
 
 <br>
@@ -394,7 +399,7 @@ delete course <INDEX>
 
 Examples:
 
-- `delete course 1` will delete the first course listed in your course list.
+- `delete course 1` will delete your first course listed in your course list.
 
 [Back to list of features](#features)
 
@@ -405,8 +410,11 @@ Use this command to change the course code of an existing course.
 **Command Format:**
 
 ```
-edit course <INDEX> <NEW COURSE NAME>
+edit course <INDEX> <NEW_COURSE_CODE>
 ```
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You cannot edit the course code
+</div>
+<br>
 
 Examples:
 
@@ -425,7 +433,7 @@ find course <KEYWORD> [<MORE_KEYWORDS>]
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-* This command is case-insensitive. (e.g. `find course CS2103T` and `find course cs2103t` will give you the same result)
+* Keywords are case-insensitive. (e.g. `find course CS2103T` and `find course cs2103t` will give you the same result)
 * Keywords are separated by spaces.
 </div>
 <br>
@@ -472,9 +480,11 @@ add group <GROUP>
 ```
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
   * Adding groups with the same group name is not possible.
-  * Group names can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
-  * This command is case-sensitive. e.g. "CS2103T" and "cs2103t" are treated as different courses.
+  * Group names can contain alphanumeric and special characters. e.g. "LO3-2"
+  * Group names cannot contain white spaces.
+  * Group names are case-sensitive. e.g. "t15" and "T15" are treated as different courses.
 </div>
 
 Examples:
@@ -508,7 +518,7 @@ Use this command to edit the name of an existing group.
 **Command Format:**
 
 ```
-edit group <INDEX> <NEW GROUP NAME>
+edit group <INDEX> <NEW_GROUP_NAME>
 ```
 
 Examples:
@@ -584,7 +594,7 @@ find group <KEYWORD> [<MORE_KEYWORDS>]
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-* This command is case-insensitive. (e.g. `find course T15` and `find course T15` will give you the same result)
+* Keywords are case-insensitive. (e.g. `find course T15` and `find course t15` will give you the same result)
 * Keywords are separated by spaces.
 </div>
 
@@ -661,7 +671,7 @@ Examples:
 
 ### Editing a student: `edit student`
 
-If your student has changed their phone number, you may edit it, or any other student information with this command.
+If your student has changed their phone number, or any other student information, you may edit it with this command.
 
 **Command Format:**
 
@@ -671,13 +681,12 @@ edit student <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUM
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
   * At least one parameter `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
-  * Parameters entered following `edit <INDEX>` will replace the original fields.
-  * Parameters not entered will not replace the original fields.
 </div>
-<br>
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** Made a typo? Try the <code>undo</code> command!
 </div>
+<br>
 
 Examples:
 
@@ -766,7 +775,7 @@ select <INDEX>
 
 Examples:
 
-- `select 1` will select the first student in the student list and display his / her particulars on the view panel on the right.
+- `select 1` will select your first student in your student list and displays their particulars.
 
 [Back to list of features](#features)
 
@@ -777,7 +786,7 @@ You can use this command to add, edit or remove remarks from a student.
 **Command Format for Adding/Editing a remark:**
 
 ```
-remark <INDEX> [<REMARK>]
+remark <INDEX> <REMARK>
 ```
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** If there is already an existing remark, it will be replaced with the new remark.
@@ -797,7 +806,7 @@ remark <INDEX>
 
 Examples:
 
-- `remark 1 Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student
+- `remark 1 Loves watching Sci-Fi movies` will add a remark of "Loves watching Sci-Fi movies" to your first student.
   listed in the student list.
 - `remark 2` will delete the remark from the second student listed in the student list.
 
@@ -875,7 +884,8 @@ add session <SESSION>
 
 * Adding sessions with the same session name is not possible.
 * Session names can contain alphanumeric and special characters. e.g. "T15-Session-1.2"
-* This command is case-sensitive. e.g. "session1" and "SESSION1" are treated as different sessions.
+* Session names cannot contain white spaces.
+* Session names are case-sensitive. e.g. "session1" and "SESSION1" are treated as different sessions.
 </div>
 <br>
 
@@ -909,7 +919,7 @@ You can edit the name of an existing session in your session list.
 **Command Format:**
 
 ```
-edit session <INDEX> <NEW SESSION NAME>
+edit session <INDEX> <NEW_SESSION_NAME>
 ```
 
 Examples:
@@ -930,7 +940,7 @@ find session <KEYWORD> [<MORE_KEYWORDS>]
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-* This command is case-insensitive. (e.g. `find session tutorial1` and `find session Tutorial1`
+* Keywords are case-insensitive. (e.g. `find session tutorial1` and `find session Tutorial1`
   will give you the same result)
 * Keywords are separated by spaces.
 </div>
@@ -984,7 +994,7 @@ mark <INDEX>...
 Examples:
 
 - `mark 1` will mark the first student as present.
-- `mark 2,4,5,6` will mark the 2nd, 4th, 5th and 6th students as present.
+- `mark 2,4,5,6` will mark the second, fourth, fifth and sixth students as present.
 
 [Back to list of features](#features)
 
@@ -1001,8 +1011,8 @@ unmark <INDEX>...
 
 Examples:
 
-- `unmark 1` will mark your 1st student as absent.
-- `unmark 2,3,4` will mark your 2nd, 3rd and 4th students as absent.
+- `unmark 1` will mark your first student as absent.
+- `unmark 2,3,4` will mark your second, third and fourth students as absent.
 
 [Back to list of features](#features)
 
@@ -1036,14 +1046,14 @@ This adds a new task to your selected group.
 **Command Format:**
 
 ```
-add task <TASK NAME>
+add task <TASK_NAME>
 ```
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
 * Adding tasks with the same task name is not possible.
 * Task names can contain alphanumeric, special characters and white spaces. e.g. "AY2223S2-Midterm Practice Paper"
-* This command is case-sensitive. e.g. "task1" and "TASK1" are treated as different tasks.
+* Task names are case-sensitive. e.g. "task1" and "TASK1" are treated as different tasks.
 </div>
 
 Examples:
@@ -1076,7 +1086,7 @@ You can edit the name of an existing task in your task list.
 **Command Format:**
 
 ```
-edit task <INDEX> <NEW TASK NAME>
+edit task <INDEX> <NEW_TASK_NAME>
 ```
 
 Examples:
@@ -1097,7 +1107,7 @@ find task <KEYWORD> [<MORE_KEYWORDS>]
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-* This command is case-insensitive. (e.g. `find task op1` and `find task OP1`
+* Keywords are case-insensitive. (e.g. `find task op1` and `find task OP1`
   will give you the same result)
 * Keywords are separated by spaces.
 </div>
@@ -1118,8 +1128,6 @@ This command allows you to select a task and view the grades of your students wi
 ```
 select <INDEX>
 ```
-
-- Selects task at specified index and displays list of students with the task.
 
 Examples:
 
@@ -1153,8 +1161,8 @@ assign <INDEX> <GRADE>
 
 Examples:
 
-- `assign 1 78` will assign the first student on the Student Page the grade of 78.
-- `assign 3 0` will assign the third student on the Student Page the grade of 0.
+- `assign 1 78` will assign your first student on the `Right Pane` the grade of 78.
+- `assign 3 0` will assign your third student on your `Right Pane` the grade of 0.
 
 [Back to list of features](#features)
 
@@ -1164,7 +1172,7 @@ Examples:
 
 | **Term**              | **Definition**                                                                                      | **Example(s)**                    |
 | --------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| **Course**            | A module that provides a certain level of understanding in a subject area.                                | CS2103T, CS2105                         |
+| **Course**            | A course that provides a certain level of understanding in a subject area.                                | CS2103T, CS2105                         |
 | **Group**             | A group of students in a Course that can be categorised according to their tutorial, project group, etc.  | T15, Team15                             |
 | **Session**           | A period of class for a Group which can be tutorial session, lab session etc.                             | Tutorial1, Lab3                         |
 | **Task**              | An assignment dedicated to a Group which can be presentation, reflection etc.                             | OP1, Critical Reflection 2              |
