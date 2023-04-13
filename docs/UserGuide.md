@@ -120,11 +120,34 @@ If you see something like this, you're good to go!<br>
 
 Before diving in, it might be useful to take a moment to understand some of CLIpboard's visual elements. It will make it an even more of a breeze to use CLIpboard effectively!
 
-The image below depicts how some of the visual elements are referred to in this guide.
-
 <img src="./images/VisualGuide.png" max-width="80%" max-height="80%"/>
 <br>
 
+1. Using the File and Help Tabs
+   * If you want to close the app, simply click on `File > Exit` with your mouse. To open the help window, click on
+     `Help > Help`.
+2. Using the Page Tabs
+   * The Page Tabs give you a quick summary of the type of page you are on.
+   * Refer to the [<i>Figure 3</i>](#navigation-guide) below for the Navigation Guide to the different pages in CLIpboard.
+3. Using the Navigation Bar
+   * You can see the courses and groups you have selected and the page you are currently on in the Navigation Bar.
+4. Using the Left Pane
+   * This is where you can find your list of added page objects such as `Courses`, `Groups`, `Students`, `Sessions`,
+     and `Tasks`.
+5. Using the Right Pane
+   * The Right Pane will appear when you are on the `Attendance Page` or `Tasks Page`. It will show the list of
+     students to mark their attendance or assign them a grade.
+6. Entering Commands in the Command Box
+   * To enter a command, type it into the Command Box.
+7. Viewing Results in the Result Display
+   * After entering a command, you can view whether it was successful in the Result Display.
+   * If your command failed, you can also find help messages with valid arguments here.
+8. Checking the Status Bar Footer
+   * The Status Bar Footer displays the file path from which the data is being loaded or saved in relation to the
+     location of `clipboard.jar`.
+9. Checking the CLIppy Indicator
+   * The CLIppy Indicator can help you know whether you are typing in a command correctly.
+   * When you enter a correct command, CLIppy will be happy. If you have a command failure, CLIppy will be sad.
 ### Navigation
 
 Navigating between pages is made effortless with CLIpboard's intuitive navigation commands.
