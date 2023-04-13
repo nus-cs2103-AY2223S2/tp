@@ -15,7 +15,7 @@ Users experienced with the CLI may get their tasks done faster than traditional 
 * Table of Contents
 {:toc}
 
-Do not worry if this is your first time using the application. This user guide can assist you through every step of the way. You can also refer to the glossary section for any unfamiliar words.
+Do not worry if this is your first time using the application. This user guide can assist you through every step of the way. You can also refer to the [glossary](#glossary) section for any unfamiliar words.
 
 ## Quick start
 
@@ -87,7 +87,7 @@ Do not worry if this is your first time using the application. This user guide c
 | **Medication**   | m/     | Should only contain alphanumeric characters and spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **Name**         | n/     | Should only contain alphanumeric characters and spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **NRIC**         | ic/    | 1. Should be 9 characters long. <br> 2. The first character must be one of [S,T,F,G,M], followed by 7 numerical digits and ending with [A-Z].                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| **Phone Number** | p/     | 1. Should only contain numbers. <br> 2. Should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **Phone Number** | p/     | 1. Should only contain numbers. <br> 2. Should be at least 3 digits long and there is no maximum limit on the number of digits.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | **Tag**          | t/     | Should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 <div style="page-break-after: always;"></div>
@@ -103,7 +103,6 @@ Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]`  <b
 * Adds the specified person to MediConnect.
 * Each person can be added only once and can be **either** a Patient or a Doctor.
 * Each person's NRIC must be distinct.
-* There is no limit to the number of digits for phone number. It is left completely up to the user's discretion.
 
 Examples:
 * `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` adds the patient `Ben Smith` to the list.
@@ -126,7 +125,7 @@ Format: `delete ic/NRIC`
 * Deletes the person with the specified `NRIC`
 * Note that this also deletes all the appointment data associated with that patient/doctor
   * When a patient is deleted from the system, all appointments from their appointment list will be removed. This also removes the respective appointments from the doctor's appointment list
-  * When a doctor is deleted from the system, all appointments from their appointment list will be removed. This also removes the respective appointments from the patient's appointment list
+  * When a doctor is deleted from the system, all appointments from their appointment list will be removed. This also removes the respective appointments from the patients' appointment list
 
 Example:
 * `delete ic/S9876543K` deletes the person with the NRIC number S9876543K in MediConnect.
@@ -157,7 +156,7 @@ Example:
 ### Display patient's information : `display`
 [Click here to access the table of contents](#table-of-contents)
 
-Displays personal particulars, appointments and prescription for patients.
+Displays personal particulars, appointments and prescription for the person.
 
 Format: `display ic/NRIC`
 
@@ -167,7 +166,7 @@ Format: `display ic/NRIC`
   * Displays personal particulars, and appointments for the doctor with the specified `NRIC`.
 
 Example:
-* `display ic/S1234567A` displays the information for the patient with NRIC number `S1234567A`.
+* `display ic/S1234567A` displays the information for the person with NRIC number `S1234567A`.
 
 <p align="center">
     <img src="images/Display.png" width="450" />
@@ -257,9 +256,8 @@ Removes a chosen medication from a patient.
 
 Format: `unprescribe ic/NRIC m/MEDICATION`
 
-Examples:
+Example:
 *  `unprescribe ic/S1234567A m/paracetamol` removes paracetamol prescription from patient with NRIC number S1234567A.
-*  `unprescribe m/Cough Syrup ic/S1234567A` removes Cough Syrup prescription from patient with NRIC number S1234567A.
 
 ### Bill : `bill`
 [Click here to access the table of contents](#table-of-contents)
