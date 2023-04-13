@@ -23,12 +23,15 @@ Do check out our [Introduction](#introduction) if this is your first time using 
 Refer to the [Table of Contents](#table-of-contents) to easily navigate around different sections of the User Guide.
 If you require assistance in the setting up of **ExecutivePro**, head over to [Quick Start](#quick-start).
 If you have set up **ExecutivePro**, feel free to navigate to [Features](#features) to learn how to use the features we offer.
+<div style="page-break-after: always"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
 
 * Table of Contents
 {:toc}
+
+<div style="page-break-after: always"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Symbols and Syntax
@@ -49,6 +52,9 @@ Here are some of the symbols to take note of when going through this user guide:
 Below is an image of ExecutivePro User Interface with the main components labelled.
 
 ![GUI](images/UserGuide/labelledgui.png)
+
+<div style="page-break-after: always"></div>
+
 
 | No. | Component                    | Description                                                                                                                                    |
 |-----|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -79,6 +85,7 @@ This section shows a specific employee's particulars.
 1. On startup of the application, this panel shows "Welcome to ExecutivePro"
 2. To view an employee's particulars in this panel, click on one of the employees in the employee list.
 3. If you delete an employee that you are currently viewing, the display panel will display the next employee's particulars.
+<div style="page-break-after: always"></div>
 
 #### 3. Employee List
 
@@ -133,6 +140,7 @@ Furthermore, the jar file has been placed in the `test` folder as shown below.
 <img src="images/UserGuide/jarfile2.png" class="centerImage">
 
 <div markdown="block" class="alert alert-info">
+<div style="page-break-after: always"></div>
 
 ### Starting ExecutivePro application
 :warning: **Note:**
