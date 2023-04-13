@@ -9,7 +9,7 @@ professionals and administrative staff an efficient solution to manage administr
 The app simplifies the organization and maintenance of patient and doctor data, appointments and billing records. <br>
 **MediConnect** can be used with either a command line interface (CLI) or a graphical user interface (GUI).
 Users experienced with the CLI may get their tasks done faster than traditional GUI apps. <br>
-_With MediConnect, managing your healthcare practice has never been easier._
+"_With MediConnect, managing your healthcare practice has never been easier._"
 
 ## Table of Contents
 * Table of Contents
@@ -24,9 +24,9 @@ Do not worry if this is your first time using the application. This user guide c
 
 2. Download the latest `MediConnect.jar` file from [here](https://github.com/AY2223S2-CS2103T-W13-1/tp/releases).
 
-3. Copy the file to a new empty folder (eg. Desktop, Documents, etc) that you want to use for the MediConnect.
+3. Copy the file to a new empty folder (eg. Desktop, Documents, etc) that you want to use for MediConnect.
 
-4. Double-click the file to start the app. If the MediConnect is unable to open, kindly refer to the [FAQ](#faq) section. <br>
+4. Double-click the file to start the app. If MediConnect is unable to open, kindly refer to the [FAQ](#faq) section.
    A GUI similar to the image below should appear in a few seconds. Note how the app contains some sample data.<br>
 
     <p align="center">
@@ -57,7 +57,7 @@ Do not worry if this is your first time using the application. This user guide c
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addPatient n/NAME`, `NAME` is a parameter which can be used as `addPatient n/John Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -374,9 +374,9 @@ No, you would have to copy over the saved data from your current device to the o
 * **Alphanumeric**: Only contains letters(eg. A-Z, a-z) and numbers (eg. 10, 100, etc).
 * **CLI**: Text input accepted by MediConnect.
 * **Command**: The action that the user wishes to perform on MediConnect.
-* **Command Box**: The box at the top of the MediConnect where the user can type the Commands.
+* **Command Box**: The box at the top of MediConnect where the user can type the Commands.
 * **Doctor**: A staff of the clinic
-* **GUI**: The visual representation of the MediConnect
+* **GUI**: The visual representation of MediConnect
 * **Parameters**: The respective additional information required by the command.
 * **Patient**: A customer of the clinic
 * **System**: The MediConnect application
