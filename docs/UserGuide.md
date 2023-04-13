@@ -132,7 +132,7 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
    * Refer to the [Navigation Guide](#navigation) below to find out more about the different pages in CLIpboard.
 
 **3. Navigation Bar**
-   * You can view your current selections in the `Navigation Bar`.
+   * You can view your selected items in the `Navigation Bar`.
 
 **4. Left Pane**
    * This is where you will see your lists of `Courses`, `Groups`, `Students`, `Sessions`, and `Tasks`.
@@ -152,7 +152,7 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
 
 **9. CLIppy Indicator**
    * The `CLIppy Indicator` helps you know whether you have entered a valid command.
-   * When you enter a valid command, CLIppy will be happy. If it's invalid, CLIppy will be sad.
+     If the command is valid, CLIppy will be happy. Otherwise, CLIppy will be sad.
 
 ### Navigation
 
