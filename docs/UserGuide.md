@@ -191,7 +191,7 @@ Here is a list of amazing features that CLIpboard supports:
   - [Editing a session: ](#editing-a-session-edit-session) `edit session`
   - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking-select) `select`
   - [Finding a session: ](#finding-a-session-find-session) `find session`
-- [Managing Attendance: ](#attendance-page-commands)
+- [Managing Attendance: ](#managing-the-attendance-of-a-session)
   - [Marking students as present: ](#marking-students-as-present-mark) `mark`
   - [Marking students as absent: ](#marking-students-as-absent-unmark) `unmark`
   - [View the overall attendance of a session: ](#view-the-overall-attendance-of-a-session-attendance) `attendance`
