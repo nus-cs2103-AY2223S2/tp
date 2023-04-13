@@ -46,7 +46,7 @@ In this guide, you may come across some terms and conventions that you may be un
 * **Command**: A line of text that CLIpboard recognises as an instruction to execute.
 * **Path**: A line of text that describes a file location on a computer.
   - Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
-* **Navigate**: Switching between the multiple pages that CLIpboard offers. (See: [`select`](#selecting-a-course-select) or [`back`](#going-back-to-the-previous-page-back) commands)
+* **Navigate**: Switching between the multiple pages that CLIpboard offers. (See the [Navigation Guide](#navigation) for more information)
 * Text formatted like `this` represents a program-related element. Depending on context, it can mean:
   1. A command that CLIpboard recognises
      - Example: `add group t15-4` is a valid command you can execute.
