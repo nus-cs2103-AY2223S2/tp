@@ -76,7 +76,7 @@ This Toolbar can be used to :
 
 #### 2. Display Panel
 
-<img src="images/UserGuide/DisplayPanel.png" class="centerImage">
+<img src="images/UserGuide/DisplayPanel.png" class="centerImage" width = 80% height = 100%>
 
 This section shows a specific employee's particulars.
 
@@ -89,7 +89,7 @@ This section shows a specific employee's particulars.
 
 #### 3. Employee List
 
-<img src="images/UserGuide/EmployeeList.png" class="centerImage">
+<img src="images/UserGuide/EmployeeList.png" class="centerImage" width = 80% height = 100%>
 
 This shows the whole employee list with basic information such as _Name_, _Employee ID_, _Department_ and their respective tags highlighted in blue.
 
@@ -102,7 +102,7 @@ This will come in handy if:
 
 #### 4. Command Panel
 
-<img src="images/UserGuide/commandpanel.png" class="centerImage">
+<img src="images/UserGuide/commandpanel.png" class="centerImage" >
 
 This section displays relevant messages or errors after the command is entered.
 
@@ -137,7 +137,7 @@ This folder can be on your Desktop or any location you prefer.
 In the below image, the folder `test` is placed in the Desktop.
 <img src="images/UserGuide/jarfile.png" class="centerImage">
 Furthermore, the jar file has been placed in the `test` folder as shown below.
-<img src="images/UserGuide/jarfile2.png" class="centerImage">
+<img src="images/UserGuide/jarfile2.png" class="centerImage" >
 
 <div markdown="block" class="alert alert-info">
 <div style="page-break-after: always"></div>
@@ -153,7 +153,7 @@ On Windows, press Windows + R, type cmd, and hit Enter to open Command Prompt.
 On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
 
 Your terminal should show up like this:
-<img src="images/UserGuide/Terminal.png" class="centerImage">
+<img src="images/UserGuide/Terminal.png" class="centerImage" width = 80% height = 50% >
 
 Step 2 (Navigating to the Jar File Location) :
 
@@ -162,7 +162,7 @@ This is the location where you have placed your jar file in, as done in [point 3
 For example, if the file is located in the `test` folder on your Desktop, you can type `cd Desktop` and followed by
 `cd test` on your terminal and hit Enter, just like the image below.
 
-<img src="images/UserGuide/CD.png" class="centerImage">
+<img src="images/UserGuide/CD.png" class="centerImage" width = 80% height = 50% >
 
 Step 3 (Running the Application) :
 Once you are in the correct directory, type the following command,`java -jar ExecutivePro.jar`, in your terminal and hit Enter:
@@ -170,7 +170,7 @@ Once you are in the correct directory, type the following command,`java -jar Exe
 A Graphical User Interface(GUI) similar to below should appear in seconds. 
 Note how the app contains some sample data.
 
-<img src="images/UserGuide/quickstartui.png" class="centerImage">
+<img src="images/UserGuide/quickstartui.png" class="centerImage" width = 80% height = 50% >
 
 A data folder should appear in the same folder as the ExecutivePro.jar file after the application is run successfully.
 
