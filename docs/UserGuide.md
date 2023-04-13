@@ -628,4 +628,3 @@ This table describes the requirements for the input format of the fields.
 - **Hard Disk**: _Hard Disk_ is a kind of technology that stores the operating system, applications, and data files such a documents, pictures and music that your computer uses.
 - **JAR**: JAR stands for _Java ARchive_. It's a file format based on the popular ZIP file format and is used for aggregating many files into one.
 - **CSV**: _Comma-Separated Values (CSV)_ file is a text file that has a specific format which allows data to be saved in a table structured format.
-- 
