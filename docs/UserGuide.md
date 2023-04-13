@@ -16,7 +16,6 @@ So why wait? Don't miss out on the opportunity to bring your productivity to ano
 experience the game-changing benefits that EP can bring to your work!
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Using this Guide
 This guide walks you through the comprehensive features of **ExecutivePro**.
 
@@ -26,28 +25,25 @@ If you require assistance in the setting up of **ExecutivePro**, head over to [Q
 If you have set up **ExecutivePro**, feel free to navigate to [Features](#features) to learn how to use the features we offer.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Table of Contents
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Symbols and Syntax
 
 Here are some of the symbols to take note of when going through this user guide:
 
-| Symbol      | Meaning                                                           |
-|-------------|-------------------------------------------------------------------|
-| `code`      | Text relevant to commands or name of a file.                      |
-| [`code`]    | The brackets around the code indicate that the field is optional. |
-| :bulb:      | Tips for ExecutivePro Users.                                      |
-| :warning:   | Be wary and proceed with caution.                                 |
-
+| Symbol    | Meaning                                                                                                                                                                      |
+|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`    | Text relevant to commands or name of a file.                                                                                                                                 |
+| [`code`]  | The brackets around the code indicate that the field is optional.                                                                                                            |
+| :bulb:    | Tips for ExecutivePro Users.                                                                                                                                                 |
+| :warning: | Be wary and proceed with caution.                                                                                                                                            |
+| `...`     | Items with `...` after them can either be omitted or used one or more times.<br/> Example:`[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc. |
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## The User Interface
 
 Below is an image of ExecutivePro User Interface with the main components labelled.
@@ -75,7 +71,7 @@ This Toolbar can be used to :
 
 <img src="images/UserGuide/EmployeeList.png" class="centerImage">
 
-This shows the whole employee list with basic information such as _Name_, _Employee ID_, _Department_ and their respective tags.
+This shows the whole employee list with basic information such as _Name_, _Employee ID_, _Department_ and their respective tags highlighted in blue.
 
 This will come in handy if:
 
@@ -99,7 +95,7 @@ This section shows a specific employee's particulars.
 
 #### 4. Command Panel
 
-<img src="images/UserGuide/Command.png" class="centerImage">
+<img src="images/UserGuide/commandpanel.png" class="centerImage">
 
 This section displays relevant messages or errors after the command is entered.
 
@@ -108,7 +104,6 @@ This section displays relevant messages or errors after the command is entered.
 <img src="images/UserGuide/CLI.png" class="centerImage">
 
 You can enter your user commands in this section.
-
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -124,11 +119,18 @@ You can enter your user commands in this section.
           from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest `ExecutivePro.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ExecutivePro.
+3. Copy the jar file to a folder you want to use as the _main folder_ for your ExecutivePro. 
+This folder can be on your Desktop or any location you prefer.
+In the below image, the folder `test` is placed in the Desktop.
+<img src="images/UserGuide/jarfile.png" class="centerImage">
+
+Furthermore, the jar file has been placed in the `test` folder as shown below.
+<img src="images/UserGuide/jarfile2.png" class="centerImage">
+
 
 <div markdown="block" class="alert alert-info">
 
-### Starting ExecutivePro application: 
+### Starting ExecutivePro application
 :warning: **Note:**
 To get started with ExecutivePro, the HR manager will need to run the application using
 their terminal or command prompt. Follow the steps below:
@@ -138,20 +140,27 @@ Step 1 (Opening Terminal or Command Prompt) :
 On Windows, press Windows + R, type cmd, and hit Enter to open Command Prompt.
 On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
 
+Your terminal should show up like this:
+<img src="images/UserGuide/Terminal.png" class="centerImage">
+
 Step 2 (Navigating to the Jar File Location) :
 
-Use the cd command to navigate to the directory where the ExecutivePro.jar file is located.
-For example, if the file is located in the Downloads folder, you can type cd Downloads and hit Enter.
+Use the `cd` command to navigate to the folder where the ExecutivePro.jar file is located in.
+This is the location where you have placed your jar file in, as done in [point 3 of Quick start section](#quick-start).
+For example, if the file is located in the `test` folder on your Desktop, you can type `cd Desktop` and followed by
+`cd test` on your terminal and hit Enter, just like the image below.
+
+<img src="images/UserGuide/CD.png" class="centerImage">
 
 Step 3 (Running the Application) :
-Once you are in the correct directory, type the following command and hit Enter:
-`java -jar ExecutivePro.jar`
+Once you are in the correct directory, type the following command,`java -jar ExecutivePro.jar`, in your terminal and hit Enter:
 
-A GUI similar to below should appear in a few seconds. Note how the app contains some sample data.
+A Graphical User Interface(GUI) similar to below should appear in seconds. 
+Note how the app contains some sample data.
 
-<img class="centerImage" src="./images/UserGuide/quickstartUi.png"/>
+<img src="images/UserGuide/quickstartui.png" class="centerImage">
 
-A data folder should appear in the same directory as the ExecutivePro.jar file after the application is run successfully.
+A data folder should appear in the same folder as the ExecutivePro.jar file after the application is run successfully.
 
 If the data folder is still missing, simply create a `data` folder by creating a new folder in the same
 folder where the jar file is located.
@@ -161,14 +170,10 @@ such as adding employees using the `batchadd` command and exporting the database
 
 </div>
 
-Refer to the [Features](#features) below for details of each command.
-
+_Refer to the [Features](#features) below for details of each command._
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
-
-* Items with `…` after them can either be omitted or used one or more times.<br>
-  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 ### Viewing help : `help`
 There can be a lot of information to take in, so if you ever _feel lost_ while using ExecutivePro,
