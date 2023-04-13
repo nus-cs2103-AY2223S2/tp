@@ -184,8 +184,6 @@ with in no time. You are also welcome to revisit this section again anytime.
 Before we delve into the individual features, here are some useful notes about the general format of all commands in 
 sprINT:
 
-<div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command format:**<br>
 
 * **You cannot add more than 2147483647 applications, and you cannot delete or edit applications that have index greater than 2147483647.**
@@ -224,7 +222,6 @@ occurrence of the prefix `r/`.
 * **Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.**<br>
   e.g. if you specify `help 123` as your command, it will be interpreted as `help`, and the help command executes.
 
-</div>
 
 <div style="page-break-after: always;"></div>
 
