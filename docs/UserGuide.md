@@ -48,7 +48,7 @@ Here are some of the symbols to take note of when going through this user guide:
 
 Below is an image of ExecutivePro User Interface with the main components labelled.
 
-![GUI](images/UserGuide/LabelledGUI.png)
+![GUI](images/UserGuide/labelledgui.png)
 
 | No. | Component                    | Description                                                                                                                                    |
 |-----|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -349,12 +349,13 @@ and it should look something like the below image.
 
 ![](images/UserGuide/batchexport/exportedFileLocation.png)
 
-
+<div markdown="span" class="alert alert-warning">
 :warning: Caution:
 If you open the exported `.csv file` in `Excel`
 and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format. 
 This could lead to issues when importing the file using the batchadd command. 
 To ensure the correct date format, please refer to the instructions [here](#opening-csv-files-in-excel)
+</div>
 
 <div markdown="span" class="alert alert-warning">
 :warning: Caution:
@@ -625,7 +626,7 @@ This table describes the requirements and order of the fields.
 
 
 --------------------------------------------------------------------------------------------------------------------
-[Return to `add` feature](#adding-an-employee--add)
+[Return to `add` feature](#adding-an-employee--add) \
 [Return to `batchadd` feature](#adding-multiple-employees-at-once--batchadd)
 
 ## Field Formats
