@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.StackPane?>
+
+<Tab text="Untitled Tab" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <StackPane fx:id="entityListPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+   </content>
+</Tab>

@@ -1,0 +1,27 @@
+@startuml
+!include ../style.puml
+!define ef event is from pressing
+!define refOver ref over UiEventManager, Event:
+
+participant ":UiEventManager" as UiEventManager UI_EVENT_COLOR
+participant "event:KeyEvent" as Event UI_EVENT_COLOR_T3
+
+[-> UiEventManager : catchAndExecute(event)
+activate UiEventManager
+alt event is to be ignored
+    UiEventManager -> Event : consume()
+    activate Event
+    Event --> UiEventManager
+    deactivate Event
+else ef "CTRL-F"
+    refOver toggle mode
+else ef "CTRL-L"
+    refOver switch tabs
+else event is to be handled
+    refOver handle event
+end
+
+UiEventManager -->[
+deactivate UiEventManager
+@enduml
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
+      </HBox>
+      <FlowPane fx:id="emailHolder">
+        <children>
+          <Label fx:id="fieldE" styleClass="cell_small_label" text="Email: "/>
+          <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        </children>
+      </FlowPane>
+      <FlowPane fx:id="yearOfBirthHolder">
+        <children>
+          <Label fx:id="fieldY" styleClass="cell_small_label" text="Year of Birth: "/>
+          <Label fx:id="yearOfBirth" styleClass="cell_small_label" text="\$yearOfBirth" />
+        </children>
+      </FlowPane>
+      <FlowPane fx:id="sourceHolder">
+        <children>
+          <Label fx:id="fieldS" styleClass="cell_small_label" text="Source: "/>
+          <Label fx:id="source" styleClass="cell_small_label" text="\$source" />
+        </children>
+      </FlowPane>
+      <FlowPane fx:id="mobileNumberHolder">
+        <children>
+          <Label fx:id="fieldM" styleClass="cell_small_label" text="Mobile Number: "/>
+          <Label fx:id="mobileNumber" styleClass="cell_small_label" text="\$mobileNumber" />
+        </children>
+      </FlowPane>
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>

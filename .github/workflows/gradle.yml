@@ -1,6 +1,10 @@
 name: Java CI
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches: [ master ]
+  push:
+    branches: [ master ]
 
 jobs:
   build:
@@ -36,7 +40,9 @@ jobs:
           java-package: jdk+fx
 
       - name: Build and check with Gradle
-        run: ./gradlew check coverage
+        uses: GabrielBB/xvfb-action@v1.6
+        with:
+          run: ./gradlew check coverage
 
       - uses: codecov/codecov-action@v2
         if: runner.os == 'Linux'

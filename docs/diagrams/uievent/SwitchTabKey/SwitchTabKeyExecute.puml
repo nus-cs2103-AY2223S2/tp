@@ -1,0 +1,11 @@
+@startuml
+!define sdName execute tab switch
+!define KeyType SwitchTabKey
+!define targetName tabsPanelList
+!define targetType TabsPanelList
+!define toMW nextTab()
+!define toTarget nextTab()
+!define targetAction switch to next tab
+!include ../templates/KeyExecute.puml
+@enduml
+

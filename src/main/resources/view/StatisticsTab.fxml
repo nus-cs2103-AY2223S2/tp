@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<Tab text="Untitled Tab" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+            <stylesheets>
+                <URL value="@StatisticsBox.css" />
+            </stylesheets>
+
+            <StackPane fx:id="displayMessageBox" maxHeight="20" prefHeight="20" styleClass="message-box-bg">
+                <Label fx:id="message" alignment="CENTER" />
+            </StackPane>
+            <StackPane fx:id="listPlaceholder" />
+        </VBox>
+    </content>
+</Tab>

@@ -1,0 +1,32 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+
+Class UiEventManager UI_EVENT_COLOR
+Class "{abstract}\nKey" as Key KEY_COLOR_T2
+Class ClearKey KEY_COLOR_T3
+Class EndOfLineKey KEY_COLOR_T3
+Class FindKey KEY_COLOR_T3
+Class StartOfLineKey KEY_COLOR_T3
+
+Class Logic LOGIC_COLOR_T4
+Class MainWindow UI_COLOR_T4
+
+UiEventManager ..> ClearKey
+UiEventManager ..> StartOfLineKey
+UiEventManager ..> EndOfLineKey
+UiEventManager ..> FindKey
+
+ClearKey --|> Key
+StartOfLineKey --|> Key
+EndOfLineKey --|> Key
+FindKey --|> Key
+
+Key ..> MainWindow
+Key ..> Logic
+MainWindow --> Logic
+MainWindow ..> UiEventManager
+
+@enduml
+

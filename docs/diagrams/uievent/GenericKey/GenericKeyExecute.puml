@@ -1,0 +1,11 @@
+@startuml
+!define sdName execute event action
+!define KeyType Key
+!define targetName uiComponent
+!define targetType UiPart
+!define toMW action()
+!define toTarget action()
+!define targetAction perform action
+!include ../templates/KeyExecute.puml
+@enduml
+

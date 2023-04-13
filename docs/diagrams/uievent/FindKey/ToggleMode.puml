@@ -1,0 +1,8 @@
+@startuml
+!define sdName toggle mode
+!define typeName FindKey
+!define keyName findKey
+!define refName execute toggle mode
+
+!include ../templates/KeyHandling.puml
+@enduml

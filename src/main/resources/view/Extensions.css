@@ -3,6 +3,14 @@
     -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
 }
 
+.listening {
+    -fx-background-color: #2a9d8f !important;
+}
+
+.highlighted .tab-header-area .tab-header-background {
+    -fx-background-color: #475ee2dd !important;
+}
+
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
     -fx-background: #383838;
