@@ -270,7 +270,7 @@ Example:
 * `bill ic/S1234567A` calculates the cost of all medication for patient with NRIC S1234567A.
 
 <p align="center">
-    <img src="images/Bill.png" width="450" />
+    <img src="images/Bill.png" width="400" />
 </p>
 
 <div style="page-break-after: always;"></div>
