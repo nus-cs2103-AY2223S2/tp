@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox id="cardPane" fx:id="cardPane" spacing="10.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane fx:id="gridPane" HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+      <BorderPane>
+         <top>
+            <HBox BorderPane.alignment="TOP_LEFT">
+               <children>
+                  <Label fx:id="id" style="-fx-font-size: 20px;" />
+                <Label fx:id="taskDesc" alignment="CENTER" style="-fx-font-size: 20px;" styleClass="cell_big_label">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <right>
+            <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER_RIGHT">
+               <children>
+                  <Label style="-fx-font-size: 15px;" text="Assigned to: " />
+               <Label fx:id="personAssigned" style="-fx-font-size: 15px;" styleClass="cell_small_label" />
+               <Label fx:id="personRole" contentDisplay="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" style="-fx-background-color: #3e7b91; -fx-background-radius: 5px; -fx-alignment: center; -fx-label-padding: 5px;" styleClass="cell_small_label" textFill="WHITE">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </right>
+         <bottom>
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" spacing="3.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Circle fx:id="circle1" fill="WHITE" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circle2" fill="WHITE" layoutX="21.0" layoutY="21.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circle3" fill="WHITE" layoutX="43.0" layoutY="21.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circle4" fill="WHITE" layoutX="66.0" layoutY="21.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circle5" fill="WHITE" layoutX="88.0" layoutY="21.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+               </children>
+            </HBox>
+         </bottom>
+         <left>
+            <VBox BorderPane.alignment="CENTER_LEFT">
+               <children>
+                  <Label fx:id="status" text="STATUS" style="-fx-text-fill: white"/>
+               <Label fx:id="taskDeadline" style="-fx-font-size: 15px;" styleClass="cell_small_label" />
+                  <HBox>
+                     <children>
+                        <Label style="-fx-font-size: 15px;" styleClass="cell_small_label" text="Comment: " />
+                        <Label fx:id="taskComment" style="-fx-font-size: 15px;" styleClass="cell_small_label" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+      </BorderPane>
+      <rowConstraints>
+          <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</HBox>

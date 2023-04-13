@@ -3,12 +3,13 @@ layout: page
 title: Testing guide
 ---
 
-* Table of Contents
-{:toc}
+# Table of Contents
+- [1. Running tests](#1-running-tests)
+- [2. Types of tests](#2-types-of-tests)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Running tests
+# 1. Running tests
 
 There are two ways to run tests.
 
@@ -24,7 +25,7 @@ There are two ways to run tests.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Types of tests
+# 2. Types of tests
 
 This project has three types of tests:
 

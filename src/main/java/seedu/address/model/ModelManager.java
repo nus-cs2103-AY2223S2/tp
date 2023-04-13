@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,7 +25,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook and userPrefs and taskPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
@@ -64,10 +65,13 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+
     @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
+
+
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
@@ -75,7 +79,8 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+
+    //=========== Address Book ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -93,16 +98,25 @@ public class ModelManager implements Model {
         return addressBook.hasPerson(person);
     }
 
+
+    @Override
+    public boolean hasPersonIndex(Index personIndex) {
+        requireNonNull(personIndex);
+        return addressBook.hasPersonIndex(personIndex);
+    }
+
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
+
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
@@ -127,6 +141,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object obj) {

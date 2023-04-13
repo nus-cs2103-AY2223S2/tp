@@ -1,0 +1,96 @@
+@startuml
+!include style.puml
+
+box User UI_COLOR_T1
+participant ":User" as User UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":Matcher" as Matcher LOGIC_COLOR
+participant ":MarkCommandParser" as MarkCommandParser LOGIC_COLOR
+participant ":MarkCommand" as MarkCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "markedTask:Task" as Task MODEL_COLOR
+participant ":TaskBookModel" as TaskBookModel MODEL_COLOR
+end box
+
+User -> LogicManager : execute(commandText)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(commandText)
+activate AddressBookParser
+
+AddressBookParser -> Matcher : group("commandWord")
+activate Matcher
+Matcher --> AddressBookParser : commandWord
+deactivate Matcher
+
+AddressBookParser -> Matcher : group("arguments")
+activate Matcher
+Matcher --> AddressBookParser : arguments
+deactivate Matcher
+
+create MarkCommandParser
+AddressBookParser -> MarkCommandParser : MarkCommandParser()
+activate MarkCommandParser
+
+MarkCommandParser --> AddressBookParser :
+deactivate MarkCommandParser
+
+
+
+
+
+
+
+AddressBookParser -> MarkCommandParser : parse(args)
+activate MarkCommandParser
+
+
+
+create MarkCommand
+
+MarkCommandParser -> MarkCommand : MarkCommand()
+activate MarkCommand
+MarkCommand --> MarkCommandParser
+deactivate MarkCommand
+MarkCommandParser --> AddressBookParser
+deactivate MarkCommandParser
+
+
+
+
+
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+
+
+LogicManager -> MarkCommand : execute(model,taskBookModel)
+activate MarkCommand
+
+create Task
+
+MarkCommand -> Task
+activate Task
+Task --> MarkCommand
+deactivate Task
+
+MarkCommand -> TaskBookModel : markTask
+activate TaskBookModel
+
+TaskBookModel --> MarkCommand
+deactivate TaskBookModel
+
+MarkCommand --> LogicManager : CommandResult
+deactivate MarkCommand
+
+LogicManager --> User : CommandResult
+deactivate LogicManager
+
+@enduml

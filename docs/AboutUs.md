@@ -5,55 +5,50 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Cyrus Krispin Vijikumar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cyrus-krispin.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/cyrus-krispin)]
+[[portfolio](team/cyrus-krispin.md)]
 
-* Role: Project Advisor
+* Role: Team Member
 
-### Jane Doe
+### Lim Xuan Zheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhengsterz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zhengsterz)]
+[[portfolio](team/zhengsterz.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Member
 
-### Johnny Doe
+### Pawan Kishor Patil
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pawanpatil19.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/PawanPatil19)]
+[[portfolio](team/pawanpatil19.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Member
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+### Jerome Seet
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/yaladah.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](http://github.com/yaladah)]
+[[portfolio](team/yaladah.md)]
 
-### James Doe
+* Role: Member
 
-<img src="images/johndoe.png" width="200px">
+### Jereld Lim
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/jereldlimjy.png" width="200px">
 
-* Role: Developer
-* Responsibilities: UI
+[[github](http://github.com/jereldlimjy)]
+[[portfolio](team/jereldlimjy.md)]
+
+* Role: Team Member

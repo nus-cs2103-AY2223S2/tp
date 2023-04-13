@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+'autonumber
+user -> LogicManager : execute(commandText)
+activate LogicManager
+LogicManager -> AddressBookParser: parseCommand(commandText)
+activate "AddressBookParser"
+
+AddressBookParser -> Matcher : group("commadWord")
+activate Matcher
+Matcher --> AddressBookParser : commandWord
+deactivate Matcher
+
+AddressBookParser -> Matcher : group("arguments")
+activate Matcher
+Matcher --> AddressBookParser : arguments
+deactivate Matcher
+
+AddressBookParser -> DeleteCommandParser : DeleteCommandParser()
+activate DeleteCommandParser
+DeleteCommandParser --> AddressBookParser : DeleteCommand
+deactivate DeleteCommandParser
+
+AddressBookParser --> LogicManager : DeleteCommand
+deactivate AddressBookParser
+
+LogicManager -> DeleteCommand : execute(model)
+activate DeleteCommand
+DeleteCommand -> Model : getFilteredPersonsList()
+activate Model
+Model --> DeleteCommand : lastShownPersonsList
+deactivate Model
+
+DeleteCommand -> Model :deletePerson(personToDelete)
+activate Model
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand --> LogicManager : CommandResult
+deactivate DeleteCommand
+LogicManager --> user : CommandResult
+deactivate LogicManager
+@enduml

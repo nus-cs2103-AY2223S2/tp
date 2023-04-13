@@ -14,7 +14,10 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskBook;
+import seedu.address.model.TaskBookModel;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 /**
@@ -25,6 +28,7 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
+    private TaskBookModel taskBookModel = null;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
@@ -37,16 +41,30 @@ public class LogicManager implements Logic {
         addressBookParser = new AddressBookParser();
     }
 
+    /**
+     * Constructs a {@code LogicManager} with the given {@code Model}, {@code TaskBookModel} and {@code Storage}.
+     * @param model
+     * @param taskBookModel
+     * @param storage
+     */
+    public LogicManager(Model model, TaskBookModel taskBookModel, Storage storage) {
+        this.taskBookModel = taskBookModel;
+        this.model = model;
+        this.storage = storage;
+        addressBookParser = new AddressBookParser();
+    }
+
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, taskBookModel);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveTasks(taskBookModel.getTaskBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -60,8 +78,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyTaskBook getTaskBook() {
+        return taskBookModel.getTaskBook();
+    }
+
+    @Override
+    public Path getTaskBookFilePath() {
+        return taskBookModel.getTaskBookFilePath();
+    }
+
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return taskBookModel.getFilteredTaskList();
     }
 
     @Override

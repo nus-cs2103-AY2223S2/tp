@@ -4,6 +4,9 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -14,6 +17,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ReviewCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -30,8 +36,9 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
-    // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private TaskListPanel taskListPanel;
+    private PersonStatsListPanel personStatsListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +49,22 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Label panelLabel;
+
+    @FXML
+    private CheckMenuItem dark;
+
+    @FXML
+    private Menu menuButton;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -76,10 +92,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
-    /**
-     * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
-     */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
 
@@ -106,17 +118,31 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    public void setTheme() {
+        dark.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
+            String currentStyleSheet = primaryStage.getScene().getStylesheets().get(0);
+            String newStyleSheet;
+            if (isSelected) {
+                newStyleSheet = "view/DarkTheme.css";
+            } else {
+                newStyleSheet = "view/LightTheme.css";
+            }
+            primaryStage.getScene().getStylesheets().remove(currentStyleSheet);
+            primaryStage.getScene().getStylesheets().add(newStyleSheet);
+        });
+    }
+
     /**
-     * Fills up all the placeholders of this window.
+     * Fills up all the tasks placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -147,6 +173,39 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Replicates view task command
+     * @throws CommandException
+     * @throws ParseException
+     */
+    @FXML
+    public void tasksClicked() throws CommandException, ParseException {
+        CommandResult commandResult = executeCommand("view");
+        show();
+    }
+
+    /**
+     * Replicates list command
+     * @throws CommandException
+     * @throws ParseException
+     */
+    @FXML
+    public void personsClicked() throws CommandException, ParseException {
+        CommandResult commandResult = executeCommand("list");
+        show();
+    }
+
+    /**
+     * Replicates review command
+     * @throws CommandException
+     * @throws ParseException
+     */
+    @FXML
+    public void reviewClicked() throws CommandException, ParseException {
+        CommandResult commandResult = executeCommand("review");
+        show();
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -167,6 +226,10 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public TaskListPanel getTaskListPanel() {
+        return taskListPanel;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -177,6 +240,34 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            // TODO: refine later
+            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS)) {
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+                listPanelPlaceholder.getChildren().clear();
+                listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+                StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+                statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+                panelLabel.setText("Persons");
+            }
+
+            if (commandResult.getFeedbackToUser().equals(ViewCommand.MESSAGE_SUCCESS)) {
+                taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+                listPanelPlaceholder.getChildren().clear();
+                listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+                StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath());
+                statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+                panelLabel.setText("Tasks");
+            }
+
+            if (commandResult.getFeedbackToUser().equals(ReviewCommand.MESSAGE_SUCCESS)) {
+                personStatsListPanel = new PersonStatsListPanel(logic);
+                listPanelPlaceholder.getChildren().clear();
+                listPanelPlaceholder.getChildren().add(personStatsListPanel.getRoot());
+                StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+                statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+                panelLabel.setText("Review");
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

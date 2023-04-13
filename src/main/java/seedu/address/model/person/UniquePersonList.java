@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -97,6 +98,10 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
+    public Person getPerson(Index personIndex) {
+        return internalList.get(personIndex.getZeroBased());
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -133,5 +138,14 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if the index is within the bounds of the list.
+     * @param personIndex
+     * @return
+     */
+    public boolean checkIndex(Index personIndex) {
+        return personIndex.getZeroBased() < internalList.size();
     }
 }

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -67,12 +68,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a person with the same index as {@code personIndex} exists in the address book.
+     * @param personIndex
+     * @return
+     */
+    public boolean hasPersonIndex(Index personIndex) {
+        requireNonNull(personIndex);
+        return persons.checkIndex(personIndex);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
     }
+
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
@@ -93,12 +105,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+
     //// util methods
 
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
     }
 
     @Override
