@@ -129,7 +129,7 @@ launching the application. The [reminder window](#reminder) will be further disc
 
 
 <p align="center">
-  <img src="images/Ui.png">
+  <img width="896" height="848" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the software.</div>
