@@ -356,7 +356,7 @@ exit
 In the following sections, you will find the features that are available to you on the `Course Page`.
 A `Course Page` typically looks like this:
 
-<img src="./images/UiCoursePage.png" width="650" height="529"/>
+<img src="./images/UiCoursePage.png" max-width="80%" max-height="80%"/>
 <br>
 
 
@@ -466,7 +466,7 @@ Examples:
 In the following sections, you will find the features that are available to you on the `Group Page`.
 A `Group Page` typically looks like this:
 
-<img src="./images/UiGroupPage.png" width="650" height="529"/>
+<img src="./images/UiGroupPage.png" max-width="80%" max-height="80%"/>
 <br>
 
 ### Adding a group: `add group`
@@ -610,7 +610,7 @@ Examples:
 In the following sections, you will find the features that are available to you on the `Student Page`.
 A `Student Page` typically looks like this:
 
-<img src="./images/UiStudentPage.png" width="650" height="529"/>
+<img src="./images/UiStudentPage.png" max-width="80%" max-height="80%"/>
 <br>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
@@ -753,9 +753,9 @@ Examples:
 - `sort name` will sort your list of students alphabetically according to name.
 - `sort id` will sort your list of students alphanumerically according to student ID.
 
-<img src="./images/UiStudentSortName.png" width="650" height="529"/>
+<img src="./images/UiStudentSortName.png" max-width="80%" max-height="80%"/>
 <br>
-<img src="./images/UiStudentSortId.png" width="650" height="529"/>
+<img src="./images/UiStudentSortId.png" max-width="80%" max-height="80%"/>
 <br>
 
 [Back to list of features](#features)
@@ -765,7 +765,7 @@ Examples:
 This command allows you to select a student and display their full particulars.
 The selected student will be shown like this:
 
-<img src="./images/UiStudentView.png" width="650" height="529"/>
+<img src="./images/UiStudentView.png" max-width="80%" max-height="80%"/>
 
 **Command Format:**
 
@@ -847,7 +847,7 @@ Examples:
 
 You can view a summary of a student's attendance like this:
 
-<img src="./images/UiStudentAttendanceView.png" width="650" height="529"/>
+<img src="./images/UiStudentAttendanceView.png" max-width="80%" max-height="80%"/>
 
 **Command Format:**
 
@@ -867,7 +867,7 @@ attendance
 
 In the following sections, you will find the features that are available to you on the `Session Page`.
 A `Session Page` typically looks like this:
-<img src="./images/UiSessionPage.png" width="650" height="529"/>
+<img src="./images/UiSessionPage.png" max-width="80%" max-height="80%"/>
 <br>
 
 ### Adding a session: `add session`
@@ -974,7 +974,7 @@ Examples:
 
 In the following sections, you will find the features that are available to you after you have selected a session while on the `Session Page`.
 Your current page would look similar to this:
-<img src="./images/UiAttendancePage.png" width="650" height="529"/>
+<img src="./images/UiAttendancePage.png" max-width="80%" max-height="80%"/>
 <br>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** The attendance for all students will be set to ABSENT when a session is created. Make sure to check that you have marked the attendance of all students, so that no one's attendance is accidentally left as absent.
@@ -1020,7 +1020,7 @@ Examples:
 
 You can view the overall attendance of a session that you've selected, which will be shown like this:
 
-<img src="./images/UiAttendance.png" width="650" height="529"/>
+<img src="./images/UiAttendance.png" max-width="80%" max-height="80%"/>
 <br>
 
 **Command Format:**
@@ -1036,7 +1036,7 @@ attendance
 ## Managing Tasks
 In the following sections, you will find the features that are available to you on the `Task Page`.
 A `Task Page` typically looks like this:
-<img src="./images/UiTaskPage.png" width="650" height="529"/>
+<img src="./images/UiTaskPage.png" max-width="80%" max-height="80%"/>
 <br>
 
 ### Adding a task: `add task`
@@ -1140,7 +1140,7 @@ Examples:
 ## Managing the Grades of a Task
 In the following sections, you will find the features that are available to you after you have selected a task while on the `Task Page`.
 Your current page would look similar to this:
-<img src="./images/UiGradesPage.png" width="650" height="529"/>
+<img src="./images/UiGradesPage.png" max-width="80%" max-height="80%"/>
 <br>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** The grades for all students will be set to ZERO when a task is created. Make sure to check that you have assigned grades to all students, so that no one's grade is accidentally left as 0.
