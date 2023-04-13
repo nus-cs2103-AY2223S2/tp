@@ -227,7 +227,7 @@ Format: `deleteAppointment INDEX ic/NRIC`
 * Note that this updates the appointment list for the specified patient, and the specified doctor in the detailed person view panel when `display` command is used.
 
 Example:
-* `deleteAppointment 1 ic/S1234567A` deletes the first appointment displayed on the appointment list of the patient with NRIC number `S1234567A`."
+* `deleteAppointment 1 ic/S1234567A` deletes the first appointment displayed on the appointment list of the patient with NRIC number `S1234567A`.
 
 <div style="page-break-after: always;"></div>
 
@@ -257,7 +257,7 @@ Removes a chosen medication from a patient.
 Format: `unprescribe ic/NRIC m/MEDICATION`
 
 Example:
-*  `unprescribe ic/S1234567A m/paracetamol` removes paracetamol prescription from patient with NRIC number S1234567A.
+*  `unprescribe ic/S1234567A m/paracetamol` removes the chosen medication from patient with NRIC number S1234567A.
 
 ### Bill : `bill`
 [Click here to access the table of contents](#table-of-contents)
@@ -267,7 +267,7 @@ Calculates the cost of all medication given a Patient's prescription.
 Format: `bill ic/NRIC`
 
 Example:
-* `bill ic/S1234567A` calculates the cost of all medication for patient with NRIC S1234567A.
+* `bill ic/S1234567A` calculates the cost of all medication for patient with NRIC number S1234567A.
 
 <p align="center">
     <img src="images/Bill.png" width="400" />
@@ -371,10 +371,8 @@ No, you would have to copy over the saved data from your current device to the o
 * **CLI**: Text input accepted by MediConnect.
 * **Command**: The action that the user wishes to perform on MediConnect.
 * **Command Box**: The box at the top of MediConnect where the user can type the Commands.
-* **Doctor**: A staff of the clinic
 * **GUI**: The visual representation of MediConnect
 * **Parameters**: The respective additional information required by the command.
-* **Patient**: A customer of the clinic
 * **System**: The MediConnect application
 
 <div style="page-break-after: always;"></div>
