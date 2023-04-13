@@ -293,7 +293,7 @@ Format: `delete INDEX`
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
 <p align="center">
-   <img width="836" height="627" src="images/delete.png">
+   <img width="732" height="549" src="images/delete.png">
 </p>
 
 <div align="center">Figure 4 : Deleting a module from the tracker.</div>
@@ -301,7 +301,6 @@ Examples:
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ### <a id="edit"></a>Editing a module: `edit`
 
