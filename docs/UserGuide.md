@@ -9,14 +9,10 @@ professionals and administrative staff an efficient solution to manage administr
 The app simplifies the organization and maintenance of patient and doctor data, appointments and billing records. <br>
 **MediConnect** can be used with either a command line interface (CLI) or a graphical user interface (GUI).
 Users experienced with the CLI may get their tasks done faster than traditional GUI apps. <br>
-
 _With MediConnect, managing your healthcare practice has never been easier._
 
 ## Table of Contents
-* Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 Do not worry if this is your first time using the application. The user guide will guide you through every step of the way. You can also refer to the glossary section for any unfamiliar words.
 
