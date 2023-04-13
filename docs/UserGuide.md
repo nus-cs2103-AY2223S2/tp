@@ -286,15 +286,13 @@ The command could be unsuccessful, and there are a few potential causes of this:
 2. If any of the particulars in the wrong format, ExecutivePro will not be able to read the file properly
    and the command will not run.
 3. If you are using Excel to open your `.csv` file, the date formatting in Excel might not be set to the right format,
-please refer to the instructions under the heading, "Opening .csv files in Excel", to rectify this problem.
-
+please refer to the instructions [here](#opening-csv-files-in-excel)
 
 
 In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
 Also note that as of version `1.3` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
 
-<div id = "<u> Opening .csv files in Excel: </u>"></div> {#opening-csv-files-in-excel}
-
+###### Opening .csv files in Excel 
 
 When using the `batchadd` feature, it is crucial to ensure that the dates in the CSV file are in the [correct format](#field-formats).
 ExecutivePro expects dates to be in the following format: YYYY-MM-DD. If the dates in your CSV file are in a different format, you'll need to convert them before uploading the file to prevent errors and unsuccessful imports.
@@ -351,14 +349,12 @@ and it should look something like the below image.
 
 ![](images/UserGuide/batchexport/exportedFileLocation.png)
 
-<div markdown="span" class="alert alert-warning">
+
 :warning: Caution:
 If you open the exported `.csv file` in `Excel`
 and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format. 
 This could lead to issues when importing the file using the batchadd command. 
-To ensure the correct date format, please refer to the instructions in batchadd section, under the heading,
-"opening .csv file in Excel"
-</div>
+To ensure the correct date format, please refer to the instructions [here](#opening-csv-files-in-excel)
 
 <div markdown="span" class="alert alert-warning">
 :warning: Caution:
@@ -368,7 +364,7 @@ To ensure the correct date format, please refer to the instructions in batchadd 
 --------------------------------------------------------------------------------------------------------------------
 ### Listing all employees : `list`
 
-After searching for employees using the `find` command, you might realise that the left Panel no longer shows all the employees.
+After searching for employees using the `find` command, you might realise that the employee list no longer shows all the employees.
 In order to get the full list back, simply use the list command, and it will show a list of all employees and
 their details in the ExecutivePro database.
 
@@ -603,14 +599,13 @@ If your changes to the data file makes its format invalid, ExecutivePro will dis
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app on the other computer and overwrite the empty data file. This creates a new file that contains the data of your previous ExecutivePro home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
+[Return to `add` feature](#adding-an-employee--add)
 ## Order of Fields
 
 This table describes the requirements and order of the fields.
@@ -630,6 +625,8 @@ This table describes the requirements and order of the fields.
 
 
 --------------------------------------------------------------------------------------------------------------------
+[Return to `add` feature](#adding-an-employee--add)
+[Return to `batchadd` feature](#adding-multiple-employees-at-once--batchadd)
 
 ## Field Formats
 
@@ -650,9 +647,7 @@ This table describes the requirements for the input format of the fields.
 
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Command Summary
-
 
 | Command         | Format, Examples                                                                                                                                                                                                                                                                                                |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -672,7 +667,6 @@ This table describes the requirements for the input format of the fields.
 | **Filter**      | `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT` <br> e.g., `filter pr > 1500`                                                                                                                                                                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Glossary
 
 - **HR**: _Human Resources_ department of a company responsible for managing employee life cycle and administering employee benefits.
