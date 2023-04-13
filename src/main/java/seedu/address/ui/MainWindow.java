@@ -27,13 +27,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
+    private PersonViewPanel personViewPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane personViewPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,6 +117,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        personViewPanel = new PersonViewPanel(logic.getPersonDisplay());
+        personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -135,6 +142,21 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    // @@Charles1026 mandykqh-reused
+    // reused from
+    // https://github.com/Charles1026/tp/blob/7f3cc48fb35418f1f6f6f4c1dc5e8a4a037d29d8/src/main/java/seedu/address/
+    // ui/MainWindow.java
+    // with minor modifications
+    /**
+     * Displays the detailed person window.
+     */
+    @FXML
+    public void handleDisplay() {
+        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getPersonDisplay());
+        personViewPanelPlaceholder.getChildren().clear();
+        personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+    }
+    // @@Charles1026
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -185,7 +207,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
+            handleDisplay();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

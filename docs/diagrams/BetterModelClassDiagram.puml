@@ -14,8 +14,14 @@ UniquePersonList -right-> Person
 
 Person -up-> "*" Tag
 
+Patient -left-|> Person
+Doctor -left-|> Person
+
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Nric
+Person *--> Role
+
 @enduml

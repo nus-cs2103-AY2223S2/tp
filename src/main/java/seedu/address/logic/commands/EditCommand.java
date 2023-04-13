@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -19,11 +21,17 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
+import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,6 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -71,7 +80,7 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
@@ -81,7 +90,15 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        if (personToEdit.getRole().toString().equals("Doctor")) {
+            model.setDoctor((Doctor) personToEdit, (Doctor) editedPerson);
+        } else if (personToEdit.getRole().toString().equals("Patient")) {
+            model.setPatient((Patient) personToEdit, (Patient) editedPerson);
+        } else {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
+
+        //model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
@@ -96,10 +113,29 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Role role = personToEdit.getRole();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        if (personToEdit.isPatient()) {
+            Patient patientToEdit = (Patient) personToEdit;
+            Set<Prescription> updatedPrescriptions = editPersonDescriptor.getPrescriptions()
+                    .orElse(patientToEdit.getPrescriptions());
+            ArrayList<Appointment> patientAppointments = patientToEdit.getPatientAppointments();
+
+            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress,
+                    updatedPrescriptions, updatedTags, patientAppointments, role);
+        }
+
+        if (personToEdit.isDoctor()) {
+            Doctor doctorToEdit = (Doctor) personToEdit;
+            ArrayList<Appointment> patientAppointments = doctorToEdit.getPatientAppointments();
+            return new Doctor(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedTags,
+                    patientAppointments, role);
+        }
+
+        return null; // should not return
     }
 
     @Override
@@ -128,8 +164,12 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Nric nric;
         private Address address;
+        private Set<Prescription> prescriptions;
         private Set<Tag> tags;
+        private ArrayList<Appointment> appointments;
+        private Role role;
 
         public EditPersonDescriptor() {}
 
@@ -141,15 +181,19 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setNric(toCopy.nric);
             setAddress(toCopy.address);
+            setPrescriptions(toCopy.prescriptions);
             setTags(toCopy.tags);
+            setAppointments(toCopy.appointments);
+            setRole(toCopy.role);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, nric, phone, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -185,11 +229,43 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code prescriptions} to this object's {@code prescriptions}.
+         * A defensive copy of {@code prescriptions} is used internally.
+         */
+        public void setPrescriptions(Set<Prescription> prescriptions) {
+            this.prescriptions = (prescriptions != null) ? new HashSet<>(prescriptions) : null;
+        }
+
+        public Optional<Set<Prescription>> getPrescriptions() {
+            return (prescriptions != null) ? Optional.of(Collections.unmodifiableSet(prescriptions)) : Optional.empty();
+        }
+
+        public void setNric(Nric nric) {
+            this.nric = nric;
+        }
+
+        public Optional<Nric> getNric() {
+            return Optional.ofNullable(nric);
+        }
+
+        public void setRole(Role role) {
+            this.role = role;
+        }
+
+        /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Sets {@code appointments} to this object's {@code appointments}.
+         * A defensive copy of {@code appointments} is used internally.
+         */
+        public void setAppointments(ArrayList<Appointment> appointments) {
+            this.appointments = (appointments != null) ? new ArrayList<>(appointments) : null;
         }
 
         /**
@@ -199,6 +275,17 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable appointment list, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code appointments} is null.
+         */
+        public Optional<ArrayList<Appointment>> getAppointments() {
+            return (appointments != null)
+                    ? Optional.of((ArrayList<Appointment>) Collections.unmodifiableList(appointments))
+                    : Optional.empty();
         }
 
         @Override
@@ -219,7 +306,9 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getNric().equals(e.getNric())
                     && getAddress().equals(e.getAddress())
+                    && getPrescriptions().equals(e.getPrescriptions())
                     && getTags().equals(e.getTags());
         }
     }

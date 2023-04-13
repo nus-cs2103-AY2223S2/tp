@@ -1,8 +1,12 @@
-{
-  "persons": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
-  } ]
-}
+ {
+   "persons": [ {
+     "name": "Person with invalid name field: Ha!ns Mu@ster",
+     "phone": "9482424",
+     "email": "hans@example.com",
+     "address": "4th street",
+     "medication" : "1 histamine",
+     "patientAppointments": [ ],
+     "role": "Patient"
+   } ],
+   "appointments" : [ ]
+ }

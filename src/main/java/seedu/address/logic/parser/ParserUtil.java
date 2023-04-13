@@ -9,10 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Booking;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
+import seedu.address.model.prescription.Cost;
+import seedu.address.model.prescription.Medication;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -81,6 +85,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String nric} into an {@code Nric}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code nric} is invalid.
+     */
+    public static Nric parseNric(String nric) throws ParseException {
+        requireNonNull(nric);
+        String trimmedNric = nric.trim();
+        if (!Nric.isValidNric(trimmedNric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        return new Nric(trimmedNric);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -93,6 +112,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String cost} into an {@code Cost}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code cost} is invalid.
+     */
+    public static Cost parseCost(String cost) throws ParseException {
+        requireNonNull(cost);
+        String trimmedCost = cost.trim();
+        if (!Cost.isValidCost(trimmedCost)) {
+            throw new ParseException(Cost.MESSAGE_CONSTRAINTS);
+        }
+        return new Cost(trimmedCost);
+    }
+
+    /**
+     * Parses a {@code String medication} into a {@code Medication}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code medication} is invalid.
+     */
+    public static Medication parseMedication(String medication) throws ParseException {
+        requireNonNull(medication);
+        String trimmedMedication = medication.trim();
+        if (!Medication.isValidMedication(trimmedMedication)) {
+            throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
+        }
+        return new Medication(trimmedMedication);
     }
 
     /**
@@ -120,5 +169,18 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String booking} into a {@code Booking}.
+     */
+    public static Booking parseBooking(String booking) throws ParseException {
+        requireNonNull(booking);
+        String trimmedBooking = booking.trim();
+        if (!Booking.isValidBookingFormat(trimmedBooking)) {
+            throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Booking(trimmedBooking);
     }
 }

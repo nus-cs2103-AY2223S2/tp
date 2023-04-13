@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +36,16 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent person identified by NRIC as the given argument.
+     * @param toCheck
+     * @return true if contains, false otherwise
+     */
+    public boolean containsByNric(Nric toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(person -> person.isSamePersonByNric(toCheck));
     }
 
     /**
@@ -127,11 +139,67 @@ public class UniquePersonList implements Iterable<Person> {
     private boolean personsAreUnique(List<Person> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+                String personIRole = persons.get(i).getRole().toString();
+                String personJRole = persons.get(j).getRole().toString();
+                if (persons.get(i).isSamePerson(persons.get(j))
+                        && (personIRole.equals(personJRole))) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent doctor identified by NRIC as the given argument.
+     * @param toCheck
+     * @return true if contains, false otherwise
+     */
+    public boolean containsDrByNric(Nric toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(person -> person instanceof Doctor
+                && person.isSamePersonByNric(toCheck));
+    }
+
+    /**
+     * Returns true if the list contains an equivalent patient identified by NRIC as the given argument.
+     * @param toCheck
+     * @return true if contains, false otherwise
+     */
+    public boolean containsPatientByNric(Nric toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(person -> person instanceof Patient
+                && person.isSamePersonByNric(toCheck));
+    }
+
+    /**
+     * Returns the person with the given {@code nric}, returns it. This person must exist.
+     * @param nric of the person
+     * @return Person with a given Nric
+     */
+    public Person getPersonByNric(Nric nric) {
+        requireNonNull(nric);
+        List<Person> filteredPersons = internalList.stream()
+                .filter(person -> person.getNric().equals(nric))
+                .collect(Collectors.toList());
+        assert filteredPersons.size() < 2 : "There should not be multiple people with the same NRIC!";
+
+        if (filteredPersons.size() == 0) {
+            throw new PersonNotFoundException();
+        }
+        return filteredPersons.get(0);
+    }
+
+    /**
+     * Returns person if the list contains an equivalent person identified by NRIC as the given argument.
+     * @param nric
+     * @return person
+     */
+    public Person retrievePersonByNric(Nric nric) {
+        requireNonNull(nric);
+        Optional<Person> optionalPerson = internalList.stream()
+                .filter(person -> person.getNric().equals(nric))
+                .findFirst();
+        return optionalPerson.get();
     }
 }

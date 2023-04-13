@@ -167,4 +167,20 @@ public class UniquePersonListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void getPersonByNric_nullNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.getPersonByNric(null));
+    }
+
+    @Test
+    public void getPersonByNric_emptyList_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.getPersonByNric(ALICE.getNric()));
+    }
+
+    @Test
+    public void getPersonByNric_success() {
+        uniquePersonList.add(ALICE);
+        assertEquals(uniquePersonList.getPersonByNric(ALICE.getNric()), ALICE);
+    }
 }

@@ -2,11 +2,13 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,20 +22,31 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
+    private final Nric nric;
+    private final Role role;
+
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final ArrayList<Appointment> patientAppointments = new ArrayList<>();
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
+                  ArrayList<Appointment> patientAppointments, Role role) {
+        requireAllNonNull(name, phone, email, nric, address, tags, patientAppointments, role);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.nric = nric;
         this.address = address;
         this.tags.addAll(tags);
+        this.patientAppointments.addAll(patientAppointments);
+        this.role = role;
+
     }
 
     public Name getName() {
@@ -48,8 +61,16 @@ public class Person {
         return email;
     }
 
+    public Nric getNric() {
+        return nric;
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     /**
@@ -61,7 +82,14 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns a list of Appointments.
+     */
+    public ArrayList<Appointment> getPatientAppointments() {
+        return patientAppointments;
+    }
+
+    /**
+     * Returns true if both persons have the same NRIC.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -70,7 +98,20 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getNric().equals(getNric());
+    }
+
+    /**
+     * Returns true if both persons have the same NRIC.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSamePersonByNric(Nric otherNric) {
+        if (otherNric == this.getNric()) {
+            return true;
+        }
+
+        return otherNric != null
+                && otherNric.equals(this.getNric());
     }
 
     /**
@@ -91,8 +132,10 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getNric().equals(getNric())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getPatientAppointments().equals(getPatientAppointments());
     }
 
     @Override
@@ -109,6 +152,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Nric: ")
+                .append(getNric())
                 .append("; Address: ")
                 .append(getAddress());
 
@@ -117,7 +162,45 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        ArrayList<Appointment> appointments = getPatientAppointments();
+        if (!appointments.isEmpty()) {
+            builder.append("; Appointments: ");
+            appointments.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
+    /**
+     * Returns true if a person is a doctor.
+     * Returns false otherwise.
+     */
+    public boolean isDoctor() {
+        return role.toString().equals("Doctor");
+    }
+
+    /**
+     * Returns true if a person is a patient.
+     * Returns false otherwise.
+     */
+    public boolean isPatient() {
+        return role.toString().equals("Patient");
+    }
+
+    /**
+     * Adds an appointment for the Patient.
+     * @param appointment
+     */
+    public void addPatientAppointment(Appointment appointment) {
+        patientAppointments.add(appointment);
+    }
+
+    /**
+     * Gets size of appointment list.
+     * @return appointment size
+     */
+    public int getAppointmentSize() {
+        return this.patientAppointments.size();
+    }
 }

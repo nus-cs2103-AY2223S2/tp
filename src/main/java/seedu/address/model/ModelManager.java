@@ -11,6 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,6 +27,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final FilteredList<Appointment> filteredAppointments;
+    private Person displayedPerson;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +41,12 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+
+        displayedPerson = null;
+        if (!filteredPersons.isEmpty()) {
+            displayedPerson = filteredPersons.get(0);
+        }
     }
 
     public ModelManager() {
@@ -94,8 +107,36 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPatientByNric(Nric nric) {
+        requireNonNull(nric);
+        return addressBook.hasPatientByNric(nric);
+    }
+
+    @Override
+    public boolean hasDrByNric(Nric nric) {
+        requireNonNull(nric);
+        return addressBook.hasDrByNric(nric);
+    }
+
+    @Override
+    public boolean hasPatient(Patient patient) {
+        requireNonNull(patient);
+        return addressBook.hasPatient(patient);
+    }
+
+    @Override
+    public boolean hasDoctor(Doctor doctor) {
+        requireNonNull(doctor);
+        return addressBook.hasDoctor(doctor);
+    }
+
+    @Override
     public void deletePerson(Person target) {
+
         addressBook.removePerson(target);
+        if (target.isSamePerson(displayedPerson)) {
+            displayedPerson = null;
+        }
     }
 
     @Override
@@ -105,10 +146,54 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addPatient(Patient patient) {
+        addressBook.addPatient(patient);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addDoctor(Doctor doctor) {
+        addressBook.addDoctor(doctor);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+
+        // Implementation below adapted from https://github.com/Charles1026/tp/blob/
+        // 7f3cc48fb35418f1f6f6f4c1dc5e8a4a037d29d8/src/main/java/seedu/address/model/ModelManager.java
+        if (target.isSamePerson(displayedPerson)) {
+            displayedPerson = editedPerson;
+        }
+    }
+
+    @Override
+    public void setDoctor(Doctor doctor, Doctor editedDoctor) {
+        requireAllNonNull(doctor, editedDoctor);
+
+        addressBook.setDoctor(doctor, editedDoctor);
+
+        // Implementation below adapted from https://github.com/Charles1026/tp/blob/
+        // 7f3cc48fb35418f1f6f6f4c1dc5e8a4a037d29d8/src/main/java/seedu/address/model/ModelManager.java
+        if (doctor.isSamePerson(displayedPerson)) {
+            displayedPerson = editedDoctor;
+        }
+    }
+
+    @Override
+    public void setPatient(Patient patient, Patient editedPatient) {
+        requireAllNonNull(patient, editedPatient);
+
+        addressBook.setPatient(patient, editedPatient);
+
+        // Implementation below adapted from https://github.com/Charles1026/tp/blob/
+        // 7f3cc48fb35418f1f6f6f4c1dc5e8a4a037d29d8/src/main/java/seedu/address/model/ModelManager.java
+        if (patient.isSamePerson(displayedPerson)) {
+            displayedPerson = editedPatient;
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -126,6 +211,23 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
+
+    @Override
+    public void updatePersonView(Person updatedPerson) {
+        displayedPerson = updatedPerson;
+    }
+
+    @Override
+    public void updateFilteredPersonListNric(Nric nric) {
+        requireNonNull(nric);
+        updateFilteredPersonList(p -> p.getNric().equals(nric));
     }
 
     @Override
@@ -147,4 +249,42 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public void bookAppointment(Appointment appointment) {
+        addressBook.bookAppointment(appointment);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public Person getPersonDisplay() {
+        return displayedPerson;
+    }
+
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        addressBook.deleteAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public Person retrievePersonByNric(Nric nric) {
+        return addressBook.retrievePersonByNric(nric);
+    }
+    // todo remove retrievePersonByNric (duplicate)
+
+    /**
+     * Returns the person with the given {@code nric}, returns it. This person must exist.
+     * @param nric of the person
+     * @return Person with a given Nric
+     */
+    @Override
+    public Person getPersonByNric(Nric nric) {
+        return addressBook.getPersonByNric(nric);
+    }
 }
