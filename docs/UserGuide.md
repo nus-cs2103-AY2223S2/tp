@@ -626,6 +626,9 @@ Format: `help`
 
 Undoes the previous command that you have typed in.
 
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
+Suppose you have received good news that your application to Microsoft was successful, and you were offered the position. Hooray! You excitedly update the status of your application, but you accidentally typed the wrong index `edit-app 3 s/offered`, when the correct index should be 4. Luckily, you can quickly undo this error by simply typing `undo`, and now you can proceed to type the correct command.
+</div>
 
 Note that you can append extra characters after undo, but all these characters will be ignored, and the basic undo command will be executed.
 
