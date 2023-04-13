@@ -293,7 +293,7 @@ Format: `delete INDEX`
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
 <p align="center">
-   <img width="732" height="549" src="images/delete.png">
+   <img width="679" height="510" src="images/delete.png">
 </p>
 
 <div align="center">Figure 4 : Deleting a module from the tracker.</div>
@@ -326,7 +326,7 @@ Examples of valid usages:
   module to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
 
 <p align="center">
-   <img src="images/edit.png">
+   <img width="424" height="537" src="images/edit.png">
 </p>
 
 <div align="center">Figure 5 : Editing a module in the tracker.</div>
