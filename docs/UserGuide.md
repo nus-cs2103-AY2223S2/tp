@@ -21,7 +21,7 @@ students***, just like you. It is a **module tracker** that lets you store infor
 
 and more....
 
-in a **centralised location** that is easily accessible by you, so you will not forget them ever again.
+in a **centralised location** that you can access at your fingertips, so you will not forget them ever again.
 
 What is even better is that **coNtactUS** is **optimised for use via typing** instead of clicking, which allows you to
 store and retrieve information faster than ever before. Now, you can **become the most productive version of yourself**,
@@ -34,8 +34,8 @@ So, what are you waiting for? Read on to find out more about how to use **coNtac
 
 ## <a id="ug"></a>**About this user guide**
 
-If this is the first time you are using coNtactUS, this user guide provides an excellent starting point for you to
-familiarise yourself with the features of coNtactUS. It also shows you how to set up coNtactUS effortlessly
+If this is the first time you are using **coNtactUS**, this user guide provides an excellent starting point for you to
+familiarise yourself with the features of **coNtactUS**. It also shows you how to set up **coNtactUS** effortlessly
 on your computer.
 
 Alternatively, you may refer to the user guide to quickly view information regarding a particular feature that you are
@@ -108,10 +108,10 @@ that you should pay attention to. </div>
 
 ## <a id="start"></a>**Getting started**
 
-1. Ensure you have Java `11` or above installed in your Computer. If you are unsure about how to do so, you may refer
-to [how to check the version of Java on my computer](https://blog.hubspot.com/website/check-java-verison).
+1. Ensure you have Java `11` or above installed in your computer. If you are unsure about how to do so, you may refer
+to [this friendly online guide](https://blog.hubspot.com/website/check-java-verison).
 
-2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases).
+2. Download the latest release of **coNtactUS** from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases).
 The file is named `coNtactUS.jar`  
 
     <div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
@@ -124,7 +124,7 @@ The file is named `coNtactUS.jar`
 4. You should now see a window similar to the one shown below. There will be a reminder pop-up window upon
 launching the application. The [reminder window](#reminder) will be further discussed later.
 
-    <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application
+    <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the software
     for your reference. </div>
 
 
@@ -132,7 +132,7 @@ launching the application. The [reminder window](#reminder) will be further disc
   <img height="370" width="370" src="images/Ui.png">
 </p>
 
-<div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
+<div align="center">Figure 1 : The starting window for the software.</div>
 <br>
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
@@ -159,7 +159,7 @@ introduce you to the user interface. Do have a look at Figure 2 shown below.
 
 ## <a id="module"></a>**Familiarising yourself with a module**
 
-To start adding a module, we should first learn about what a module is. In coNtactUS, each module has 8 information
+To start adding a module, we should first learn about what a module is. In **coNtactUS**, each module has 8 information
 fields.
 
 * MODULE_NAME: The name of the module.
@@ -445,7 +445,7 @@ By using the `exit` command, you can close and exit the application.
 
 ### <a id="reminder"></a>Reminder for modules
 
-Whenever you open coNtactUS, a pop-up window will appear showing you modules that have a deadline due today
+Whenever you open **coNtactUS**, a pop-up window will appear showing you modules that have a deadline due today
 or have a timeslot that is occurring today.
 
 * For example, if today is a Wednesday, this pop-up window will show all modules that have a timeslot that occurs every
@@ -460,9 +460,9 @@ window will show the module as well.
 to enjoy its benefits!
 
 
-* Note that as of now, this pop-up window only appears when you launch coNtactUS. There is currently no command for you
-to display the pop-up window at any other point in time. However, this will be a future enhancement. Do take a look at
-features [coming soon](#coming) if you are interested.
+* Note that as of now, this pop-up window only appears when you launch **coNtactUS**. There is currently no command for
+you to display the pop-up window at any other point in time. However, this will be a future enhancement. Do take a look
+at features [coming soon](#coming) if you are interested.
 
 <p align="center">
    <img height="250" width="400" src="images/reminder.png">
@@ -481,10 +481,10 @@ When keying in input values for certain fields when you [add](#add) or
 [edit](#edit) a module, there are certain format restrictions that you have to take note of.
 
 To recap, there are a total of 8 information fields for each module that you can modify. Note that when you are adding
-a new module to the module tracker, only the `n/MODULENAME` and `t/DESCRIPTION` fields are compulsory. For fields that
+a new module to the module tracker, only the `n/MODULE_NAME` and `t/DESCRIPTION` fields are compulsory. For fields that
 are optional, the value for that field will be automatically displayed as `None.` after the module has been added.
 
-* `n/MODULENAME` - It must be alphanumeric (A-Z, 0-9) and can contain spaces. It cannot be blank.
+* `n/MODULE_NAME` - It must be alphanumeric (A-Z, 0-9) and can contain spaces. It cannot be blank.
 
 
 * `t/DESCRIPTION` - It must be alphanumeric (A-Z, 0-9) and can contain spaces. It cannot be blank.
@@ -513,7 +513,7 @@ key in `230223`. It cannot be blank.
 
 
 If you are an advanced user who is concerned about further information regarding how you can use the commands of
-coNtactUS, read on for the next section.
+**coNtactUS**, read on for the next section.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
@@ -690,20 +690,20 @@ know what information are considered valid and what are not.<br>
 
 ## <a id="data"></a>**Data Storage**
 
-If you are interested to read about how coNtactUS stores data on your computer, read this section to find out more.
+If you are interested to read about how **coNtactUS** stores data on your computer, read this section to find out more.
 
 ### <a id="saving"></a>Saving the data 
 
-CoNtactUS data is saved in the hard disk automatically. There is no need for you to save any data manually or use any
-command to do so.
+**coNtactUS** data is saved in the hard disk automatically. There is no need for you to save any data manually or use
+any command to do so.
 
 ### <a id="edit-data"></a>Editing the data file (For advanced users) 
 
-CoNtactUS data is saved as a JSON file at the location `[JAR file location]/data/moduletracker.json`. If you are an
+**coNtactUS** data is saved as a JSON file at the location `[JAR file location]/data/moduletracker.json`. If you are an
 advanced user, you are welcome to update data directly by editing that data file if you wish to do so.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, coNtactUS will discard all data and start with an empty
+If your changes to the data file makes its format invalid, **coNtactUS** will discard all data and start with an empty
 data file at the next run.
 </div>
 
@@ -714,7 +714,7 @@ data file at the next run.
 
 ## <a id="limitation"></a>**Current product limitations (Important)**
 
-Note that currently, coNtactUS does not enforce any additional checks for conflicting `s/TEACHER`, `e/TIMESLOT`, 
+Note that currently, **coNtactUS** does not enforce any additional checks for conflicting `s/TEACHER`, `e/TIMESLOT`, 
 `a/VENUE` values. 
 
 * For example, you will be allowed to create two module listings as follows.
@@ -742,8 +742,8 @@ conflict checks. After all, `Bob` may be referring to two different persons.
 **coNtactUS** is a continual work in progress, with newer and better features always being built by the development team. 
 Here are some new features you can look forward to in the near future: 
 
-* Currently, the reminder pop-up window only appears when coNtactUS is launched. You may want to 
-view this reminder pop-up window at any moment while you are using coNtactUs. Hence, we will be adding a command
+* Currently, the reminder pop-up window only appears when **coNtactUS** is launched. You may want to 
+view this reminder pop-up window at any moment while you are using **coNtactUS**. Hence, we will be adding a command
 for you to do so, so you can see the reminders at any time you wish.   
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
@@ -780,8 +780,8 @@ information to follow. Example includes ```a/``` as prefix for the ```VENUE``` a
 **A**: Download `coNtactUS.jar` in the other computer and overwrite the empty data file it creates with the data file
 at the location `[JAR file location]/data/moduletracker.json` on your current computer. 
 
-**Q**: Can I only exit coNtactUS through the `exit` command? <br>
-**A**: Not at all! It is one of the ways you can exit the program. You may also simply close the browser window.  
+**Q**: Can I only exit **coNtactUS** through the `exit` command? <br>
+**A**: Not at all! It is one of the ways you can exit the program. You may also simply close the software window. 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
