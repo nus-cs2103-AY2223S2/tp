@@ -22,7 +22,7 @@ Do not worry if this is your first time using the application. This user guide c
 1. Ensure you have Java `11` or above installed in your Computer.
    * If you are unsure of your device's Java version, you may use [this guide](https://www.java.com/en/download/help/version_manual.html) to find out.
 
-2. Download the latest `MediConnect.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-1/tp/releases).
+2. Download the latest `MediConnect.jar` file from [here](https://github.com/AY2223S2-CS2103T-W13-1/tp/releases).
 
 3. Copy the file to a new empty folder (eg. Desktop, Documents, etc) that you want to use for the MediConnect.
 
@@ -323,8 +323,6 @@ Format: `clear`
 Example:
 * `clear` permanently deletes all data stored in the system.
 
-<div style="page-break-after: always;"></div>
-
 ### Requesting help : `help`
 [Click here to access the table of contents](#table-of-contents)
 
@@ -383,6 +381,7 @@ No, you would have to copy over the saved data from your current device to the o
 * **Patient**: A customer of the clinic
 * **System**: The MediConnect application
 
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 [Click here to access the table of contents](#table-of-contents)
