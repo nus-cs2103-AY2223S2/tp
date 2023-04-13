@@ -123,28 +123,28 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
 <img src="./images/VisualGuide.png" max-width="80%" max-height="80%"/>
 <br>
 
-1. **Toolbar**
+**1. Toolbar**
    * To close the app, you can simply click on `File > Exit`.
    * To open the help window, click on `Help > Help`.
-2. **Page Tabs**
+**2. Page Tabs**
    * The `Page Tabs` give you a quick summary of the type of page you are on.
    * Refer to the [Navigation Guide](#navigation) below to find out more about the different pages in CLIpboard.
-3. **Navigation Bar**
+**3. Navigation Bar**
    * You can view your current selections in the `Navigation Bar`.
-4. **Left Pane**
+**4. Left Pane**
    * This is where you will see your lists of `Courses`, `Groups`, `Students`, `Sessions`,
      and `Tasks`.
-5. **Right Pane**
+**5. Right Pane**
    * The `Right Pane` will appear when you are on the `Attendance Page` or `Task Page`. It will show your list of
      students so you can mark their attendance or assign them a grade.
-6. **Command Box**
+**6. Command Box**
    * Type your commands here!
-7. **Result Display**
+**7. Result Display**
    * After entering a command, you can view it's status and feedback in the `Result Display`.
    * If your command fails, you will also find help messages here.
-8. **Status Bar Footer**
+**8. Status Bar Footer**
    * The `Status Bar Footer` displays the file path of the data file used by CLIpboard to store or load your information.
-9. **CLIppy Indicator**
+**9. CLIppy Indicator**
    * The `CLIppy Indicator` helps you know whether you have entered a valid command.
    * When you enter a valid command, CLIppy will be happy. If it's invalid, CLIppy will be sad.
 
