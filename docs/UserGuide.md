@@ -48,8 +48,6 @@ Do not worry if this is your first time using the application. This user guide c
 
 6. Refer to the [Features](#features) below for details of each command.
 
-<div style="page-break-after: always;"></div>
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
