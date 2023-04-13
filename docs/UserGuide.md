@@ -41,6 +41,7 @@ Let's dive in!
 ---
 
 ## Definitions
+In this guide, you may come across some terms and conventions that you may be unfamiliar with. This section serves as a quick reference for these concepts.
 
 * **Command**: A line of text that CLIpboard recognises as an instruction to execute.
 * **Path**: A line of text that describes a file location on a computer.
@@ -91,9 +92,10 @@ A caution looks like this.
 *Option 2*:
 1. Open a command terminal. [Guide to open a command terminal (External link)](https://www.ionos.com/help/email/troubleshooting-mail-basicmail-business/access-the-command-prompt-or-terminal/#:~:text=Open%20Command%20Prompt%20in%20Windows,cmd%22%20and%20then%20click%20OK.).
 2. Copy the file path of the **folder** you put `clipboard.jar` in.
-    * [Guide For Windows (External link)](https://www.howtogeek.com/670447/how-to-copy-the-full-path-of-a-file-on-windows-10/)
-    * [Guide For MacOS (External link)](https://support.apple.com/en-sg/guide/mac-help/mchlp1774/mac#:~:text=Show%20the%20path%20to%20a%20file%20or%20folder&text=Choose%20View%20%3E%20Show%20Path%20Bar,bottom%20of%20the%20Finder%20window.)
-    * [Guide For Linux (External link)](https://www.tutorialspoint.com/get-the-full-path-of-a-file-in-linux)
+    * Guides for getting a file path (External links):
+      * [On Windows](https://www.howtogeek.com/670447/how-to-copy-the-full-path-of-a-file-on-windows-10/)
+      * [On MacOS](https://support.apple.com/en-sg/guide/mac-help/mchlp1774/mac#:~:text=Show%20the%20path%20to%20a%20file%20or%20folder&text=Choose%20View%20%3E%20Show%20Path%20Bar,bottom%20of%20the%20Finder%20window.)
+      * [On Linux](https://www.tutorialspoint.com/get-the-full-path-of-a-file-in-linux)
 3. In the command terminal, type `cd <FILE_PATH>`, where `<FILE_PATH>` is the file path you found in step 2.
 4. Type `java -jar clipboard.jar` into the command terminal and press `ENTER` to launch CLIpboard.&nbsp;
 
