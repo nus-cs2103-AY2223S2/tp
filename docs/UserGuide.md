@@ -12,9 +12,10 @@ Users experienced with the CLI may get their tasks done faster than traditional 
 _With MediConnect, managing your healthcare practice has never been easier._
 
 ## Table of Contents
+* Table of Contents
 {:toc}
 
-Do not worry if this is your first time using the application. The user guide will guide you through every step of the way. You can also refer to the glossary section for any unfamiliar words.
+Do not worry if this is your first time using the application. This user guide can assist you through every step of the way. You can also refer to the glossary section for any unfamiliar words.
 
 ## Quick start
 
@@ -373,6 +374,7 @@ No, you would have to copy over the saved data from your current device to the o
 [Click here to access the table of contents](#table-of-contents)
 
 * **Alphanumeric**: Only contains letters(eg. A-Z, a-z) and numbers (eg. 10, 100, etc).
+* **CLI**: Text input accepted by MediConnect.
 * **Command**: The action that the user wishes to perform on MediConnect.
 * **Command Box**: The box at the top of the MediConnect where the user can type the Commands.
 * **Doctor**: A staff of the clinic
