@@ -15,13 +15,8 @@ Graphical User Interface (GUI). With EP, you can streamline your HR processes an
 So why wait? Don't miss out on the opportunity to bring your productivity to another level. Head over to [Quick Start](#quick-start) now and
 experience the game-changing benefits that EP can bring to your work!
 
-### Table of Contents
-
-* Table of Contents
-{:toc}
-
-
 --------------------------------------------------------------------------------------------------------------------
+
 ## Using this Guide
 This guide walks you through the comprehensive features of **ExecutivePro**.
 
@@ -30,7 +25,16 @@ Refer to the [Table of Contents](#table-of-contents) to easily navigate around d
 If you require assistance in the setting up of **ExecutivePro**, head over to [Quick Start](#quick-start).
 If you have set up **ExecutivePro**, feel free to navigate to [Features](#features) to learn how to use the features we offer.
 
-### Symbols and Syntax
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
+
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Symbols and Syntax
 
 Here are some of the symbols to take note of when going through this user guide:
 
@@ -40,6 +44,71 @@ Here are some of the symbols to take note of when going through this user guide:
 | [`code`]    | The brackets around the code indicate that the field is optional. |
 | :bulb:      | Tips for ExecutivePro Users.                                      |
 | :warning:   | Be wary and proceed with caution.                                 |
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## The User Interface
+
+Below is an image of ExecutivePro User Interface with the main components labelled.
+
+![GUI](images/UserGuide/LabelledGUI.png)
+
+| No. | Component                    | Description                                                                                                                                    |
+|-----|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Toolbar                      | "File" button to exit program manually. Help window will appear with the click of "Help" button.                                               |
+| 2   | Employee List                | Displays the list of employees, with their basic information like `Name`, `Employee Id`, `Department` and `tags`.                              |
+| 3   | Display Panel                | Displays the information of an employee. The information includes the employee's personal details, department, payroll and leave information.  |
+| 4   | Command Panel                | Displays the system message after the execution of a command. The system message describes the outcome of the entered command.                 |
+| 5   | Command Line Interface (CLI) | Users are able to type their inputs and commands on this CLI.                                                                                  |
+
+#### 1. Toolbar
+
+<img src="images/UserGuide/Toolbar.png" height=40>
+
+This Toolbar can be used to :
+
+1. Exit the application through the **File** button
+2. Access the Help guide through the **Help** button
+
+#### 2. Employee List 
+
+<img src="images/UserGuide/EmployeeList.png" class="centerImage">
+
+This shows the whole employee list with basic information such as _Name_, _Employee ID_, _Department_ and their respective tags.
+
+This will come in handy if:
+
+1. You want a general overview of the employees in the company as of this moment.
+2. You want to quickly find out their Employee ID to view more details.
+
+<div style="page-break-after: always"></div>
+
+#### 3. Display Panel
+
+<img src="images/UserGuide/DisplayPanel.png" class="centerImage">
+
+This section shows a specific employee's particulars.
+
+<u> Things to note: </u>
+
+1. On startup of the application, this panel shows "Welcome to ExecutivePro"
+2. To view an employee's particulars in this panel, click on one of the employees in the employee list.
+3. If you delete an employee that you are currently viewing, the display panel will display the next employee's particulars.
+
+
+#### 4. Command Panel
+
+<img src="images/UserGuide/Command.png" class="centerImage">
+
+This section displays relevant messages or errors after the command is entered.
+
+#### 5. Command Line Interface(CLI)
+
+<img src="images/UserGuide/CLI.png" class="centerImage">
+
+You can enter your user commands in this section.
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -57,35 +126,9 @@ Here are some of the symbols to take note of when going through this user guide:
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ExecutivePro.
 
-4. Double-click the file to start the app. A GUI similar to below should appear in a few seconds.
-   Note how the app contains some sample data.<br>
-
-   <img class="centerImage" src="./images/UserGuide/Ui.png"/>
-
-5. You can start by typing a command in the command panel and pressing Enter to execute it. e.g.
-   typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-    - **`list`** : Lists all employees in the company.
-
-    - **`add`** :`add n/Mark Doe p/98765432 d/Marketing pr/1000 15 e/markd@example.com a/311, Clementi Ave 2, #02-25
-      t/SoftwareEngineer` : Adds an employee named `Mark Doe`, with fields phone number, department, payroll,
-      email, address, and tags to ExecutivePro's database.
-
-    - **`delete 3`** : Deletes employee with ID 3.
-
-    - **`exit`** : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-## Features
 <div markdown="block" class="alert alert-info">
 
-* Items with `…` after them can either be omitted or used one or more times.<br>
-  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-### <u> Starting ExecutivePro application: </u>
+### Starting ExecutivePro application: 
 :warning: **Note:**
 To get started with ExecutivePro, the HR manager will need to run the application using
 their terminal or command prompt. Follow the steps below:
@@ -104,8 +147,11 @@ Step 3 (Running the Application) :
 Once you are in the correct directory, type the following command and hit Enter:
 `java -jar ExecutivePro.jar`
 
-This command will start the application, and the data folder should appear in the same directory as the
-ExecutivePro.jar file after the application is run successfully.
+A GUI similar to below should appear in a few seconds. Note how the app contains some sample data.
+
+<img class="centerImage" src="./images/UserGuide/quickstartUi.png"/>
+
+A data folder should appear in the same directory as the ExecutivePro.jar file after the application is run successfully.
 
 If the data folder is still missing, simply create a `data` folder by creating a new folder in the same
 folder where the jar file is located.
@@ -115,7 +161,15 @@ such as adding employees using the `batchadd` command and exporting the database
 
 </div>
 
+Refer to the [Features](#features) below for details of each command.
+
+
 --------------------------------------------------------------------------------------------------------------------
+## Features
+
+* Items with `…` after them can either be omitted or used one or more times.<br>
+  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
 ### Viewing help : `help`
 There can be a lot of information to take in, so if you ever _feel lost_ while using ExecutivePro,
 getting help with the commands is just a simple step away.
@@ -234,12 +288,7 @@ please refer to the instructions under the heading, "Opening .csv files in Excel
 In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
 Also note that as of version `1.3` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
 
-In the upcoming versions, we will expand `batchadd` feature to:
-
-1. Support different types of files
-2. Include more fields like performance and leaves
-
-<u> Opening .csv files in Excel: </u>
+<div id = "<u> Opening .csv files in Excel: </u>"></div> {#opening-csv-files-in-excel}
 
 
 When using the `batchadd` feature, it is crucial to ensure that the dates in the CSV file are in the [correct format](#field-formats).
