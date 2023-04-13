@@ -665,3 +665,18 @@ This table describes the requirements for the input format of the fields.
 | **Exit**        | `exit`                                                                                                                                                                                                                                                                                                          |
 | **Clear**       | `clear`                                                                                                                                                                                                                                                                                                         |
 | **Filter**      | `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT` <br> e.g., `filter pr > 1500`                                                                                                                                                                                                                      |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+- **HR**: _Human Resources_ department of a company responsible for managing employee life cycle and administering employee benefits.
+- **HR Manager**: _Human Resource Manager_ will lead and direct the routine functions of the Human Resources (HR) department including hiring and interviewing staff, administering pay, benefits, and leave, and enforcing company policies and practices.
+- **CLI**: _Command Line Interface (CLI)_ is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
+- **GUI**: _Graphical User Interface (GUI)_ is a digital interface in which a user interacts with graphical components such as icons, buttons, and menus.
+- **Terminal/Command Prompt**: _Terminal_ and _Command Prompt_ are interfaces which let you access the command line.
+- **Hard Disk**: _Hard Disk_ is a kind of technology that stores the operating system, applications, and data files such a documents, pictures and music that your computer uses.
+- **JAR**: JAR stands for _Java ARchive_. It's a file format based on the popular ZIP file format and is used for aggregating many files into one.
+- **CSV**: _Comma-Separated Values (CSV)_ file is a text file that has a specific format which allows data to be saved in a table structured format.
+- **JSON**: _JavaScript Object Notation (JSON)_ is a standard text-based format for representing structured data and is commonly used for transmitting data in web applications.
+
