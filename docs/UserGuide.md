@@ -89,16 +89,16 @@ A caution looks like this.
 * Double-click on `clipboard.jar` to run it. If this does not work, go to *Option 2*.
 
 *Option 2*:
-1. Open a command terminal. [Guide to open a command terminal](https://www.ionos.com/help/email/troubleshooting-mail-basicmail-business/access-the-command-prompt-or-terminal/#:~:text=Open%20Command%20Prompt%20in%20Windows,cmd%22%20and%20then%20click%20OK.).
+1. Open a command terminal. [Guide to open a command terminal (External link)](https://www.ionos.com/help/email/troubleshooting-mail-basicmail-business/access-the-command-prompt-or-terminal/#:~:text=Open%20Command%20Prompt%20in%20Windows,cmd%22%20and%20then%20click%20OK.).
 2. Copy the file path of the **folder** you put `clipboard.jar` in.
-    * [Guide For Windows](https://www.howtogeek.com/670447/how-to-copy-the-full-path-of-a-file-on-windows-10/)
-    * [Guide For MacOS](https://support.apple.com/en-sg/guide/mac-help/mchlp1774/mac#:~:text=Show%20the%20path%20to%20a%20file%20or%20folder&text=Choose%20View%20%3E%20Show%20Path%20Bar,bottom%20of%20the%20Finder%20window.)
-    * [Guide For Linux](https://www.tutorialspoint.com/get-the-full-path-of-a-file-in-linux)
+    * [Guide For Windows (External link)](https://www.howtogeek.com/670447/how-to-copy-the-full-path-of-a-file-on-windows-10/)
+    * [Guide For MacOS (External link)](https://support.apple.com/en-sg/guide/mac-help/mchlp1774/mac#:~:text=Show%20the%20path%20to%20a%20file%20or%20folder&text=Choose%20View%20%3E%20Show%20Path%20Bar,bottom%20of%20the%20Finder%20window.)
+    * [Guide For Linux (External link)](https://www.tutorialspoint.com/get-the-full-path-of-a-file-in-linux)
 3. In the command terminal, type `cd <FILE_PATH>`, where `<FILE_PATH>` is the file path you found in step 2.
 4. Type `java -jar clipboard.jar` into the command terminal and press `ENTER` to launch CLIpboard.&nbsp;
 
 If you see something like this, you're good to go!<br>
-<img src="./images/UiCoursePage.png" width="650" height="529"/>
+<img src="./images/UiCoursePage.png" max-width="80%" max-height="80%"/>
 <br>
 *CLIpboard contains some sample data if there is no initial data, as is the case when you first launch it.*
 
@@ -122,7 +122,7 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
 
 The image below depicts how some of the visual elements are referred to in this guide.
 
-<img src="./images/VisualGuide.png" width="650" height="530"/>
+<img src="./images/VisualGuide.png" max-width="80%" max-height="80%"/>
 <br>
 
 ### Navigation
@@ -132,7 +132,7 @@ Simply choose from a selection of `select`, `back`, `session`, or `task` command
 
 Here's a handy navigation map to get around CLIpboard.
 
-<img src="./images/navigationguide.png" width="650" height="530"/>
+<img src="./images/navigationguide.png" max-width="80%" max-height="80%"/>
 <br>
 
 Here's a hypothetical workflow that might help you better understand the figure above:<br>
@@ -211,7 +211,7 @@ Commands are like giving instructions to CLIpboard on what to do.
 
 A typical command would look like this:
 <br>
-<img src="./images/typicalcommand.png" width="400" height="138"/>
+<img src="./images/typicalcommand.png" max-width="35%" max-height="35%"/>
 
 **Command keyword(s)**: Typically 1 or 2 words, they specify the type of action for CLIpboard to execute.<br>
 **Supplementary command information**: These provide additional context about a command you wish to execute. Conventionally, these are referred to as "arguments" or "parameters".
