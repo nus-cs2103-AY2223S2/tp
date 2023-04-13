@@ -24,7 +24,7 @@ Do not worry if this is your first time using the application. This user guide c
 
 2. Download the latest `MediConnect.jar` file from [here](https://github.com/AY2223S2-CS2103T-W13-1/tp/releases).
 
-3. Copy the file to a new empty folder (eg. Desktop, Documents, etc) that you want to use for MediConnect.
+3. Copy the file to a new empty folder (e.g., Desktop, Documents, etc) that you want to use for MediConnect.
 
 4. Double-click the file to start the app. If MediConnect is unable to open, kindly refer to the [FAQ](#faq) section.
    A GUI similar to the image below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -33,7 +33,7 @@ Do not worry if this is your first time using the application. This user guide c
         <img src="images/Ui.png" width="300" />
     </p>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g., typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all stored patients and doctors.
@@ -55,23 +55,23 @@ Do not worry if this is your first time using the application. This user guide c
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addPatient n/NAME`, `NAME` is a parameter which can be used as `addPatient n/John Doe`.
+  e.g., in `addPatient n/NAME`, `NAME` is a parameter which can be used as `addPatient n/John Doe`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g., if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but it's specified multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if the command specifies `p/12341234 p/56785678`, only `p/56785678` will be stored.
+  e.g., if the command specifies `p/12341234 p/56785678`, only `p/56785678` will be stored.
 
 * Parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Parameters in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g., `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
     * **All other parameters must be filled, following the restrictions in the table below.**
 
 * Parameters with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g., `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 </div>
 
@@ -82,7 +82,7 @@ Do not worry if this is your first time using the application. This user guide c
 |------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Address**      | a/     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | **Cost**         | c/     | 1. Should either be a number larger or equal to 0. <br> 2. Supports up to 2 decimal places.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| **Date**         | d/     | 1. Format should be DD-MM-YYYY HH:mm, e.g., 31-03-2023 14:00. <br> 2. HH:mm should follow the 24-hour notation".  <br> 3. Day ('DD') must be between 01-31 and Month ('MM') between 01-12. Date must be valid a valid calendar date (eg. `30-13-2023 10:00` is not a valid `DATE`).                                                                                                                                                                                                                                                                                                                                  |
+| **Date**         | d/     | 1. Format should be DD-MM-YYYY HH:mm, e.g., 31-03-2023 14:00. <br> 2. HH:mm should follow the 24-hour notation".  <br> 3. Day ('DD') must be between 01-31 and Month ('MM') between 01-12. Date must be valid a valid calendar date (e.g., `30-13-2023 10:00` is not a valid `DATE`).                                                                                                                                                                                                                                                                                                                                |
 | **Email**        | e/     | 1. Should be of the format local-part@domain <br> 2. The local-part should only contain alphanumeric characters and these special characters (+_.-). The local-part may not start or end with any special characters. <br> 3. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br> The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
 | **Medication**   | m/     | Should only contain alphanumeric characters and spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **Name**         | n/     | Should only contain alphanumeric characters and spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -181,8 +181,8 @@ Finds and displays information about the specified person.
 Format: `find ic/NRIC`
 
 * Finds the person with the specified `NRIC`
-* Search is case-insensitive. e.g `s1234567a` will match with `S1234567A`.
-* Only the NRIC is searched, additional parameter(s) (e.g. n/NAME) will be ignored.
+* Search is case-insensitive. (e.g., `s1234567a` will match with `S1234567A`).
+* Only the NRIC is searched, additional parameter(s) (e.g., n/NAME) will be ignored.
 * Only full NRIC entries can be searched.
 
 Example:
@@ -367,7 +367,7 @@ No, you would have to copy over the saved data from your current device to the o
 ## Glossary
 [Click here to access the table of contents](#table-of-contents)
 
-* **Alphanumeric**: Only contains letters(eg. A-Z, a-z) and numbers (eg. 10, 100, etc).
+* **Alphanumeric**: Only contains letters(e.g., A-Z, a-z) and numbers (e.g., 10, 100, etc).
 * **CLI**: Text input accepted by MediConnect.
 * **Command**: The action that the user wishes to perform on MediConnect.
 * **Command Box**: The box at the top of MediConnect where the user can type the Commands.
@@ -394,5 +394,5 @@ No, you would have to copy over the saved data from your current device to the o
 | **Find**               | `find ic/NRIC`<br> e.g., `find ic/S1234567A`                                                                                                                                                                                                                                                                                                             |
 | **Help**               | `help`                                                                                                                                                                                                                                                                                                                                                   |
 | **List**               | `list` <br> `listDoctors` <br> `listPatients`                                                                                                                                                                                                                                                                                                            |
-| **Prescribe**          | `prescribe ic/NRIC m/MEDICATION c/COST` <br> e.g, prescribe ic/S1234567A m/paracetamol c/10.7                                                                                                                                                                                                                                                            |
+| **Prescribe**          | `prescribe ic/NRIC m/MEDICATION c/COST` <br> e.g., prescribe ic/S1234567A m/paracetamol c/10.7                                                                                                                                                                                                                                                           |
 | **Unprescribe**        | `unprescribe ic/NRIC m/MEDICATION` <br> e.g., unprescribe ic/S1234567A  m/paracetamol                                                                                                                                                                                                                                                                    |
