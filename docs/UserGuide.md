@@ -545,6 +545,8 @@ Format: `list`
 #### 4.3.2 Finding applications : `find`
 
 Finds internship applications with information containing any of the given keywords **amongst all existing applications**.
+<div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
+Exams are nearing and you are extremely busy! You want to know which internship offers you have at hand so you can accept one of the offers. Using `find s/offered`, the applications with companies that have responded with an offer will be listed. Thanks to this, you can see all your offers at a quick glance! :v:</div>
 
 Format: `find keywords(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
 
