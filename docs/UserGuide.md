@@ -53,21 +53,34 @@ Below is an image of ExecutivePro User Interface with the main components labell
 | No. | Component                    | Description                                                                                                                                    |
 |-----|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1   | Toolbar                      | "File" button to exit program manually. Help window will appear with the click of "Help" button.                                               |
-| 2   | Employee List                | Displays the list of employees, with their basic information like `Name`, `Employee Id`, `Department` and `tags`.                              |
-| 3   | Display Panel                | Displays the information of an employee. The information includes the employee's personal details, department, payroll and leave information.  |
+| 2   | Display Panel                | Displays the information of an employee. The information includes the employee's personal details, department, payroll and leave information.  |
+| 3   | Employee List                | Displays the list of employees, with their basic information like `Name`, `Employee Id`, `Department` and `tags`.                              |
 | 4   | Command Panel                | Displays the system message after the execution of a command. The system message describes the outcome of the entered command.                 |
 | 5   | Command Line Interface (CLI) | Users are able to type their inputs and commands on this CLI.                                                                                  |
 
 #### 1. Toolbar
 
-<img src="images/UserGuide/Toolbar.png" height=40>
+<img src="images/UserGuide/Toolbar.png">
 
 This Toolbar can be used to :
 
 1. Exit the application through the **File** button
 2. Access the Help guide through the **Help** button
 
-#### 2. Employee List 
+
+#### 2. Display Panel
+
+<img src="images/UserGuide/DisplayPanel.png" class="centerImage">
+
+This section shows a specific employee's particulars.
+
+<u> Things to note: </u>
+
+1. On startup of the application, this panel shows "Welcome to ExecutivePro"
+2. To view an employee's particulars in this panel, click on one of the employees in the employee list.
+3. If you delete an employee that you are currently viewing, the display panel will display the next employee's particulars.
+
+#### 3. Employee List
 
 <img src="images/UserGuide/EmployeeList.png" class="centerImage">
 
@@ -80,19 +93,6 @@ This will come in handy if:
 
 <div style="page-break-after: always"></div>
 
-#### 3. Display Panel
-
-<img src="images/UserGuide/DisplayPanel.png" class="centerImage">
-
-This section shows a specific employee's particulars.
-
-<u> Things to note: </u>
-
-1. On startup of the application, this panel shows "Welcome to ExecutivePro"
-2. To view an employee's particulars in this panel, click on one of the employees in the employee list.
-3. If you delete an employee that you are currently viewing, the display panel will display the next employee's particulars.
-
-
 #### 4. Command Panel
 
 <img src="images/UserGuide/commandpanel.png" class="centerImage">
@@ -100,10 +100,16 @@ This section shows a specific employee's particulars.
 This section displays relevant messages or errors after the command is entered.
 
 #### 5. Command Line Interface(CLI)
+<u> What is CLI?</u>
+
+To understand CLI better, here is an analogy:
+Imagine you are in a restaurant with a talented chef in the kitchen. The chef represents the computer.
+The CLI is like communicating directly with the chef by giving specific 
+instructions or "orders" about what you want to eat. Hence, the CLI is a way to interact with your computer by giving precise, text-based instructions,
+much like talking directly to a chef to customize your meal.
 
 <img src="images/UserGuide/CLI.png" class="centerImage">
-
-You can enter your user commands in this section.
+In this section, you can enter your user commands in the command line in order to communicate with the application.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -123,10 +129,8 @@ You can enter your user commands in this section.
 This folder can be on your Desktop or any location you prefer.
 In the below image, the folder `test` is placed in the Desktop.
 <img src="images/UserGuide/jarfile.png" class="centerImage">
-
 Furthermore, the jar file has been placed in the `test` folder as shown below.
 <img src="images/UserGuide/jarfile2.png" class="centerImage">
-
 
 <div markdown="block" class="alert alert-info">
 
@@ -292,7 +296,7 @@ please refer to the instructions [here](#opening-csv-files-in-excel)
 In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
 Also note that as of version `1.3` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
 
-###### Opening .csv files in Excel 
+#### Opening .csv files in Excel 
 
 When using the `batchadd` feature, it is crucial to ensure that the dates in the CSV file are in the [correct format](#field-formats).
 ExecutivePro expects dates to be in the following format: YYYY-MM-DD. If the dates in your CSV file are in a different format, you'll need to convert them before uploading the file to prevent errors and unsuccessful imports.
