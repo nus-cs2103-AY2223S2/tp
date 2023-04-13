@@ -122,7 +122,7 @@ Before diving in, it might be useful to take a moment to understand some of CLIp
 
 The image below depicts how some of the visual elements are referred to in this guide.
 
-<img src="./images/VisualGuide.png" width="650" height="529"/>
+<img src="./images/VisualGuide.png" width="650" height="530"/>
 <br>
 
 ### Navigation
@@ -171,8 +171,8 @@ Here is a list of amazing features that CLIpboard supports:
   - [Deleting a group: ](#deleting-a-group-delete-group) `delete group`
   - [Editing a group: ](#editing-a-group-edit-group) `edit group`
   - [Selecting a group to display its Student Page: ](#selecting-a-group-select) `select`
-  - [Displaying sessions of a group: ](#displaying-sessions-of-a-group-session) `session`
-  - [Displaying tasks of a group: ](#displaying-tasks-of-a-group-task) `task`
+  - [Displaying sessions of a group: ](#displaying-the-sessions-of-a-group-session) `session`
+  - [Displaying tasks of a group: ](#displaying-the-tasks-of-a-group-task) `task`
   - [Finding a group: ](#finding-a-group-find-group) `find group`
 - [Managing Students: ](#managing-students)
   - [Adding a student: ](#adding-a-student-add-student) `add student`
