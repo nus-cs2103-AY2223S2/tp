@@ -153,8 +153,8 @@ Here's a hypothetical workflow that might help you better understand the figure 
 Here is a list of amazing features that CLIpboard supports:
 
 - [General Features: ](#general-commands)
-  - [Displaying the home page: ](#displaying-the-home-page-home) `home`
-  - [Displaying the previous page: ](#displaying-the-previous-page-you-were-at-back) `back`
+  - [Showing the home page: ](#showing-the-home-page-home) `home`
+  - [Going back to the previous page: ](#going-back-to-the-previous-page-back) `back`
   - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
   - [Help: ](#help-help) `help`
   - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
@@ -166,7 +166,7 @@ Here is a list of amazing features that CLIpboard supports:
   - [Editing a course: ](#editing-a-course-edit-course) `edit course`
   - [Selecting a course to display its Group Page: ](#selecting-a-course-select) `select`
   - [Finding a course: ](#finding-a-course-find-course) `find course`
-- [Managing Groups: ](#group-page-commands)
+- [Managing Groups: ](#managing-groups)
   - [Adding a group: ](#adding-a-group-add-group) `add group`
   - [Deleting a group: ](#deleting-a-group-delete-group) `delete group`
   - [Editing a group: ](#editing-a-group-edit-group) `edit group`
@@ -174,7 +174,7 @@ Here is a list of amazing features that CLIpboard supports:
   - [Displaying sessions of a group: ](#displaying-sessions-of-a-group-session) `session`
   - [Displaying tasks of a group: ](#displaying-tasks-of-a-group-task) `task`
   - [Finding a group: ](#finding-a-group-find-group) `find group`
-- [Managing Students: ](#students-page-commands)
+- [Managing Students: ](#managing-students)
   - [Adding a student: ](#adding-a-student-add-student) `add student`
   - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
   - [Editing a student: ](#editing-a-student-edit-student) `edit student`
@@ -183,7 +183,7 @@ Here is a list of amazing features that CLIpboard supports:
   - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
   - [Display a student's information:  ](#display-a-students-information-select) `select`
   - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
-  - [Upload a student's photo: ](#uploading-a-students-photo-upload) `upload`
+  - [Uploading a student's photo: ](#uploading-a-students-photo-upload) `upload`
   - [Display a summary of a student's attendance: ](#viewing-a-students-attendance-throughout-the-course-attendance) `attendance`
 - [Managing Sessions: ](#managing-sessions)
   - [Adding a session: ](#adding-a-session-add-session) `add session`
@@ -192,8 +192,8 @@ Here is a list of amazing features that CLIpboard supports:
   - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking-select) `select`
   - [Finding a session: ](#finding-a-session-find-session) `find session`
 - [Managing Attendance: ](#attendance-page-commands)
-  - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
-  - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
+  - [Marking students as present: ](#marking-students-as-present-mark) `mark`
+  - [Marking students as absent: ](#marking-students-as-absent-unmark) `unmark`
   - [View the overall attendance of a session: ](#view-the-overall-attendance-of-a-session-attendance) `attendance`
 - [Managing Tasks: ](#managing-tasks)
   - [Adding a task: ](#adding-a-task-add-task) `add task`
