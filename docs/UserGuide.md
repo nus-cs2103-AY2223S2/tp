@@ -155,6 +155,7 @@ introduce you to the user interface. Do have a look at Figure 2 shown below.
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="module"></a>**Familiarising yourself with a module**
 
@@ -257,7 +258,7 @@ Examples of valid usages:
 * `add n/CS2030S t/Lab a/COM1-B112 d/040423 23:59 r/Attendance not compulsory :)`
 
 <p align="center">
-   <img src="images/add.png">
+   <img width="484" height="624" src="images/add.png">
 </p>
 
 <div align="center">Figure 3 : Adding a new module into the tracker.</div>
