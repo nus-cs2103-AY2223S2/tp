@@ -234,7 +234,7 @@ To help you understand how CLIpboard recognises commands, these are some of the 
   - e.g. in `add course <COURSE>`, `<COURSE>` is a parameter. `<COURSE>` can be replaced with a course code to form the command `add course CS2103T`.
 - **Square brackets (`[]`)**: Parameters in square brackets are optional.<br>
   - e.g If the parameters are specified as `[n/<NAME>] [p/<PHONE_NUMBER>]`, omitting these parameters are acceptable.
-- **Elipses(`…`)**: Parameters postfixed by `…` can have multiple inputs.<br>
+- **Elipses (`…`)**: Parameters postfixed by `…` can have multiple inputs.<br>
   - e.g. `mark <INDEX>…` can be used as `mark 1` or `mark 1,2,3` etc.
 - **Index**: CLIpboard displays items like courses and groups as numbered lists. The *index* of an item in the list might be required as a parameter for some commands.
   - e.g. if the specified command format is `delete course <INDEX>`, and you enter `delete course 3`, CLIpboard will delete the *third* course in the course list.
