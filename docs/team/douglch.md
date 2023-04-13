@@ -25,7 +25,7 @@ I have also written a comprehensive set of test cases for the `Client` entity an
 * Note: More on what else I've written can be found in the RepoSense link above.
 
 * **Documentation**:
-  * **Contributions to UG**: I wrote the User Guide for the `Client` entity, including the `add`, `delete`, `edit`, `find`, under the `Managing Clients` section.
+  * **Contributions to UG**: I wrote the User Guide for the `Client` entity, including the adding, deleting, and updating of clients, under the `Managing Clients` section.
   * **Contributions to DG**: I documented the sections under `Architecture`, `Model`, and `Storage`.
 
 * **Code Reviews**:
