@@ -60,7 +60,7 @@ Below is an image of ExecutivePro User Interface with the main components labell
 
 #### 1. Toolbar
 
-<img src="images/UserGuide/Toolbar.png">
+![Toolbar](images/UserGuide/tool.png)
 
 This Toolbar can be used to :
 
@@ -610,7 +610,7 @@ If your changes to the data file makes its format invalid, ExecutivePro will dis
 **A**: Install the app on the other computer and overwrite the empty data file. This creates a new file that contains the data of your previous ExecutivePro home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-[Return to `add` feature](#adding-an-employee--add)
+[Return to `add` feature](/#adding-an-employee--add)
 ## Order of Fields
 
 This table describes the requirements and order of the fields.
@@ -630,8 +630,8 @@ This table describes the requirements and order of the fields.
 
 
 --------------------------------------------------------------------------------------------------------------------
-[Return to `add` feature](#adding-an-employee--add) \
-[Return to `batchadd` feature](#adding-multiple-employees-at-once--batchadd)
+[Return to `add` feature](/#adding-an-employee--add) \
+[Return to `batchadd` feature](/#adding-multiple-employees-at-once--batchadd)
 
 ## Field Formats
 
