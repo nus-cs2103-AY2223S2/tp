@@ -129,7 +129,7 @@ launching the application. The [reminder window](#reminder) will be further disc
 
 
 <p align="center">
-  <img height="370" width="370" src="images/Ui.png">
+  <img src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the software.</div>
@@ -257,13 +257,12 @@ Examples of valid usages:
 * `add n/CS2030S t/Lab a/COM1-B112 d/040423 23:59 r/Attendance not compulsory :)`
 
 <p align="center">
-   <img height="400" width="300" src="images/add.png">
+   <img src="images/add.png">
 </p>
 
 <div align="center">Figure 3 : Adding a new module into the tracker.</div>
 <br>
 
-<div style="page-break-after: always;"></div>
 <br>
 
 Examples of invalid usages:
@@ -277,6 +276,7 @@ Please refer to [format restrictions](#format) to find out more.
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### <a id="delete"></a>Deleting a module: `delete`
 
@@ -293,7 +293,7 @@ Format: `delete INDEX`
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
 <p align="center">
-   <img height="400" width="550" src="images/delete.png">
+   <img src="images/delete.png">
 </p>
 
 <div align="center">Figure 4 : Deleting a module from the tracker.</div>
@@ -327,7 +327,7 @@ Examples of valid usages:
   module to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
 
 <p align="center">
-   <img height="400" width="330" src="images/edit.png">
+   <img src="images/edit.png">
 </p>
 
 <div align="center">Figure 5 : Editing a module in the tracker.</div>
@@ -362,7 +362,7 @@ Examples:
 * `find CS2103T` finds all modules with name and/or description including the word `CS2103T`.
 
 <p align="center">
-   <img height="350" width="270" src="images/find.png">
+   <img src="images/find.png">
 </p>
 
 <div align="center">Figure 6 : Finding a module in the tracker.</div>
@@ -391,7 +391,7 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 * For example, a module with deadline `250623` will be shown before a module with deadline `260623`.
 
 <p align="center">
-   <img height="350" width="265" src="images/sort.png">
+   <img src="images/sort.png">
 </p>
 
 <div align="center">Figure 7 : Sorting the modules based on deadline.</div>
@@ -417,7 +417,7 @@ to use the commands.
 * This is a straight-forward command, and all you have to type is `help`
 
 <p align="center">
-   <img height="450" width="400" src="images/helpMessage.png">
+   <img src="images/helpMessage.png">
 </p>
 
 <div align="center">Figure 8 : Help window.</div>
@@ -462,7 +462,7 @@ you to display the pop-up window at any other point in time. However, this will 
 at features [coming soon](#coming) if you are interested.
 
 <p align="center">
-   <img height="250" width="400" src="images/reminder.png">
+   <img src="images/reminder.png">
 </p>
 
 <div align="center">Figure 9 : Reminder window.</div>
