@@ -361,7 +361,7 @@ Examples:
 * `find CS2103T` finds all modules with name and/or description including the word `CS2103T`.
 
 <p align="center">
-   <img src="images/find.png">
+   <img width="333" height="465" src="images/find.png">
 </p>
 
 <div align="center">Figure 6 : Finding a module in the tracker.</div>
@@ -390,7 +390,7 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 * For example, a module with deadline `250623` will be shown before a module with deadline `260623`.
 
 <p align="center">
-   <img src="images/sort.png">
+   <img width="382" height="539" src="images/sort.png">
 </p>
 
 <div align="center">Figure 7 : Sorting the modules based on deadline.</div>
