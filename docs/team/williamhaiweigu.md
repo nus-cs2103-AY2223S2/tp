@@ -71,3 +71,7 @@ changes: [#108, #203, #221, #231, #232, #241](https://github.com/AY2223S2-CS2103
 
 Reported [7 issues](https://github.com/WilliamHaiweiGu/ped/issues) to [W16](https://github.com/AY2223S2-CS2103-W16-3/tp)
 .
+
+##Acknowledgements
+
+This project uses [Apache Commons CSV](https://commons.apache.org/proper/commons-csv/) under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
