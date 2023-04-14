@@ -7,7 +7,9 @@ Ultron is a **desktop app for compiling job and internship applications, optimiz
 
 ![Ui](images/Ui.png)
 
-Ultron tracks openings through a visual interface and allows you to enter commands to manage these openings efficiently. If you are familiar with the Ultron interface and can type fast, it can help you organise your internship applications in a much more efficient and structured manner compared to traditional methods such as using spreadsheets.
+Ultron is the best companion for any student actively searching for jobs or internships.
+
+If you are familiar with the Ultron interface and can type fast, it can help you organise your internship applications in a much more efficient and structured manner compared to traditional methods such as using spreadsheets.
 
 ---
 
