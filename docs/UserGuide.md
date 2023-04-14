@@ -520,7 +520,6 @@ Tags the current card as hard. This replaces any previous tags.
 Format: `'`
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 3.7. Other Features
 
