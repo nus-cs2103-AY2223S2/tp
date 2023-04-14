@@ -680,7 +680,6 @@ know what information are considered valid and what are not.<br>
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
 ------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>   
 
 ## <a id="data"></a>**Data Storage**
 
