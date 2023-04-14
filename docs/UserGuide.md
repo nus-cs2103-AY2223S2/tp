@@ -174,6 +174,8 @@ Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE e/EMAIL a/A
 
 </div>
 
+<br>
+
 Examples:
 
 - `add r/3SG n/Lawrence Tay u/1 GDS p/91649723 e/lawrencetay@gmail.com a/124 Drummond Street t/PlatoonSergeant t/AllergySeafood`
@@ -351,14 +353,16 @@ Format: `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE
 - When editing tags, the existing tags of the person will be removed. (i.e. adding of tags is not cumulative)
 - You can remove all the person's tags by typing `t/` without specifying any tags after it.
 
+<br>
+
 Examples:
 
-- `edit 1 p/91234567 e/johndoe@example.com`
-
+- `edit 1 p/91234567 e/johndoe@example.com` <br>
   Edits the phone number and email address of the 1st person in the existing main list to be `91234567`and `johndoe@example.com` respectively.
 
-- `edit 2 n/Betsy Crower t/`
+<br>
 
+- `edit 2 n/Betsy Crower t/`<br>
   Edits the name of the 2nd person in the existing main list to be `Betsy Crower` and clears all existing tags.
 
 <br>
@@ -377,6 +381,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - All fields (`rank`, `name`, `unit`, `company`, `platoon`, `phone`, `email`, `address`, `tags`) are searched.
 - Only part of a field is needed for a successful match. (e.g. `tani` will match `Botanic Gardens`)
 - Persons matching at least one keyword will be returned. (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` and `Bo Hans`)
+
+<br>
 
 Example:
 
@@ -406,6 +412,8 @@ Format: `filter [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [p/PLATOON] [p/PHONE] [e/
 - Only part of a field is needed for a successful match. (e.g. `tanic g` will match `Botanic Gardens`)
 - At **least** one of the optional fields must be provided.
 
+<br>
+
 Example:
 
 - `filter a/street r/sg`
@@ -430,14 +438,16 @@ Format: `delete INDEX`
 - The index refers to the index number shown in the displayed main list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
+<br>
+
 Examples:
 
-- `list` followed by `delete 2`
-
+- `list` followed by `delete 2`<br>
   The 2nd existing person in the main list will be deleted.
 
-- `find Betsy` followed by `delete 1`
+<br>
 
+- `find Betsy` followed by `delete 1`<br>
   The 1st person in the main list of the `find` command will be deleted.
 
 <br>
