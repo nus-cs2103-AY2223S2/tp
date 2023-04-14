@@ -90,7 +90,7 @@ Format: `help`
 #### Adding a person: `add`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you have an existing CSV dataset, you may choose to [import it directly](#Import-&-Export-CSV-file) rather than adding each contact individually.
+If you have an existing CSV dataset, you may choose to [import it directly](#import-and-export-csv-file) rather than adding each contact individually.
 </div>
 
 Adds a person to E-Lister.
@@ -325,7 +325,7 @@ Format: `shortcut ORIGINAL_COMMAND SHORTCUT`
 Examples:
 * `shortcut list lst` will allow the user to input `lst` in place of `list`.
 
-### **Import & Export CSV file**
+### **Import and Export CSV file**
 
 #### Import data from CSV : `import`
 
