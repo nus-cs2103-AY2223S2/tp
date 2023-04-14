@@ -135,13 +135,21 @@ as well as a [short tutorial](#34-short-tutorial).
 
 Step 1: Ensure you have Java `11` or above installed in your computer.
 
-Step 2: Download the latest `sprINT.jar` file [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.3.1).
+If you are unsure of whether you have installed it, you can check so by first opening a [command terminal](#command-terminal)
+and then typing `java --version`. If it is not installed, it will probably prompt you with the following: <br>
+**_`java` is not recognised as an internal or external command_** <br>
+Fret not; you can refer to this [online tutorial](https://java.tutorials24x7.com/blog/how-to-install-java-11-on-windows) 
+for detailed step-by-step installation instructions.
+
+Step 2: Download the latest `sprINT.jar` file [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.4).
 
 Step 3: Copy the file to the folder you want to use as the [home folder](#home-folder) for your sprINT application.
 
 Step 4: Double-click on the jar file to run the application.
-If it doesn't work, open a [command terminal](#command-terminal), enter `cd` with the path to the folder you put the jar file in,
-and type: `java -jar sprINT.jar` to run the application.<br>
+
+If double-clicking doesn't work, consider trying an alternative method of opening. <br>
+Open a [command terminal](#command-terminal), enter `cd` with the path to the folder you put the jar file in,
+and type: `java -jar sprINT.jar` to run the application.
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** `cd` stands for "change directory". As the name suggests, it is a command that allows you to navigate
@@ -624,8 +632,11 @@ ascending order of deadline (i.e. from earliest to latest), you can use the comm
 Choosing `deadline` will retrieve and display **all existing applications with tasks** (and therefore, deadlines). 
 If there are no applications that have tasks associated with them, an empty list will be displayed.
 
-The applications will be sorted by their task's deadline according to the specified sequence. Should there be two applications with
-the same deadline, the application entry that is more recently created will show up higher in the list.
+The applications will be sorted by their task's deadline according to the specified sequence. In the example shown in the screenshots above where the sequence
+`a` is specified for ascending sequence, you can see that the application to Apple is placed higher, as it has a task deadline for an `Interview`
+on 27 Apr 2023, compared to 29 Apr 2023 for the application to Amazon.
+
+Should there be two applications with the same task deadline however, the application entry that is more recently created will show up higher in the list.
 
 Other examples:
 * `sort d deadline` will fetch and display **all applications with task deadlines**, except those with further deadlines will be higher up in the list instead.
@@ -692,7 +703,7 @@ Displays statistics information for the current list of applications shown in th
 This includes the total number of applications currently displayed in the Application List Panel, as well as a 
 breakdown of these applications by status (shown both in numbers and as a pie chart).
 
-Format: no command is needed. Statistics information is recomputed and regenerated upon every command execution. 
+Format: no command is needed. Application statistics are recomputed and regenerated upon every command execution. 
 
 You may refer to the screenshots below for the before and after comparison of the Statistics panel, after an application's
 status was changed from `interested` to `applied`.
@@ -723,6 +734,8 @@ Format: `exit`
 
 Changes you've made  to your applications are automatically saved in your local storage after each command you execute
 that modifies the application data. There is no need to save manually.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.4.8 Editing the data file **(for Advanced users)**
 
@@ -804,6 +817,8 @@ In the context of sprINT, **positive integers** refer to whole numbers in the ra
 JSON is a way of storing and sharing data in a simple and standardised format that can be easily read by computers and
 understood by humans. sprINT uses JSON to store all your applications because it is _lightweight_, which means that
 sprINT can process your data more quickly! 
+
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 
