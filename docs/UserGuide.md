@@ -359,9 +359,9 @@ Format: `export [shown|all]`
 
 ![export example](images/exportExample.png)
 
-## Additional info on the User Interface
+## **Additional info on the User Interface**
 
-### **Filter Box**
+### Filter Box
 
 On the top-right corner of the display, you can see a small box where all the filters that were used on your persons list will be displayed.
 
@@ -369,7 +369,7 @@ On the top-right corner of the display, you can see a small box where all the fi
 
 *Why do we need this?* Imagine having to obtain a specific list of contacts with the tags `upperClass`, `healthy`, `premiumPlanCandidates`, `healthPlanCandidates`, and `returningCustomers`. It'll be useful to have all the current filters displayed so that you know which ones you have already applied!
 
-### **Input Log**
+### Input Log
 
 Below the Filter Box, an Input Log box displays commands you have previously entered.
 
