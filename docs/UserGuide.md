@@ -41,13 +41,13 @@ If you encounter a term that you are unsure about, the [Glossary](#glossary) is 
 
 Here are some of the symbols that may appear in this user guide:
 
-| Symbol    | Meaning                                                                                                                                                                      |
-|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`    | Text relevant to commands or name of a file.                                                                                                                                 |
-| [`code`]  | The brackets around the code indicate that the field is optional.                                                                                                            |
-| :bulb:    | Tips for ExecutivePro Users.                                                                                                                                                 |
-| :warning: | Be wary and proceed with caution.                                                                                                                                            |
-| `...`     | Items with `...` after them can either be omitted or used one or more times.<br/> Example:`[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc. |
+| Symbol    | Meaning                                                                                                                                                                 |
+|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`    | Text relevant to commands or name of a file.                                                                                                                            |
+| [`code`]  | The brackets around the code indicate that the field is optional.                                                                                                       |
+| :bulb:    | Tips for ExecutivePro Users.                                                                                                                                            |
+| :warning: | Be wary and proceed with caution.                                                                                                                                       |
+| `...`     | Items with `...` after them can either be omitted or used one or more times.<br/> Example:`[t/TAG]…` can be used as ` ` (omitted), `t/friend`, `t/friend t/family` etc. |
 
 --------------------------------------------------------------------------------------------------------------------
 ## The User Interface
