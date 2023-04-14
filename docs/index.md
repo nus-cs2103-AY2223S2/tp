@@ -1,19 +1,22 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: PowerCards
 ---
-
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
-
+[![CI Status](https://github.com/AY2223S2-CS2103T-W11-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W11-3/tp/actions)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W11-3/tp/branch/master/graph/badge.svg?token=OXR3WZBSBR)](https://codecov.io/gh/AY2223S2-CS2103T-W11-3/tp)
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+Are you an NUS student who wants to learn course materials in an effective and efficient manner? 
+You have heard of active recall and spaced repetition techniques, but have not found a way to implement them into your study routine?
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+If so, PowerCards is the power tool you are looking for. 
 
+- Optimized for those who prefer to work with a Command Line Interface (CLI), PowerCards allows you to make flashcards much faster than traditional flashcard apps ever could.
+- With its clean and intuitive user interface, PowerCards provides a zero-distraction environment during your long study sessions.
+
+Empower your learning, one PowerCards at a time.
 
 **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* This project is adapted from [AddressBook-Level3](https://se-education.org/) project created by SE-EDU initiative.

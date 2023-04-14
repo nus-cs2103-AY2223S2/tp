@@ -1,0 +1,17 @@
+@startuml
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class MasterDeck
+
+MasterDeck *--> "1" UniqueDeckList
+
+UniqueDeckList o--> "~* all" Deck
+UniqueCardList o--> "~* " Card
+
+Deck -r-> "1" UniqueCardList
+
+@enduml

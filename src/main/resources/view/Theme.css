@@ -1,0 +1,415 @@
+.background {
+    -fx-background-color: derive(#f9f9f9, 20%);
+    background-color: #f9f9f9; /* Used in the default.html file */
+}
+
+/* ===== status bar ====== */
+.label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
+    -fx-opacity: 0.9;
+}
+
+/* ===== vertical gap between left and right panel ==== */
+.split-pane:horizontal .split-pane-divider {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+/* the bottom horizontal pane containing the input and output boxes */
+.split-pane {
+    -fx-border-radius: 1;
+    -fx-border-width: 1;
+    -fx-background-color: #f4f8f9; /* this is the background colour of app */
+    -fx-padding: 0 20 20 20;
+}
+
+.cell_big_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+}
+
+.cell_small_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+}
+
+.stack-pane {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-width:5;
+}
+
+.pane-with-border {
+     -fx-background-color: #f4f8f9;
+     -fx-border-width:5;
+}
+
+.status-bar {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+}
+
+/* ============ MENU BAR ========== */
+.menu-bar .label {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #1d1d1d;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: black;
+}
+
+/* ============ SCROLL BAR ========== */
+.scroll-bar {
+    -fx-background-color: derive(#f9f9f9, 20%);
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: derive(#a9a9a9, 20%);
+    -fx-background-insets: 5;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 8 1 8;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 8 1 8 1;
+}
+
+/* ============ RIGHT PANEL ========== */
+#cardPane {
+    -fx-background-color: #007aff; /* the ios blue colour */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 1, 3);
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+    -fx-padding: 10 80 10 80;
+}
+
+#cardPane .label{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-padding: 5;
+}
+
+#cardPane #question {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+/* id number of the cards */
+#cardPane #id {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+#cardListView {
+    -fx-background-color: #e6eaeb;
+    -fx-background-radius: 0 0 15 15;
+    -fx-border-radius: 0 0 15 15;
+}
+
+#deckNamePane {
+    -fx-background-color:transparent;
+}
+
+#deckNamePane #title {
+    -fx-text-fill: black;
+    -fx-underline: true;
+}
+
+#deckNamePane #description {
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+}
+
+#deckNameView {
+    -fx-background-radius: 15 15 0 0;
+    -fx-border-radius: 15 15 0 0;
+    -fx-background-color: #e6eaeb;
+}
+
+#deckNameView .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 0;
+}
+
+#deckNameView .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 0;
+}
+
+#rightPanelTitlePlaceholder {
+    -fx-padding: 0 0 0 0;
+}
+
+/* ============ TAGS ========== */
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+    -fx-padding: 7;
+}
+
+#tags .label {
+    -fx-text-fill: black;
+    -fx-background-color: #e6eaeb;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 15;
+}
+
+/* ============ LEFT PANEL ========== */
+
+/* individual boxes of the decks */
+#deckPane {
+    -fx-background-color: #e6eaeb;
+    /* this is the same grey colour for deck pane, and the background of output and card panel */
+}
+
+#deckPane .label {
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+}
+
+#reviewStatsView {
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-background-color: white;
+    -fx-control-inner-background-alt: -fx-control-inner-background; /* removes default alternating colour */
+    -fx-padding: 10;
+}
+
+/* styles the individual stats in the list view */
+#reviewStatsElement {
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-background-color: transparent;
+}
+
+#reviewStatsElement #title {
+    -fx-text-fill: black;
+    -fx-underline: true;
+}
+
+#reviewStatsElement #description {
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+}
+
+#ReviewElementPane {
+    -fx-background-color: #524cd1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#ReviewElementPane .label{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-padding: 5;
+}
+
+#ReviewElementPane #question {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+#ReviewElementPane #id {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+/* ============ MODE TITLE ========== */
+#titlePanel{
+    -fx-background-color: #f4f8f9;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 0 25;
+}
+
+/* ============ BOTTOM SPLIT PANE ========== */
+
+/*#commandBox .split-pane-divider {*/
+/*    -fx-vertical-zero-line-visible: true;*/
+/*}*/
+
+/* ============ COMMAND INPUT BOX ========== */
+#commandTextField {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ffffff;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13pt;
+    -fx-text-fill: black;
+}
+
+/* ============ OUTPUT  BOX ========== */
+.result-display {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13pt;
+    -fx-text-fill: black;
+
+}
+
+.result-display .label {
+    -fx-text-fill: black !important;
+}
+
+#resultDisplay .content {
+    -fx-background-color: #e6eaeb;
+    -fx-border-color: #e6eaeb;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-width: 5;
+}
+
+/* ==================== unused styles ==============================*/
+
+/*
+ * Metro style Push Button
+ * Author: Pedro Duque Vieira
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ */
+.button {
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #1d1d1d;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.button:focused {
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: #1d1d1d;
+    -fx-text-fill: white;
+}
+
+.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: #ffffff;
+}
+
+.dialog-pane {
+    -fx-background-color: #1d1d1d;
+}
+
+.dialog-pane > *.button-bar > *.container {
+    -fx-background-color: #1d1d1d;
+}
+
+.dialog-pane > *.label.content {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.dialog-pane:header *.header-panel {
+    -fx-background-color: derive(#1d1d1d, 25%);
+}
+
+.dialog-pane:header *.header-panel *.label {
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-fill: white;
+    -fx-text-fill: white;
+}
+
+.tab-pane {
+    -fx-padding: 0 0 0 1;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 0 0 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+}
+
+.table-view {
+    -fx-base: #f9f9f9;
+    -fx-control-inner-background: #f9f9f9;
+    -fx-background-color: #f9f9f9;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-background-color: transparent;
+    -fx-border-color:
+        transparent
+        transparent
+        black
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 20pt;
+}
+.label-bright {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.label-header {
+    -fx-font-size: 32pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+#panel{
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-width: 5;
+}
+
+#commandTypeLabel {
+    -fx-font-size: 11px;
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-field {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.list-cell .label {
+    -fx-text-fill: white;
+}

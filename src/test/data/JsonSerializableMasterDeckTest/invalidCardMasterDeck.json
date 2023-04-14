@@ -1,0 +1,10 @@
+{
+  "cards": [ {
+    "question": "!nvalid question",
+    "answer": " Invalid answer",
+    "deck" : "Default"
+  } ],
+  "decks" : [ {
+    "deckName" : "Default"
+  } ]
+}

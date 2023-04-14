@@ -1,50 +1,76 @@
 @startuml
+
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
-Class ModelManager
-Class UserPrefs
+Package "Model" as PackageModel <<Rectangle>> {
+    Class "<<interface>>\nModel" as Model
+    Class "<<interface>>\nReadOnlyMasterDeck" as ReadOnlyMasterDeck
+    Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    Class "<<enumeration>>\nTagName" as TagName
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+    Class ModelManager {
+        -selectedDeck: Deck
+    }
+
+    Class MasterDeck
+    Class UserPrefs
+
+    Package "Card" as PackageCard <<Rectangle>> {
+        Class UniqueCardList
+        Class Card
+        Class Question
+        Class Answer
+        Class Tag
+    }
+
+    Package "Deck" as PackageDeck <<Rectangle>> {
+       Class UniqueDeckList
+       Class Deck
+    }
+
+    Package "Review" as PackageReview <<Rectangle>> {
+        Class Review
+    }
 
 }
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Model .l.> ReadOnlyUserPrefs
+Model .r.> ReadOnlyMasterDeck
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+
+MasterDeck .up.|> ReadOnlyMasterDeck
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ModelManager -l-> "1" UserPrefs
+ModelManager -r-> "1" MasterDeck
+ModelManager ---> "0..1" Review
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+MasterDeck *---> "1" UniqueDeckList
+MasterDeck *---> "1" UniqueCardList
 
-ModelManager -->"~* filtered" Person
+UniqueCardList o--> "~* all" Card
+UniqueDeckList o---> "~* all" Deck
+
+Card *--> "1" Question
+Card *--> "1" Answer
+Card --> "1" Tag
+Card -r> "1" Deck
+Tag --> TagName
+
+'Force position
+Question -right[hidden]- Answer
+Answer -right[hidden]- Tag
+
+ModelManager -->"~* filtered" Card
+ModelManager -->"0..1 selected" Deck
+ModelManager -->"~* filtered" Deck
+
 @enduml

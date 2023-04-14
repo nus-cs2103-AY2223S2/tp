@@ -1,0 +1,16 @@
+@startuml
+
+start
+:User enters command;
+:Check validity of command in current application mode;
+if () then ([command is valid])
+    :Execute command;
+    :Display success message;
+else ([else])
+    :Throw ParseException;
+    :Display error message;
+
+endif
+
+stop
+@enduml

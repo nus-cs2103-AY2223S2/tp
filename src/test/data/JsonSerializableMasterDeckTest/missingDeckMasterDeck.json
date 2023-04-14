@@ -1,0 +1,11 @@
+{
+  "cards": [ {
+    "question": "Como estas usted",
+    "answer": "Muy bien",
+    "tag": "easy",
+    "deck" : "MISSING"
+  } ],
+  "decks" : [ {
+    "deckName" : "Default"
+  } ]
+}

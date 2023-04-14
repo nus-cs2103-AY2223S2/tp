@@ -9,51 +9,54 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Rui Yi Gan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ruiyigan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://sg.linkedin.com/in/rui-yi-gan)]
+[[github](https://github.com/ruiyigan)]
+[[portfolio](team/ruiyigan.md)]
 
 * Role: Project Advisor
+* Responsibilities: Testing
 
-### Jane Doe
+### Lian Kok Hai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/unfazing.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://liankokhai.com)]
+[[github](http://github.com/unfazing)]
+[[portfolio](team/unfazing.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Park Hyunjin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hj-prk.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/hj-prk)] 
+[[portfolio](team/hj-prk.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Tran Hieu Nghia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rockman007372.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/rockman007372)]
+[[portfolio](team/rockman007372.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Bryan Juniano
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/junianob.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/junianob)]
+[[portfolio](team/junianob.md)]
 
 * Role: Developer
 * Responsibilities: UI

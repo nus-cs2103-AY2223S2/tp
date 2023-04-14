@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "Review" as PackageReview <<Rectangle>> {
+    Class Review
+    Class Deck
+    Class UniqueCardList
+    Class Card
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Review
+
+Review --> "1 "Deck
+Review --> "1"UniqueCardList
+Review --> "1 current"Card
+
+UniqueCardList -r-> "0...1" Card
+
+Deck -right[hidden]- UniqueCardList
+
+@enduml
