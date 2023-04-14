@@ -147,7 +147,7 @@ not need to be in lower case.
 
 ### Adding a patient record: `add`
 
-In a situation when you want to register a patient who is visiting your clinc for the first time, this feature can allow you to add the patient's record to the patient records list.
+Let's say a patient is visiting your clinic for the first time! Use the `add` command to add the patient records to the record list.
 
 Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
@@ -172,7 +172,7 @@ Above is the execution result of the input `add i/S1234567H n/Cedric Pei dob/03/
 
 ### Editing a patient record: `edit`
 
-In a situation when you want to update a patient's phone number or other particulars this feature can allow you to do so.
+Let's say a patient has moved to a different address or undergone significant changes in their medical history. Use the `edit` command to edit their personal particulars.
 
 Format: `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
 
@@ -194,7 +194,8 @@ Above is the execution result of the input `edit 7 i/G0000000A`.
 
 ### Viewing a patient detailed particulars: `view`
 
-In a situation when you want to obtain in depth information of a particular patient which is not available in the patient records list, you can use this feature to do so.
+To reduce clutter, we have placed the more in-depth information of a patient in the view panel to the right of the patient list.
+Use the `view` command to view these additional details of a patient.
 
 Format : `view i/NRIC`
 
@@ -210,9 +211,12 @@ Examples:
 Above is the execution result of the input `view i/S1234567H`.
 <div style="page-break-after: always;"></div>
 
+💡**Tip**:
+Double-clicking on a patient achieves the same result!
+
 ### Deleting a patient record: `delete`
 
-In a situation when you want to delete a patient from the patient records list due to death and the specified retention period is over, you can use this feature to do so.
+Let's say you have found an unintended duplicate in the patient records. You can delete this erroneous data using the `delete` command.
 
 Format: `delete i/NRIC…​`
 
@@ -227,7 +231,8 @@ Examples:
 
 ### Filtering patients by attribute: `find`
 
-You can search for patients based on their name, age, medical condition, or any other relevant criteria
+Let's say you want to filter for specific patients quickly during a busy shift. You can use the `find` command to search for patients
+based on their name, age, medical condition, or any other relevant criteria.
 
 Command Prefixes that can be searched:
 
@@ -282,7 +287,7 @@ Above is the execution result of the input `list`.
 
 ### Backing up patient records: `backup`
 
-In order to prevent data loss, you can back up the patient records to a specified slot represented by an index and add a description for the backup.
+Let's say you want to safekeep your current data for future reference. You can use the `backup` command to save the patient records to a specified slot represented by an index and add a description for the backup.
 
 Format: `backup INDEX_NO [b/DESCRIPTION]`
 
@@ -367,7 +372,7 @@ Above is the execution result of the input `clear`.
 
 ### Undoing previous command: `undo`
 
-In the event that your previous change was a mistake, you can use this feature to revert the patient records to the state before the previous command was executed.
+Let's say you have made an error when editing or deleting patient records. You can use this command to revert the patient records to the state before the previous command was executed.
 
 Format: `undo`
 
@@ -386,7 +391,7 @@ And above is the execution of `undo`
 
 ### Redoing previous undo: `redo`
 
-In the event that you accidentally removed the changes you made, you can use this feature to revert the patient records to the state before the previous undo was executed.
+Let's say you have accidentally removed the changes you made. You can use this command to revert the patient records to the state before the previous undo was executed.
 
 <div markdown="span" class="alert alert-info">:information_source:**Note:** Redo can only be executed if undo command
 has been executed.
@@ -402,7 +407,7 @@ Following the above example for `undo`, `redo` would subsequently change the nam
 
 ### Switching to light mode: `light`
 
-Switches the GUI to light mode.
+Switches the GUI to light mode. This mode is preferred during daytime as it allows for better visibaility.
 
 Format: `light`
 
@@ -413,7 +418,7 @@ Above is the execution result of the input `light`.
 
 ### Switching to dark mode: `dark`
 
-Switches the GUI to dark mode.
+Switches the GUI to dark mode. This mode is preferred at night as it reduces strain to the eyes.
 
 Format: `dark`
 
