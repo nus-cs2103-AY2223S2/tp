@@ -404,6 +404,7 @@ and it should look something like the below image.
 <p align="center">
   <img src="images/batchaddsuccess.png" width="75%" height="50%">
   <br>
+  <em>Successful batchadd of employees</em>
 </p>
 
 The command could be unsuccessful, and there are a few potential causes of this:
@@ -417,6 +418,8 @@ please refer to the instructions [here](#opening-csv-files-in-excel)
 
 In the case of an unsuccessful Batch Add, **NONE** of the employees in the CSV will be added.
 Also note that as of version `1.3` , this feature only supports CSV files and adding employees with the fields mentioned above.
+
+<div style="page-break-after: always"></div>
 
 ##### Opening .csv files in Excel 
 
@@ -433,7 +436,7 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
    </p>
 2. Next, right-click on the selected columns so that the following shows up:
    <p align="center">
-    <img src="images/rightclick.png" width="20%" height="20%">
+    <img src="images/rightclick.png" width="50%" height="30%">
     <br>
     <em>Right click to format selected cells</em>
    </p>
@@ -490,7 +493,7 @@ Below are the steps to use this command:
    <p align="center">
      <img src="images/exportedFile.png" width="100%" height="50%">
      <br>
-     <em>Successful batchexport</em>
+     <em>Successful batchexport of database</em>
    </p>
 
 2. Go to the folder where you stored the `jar` file.
