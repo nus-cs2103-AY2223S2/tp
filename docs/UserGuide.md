@@ -2,6 +2,7 @@
 layout: page
 title: ExecutivePro User Guide
 ---
+<a id="top"></a>
 
 ## Introduction
 Welcome to ExecutivePro, an all-in-one solution for managing employees' information.
@@ -138,7 +139,7 @@ Main components of the ExecutivePro User Interface:
 #### 1. Toolbar
 
 <p align="center">
-  <img src="images/tool.png" width="50%" height="50%">
+  <img src="images/tool.png" width="30%" height="50%">
   <br>
   <em>Toolbar</em>
 </p>
@@ -200,13 +201,12 @@ instructions or "orders" about what you want to eat. Hence, the CLI is a way to 
 much like talking directly to a chef to customize your meal. Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time.
 
 <p align="center">
-  <img src="images/CLI.png" width="50%" height="50%">
+  <img src="images/CLI.png" width="100%" height="50%">
   <br>
   <em>Command Line Interface(CLI)</em>
 </p>
 
 In this section, you can enter your user commands in the command line in order to communicate with the application.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -259,7 +259,12 @@ This section lists the details of all the features of ExecutivePro.
 We know that there can be a lot of information to take in for a new user, so if you ever _feel lost_ while using ExecutivePro, getting help is just a simple step away.
 
 Entering the `help` command will open up the _Help Window_ that looks like this.
-![Help Window](./images/UserGuide/helpwindow.png)
+
+<p align="center">
+  <img src="images/helpwindow.png" width="50%" height="50%">
+  <br>
+  <em>Help Window</em>
+</p>
 
 On the left column, you can find the full list of ExecutivePro commands and the right are the details for each command. If you require more information, the _Help Window_ also contains a button at the bottom to open up this User Guide in your browser.
 
@@ -359,7 +364,10 @@ Once that is done,
 If the command is successful, the employees in the file should be added to the database all at once,
 and it should look something like the below image.
 
-![](images/UserGuide/batchadd/batchaddsuccess.png)
+<p align="center">
+  <img src="images/batchaddsuccess.png" width="75%" height="50%">
+  <br>
+</p>
 
 The command could be unsuccessful, and there are a few potential causes of this:
 
@@ -751,3 +759,4 @@ If you came from the `batchadd` command, [click here to return](#adding-multiple
 - **CSV**: _Comma-Separated Values (CSV)_ file is a text file that has a specific format which allows data to be saved in a table structured format.
 - **JSON**: _JavaScript Object Notation (JSON)_ is a standard text-based format for representing structured data and is commonly used for transmitting data in web applications.
 
+<a href="#top">Back to top</a>
