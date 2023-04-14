@@ -418,3 +418,26 @@ Action | Format, Examples
 **Shortcut** | `shortcut`
 **Import** | `import`
 **Export** | `export`
+
+## **Command use case**
+
+Action | use cases
+-------|--------------------------------------
+**Help** | `When you need to access the user guide for assistance on using the application or to learn more about its features.`
+**Add** | `When you want to add a new client or contact with their details, such as name, phone number, email, address, income, and tags.`
+**Delete** | `When you need to delete a client or contact from your list, either because they are no longer relevant or you have entered their information incorrectly.`
+**Edit** | `When you need to update a contact's information, such as their name, phone number, email, address, income, or tags.`
+**Find** | `When you want to find a specific contact or group of contacts using one or more keywords, such as their name, tag, or other attributes.`
+**List** | `When you want to view your entire list of contacts, either for reference or to find a specific contact.`
+**Clear** | `When you want to delete all contacts in your list, such as when starting a new project or when you need to remove all outdated information.`
+**Tag** | `When you want to label a contact with a specific tag, such as "friend", "client", or "prospect", to help categorize and organize your contacts.`
+**Delete Tag** | `When you need to remove a tag from a contact, either because it is no longer relevant or was assigned incorrectly.`
+**Filter** | `When you want to view a specific subset of contacts based on their attributes, such as name, email, address, income, or tags.`
+**Freeze** | `When you are modifying your contact list and you have a filtered applied using the filter command, you can use freeze to prevent the contacts from being removed. For example, if you used filter t/friend and you execute delete_tag 2 friend, the contact with index 2 will no longer show up in your list as it no longer has the tag `<br> friend` . However freeze will make it such that it will continue to show up in the list.`
+**Unfreeze** | `When you want the contact list to be updated.`
+**Mass** | `When you want to perform a bulk action, such as assigning a tag or deleting multiple contacts simultaneously.`
+**Undo** | `When you have made a mistake or want to reverse a recent change to your contact list.`
+**Redo** | `When you have undone an action and later decide that you want to reapply the change.`
+**Shortcut** | `When you want to create a keyboard shortcut for a command you use often, making it faster and more convenient to execute.`
+**Import** | `When you have contact information stored in a CSV file and want to import it into the application.`
+**Export** | `When you want to export your contact list to a CSV file for backup, sharing, or use in another application.`
