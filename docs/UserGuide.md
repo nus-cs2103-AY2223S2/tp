@@ -441,7 +441,7 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
    </p>
 2. Next, right-click on the selected columns so that the following shows up:
    <p align="center">
-    <img src="images/rightclick.png" width="40%" height="30%">
+    <img src="images/rightclick.png" width="30%" height="30%">
     <br>
     <em>Right click to format selected cells</em>
    </p>
