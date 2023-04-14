@@ -244,7 +244,7 @@ Imagine being in a restaurant with a talented chef in the kitchen. The chef repr
 
 <u> Why use CLI?</u> <br>
 
-Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time. <br>
+Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time. <br> <br>
 
 <u> How to use the CLI?</u> <br>
 
