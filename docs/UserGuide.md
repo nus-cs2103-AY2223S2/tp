@@ -214,7 +214,12 @@ This section displays relevant messages or errors after the command is entered.
 
 #### 5. Command Line Interface (CLI)
 
-<img src="images/UserGuide/CLI.png" class="centerImage">
+<p align="center">
+  <img src="images/CLI.png" width="100%" height="50%">
+  <br>
+  <em>Command Line Interface(CLI)</em>
+</p>
+
 In this section, you can enter your command in the text box and click enter on your keyboard to send it to the application. 
 
 This is also known as a Command Line Interface or CLI for short. If you are new to CLI, refer to the questions below for a quick crash course,
