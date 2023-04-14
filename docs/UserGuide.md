@@ -57,6 +57,8 @@ We hope that this user guide will help you adopt, learn and ultimately master AI
 
 For a more technical and comprehensive overview of AIMS's codebase, please refer to our [Developer Guide](DeveloperGuide.md).
 
+<br>
+
 [Back to Top ↑](#table-of-contents)
 
 ---
@@ -71,6 +73,8 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 :exclamation: **Caution:** Cautions are used as warnings for actions that may cause data loss.
 
+<br>
+
 [Back to Top ↑](#table-of-contents)
 
 ---
@@ -83,10 +87,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 1. Copy the file to the folder you want to use as the *home folder* for AIMS.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to run the application.
-   <br>
-   <br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to run the application. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
    <div style="text-align: center;">
      <img src="images/Ui.png">
@@ -95,6 +96,8 @@ Here are some symbols used throughout the user guide to inform you of additional
    </div>
 
 1. Refer to the [Features](#features) section below for details of each command.
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -149,7 +152,11 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 Shows you a message explaining how to access the help page.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `help`
+
+</div>
 
 <div style="text-align: center;">
   <img src="images/helpMessage.png">
@@ -163,7 +170,11 @@ Format: `help`
 
 Lets you add a person to AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
+
+</div>
 
 <div markdown="span" class="alert alert-info">
 
@@ -171,10 +182,14 @@ Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE e/EMAIL a/A
 
 </div>
 
+<br>
+
 Examples:
 
-- `add r/3SG n/Lawrence Tay u/1 GDS p/91649723 e/lawrencetay@gmail.com a/124 Drummond Street t/PlatoonSergeant t/AllergySeafood`<br>
-  Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.<br>
+- `add r/3SG n/Lawrence Tay u/1 GDS p/91649723 e/lawrencetay@gmail.com a/124 Drummond Street t/PlatoonSergeant t/AllergySeafood`
+
+  Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.
+
   <div style="text-align: center;">
     <img src="images/addLawrenceSuccess.png">
     <p style="font-style: italic;"><br>Success screen upon successful addition of Lawrence Tay</p>
@@ -187,7 +202,11 @@ Examples:
 
 Lets you adds all persons from a given valid CSV (Comma-Separated Values) file to AIMS. Excel and Google spreadsheets can be easily converted into CSV files for quick importing.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `importcsv PATH_TO_CSV_FILE`
+
+</div>
 
 The given CSV file must fulfill the following conditions:
 
@@ -257,7 +276,13 @@ Step-by-step example of converting and importing an Excel spreadsheet:
 
 Shows you a list of all existing persons in AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `list`
+
+</div>
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -265,7 +290,11 @@ Format: `list`
 
 Copies the information of a person to your clipboard.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `copy INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+
+</div>
 
 - Copies the required information of the person at the specified `INDEX` to the user's clipboard.
 - The index refers to the index number shown in the displayed main list.
@@ -288,37 +317,45 @@ see all the text.
 
 </div>
 
+<br>
+
 Examples:
 
-- `copy 2` <br>
-If your clipboard is accessible, a success message will be displayed.
-    <div style="text-align: center;">
-      <img src="images/copy2Result.png">
-      <p style="font-style: italic;"><br>Success screen upon successful copying of information to clipboard</p>
-      <br>
-    </div>
+- `copy 2`
 
-    The following text will be copied into your clipboard.
+  If your clipboard is accessible, a success message will be displayed.
 
-    ```text
-    Rank: CPL
-    Name: Bernice Yu
-    Unit: 1 GDS
-    Company: Charlie
-    Platoon: 2
-    Phone: 99272758
-    Email: berniceyu@example.com
-    Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
-    Tags: [colleagues][friends]
-    ```
+  <div style="text-align: center;">
+    <img src="images/copy2Result.png">
+    <p style="font-style: italic;"><br>Success screen upon successful copying of information to clipboard</p>
+    <br>
+  </div>
 
-- `copy 2` <br>
-If your clipboard is not accessible, the information will be displayed in the message box which can be manually selected and copied.
-   <div style="text-align: center;">
-     <img src="images/copy2_noclipboard.png">
-     <p style="font-style: italic;"><br>Screen when the AIMS detects that the clipboard is not accessible</p>
-     <br>
-   </div>
+  The following text will be copied into your clipboard.
+
+  ```text
+  Rank: CPL
+  Name: Bernice Yu
+  Unit: 1 GDS
+  Company: Charlie
+  Platoon: 2
+  Phone: 99272758
+  Email: berniceyu@example.com
+  Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
+  Tags: [colleagues][friends]
+  ```
+
+  <br>
+
+- `copy 2`
+
+  If your clipboard is not accessible, the information will be displayed in the message box which can be manually selected and copied.
+
+  <div style="text-align: center;">
+    <img src="images/copy2_noclipboard.png">
+    <p style="font-style: italic;"><br>Screen when the AIMS detects that the clipboard is not accessible</p>
+    <br>
+  </div>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -326,9 +363,13 @@ If your clipboard is not accessible, the information will be displayed in the me
 
 Lets you edit an existing person in AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-- Edits the person at the specified `INDEX`. 
+</div>
+
+- Edits the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed main list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - At **least** one of the optional fields must be provided.
@@ -336,18 +377,29 @@ Format: `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE
 - When editing tags, the existing tags of the person will be removed. (i.e. adding of tags is not cumulative)
 - You can remove all the person's tags by typing `t/` without specifying any tags after it.
 
+<br>
+
 Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com` <br>
-Edits the phone number and email address of the 1st person in the existing main list to be `91234567`and `johndoe@example.com` respectively.
-- `edit 2 n/Betsy Crower t/` <br>
-Edits the name of the 2nd person in the existing main list to be `Betsy Crower` and clears all existing tags.
+  Edits the phone number and email address of the 1st person in the existing main list to be `91234567`and `johndoe@example.com` respectively.
+
+- `edit 2 n/Betsy Crower t/`<br>
+  Edits the name of the 2nd person in the existing main list to be `Betsy Crower` and clears all existing tags.
+
+<br>
+
+[Back to Top ↑](#table-of-contents)
 
 ### Searching for persons by any field : `find`
 
 Lets you find persons who have any fields that contain any of the given keywords.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `find KEYWORD [MORE_KEYWORDS]`
+
+</div>
 
 - The search is case-insensitive. (e.g `hans` will match `Hans`)
 - Keywords cannot contain spaces. Instead, spaces are used to separate keywords.
@@ -356,18 +408,20 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - Only part of a field is needed for a successful match. (e.g. `tani` will match `Botanic Gardens`)
 - Persons matching at least one keyword will be returned. (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` and `Bo Hans`)
 
+<br>
+
 Example:
 
-- `find live delta` <br>
-3 persons will be found:
+- When running `find live delta`, 3 persons will be found:
   - `Charlotte Oliveiro` (name matches `live`)
   - `Irfan Ibrahim` (email matches `live`)
-  - `Roy Balakrishnan` (company matches `delta`)<br>
-  <div style="text-align: center;">
-    <img src="images/findCharlotteIrfanRoyResult.png">
-    <p style="font-style: italic;"><br>Screen showing the result of finding 3 persons using partial keyword matching</p>
-    <br>
-  </div>
+  - `Roy Balakrishnan` (company matches `delta`)
+
+    <div style="text-align: center;">
+      <img src="images/findCharlotteIrfanRoyResult.png">
+      <p style="font-style: italic;"><br>Screen showing the result of finding 3 persons using partial keyword matching</p>
+      <br>
+    </div>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -375,7 +429,11 @@ Example:
 
 Lets you filter all persons to only show those whose fields contain **all** the given keywords.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `filter [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [p/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+</div>
 
 - The search is case-insensitive. (e.g. `hanS` will match `Hans`)
 - The order of the keywords does not matter. (e.g. `n/Hans r/3sg` will match `r/3sg n/Hans`)
@@ -384,10 +442,14 @@ Format: `filter [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [p/PLATOON] [p/PHONE] [e/
 - Only part of a field is needed for a successful match. (e.g. `tanic g` will match `Botanic Gardens`)
 - At **least** one of the optional fields must be provided.
 
+<br>
+
 Example:
 
-- `filter a/street r/sg` <br>
-2 persons named `David Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
+- `filter a/street r/sg`
+
+  2 persons named `David Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
+
   <div style="text-align: center;">
     <img src="images/filterDavidLeeResult.png">
     <p style="font-style: italic;"><br>Screen showing the results of filtering by address and rank</p>
@@ -400,18 +462,27 @@ Example:
 
 Lets you delete a specified person from AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `delete INDEX`
+
+</div>
 
 - Deletes the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed main list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
+<br>
+
 Examples:
 
-- `list` followed by `delete 2` <br>
-The 2nd existing person in the main list will be deleted.
-- `find Betsy` followed by `delete 1` <br>
-The 1st person in the main list of the `find` command will be deleted.
+- `list` followed by `delete 2`<br>
+  The 2nd existing person in the main list will be deleted.
+
+- `find Betsy` followed by `delete 1`<br>
+  The 1st person in the main list of the `find` command will be deleted.
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -419,7 +490,13 @@ The 1st person in the main list of the `find` command will be deleted.
 
 Lets you clear all existing entries in AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `clear`
+
+</div>
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -434,7 +511,13 @@ AIMS are not recorded in the undo history.
 
 </div>
 
+<div markdown="span" class="alert alert-success">
+
 Format: `undo`
+
+</div>
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -454,13 +537,19 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
   from this point in the command history, the changes you've made to this current command in history will be lost.
 - The command history file is located at `[JAR file location]/data/command_history.txt`. Whenever you run a command **successfully**, the command history file will be automatically updated. In other words, commands that fail to run due to syntax errors or otherwise will **not** be recorded in the command history.
 
+<br>
+
 [Back to Top ↑](#table-of-contents)
 
 ### Toggling the favorite status of a person : `favorite`
 
 Lets you toggle the favorite status of a person from AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `favorite INDEX`
+
+</div>
 
 - Toggles favorite status for the person at the specified `INDEX`.
 - If the command is run on a person who is not in the favorite list, he will be added to the favorite list.
@@ -475,10 +564,14 @@ Format: `favorite INDEX`
 
 </div>
 
+<br>
+
 Example:
 
-- `favorite 3`<br>
-The third person in the existing main list will be added to and pinned in the favorites list.<br>
+- `favorite 3`
+
+  The third person in the existing main list will be added to and pinned in the favorites list.
+
   <div style="text-align: center;">
     <img src="images/favorite3.png">
     <p style="font-style: italic;"><br>Screen showing the result of favoriting person 3, causing the contact to be pinned to the sidebar</p>
@@ -491,13 +584,21 @@ The third person in the existing main list will be added to and pinned in the fa
 
 Exit from AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `exit`
+
+</div>
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
 ### Saving the data
 
 AIMS data is saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -512,6 +613,8 @@ directly by editing that data file.
 start with an empty data file in the next run.
 
 </div>
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
