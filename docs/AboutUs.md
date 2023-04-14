@@ -13,9 +13,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](https://github.com/xyluschen)]
 [[portfolio](team/xyluschen.md)]
-
 * Role: Team Lead
 * Responsibilities: Code Quality
+* Email: xinyangchen@u.nus.edu
 
 ### Tan Hui Xuan
 
@@ -26,6 +26,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Deliverables and Scheduling
+* Email: huixuan.tan@u.nus.edu
 
 ### Cai Xinjie Noah
 
@@ -36,6 +37,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Documentation
+* Email: xinjiecai@u.nus.edu
 
 ### Huang Zhizhou
 
@@ -46,6 +48,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Code Integration
+* Email: e0725208@u.nus.edu
 
 ### Yao Jiaxin
 
@@ -56,3 +59,4 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Testing
+* Email: yaojiaxin@u.nus.edu

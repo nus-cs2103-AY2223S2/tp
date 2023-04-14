@@ -758,6 +758,9 @@ If your changes to the data file makes its format invalid, sprINT automatically 
 **A**: Install sprINT on the other computer and run it for the first time. A new data file will be created with
 the sample data. Overwrite this data file with the original data file from the computer you have been using sprINT on previously.
 
+Should you have more queries, feel free to contact us via our emails at our [About Us](https://ay2223s2-cs2103t-t13-3.github.io/tp/AboutUs.html) page.
+Do reach out to us should have any suggestions on how to improve the app as well!
+
 #### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
@@ -844,3 +847,5 @@ sprINT can process your data more quickly!
 | **Exit**                    | :x:                | `exit`                                                                                                                                                                 |
 
 #### *Return to the [Table of Contents](#table-of-contents).*
+
+<div style="page-break-after: always;"></div>
