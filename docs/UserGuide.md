@@ -325,7 +325,8 @@ With this feature, you would not need to spend time to manually add each employe
 
 Format: `batchadd FILENAME`
 
-Example:`batchadd executivepro.csv`
+Example:
+- `batchadd executivepro.csv`
 
 Below are the steps to use this command:
 
@@ -362,7 +363,7 @@ Once that is done,
 
 **Step 3 (Running CSV file) :**
 
-1. Once done, run `batchadd FILENAME` in the command panel.
+1. Once done, run `batchadd FILENAME` in the CLI.
 
 If the command is successful, the employees in the file should be added to the database all at once,
 and it should look something like the below image.
@@ -424,7 +425,8 @@ ExecutivePro allows you to export the employees' data into a `.csv` file.
 
 Format: `batchexport FILENAME`
 
-Example:`batchexport exported_database.csv`
+Example:
+- `batchexport exported_database.csv`
 
 Below are the steps to use this command:
 
@@ -500,30 +502,41 @@ Examples:
 
 #### Setting an employee's picture : `setpicture`
 
-This feature allows you to set a picture for the specified employee, so that you can upload ID photos for each employee.
+This feature allows you to set a profile picture for the specified employee, by uploading an image file from your computer into the ExecutivePro database.
 
 :warning: **Note:**
 The selected image file must be in either the `.png`, `.jpg`, or `.jpeg` file formats.
 
 Format: `setpicture EMPLOYEE_ID`
 
-* Sets the picture of the employee with the specific `EMPLOYEE_ID`.
+* Sets the picture of the employee with the specified `EMPLOYEE_ID`.
 * The `EMPLOYEE_ID` refers to the id of an employee shown in the displayed employees list.
 * The `EMPLOYEE_ID` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-To set the picture for the employee with EMPLOYEE_ID 1, enter `setpicture 1` into the command bar.
-A file selector should appear, as shown below:
+- `setpicture 1` sets the picture for the employee with EMPLOYEE_ID 1.
+
+Below are the steps to use this command:
+
+**Step 1 (Inputting the command) :**
+
+Run the setpicture command e.g. `setpicture 1` in the CLI.
+A file explorer window should appear, as shown below:
 
 ![](images/UserGuide/SetPictureCommand1.png)
 
-Search through your computer for the picture you want to set.
+**Step 2 (Selecting an image) :**
+
+Search through your computer for the image you want to set as the employee's profile picture.
 Click on the image in your file explorer to select it,
-then open it by clicking the "Open" button on the file selector or by pressing the "Enter" key on your keyboard.
+then open it by clicking the "Open" button on the file explorer or by pressing the "Enter" key on your keyboard.
 
 ![](images/UserGuide/SetPictureCommand2.png)
 
-Click on the specified employee on the left, and your ExecutivePro should display their photo on the right like this.
+**Step 3 (Seeing the result) :**
+
+Click on the specified employee in the employee list.
+ExecutivePro should now display the employee's picture in the display panel as shown below.
 
 ![](images/UserGuide/SetPictureCommand3.png)
 
