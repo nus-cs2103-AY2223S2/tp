@@ -5,55 +5,50 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us via our email `coNtactUS@comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Bahatheq Tariq Ahmed S
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tariq-droid.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Tariq-droid)]
+[[portfolio](team/tariq-droid.md)]
 
-* Role: Project Advisor
+* Responsibilities:
+  * Back-End Developer
+  * Front-End Developer
 
-### Jane Doe
+### Hee Jia Yuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jayhee3.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jayhee3)]
+[[portfolio](team/jayhee3.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Responsibilities:
+  * Team Leader
+  * Back-End Developer
+  * Front-End Developer
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Jamie Leow Hui Lin
+<img src="images/jamieeeleow.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jamieeeleow)]
+[[portfolio](team/jamieeeleow.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Responsibilities:
+  * Quality Assurance/Testing Specialist
 
-### Jean Doe
+### Chew Ting Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tingyic.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tingyic)]
+[[portfolio](team/tingyic.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+  * Back-End Developer
+  * Documentation Expert

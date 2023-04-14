@@ -1,0 +1,44 @@
+{
+  "_comment": "ModuleTracker save file which contains the same Module values as in TypicalModules#getTypicalModuleTracker()",
+  "modules" : [ {
+    "name" : "CS2101",
+    "timeSlot" : "120323 12:00",
+    "address" : "COM1",
+    "tagged" : [ "Lecture" ]
+  }, {
+    "name" : "CS2103T",
+    "timeSlot" : "290323 10:00",
+    "address" : "COM1 0210",
+    "tagged" : [ "Tutorial" ]
+  }, {
+    "name" : "Carl Kurz",
+    "type" : "95352563",
+    "timeSlot" : "300423 23:59",
+    "address" : "wall street",
+    "tagged" : [ "Project" ]
+  }, {
+    "name" : "Daniel Meier",
+    "type" : "87652533",
+    "timeSlot" : "200523 12:00",
+    "address" : "10th street",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "type" : "9482224",
+    "timeSlot" : "200523 12:00",
+    "address" : "michegan ave",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "type" : "9482427",
+    "timeSlot" : "280323 12:00",
+    "address" : "little tokyo",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "type" : "9482442",
+    "timeSlot" : "300323 10:00",
+    "address" : "4th street",
+    "tagged" : [ ]
+  } ]
+}

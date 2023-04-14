@@ -1,18 +1,20 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.module.Module;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+    Comparator<Module> COMPARATOR_NO_SORTING_OF_MODULES = (module1, module2) -> 0;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +37,60 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' module tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getModuleTrackerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' module tracker file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setModuleTrackerFilePath(Path moduleTrackerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces module tracker data with the data in {@code moduleTracker}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setModuleTracker(ReadOnlyModuleTracker moduleTracker);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ModuleTracker */
+    ReadOnlyModuleTracker getModuleTracker();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in the module tracker.
      */
-    boolean hasPerson(Person person);
+    boolean hasModule(Module module);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given module.
+     * The module must exist in the module tracker.
      */
-    void deletePerson(Person target);
+    void deleteModule(Module target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given module.
+     * {@code module} must not already exist in the module tracker.
      */
-    void addPerson(Person person);
+    void addModule(Module module);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given module {@code target} with {@code editedModule}.
+     * {@code target} must exist in the module tracker.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the
+     * module tracker.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setModule(Module target, Module editedModule);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered module list */
+    ObservableList<Module> getDisplayedModuleList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredModuleList(Predicate<Module> predicate);
+
+    /**
+     * Updates the comparator of the sorted module list to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedModuleList(Comparator<Module> comparator);
 }

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,11 +9,15 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.IndexException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.module.Address;
+import seedu.address.model.module.Deadline;
+import seedu.address.model.module.Name;
+import seedu.address.model.module.Remark;
+import seedu.address.model.module.Resource;
+import seedu.address.model.module.Teacher;
+import seedu.address.model.module.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,7 +25,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid index.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -29,10 +34,17 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        if (StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            //Index is valid (>0 and also does not overflow)
+            return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        } else if (trimmedIndex.matches("^-?\\d+$")) {
+            //Index contains:
+            // negative sign (optional) which suggests it is not valid since it is not >0
+            // digits only which suggests it overflowed, and is not valid either
+            throw new IndexException(MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        //Index is not valid (possibly because there are incorrect prefixes)
+        throw new ParseException((MESSAGE_INVALID_INDEX));
     }
 
     /**
@@ -51,18 +63,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String resource} into a {@code Resource}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code type} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Resource parseResource(String resource) throws ParseException {
+        requireNonNull(resource);
+        String trimmedResource = resource.trim();
+        if (!Resource.isValidResource(trimmedResource)) {
+            throw new ParseException(Resource.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Resource(trimmedResource);
     }
 
     /**
@@ -81,18 +93,65 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String timeSlot} into an {@code TimeSlot}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code timeSlot} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static TimeSlot parseTimeSlot(String timeSlot) throws ParseException {
+        requireNonNull(timeSlot);
+        String trimmedTimeSlot = timeSlot.trim();
+        if (!TimeSlot.isValidTimeSlot(trimmedTimeSlot)) {
+            throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
+        } else if (!TimeSlot.isStartTimeBeforeEndTime(trimmedTimeSlot)) {
+            throw new ParseException((TimeSlot.MESSAGE_STARTTIME_BEFORE_ENDTIME));
         }
-        return new Email(trimmedEmail);
+        return new TimeSlot(trimmedTimeSlot);
+    }
+
+    /**
+     * Parses a {@code String deadline} into an {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidFormat(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS_INVALID_DATE_FORMAT);
+        } else if (!Deadline.isValidDate(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS_INVALID_DATE);
+        }
+        return new Deadline(trimmedDeadline);
+    }
+
+    /**
+     * Parses a {@code String remark} into an {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+        }
+        return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String teacher} into an {@code Teacher}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Teacher parseTeacher(String teacher) throws ParseException {
+        requireNonNull(teacher);
+        String trimmedTeacher = teacher.trim();
+        if (!Teacher.isValidTeacher(trimmedTeacher)) {
+            throw new ParseException(Teacher.MESSAGE_CONSTRAINTS);
+        }
+        return new Teacher(trimmedTeacher);
     }
 
     /**
