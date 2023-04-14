@@ -38,9 +38,9 @@ Here are the symbols that you will see while reading this user guide:
 
 | Symbol    | Meaning                                                                                                                                                                 |
 |-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`    | Text relevant to commands or name of a file.                                                                                                                            |
+| `code`    | Text relevant to commands or a filename.                                                                                                                                |
 | [`code`]  | The brackets around the code indicate that the field is optional.                                                                                                       |
-| :bulb:    | Tips for ExecutivePro Users.                                                                                                                                            |
+| :bulb:    | Tips for ExecutivePro users.                                                                                                                                            |
 | :warning: | Be wary and proceed with caution.                                                                                                                                       |
 | `...`     | Items with `...` after them can either be omitted or used one or more times.<br/> Example:`[t/TAG]…` can be used as ` ` (omitted), `t/friend`, `t/friend t/family` etc. |
 
@@ -222,8 +222,11 @@ This section displays relevant messages or errors after the command is entered.
 
 In this section, you can enter your command in the text box and click enter on your keyboard to send it to the application. 
 
-This is also known as a Command Line Interface or CLI for short. If you are new to CLI, refer to the questions below for a quick crash course,
+This is also known as a Command Line Interface or CLI for short. If you are new to CLI, a crash course is available below.
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb:
 <u> What is CLI?</u>
 
 To understand CLI better, here is an analogy:
@@ -232,6 +235,8 @@ Imagine being in a restaurant with a talented chef in the kitchen. The chef repr
 <u> Why use CLI?</u>
 
 Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
