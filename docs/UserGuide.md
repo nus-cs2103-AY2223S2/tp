@@ -7,14 +7,14 @@ title: User Guide
 ## Table of Contents
  
 * [1. Introduction](#1-introduction)
-* [2. About the User Guide](#2-about-the-user-guide-)
+* [2. About the User Guide](#2-about-the-user-guide)
   * [2.1 Target Audience](#21-target-audience)
-  * [2.2 Using the Guide](#22-using-the-guide-)
+  * [2.2 Using the Guide](#22-using-the-guide)
   * [2.3 Understanding Notations](#23-understanding-notations)
 * [3. About sprINT](#3-about-sprint)
   * [3.1 Configuration and Setup Guide](#31-configuration-and-setup-guide)
   * [3.2 The User Interface](#32-the-user-interface)
-  * [3.3 About sprINT's Commands](#33-about-sprints-commands-)
+  * [3.3 About sprINT's Commands](#33-about-sprints-commands)
   * [3.4 Short Tutorial](#34-short-tutorial)
 * [4. Features](#4-features)
   * [4.1 Managing Applications](#41-managing-applications)
@@ -34,7 +34,7 @@ title: User Guide
     * [4.4.1 Viewing help](#441-viewing-help--help)
     * [4.4.2 Undoing a command](#442-undoing-a-command--undo)
     * [4.4.3 Redoing a command](#443-redoing-a-command--redo)
-    * [4.4.4 Viewing application statistics](#444-viewing-application-statistics-)
+    * [4.4.4 Viewing application statistics](#444-viewing-application-statistics)
     * [4.4.5 Clearing all applications](#445-clearing-all-applications--clear)
     * [4.4.6 Exiting the program](#446-exiting-the-program--exit)
     * [4.4.7 Saving the data](#447-saving-the-data)
@@ -124,7 +124,7 @@ Scenarios provide examples of specific situations in which a feature would be us
 
 In this section, you will find basic information about sprINT that's just enough to get you started. This includes a 
 guide for [configuring and setting up sprINT](#31-configuration-and-setup-guide) for first-time users, an [overview of 
-sprINT's user interface](#32-the-user-interface), general notes about [commands in sprINT](#33-about-sprints-commands-), 
+sprINT's user interface](#32-the-user-interface), general notes about [commands in sprINT](#33-about-sprints-commands), 
 as well as a [short tutorial](#34-short-tutorial).  
 
 ### **3.1 Configuration and Setup Guide**
@@ -365,7 +365,7 @@ execution of the `find` command.
 
 **Adding tags** 
 
-sprINT currently supports 2 ways of adding [tags](#tags) to an application entry:
+sprINT currently supports 2 ways of adding [tags](#tag) to an application entry:
 
 1. Tags can be added when you are creating a **new** application, as a parameter to the `add-app` command. For more 
 information, refer to [section 4.1.1](#411-adding-an-application--add-app).
