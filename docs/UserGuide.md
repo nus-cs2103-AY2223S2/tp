@@ -20,6 +20,7 @@ With MyLib, you have the ability to throw all your bookmarks onto a **single pla
 MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks. However, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
 
 --------------------------------------------------------------------------------------------------------------------
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ## **About this User Guide**
@@ -235,7 +236,7 @@ Format: `dtag TAG`
 
 Example:
 * `dtag MaleProtagonist`
-* 
+
 [Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
@@ -309,7 +310,7 @@ Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/UR
 Examples:
 *  `edit 1 n/Hobbit a/J. R. R. Tolkien` Edits the title and author of the 1st bookmark to be `Hobbit` and `J. R. R. Tolkien` respectively.
 *  `edit 2 n/The Odyssey t/` Edits the name of the 2nd bookmark to be `The Odyssey` and clears all existing tags.
-* 
+
 [Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
@@ -348,7 +349,7 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
 * The search for tags will return any bookmark that has a tag that matches the given tag.
 * If multiple tags are provided, any bookmarks containing at least one of the tags would be returned.
-* 
+
 [Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
@@ -520,6 +521,7 @@ _Details coming soon ..._
 |   `r/`    |  RATING   | This is the rating to give the bookmark.<br/><br/>**Restrictions:**<br/>Must be a number from 0 to 5 (without any additional symbols like +/-)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 |   `t/`    |    TAG    | This is a tag that you want to attach to the bookmark. <br/><br/>**Restrictions:**<br/>Only tags that are in your tag list can be added to a bookmark.<br/> For more information on how to modify your tag list, go to the [Tags](#tags) section.                                                                                                                                                                                                                                                                                                                                                                                         |
 
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ## **Glossary**
