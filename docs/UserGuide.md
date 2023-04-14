@@ -416,8 +416,8 @@ Action | Format, Examples
 **Undo** | `undo [NUM]`
 **Redo** | `redo [NUM]`
 **Shortcut** | `shortcut`
-**Import** | `import`
-**Export** | `export`
+**Import** | `import [combine|reset]`
+**Export** | `export [shown|all]`
 
 ## **Command use case**
 
