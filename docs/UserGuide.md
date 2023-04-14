@@ -564,7 +564,7 @@ Not sure what a JSON file is? Check out this [brief introduction](https://www.w3
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 # 4. FAQ
 
 <a markdown="span" href="#1-introduction"> 🏠 **Back to top** </a> <br>
