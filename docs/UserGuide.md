@@ -1201,7 +1201,8 @@ Examples:
 
 ## Further Help and Support
   
-If you run into any issues or bugs with CLIpboard, don't hesitate to checkout our [GitHub Issues Page](https://github.com/AY2223S2-CS2103T-T15-4/tp/issues) to see if anyone else has faced similar problems, or submit a new issue. We'll get back to you as quickly as we can.
+If you run into any issues or bugs with CLIpboard, don't hesitate to checkout our [GitHub Issues Page](https://github.com/AY2223S2-CS2103T-T15-4/tp/issues) to see if anyone else has faced similar problems.<br> You can also submit a new issue and we will get back to you as soon as we can.
   
-You can also reach us at t154clipboard@gmail.com if you have any enquiries or require any further assistance. 
+Please feel free to also reach us at t154clipboard@gmail.com if you have any enquiries or require any further assistance. 
+  
 Thank you for using CLIpboard!
