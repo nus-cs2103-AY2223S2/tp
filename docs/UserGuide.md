@@ -5,7 +5,7 @@ title: User Guide
 
 Ultron is a **desktop app for compiling job and internship applications, optimized for use through keyboard typing and minimizing mouse clicking.**
 
-![Ui](images/UI.png)
+![Ui](images/Ui.png)
 
 If you are familiar with the Ultron interface and can type fast, it can help you organise your internship applications in a much more efficient and structured manner compared to traditional methods such as using spreadsheets.
 
