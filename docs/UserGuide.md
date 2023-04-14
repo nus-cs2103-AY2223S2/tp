@@ -586,6 +586,8 @@ Format: `leave EMPLOYEE_ID l/LEAVE_COUNT`
 Examples:
 * `leave 1 l/3` Helps the employee with ID `1` take `3` days of leave.
 
+<div style="page-break-after: always"></div>
+
 #### Setting an employee's picture : `setpicture`
 
 This feature allows you to set a profile picture for the specified employee, by uploading an image file from your computer into the ExecutivePro database.
@@ -602,6 +604,8 @@ Format: `setpicture EMPLOYEE_ID`
 Examples:
 - `setpicture 1` sets the picture for the employee with EMPLOYEE_ID 1.
 
+<div style="page-break-after: always"></div>
+
 Below are the steps to use this command:
 
 **Step 1 (Inputting the command) :**
@@ -615,6 +619,8 @@ A file explorer window should appear, as shown below:
      <em>File selector appearing</em>
    </p>
 
+<div style="page-break-after: always"></div>
+
 **Step 2 (Selecting an image) :**
 
 Search through your computer for the image you want to set as the employee's profile picture.
@@ -626,6 +632,8 @@ then open it by clicking the "Open" button on the file explorer or by pressing t
      <br>
      <em>Choosing image</em>
    </p>
+
+<div style="page-break-after: always"></div>
 
 **Step 3 (Seeing the result) :**
 
@@ -645,6 +653,8 @@ ExecutivePro should now display the employee's picture in the display panel as s
 the file may not be properly displayed (e.g. renaming a `example.txt` file to a `example.png`). We encourage you to use an image converter to convert your image to the valid file format,
 before uploading it to ExecutivePro.
 </div>
+
+<div style="page-break-after: always"></div>
 
 #### Deleting an employee : `delete`
 
