@@ -645,7 +645,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 
 ---
 
-## [Prefix](#glossary-prefix) summary
+## Prefix summary
 
 | [Prefix](#glossary-prefix) | Meaning                                 | Example                               |
 |--------|-----------------------------------------|---------------------------------------|
