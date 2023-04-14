@@ -245,7 +245,8 @@ On the left column, you can find the full list of ExecutivePro commands and the 
 Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
-### Import/Export of Employee details
+
+### Import/Export of Employee Details
 
 #### Adding an employee: `add`
 
@@ -280,7 +281,8 @@ Examples:
 * `add n/John Doe p/98765432 d/Marketing pr/1000 15 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe p/1234567 d/Sales pr/4000 1 e/betsycrowe@example.com a/Newgate street, block 576, #01-02 dob/2000-04-21 doj/2022-01-04 t/friend`
 
---------------------------------------------------------------------------------------------------------------------
+<br>
+
 #### Adding multiple employees at once: `batchadd`
 
 Tired of adding new employees one by one?
@@ -382,7 +384,8 @@ you can proceed with the batchadd command in ExecutivePro.
 This will ensure a smooth import process, and all employee information,
 including dates, will be properly stored in the database.
 
---------------------------------------------------------------------------------------------------------------------
+<br>
+
 #### Exporting database into CSV file: `batchexport`
 
 ExecutivePro allows you to export the employees' data into a `.csv` file.
@@ -629,7 +632,8 @@ Examples:
 **Note:** Themes are not kept upon closing ExecutivePro.
 </div>
 
-<a name="section-exit"></a>
+<br>
+
 #### Exiting the program : `exit`
 
 Exits the program. Your data is automatically saved so ExecutivePro will look exactly the same the next time you open it up.
@@ -640,7 +644,7 @@ Format: `exit`
 ### Saving/Editing the data file
 ExecutivePro data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-ExecutivePro data are saved as a JSON file `[JAR file location]/data/executivepro.json`. 
+The employee data is saved as a JSON file `[JAR file location]/data/executivepro.json`. 
 Advanced users are discouraged from updating data directly by editing that data file due to possible 
 inconsistent behaviour.
 
@@ -660,21 +664,18 @@ If your changes to the data file makes its format invalid, ExecutivePro will dis
 **Q**: Do I need internet access to use ExecutivePro? <br>
 **A**: No, ExecutivePro does not require internet access
 
-**Q**: Does ExecutivePro support different themes?
+**Q**: Does ExecutivePro support different themes? <br>
 **A**: Yes, ExecutivePro offers both light and dark themes for your preference.
 
-**Q**: I have added the wrong details for my employee. How do I change it?
+**Q**: I have added the wrong details for my employee. How do I change it? <br>
 **A**: Simply use ExecutivePro's [edit command](#editing-an-employee--edit) to change any details of the employee.
 
 
 --------------------------------------------------------------------------------------------------------------------
 ## Planned Enhancements
-1. In the near future, our team will be creating a login feature page for ExecutivePro. This helps to enhance the
-security feature of ExecutivePro as it ensures that only you and your team members have access to the database.
+1. In the near future, our team will be creating a login feature for ExecutivePro. This helps to enhance the security of ExecutivePro by ensuring that only you and your team members have access to the database.
 
 --------------------------------------------------------------------------------------------------------------------
-[Return to `add` feature](#adding-an-employee-add) \
-[Return to `batchadd` feature](#adding-multiple-employees-at-once-batchadd)
 
 ## Field Formats
 
@@ -693,6 +694,8 @@ This table describes the requirements for the input format of the fields.
 | `DATE_OF_JOINING` | doj/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                                     | `2022-12-10`                             |
 | `TAG`             | t/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                                  | `Software Engineer`, `Manager`           |
 
+If you came from the `add` command, [click here to return](#adding-an-employee-add). \
+If you came from the `batchadd` command, [click here to return](#adding-multiple-employees-at-once-batchadd).
 
 --------------------------------------------------------------------------------------------------------------------
 ## Command Summary
