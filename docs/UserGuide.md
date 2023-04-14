@@ -510,7 +510,7 @@ add group <GROUP>
   * Adding groups with the same group name is not possible.
   * Group names can contain alphanumeric and special characters. e.g. "LO3-2"
   * Group names cannot contain white spaces.
-  * Group names are case-sensitive. e.g. "t15" and "T15" are treated as different courses.
+  * Group names are case-sensitive. e.g. "t15" and "T15" are treated as different groups.
 </div>
 
 Examples:
