@@ -4,26 +4,26 @@ title: ExecutivePro User Guide
 ---
 
 ## Introduction
-Welcome to ExecutivePro! ExecutivePro is an all-in-one solution for managing employees' information.
+Welcome to ExecutivePro, an all-in-one solution for managing employees' information.
 Are you tired of wasting time and energy on inefficient tasks? Do you want to streamline your HR processes and
 boost your productivity?
 Look no further! ExecutivePro is here to solve your problems.
 
-ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their employee information,
-optimized for use via a Command Line Interface (CLI)** while still having the benefits of a
-Graphical User Interface (GUI). With EP, you can streamline your HR processes and save you from your tedious and mundane tasks.
+ExecutivePro is a **desktop app designed for Human Resource managers to manage their employee information,
+optimized for use via a intuitive Command Line Interface (CLI)** while still retaining the benefits of a
+Graphical User Interface (GUI). With ExecutivePro, you can streamline your HR processes and save you from your tedious and mundane tasks.
 So why wait? Don't miss out on the opportunity to bring your productivity to another level. Head over to [Quick Start](#quick-start) now and
-experience the game-changing benefits that EP can bring to your work!
+experience the game-changing benefits that ExecutivePro can bring to your work!
 
 --------------------------------------------------------------------------------------------------------------------
 ## Using this Guide
-This guide walks you through the comprehensive features of **ExecutivePro**.
+This guide walks you through the comprehensive features of ExecutivePro.
 
-Do check out our [Introduction](#introduction) if this is your first time using **ExecutivePro**.
+Do check out [Quick Start](#quick-start) if this is your first time using ExecutivePro.
+
 Refer to the [Table of Contents](#table-of-contents) to easily navigate around different sections of the User Guide.
-If you require assistance in the setting up of **ExecutivePro**, head over to [Quick Start](#quick-start).
-If you have set up **ExecutivePro**, feel free to navigate to [Features](#features) to learn how to use the features we offer.
-<div style="page-break-after: always"></div>
+
+If you have already set up ExecutivePro, feel free to navigate to [Features](#features) to learn how to use the features we offer.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
@@ -144,8 +144,7 @@ Furthermore, the jar file has been placed in the `test` folder as shown below.
 
 ### Starting ExecutivePro application
 :warning: **Note:**
-To get started with ExecutivePro, the HR manager will need to run the application using
-their terminal or command prompt. Follow the steps below:
+To get started with ExecutivePro, you will need to run the application using your terminal or command prompt. Follow the steps below:
 
 Step 1 (Opening Terminal or Command Prompt) :
 
@@ -188,17 +187,14 @@ _Refer to the [Features](#features) below for details of each command._
 ## Features
 
 ### Viewing help : `help`
-There can be a lot of information to take in, so if you ever _feel lost_ while using ExecutivePro,
-getting help with the commands is just a simple step away.
+We know that there can be a lot of information to take in for a new user, so if you ever _feel lost_ while using ExecutivePro, getting help with the commands is just a simple step away.
 
-Entering the `help` command will open up window with the command summary for the various functions of the application,
-and if you have more doubts, the _Help Window_ also contains a button to open up this User Guide in your browser.
+Entering the `help` command will open up the help window that looks like this.
+![Help Window](./images/UserGuide/helpwindow.png)
+
+On the left column, you can find the full list of ExecutivePro commands and the right are the details for each command. If you require more information, the _Help Window_ also contains a button at the bottom to open up this User Guide in your browser.
 
 Format: `help`
-
-With this command, you should see a window like this appear.
-
-![Help Window](./images/UserGuide/helpwindow.png)
 
 --------------------------------------------------------------------------------------------------------------------
 ### Adding an employee: `add`
@@ -207,10 +203,10 @@ How do we build an employee profile?
 
 The first step is to add a new employee to the database,
 so ExecutivePro can begin managing their particulars and profile for you.
-To do this, use the add command, together with the employee particulars that you have available for this person.
+To do this, use the `add` command, together with the employee particulars that you have available for this person.
 
 Upon successfully adding a new employee, ExecutivePro will then keep track of the new profile and details in the
-database, and you are free to access and modify the particulars with other commands later on.
+database, and you are free to access and modify the particulars with the [`edit`](#editing-an-employee--edit) command.
 
 However, this function could fail (and ExecutivePro simply does not add any employee), if:
 
@@ -411,7 +407,7 @@ The employee with the provided employee ID would have their fields edited accord
 
 
 --------------------------------------------------------------------------------------------------------------------
-### Taking Leave : `leave`
+### Taking leave : `leave`
 
 There are plenty of instances where employees take leave, and it is such a tedious task to manage employee leaves. ExecutivePro allows you to help your employees take leave so you no longer have to manually track remaining leaves for each employee. Note that for resetting or increasing an employee's leave count use the `edit` command above instead. (`leave` can only help an employee take leave).
 
