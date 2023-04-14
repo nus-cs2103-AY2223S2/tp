@@ -218,7 +218,7 @@ This section displays relevant messages or errors after the command is entered.
 <p align="center">
   <img src="images/CLI.png" width="100%" height="50%">
   <br>
-  <em>Command Line Interface(CLI)</em>
+  <em>Command Line Interface (CLI)</em>
 </p>
 
 In this section, you can enter your command in the text box and click enter on your keyboard to send it to the application. 
@@ -231,7 +231,7 @@ This is also known as a Command Line Interface or CLI for short. If you are new 
 <u> What is CLI?</u> <br>
 
 To understand CLI better, here is an analogy:
-Imagine being in a restaurant with a talented chef in the kitchen. The chef represents the computer while a waiter is a button on your screen. Instead of having to go through the waiter or "click" a button, the CLI helps you communicate directly with the chef by giving specific instructions or "orders" about what you want to eat. Hence, the CLI is a way to interact with your computer by giving precise, text-based instructions, much like talking directly to a chef to customize your meal. <br>
+Imagine being in a restaurant with a talented chef in the kitchen. The chef represents the computer while a waiter is a button on your screen. Instead of having to go through the waiter or "click" a button, the CLI helps you communicate directly with the chef by giving specific instructions or "orders" about what you want to eat. Hence, the CLI is a way to interact with your computer by giving precise, text-based instructions, much like talking directly to a chef to customize your meal. <br> <br>
 
 <u> Why use CLI?</u> <br>
 
@@ -495,9 +495,9 @@ and it should look something like the below image.
 <div markdown="span" class="alert alert-warning">
 :warning: Caution:
 If you open the exported `.csv file` in `Excel`
-and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format. 
-This could lead to issues when importing the file using the batchadd command. 
-To ensure the correct date format, please refer to the instructions [here](#opening-csv-files-in-excel)
+and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in a different format, 
+leading to issues when importing the file using the batchadd command. 
+To ensure the correct date format is saved, please refer to the instructions [here](#opening-csv-files-in-excel)
 </div>
 
 <div markdown="span" class="alert alert-warning">
