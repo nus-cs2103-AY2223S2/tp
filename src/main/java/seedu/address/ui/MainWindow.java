@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -16,6 +17,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.command.CommandBox;
+import seedu.address.ui.command.ResultDisplay;
+import seedu.address.ui.detail.DetailedInfoRegion;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -28,12 +32,13 @@ public class MainWindow extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    private Logic logic;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private DetailedInfoRegion detailedInfoRegion;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -50,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane detailedInfoRegionPlaceholder;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -62,6 +70,9 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+
+        // set the resiza
+        primaryStage.setResizable(false);
 
         setAccelerators();
 
@@ -110,11 +121,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredPersonList(), this);
+        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        detailedInfoRegion = new DetailedInfoRegion("Welcome to the TutorPro!");
+        detailedInfoRegionPlaceholder.getChildren().add(detailedInfoRegion.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -163,8 +177,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public StudentListPanel getPersonListPanel() {
+        return studentListPanel;
     }
 
     /**
@@ -178,6 +192,9 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            detailedInfoRegion = new DetailedInfoRegion("Welcome to the TutorPro!");
+            detailedInfoRegionPlaceholder.getChildren().add(detailedInfoRegion.getRoot());
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -187,10 +204,23 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | IllegalArgumentException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void setDetailedContent(UiPart<Region> detailedContent) {
+        detailedInfoRegion.setDetailedContent(detailedContent);
+    }
+
+    /**
+     * Sets the header bar of the detailed info section to display the given text.
+     *
+     * @param textToDisplay the text to display
+     */
+    public void setDetailedHeaderBar(String textToDisplay, String iconPath) {
+        detailedInfoRegion.setHeaderBar(textToDisplay, iconPath);
     }
 }

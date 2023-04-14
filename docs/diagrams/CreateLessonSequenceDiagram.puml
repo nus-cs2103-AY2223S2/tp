@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Logic Manager" as lm LOGIC_COLOR
+participant ":AddressBookParser" as abp LOGIC_COLOR
+participant ":CreateLessonCommandParser" as clp LOGIC_COLOR
+participant "c:CreateLessonCommand" as clc LOGIC_COLOR
+participant ":CommandResult" as cr LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Student" as s MODEL_COLOR
+participant ":UniqueLessonList" as ll MODEL_COLOR
+participant ":Lesson" as l MODEL_COLOR
+end box
+
+[-> lm : execute("new-lesson\nname/John\nlesson/Math Lesson\nstart/2023-05-01 1200\nend/2023-05-01 1400")
+activate lm
+
+lm -> abp : parseCommand("new-lesson\nname/John\nlesson/Math Lesson\nstart/2023-05-01 1200\nend/2023-05-01 1400")
+activate abp
+
+create clp
+abp -> clp
+activate clp
+
+clp --> abp
+deactivate clp
+
+abp -> clp : parse("new-lesson\nname/John\nlesson/Math Lesson\nstart/2023-05-01 1200\nend/2023-05-01 1400")
+activate clp
+
+create clc
+clp -> clc
+activate clc
+
+clc --> clp : c
+deactivate clc
+
+clp --> abp : c
+deactivate clp
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+clp -[hidden]-> abp
+destroy clp
+
+abp --> lm : c
+deactivate abp
+
+lm -> clc : execute()
+activate clc
+
+create l
+clc -> l
+activate l
+
+l --> clc : l
+deactivate l
+
+clc -> s : addLesson(l)
+activate s
+
+s -> ll : addLesson(l)
+activate ll
+
+ll --> s
+deactivate ll
+
+s --> clc
+deactivate s
+
+create cr
+clc -> cr
+activate cr
+
+cr --> clc
+deactivate cr
+
+clc --> lm : result
+deactivate clc
+
+[<--lm
+
+
+
+
+
+
+@enduml

@@ -1,0 +1,37 @@
+#homeworkListView .label {
+    -fx-text-fill: #1d1d1d;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 13;
+}
+
+#lessonsListView .label {
+    -fx-text-fill: #1d1d1d;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 13;
+}
+
+#upcomingLessonsListView .label {
+    -fx-text-fill: #1d1d1d;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 13;
+}
+
+#examsListView .label {
+    -fx-text-fill: #1d1d1d;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 13;
+}
+
+#upcomingExamsListView .label {
+    -fx-text-fill: #1d1d1d;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 13;
+}
+
+#endTime {
+    -fx-padding: 0 0 0 10;
+}
+
+#upcomingLessonsListName {
+    -fx-padding: 15 15 15 15;
+}

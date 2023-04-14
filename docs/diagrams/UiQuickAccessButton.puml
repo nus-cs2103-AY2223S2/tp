@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "{abstract}\nUiPart" as UiPart
+Class StudentListPanel
+Class StudentCard
+Class ProfileButton
+Class HomeworkButton
+Class LessonsButton
+Class ExamsButton
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+StudentCard *-down-> "1" ProfileButton
+StudentCard *-down-> "1" HomeworkButton
+StudentCard *-down-> "1" LessonsButton
+StudentCard *-down-> "1" ExamsButton
+
+StudentListPanel -down-> "*" StudentCard
+StudentListPanel --|> UiPart
+StudentCard --|> UiPart
+ProfileButton --|> UiPart
+HomeworkButton --|> UiPart
+LessonsButton --|> UiPart
+ExamsButton --|> UiPart
+
+StudentCard ..> Model
+@enduml

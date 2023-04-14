@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:User clicks a button;
+:Student Card creates the Header Bar;
+:Detailed Info Section sets the Header Bar;
+
+if () then ([ProfileButton])
+:Detailed Info Section creates Profile Content;
+:Detailed Info Section sets the Profile Content;
+
+else() then ([HomeworkButton, LessonsButton, ExamsButton])
+if () then ([no homework, lessons or exams])
+:Detailed Info Section creates Empty Content;
+:Detailed Info Section sets the Empty Content;
+else ([Student has homework])
+:Detailed Info Section gets information about homework, lessons or exams;
+:Detailed Info Section creates Filled Content;
+:Detailed Info Section sets the Filled Content;
+endif
+
+endif
+
+:Detailed Info Section sets the Detailed Content;
+stop
+
+@enduml

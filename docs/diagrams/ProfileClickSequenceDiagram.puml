@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":StudentLisCard" as StudentListCard UI_COLOR
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":DetailedInfoSection" as DetailedInfoSection UI_COLOR
+participant ":ProfileContent" as ProfileContent UI_COLOR
+end box
+
+[-> StudentListCard : handleViewProfileButtonClick()
+activate StudentListCard
+
+StudentListCard -> MainWindow : setDetailedHeaderBar(firstName)
+activate MainWindow
+
+MainWindow -> DetailedInfoSection : setDetailedHeaderBar(firstName)
+activate DetailedInfoSection
+
+DetailedInfoSection -> DetailedInfoSection : setHearderBar(firstName)
+activate DetailedInfoSection
+
+DetailedInfoSection --> DetailedInfoSection
+deactivate DetailedInfoSection
+
+DetailedInfoSection --> MainWindow
+deactivate DetailedInfoSection
+
+MainWindow --> StudentListCard
+deactivate MainWindow
+
+create ProfileContent
+StudentListCard -> ProfileContent : new ProfileContent(student)
+activate ProfileContent
+
+ProfileContent -> StudentListCard
+deactivate ProfileContent
+
+StudentListCard -> MainWindow : setDetailedContent(ProfileContent)
+activate MainWindow
+
+MainWindow -> DetailedInfoSection : setDetailedContent(ProfileContent)
+activate DetailedInfoSection
+
+DetailedInfoSection -> DetailedInfoSection : setContent(ProfileContent)
+activate DetailedInfoSection
+
+DetailedInfoSection --> DetailedInfoSection
+deactivate DetailedInfoSection
+
+DetailedInfoSection --> MainWindow
+deactivate DetailedInfoSection
+
+MainWindow --> StudentListCard
+deactivate MainWindow
+
+[<-- StudentListCard
+deactivate StudentListCard
+
+@enduml

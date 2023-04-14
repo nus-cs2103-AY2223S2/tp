@@ -2,20 +2,75 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+TutorPro is a **desktop app designed to help private tutors manage their student information effectively**. With TutorPro, tutors can easily keep track of their students' addresses, contact details, lessons, homework, and progress, all in one place. This app is optimized for use via a Graphical User Interface (GUI), allowing tutors to interact with the app using easy-to-understand buttons and menus. However, TutorPro also provides a Command Line Interface (CLI) for those who prefer a faster way of getting things done. Whether you're managing a handful of students or hundreds, TutorPro can help you streamline your workflow and make your tutoring experience more efficient.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [**Acknowledgements**](#acknowledgements)
+- [**Setting up, getting started**](#setting-up-getting-started)
+- [**Design**](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
+- [**Implementation**](#implementation)
+  * [Quick Access Buttons on Each Student Card](#quick-access-buttons-on-each-student-card)
+    + [Motivation for Quick Access Buttons](#motivation-for-quick-access-buttons)
+    + [Implementation of Quick Access Buttons](#implementation-of-quick-access-buttons)
+    + [Alternatives considered for Quick Access Buttons](#alternatives-considered-for-quick-access-buttons)
+  * [Create Lesson feature](#create-lesson-feature)
+  * [School and GradeLevel Fields](#school-and-gradelevel-fields)
+    + [v1.2 Implementation of School and GradeLevel Fields](#v12-implementation-of-school-and-gradelevel-fields)
+    + [New Implementation of School and GradeLevel Fields in v1.3](#new-implementation-of-school-and-gradelevel-fields-in-v13)
+  * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
+    + [Proposed Implementation](#proposed-implementation)
+    + [Design considerations:](#design-considerations)
+- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+- [**Appendix: Requirements**](#appendix-requirements)
+  * [Product scope](#product-scope)
+  * [User stories](#user-stories)
+- [**Use cases**](#use-cases)
+  * [Add a new student](#add-a-new-student)
+  * [Delete a student](#delete-a-student)
+  * [Update a student's particulars](#update-a-students-particulars)
+  * [View a student's profile](#view-a-students-profile)
+  * [Assign homework for a student](#assign-homework-for-a-student)
+  * [View a Student's Homework](#view-a-students-homework)
+  * [Mark a Homework as DONE](#mark-a-homework-as-done)
+  * [Mark a Homework as NOT DONE](#mark-a-homework-as-not-done)
+  * [View a particular Student's Lessons](#view-a-particular-students-lessons)
+  * [View all Students' Lesson history](#view-all-students-lesson-history)
+  * [Add Lesson](#add-lesson)
+  * [Add Exam](#add-exam)
+  * [View a particular Student's Exams](#view-a-particular-students-exams)
+  * [View all Students' Exams](#view-all-students-exams)
+- [**Non-Functional Requirements**](#non-functional-requirements)
+- [**Glossary**](#glossary)
+- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+  * [Launch and shutdown](#launch-and-shutdown)
+  * [Deleting a student](#deleting-a-student)
+  * [Saving data](#saving-data)
+- [**Appendix: Effort**](#appendix-effort)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is built from the AddressBook-Level3 project created by the SE-EDU initiative.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +78,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams'](https://github.com/AY2223S2-CS2103T-W13-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -32,11 +87,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-Given below is a quick overview of main components and how they interact with each other.
+Given below is a quick overview of the main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,24 +124,24 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `studentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W13-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `student` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,16 +149,17 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a student).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 
+index/1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete index/1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+the </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -114,28 +170,21 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/ModelClassDiagram.png" width="700" />
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
+* doesn't depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -153,6 +202,195 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Quick Access Buttons on Each Student Card
+
+#### Motivation for Quick Access Buttons
+When a `tutor` wants to view a `student's` profile, homework, lessons, or exams, they need to use the commandBox. However, the current ResultDisplay is purely text-based, making it difficult and time-consuming for `tutors` to access and digest the relevant information.
+
+To address this issue, we propose the implementation of Quick Access Buttons on each `Student Card`. These buttons will provide tutors with easy and quick access to the relevant `student` information. By simply clicking on the appropriate button, tutors can view the `student's` profile, homework, lessons, or exams in a more informative and visually appealing way, complete with multiple diagrams or charts.
+
+The inclusion of these Quick Access Buttons will not only improve the user experience for `tutors` but also save them valuable time that can be better spent on other aspects of their teaching. With the information at their fingertips, `tutors` will be better equipped to make informed decisions and provide personalized guidance to each student.
+
+#### Implementation of Quick Access Buttons
+
+Given below is the partial class diagram of `Ui` component related to Quick Access Buttons on the Student Card.
+
+<img src="images/UiQuickAccessButton.png" width="1000" height="400"/>
+
+Each `Student Card` contains exactly four buttons `Profile`, `Homework`, `Lessons`, and `Exams`. Each of the buttons can generate a Special `DetailedContent`, which will be displayed in the `DetialedInfoSection` on the `MainWindow`
+
+Given below is the partial class diagram of `Ui` component related to Detailed Information Section on the Student Card.
+
+<img src="images/UiDetailedInfoSectionDiagram.png" width="1000" height="400"/>
+
+The `DetailedInfoSection` is made up of a `HeaderBar`, displaying the type of the current `DetailedInfoSection` and the name of the `Student` to which the information belongs. `DetailedContent`component has five subclasses extending it, namely `WelcomeContent`, `ProfileContent`,  `GeneralHomeworkContent`,  `GeneralLessonsContent`, `GeneralExamsContent`. 
+
+Given below is the partial class diagram of `Ui` component related to Profile Content.
+
+<img src="images/UiProfileContent.png" width="600" height="600"/>
+
+Given below is the sequence diagram showing how the action of clicking the `ProfileButton` of a `Student` creates a new `ProfileContent` for that particular student
+
+<img src="images/ProfileClickSequenceDiagram.png" width="1200" height="500" />
+
+**How the Profile Section is created when the Profile Button is Clicked**
+
+1. Based on the graph above, after the user clicks the view profile button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
+3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
+4. `StudentCard` will create a new `ProfileContent` with the `Student`. 
+5. The `ProfileContent` constructor calls `Student#getName()`, `Student#getPhone()`, `Student#getEmail()`, `Student#getAddress()` which returns the name, phone, email, and address of the student.
+6. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `ProfileContent` created from the previous calls. 
+7. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
+
+`GeneralHomeworkContent`,  `GeneralLessonsContent`, `GeneralExamsContent` are further extended by subclasses:
+
+
+* `EmptyHomeworkContent` and `FilledHomeworkContent` extend `GeneralHomeworkContent`, representing the situation where the `Student` has `Homework` and where the `Student` has no `Homework` respectively. 
+
+  Specifically, `FilledHomeworkContent` has `HomeworkListPanel` with `HomeworkCard` on it, showing all homework of a `Student` and a `HomeworkPieChart`, reflecting the ratio of completed and pending `Homework` of  a `Student.`
+
+   Given below is the partial class diagram of `Ui` component related to Filled Homework Content.
+
+  <img src="images/UiFilledHomeworkContent.png" width="600" height="600"/>
+
+  Given below is the sequence diagram showing how the action of clicking the `HomeworkButton` of a `Student` creates a new `HomeworkContent` for that particular student
+
+  <img src="images/HomeworkClickSequenceDiagram.png" width="1300" height="500" />
+
+  **How the Filled Homework Section is created when the Homework Button is Clicked**
+
+  1. Based on the graph above, after the user clicks the view homework button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+  2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
+  3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
+  4. If `Student` does not have `Homework`, `StudentCard` will create a new `EmptyHomeorkContent` with the `Student`. 
+  5. If `Student` have `Homework`, `StudentCard` will create a new `FilledHomeorkContent` with the `Student`. 
+  6. The `FilledHomeworkContent` constructor calls `Student#getName()`, `Student#getHomeworkPiechartData()`, `Student#HomeworkList()`, which returns the name, Pie Chart Data, and Homework List.
+  7. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `EmptyHomeworkContent`  or `FilledHomeworkContent`created from the previous calls. 
+  8. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
+
+* `EmptyLessonsContent` and `FilledLessonsContent` extend `GeneralLessonsContent`, representing the situation where the `Student` has `Lessons` and where the `Student` has no `Lessons` respectively. 
+
+  Specifically, `FilledLessonsContent` has `PastLessonsListPanel` with `LessonCard` on it, showing all past `Lessons` of a `Student` and `UpcomingLessonsListPanel` with `LessonCard` on it, showing all upcoming `Lessons` of a `Student`.
+
+   Given below is the partial class diagram of `Ui` component related to Filled Lessons Content.
+
+  <img src="images/UiFilledLessonsContent.png" width="600" height="600"/>
+
+  Given below is the sequence diagram showing how the action of clicking the `LessonsButton` of a `Student` creates a new `LessonsContent` for that particular student
+
+  <img src="images/LessonsClickSequenceDiagram.png" width="1300" height="500" />
+
+  **How the Filled Lessons Section is created when the Lesson Button is Clicked**
+
+  1. Based on the graph above, after the user clicks the view lessons button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+  2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
+  3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
+  4. If `Student` does not have `Lessons`, `StudentCard` will create a new `EmptyLessonsContent` with the `Student`. 
+  5. If `Student` have `Lessons`, `StudentCard` will create a new `FilledLessonsContent` with the `Student`. 
+  6. The `FilledLessonsContent` constructor calls `Student#getName()`, `Student#getPastLessonsList()`, `Student#UpcomingLessonsList()`, which returns the name, Past Lessons List, and Upcoming Lessons List.
+  7. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `EmptyLessonsContent`  or `FilledLessonsContent`created from the previous calls. 
+  8. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
+
+
+* `EmptyExamsContent` and `FilledExamsContent` extend `GeneralExamsContent`, representing the situation where the `Student` has `Exams` and where the `Student` has no `Exams` respectively. 
+
+  Specifically, `FilledExamsContent` has `AllExamsListPanel` with `ExamCard` on it, showing all past `Exams` of a `Student` and `UpcomingLessonsListPanel` with `ExamCard` on it, showing the most recent three upcoming `Exams` of a `Student`
+
+  Given below is the partial class diagram of `Ui` component related to Filled Exams Content
+
+  <img src="images/UiFilledExamsContent.png" width="600" height="600"/>
+
+  Given below is the sequence diagram showing how the action of clicking the `ExamsButton` of a `Student` creates a new `ExamsContent` for that particular student
+
+  <img src="images/ExamsClickSequenceDiagram.png" width="1300" height="500" />
+
+  **How the Filled Exams Section is created when the Exam Button is Clicked**
+  1. Based on the graph above, after the user clicks the view exams button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
+  2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
+  3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
+  4. If `Student` does not have `Exams`, `StudentCard` will create a new `EmptyExamsContent` with the `Student`. 
+  5. If `Student` have `Exams`, `StudentCard` will create a new `FilledExamsContent` with the `Student`. 
+  6. The `FilledExamssContent` constructor calls `Student#getName()`, `Student#ExamsList()`, `Student#UpcomingExamsList()`, which returns the name, All Exam List, Upcoming Exams List.
+  7. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `EmptyExamsContent`  or `FilledExamsContent`created from the previous calls. 
+  8. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
+
+The following activity diagram summarises how the UI responds to a click button command.
+
+<img src="images/ClickButtonActivityDiagram.png" height="500" width="1300"/>
+
+####  Alternatives considered for Quick Access Buttons
+
+While designing the Quick Access Buttons on the Student Card, several alternatives were considered to ensure an optimal user experience.
+
+* **Alternative 1 :** One alternative that was considered was to have a pop-up window for each button click event. However, this alternative was ultimately rejected due to its potential drawbacks.
+  * Pros: 
+    * Provides a clear and separate window to display the detailed information for each button.
+    * It Can be designed to provide a consistent layout and structure for displaying the detailed information.
+    * It Can be a good choice if there is a need to provide a lot of detailed information for each button click.
+    * It Can be helpful in providing a larger viewing area for the detailed information.
+  * Cons: 
+    * It Requires additional user interaction to close the pop-up window, which can be cumbersome and time-consuming.
+    * It Can be less optimized for a command-line interface (CLI), where users prefer quick and direct access to information.
+    * It Can lead to a cluttered user interface if multiple pop-up windows are open at the same time.
+    * It Can require additional resources and time to design and implement compared to other alternatives.
+
+* **Alternative 2 :** Another alternative that was considered was to have a separate panel for each button click event. However, this alternative was ultimately rejected due to its potential drawbacks.
+  * Pros: 
+    * Provides a clear and separate panel to display the detailed information for each button.
+    * It Can be designed to provide a consistent layout and structure for displaying the detailed information.
+    * It Can be a good choice if there is a need to provide a lot of detailed information for each button click.
+    * It Can be helpful in providing a larger viewing area for the detailed information.
+  * Cons: 
+    * It Requires additional user interaction to close the panel, which can be cumbersome and time-consuming.
+    * It Can be less optimized for a command-line interface (CLI), where users prefer quick and direct access to information.
+    * It Can lead to a cluttered user interface if multiple panels are open at the same time.
+    * It Can require additional resources and time to design and implement compared to other alternatives.
+
+### Create Lesson feature
+the `new-lesson` command adds a Lesson (specified with student name, lesson name, start time, and end time) to a particular Student. Given below is an example usage scenario and how the command works:
+
+Step1. The user inputs a `new-lesson` command with parameters name/John, lesson/Math lesson, start/2023-05-01 1200, and end/2023-05-01 1400. When Logic is called upon to execute a command, it uses the AddressBookParser class to parse the user command. The parser recognises the command words and calls the CreateLessonCommandParser.
+
+Step2. The `CreateLessonCommandParser` recognises each parameter passed in.
+
+Step3. `CreateLessonCommandParser` creates a new `CreateLessonCommand` with appropriate parameters.
+
+Step4. `CreateLessonCommand` is executed by LogicManager, creating a new Lesson object and then calls the `addLesson` method in Student
+
+Step5. The Student calls the `addLesson` method in the UniqueLessonList, adding the Lesson to his list of Lessons.
+
+Step6. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+
+The Sequence Diagram below illustrates the interactions within the Logic component for to execute("new-lesson name/John lesson/Math lesson start/2023-05-01 1200 end/2023-05-01 1400") API call.
+
+<img src="images/CreateLessonSequenceDiagram.png" width="1000" />
+
+The following activity diagram summarizes what happens when a user executes a CreateLessonCommand:
+
+<img src="images/CreateLessonAD.png" width="600" />
+
+
+### School and GradeLevel Fields
+
+#### v1.2 Implementation of School and GradeLevel Fields
+
+As of v1.2, School and GradeLevel fields are parsed via the `AddCommandParser` class. `AddCommandParser#parse` method 
+checks whether the prefixes for school and/or gradeLevel are present, and if present, then adds it to 
+the new student as `Tags`. They are then treated throughout the program the same as other `Tags`.
+
+It has been implemented this way for its ease of implementation, and because it shows the School and GradeLevel 
+in the Students list view, without having to open up the student's profile.
+
+#### New Implementation of School and GradeLevel Fields in v1.3
+
+In v1.3, we're adding School and GradeLevel as separate fields in the Student's profile, instead of `Tags`. These will 
+show up in the Student Profile view.
+
+This is to reduce the number of Tags placed under each Student's name in the Students list view, making it look less 
+cluttered.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -172,11 +410,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -184,7 +422,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -207,7 +445,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that don't modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -229,16 +467,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
+  * Cons: We must ensure that the implementation of each command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -257,42 +489,144 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Our users:
+* have a need to manage any number of students
+* prefer offline desktop apps over other types
+* can type commands fast
+* prefer typing, with some mouse control
+* prefer a more robust, aesthetic GUI, as opposed to a verbose list of students on a command line
+* are reasonably comfortable using CLI
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage students' academic progress faster and more conveniently than a typical mouse/GUI driven app
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: 
+- High (must have) - `* * *`
+- Medium (nice to have) - `* *` 
+- Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Category                                                          | Priority | As a …​ | I want to …​                                                                                         | So that I can…​                                                                                                                                                                                 |
+|:------------------------------------------------------------------|----------|---------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Track Student Homework                                            | `* * *`  | tutor   | Create homework logs                                                                                 | I can have a list of homeworks to refer to, for each student.                                                                                                                                   |
+|                                                                   | `* *`    | tutor   | Edit/Delete any past/future homework logs                                                            | I can track any changes in my students' homeworks.                                                                                                                                              |
+|                                                                   | `* * *`  | tutor   | Mark homework as completed/uncompleted                                                               | I can track what needs to be done in order to give reminders to student.                                                                                                                        |
+|                                                                   | `* * *`  | tutor   | Assign homework deadlines                                                                            | I can track when each homework is due, to help students finish them early.                                                                                                                      |
+|                                                                   | `* * *`  | tutor   | View completed and uncompleted homework                                                              | I can separately track pending homework.                                                                                                                                                        |
+|                                                                   | `* *`    | tutor   | View what proportion of my student's upcoming homework is still pending                              | I can urge my students to manage their homework workload.                                                                                                                                       |
+| Store and access students’ info (addresses, personal particulars) | `* *`    | tutor   | Click open a `view profile` button beside a Student to look at his/her home address and phone number | I can have easy access to the students’ information whenever needed.                                                                                                                            |
+|                                                                   | `* *`    | tutor   | Update/Delete my students' personal information as needed                                            | I can keep my records accurate and up-to-date                                                                                                                                                   |
+|                                                                   | `* * *`  | tutor   | Click a button with a student’s name to view his/her upcoming school exams/assignments               | Change my lesson plans accordingly to prepare the student for such tasks. For example, change all sessions of a week to Chemistry lessons to prepare the student for an upcoming Chemistry exam |
+|                                                                   | `*`      | tutor   | I can track which students are at which school and grade level                                       | I can create materials for multiple students of the same grade level.                                                                                                                           |
+|                                                                   | `* *`    | tutor   | Click a button with a student’s name to view his/her upcoming homework, exams and assignments        | I have easy access to all relevant information in one click.                                                                                                                                    |
+| Lesson Plan Management                                            | `* * *`  | tutor   | Create lesson plans for future classes                                                               | I can always plan ahead of my lessons.                                                                                                                                                          |
+|                                                                   | `* *`    | tutor   | View my students’ lesson history                                                                     | I can recap past lessons with my student.                                                                                                                                                       |
+|                                                                   |          | tutor   | View lesson history filtered by subjects                                                             | I can recap past lessons based on different subjects.                                                                                                                                           |
+|                                                                   | `* *`    | tutor   | View the date and time of a past lesson                                                              | I can see how many lessons I’ve had over a period of time.                                                                                                                                      |
+|                                                                   |          | tutor   | Edit/Delete lessons                                                                                  | My lesson plan is always up to date.                                                                                                                                                            |
+| Track Student Exams                                               | `* *`    | tutor   | Assign and view school exam dates to my students                                                     | I can keep track of how long my student has to prepare for an exam.                                                                                                                             |
+|                                                                   | `* *`    | tutor   | View all my students' exams at a glance                                                              | I can provide extra instruction to students that have exams coming up.                                                                                                                          |
 
-*{More to be added}*
 
-### Use cases
+--------------------------------------------------------------------------------------------------------------------
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+## Use cases
 
-**Use case: Delete a person**
+
+### Add a new student
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User enters new-student command with NAME, ADDRESS, PHONE, EMAIL and (optionally) School, Grade Level.
+2.  TutorPro adds the new student to the student list.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. A student with the same name already exists.
+    * 2a1. TutorPro notifies the user of a duplicate.
+    * 2a2. TutorPro continues to take input.
+      
+    
+    Use case continues at step 1.
+    
+* 2b. The wrong formatting was used.
+    * 2b1. TutorPro notifies the user of wrong formatting.
+    * 2b2. TutorPro continues to take input.
+      
+    
+    Use case continues at step 1.
+
+
+### Delete a student
+
+**MSS**
+
+1.  User requests to list students
+2.  TutorPro shows a list of students
+3.  User requests to delete a specific student in the list
+4.  TutorPro deletes the student
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorPro shows an error message.
+      
+    
+    Use case resumes at step 2.
+
+
+### Update a student's particulars
+
+**MSS**
+
+1.  User enters update-info command with any of the optional fields: NAME, ADDRESS, PHONE, EMAIL, SCHOOL, GRADE LEVEL.
+2.  TutorPro updates the student's particulars.
+    Use case ends.
+
+**Extensions**
+
+* 2a. The wrong formatting was used.
+    * 2b1. TutorPro notifies the user of wrong formatting.
+    * 2b2. TutorPro continues to take input.
+      Use case continues at step 1.
+
+
+### View a student's profile
+
+**MSS**
+
+1.  User requests to list students
+2.  TutorPro shows a list of students
+3.  User clicks on **Profile** button of a particular student
+4.  TutorPro displays the profile of that student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+### Assign homework for a student
+
+**MSS**
+
+1.  User requests to list students
+2.  TutorPro shows a list of students
+3.  User enters new-homework command with student's name, homework title, and deadline.
+4.  TutorPro assigns the homework to that particular student.
 
     Use case ends.
 
@@ -302,26 +636,276 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+* 3a. The given name doesn't exist in the list.
+* 3b. The user used invalid command format.
+* 3c. The user provided a date that is earlier than the current date.
+
+    * 3*1. TutorPro shows an error message.
+
+  Use case resumes at step 3.
+
+
+### View a Student's Homework
+
+**MSS**
+
+1.  User enters view-homework command with a student's name.
+2.  TutorPro shows all the completed/pending homework of that student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Alternatively, the user clicks on the **Homework** button next to the student name.
+     * 1a1. TutorPro displays homework information on the Detailed Information section.
+
+### Mark a Homework as DONE
+
+**MSS**
+
+1. User clicks on **Homeworks** button of a student.
+2. TutorPro shows that student's homeworks.
+3. User enters mark-homework with student name, and homework index.
+4. TutorPro updates the status of that homework as DONE.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The student's homework list is empty.
+
+    Use case ends.
+
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TutorPro shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 3.
 
-*{More to be added}*
 
-### Non-Functional Requirements
+### Mark a Homework as NOT DONE
+
+**MSS**
+
+1. User clicks on **Homeworks** button of a student.
+2. TutorPro shows that student's homeworks.
+3. User enters unmark-homework command with student name, and homework index.
+4. TutorPro updates the status of that homework as NOT DONE.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The student's homework list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorPro shows an error message.
+
+  Use case resumes at step 3.
+
+### View a particular Student's Lessons 
+
+**MSS**
+
+1. User clicks on **Lessons** button of a student.
+2. TutorPro shows that student's past and upcoming Lessons.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The student's lesson list is empty.
+
+  Use case ends.
+
+### View all Students' Lesson history
+
+**MSS**
+
+1. User enters view-lesson command without any arguments.
+2. TutorPro shows all students' past and upcoming Lessons.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. None of the students have any lessons.
+  * 2a1. TutorPro shows an empty Lesson list.
+
+    Use case ends.
+
+### Add Lesson
+
+**MSS**
+
+1. User enters new-lesson command with student name, lesson title and start and end times.
+2. TutorPro adds the lesson to that student's Lesson list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The named student doesn't exist
+  * 1a1. TutorPro returns an error message.
+  
+    Use case resumes at 1.
+  
+* 1b. The start/end time is in the past.
+  * 1b1. TutorPro returns an error message.
+
+    Use case resumes at 1.
+
+* 1c. The start/end time format is invalid.
+    * 1c1. TutorPro returns an error message showing the accepted time formats.
+
+      Use case resumes at 1.
+
+### Add Exam
+
+**MSS**
+
+1. User enters new-exam command with student name, exam title and start and end times.
+2. TutorPro adds the exam to that student's exam list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The named student doesn't exist
+    * 1a1. TutorPro returns an error message.
+
+      Use case resumes at 1.
+
+* 1b. The start/end time is in the past.
+    * 1b1. TutorPro returns an error message.
+
+      Use case resumes at 1.
+
+* 1c. The start/end time format is invalid.
+    * 1c1. TutorPro returns an error message showing the accepted time formats.
+
+      Use case resumes at 1.
+
+### View a particular Student's Exams
+
+**MSS**
+
+1. User clicks on **Exams** button of a student.
+2. TutorPro shows that student's past and upcoming Exams.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The student's exam list is empty.
+
+  Use case ends.
+
+### View all Students' Exams
+
+**MSS**
+
+1. User enters view-exam command without any arguments.
+2. TutorPro shows all students' past and upcoming exams.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. None of the students have any lessons.
+    * 2a1. TutorPro shows an empty Lesson list.
+
+      Use case ends.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Commands should be easy to remember(close to English words) and not cryptic for non-tech users to remember.
+5.  Commands shouldn't be verbose.
+6.  Results should be easy to read for non-tech users (e.g. shouldn't look like long, cluttered log files).
 
-*{More to be added}*
+--------------------------------------------------------------------------------------------------------------------
 
-### Glossary
-
+## Glossary
+* **Student**: A student who is taking lessons from the Tutor.
+* **Tutor**: A student who is teaching the Student. Here, the Tutor is also the user of the application.
+* **Lesson**: A meeting between the Tutor and the Student.
+* **Exam**: A test taken by the Student.
+* **Homework**: A task given to the Student by the Tutor.
+* **TutorPro**: The name of the application.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Planned Enhancements
+
+### Properly Handle Long Names
+* Issue: Currently, if the student's name are too long, on the student card, the name will be truncated. The full name can only be seen by view-profile command, and via the Clicking the profile button on the student card.
+* Possible Solution to Implement in the Future: 
+    * Truncate the name to a certain length, and add an ellipsis at the end.
+    * Add a tooltip to the name label, so that the full name can be seen when the user hovers over the name label.
+
+### Properly Handle Long Tags
+* Issue: Currently, TutorPro disallows the user to add tags that exceeds 30 characters in length.
+* Possible Solution to Implement in the Future: 
+    * Truncate the tag to a certain length, and add an ellipsis at the end.
+    * Add a tooltip to the tag label, so that the full tag can be seen when the user hovers over the tag label.
+
+### Resizable Main Window
+* Issue: Currently, the main window is not resizable.
+* Possible Solution to Implement in the Future: 
+    * Make the main window resizable.
+    * Make the main window resizable, but with a minimum size.
+    * Properly handle the proportion of the different components in the main window when the main window is resized.
+
+### Storage Encryption
+* Issue: Currently, the data is stored in plain text and can be easily modified by the users. If the user make a change that can be parsed by the parser to the data, the application will not detect it but can cause unexpected behaviour.
+* Possible Solution to Implement in the Future: 
+    * Encrypt the data before storing it.
+    * Encrypt the data before storing it, and allow the user to set a password to decrypt the data.
+    * Make the data unmodifiable by the user.
+
+### Synchronized Commands and Detailed Information Section
+* Issue: Currently, the commands are not synchronized with the detailed information section. For example, if the user updates the name of a student, the Detailed Information Section will refresh to the Welcome Page, and the user will have to click on the student card again to see the updated name.
+* Possible Solution to Implement in the Future:
+  * Make the Detailed Information Section refresh to the corresponding profile, homework, lesson, or exam page that the user is operating on.
+
+### Better Error Message
+* Issue: Currently, the error message is not very descriptive. For example, if the user enters an invalid command, the error message will be "Invalid command format! + [the correct format of the command]".
+* Possible Solution to Implement in the Future:
+  * Make the error message more descriptive. For example, if the user enters an invalid command, the error message will be "Invalid command format! + [the correct format of the command] + [the reason why the command is invalid]".
+  * Use color to highlight the invalid part of the command.
+
+### Customizable Color Theme
+* Issue: Currently, the color theme of the application is fixed.
+* Possible Solution to Implement in the Future:
+  * Allow the user to customize the color theme of the application.
+  * Allow the user to choose from a few pre-defined color themes.
+
+### Customizable Font
+* Issue: Currently, the font of the application is fixed.
+* Possible Solution to Implement in the Future:
+  * Allow the user to customize the font of the application.
+  * Allow the user to choose from a few pre-defined fonts.
+
+### Empty Data File Handling
+* Issue: Currently, if the user opens the application for the first time, TutorPro will show a set of sample students. However, if the user's data file is somehow corrupted, TutorPro will show an empty student list. This can be confusing for the user.
+* Possible Solution to Implement in the Future:
+  * Show a set of sample students if the data file is corrupted, and allow the user to import the sample students into the data file.
+  * Show where the data file is located and how is the data file corrupted, and allow the user to fix the data file.
+
+### Memo for Lessons
+* Issue: Currently, the user cannot add any remarks to a lesson.
+* Possible Solution to Implement in the Future:
+  * Allow the user to add a memo to a lesson.
+  * Allow the user to add a memo to a lesson, and allow the user to view the memo in the Detailed Information Section.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -340,38 +924,66 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. use the command `java -jar TutorPro` jar file Expected: Shows the GUI with a set of sample contacts. The window 
+      size may 
+      not be 
+      optimum.
 
-1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+### Deleting a student
 
-1. _{ more test cases …​ }_
+1. Deleting a student while all students are being shown
 
-### Deleting a person
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-1. Deleting a person while all persons are being shown
+   2. Test case: `delete index/1`<br>
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   3. Test case: `delete index/0`<br>
+      Expected: No student is deleted. Error details shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete index/x`, `...` (where x is larger than the list size)
+      <br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Exit TutorPro.
+    2. Open the data/addressbook.json file in a suitable text editor.
+    2. Delete some lines randomly.
+    3. Reopen TutorPro.
+     Expected: Should start with a new TutorPro with sample data.
 
-1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+Our team feels that we've put in more effort than that was required for this project, as we implemented many new features and enhancements that were not required for the project. We've also spent a lot of time on the UI, as we wanted to make the application as user-friendly as possible. We've also spent a lot of time on the documentation, as we wanted to make the documentation as detailed as possible, so that the user can easily understand how to use the application.
+
+We faced several difficulties in the project.
+
+* Difficulty managing the schedule clash of Student's lessons and exams.
+  * Since the Student's lessons and exams are stored in separate lists, we have to carefully handle the interactions between the two lists. We also have to make sure that our assumptions about the clashes are as realistic as possible.
+  * For example, we assume those no two students can have lessons at the same time but two students can sit for the same exam at the same time.
+  * It takes us a lot of time to come up with a design that can handle all the possible clashes.
+
+* Difficulty in implementing new UI
+  * We have to carefully handle the interactions between the different components in the UI.
+  * For example, we have to make sure that the Detailed Information Section is updated when the user clicks on a different student card.
+  * It takes us a lot of time to come up with a design that can handle all the possible interactions.
+
+* Difficulty in UG and DG
+  * The User Guide and Developer Guide underwent extensive revisions and proofreading to accommodate the numerous new entities and commands that were added to the product. These changes were necessary to ensure that users and future developers could fully comprehend how the product operates. Having comprehensive documentation is crucial in helping users and developers utilize the product effectively and efficiently, which ultimately leads to an enhanced user experience and increased adoption. It's commendable that you invested time and effort into updating and refining your guides.
+
+We also saved many efforts and time by reuse
+* reuse date and time parser from RussellDash332's ip code
+  * RussellDash332's code provides a nice and need way to parse multiple formats of date and time, which saves us a lot of time.
+  * This reuse allows us to focus on other parts of the project.
+
+Effort Required and Achievement of our Team
+* Our team has invested significant time and effort in this project with the goal of meeting the needs of our users and enhancing their experience when using our product. By expanding on the original AB3 code base, we have made substantial progress in the development of our product, as evidenced by the lines of code we have written and number of new commands we have created. Our ultimate desire is for our users to find our product effective in addressing their needs and for future developers to express interest in contributing to its further growth and development.

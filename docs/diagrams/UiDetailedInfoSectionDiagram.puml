@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+
+Class "{abstract}\nUiPart" as UiPart
+
+Class DetailedInfoSection
+Class DetailedContent
+Class HeaderBar
+
+Class WelcomeContent
+Class ProfileContent
+Class "{abstract}\nGeneralHomework" as GeneralHomework
+Class "{abstract}\nGeneralLessons" as GeneralLessons
+Class "{abstract}\nGeneralExams" as GeneralExams
+
+Class EmptyHomework
+Class EmptyLessons
+Class EmptyExams
+Class FilledHomework
+Class FilledLessons
+Class FilledExams
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+
+DetailedInfoSection *-down-> "1" HeaderBar
+DetailedInfoSection *-down-> "1" DetailedContent
+
+DetailedInfoSection --|> UiPart
+HeaderBar --|> UiPart
+DetailedContent --|> UiPart
+
+DetailedInfoSection ..> Model
+WelcomeContent -down-|> DetailedContent
+ProfileContent -down-|> DetailedContent
+GeneralHomework -up-|> DetailedContent
+GeneralLessons -up-|> DetailedContent
+GeneralExams -up-|> DetailedContent
+EmptyExams -up-|> GeneralExams
+EmptyHomework -down-|> GeneralHomework
+EmptyLessons -up-|> GeneralLessons
+FilledExams -up-|> GeneralExams
+FilledHomework -down-|> GeneralHomework
+FilledLessons -up-|> GeneralLessons
+
+@enduml

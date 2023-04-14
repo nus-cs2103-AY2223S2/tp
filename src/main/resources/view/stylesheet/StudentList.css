@@ -1,0 +1,21 @@
+#personListPanelPlaceholder {
+     -fx-border-color: black;
+     -fx-border-width: 2;
+     -fx-border-radius: 5;
+     -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 2, 3);
+}
+
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#tags .label {
+    -fx-text-fill: #1d1d1d;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 11;
+    -fx-background-color: #f2e2a7;
+    -fx-padding: 2 5 2 5;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 0, 1);
+}

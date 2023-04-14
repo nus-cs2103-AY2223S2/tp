@@ -25,4 +25,17 @@ public class StatusBarFooter extends UiPart<Region> {
         saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof StatusBarFooter)) {
+            return false;
+        }
+
+        StatusBarFooter other = (StatusBarFooter) obj;
+        return saveLocationStatus.getText().equals(other.saveLocationStatus.getText());
+    }
 }

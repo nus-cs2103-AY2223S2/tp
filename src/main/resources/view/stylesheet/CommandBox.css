@@ -1,0 +1,19 @@
+#commandTextField {
+    -fx-font-size: 13pt;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #1d1d1d;
+    -fx-opacity: 1;
+    -fx-background-color: #fffceb;
+}
+
+#commandTypeLabel {
+    -fx-font-size: 13px;
+    -fx-text-fill: #F70D1A;
+}
+
+#commandBoxPane {
+     -fx-border-color: black;
+     -fx-border-width: 2;
+     -fx-border-radius: 3;
+     -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 2, 3);
+}

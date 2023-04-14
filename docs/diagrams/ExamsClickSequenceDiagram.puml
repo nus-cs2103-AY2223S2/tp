@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":StudentLisCard" as StudentListCard UI_COLOR
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":DetailedInfoSection" as DetailedInfoSection UI_COLOR
+participant ":FilledExamsContent" as FilledExamsContent UI_COLOR
+participant ":EmptyExamsContent" as EmptyExamsContent UI_COLOR
+end box
+
+[-> StudentListCard : handleViewLessonsButtonClick()
+activate StudentListCard
+
+StudentListCard -> MainWindow : setDetailedHeaderBar(firstName)
+activate MainWindow
+
+MainWindow -> DetailedInfoSection : setDetailedHeaderBar(firstName)
+activate DetailedInfoSection
+
+DetailedInfoSection -> DetailedInfoSection : setHeaderBar(firstName)
+activate DetailedInfoSection
+
+
+DetailedInfoSection --> DetailedInfoSection
+deactivate DetailedInfoSection
+
+DetailedInfoSection --> MainWindow
+deactivate DetailedInfoSection
+
+MainWindow --> StudentListCard
+deactivate MainWindow
+
+alt student has lessons
+    create FilledExamsContent
+    StudentListCard -> FilledExamsContent : new FilledExamsContent(student)
+    activate FilledExamsContent
+
+    return FilledExamsContent
+
+else student has no lessons
+    create EmptyExamsContent
+    StudentListCard -> EmptyExamsContent : new EmptyExamsContent(student)
+    activate EmptyExamsContent
+
+    return EmptyExamsContent
+
+end
+
+StudentListCard -> MainWindow : setDetailedContent()
+activate MainWindow
+
+MainWindow -> DetailedInfoSection : setDetailedContent()
+activate DetailedInfoSection
+
+DetailedInfoSection -> DetailedInfoSection : setContent()
+activate DetailedInfoSection
+
+DetailedInfoSection --> DetailedInfoSection
+deactivate DetailedInfoSection
+
+DetailedInfoSection --> MainWindow
+deactivate DetailedInfoSection
+
+MainWindow --> StudentListCard
+deactivate MainWindow
+
+[<-- StudentListCard
+deactivate StudentListCard
+
+@enduml

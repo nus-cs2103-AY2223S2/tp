@@ -1,0 +1,21 @@
+.error {
+    -fx-text-fill: #fa4d2a !important; /* The error class should always override the default text-fill style */
+    -fx-font-weight: bold !important;
+    -fx-font-family: "Comic Sans MS" !important;
+}
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: #f7f7f7;
+}
+
+.tag-selector {
+    -fx-border-width: 1;
+    -fx-border-color: white;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.tooltip-text {
+    -fx-text-fill: white;
+}
