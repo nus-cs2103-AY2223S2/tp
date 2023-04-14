@@ -1,19 +1,30 @@
+@font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("fonts/OpenSans-Regular.ttf");
+}
+
+.label {
+    -fx-font-family: "Open Sans";
+}
+
 #copyButton, #helpMessage {
-    -fx-text-fill: white;
+    -fx-text-fill: #57473c;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: #a18875;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: #d1b9a7;
 }
 
 #copyButton:armed {
-    -fx-background-color: darkgray;
+    -fx-background-color: #b59f8f;
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#b59f8f, 20%);
 }

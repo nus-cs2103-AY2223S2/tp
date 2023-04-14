@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+show members
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+skinparam class {
+    name underline
+}
+
+object "<u>CS2103T:Course</u>" as Course1 {
+    courseCode = "CS2103T"
+}
+
+object "<u>T01:Group</u>" as Group1 {
+  groupName = "T01"
+}
+
+object "<u>T15:Group</u>" as Group2 {
+  groupName = "T15"
+
+}
+
+object "<u>Tutorial1:Session</u>" as Session1 {
+ sessionName = "Tutorial1"
+}
+
+object "<u>Tutorial2:Session</u>" as Session2 {
+ sessionName = "Tutorial2"
+}
+
+object "<u>CA1:Task</u>" as Task1 {
+ taskName = "CA1"
+}
+
+object "<u>CA2:Task</u>" as Task2 {
+ taskName = "CA2"
+}
+
+object "<u>John:Student</u>" as Student {
+ name = John Doe
+ phone = 98765432
+ email = johnd@example.com
+ remark = Likes to read
+ studentId = A1234567X
+}
+
+Course1 --> Group1
+Course1 --> Group2
+Group1 ---> Task1
+Group1 --> Student
+Group1 ---> Task2
+Group1 --> Session1
+Group1 --> Session2
+@enduml

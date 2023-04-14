@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Satoshi Black";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/Satoshi-Black.ttf");
+}
+
+.label {
+    -fx-font-size: 11;
+    -fx-font-family: "Satoshi Black";
+    -fx-text-fill:  white;
+}

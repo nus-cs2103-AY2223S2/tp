@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxWidth="1.7976931348623157E308" prefWidth="800.0" style="-fx-background-color: white; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="viewPane" style="-fx-background-color: white; -fx-background-radius: 10;" stylesheets="@StudentViewCard.css" VBox.vgrow="ALWAYS">
+         <children>
+            <Label fx:id="title" text="Student Particulars">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <HBox fx:id="infoPane" maxWidth="1000.0" prefHeight="158.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <GridPane HBox.hgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox fx:id="studentDetails" prefHeight="142.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <Label fx:id="name" text="Name" />
+                              <Label fx:id="studentId" text="StudentId" />
+                              <Label fx:id="phone" text="Phone" />
+                              <Label fx:id="email" text="Email" />
+                              <Label fx:id="remarkHeader" text="Remarks:">
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="remark" text="Remark" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <ImageView fx:id="displayPhoto" fitHeight="96.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</VBox>

@@ -1,11 +1,18 @@
+@font-face {
+    font-family: "Open Sans Bold";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/OpenSans-Bold.ttf");
+}
 
 .error {
-    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+    -fx-font-family: "Open Sans Bold" !important;
+    -fx-text-fill: #fa594d !important; /* The error class should always override the default text-fill style */
 }
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background: #d1b9a7;
 }
 
 .tag-selector {

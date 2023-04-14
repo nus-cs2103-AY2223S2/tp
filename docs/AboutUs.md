@@ -5,55 +5,57 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at any of the following emails:
+* [Afiq Zuhairi Bin Sahri](mailto:afiqzuhairi@gmail.com)
+* [Chong Yijing Isabel](mailto:isabelchong.cyji@gmail.com)
+* [Seow Wen Xuan, Kelvin](mailto:s.wxk19@gmail.com)
+* [Pearl Twe](mailto:pearltwe23@gmail.com)
+* [Ting Yi Xin](mailto:yxting1109@gmail.com)
+
 
 ## Project team
 
-### John Doe
+### Afiq Zuhairi Bin Sahri
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/afiqzu.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/afiqzu)]
+[[portfolio](team/afiqzu.md)]
 
-* Role: Project Advisor
+* Role: Integration
 
-### Jane Doe
+### Chong Yijing Isabel
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/isabelchong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/IsabelChong)]
+[[portfolio](team/isabelchong.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation & Code Quality
 
-### Johnny Doe
+### Seow Wen Xuan, Kelvin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/swxk19.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/swxk19)]
+[[portfolio](team/swxk19.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Scheduling and Tracking
 
-### Jean Doe
+### Pearl Twe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/peaol.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/peaol)]
+[[portfolio](team/peaol.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Testing
 
-### James Doe
+### Ting Yi Xin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tyx021.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tyx021)]
+[[portfolio](team/tyx021.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Deliverables and deadlines

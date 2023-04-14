@@ -1,0 +1,19 @@
+{
+  "persons": [ {
+    "name": "Valid Student",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "studentId": "A0246813L",
+    "modules": [ "CS2105" ],
+    "remark": "",
+    "tagged" : [ ]
+  }, {
+    "name": "Student With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "studentId": "A0246666K",
+    "modules": [ "CS2334" ],
+    "remark": "",
+    "tagged" : [ ]
+  } ]
+}

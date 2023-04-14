@@ -1,0 +1,19 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "studentId": "A1234567X",
+    "modules": [ "CS2101" ],
+    "remark": "",
+    "tagged": [ "Team1" ]
+  }, {
+    "name": "Alice",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "studentId": "A1234567X",
+    "modules": [ "CS2101" ],
+    "remark": "",
+    "tagged" : [ ]
+  } ]
+}

@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Open Sans Bold";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/OpenSans-Bold.ttf");
+}
+
+.text-field {
+    -fx-font-family: "Open Sans Bold";
+    -fx-text-fill: "white";
+}

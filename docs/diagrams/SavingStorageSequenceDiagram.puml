@@ -1,0 +1,35 @@
+@startuml
+!include <office/Concepts/globe_internet>
+!include <office/Concepts/documents>
+!include <office/Users/user>
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":JsonRosterStorage" as JsonRosterStorage STORAGE_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> LogicManager : execute(commandString)
+activate LogicManager
+LogicManager -> ModelManager : getRoster()
+activate ModelManager
+ModelManager --> LogicManager : Roster
+deactivate ModelManager
+
+LogicManager -> JsonRosterStorage : saveRoster(roster)
+activate JsonRosterStorage
+
+
+JsonRosterStorage --> LogicManager
+deactivate JsonRosterStorage
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml
