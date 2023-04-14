@@ -40,7 +40,7 @@ This User Guide provides an easy-to-understand and comprehensive documentation, 
 This User Guide is split into multiple important sections:
 * The [Getting Started](#getting-started) section provides step-by-step instructions to download and get started with MyLib.
 * The [Key Definitions](#key-definitions) section provides a concise explanation of the various key terms used in this User Guide. It will explain what a bookmark is in the context of MyLib.
-* The [Graphical User Interface](#graphical-user-interface-br) section provides a quick rundown of the different components of MyLib's user interface.
+* The [Graphical User Interface](#graphical-user-interface) section provides a quick rundown of the different components of MyLib's user interface.
 * The [Commands](#commands) section provides detailed explanations of all the various features in MyLib to help you bookmark your content.
 
 If you are a new user, we recommend going through the sections in the order provided above. If you are an experienced user and are just looking for a quick reference, we recommend either going through the [Commands](#commands) section or the [Command Summary](#command-summary) table. The [Commands](#commands) section will provide a detailed explanation of each command. If you're only looking for a brief overview of the commands, we recommend the [Command Summary](#command-summary) table.
@@ -67,13 +67,13 @@ The user guide will contain certain visuals to aid in conveying information more
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MyLib.jar` command to run the application.
 
-5. A GUI similar to the one below should appear in a few seconds. You can get an overview of the various components that make up MyLib's GUI [here](#graphical-user-interface-br).
+5. A GUI similar to the one below should appear in a few seconds. You can get an overview of the various components that make up MyLib's GUI [here](#graphical-user-interface).
 
     <img width="560" height="400" style="margin-top:20px; margin-bottom:20px" src="images/Ui.png">
 
 6. If this is your first time running the application, it should contain some sample bookmarks.
 
-7. MyLib's functionality is accessed through typed commands. These commands are entered into the [command box](#graphical-user-interface-br) at the very top of the GUI. After entering the command, press enter to execute it and the result of that command will be displayed below the command box.
+7. MyLib's functionality is accessed through typed commands. These commands are entered into the [command box](#graphical-user-interface) at the very top of the GUI. After entering the command, press enter to execute it and the result of that command will be displayed below the command box.
 <div style="page-break-after: always;"></div>
 
 ### Let's try out some of the features
@@ -142,7 +142,7 @@ The commands to modify your tag list can be found at [Tag Commands](#tag-command
 <div style="page-break-after: always;"></div>
 
 
-## **Graphical User Interface** <br>
+## **Graphical User Interface** 
 This section provides a quick rundown of the various components of MyLib's user interface.
 
    <img width="680" src="images/annotated-UI.png">
