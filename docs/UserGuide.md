@@ -348,7 +348,6 @@ Examples:
 * `edit 2 q\What is a recursion?` will only edit the question of the 2nd card to `What is a recursion?`. The other fields of the card (answer, tag) remain unchanged.
 * `edit 3 q\What is a recursion? q\What is a loop?` edits the question of the 3rd card to be `What is a loop?`. 
 
-<div style="page-break-after: always;"></div>
 ### 3.4.4. Finding Cards by Keywords in Question : `findCards`
 
 This command allows you to find specific cards you want to interact with based on the keyword(s) you enter.
