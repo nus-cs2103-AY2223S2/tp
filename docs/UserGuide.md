@@ -765,8 +765,6 @@ information to follow. Example includes ```a/``` as prefix for the ```VENUE``` a
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## <a id="faq"></a>**FAQ**
 
 **Q**: How do I transfer my data to another computer? <br>
@@ -777,7 +775,10 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 **A**: Not at all! It is one of the ways you can exit the program. You may also simply close the software window. 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
---------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## <a id="command-summary"></a>**Command summary**
 
 | Action     | Format                                                                                                                |
