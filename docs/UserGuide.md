@@ -53,8 +53,8 @@ Section | Description
 **Input box** | This is where you key in your command for E-Lister.
 **Output box** | This box displays E-Lister's responses to your input.
 **Person list** | This is a panel containing the list of people and their information.
-**Filter box** | This box displays all currently applying filters on the person list
-**Input log** | This is where you can see all your successfully executed commands.
+**Filter box** | This box displays all currently applying filters on the person list. [See more](#applying-filters-display)
+**Input log** | This is where you can see all your successfully executed commands. [See more](#input-log)
 
 Inside the **Person list**, each person has a **Person Card**, this is the breakdown of a person card:
 
@@ -414,24 +414,24 @@ _Details coming soon ..._
 
 Action | use case
 -------|--------------------------------------
-**Help** | `When you need to access the user guide for assistance on using the application or to learn more about its features.`
-**Add** | `When you want to add a new client or contact with their details, such as name, phone number, email, address, income, and tags.`
-**Delete** | `When you need to delete a client or contact from your list, either because they are no longer relevant or you have entered their information incorrectly.`
-**Edit** | `When you need to update a contact's information, such as their name, phone number, email, address, income, or tags.`
-**Find** | `When you want to find a specific contact or group of contacts using one or more keywords, such as their name, tag, or other attributes.`
-**List** | `When you want to view your entire list of contacts, either for reference or to find a specific contact.`
-**Clear** | `When you want to delete all contacts in your list, such as when starting a new project or when you need to remove all outdated information.`
-**Tag** | `When you want to label a contact with a specific tag, such as "friend", "client", or "prospect", to help categorize and organize your contacts.`
-**Delete Tag** | `When you need to remove a tag from a contact, either because it is no longer relevant or was assigned incorrectly.`
-**Filter** | `When you want to view a specific subset of contacts based on their attributes, such as name, email, address, income, or tags.`
-**Freeze** | `When you are modifying your contact list and you have a filtered applied using the filter command, you can use freeze to prevent the contacts from being removed. For example, if you used filter t/friend and you execute delete_tag 2 friend, the contact with index 2 will no longer show up in your list as it no longer has the tag `<br> friend` . However freeze will make it such that it will continue to show up in the list.`
-**Unfreeze** | `When you want the contact list to be updated.`
-**Mass** | `When you want to perform a bulk action, such as assigning a tag or deleting multiple contacts simultaneously.`
-**Undo** | `When you have made a mistake or want to reverse a recent change to your contact list.`
-**Redo** | `When you have undone an action and later decide that you want to reapply the change.`
-**Shortcut** | `When you want to create a keyboard shortcut for a command you use often, making it faster and more convenient to execute.`
-**Import** | `When you have contact information stored in a CSV file and want to import it into the application.`
-**Export** | `When you want to export your contact list to a CSV file for backup, sharing, or use in another application.`
+[**Help**](#viewing-help--help) | `When you need to access the user guide for assistance on using the application or to learn more about its features.`
+[**Add**](#adding-a-person-add) | `When you want to add a new client or contact with their details, such as name, phone number, email, address, income, and tags.`
+[**Delete**](#deleting-a-person--delete) | `When you need to delete a client or contact from your list, either because they are no longer relevant or you have entered their information incorrectly.`
+[**Edit**](#editing-a-person--edit) | `When you need to update a contact's information, such as their name, phone number, email, address, income, or tags.`
+[**Find**](#locating-persons-by-name-find) | `When you want to find a specific contact or group of contacts using one or more keywords, such as their name, tag, or other attributes.`
+[**List**](#listing-all-persons--list) | `When you want to view your entire list of contacts, either for reference or to find a specific contact.`
+[**Clear**](#clearing-all-entries--clear) | `When you want to delete all contacts in your list, such as when starting a new project or when you need to remove all outdated information.`
+[**Tag**](#adding-a-tag--tag) | `When you want to label a contact with a specific tag, such as "friend", "client", or "prospect", to help categorize and organize your contacts.`
+[**Delete Tag**](#deleting-a-tag--delete_tag) | `When you need to remove a tag from a contact, either because it is no longer relevant or was assigned incorrectly.`
+[**Filter**](#filter-by-fields--filter) | `When you want to view a specific subset of contacts based on their attributes, such as name, email, address, income, or tags.`
+[**Freeze**](#freezing-the-display--freeze) | `When you are modifying your contact list and you have a filtered applied using the filter command, you can use freeze to prevent the contacts from being removed. For example, if you used filter t/friend and you execute delete_tag 2 friend, the contact with index 2 will no longer show up in your list as it no longer has the tag `<br> friend` . However freeze will make it such that it will continue to show up in the list.`
+[**Unfreeze**](#unfreezing-the-display--unfreeze) | `When you want the contact list to be updated.`
+[**Mass**](#mass-operations--mass) | `When you want to perform a bulk action, such as assigning a tag or deleting multiple contacts simultaneously.`
+[**Undo**](#undoing-a-command--undo) | `When you have made a mistake or want to reverse a recent change to your contact list.`
+[**Redo**](#redoing-a-command--redo) | `When you have undone an action and later decide that you want to reapply the change.`
+[**Shortcut**](#creating-a-shortcut--shortcut) | `When you want to create a keyboard shortcut for a command you use often, making it faster and more convenient to execute.`
+[**Import**](#import-data-from-csv--import) | `When you have contact information stored in a CSV file and want to import it into the application.`
+[**Export**](#export-data-to-csv--export) | `When you want to export your contact list to a CSV file for backup, sharing, or use in another application.`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -439,21 +439,21 @@ Action | use case
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL i/INCOME a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague i/10000`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/INCOME] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Clear** | `clear`
-**Tag** | `tag INDEX TAG` <br> e.g, `tag 2 MIDDLE_CLASS`, `tag 5 teacher`
-**Delete Tag** | `delete_tag INDEX TAG` <br> e.g, `delete_tag 2 MIDDLE_CLASS`, `delete_tag 5 teacher`
-**Filter** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES]…​`
-**Freeze** | `freeze`
-**Unfreeze** | `unfreeze`
-**Mass** | `mass COMMAND [ARGS_WITHOUT_INDEX]`<br> e.g., `mass tag Noticed`
-**Undo** | `undo [NUM]`
-**Redo** | `redo [NUM]`
-**Shortcut** | `shortcut`
-**Import** | `import [combine|reset]`
-**Export** | `export [shown|all]`
+[**Help**](#viewing-help--help) | `help`
+[**Add**](#adding-a-person-add) | `add n/NAME p/PHONE_NUMBER e/EMAIL i/INCOME a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague i/10000`
+[**Delete**](#deleting-a-person--delete) | `delete INDEX`<br> e.g., `delete 3`
+[**Edit**](#editing-a-person--edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/INCOME] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+[**Find**](#locating-persons-by-name-find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+[**List**](#listing-all-persons--list) | `list`
+[**Clear**](#clearing-all-entries--clear) | `clear`
+[**Tag**](#adding-a-tag--tag) | `tag INDEX TAG` <br> e.g, `tag 2 MIDDLE_CLASS`, `tag 5 teacher`
+[**Delete Tag**](#deleting-a-tag--delete_tag) | `delete_tag INDEX TAG` <br> e.g, `delete_tag 2 MIDDLE_CLASS`, `delete_tag 5 teacher`
+[**Filter**](#filter-by-fields--filter) | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`<br> e.g., `filter e/.*\.org$ n/rin e/.*\.net$`
+[**Freeze**](#freezing-the-display--freeze) | `freeze`
+[**Unfreeze**](#unfreezing-the-display--unfreeze) | `unfreeze`
+[**Mass**](#mass-operations--mass) | `mass COMMAND [ARGS_WITHOUT_INDEX]`<br> e.g., `mass tag Noticed`
+[**Undo**](#undoing-a-command--undo) | `undo [NUM]`
+[**Redo**](#redoing-a-command--redo) | `redo [NUM]`
+[**Shortcut**](#creating-a-shortcut--shortcut) | `shortcut`
+[**Import**](#import-data-from-csv--import) | `import [combine|reset]`
+[**Export**](#export-data-to-csv--export) | `export [shown|all]`
