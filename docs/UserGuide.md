@@ -365,21 +365,21 @@ Examples:
 ### Locating employees by keyword: `find`
 
 As your database gets larger, scrolling and finding a certain employee becomes harder. However, ExecutivePro will ease this process
-through the `find` command. By following the format below, ExecutivePro will show
-a list of all employees in ExecutivePro whose names or departments match the keyword provided.
+through the `find` command. This command helps you find employees using their names and/or departments.
 
 Format: `find [*] KEYWORD [MORE_KEYWORDS]`
 
+* `find` command finds employees using the keyword you input. Those keywords can only be used to find the employee's name or their department.
 * If asterisk (`*`) is inputted, it displays list of employees matching _all_ the given keywords.
 * If asterisk (`*`) is _not_ inputted, it displays list of employees matching _any_ of the given keywords.
-* Even if the keyword just partially matches a part of employees full name, it is considered a match.
-* For finding department, the keyword has to be a full match.
-* Keyword is to search for the name and department of the employee only, not any other details.
+* For name, even if there is a partial match between your keyword and the employees name, that employee will be listed.
+* For department, there has to be a full match between your keyword and the employee's department.
 
 Examples:
 * `find John Sales` displays list of all employees whose full name contains a 'John' in it,
   or they are in the 'Sales' department
-* `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
+* `find * John Sales` displays list of all employees in the 'Sales' department _and_ who have a 'John' in their name
+
 
 Below are the steps to use this command:
 
@@ -394,15 +394,15 @@ All the employees who match the keywords will be listed.
 --------------------------------------------------------------------------------------------------------------------
 ### Filtering out employees: `filter`
 
-As your database gets larger, searching through the whole database to find employees who satisfy a certain condition
-becomes extremely tedious.
-However, ExecutivePro has just the right feature for you! The `filter` command will list out all the employees
-satisfying the given condition.
+As your database gets larger, searching through the whole database to find employees whose salaries are greater than 
+a certain threshold or whose leave count is lower than a certain value becomes extremely tedious.
+Fret not, ExecutivePro has just the right feature for you! The `filter` command will help you filter out such employees with ease.
 
 Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
 
 
-* The filtering condition can be based on Payroll(`pr`) value or the number of leaves remaining for an employee(`l`)
+* You can create your own condition based on which the employees will be filtered.
+* The filtering condition can filter based on the Payroll(`pr`) value or the number of leaves remaining for an employee(`l`).
 * The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
 * The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT`
 * The `COMPARISON_AMOUNT` must be _non-negative_ and an _integer_
