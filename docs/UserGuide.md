@@ -92,6 +92,8 @@ Tips are useful suggestions that will help you become a seasoned sprINT user qui
 **Tip:** Tips give you a better experience with sprINT.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 **Notes**
 
 Notes are important information that you should pay attention to when using sprINT.
@@ -612,8 +614,11 @@ ascending order of deadline (i.e. from earliest to latest), you can use the comm
 Choosing `deadline` will retrieve and display **all existing applications with tasks** (and therefore, deadlines). 
 If there are no applications that have tasks associated with them, an empty list will be displayed.
 
-The applications will be sorted by their task's deadline according to the specified sequence. Should there be two applications with
-the same deadline, the application entry that is more recently created will show up higher in the list.
+The applications will be sorted by their task's deadline according to the specified sequence. In the example above where the sequence
+`a` is specified for ascending sequence, you can see that the application to Apple is placed higher, as it has a task deadline for an `Interview`
+on 27 Apr 2023, compared to 29 Apr 2023 for the application to Amazon.
+
+Should there be two applications with the same task deadline however, the application entry that is more recently created will show up higher in the list.
 
 Other examples:
 * `sort d deadline` will fetch and display **all applications with task deadlines**, except those with further deadlines will be higher up in the list instead.
@@ -709,6 +714,8 @@ Format: `exit`
 Changes you've made  to your applications are automatically saved in your local storage after each command you execute
 that modifies the application data. There is no need to save manually.
 
+<div style="page-break-after: always;"></div>
+
 #### 4.4.8 Editing the data file **(for Advanced users)**
 
 Data in the internship book are actually saved as a JSON file `[JAR file location]/data/sprint.json`. 
@@ -787,6 +794,8 @@ In the context of sprINT, **positive integers** refer to whole numbers in the ra
 JSON is a way of storing and sharing data in a simple and standardised format that can be easily read by computers and
 understood by humans. sprINT uses JSON to store all your applications because it is _lightweight_, which means that
 sprINT can process your data more quickly! 
+
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 
