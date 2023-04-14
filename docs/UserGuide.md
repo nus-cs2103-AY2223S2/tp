@@ -183,7 +183,7 @@ Here's a hypothetical workflow that might help you better understand the figure 
 
 Here is a list of amazing features that CLIpboard supports:
 
-- [General Features: ](#general-commands)
+- [General Features: ](#general-features)
   - [Showing the home page: ](#showing-the-home-page-home) `home`
   - [Going back to the previous page: ](#going-back-to-the-previous-page-back) `back`
   - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
