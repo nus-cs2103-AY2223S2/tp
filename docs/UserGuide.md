@@ -2,11 +2,6 @@
 layout: page
 title: User Guide
 ---
-<div markdown="span" class="alert alert-warning">
-
-🏠 Make sure that the index you are providing is valid! For example, `editDeck -1` will result in an error message on the result display as -1 is an invalid index.
-
-</div>
 
 # 1. Introduction
 
@@ -70,6 +65,8 @@ This section highlights the key components of PowerCards’ user interface. Refe
 
 # 2. Quick Start
 
+<a markdown="span" href="#1-introduction"> 🏠 **Back to top** </a> <br>
+
 1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install from this [link](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). Remember to download the correct version for your Operating System! (e.g. Window or Mac) 
 
 2. Download the latest `powercards.jar` from [here](https://github.com/AY2223S2-CS2103T-W11-3/tp/releases).
@@ -89,6 +86,8 @@ This section highlights the key components of PowerCards’ user interface. Refe
 <div style="page-break-after: always;"></div>
 
 # 3. Features
+
+<a markdown="span" href="#1-introduction"> 🏠 **Back to top** </a> <br>
 
 ## 3.1. Command Components
 
@@ -549,6 +548,8 @@ Not sure what a JSON file is? Check out this [brief introduction](https://www.w3
 
 # 4. FAQ
 
+<a markdown="span" href="#1-introduction"> 🏠 **Back to top** </a> <br>
+
 **Q**: Will my data be automatically saved?<br>
 **A**: **Yes**, PowerCards automatically saves your data after every command entered.
 
@@ -576,6 +577,8 @@ Not sure what a JSON file is? Check out this [brief introduction](https://www.w3
 <div style="page-break-after: always;"></div>
 
 # 5. Command Summary
+
+<a markdown="span" href="#1-introduction"> 🏠 **Back to top** </a> <br>
 
 ## 5.1. Main Mode - before selecting a Deck
 
