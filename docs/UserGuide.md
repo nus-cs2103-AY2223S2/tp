@@ -42,6 +42,24 @@ E-Lister is a comprehensive **desktop app**, specially designed for **insurance 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## **Interface Navigation**
+![Ui Navigation](images/UiNavigation.png)
+
+The user interface consists of five parts: input and output, along with three view boxes for the person list, applying filters, and input log. You can see these sections' descriptions below:
+
+Section | Description
+--------|------------------
+**Input box** | This is where you key in your command for E-Lister.
+**Output box** | This box displays E-Lister's responses to your input.
+**Person list** | This is a panel containing the list of people and their information.
+**Filter box** | This box displays all currently applying filters on the person list
+**Input log** | This is where you can see all your successfully executed commands.
+
+Inside the **Person list**, each person has a **Person Card**, this is the breakdown of a person card:
+
+![Person Card](images/PersonCard.png)
+
+---------------------------------------------------------------------------------------------------------------------------------
 
 ## **Features**
 
@@ -350,6 +368,8 @@ Format: `export [shown|all]`
 ![export example](images/exportExample.png)
 
 ### **Input Log**
+![history display](images/historyDisplay.png)
+
 On the right side of the application, an Input Log section is available & displays successful commands you have previously entered.
 
 *Why do we need this?* Keeping a record of all commands executed in contacts managing app is important for several reasons.
@@ -357,7 +377,7 @@ On the right side of the application, an Input Log section is available & displa
 - It allows the agent to keep track of their progress and performance, providing a clear overview of where they are in the workflow at any given time. This can be especially helpful when managing a large number of customers and tasks simultaneously, as it can be easy to lose track of what has been done and what still needs to be done
 - Finally, having a record of all commands executed in the app can help identify any issues or areas for improvement in the workflow, allowing the agent to refine their approach and optimize their performance over time.
 
-![history display](images/historyDisplay.png)
+
 ### **Applying Filters Display**
 ![applying filters display](images/filtersDisplay.png)
 
@@ -395,6 +415,32 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app on the another computer and overwrite the empty data file it creates with the file that contains the data of your previous E-Lister home folder.
 
+
+--------------------------------------------------------------------------
+
+## **Command use cases**
+
+Action | use case
+-------|--------------------------------------
+**Help** | `When you need to access the user guide for assistance on using the application or to learn more about its features.`
+**Add** | `When you want to add a new client or contact with their details, such as name, phone number, email, address, income, and tags.`
+**Delete** | `When you need to delete a client or contact from your list, either because they are no longer relevant or you have entered their information incorrectly.`
+**Edit** | `When you need to update a contact's information, such as their name, phone number, email, address, income, or tags.`
+**Find** | `When you want to find a specific contact or group of contacts using one or more keywords, such as their name, tag, or other attributes.`
+**List** | `When you want to view your entire list of contacts, either for reference or to find a specific contact.`
+**Clear** | `When you want to delete all contacts in your list, such as when starting a new project or when you need to remove all outdated information.`
+**Tag** | `When you want to label a contact with a specific tag, such as "friend", "client", or "prospect", to help categorize and organize your contacts.`
+**Delete Tag** | `When you need to remove a tag from a contact, either because it is no longer relevant or was assigned incorrectly.`
+**Filter** | `When you want to view a specific subset of contacts based on their attributes, such as name, email, address, income, or tags.`
+**Freeze** | `When you are modifying your contact list and you have a filtered applied using the filter command, you can use freeze to prevent the contacts from being removed. For example, if you used filter t/friend and you execute delete_tag 2 friend, the contact with index 2 will no longer show up in your list as it no longer has the tag `<br> friend` . However freeze will make it such that it will continue to show up in the list.`
+**Unfreeze** | `When you want the contact list to be updated.`
+**Mass** | `When you want to perform a bulk action, such as assigning a tag or deleting multiple contacts simultaneously.`
+**Undo** | `When you have made a mistake or want to reverse a recent change to your contact list.`
+**Redo** | `When you have undone an action and later decide that you want to reapply the change.`
+**Shortcut** | `When you want to create a keyboard shortcut for a command you use often, making it faster and more convenient to execute.`
+**Import** | `When you have contact information stored in a CSV file and want to import it into the application.`
+**Export** | `When you want to export your contact list to a CSV file for backup, sharing, or use in another application.`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Command summary**
@@ -419,26 +465,3 @@ Action | Format, Examples
 **Shortcut** | `shortcut`
 **Import** | `import [combine|reset]`
 **Export** | `export [shown|all]`
-
-## **Command use case**
-
-Action | use cases
--------|--------------------------------------
-**Help** | `When you need to access the user guide for assistance on using the application or to learn more about its features.`
-**Add** | `When you want to add a new client or contact with their details, such as name, phone number, email, address, income, and tags.`
-**Delete** | `When you need to delete a client or contact from your list, either because they are no longer relevant or you have entered their information incorrectly.`
-**Edit** | `When you need to update a contact's information, such as their name, phone number, email, address, income, or tags.`
-**Find** | `When you want to find a specific contact or group of contacts using one or more keywords, such as their name, tag, or other attributes.`
-**List** | `When you want to view your entire list of contacts, either for reference or to find a specific contact.`
-**Clear** | `When you want to delete all contacts in your list, such as when starting a new project or when you need to remove all outdated information.`
-**Tag** | `When you want to label a contact with a specific tag, such as "friend", "client", or "prospect", to help categorize and organize your contacts.`
-**Delete Tag** | `When you need to remove a tag from a contact, either because it is no longer relevant or was assigned incorrectly.`
-**Filter** | `When you want to view a specific subset of contacts based on their attributes, such as name, email, address, income, or tags.`
-**Freeze** | `When you are modifying your contact list and you have a filtered applied using the filter command, you can use freeze to prevent the contacts from being removed. For example, if you used filter t/friend and you execute delete_tag 2 friend, the contact with index 2 will no longer show up in your list as it no longer has the tag `<br> friend` . However freeze will make it such that it will continue to show up in the list.`
-**Unfreeze** | `When you want the contact list to be updated.`
-**Mass** | `When you want to perform a bulk action, such as assigning a tag or deleting multiple contacts simultaneously.`
-**Undo** | `When you have made a mistake or want to reverse a recent change to your contact list.`
-**Redo** | `When you have undone an action and later decide that you want to reapply the change.`
-**Shortcut** | `When you want to create a keyboard shortcut for a command you use often, making it faster and more convenient to execute.`
-**Import** | `When you have contact information stored in a CSV file and want to import it into the application.`
-**Export** | `When you want to export your contact list to a CSV file for backup, sharing, or use in another application.`
