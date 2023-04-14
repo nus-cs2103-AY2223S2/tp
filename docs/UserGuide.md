@@ -87,10 +87,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 1. Copy the file to the folder you want to use as the *home folder* for AIMS.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to run the application.
-   <br>
-   <br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to run the application. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
    <div style="text-align: center;">
      <img src="images/Ui.png">
@@ -267,6 +264,8 @@ Shows you a list of all existing persons in AIMS.
 
 Format: `list`
 
+<br>
+
 [Back to Top ↑](#table-of-contents)
 
 ### Copying information to clipboard : `copy`
@@ -295,6 +294,8 @@ see all the text.
 :bulb: **Tip:** You can use `find`/`filter` to find a person first before using `copy`!
 
 </div>
+
+<br>
 
 Examples:
 
