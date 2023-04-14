@@ -42,17 +42,17 @@ title: User Guide
 
 ## Introduction
 
-**Vimification** is a **desktop app** built for Vim enthusasts to manage tasks and deadlines, optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface** (GUI).
+**Vimification** is a **desktop app** built for Vim enthusiasts to manage tasks and deadlines, optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a **Graphical User Interface (GUI)**.
 
-**Vimification** is modelled after **Vim**, so the command syntax for the Vimificaiton CLI closely mimics **Vim**.
+Since **Vimification** is modeled after **Vim**, the command syntax for the Vimification CLI closely mimics Vim.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ## Purpose of this User Guide
 
-The purpose of this user guide is to provide you with a comprehensive guide on using the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using Vimification's powerful and intuitive interface.
+This user guide aims to help you make the most of Vimification's powerful and intuitive interface by providing a comprehensive overview of its vim-like features and functionality.
 
-The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will also provide you with clear and concise instructions that are easy to follow, whether you are a new user or an experienced Vim enthusiast. Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using Vimification.
+Whether you're new to the app or an experienced Vim user, the guide will walk you through everything you need to know to efficiently manage your tasks and deadlines. You'll learn how to create and organize tasks, set due dates, prioritize your work, and track your progress. The guide also includes troubleshooting tips and solutions to common issues, ensuring that you can use Vimification with confidence and ease.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -66,37 +66,29 @@ The guide will walk you through the process of creating and managing tasks, sett
 
 ### For Windows
 
-1. Ensure that you have Java `11` or above installed in your computer.
+1. Make sure that you have Java version `11` or higher installed on your computer.
+2. Double-click the application file to start the app.
+3. After a few seconds, the application should launch, and a graphical user interface (GUI)similar to the one shown below will appear.
 
-2. Double-click the file to start the app.
-
-3. The application should launch, and a GUI similar to the below should appear in a few seconds.
-
-**NOTE: The text of Vimification may sometimes wrap over to the next line on Windows, enlarge the window size to prevent this issue!**
+**NOTE: On Windows, the text in Vimification may occasionally wrap onto the next line. To avoid this issue, please enlarge the application window as needed.**
 
 ### For Mac
 
-1. Ensure that you have Java `11` Zulu SDK installed in your computer.
+1. Make sure that you have Java version `11` Zulu SDK installed on your computer.
+2. Open the Terminal app on your Mac, and navigate to the folder where you have saved the JAR file by running the command `cd` into the path of the folder.
+3. Run the command `java -jar vimification.jar` in the terminal.
+4. After a few seconds, the application should launch, and a graphical user interface (GUI) similar to the one shown below will appear
 
-2. Open your Mac Terminal, and `cd` into the folder you put the JAR file in.
-
-3. Run `java -jar vimification.jar`.
-
-4. The application should launch, and a GUI similar to the below should appear in a few seconds.
-
-**NOTE: The text of Vimification may sometimes wrap over to the next line on Mac, enlarge the window size to prevent this issue!**
+**NOTE: On Mac, the text in Vimification may occasionally wrap onto the next line. To avoid this issue, please enlarge the application window as needed.**
 
 ### For Linux
 
-1. Ensure that you have Java `11` Zulu SDK installed in your computer.
+1. Make sure that you have Java version `11` Zulu SDK installed on your computer.
+2. Open the Terminal, and navigate to the folder where you have saved the JAR file by running the command `cd` into the path of the folder.
+3. Run the command `java -jar vimification.jar` in the terminal.
+4. After a few seconds, the application should launch, and a graphical user interface (GUI) similar to the one shown below will appear
 
-2. Open your Terminal, and `cd` into the folder you put the JAR file in.
-
-3. Run `java -jar vimification.jar`.
-
-4. The application should launch, and a GUI similar to the below should appear in a few seconds.
-
-**NOTE: You may still be able to resize the window of Vimification in Linux to a size that is smaller than the default! Resize the window to full-screen if you have any difficulties seeing the tasks.**
+**NOTE: In Linux, it is possible to resize the Vimification window to a size smaller than the default. If you experience difficulties viewing tasks, please resize the window to full-screen.**
 
 <img class="ui-img" src="images/ug-images/1.bootup.png" alt="Ui Image" title="Overall User Interface">
 <br><br>
@@ -104,9 +96,9 @@ The guide will walk you through the process of creating and managing tasks, sett
 
 ### Navigating Vimification
 
-Similar to Vim, you can use the `j` and `k` (or `↓` and `↑`) key to move down and up the task-list respectively.
+Similar to Vim, you can use the `j` and `k` (or `↓` and `↑`) keys to navigate down and up the task-list, respectively.
 
-Assuming we already have some tasks loaded in Vimification (we'll show you how to add tasks later), pressing `j` brings us down.
+Assuming you already have tasks loaded in Vimification (we will show you how to add tasks later), pressing `j` will move you down the list.
 
 <table>
   <tr>
@@ -127,7 +119,7 @@ Assuming we already have some tasks loaded in Vimification (we'll show you how t
   </tr>
 </table>
 
-Similarly, pressing `k` brings us up the task list.
+Similarly, pressing `k` brings you up the task list.
 
 <table>
   <tr>
@@ -148,7 +140,7 @@ Similarly, pressing `k` brings us up the task list.
   </tr>
 </table>
 
-In Vim, pressing `l` moves you to the right, but in Vimification, pressing `l` would move you to the right-side panel and display the task detail.
+In Vim, pressing `l` moves the cursor to the right. In Vimification, however, pressing `l` will move the focus to the right-side panel and display the details of the currently selected task.
 
 <table>
   <tr>
@@ -169,7 +161,7 @@ In Vim, pressing `l` moves you to the right, but in Vimification, pressing `l` w
   </tr>
 </table>
 
-In Vim, pressing `h` moves you to the left, but in Vimification, pressing `h` would move you back to the task list (and hence clear out the right-side panel!).
+In Vim, pressing `h` moves the cursor to the left. In Vimification, however, pressing `h` will move the cursor back to the task list, and hence clearing the details displayed in the right-side panel.
 
 <table>
   <tr>
@@ -190,15 +182,15 @@ In Vim, pressing `h` moves you to the left, but in Vimification, pressing `h` wo
   </tr>
 </table>
 
-**NOTE: If at any point when you are unable to navigate the task list, pressing `j` or `k` multiple times will cause Vimification to refocus onto the task-list and work again, otherwise, use your mouse to click on the task list in Vimification to recalibrate the focus.**
+**NOTE: If you find yourself unable to navigate the task list, try pressing `j` or `k` multiple times to refocus Vimification onto the task list. Alternatively, you can click on the task list with your mouse to recalibrate the focus.**
 
-**NOTE: It is not recommended to use arrow key, because it is not supported!**
+**NOTE: Using arrow keys is not recommended since they are not supported.**
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Exiting Vimification
 
-Similiar to Vim, you can quit Vimification by typing `:quit` or `:q!` on your keyboard while in Vimification.
+Similar to Vim, you can exit Vimification by typing `:quit` or `:q!` on your keyboard while using Vimification.
 
 <img class="ui-img" src="images/ug-images/8.quit.png">
 <br><br>
@@ -206,11 +198,11 @@ Similiar to Vim, you can quit Vimification by typing `:quit` or `:q!` on your ke
 
 ### Trying out the commands
 
-Similar to Vim, you can access command mode by **pressing the `:` key** on your keyboard. This will shift the focus to the command input field, which is at the bottom of the application.
+Similar to Vim, you can enter command mode in Vimification by **pressing the `:` key** on your keyboard. This will move the focus to the command input field located at the bottom of the application.
 
 <img class="ui-img" src="images/ug-images/9.showcommand.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
-Type the command in the command box and press the `Enter` key to execute it. e.g. typing **`:help`** and pressing `Enter` will open the help window.
+Type the command in the command box and press the `Enter` key to execute it. For example, typing **`:help`** and pressing `Enter` will open the help window.
 
 Some example commands you can try:
 
@@ -230,7 +222,7 @@ Some example commands you can try:
 
 ## Using the commands
 
-Similar to Vim, you can access command mode by **pressing the `:` key** on your keyboard. This will shift the focus to the command input field, which is at the bottom of the application.
+Similar to Vim, you can enter command mode in Vimification by **pressing the `:` key** on your keyboard. This will move the focus to the command input field located at the bottom of the application.
 
 <img class="ui-img" src="images/ug-images/9.showcommand.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
@@ -242,9 +234,9 @@ Similar to Vim, you can access command mode by **pressing the `:` key** on your 
 
 In Vimification, a task can has the following attributes:
 
-| Attribute | Its meaning & purpose                                | Flag | The range of values it accepts                                               |
+| Attribute | Meaning & Purpose                                    | Flag | Accepted Values                                                              |
 | --------- | ---------------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| Title     | Name or general description of a task.               | `-t` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*. |
+| Title     | Name or brief description of a task.                 | `-t` | One single word or a phrase enclosed in quotation marks (`""` or `''`)\*.    |
 | Deadline  | The date (and time) the task is due at.              | `-d` | In the format of `yyyy-MM-dd`, `yyyy-MM-dd HH:mm`, `EEE` or `EEE HH:mm`^.    |
 | Labels    | The labels that the task has.                        | `-l` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*. |
 | Status    | Status of a task, indicating that is it done or not. | `-s` | 0, 1, or 2. See below for more details.                                      |
