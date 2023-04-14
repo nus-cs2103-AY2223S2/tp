@@ -660,7 +660,7 @@ Format: `delete EMPLOYEE_ID`
 * The `EMPLOYEE_ID` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-`delete 2` deletes the employee with EMPLOYEE_ID 2 in ExecutivePro.
+- `delete 2` deletes the employee with EMPLOYEE_ID 2 in ExecutivePro.
 
 #### Clearing the data: `clear`
 
@@ -796,7 +796,7 @@ Format: `theme THEME_NAME`
 * `THEME_NAME` is either `dark` (white text on dark background) or `light` (black text on white background).
 
 Example:
-`theme light` applies the `light` theme to ExecutivePro.
+- `theme light` applies the `light` theme to ExecutivePro.
 
 <div markdown="span" class="alert alert-warning">
 
