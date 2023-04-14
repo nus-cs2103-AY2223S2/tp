@@ -18,7 +18,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 ## 1.1. How to use the User Guide
 
-<a markdown="span" href="#1-introduction"> ⬆️ **Back to 1.Introduction ** </a> <br>
+<a markdown="span" href="#1-introduction"> ⬆️ **Back to 1.Introduction** </a> <br>
 
 * For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](#2-quick-start) section.
 * To **understand the terms** we use in PowerCards, you can visit the [Key Terms](#12-key-terms) section.
@@ -33,7 +33,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 ## 1.2. Key Terms
 
-<a markdown="span" href="#1-introduction"> ⬆️ **Back to 1.Introduction ** </a> <br>
+<a markdown="span" href="#1-introduction"> ⬆️ **Back to 1.Introduction** </a> <br>
 
 **Deck**<br>
 
