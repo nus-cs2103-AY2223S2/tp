@@ -67,25 +67,23 @@ Follow these steps if this is your first time using ExecutivePro:
         - If you are using an Apple Silicon Mac, you can install the Azul build of OpenJDK 11 version
           from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest `ExecutivePro.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-4/tp/releases).
-
 3. Copy the jar file to a folder you want to use as the _main folder_ for your ExecutivePro.
    This folder can be on your Desktop or any location you prefer.
    For example, we create a `test` folder on the Desktop.
-<p align="center">
-  <img src="images/jarfile.png" width="75%" height="50%">
-  <br>
-  <em>`test` folder</em>
-</p>
+    <p align="center">
+      <img src="images/jarfile.png" width="100%" height="50%">
+      <br>
+      <em>`test` folder</em>
+    </p>
 
-Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
-<p align="center">
-  <img src="images/jarfile2.png" width="75%" height="50%">
-  <br>
-  <em>ExecutivePro jar file</em>
-</p>
+    Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
+        <p align="center">
+          <img src="images/jarfile2.png" width="100%" height="50%">
+          <br>
+          <em>ExecutivePro jar file</em>
+        </p>
 
 4. Now you are ready to use ExecutivePro, refer to the section [Starting ExecutivePro](#starting-executivepro) below for more details.
-
 <div markdown="block" class="alert alert-info">
 
 ### Starting ExecutivePro
@@ -124,7 +122,7 @@ A window like below should appear in seconds.
 Note how the app contains some sample data.
 
 <p align="center">
-  <img src="images/quickstartui.png" width="50%" height="50%">
+  <img src="images/quickstartui.png" width="75%" height="50%">
   <br>
   <em>Starting Page</em>
 </p>
@@ -143,7 +141,7 @@ Congratulations, ExecutivePro is now running, you can refer to the [Features](#f
 Below is the ExecutivePro User Interface with the main components labelled.
 
 <p align="center">
-  <img src="images/labelledgui.png" width="70%" height="50%">
+  <img src="images/labelledgui.png" width="75%" height="50%">
   <br>
   <em>User Interface</em>
 </p>
@@ -176,7 +174,7 @@ This toolbar can be used to:
 #### 2. Display Panel
 
 <p align="center">
-  <img src="images/displaypanel.png" width="50%" height="50%">
+  <img src="images/displaypanel.png" width="75%" height="50%">
   <br>
   <em>Display Panel</em>
 </p>
@@ -192,7 +190,7 @@ This section shows the full information of the selected employee.
 #### 3. Employee List
 
 <p align="center">
-  <img src="images/employeelist.png" width="50%" height="50%">
+  <img src="images/employeelist.png" width="75%" height="50%">
   <br>
   <em>Employee List</em>
 </p>
@@ -207,7 +205,7 @@ This will come in handy if:
 #### 4. Command Panel
 
 <p align="center">
-  <img src="images/commandpanel.png" width="50%" height="50%">
+  <img src="images/commandpanel.png" width="100%" height="50%">
   <br>
   <em>Command Panel</em>
 </p>
@@ -216,7 +214,12 @@ This section displays relevant messages or errors after the command is entered.
 
 #### 5. Command Line Interface (CLI)
 
-<img src="images/UserGuide/CLI.png" class="centerImage">
+<p align="center">
+  <img src="images/CLI.png" width="100%" height="50%">
+  <br>
+  <em>Command Line Interface(CLI)</em>
+</p>
+
 In this section, you can enter your command in the text box and click enter on your keyboard to send it to the application. 
 
 This is also known as a Command Line Interface or CLI for short. If you are new to CLI, refer to the questions below for a quick crash course,
@@ -283,7 +286,7 @@ We know that there can be a lot of information to take in for a new user, so if 
 Entering the `help` command will open up the _Help Window_ that looks like this.
 
 <p align="center">
-  <img src="images/helpwindow.png" width="50%" height="50%">
+  <img src="images/helpwindow.png" width="100%" height="50%">
   <br>
   <em>Help Window</em>
 </p>
@@ -411,23 +414,45 @@ ExecutivePro expects dates to be in the following format: YYYY-MM-DD. If the dat
 Follow the steps below to ensure the dates in Excel are following the correct format:
 
 1. Firstly, you can select the two columns involving dates, `Date of Birth` and `Date of Joining`, just like the image below.
-   ![](images/UserGuide/batchadd/selectingcolumns.png)
-
+   <p align="center">
+    <img src="images/selectingcolumns.png" width="80%" height="80%">
+    <br>
+    <em>Selecting date columns in Excel file</em>
+   </p>
 2. Next, right-click on the selected columns so that the following shows up:
-
-   <img class="centerImage" src="images/UserGuide/batchadd/rightclick.png" width=250>
+   <p align="center">
+    <img src="images/rightclick.png" width="80%" height="80%">
+    <br>
+    <em>Right click to format selected cells</em>
+   </p>
 
 3. Click on `Format Cells...` and the table below will appear:
-   ![](images/UserGuide/batchadd/formattable.png)
+   <p align="center">
+    <img src="images/format.png" width="80%" height="80%">
+    <br>
+    <em>Format cells table</em>
+   </p>
 
 4. Click on `Date`:
-   ![](images/UserGuide/batchadd/formattabledate.png)
+   <p align="center">
+    <img src="images/formatdate.png" width="80%" height="80%">
+    <br>
+    <em>Clicking on date</em>
+   </p>
 
 5. Select the correct date format ("YYYY-MM-DD"):
-   ![](images/UserGuide/batchadd/correctformattable.png)
+   <p align="center">
+    <img src="images/correct.png" width="80%" height="80%">
+    <br>
+    <em>Correct date format</em>
+   </p>
 
 6. Click `OK` and the date in the file will be updated to the correct format:
-   ![](images/UserGuide/batchadd/successCSV.png)
+   <p align="center">
+    <img src="images/successCSV.png" width="80%" height="80%">
+    <br>
+    <em>Correct date format in Excel file</em>
+   </p>
 
 
 Once the dates in your CSV file are in the correct format (YYYY-MM-DD),
