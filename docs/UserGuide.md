@@ -441,9 +441,6 @@ Use this command to change the course code of an existing course.
 ```
 edit course <INDEX> <NEW_COURSE_CODE>
 ```
-<div markdown="span" class="alert alert-info">:information_source: **Note:** You cannot edit the course code
-</div>
-<br>
 
 Examples:
 
