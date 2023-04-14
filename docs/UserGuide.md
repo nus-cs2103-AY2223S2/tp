@@ -360,8 +360,6 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` <br>
   Edits the phone number and email address of the 1st person in the existing main list to be `91234567`and `johndoe@example.com` respectively.
 
-<br>
-
 - `edit 2 n/Betsy Crower t/`<br>
   Edits the name of the 2nd person in the existing main list to be `Betsy Crower` and clears all existing tags.
 
@@ -444,8 +442,6 @@ Examples:
 
 - `list` followed by `delete 2`<br>
   The 2nd existing person in the main list will be deleted.
-
-<br>
 
 - `find Betsy` followed by `delete 1`<br>
   The 1st person in the main list of the `find` command will be deleted.
