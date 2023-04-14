@@ -1,0 +1,92 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":UltronParser" as UltronParser LOGIC_COLOR
+participant ":UpcomingCommandParser" as UpcomingCommandParser LOGIC_COLOR
+participant "predicate:OpeningsBeforeDaysPredicate" as OpeningsBeforeDaysPredicate LOGIC_COLOR
+participant "command:UpcomingCommand" as UpcomingCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[->MainWindow : executeCommand("upcoming 5")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("upcoming 5")
+activate LogicManager
+
+LogicManager -> UltronParser : parseCommand("upcoming 5")
+activate UltronParser
+
+create UpcomingCommandParser
+
+UltronParser -> UpcomingCommandParser : UpcomingCommandParser()
+activate UpcomingCommandParser
+
+UpcomingCommandParser --> UltronParser
+deactivate UpcomingCommandParser
+
+UltronParser -> UpcomingCommandParser : parse()
+activate UpcomingCommandParser
+
+create OpeningsBeforeDaysPredicate
+
+UpcomingCommandParser -> OpeningsBeforeDaysPredicate : OpeningsBeforeDaysPredicate(days)
+activate OpeningsBeforeDaysPredicate
+
+OpeningsBeforeDaysPredicate --> UpcomingCommandParser
+deactivate OpeningsBeforeDaysPredicate
+
+create UpcomingCommand
+
+UpcomingCommandParser -> UpcomingCommand : UpcomingCommand(predicate)
+activate UpcomingCommand
+
+UpcomingCommand --> UpcomingCommandParser
+deactivate UpcomingCommand
+
+UpcomingCommandParser --> UltronParser : command
+deactivate UpcomingCommandParser
+
+UltronParser --> LogicManager : command
+deactivate UltronParser
+
+LogicManager -> UpcomingCommand : execute()
+activate UpcomingCommand
+
+UpcomingCommand -> Model : updateFilteredOpeningList(predicate)
+activate Model
+
+Model --> UpcomingCommand
+deactivate Model
+
+UpcomingCommand -> Model : sortFilteredOpeningList()
+activate Model
+
+Model --> UpcomingCommand
+deactivate Model
+
+UpcomingCommand --> LogicManager : commandResult
+deactivate UpcomingCommand
+UpcomingCommand -[hidden]-> LogicManager : commandResult
+destroy UpcomingCommand
+
+destroy OpeningsBeforeDaysPredicate
+
+UpcomingCommandParser -[hidden]-> LogicManager : commandResult
+destroy UpcomingCommandParser
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

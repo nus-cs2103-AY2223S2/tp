@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":OpeningDetailsPanel" as OpeningDetailsPanel UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":UltronParser" as UltronParser LOGIC_COLOR
+participant "command:ShowCommand" as ShowCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[->MainWindow : executeCommand("show 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("show 1")
+activate LogicManager
+
+LogicManager -> UltronParser : parseCommand("show 1")
+activate UltronParser
+
+create ShowCommand
+
+UltronParser -> ShowCommand : ShowCommand()
+activate ShowCommand
+
+ShowCommand --> UltronParser
+deactivate ShowCommand
+
+UltronParser --> LogicManager : command
+deactivate UltronParser
+
+LogicManager -> ShowCommand : execute()
+activate ShowCommand
+
+ShowCommand -> Model : setSelectedIndex(1)
+activate Model
+
+Model --> ShowCommand
+deactivate Model
+
+ShowCommand --> LogicManager : commandResult
+deactivate ShowCommand
+
+ShowCommand -[hidden]-> LogicManager
+destroy ShowCommand
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+MainWindow --> MainWindow : handleShow()
+activate MainWindow
+
+MainWindow -> LogicManager : getSelectedOpening()
+activate LogicManager
+
+LogicManager -> Model : getSelectedOpening()
+activate Model
+
+Model --> LogicManager : opening
+deactivate Model
+
+LogicManager --> MainWindow : opening
+deactivate LogicManager
+
+create OpeningDetailsPanel
+
+MainWindow -> OpeningDetailsPanel: OpeningDetailsPanel(opening)
+activate OpeningDetailsPanel
+
+OpeningDetailsPanel --> MainWindow
+deactivate OpeningDetailsPanel
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
