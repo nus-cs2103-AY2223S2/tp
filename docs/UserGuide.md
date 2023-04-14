@@ -441,10 +441,12 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
    </p>
 2. Next, right-click on the selected columns so that the following shows up:
    <p align="center">
-    <img src="images/rightclick.png" width="20%" height="20%">
+    <img src="images/rightclick.png" width="45%" height="40%">
     <br>
     <em>Right click to format selected cells</em>
    </p>
+
+<div style="page-break-after: always"></div>
 
 3. Click on `Format Cells...` and the table below will appear:
    <p align="center">
@@ -459,6 +461,8 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
     <br>
     <em>Clicking on date</em>
    </p>
+
+<div style="page-break-after: always"></div>
 
 5. Select the correct date format ("YYYY-MM-DD"):
    <p align="center">
@@ -690,15 +694,15 @@ through the `find` command. This command helps you find employees using their na
 Format: `find [*] KEYWORD [MORE_KEYWORDS]`
 
 * `find` command finds employees using the keyword you input. Those keywords can only be used to find the employee's name or their department.
-* If asterisk (`*`) is inputted, it displays list of employees matching _all_ the given keywords.
-* If asterisk (`*`) is _not_ inputted, it displays list of employees matching _any_ of the given keywords.
+* If asterisk (`*`) is inputted, it displays a list of employees matching _all_ the given keywords.
+* If asterisk (`*`) is _not_ inputted, it displays a list of employees matching _any_ of the given keywords.
 * For name, even if there is a partial match between your keyword and the employees name, that employee will be listed.
 * For department, there has to be a full match between your keyword and the employee's department.
 
 Examples:
-* `find John Sales` displays list of all employees whose full name contains a 'John' in it,
-  or they are in the 'Sales' department
-* `find * John Sales` displays list of all employees in the 'Sales' department _and_ who have a 'John' in their name
+* `find John Sales` displays a list of all employees whose full name contains a 'John' in it,
+  or if they are in the 'Sales' department
+* `find * John Sales` displays a list of all employees in the 'Sales' department _and_ who have a 'John' in their name
 
 
 Here are the steps to use this command:
@@ -845,7 +849,7 @@ If your changes to the data file makes its format invalid, ExecutivePro will dis
 
 --------------------------------------------------------------------------------------------------------------------
 ## Planned Enhancements
-1. In the near future, our team will be creating a login feature for ExecutivePro. This helps to enhance the security of ExecutivePro by ensuring that only you and your team members have access to the database.
+In the near future, our team will be creating a login feature for ExecutivePro. This helps to enhance the security of ExecutivePro by ensuring that only you and your team members have access to the database.
 
 --------------------------------------------------------------------------------------------------------------------
 
