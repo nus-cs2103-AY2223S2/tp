@@ -73,8 +73,6 @@ A tip looks like this.
 A caution looks like this.
 </div>
 
-* Please see the [Glossary](#glossary) section for more detailed and specific definitions.
-
 ---
 
 ## Getting started
