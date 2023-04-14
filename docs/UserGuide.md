@@ -169,6 +169,10 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 </div>
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ### Autocompletion
 
 TeachMeSenpai has a lot of features for you to experiment with, and we understand that it might take some getting used to. Hence, we've included an autocompletion feature!
@@ -198,6 +202,10 @@ The autocompletion feature also hints to you if you've entered an invalid comman
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The above invalid-input hints does not check if the parameters you gave are actually valid. Just because the words aren't red, does not imply that your input will execute when you press enter!
 </div>
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ### Viewing help: `help`
 
@@ -528,6 +536,10 @@ Examples:
     <br><i><b>Above:</b> Original state before entering <code>delete 1 4</code>, before entering <code>undo</code> command and after entering <code>undo</code> command</i>
 </p>
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ### Redo a previous `undo`: `redo`
 
 Did you `undo` a command on accident? Fret not, you may use `redo` to reverse the changes done by `undo`!
@@ -593,6 +605,9 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 | <a id="glossary-prefix"></a>Prefix                         | Indicators for commands. Always ends with a slash `/` and comes before a parameter.                             | `n/` is the prefix for parameter `NAME` which could be a name like Shaun. <br/> You may refer to [Prefix Summary](#prefix-summary) to see all the prefixes used in TeachMeSenpai.                                                           |
 | Remark                         | Notes or things to take note of for a student.                                                                  | "Not good in Japanese", "Has not submitted MC" etc.                                                                                                                                                                                         |
 
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## Command summary
 
