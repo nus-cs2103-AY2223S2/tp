@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="viewPane" prefHeight="399.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane prefHeight="115.0" prefWidth="346.0" HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox minHeight="130.0" prefHeight="399.0" prefWidth="336.0" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <Label fx:id="name" prefHeight="39.0" prefWidth="305.0" styleClass="cell_big_label" text="\$first">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
+            <FlowPane fx:id="tags" prefHeight="23.0" prefWidth="316.0">
+                <padding>
+                    <Insets bottom="2.0" top="5.0" />
+                </padding>
+            </FlowPane>
+            <Label fx:id="nric" prefHeight="36.0" prefWidth="304.0" styleClass="cell_small_label" text="Label[id=nric, styleClass=label cell_small_label]''" />
+            <Label fx:id="gender" prefHeight="34.0" prefWidth="275.0" styleClass="cell_small_label" text="$gender" />
+            <Label fx:id="date" prefHeight="31.0" prefWidth="316.0" styleClass="cell_small_label" text="$date" />
+            <Label fx:id="doctor" prefHeight="31.0" prefWidth="316.0" styleClass="cell_small_label" text="$date" />
+            <Label fx:id="phone" prefHeight="31.0" prefWidth="316.0" styleClass="cell_small_label" text="$phone">
+                <padding>
+                    <Insets top="3.0" />
+                </padding></Label>
+            <Label fx:id="email" prefHeight="40.0" prefWidth="316.0" styleClass="cell_small_label" text="$email">
+                <padding>
+                    <Insets top="3.0" />
+                </padding></Label>
+            <Label fx:id="address" alignment="TOP_LEFT" prefHeight="74.0" prefWidth="311.0" styleClass="cell_small_label" text="Label[id=address, styleClass=label cell_small_label]''">
+                <padding>
+                    <Insets top="3.0" />
+                </padding>
+            </Label>
+            <Label fx:id="drugAllergy" prefHeight="37.0" prefWidth="316.0" styleClass="cell_small_label" text="$drugAllergy" />
+            <FlowPane fx:id="medicines">
+                <padding>
+                    <Insets bottom="2.0" top="5.0" />
+                </padding>
+            </FlowPane>
+            <GridPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+            </GridPane.margin>
+        </VBox>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</HBox>

@@ -1,14 +1,24 @@
 {
   "persons": [ {
+    "nric": "S1234567A",
     "name": "Alice Pauline",
+    "date" : "15/07/1998",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "drugAllergy" : "NKDA",
+    "gender" : "female",
+    "doctor" : "Ben",
     "tagged": [ "friends" ]
   }, {
+    "nric": "S1234567A",
     "name": "Alice Pauline",
+    "date" : "15/07/1998",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "drugAllergy" : "NKDA",
+    "gender" : "female",
+    "doctor" : "Ben",
     "address": "4th street"
   } ]
 }

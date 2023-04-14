@@ -1,8 +1,16 @@
-#copyButton, #helpMessage {
+#undoMessage, #redoMessage, #addMessage, #editMessage, #deleteMessage, #listMessage, #viewMessage,
+#findMessage, #backupMessage, #loadBackupMessage, #viewBackupMessage, #deleteBackupMessage,
+#clearMessage, #lightModeMessage, #darkModeMessage, #noteMessage, #helpMessage {
     -fx-text-fill: white;
+    -fx-padding: 10 0 0 0;
+}
+
+#noteMessage {
+    -fx-text-fill:red;
 }
 
 #copyButton {
+    -fx-text-fill: white;
     -fx-background-color: dimgray;
 }
 
@@ -14,6 +22,6 @@
     -fx-background-color: darkgray;
 }
 
-#helpMessageContainer {
+#commandListContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }

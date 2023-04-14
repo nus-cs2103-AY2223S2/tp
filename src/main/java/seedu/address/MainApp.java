@@ -16,14 +16,18 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.BackupData;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBackupData;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.BackupDataStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonBackupDataStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -36,7 +40,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(1, 4, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -56,12 +60,14 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
+        BackupDataStorage backupDataStorage = new JsonBackupDataStorage(config.getBackupDataFilePath());
+        BackupData backupData = initBackup(backupDataStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        model = initModelManager(storage, userPrefs, backupData);
 
         logic = new LogicManager(model, storage);
 
@@ -73,7 +79,7 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs, ReadOnlyBackupData backupData) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         try {
@@ -90,7 +96,7 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, backupData);
     }
 
     private void initLogging(Config config) {
@@ -164,6 +170,34 @@ public class MainApp extends Application {
 
         return initializedPrefs;
     }
+
+    protected BackupData initBackup(BackupDataStorage storage) {
+        Path backupFilePath = storage.getBackupDataFilePath();
+        logger.info("Using backup file:" + backupFilePath);
+
+        BackupData initializedBackup;
+        try {
+            Optional<BackupData> backupOptional = storage.readBackupData();
+            initializedBackup = backupOptional.orElse(new BackupData());
+        } catch (DataConversionException e) {
+            logger.warning("BackupData file at " + backupFilePath + " is not in the correct format. "
+                    + "Using default backup data");
+            initializedBackup = new BackupData();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            initializedBackup = new BackupData();
+        }
+
+        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        try {
+            storage.saveBackupData(initializedBackup);
+        } catch (IOException e) {
+            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+        }
+
+        return initializedBackup;
+    }
+
 
     @Override
     public void start(Stage primaryStage) {

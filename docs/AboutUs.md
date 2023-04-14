@@ -5,55 +5,68 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Jonathon Low Eng Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/creationsv2.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Creationsv2)]
+[[portfolio](team/creationsv2.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: 
+  * `add` command
+  * `nric`, `tag`, `doctor` fields
+  * User Guide
 
-### Jean Doe
+### Ong Wei Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ongweijie7.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ongweijie7)]
+[[portfolio](team/ongweijie7.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: 
+  * `find` command
+  * `gender`, `dateofbirth`, `email` fields
+  * Developer Guide
+
+### Sean Chin Jun Kai
+
+<img src="images/seanchinjunkai.png" width="200px">
+
+[[github](http://github.com/seanchinjunkai)]
+[[portfolio](team/seanchinjunkai.md)]
+
+* Role: Developer
+* Responsibilities: 
+  * `help` and `delete` commands
+  * `drugallergy` field
+  * User Guide
+
+### Ma Yu Chen
+
+<img src="images/dawg420.png" width="200px">
+
+[[github](http://github.com/dawg420)]
+[[portfolio](team/dawg420.md)]
+* Role: Developer
+* Responsibilities:
+  * `backup`, `load`, `viewbackups` and `deletebackups` commands
+  * `medicine` field
+  * Developer Guide
+
+### Pei Wenqi
+
+<img src="images/cedricpei.png" width="200px">
+
+[[github](http://github.com/cedricpei)]
+[[portfolio](team/cedricpei.md)]
+
+* Role: Developer
+* Responsibilities:
+  * GUI
+  * `undo`, `redo`, `light`, `dark`, `view` commands
+  * User Guide

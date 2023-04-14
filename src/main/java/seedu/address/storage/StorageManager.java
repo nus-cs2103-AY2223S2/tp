@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -75,4 +76,11 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    @Override
+    public void deleteBackup(Path filePath) throws IOException {
+        File backupToDelete = new File(filePath.toString());
+        if (!backupToDelete.delete()) {
+            throw new IOException();
+        }
+    }
 }

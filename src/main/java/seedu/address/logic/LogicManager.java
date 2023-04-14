@@ -2,11 +2,13 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,6 +16,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.backup.Backup;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -62,6 +65,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        model.updateFilteredPersonList(predicate);
+    }
+
+    @Override
+    public ObservableList<Backup> getBackupList() throws IllegalValueException {
+        return model.getBackupList();
     }
 
     @Override

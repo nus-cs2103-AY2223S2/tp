@@ -34,6 +34,10 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@")); // missing domain name
 
         // invalid parts
+        assertFalse(Email.isValidEmail("----"));
+        assertFalse(Email.isValidEmail("   ----   "));
+        assertFalse(Email.isValidEmail("-  -"));
+        assertFalse(Email.isValidEmail("   -  -   "));
         assertFalse(Email.isValidEmail("peterjack@-")); // invalid domain name
         assertFalse(Email.isValidEmail("peterjack@exam_ple.com")); // underscore in domain name
         assertFalse(Email.isValidEmail("peter jack@example.com")); // spaces in local part
@@ -53,6 +57,9 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@example.c")); // top level domain has less than two chars
 
         // valid email
+        assertTrue(Email.isValidEmail("     -    "));
+        assertTrue(Email.isValidEmail("-            "));
+        assertTrue(Email.isValidEmail("            -"));
         assertTrue(Email.isValidEmail("PeterJack_1190@example.com")); // underscore in local part
         assertTrue(Email.isValidEmail("PeterJack.1190@example.com")); // period in local part
         assertTrue(Email.isValidEmail("PeterJack+1190@example.com")); // '+' symbol in local part

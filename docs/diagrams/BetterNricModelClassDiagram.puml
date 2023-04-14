@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+AddressBook *-right-> "1" UniquePersonList
+UniqueTagList -[hidden]down- UniquePersonList
+
+UniqueTagList -right-> "*" Tag
+UniquePersonList -right-> Person
+
+Person -up-> "*" Tag
+
+Person *--> Nric
+Person *--> Name
+Person *--> DateOfBirth
+Person *--> Phone
+Person *--> Email
+Person *--> Address
+Person *--> DrugAllergy
+Person *--> Gender
+Person *--> Doctor
+Person *--> "*" Medicine
+@enduml

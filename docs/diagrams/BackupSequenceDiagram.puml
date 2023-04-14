@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+participant ":BackupCommand" as BackupCommand LOGIC_COLOR
+participant ":BackupCommandParser" as BackupCommandParser LOGIC_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":Storage" as Storage STORAGE_COLOR
+participant ":BackupDataStorage" as BackupDataStorage STORAGE_COLOR
+
+create BackupCommand
+BackupCommandParser -> BackupCommand
+activate BackupCommand
+BackupCommand --> BackupCommandParser
+deactivate BackupCommand
+[-> BackupCommand : execute()
+activate BackupCommand
+
+BackupCommand -> Model : getBackupDataStorage()
+activate Model
+Model --> BackupCommand : backupDataStorage
+deactivate Model
+
+BackupCommand -> Model : getAddressBook()
+activate Model
+Model --> BackupCommand : addressBook
+deactivate Model
+
+BackupCommand -> Model : getBackupData()
+activate Model
+Model --> BackupCommand : backupData
+deactivate Model
+
+BackupCommand -> Storage : saveAddressBook(addressBook)
+activate Storage
+Storage --> BackupCommand
+deactivate Storage
+
+BackupCommand -> BackupDataStorage : saveBackupData(backupData)
+activate BackupDataStorage
+BackupDataStorage --> BackupCommand
+deactivate BackupDataStorage
+
+@enduml
