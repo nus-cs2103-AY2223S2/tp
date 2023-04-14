@@ -215,21 +215,20 @@ This will come in handy if:
 This section displays relevant messages or errors after the command is entered.
 
 #### 5. Command Line Interface (CLI)
+
+<img src="images/UserGuide/CLI.png" class="centerImage">
+In this section, you can enter your command in the text box and click enter on your keyboard to send it to the application. 
+
+This is also known as a Command Line Interface or CLI for short. If you are new to CLI, refer to the questions below for a quick crash course,
+
 <u> What is CLI?</u>
 
 To understand CLI better, here is an analogy:
-Imagine being in a restaurant with a talented chef in the kitchen. The chef represents the computer.
-The CLI helps you to communicate directly with the chef by giving specific 
-instructions or "orders" about what you want to eat. Hence, the CLI is a way to interact with your computer by giving precise, text-based instructions,
-much like talking directly to a chef to customize your meal. Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time.
+Imagine being in a restaurant with a talented chef in the kitchen. The chef represents the computer while a waiter is a button on your screen. Instead of having to go through the waiter or "click" a button, the CLI helps you communicate directly with the chef by giving specific instructions or "orders" about what you want to eat. Hence, the CLI is a way to interact with your computer by giving precise, text-based instructions, much like talking directly to a chef to customize your meal.
 
-<p align="center">
-  <img src="images/CLI.png" width="100%" height="80%">
-  <br>
-  <em>Command Line Interface(CLI)</em>
-</p>
+<u> Why use CLI?</u>
 
-In this section, you can enter your user commands in the command line in order to communicate with the application.
+Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -345,7 +344,7 @@ With this feature, you would not need to spend time to manually add each employe
 
 Format: `batchadd FILENAME`
 
-Example:`batchadd executivepro.csv`
+Example: `batchadd executivepro.csv`
 
 Below are the steps to use this command:
 
@@ -444,7 +443,7 @@ ExecutivePro allows you to export the employees' data into a `.csv` file.
 
 Format: `batchexport FILENAME`
 
-Example:`batchexport exported_database.csv`
+Example: `batchexport exported_database.csv`
 
 Below are the steps to use this command:
 
@@ -675,7 +674,7 @@ The `dark` theme (white text on dark background) can reduce eye strain in low-li
 Format: `theme THEME_NAME`
 * `THEME_NAME` is either `dark` (white text on dark background) or `light` (black text on white background).
 
-Examples:
+Example:
 `theme light` applies the `light` theme to ExecutivePro.
 
 <div markdown="span" class="alert alert-warning">
@@ -697,8 +696,7 @@ Format: `exit`
 ExecutivePro data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 The employee data is saved as a JSON file `[JAR file location]/data/executivepro.json`. 
-Advanced users are discouraged from updating data directly by editing that data file due to possible 
-inconsistent behaviour.
+Advanced users can edit the JSON file directly but are strongly discouraged due to possible data corruption.
 
 <div markdown="span" class="alert alert-warning">
 
