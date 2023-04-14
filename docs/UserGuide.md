@@ -201,8 +201,8 @@ command, refer to the next section.
 
    * `exit` : Exits the application.
 
-<div markdown="span" class="alert alert-primary"> :exclamation: The clear command removes all the modules in the
-list. Only use it if you are sure! </div>   
+<div markdown="span" class="alert alert-primary"> :exclamation: The <code>clear</code> command removes all the modules
+in the list. Only use it if you are sure! </div>   
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 -------------------------------------------------------------------------------------------------------------------
