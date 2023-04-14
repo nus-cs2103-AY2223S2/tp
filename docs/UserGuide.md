@@ -55,7 +55,7 @@ Here are some of the symbols that may appear in this user guide:
 Below is the ExecutivePro User Interface with the main components labelled.
 
 <p align="center">
-  <img src="images/labelledgui.png" alt="startup_whitebackground.jpg" width="70%" height="50%">
+  <img src="images/labelledgui.png" width="70%" height="50%">
   <br>
   <em>User Interface</em>
 </p>
@@ -74,7 +74,7 @@ Main components of the ExecutivePro User Interface:
 #### 1. Toolbar
 
 <p align="center">
-  <img src="images/tool.png" alt="startup_whitebackground.jpg" width="50%" height="50%">
+  <img src="images/tool.png" width="50%" height="50%">
   <br>
   <em>Toolbar</em>
 </p>
@@ -100,12 +100,11 @@ This section shows the full information of the selected employee.
 1. On startup of the application, this panel shows "Welcome to ExecutivePro"
 2. To view an employee's particulars in this panel, click on one of the employees in the employee list.
 3. If you delete an employee that you are currently viewing, the display panel will display the next employee's particulars.
-<div style="page-break-after: always"></div>
 
 #### 3. Employee List
 
 <p align="center">
-  <img src="images/employeelist.png" alt="startup_whitebackground.jpg" width="50%" height="50%">
+  <img src="images/employeelist.png" width="50%" height="50%">
   <br>
   <em>Employee List</em>
 </p>
@@ -117,12 +116,10 @@ This will come in handy if:
 1. You want a general overview of the employees in the company.
 2. You want to quickly find out an employee's ID to edit their details.
 
-<div style="page-break-after: always"></div>
-
 #### 4. Command Panel
 
 <p align="center">
-  <img src="images/commandpanel.png" alt="startup_whitebackground.jpg" width="50%" height="50%">
+  <img src="images/commandpanel.png" width="50%" height="50%">
   <br>
   <em>Command Panel</em>
 </p>
@@ -138,7 +135,12 @@ The CLI helps you to communicate directly with the chef by giving specific
 instructions or "orders" about what you want to eat. Hence, the CLI is a way to interact with your computer by giving precise, text-based instructions,
 much like talking directly to a chef to customize your meal. Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time.
 
-<img src="images/UserGuide/CLI.png" class="centerImage">
+<p align="center">
+  <img src="images/CLI.png" width="50%" height="50%">
+  <br>
+  <em>Command Line Interface(CLI)</em>
+</p>
+
 In this section, you can enter your user commands in the command line in order to communicate with the application.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -159,13 +161,22 @@ Follow these steps if this is your first time using ExecutivePro:
 3. Copy the jar file to a folder you want to use as the _main folder_ for your ExecutivePro. 
 This folder can be on your Desktop or any location you prefer.
 For example, we create a `test` folder on the Desktop.
-<img src="images/UserGuide/jarfile.png" class="centerImage">
+<p align="center">
+  <img src="images/jarfile.png" width="50%" height="50%">
+  <br>
+  <em>`test` folder</em>
+</p>
+
 Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
-<img src="images/UserGuide/jarfile2.png" class="centerImage" >
+<p align="center">
+  <img src="images/jarfile2.png" width="50%" height="50%">
+  <br>
+  <em>ExecutivePro jar file</em>
+</p>
+
 4. Now you are ready to use ExecutivePro, refer to the section [Starting ExecutivePro](#starting-executivepro) below for more details.
 
 <div markdown="block" class="alert alert-info">
-<div style="page-break-after: always"></div>
 
 ### Starting ExecutivePro
 :warning: **Note:**
@@ -177,7 +188,11 @@ On Windows, press Windows + R, type cmd, and hit Enter to open the Command Promp
 On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
 
 Your Command Prompt/Terminal should show up like this:
-<img src="images/UserGuide/Terminal.png" class="centerImage" width = 80% height = 50% >
+<p align="center">
+  <img src="images/Terminal.png" width="50%" height="50%">
+  <br>
+  <em>Terminal Page</em>
+</p>
 
 Step 2 (Navigating to the Jar File Location) :
 
@@ -186,7 +201,11 @@ This is the location where you have placed your jar file in, as done in [point 3
 For example, if the file is located in the `test` folder on your Desktop, you can type `cd Desktop` and hit Enter, followed by
 `cd test`and Enter to reach the `test` folder, just like the image below.
 
-<img src="images/UserGuide/CD.png" class="centerImage" width = 80% height = 50% >
+<p align="center">
+  <img src="images/CD.png" width="50%" height="50%">
+  <br>
+  <em>Changing Directory</em>
+</p>
 
 Step 3 (Running the Application) :
 Once you are in the correct directory, type the following command,`java -jar ExecutivePro.jar`, in your terminal and hit Enter:
@@ -194,7 +213,11 @@ Once you are in the correct directory, type the following command,`java -jar Exe
 A window like below should appear in seconds. 
 Note how the app contains some sample data.
 
-<img src="images/UserGuide/quickstartui.png" class="centerImage" width = 80% height = 50% >
+<p align="center">
+  <img src="images/quickstartui" width="50%" height="50%">
+  <br>
+  <em>Starting Page</em>
+</p>
 
 A data folder should appear in the same folder as the `ExecutivePro.jar` file after the application is run successfully.
 
