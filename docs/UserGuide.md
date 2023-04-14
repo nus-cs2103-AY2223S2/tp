@@ -369,7 +369,6 @@ Examples:
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ### <a id="sort"></a>Sorting the modules: `sort`
 
@@ -416,7 +415,7 @@ to use the commands.
 * This is a straight-forward command, and all you have to type is `help`
 
 <p align="center">
-   <img src="images/helpMessage.png">
+   <img width="671" height="745" src="images/helpMessage.png">
 </p>
 
 <div align="center">Figure 8 : Help window.</div>
