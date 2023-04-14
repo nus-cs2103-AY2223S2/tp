@@ -48,6 +48,10 @@ Here are the symbols that you will see while reading this user guide:
 
 --------------------------------------------------------------------------------------------------------------------
 <a id="toc"></a>
+
+
+
+
 ## Table of Contents
 
 * Table of Contents
@@ -159,6 +163,7 @@ Main components of the ExecutivePro User Interface:
 | 4   | Command Panel                | Displays the outcome of the entered command after execution, including error and success messages.                          |
 | 5   | Command Line Interface (CLI) | This is where you enter the commands.                                                                                       |
 
+
 #### 1. Toolbar
 
 <p align="center">
@@ -188,6 +193,8 @@ This section shows the full information of the selected employee.
 1. On startup of the application, this panel shows "Welcome to ExecutivePro"
 2. To view an employee's particulars in this panel, click on one of the employees in the employee list.
 3. If you delete an employee that you are currently viewing, the display panel will display the particulars of the next employee in the list.
+
+<div style="page-break-after: always"></div>
 
 #### 3. Employee List
 
@@ -366,7 +373,7 @@ Things to note:
 
 Sample CSV file:
    <p align="center">
-     <img src="images/successCSV.png" width="100%" height="100%">
+     <img src="images/successCSV.png" width="80%" height="80%">
      <br>
      <em>Sample CSV file</em>
    </p>
@@ -435,28 +442,28 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
    </p>
 2. Next, right-click on the selected columns so that the following shows up:
    <p align="center">
-    <img src="images/rightclick.png" width="30%" height="20%">
+    <img src="images/rightclick.png" width="20%" height="20%">
     <br>
     <em>Right click to format selected cells</em>
    </p>
 
 3. Click on `Format Cells...` and the table below will appear:
    <p align="center">
-    <img src="images/format.png" width="80%" height="60%">
+    <img src="images/format.png" width="70%" height="60%">
     <br>
     <em>Format cells table</em>
    </p>
 
 4. Click on `Date`:
    <p align="center">
-    <img src="images/formatdate.png" width="80%" height="60%">
+    <img src="images/formatdate.png" width="70%" height="60%">
     <br>
     <em>Clicking on date</em>
    </p>
 
 5. Select the correct date format ("YYYY-MM-DD"):
    <p align="center">
-    <img src="images/correct.png" width="80%" height="60%">
+    <img src="images/correct.png" width="70%" height="60%">
     <br>
     <em>Correct date format</em>
    </p>
@@ -475,6 +482,8 @@ This will ensure a smooth import process, and all employee information,
 including dates, will be properly stored in the database.
 
 <br>
+
+<div style="page-break-after: always"></div>
 
 #### Exporting database into CSV file: `batchexport`
 
