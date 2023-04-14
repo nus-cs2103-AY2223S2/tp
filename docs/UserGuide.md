@@ -851,7 +851,7 @@ upload <LOCAL_FILE_PATH>
 
 * For an image to be displayed as the profile picture of a student in CLIpboard, the image must be named after the said
   student's student ID and must be a `.png` file (i.e. `<STUDENT_ID>.png`)
-* If a new image with the same name as an existing image in CLIpboard is uploaded, the existing photo will be replaced.
+* If a new image is uploaded to CLIpboard, and it has the same name as an existing image, the existing image will be replaced.
 </div>
 <br>
 
