@@ -38,13 +38,13 @@ If you encounter a term that you are unsure about, the [Glossary](#glossary) is 
 
 Here are the symbols that you will see while reading this user guide:
 
-| Symbol    | Meaning                                                                                                                                                                 |
-|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`    | Text relevant to commands or a filename.                                                                                                                                |
-| [`code`]  | The brackets around the code indicate that the field is optional.                                                                                                       |
-| :bulb:    | Tips for ExecutivePro users.                                                                                                                                            |
-| :warning: | Be wary and proceed with caution.                                                                                                                                       |
-| `...`     | Items with `...` after them can either be omitted or used one or more times.<br/> Example:`[t/TAG]…` can be used as ` ` (omitted), `t/friend`, `t/friend t/family` etc. |
+| Symbol    | Meaning                                                                                                                                                                    |
+|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`    | Text relevant to commands or a filename.                                                                                                                                   |
+| [`code`]  | The brackets around the code indicate that the field is optional.                                                                                                          |
+| :bulb:    | Tips for ExecutivePro users.                                                                                                                                               |
+| :warning: | Be wary and proceed with caution.                                                                                                                                          |
+| `...`     | Items with `...` after them can either be omitted or used one or more times.<br/> Example:`[t/TAG]…` can be used as `t/friend`, `t/friend t/family` or omitted completely. |
 
 --------------------------------------------------------------------------------------------------------------------
 <a id="toc"></a>
@@ -446,8 +446,6 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
     <em>Right click to format selected cells</em>
    </p>
 
-<div style="page-break-after: always"></div>
-
 3. Click on `Format Cells...` and the table below will appear:
    <p align="center">
     <img src="images/format.png" width="70%" height="60%">
@@ -461,8 +459,6 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
     <br>
     <em>Clicking on date</em>
    </p>
-
-<div style="page-break-after: always"></div>
 
 5. Select the correct date format ("YYYY-MM-DD"):
    <p align="center">
