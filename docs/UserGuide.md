@@ -73,7 +73,7 @@ The user guide will contain certain visuals to aid in conveying information more
 
 6. If this is your first time running the application, it should contain some sample bookmarks.
 
-7. MyLib's functionality is accessed through typed commands. These commands are entered into the [command box](#graphical-user-interface) at the very top of the GUI. After entering the command, press enter to execute it and the result of that command will be displayed below the command box.
+7. MyLib's functionality is accessed through typed commands. These commands are entered into the [command box](#graphical-user-interface-br) at the very top of the GUI. After entering the command, press enter to execute it and the result of that command will be displayed below the command box.
 <div style="page-break-after: always;"></div>
 
 ### Let's try out some of the features
