@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents the result of a command execution.
  */
@@ -16,6 +18,7 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+    private final Person personToShow;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -24,6 +27,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.personToShow = null;
     }
 
     /**
@@ -31,7 +35,17 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, null, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, Person personToShow, boolean exit) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.personToShow = personToShow;
+        this.exit = exit;
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +58,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean hasPersonToShow() {
+        return personToShow != null;
+    }
+
+    public Person getPersonToShow() {
+        return personToShow;
     }
 
     @Override

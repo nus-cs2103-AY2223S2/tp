@@ -5,6 +5,7 @@ Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
+Participant ":Files" as files FILES_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
 user -[USER_COLOR]> ui : "delete 1"
@@ -17,7 +18,6 @@ logic -[LOGIC_COLOR]> model : deletePerson(p)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
-deactivate model
 
 logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
 activate storage STORAGE_COLOR
@@ -35,4 +35,16 @@ deactivate logic
 
 ui--[UI_COLOR]> user
 deactivate ui
+
+create files
+model -[MODEL_COLOR]> files :
+activate files FILES_COLOR
+
+files -[FILES_COLOR]> files : deleteAll()
+activate files FILES_COLOR_T1
+
+files --[FILES_COLOR]> model
+deactivate files
+deactivate model
+
 @enduml

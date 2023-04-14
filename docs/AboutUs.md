@@ -9,51 +9,54 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wang ShaoFeng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sfcoding123.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/sfcoding123)]
+[[portfolio](team/sfcoding123.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Project Management and Testing
 
-### Johnny Doe
+### Wei De
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/weideteo.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/WeideTeo)]
+[[portfolio](team/weideteo.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Add Functions
 
-### James Doe
 
-<img src="images/johndoe.png" width="200px">
+### Luo Xizi
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/lxz333.png" width="200px">
+
+[[github](https://github.com/lxz333)] [[portfolio](team/lxz333.md)]
+
+* Role: Developer, UI manager
+* Responsibilities: UI & backend functions
+
+### Shen Chenzi
+
+<img src="images/shenchenzizoe.png" width="220px">
+
+[[github](https://github.com/shenchenzizoe)]
+[[portfolio](team/shenchenzizoe.md)]
+
+* Year 2 NUS Computer Science Student
+* Sleep >= 12 hours per day
+* Role: Developer
+* Responsibilities: UI & Backend functions
+
+### Xiao Yan
+
+<img src="images/windycall.png" width="220px" height="200px">
+
+[[github](http://github.com/windycall)]
+[[portfolio](team/windycall.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Storage, Backend

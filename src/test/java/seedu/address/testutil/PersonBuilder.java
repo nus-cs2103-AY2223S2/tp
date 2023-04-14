@@ -1,9 +1,12 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -20,12 +23,18 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TIME = "2023-03-12 0000";
+    public static final String DEFAULT_AGE = "15";
 
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Age age;
+
     private Set<Tag> tags;
+    private LocalDateTime time;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,6 +44,8 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        time = LocalDateTime.parse(DEFAULT_TIME.trim(), formatter);
+        age = new Age(DEFAULT_AGE);
         tags = new HashSet<>();
     }
 
@@ -46,7 +57,9 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        age = personToCopy.getAge();
         tags = new HashSet<>(personToCopy.getTags());
+        time = personToCopy.getTime();
     }
 
     /**
@@ -74,6 +87,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Age} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAge(String age) {
+        this.age = new Age(age);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -86,6 +107,16 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code time} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTime(String time) {
+        String trimmedTime = time.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        this.time = LocalDateTime.parse(trimmedTime, formatter);
         return this;
     }
 

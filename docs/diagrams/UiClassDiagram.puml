@@ -15,6 +15,16 @@ Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+Class AddAppointmentWindow
+Class AddPatientWindow
+Class AddMcInfo
+Class ErrorMessageDisplay
+Class DetailDisplay
+Class FileCard
+Class FileComparator
+Class FileList
+Class ObservableFile
+Class UiFile
 }
 
 package Model <<Rectangle>> {
@@ -23,6 +33,10 @@ Class HiddenModel #FFFFFF
 
 package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
+}
+
+package File <<Rectangle>> {
+Class HiddenFile #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
@@ -34,7 +48,20 @@ MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "*" DetailDisplay
 MainWindow --> "0..1" HelpWindow
+DetailDisplay --> "0..1" AddAppointmentWindow
+DetailDisplay --> "0..1" AddMcInfo
+PersonListPanel --> "0..1" AddPatientWindow
+AddMcInfo *-down-> "0..1" ErrorMessageDisplay
+AddPatientWindow *-down-> "0..1" ErrorMessageDisplay
+AddAppointmentWindow *-down-> "0..1" ErrorMessageDisplay
+FileList ---> "*" FileCard
+DetailDisplay *-down-> "1" FileList
+ObservableFile --> "*" UiFile
+DetailDisplay *-down-> "1" ObservableFile
+FileCard ---> UiFile
+FileComparator --> UiFile
 
 PersonListPanel -down-> "*" PersonCard
 
@@ -46,10 +73,17 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+AddAppointmentWindow --|> UiPart
+AddPatientWindow ---|> UiPart
+DetailDisplay --|> UiPart
+FileCard --|> UiPart
+FileList --|> UiPart
+AddMcInfo --|> UiPart
 
 PersonCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
+MainWindow -left-> File
 
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox

@@ -1,0 +1,25 @@
+@startuml
+|User|
+start
+:Select files to upload;
+if (Are files selected?) then (yes)
+    :Filter selected files by allowed extensions;
+    if (Any allowed files to upload?) then (yes)
+        :Iterate through allowed files;
+        while (More files to process?)
+            :Check file size;
+            if (Is file size within limit?) then (yes)
+                :Copy file to user's directory;
+            else (no)
+                :Skip file and log warning;
+            endif
+        endwhile
+        :Show success message;
+    else (no)
+        :Show no allowed files message;
+    endif
+else (no)
+    :Cancel upload;
+endif
+stop
+@enduml

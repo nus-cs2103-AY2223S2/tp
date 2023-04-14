@@ -9,14 +9,19 @@ Class "<<interface>>\nLogic" as Logic
 Class LogicManager
 }
 
-package Model{
+package Model {
 Class "<<interface>>\nModel" as Model
 Class ModelManager
 }
 
-package Storage{
+package Storage {
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
+}
+
+package Files {
+Class "<<interface>>\nFiles" as Files
+Class FilesManager
 }
 
 Class HiddenOutside #FFFFFF
@@ -25,7 +30,9 @@ HiddenOutside ..> Logic
 LogicManager .up.|> Logic
 ModelManager .up.|> Model
 StorageManager .up.|> Storage
+FilesManager .up.|> Files
 
 LogicManager --> Model
 LogicManager --> Storage
+ModelManager --> Files
 @enduml

@@ -38,8 +38,19 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+
+    @FXML
+    private Label medicalCondition;
+
+    @FXML
+    private Label age;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label appointment;
+
+    @FXML
+    private Label nric;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,13 +60,48 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        if (person.getAge() == null) {
+            age.setText("");
+        } else {
+            String s = person.getAge().toString();
+            age.setText(s);
+        }
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
+        if (person.hasAppointment()) {
+            appointment.setText(person.getAppointment().toString());
+            if (person.getMedicalCondition() != null) {
+                String s = person.getMedicalCondition().getValue();
+                if (s.equals("")) {
+                    medicalCondition.setText("Medical Condition: NA");
+                } else {
+                    medicalCondition.setText("Medical Condition: " + s);
+                }
+            }
+        } else {
+            appointment.setText("No appointment yet");
+            if (person.getMedicalCondition() == null) {
+                medicalCondition.setText("Medical Condition: NA");
+            } else {
+                String s = person.getMedicalCondition().getValue();
+                if (s.equals("")) {
+                    medicalCondition.setText("Medical Condition: NA");
+                } else {
+                    medicalCondition.setText("Medical Condition: " + s);
+                }
+            }
+        }
+        if (person.getNric() == null) {
+            nric.setText("NRIC:" + "");
+        } else {
+            String s = person.getNric().toString();
+            nric.setText(s);
+        }
+        person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
 
     @Override
     public boolean equals(Object other) {

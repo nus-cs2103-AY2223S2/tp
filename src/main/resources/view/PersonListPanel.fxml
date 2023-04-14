@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <HBox prefHeight="38.0" prefWidth="248.0">
+      <children>
+         <Button fx:id="addPatientButton" layoutX="141.0" layoutY="15.0" mnemonicParsing="false" onAction="#showAddPatientWindow" text="add">
+            <HBox.margin>
+               <Insets left="15.0" top="6.0" />
+            </HBox.margin>
+         </Button>
+      </children>
+   </HBox>
+  <ListView fx:id="personListView" onKeyPressed="#displayDetail" onMousePressed="#displayDetail" prefWidth="248.0" styleClass="pane-transparent" VBox.vgrow="ALWAYS">
+      <VBox.margin>
+         <Insets top="4.0" />
+      </VBox.margin></ListView>
 </VBox>

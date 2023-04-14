@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Represents a Person in the address book.
@@ -23,9 +26,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private LocalDateTime time = null;
+
+    private MedicalCondition medicalCondition;
+    private Age age;
+    private Appointment appointment;
+    private Nric nric;
 
     /**
-     * Every field must be present and not null.
+     * @param name the patient's name
+     * @param phone the patient's phone number
+     * @param email the patient's email address
+     * @param address the patient's residential address
+     * @param tags the patient's tag
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -34,8 +47,128 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.medicalCondition = new MedicalCondition("");
+        this.age = new Age("");
+        this.nric = new Nric("");
     }
 
+    /**
+     * @param name the patient's name
+     * @param phone the patient's phone number
+     * @param email the patient's email address
+     * @param address the patient's residential address
+     * @param age the patient's age
+     * @param tags the patient's tag
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.age = age;
+        this.medicalCondition = new MedicalCondition("");
+        this.nric = new Nric("");
+    }
+
+    /**
+     * @param name             the patient's name
+     * @param phone            the patient's phone number
+     * @param email            the patient's phone email
+     * @param address          the patient's address
+     * @param tags             the patient's tags
+     * @param time             the patient's appointment time
+     * @param medicalCondition the patient's medical condition
+     * @param age              the patient's age
+     * @param nric             the patient's identity
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition, Appointment appointment, Nric nric) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.medicalCondition = medicalCondition;
+        this.age = age;
+        this.nric = nric;
+        this.appointment = appointment;
+    }
+
+    /**
+     * @param name             the patient's name
+     * @param phone            the patient's phone number
+     * @param email            the patient's phone email
+     * @param address          the patient's address
+     * @param tags             the patient's tags
+     * @param medicalCondition the patient's medical condition
+     * @param age              the patient's age
+     * @param nric             the patient's identity
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  MedicalCondition medicalCondition, Nric nric) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.medicalCondition = medicalCondition;
+        this.age = age;
+        this.nric = nric;
+    }
+
+    /**
+     * @param name             the patient's name
+     * @param phone            the patient's phone number
+     * @param email            the patient's phone email
+     * @param address          the patient's address
+     * @param tags             the patient's tags
+     * @param time             the patient's next appointment time
+     * @param medicalCondition the patient's medical condition
+     * @param age              the patient's age
+     * @param nric             the patient's identity
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition, Nric nric) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = age;
+        this.tags.addAll(tags);
+        this.medicalCondition = medicalCondition;
+        this.time = time;
+        this.nric = nric;
+    }
+    /**
+     * @param name             the patient's name
+     * @param phone            the patient's phone number
+     * @param email            the patient's phone email
+     * @param address          the patient's address
+     * @param tags             the patient's tags
+     * @param medicalCondition the patient's medical condition
+     * @param age              the patient's age
+     * @param nric             the patient's identity
+     * @param appointment      the patient;s next appointment
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  MedicalCondition medicalCondition, Appointment appointment, Nric nric) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = age;
+        this.tags.addAll(tags);
+        this.medicalCondition = medicalCondition;
+        this.appointment = appointment;
+        this.nric = nric;
+    }
     public Name getName() {
         return name;
     }
@@ -52,12 +185,73 @@ public class Person {
         return address;
     }
 
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public Nric getNric() {
+        return nric;
+    }
+
+    /**
+     * check if the person has scheduled time.
+     * @return true if the person has time.
+     */
+    public boolean hasTime() {
+        return this.time != null;
+    }
+
+
+    public boolean hasAppointment() {
+        return appointment != null;
+    }
+
+    public void markAppointment() {
+        appointment = null;
+    }
+
+    // notice: after adding Appoinment, time attribute in person becomes invalid
+    // therefore, isOnSearchDate should be done from Appointment side
+    public boolean isOnSearchDate(LocalDate searchDate) {
+        return appointment.isOnSearchDate(searchDate);
+    }
+
+    public boolean hasAge() {
+        return this.age.getAge() != "";
+    }
+
+    public boolean hasNric() {
+        return this.nric.getNumber() != "";
+    }
+
+    public boolean hasMedicalCondition() {
+        return this.medicalCondition.getValue() != "";
+    }
+
+    public boolean hasClash(Person person) {
+        return appointment.hasClash(person.getAppointment());
+    }
+
+    public Age getAge() {
+        return age;
+    }
+
+    public MedicalCondition getMedicalCondition() {
+        return medicalCondition;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        Set<Tag> allTags = new HashSet<>(tags);
+        return Collections.unmodifiableSet(allTags);
     }
 
     /**
@@ -120,4 +314,12 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Sets medical condition.
+     *
+     * @param medicalCondition the medical condition
+     */
+    public void setMedicalCondition(MedicalCondition medicalCondition) {
+        this.medicalCondition = medicalCondition;
+    }
 }

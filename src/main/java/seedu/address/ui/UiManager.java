@@ -41,9 +41,12 @@ public class UiManager implements Ui {
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
-            mainWindow.show(); //This should be called before creating other UI parts
+            mainWindow.show();
             mainWindow.fillInnerParts();
-
+            int size = mainWindow.getPersonListPanel().getPersonListView().getItems().size();
+            if (size > 0) {
+                mainWindow.executeCommand("show 1");
+            }
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);

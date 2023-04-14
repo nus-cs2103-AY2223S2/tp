@@ -3,11 +3,13 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -28,12 +30,28 @@ public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the person's appointment has clashes with at least one other patients.
+     */
+    public boolean hasClash(Person person, Index index) {
+        for (int i = 0; i < internalList.size(); i++) {
+            if (i == index.getZeroBased() || !internalList.get(i).hasAppointment()) {
+                continue;
+            }
+            if (person.hasClash(internalList.get(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -102,6 +120,16 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns the backing list as a list sorted by name.
+     * @return A sorted list.
+     */
+    public ObservableList<Person> asSortedByNameList() {
+        ObservableList<Person> internalSortedByNameList = FXCollections.observableArrayList(internalList);
+        Collections.sort(internalSortedByNameList, new PersonComparatorByName());
+        return FXCollections.unmodifiableObservableList(internalSortedByNameList);
     }
 
     @Override

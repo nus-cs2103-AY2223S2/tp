@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor FILES_COLOR_T4
+skinparam classBackgroundColor FILES_COLOR
+
+package Files <<Rectangle>> {
+  Class "<<interface>>\nFiles" as Files
+  Class "<<interface>>\nFileReader" as FileReader
+  Class "<<interface>>\nFileGenerator" as FileGenerator
+  Class FileManager
+  Class FileStorage
+  Class FileReaderManager
+  Class PdfReader
+  Class ImageReader
+  Class PdfGenerator
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Files
+PdfReader .up.|> FileReader
+PdfGenerator .up.|> FileGenerator
+ImageReader .up.|> FileReader
+FileManager .up.|> Files
+
+FileManager -down-> FileReaderManager
+FileManager -down-> PdfGenerator
+FileManager -down-> FileStorage
+FileReaderManager -down-> PdfReader
+FileReaderManager -down-> ImageReader
+
+package UI {
+Class HiddenModel #FFFFFF
+}
+
+PdfReader --> UI
+ImageReader --> UI
+
+@enduml

@@ -20,11 +20,16 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -98,8 +103,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
+        MedicalCondition updatedCond = editPersonDescriptor.getMedicalCond().orElse(personToEdit.getMedicalCondition());
+        Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAge, updatedTags, updatedCond,
+                updatedNric);
     }
 
     @Override
@@ -130,6 +139,10 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Appointment appointment;
+        private Age age;
+        private MedicalCondition medicalCondition;
+        private Nric nric;
 
         public EditPersonDescriptor() {}
 
@@ -143,45 +156,66 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setAppointment(toCopy.appointment);
+            setAge(toCopy.age);
+            setMedicalCond(toCopy.medicalCondition);
+            setNric(toCopy.nric);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, age, medicalCondition, nric);
         }
 
         public void setName(Name name) {
             this.name = name;
         }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
-
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
-
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
-
         public void setEmail(Email email) {
             this.email = email;
         }
-
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
-
         public void setAddress(Address address) {
             this.address = address;
         }
-
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+        public void setMedicalCond(MedicalCondition medicalCondition) {
+            this.medicalCondition = medicalCondition;
+        }
+        public Optional<MedicalCondition> getMedicalCond() {
+            return Optional.ofNullable(medicalCondition);
+        }
+        public void setNric(Nric nric) {
+            this.nric = nric;
+        }
+        public Optional<Nric> getNric() {
+            return Optional.ofNullable(nric);
+        }
+        public void setAge(Age age) {
+            this.age = age;
+        }
+        public Optional<Age> getAge() {
+            return Optional.ofNullable(age);
+        }
+        public void setAppointment(Appointment appointment) {
+            this.appointment = appointment;
+        }
+        public Optional<Appointment> getAppointment() {
+            return Optional.ofNullable(appointment);
         }
 
         /**
@@ -220,7 +254,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getAppointment().equals(e.getAppointment());
         }
     }
 }

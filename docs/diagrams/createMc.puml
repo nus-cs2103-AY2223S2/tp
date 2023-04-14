@@ -1,0 +1,15 @@
+@startuml
+start
+
+:Load MC template;
+:Get form fields;
+:Get current date;
+
+:Iterate through each field in the field list\nand set its value;
+
+:Save filled form with unique filename;
+:Update patient's medical condition;
+:Display success message;
+
+stop
+@enduml
