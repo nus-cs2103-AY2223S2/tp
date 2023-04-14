@@ -45,6 +45,7 @@ The purpose of this user guide document is to provide staff with a clear underst
   - [Help](#viewing-help--help): `help`
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
+- [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -151,7 +152,7 @@ Let's say a patient is visiting your clinic for the first time! Use the `add` co
 
 Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Do take note which patient details are
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Do take note which patient fields are
 optional.
 </div>
 
@@ -177,7 +178,7 @@ Let's say a patient has moved to a different address or undergone significant ch
 Format: `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only include the prefixes for the specific
-patient detail you would like to edit.
+patient field you would like to edit.
 </div>
 
 💡**Tip**:
@@ -476,6 +477,24 @@ Above is the view of help window after the input `help`.
 | **Light**          | `light`                                                                                                                                                                                                                                                                  |  
 | **Dark**           | `dark`                                                                                                                                                                                                                                                                   |
 | **Help**           | `help`                                                                                                                                                                                                                                                                   |  
+
+
+<sub>[return to table of contents](#table-of-contents)</sub>
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Glossary
+
+Below is a glossary table for all the technical terms defined in this user guide.
+
+| Term                           | Definition                                                                                                                                              |
+|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command                        | An instruction for HospiSearch to perform (See [Command Summary](#command-summary))                                                                     |
+| Command Line Interface (CLI)   | A type of user interface that allows users to interact with a computer system by entering text-based commands.                                          |
+| Graphical User Interface (GUI) | A type of user interface that uses graphics and visual indicators such as icons, buttons, and menus to enable users to interact with a computer system. |
+| Field                          | Details that are attributed to each patient. For example, Name, NRIC, and Date of Birth are all patient fields.                                         |
+| Prefix                         | A short form that is attributed to each field when inputing patient data. For example, the field 'Name' has the prefix `\n`.                            |
 
 
 <sub>[return to table of contents](#table-of-contents)</sub>
