@@ -44,8 +44,8 @@ The purpose of this user guide document is to provide staff with a clear underst
   - [Redo](#redoing-previous-undo-redo): `redo`
   - [Help](#viewing-help--help): `help`
 - [FAQ](#faq)
-- [Glossary](#glossary)
 - [Command Summary](#command-summary)
+- [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -457,22 +457,6 @@ Above is the view of help window after the input `help`.
 <sub>[return to table of contents](#table-of-contents)</sub>
 <div style="page-break-after: always;"></div>
 
-## Glossary
-
-Below is a glossary table for all the technical terms defined in this user guide.
-
-| Term                           | Definition                                                                                                                                            |
-|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command                        | An instruction for HospiSearch to perform (See [Command Summary](#command-summary))                                                                   |
-| Command Line Interface (CLI)   | A command line interface (CLI) is a type of user interface that allows users to interact with a computer system by entering text-based commands.      |
-| Graphical User Interface (GUI) | A type of user interface that uses graphics and visual indicators such as icons, buttons, and menus to enable users to interact with a computer system. |
-| Field                          | Details that are attributed to each patient. For example, Name, NRIC, and Date of Birth are all patient fields.                                       |
-| Prefix                         | A short form that is attributed to each field when inputing patient data. For example, the field 'Name' has the prefix `\n`.                            |
-
---------------------------------------------------------------------------------------------------------------------
-<sub>[return to table of contents](#table-of-contents)</sub>
-<div style="page-break-after: always;"></div>
-
 ## Command summary
 
 | Action             | Format, Examples                                                                                                                                                                                                                                                         |
@@ -493,6 +477,24 @@ Below is a glossary table for all the technical terms defined in this user guide
 | **Light**          | `light`                                                                                                                                                                                                                                                                  |  
 | **Dark**           | `dark`                                                                                                                                                                                                                                                                   |
 | **Help**           | `help`                                                                                                                                                                                                                                                                   |  
+
+
+<sub>[return to table of contents](#table-of-contents)</sub>
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Glossary
+
+Below is a glossary table for all the technical terms defined in this user guide.
+
+| Term                           | Definition                                                                                                                                              |
+|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command                        | An instruction for HospiSearch to perform (See [Command Summary](#command-summary))                                                                     |
+| Command Line Interface (CLI)   | A type of user interface that allows users to interact with a computer system by entering text-based commands.                                          |
+| Graphical User Interface (GUI) | A type of user interface that uses graphics and visual indicators such as icons, buttons, and menus to enable users to interact with a computer system. |
+| Field                          | Details that are attributed to each patient. For example, Name, NRIC, and Date of Birth are all patient fields.                                         |
+| Prefix                         | A short form that is attributed to each field when inputing patient data. For example, the field 'Name' has the prefix `\n`.                            |
 
 
 <sub>[return to table of contents](#table-of-contents)</sub>
