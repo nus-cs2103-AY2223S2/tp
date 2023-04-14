@@ -38,9 +38,9 @@ Here are the symbols that you will see while reading this user guide:
 
 | Symbol    | Meaning                                                                                                                                                                 |
 |-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code`    | Text relevant to commands or name of a file.                                                                                                                            |
+| `code`    | Text relevant to commands or a filename.                                                                                                                                |
 | [`code`]  | The brackets around the code indicate that the field is optional.                                                                                                       |
-| :bulb:    | Tips for ExecutivePro Users.                                                                                                                                            |
+| :bulb:    | Tips for ExecutivePro users.                                                                                                                                            |
 | :warning: | Be wary and proceed with caution.                                                                                                                                       |
 | `...`     | Items with `...` after them can either be omitted or used one or more times.<br/> Example:`[t/TAG]…` can be used as ` ` (omitted), `t/friend`, `t/friend t/family` etc. |
 
@@ -52,7 +52,6 @@ Here are the symbols that you will see while reading this user guide:
 {:toc}
 
 <div style="page-break-after: always"></div>
-
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -68,17 +67,25 @@ Follow these steps if this is your first time using ExecutivePro:
         - If you are using an Apple Silicon Mac, you can install the Azul build of OpenJDK 11 version
           from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest `ExecutivePro.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-4/tp/releases).
-
 3. Copy the jar file to a folder you want to use as the _main folder_ for your ExecutivePro.
    This folder can be on your Desktop or any location you prefer.
    For example, we create a `test` folder on the Desktop.
-   <img src="images/UserGuide/jarfile.png" class="centerImage">
-   Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
-   <img src="images/UserGuide/jarfile2.png" class="centerImage" >
+    <p align="center">
+      <img src="images/jarfile.png" width="100%" height="50%">
+      <br>
+      <em>`test` folder</em>
+    </p>
+
+    Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
+    <p align="center">
+      <img src="images/jarfile2.png" width="100%" height="50%">
+      <br>
+      <em>ExecutivePro jar file</em>
+    </p>
+
 4. Now you are ready to use ExecutivePro, refer to the section [Starting ExecutivePro](#starting-executivepro) below for more details.
 
 <div markdown="block" class="alert alert-info">
-<div style="page-break-after: always"></div>
 
 ### Starting ExecutivePro
 :warning: **Note:**
@@ -90,7 +97,11 @@ On Windows, press Windows + R, type cmd, and hit Enter to open the Command Promp
 On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
 
 Your Command Prompt/Terminal should show up like this:
-<img src="images/UserGuide/Terminal.png" class="centerImage" width = 80% height = 50% >
+<p align="center">
+  <img src="images/Terminal.png" width="75%" height="50%">
+  <br>
+  <em>Terminal Page</em>
+</p>
 
 Step 2 (Navigating to the Jar File Location) :
 
@@ -99,7 +110,11 @@ This is the location where you have placed your jar file in, as done in [point 3
 For example, if the file is located in the `test` folder on your Desktop, you can type `cd Desktop` and hit Enter, followed by
 `cd test`and Enter to reach the `test` folder, just like the image below.
 
-<img src="images/UserGuide/CD.png" class="centerImage" width = 80% height = 50% >
+<p align="center">
+  <img src="images/CD.png" width="75%" height="50%">
+  <br>
+  <em>Changing Directory</em>
+</p>
 
 Step 3 (Running the Application) :
 Once you are in the correct directory, type the following command,`java -jar ExecutivePro.jar`, in your terminal and hit Enter:
@@ -107,7 +122,11 @@ Once you are in the correct directory, type the following command,`java -jar Exe
 A window like below should appear in seconds.
 Note how the app contains some sample data.
 
-<img src="images/UserGuide/quickstartui.png" class="centerImage" width = 80% height = 50% >
+<p align="center">
+  <img src="images/quickstartui.png" width="75%" height="50%">
+  <br>
+  <em>Starting Page</em>
+</p>
 
 A data folder should appear in the same folder as the `ExecutivePro.jar` file after the application is run successfully.
 
@@ -123,7 +142,7 @@ Congratulations, ExecutivePro is now running, you can refer to the [Features](#f
 Below is the ExecutivePro User Interface with the main components labelled.
 
 <p align="center">
-  <img src="images/labelledgui.png" width="70%" height="50%">
+  <img src="images/labelledgui.png" width="75%" height="50%">
   <br>
   <em>User Interface</em>
 </p>
@@ -187,7 +206,7 @@ This will come in handy if:
 #### 4. Command Panel
 
 <p align="center">
-  <img src="images/commandpanel.png" width="50%" height="50%">
+  <img src="images/commandpanel.png" width="100%" height="50%">
   <br>
   <em>Command Panel</em>
 </p>
@@ -195,21 +214,30 @@ This will come in handy if:
 This section displays relevant messages or errors after the command is entered.
 
 #### 5. Command Line Interface (CLI)
-<u> What is CLI?</u>
-
-To understand CLI better, here is an analogy:
-Imagine being in a restaurant with a talented chef in the kitchen. The chef represents the computer.
-The CLI helps you to communicate directly with the chef by giving specific 
-instructions or "orders" about what you want to eat. Hence, the CLI is a way to interact with your computer by giving precise, text-based instructions,
-much like talking directly to a chef to customize your meal. Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time.
 
 <p align="center">
   <img src="images/CLI.png" width="100%" height="50%">
   <br>
-  <em>Command Line Interface(CLI)</em>
+  <em>Command Line Interface (CLI)</em>
 </p>
 
-In this section, you can enter your user commands in the command line in order to communicate with the application.
+In this section, you can enter your command in the text box and click enter on your keyboard to send it to the application. 
+
+This is also known as a Command Line Interface or CLI for short. If you are new to CLI, a crash course is available below.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb:
+<u> What is CLI?</u> <br>
+
+To understand CLI better, here is an analogy:
+Imagine being in a restaurant with a talented chef in the kitchen. The chef represents the computer while a waiter is a button on your screen. Instead of having to go through the waiter or "click" a button, the CLI helps you communicate directly with the chef by giving specific instructions or "orders" about what you want to eat. Hence, the CLI is a way to interact with your computer by giving precise, text-based instructions, much like talking directly to a chef to customize your meal. <br> <br>
+
+<u> Why use CLI?</u> <br>
+
+Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time. <br>
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -264,7 +292,7 @@ We know that there can be a lot of information to take in for a new user, so if 
 Entering the `help` command will open up the _Help Window_ that looks like this.
 
 <p align="center">
-  <img src="images/helpwindow.png" width="50%" height="50%">
+  <img src="images/helpwindow.png" width="100%" height="50%">
   <br>
   <em>Help Window</em>
 </p>
@@ -315,10 +343,10 @@ Examples:
 #### Adding multiple employees at once: `batchadd`
 
 Tired of adding new employees one by one?
-ExecutivePro allows you to add multiple employees at once from a `.csv` file.
+ExecutivePro allows you to add multiple employees at once from a CSV file.
 This feature will come in handy when:
 
-1. You are a new user and have your employee data stored in a `.csv` file.
+1. You are a new user and have your employee data stored in a CSV file.
 2. There has been a recruitment cycle and the company has recruited multiple employees.
 
 With this feature, you would not need to spend time to manually add each employee in!
@@ -328,19 +356,23 @@ Format: `batchadd FILENAME`
 Example:
 - `batchadd executivepro.csv`
 
+
 Below are the steps to use this command:
 
 **Step 1 (Creating CSV file) :**
 
 Things to note:
 
-- A header row is required to indicate the purpose of the field and must be the first row in the `.csv` file.
+- A header row is required to indicate the purpose of the field and must be the first row in the CSV file.
 - For multiple tags for an employee, the tags should be separated by "/".
 
 
-Sample `.csv` file:
-![](images/UserGuide/batchadd/successCSV.png)
-
+Sample CSV file:
+   <p align="center">
+     <img src="images/successCSV.png" width="100%" height="100%">
+     <br>
+     <em>Sample CSV file</em>
+   </p>
 
 <div markdown="span" class="alert alert-warning">
 
@@ -358,8 +390,11 @@ Once that is done,
 
 1. Go to the folder where you stored the `jar` file.
 2. Move your desired CSV file to the `data` folder.
-   ![](images/UserGuide/batchadd/movingFile.png)
-
+   <p align="center">
+     <img src="images/movingFile.png" width="100%" height="50%">
+     <br>
+     <em>Location of CSV file to be placed in</em>
+   </p>
 
 **Step 3 (Running CSV file) :**
 
@@ -371,6 +406,7 @@ and it should look something like the below image.
 <p align="center">
   <img src="images/batchaddsuccess.png" width="75%" height="50%">
   <br>
+  <em>Successful batchadd of employees</em>
 </p>
 
 The command could be unsuccessful, and there are a few potential causes of this:
@@ -378,12 +414,14 @@ The command could be unsuccessful, and there are a few potential causes of this:
 1. There could be a *duplicate* entry in the file, i.e. two employees sharing the same identity in the file.
 2. If any of the particulars in the wrong format, ExecutivePro will not be able to read the file properly
    and the command will not run.
-3. If you are using Excel to open your `.csv` file, the date formatting in Excel might not be set to the right format,
+3. If you are using Excel to open your CSV file, the date formatting in Excel might not be set to the right format,
 please refer to the instructions [here](#opening-csv-files-in-excel)
 
 
-In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
-Also note that as of version `1.3` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
+In the case of an unsuccessful Batch Add, **NONE** of the employees in the CSV will be added.
+Also note that as of version `1.3` , this feature only supports CSV files and adding employees with the fields mentioned above.
+
+<div style="page-break-after: always"></div>
 
 ##### Opening .csv files in Excel 
 
@@ -393,23 +431,45 @@ ExecutivePro expects dates to be in the following format: YYYY-MM-DD. If the dat
 Follow the steps below to ensure the dates in Excel are following the correct format:
 
 1. Firstly, you can select the two columns involving dates, `Date of Birth` and `Date of Joining`, just like the image below.
-   ![](images/UserGuide/batchadd/selectingcolumns.png)
-
+   <p align="center">
+    <img src="images/selectingcolumns.png" width="80%" height="80%">
+    <br>
+    <em>Selecting date columns in Excel file</em>
+   </p>
 2. Next, right-click on the selected columns so that the following shows up:
-
-   <img class="centerImage" src="images/UserGuide/batchadd/rightclick.png" width=250>
+   <p align="center">
+    <img src="images/rightclick.png" width="50%" height="30%">
+    <br>
+    <em>Right click to format selected cells</em>
+   </p>
 
 3. Click on `Format Cells...` and the table below will appear:
-   ![](images/UserGuide/batchadd/formattable.png)
+   <p align="center">
+    <img src="images/format.png" width="80%" height="80%">
+    <br>
+    <em>Format cells table</em>
+   </p>
 
 4. Click on `Date`:
-   ![](images/UserGuide/batchadd/formattabledate.png)
+   <p align="center">
+    <img src="images/formatdate.png" width="80%" height="80%">
+    <br>
+    <em>Clicking on date</em>
+   </p>
 
 5. Select the correct date format ("YYYY-MM-DD"):
-   ![](images/UserGuide/batchadd/correctformattable.png)
+   <p align="center">
+    <img src="images/correct.png" width="100%" height="100%">
+    <br>
+    <em>Correct date format</em>
+   </p>
 
 6. Click `OK` and the date in the file will be updated to the correct format:
-   ![](images/UserGuide/batchadd/successCSV.png)
+   <p align="center">
+    <img src="images/successCSV.png" width="80%" height="80%">
+    <br>
+    <em>Correct date format in Excel file</em>
+   </p>
 
 
 Once the dates in your CSV file are in the correct format (YYYY-MM-DD),
@@ -421,19 +481,24 @@ including dates, will be properly stored in the database.
 
 #### Exporting database into CSV file: `batchexport`
 
-ExecutivePro allows you to export the employees' data into a `.csv` file.
+ExecutivePro allows you to export the employees' data into a CSV file.
 
 Format: `batchexport FILENAME`
 
 Example:
 - `batchexport exported_database.csv`
 
+
 Below are the steps to use this command:
 
 **Step 1 (Exporting to CSV file) :**
 
 1. Run `batchexport FILENAME` in the command panel. The result should look like the image below.
-   ![](images/UserGuide/batchexport/exportedFile.png)
+   <p align="center">
+     <img src="images/exportedFile.png" width="100%" height="50%">
+     <br>
+     <em>Successful batchexport of database</em>
+   </p>
 
 2. Go to the folder where you stored the `jar` file.
 
@@ -442,14 +507,18 @@ Below are the steps to use this command:
 If the command is successful, there should be CSV file that contains all the employees' details from the database,
 and it should look something like the below image.
 
-![](images/UserGuide/batchexport/exportedFileLocation.png)
+   <p align="center">
+     <img src="images/exportedFileLocation.png" width="100%" height="100%">
+     <br>
+     <em>Location of exported CSV file</em>
+   </p>
 
 <div markdown="span" class="alert alert-warning">
 :warning: Caution:
 If you open the exported `.csv file` in `Excel`
-and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format. 
-This could lead to issues when importing the file using the batchadd command. 
-To ensure the correct date format, please refer to the instructions [here](#opening-csv-files-in-excel)
+and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in a different format, 
+leading to issues when importing the file using the batchadd command. 
+To ensure the correct date format is saved, please refer to the instructions [here](#opening-csv-files-in-excel)
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -480,11 +549,21 @@ Below are the steps to use this command:
 
 **Step 1 (Inputting the edit command) :**
 You can use the command syntax to edit an employee's fields, the image below demonstrates the command `edit 1 p/91234567`.
-![](images/UserGuide/editBefore.png)
+
+   <p align="center">
+     <img src="images/editBefore.png" width="100%" height="100%">
+     <br>
+     <em>Editing phone number of employee with Employee ID 1</em>
+   </p>
 
 **Step 2 (Results displayed) :**
 The employee with the provided employee ID would have their fields edited accordingly, in this example, `Alex Yeoh` with employee ID `1` his phone number edited to `91234567`.
-![](images/UserGuide/editAfter.png)
+
+   <p align="center">
+     <img src="images/editAfter.png" width="100%" height="100%">
+     <br>
+     <em>Results displayed after edit command is entered</em>
+   </p>
 
 
 #### Taking leave : `leave`
@@ -523,7 +602,11 @@ Below are the steps to use this command:
 Run the setpicture command e.g. `setpicture 1` in the CLI.
 A file explorer window should appear, as shown below:
 
-![](images/UserGuide/SetPictureCommand1.png)
+   <p align="center">
+     <img src="images/SetPictureCommand1.png" width="75%" height="50%">
+     <br>
+     <em>File selector appearing</em>
+   </p>
 
 **Step 2 (Selecting an image) :**
 
@@ -531,14 +614,22 @@ Search through your computer for the image you want to set as the employee's pro
 Click on the image in your file explorer to select it,
 then open it by clicking the "Open" button on the file explorer or by pressing the "Enter" key on your keyboard.
 
-![](images/UserGuide/SetPictureCommand2.png)
+   <p align="center">
+     <img src="images/SetPictureCommand2.png" width="75%" height="50%">
+     <br>
+     <em>Choosing image</em>
+   </p>
 
 **Step 3 (Seeing the result) :**
 
 Click on the specified employee in the employee list.
 ExecutivePro should now display the employee's picture in the display panel as shown below.
 
-![](images/UserGuide/SetPictureCommand3.png)
+   <p align="center">
+     <img src="images/SetPictureCommand3.png" width="75%" height="50%">
+     <br>
+     <em>Picture displayed on display panel for selected employee</em>
+   </p>
 
 <div markdown="span" class="alert alert-warning">
 
@@ -613,11 +704,19 @@ Below are the steps to use this command:
 
 **Step 1 (Inputting the search keywords) :**
 You can use the command syntax to input the search keywords, just like the image below.
-![](images/UserGuide/findInterface.png)
+   <p align="center">
+     <img src="images/findInterface.png" width="75%" height="50%">
+     <br>
+     <em>Input search keywords</em>
+   </p>
 
 **Step 2 (Results displayed) :**
 All the employees who match the keywords will be listed.
-![](images/UserGuide/findResults.png)
+   <p align="center">
+     <img src="images/findResults.png" width="75%" height="50%">
+     <br>
+     <em>Results after find command is entered</em>
+   </p>
 
 #### Filtering out employees: `filter`
 
@@ -642,11 +741,19 @@ Below are the steps to use this command:
 
 **Step 1 (Creating the criteria) :**
 You can use the command syntax to create the criteria, just like the image below.
-![](images/UserGuide/filterInterface.png)
+   <p align="center">
+     <img src="images/filterInterface.png" width="75%" height="50%">
+     <br>
+     <em>Filtering employees with payroll greater than 500</em>
+   </p>
 
 **Step 2 (Results displayed) :**
 All the employees who satisfy the criteria will be listed.
-![](images/UserGuide/filterResults.png)
+   <p align="center">
+     <img src="images/filterResults.png" width="75%" height="50%">
+     <br>
+     <em>Results displayed after filter command</em>
+   </p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -659,16 +766,24 @@ This feature allows you to choose one of two appearances for ExecutivePro to sui
 
 The `light` theme (black text on light background) improves readability in well-lit surroundings.
 
-![](images/UserGuide/ThemeCommandLight.png)
+   <p align="center">
+     <img src="images/ThemeCommandLight.png" width="75%" height="50%">
+     <br>
+     <em>Light Theme</em>
+   </p>
 
 The `dark` theme (white text on dark background) can reduce eye strain in low-light conditions.
 
-![](images/UserGuide/ThemeCommandDark.png)
+   <p align="center">
+     <img src="images/ThemeCommandDark.png" width="75%" height="50%">
+     <br>
+     <em>Dark Theme</em>
+   </p>
 
 Format: `theme THEME_NAME`
 * `THEME_NAME` is either `dark` (white text on dark background) or `light` (black text on white background).
 
-Examples:
+Example:
 `theme light` applies the `light` theme to ExecutivePro.
 
 <div markdown="span" class="alert alert-warning">
@@ -690,8 +805,7 @@ Format: `exit`
 ExecutivePro data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 The employee data is saved as a JSON file `[JAR file location]/data/executivepro.json`. 
-Advanced users are discouraged from updating data directly by editing that data file due to possible 
-inconsistent behaviour.
+Advanced users can edit the JSON file directly but are strongly discouraged due to possible data corruption.
 
 <div markdown="span" class="alert alert-warning">
 
