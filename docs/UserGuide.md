@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
+## **Table of Contents**
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -30,6 +30,8 @@ This User Guide is mainly targeted towards new users who want to get started usi
 ### Objectives of this User Guide
 
 This User Guide provides an easy-to-understand and comprehensive documentation, so you can easily start using MyLib. It covers how to download the application, launch the application and the various features in MyLib that will make it easy for you to bookmark all your content.
+
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### How to use the User Guide
@@ -51,6 +53,7 @@ The user guide will contain certain visuals to aid in conveying information more
 :exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
 
 --------------------------------------------------------------------------------------------------------------------
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ## **Getting Started**
@@ -95,6 +98,7 @@ The user guide will contain certain visuals to aid in conveying information more
 4. You will be able to find a detailed guide on the list of available commands in the [Commands](#commands) section.
 
 --------------------------------------------------------------------------------------------------------------------
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ## **Key Definitions**
@@ -121,6 +125,8 @@ As mentioned in [Bookmark](#bookmark), a genre in a bookmark indicates the genre
 In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib.
 
 To find out how to view this fixed list of genres, go [here](#viewing-genres-genre).
+
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Tags
@@ -131,6 +137,7 @@ MyLib has a tag list, which is a list of all available tags that can be attached
 The commands to modify your tag list can be found at [Tag Commands](#tag-commands).
 
 --------------------------------------------------------------------------------------------------------------------
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 
@@ -148,6 +155,7 @@ This section provides a quick rundown of the various components of MyLib's user 
 | BookmarkList Panel |         To display the current list of bookmarks          |
 |     View Panel     |      To display the details of a specified bookmark       |
 
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Bookmark UI details
@@ -164,6 +172,7 @@ The bookmark in the BookmarkList panel will only contain the:
 
 
 --------------------------------------------------------------------------------------------------------------------
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ## **Commands**
@@ -192,6 +201,7 @@ This section provides an in-depth explanation of MyLib's commands. For a quick r
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Tag Commands
@@ -225,6 +235,8 @@ Format: `dtag TAG`
 
 Example:
 * `dtag MaleProtagonist`
+* 
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Viewing genres: `genre`
@@ -236,6 +248,7 @@ The command should display the list of available genres in the `Result Box`.
 
 <img width="680" src="images/genres.png">
 
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Adding a bookmark: `add`
@@ -296,6 +309,8 @@ Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/UR
 Examples:
 *  `edit 1 n/Hobbit a/J. R. R. Tolkien` Edits the title and author of the 1st bookmark to be `Hobbit` and `J. R. R. Tolkien` respectively.
 *  `edit 2 n/The Odyssey t/` Edits the name of the 2nd bookmark to be `The Odyssey` and clears all existing tags.
+* 
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Sorting bookmarks : `sort`
@@ -333,6 +348,8 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
 * The search for tags will return any bookmark that has a tag that matches the given tag.
 * If multiple tags are provided, any bookmarks containing at least one of the tags would be returned.
+* 
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 Examples:
@@ -356,6 +373,8 @@ Use this command to get back the original list of bookmarks after using `find` c
 </div>
 
 Format: `list`
+
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Viewing a bookmark's details : `view`
@@ -385,6 +404,8 @@ Examples:
 Our Application also supports this feature in GUI format, simply click onto the bookmark you want and watch the magic happen.
 But do note that there will not be a response in result box since this is not a CLI command.
 </div>
+
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Going to a url : `goto`
@@ -411,6 +432,8 @@ But do note that there will not be a response in result box since this is not a 
 Clears all bookmark entries from the MyLib. You will still keep your list of genres and tags after using the `clear` command.
 
 Format: `clear`
+
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
@@ -439,6 +462,8 @@ MyLib data are saved as a JSON file `[JAR file location]/data/library.json`. Adv
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MyLib will discard all data and start with an empty data file at the next run.
 </div>
+
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -460,6 +485,8 @@ _Details coming soon ..._
 **A**: Unfortunately, MyLib is only designed to run on your desktop/laptop such that you can use the command line interface.
 
 --------------------------------------------------------------------------------------------------------------------
+
+[Back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ## **Command summary**
@@ -506,3 +533,4 @@ _Details coming soon ..._
 |        Hard disk         |                            A data storage device that maintain stored data when computer is  turned off                            |
 |         Bookmark         | The type of data being tracked by our app, It contains a compulsory TITLE and GENRE associated to it and other optional Parameters |
 
+[Back to Table of Contents](#table-of-contents)
