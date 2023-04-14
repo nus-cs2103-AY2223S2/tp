@@ -208,13 +208,15 @@ These are the particulars that ExecutivePro can help you keep track of:
 | Date of Joining | Date the employee joined the company           | Optional               |
 | Tag             | Used to record any other simple remarks        | Optional               |
 
-In addition, you can upload a profile picture for each employee
+In addition, you can upload a profile picture for each employee (see [here](#setting-an-employees-picture--setpicture)),
+that will be shown in the display panel when the employee is selected.
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb:
 Tags can be used to record any information about your employees that does not fall into any of the above categories.
 For example, you could:
+
 - Tag an employee as "Software Engineer" to record their role within their department.
 - Tag an employee as "Vegetarian" to take note of their dietary requirements.
 
