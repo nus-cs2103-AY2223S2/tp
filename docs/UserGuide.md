@@ -498,6 +498,11 @@ PowerCards' data is saved in the hard disk automatically after any command that 
 
 PowerCards' data is saved as a JSON file `[JAR file location]/data/masterdeck.json`. Advanced users are welcome to update data directly by editing that data file.
 
+<div markdown="block" class="alert alert-info">
+💡 **Tip:**
+Not sure what a JSON file is? Check out this [brief introduction](https://www.w3schools.com/js/js_json_intro.asp) to learn more!
+</div>
+
 <div markdown="block" class="alert alert-warning">
 
 :exclamation: **Caution:**<br>  
