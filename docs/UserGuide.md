@@ -110,7 +110,7 @@ This will come in handy if:
 
 This section displays relevant messages or errors after the command is entered.
 
-#### 5. Command Line Interface(CLI)
+#### 5. Command Line Interface (CLI)
 <u> What is CLI?</u>
 
 To understand CLI better, here is an analogy:
@@ -191,7 +191,9 @@ Congratulations, ExecutivePro is now running, you can refer to the [Features](#f
 ## Features
 This section lists the details of all the features of ExecutivePro.
 
-### Viewing help : `help`
+### Help Command
+
+#### Viewing help : `help`
 We know that there can be a lot of information to take in for a new user, so if you ever _feel lost_ while using ExecutivePro, getting help is just a simple step away.
 
 Entering the `help` command will open up the _Help Window_ that looks like this.
@@ -202,7 +204,9 @@ On the left column, you can find the full list of ExecutivePro commands and the 
 Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
-### Adding an employee: `add`
+### Import/Export of Employee details
+
+#### Adding an employee: `add`
 
 How do we build an employee profile?
 
@@ -236,7 +240,7 @@ Examples:
 * `add n/Betsy Crowe p/1234567 d/Sales pr/4000 1 e/betsycrowe@example.com a/Newgate street, block 576, #01-02 dob/2000-04-21 doj/2022-01-04 t/friend`
 
 --------------------------------------------------------------------------------------------------------------------
-### Adding multiple employees at once: `batchadd`
+#### Adding multiple employees at once: `batchadd`
 
 Tired of adding new employees one by one?
 ExecutivePro allows you to add multiple employees at once from a `.csv` file.
@@ -305,7 +309,7 @@ please refer to the instructions [here](#opening-csv-files-in-excel)
 In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
 Also note that as of version `1.3` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
 
-#### Opening .csv files in Excel 
+##### Opening .csv files in Excel 
 
 When using the `batchadd` feature, it is crucial to ensure that the dates in the CSV file are in the [correct format](#field-formats).
 ExecutivePro expects dates to be in the following format: YYYY-MM-DD. If the dates in your CSV file are in a different format, you'll need to convert them before uploading the file to prevent errors and unsuccessful imports.
@@ -338,7 +342,7 @@ This will ensure a smooth import process, and all employee information,
 including dates, will be properly stored in the database.
 
 --------------------------------------------------------------------------------------------------------------------
-### Exporting database into CSV file: `batchexport`
+#### Exporting database into CSV file: `batchexport`
 
 ExecutivePro allows you to export the employees' data into a `.csv` file.
 
@@ -376,16 +380,10 @@ To ensure the correct date format, please refer to the instructions [here](#open
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-### Listing all employees : `list`
 
-After searching for employees using the `find` command, you might realise that the employee list no longer shows all the employees.
-In order to get the full list back, simply use the list command, and it will show a list of all employees and
-their details in the ExecutivePro database.
+### Editing Employee Details
 
-Format: `list`
-
---------------------------------------------------------------------------------------------------------------------
-### Editing an employee : `edit`
+#### Editing an employee : `edit`
 
 There could be instances where you have to edit the details of an employee. It could be due to a typo or that your employee has changed their personal particulars. Simply follow the format given below to edit those details.
 
@@ -411,8 +409,7 @@ The employee with the provided employee ID would have their fields edited accord
 ![](images/UserGuide/editAfter.png)
 
 
---------------------------------------------------------------------------------------------------------------------
-### Taking leave : `leave`
+#### Taking leave : `leave`
 
 There are plenty of instances where employees take leave, and it is such a tedious task to manage employee leaves. ExecutivePro allows you to help your employees take leave so you no longer have to manually track remaining leaves for each employee. Note that for resetting or increasing an employee's leave count use the `edit` command above instead. (`leave` can only help an employee take leave).
 
@@ -425,112 +422,7 @@ Format: `leave EMPLOYEE_ID l/LEAVE_COUNT`
 Examples:
 * `leave 1 l/3` Helps the employee with ID `1` take `3` days of leave.
 
---------------------------------------------------------------------------------------------------------------------
-### Locating employees by keyword: `find`
-
-As your database gets larger, scrolling and finding a certain employee becomes harder. However, ExecutivePro will ease this process
-through the `find` command. By following the format below, ExecutivePro will show
-a list of all employees in ExecutivePro whose names or departments match the keyword provided.
-
-Format: `find [*] KEYWORD [MORE_KEYWORDS]`
-
-* If asterisk (`*`) is inputted, it displays list of employees matching _all_ the given keywords.
-* If asterisk (`*`) is _not_ inputted, it displays list of employees matching _any_ of the given keywords.
-* Even if the keyword just partially matches a part of employees full name, it is considered a match.
-* For finding department, the keyword has to be a full match.
-* Keyword is to search for the name and department of the employee only, not any other details.
-
-Examples:
-* `find John Sales` displays list of all employees whose full name contains a 'John' in it,
-  or they are in the 'Sales' department
-* `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
-
-Below are the steps to use this command:
-
-**Step 1 (Inputting the search keywords) :**
-You can use the command syntax to input the search keywords, just like the image below.
-![](images/UserGuide/findInterface.png)
-
-**Step 2 (Results displayed) :**
-All the employees who match the keywords will be listed.
-![](images/UserGuide/findResults.png)
-
---------------------------------------------------------------------------------------------------------------------
-### Filtering out employees: `filter`
-
-As your database gets larger, searching through the whole database to find employees who satisfy a certain condition
-becomes extremely tedious.
-However, ExecutivePro has just the right feature for you! The `filter` command will list out all the employees
-satisfying the given condition.
-
-Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
-
-
-* The filtering condition can be based on Payroll(`pr`) value or the number of leaves remaining for an employee(`l`)
-* The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
-* The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT`
-* The `COMPARISON_AMOUNT` must be _non-negative_ and an _integer_
-
-Examples:
-* `filter pr > 1000` displays list of all employees whose payroll value is greater than 1000
-* `filter l = 1` displays list of all employees who have only 1 leave left
-
-Below are the steps to use this command:
-
-**Step 1 (Creating the criteria) :**
-You can use the command syntax to create the criteria, just like the image below.
-![](images/UserGuide/filterInterface.png)
-
-**Step 2 (Results displayed) :**
-All the employees who satisfy the criteria will be listed.
-![](images/UserGuide/filterResults.png)
-
-
---------------------------------------------------------------------------------------------------------------------
-### Deleting an employee : `delete`
-
-As time passes, you might run into instances where an employee leaves the company, and that their details have to be removed
-from the database. `delete` would help to remove the details of the employee with the specified `EMPLOYEE_ID`
-from the ExecutivePro database.
-
-Format: `delete EMPLOYEE_ID`
-
-* You can delete the details of the employee with the specific `EMPLOYEE_ID`.
-* The `EMPLOYEE_ID` refers to the id of an employee shown in the displayed employees list.
-* The `EMPLOYEE_ID` **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-`delete 2` deletes the employee with EMPLOYEE_ID 2 in ExecutivePro.
-
---------------------------------------------------------------------------------------------------------------------
-### Changing the UI theme : `theme`
-
-Want to tweak the look of ExecutivePro?
-This feature allows you to choose one of two appearances for ExecutivePro to suit your needs.
-
-The `light` theme (black text on light background) improves readability in well-lit surroundings.
-
-![](images/UserGuide/ThemeCommandLight.png)
-
-The `dark` theme (white text on dark background) can reduce eye strain in low-light conditions.
-
-![](images/UserGuide/ThemeCommandDark.png)
-
-Format: `theme THEME_NAME`
-* `THEME_NAME` is either `dark` (white text on dark background) or `light` (black text on white background).
-
-Examples:
-`theme light` applies the `light` theme to ExecutivePro.
-
---------------------------------------------------------------------------------------------------------------------
-<div markdown="span" class="alert alert-warning">
-
-:warning:
-**Note:** Themes are not kept upon closing ExecutivePro.
-</div>
-
---------------------------------------------------------------------------------------------------------------------
-### Setting an employee's picture : `setpicture`
+#### Setting an employee's picture : `setpicture`
 
 This feature allows you to set a picture for the specified employee, so that you can upload ID photos for each employee.
 
@@ -559,7 +451,6 @@ Click on the specified employee on the left, and your ExecutivePro should displa
 
 ![](images/UserGuide/SetPictureCommand3.png)
 
---------------------------------------------------------------------------------------------------------------------
 <div markdown="span" class="alert alert-warning">
 
 :warning:
@@ -568,17 +459,22 @@ the file may not be properly displayed (e.g. renaming a `example.txt` file to a 
 before uploading it to ExecutivePro.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+#### Deleting an employee : `delete`
 
-<a name="section-exit"></a>
-### Exiting the program : `exit`
+As time passes, you might run into instances where an employee leaves the company, and that their details have to be removed
+from the database. `delete` would help to remove the details of the employee with the specified `EMPLOYEE_ID`
+from the ExecutivePro database.
 
-Exits the program. Your data is automatically saved so ExecutivePro will look exactly the same the next time you open it up.
+Format: `delete EMPLOYEE_ID`
 
-Format: `exit`
+* You can delete the details of the employee with the specific `EMPLOYEE_ID`.
+* The `EMPLOYEE_ID` refers to the id of an employee shown in the displayed employees list.
+* The `EMPLOYEE_ID` **must be a positive integer** 1, 2, 3, …​
 
---------------------------------------------------------------------------------------------------------------------
-### Clearing the data: `clear`
+Examples:
+`delete 2` deletes the employee with EMPLOYEE_ID 2 in ExecutivePro.
+
+#### Clearing the data: `clear`
 
 Clears all the data currently stored in the database.
 
@@ -594,12 +490,114 @@ Once you run this command, you lose all data immediately.
 Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
-### Saving the data
 
+### Viewing Employee Details
+
+#### Listing all employees : `list`
+
+After searching for employees using the `find` command, you might realise that the employee list no longer shows all the employees.
+In order to get the full list back, simply use the list command, and it will show a list of all employees and
+their details in the ExecutivePro database.
+
+Format: `list`
+
+#### Locating employees by keyword: `find`
+
+As your database gets larger, scrolling and finding a certain employee becomes harder. However, ExecutivePro will ease this process
+through the `find` command. By following the format below, ExecutivePro will show
+a list of all employees in ExecutivePro whose names or departments match the keyword provided.
+
+Format: `find [*] KEYWORD [MORE_KEYWORDS]`
+
+* If asterisk (`*`) is inputted, it displays list of employees matching _all_ the given keywords.
+* If asterisk (`*`) is _not_ inputted, it displays list of employees matching _any_ of the given keywords.
+* Even if the keyword just partially matches a part of employees full name, it is considered a match.
+* For finding department, the keyword has to be a full match.
+* Keyword is to search for the name and department of the employee only, not any other details.
+
+Examples:
+* `find John Sales` displays list of all employees whose full name contains a 'John' in it,
+  or they are in the 'Sales' department
+* `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
+
+Below are the steps to use this command:
+
+**Step 1 (Inputting the search keywords) :**
+You can use the command syntax to input the search keywords, just like the image below.
+![](images/UserGuide/findInterface.png)
+
+**Step 2 (Results displayed) :**
+All the employees who match the keywords will be listed.
+![](images/UserGuide/findResults.png)
+
+#### Filtering out employees: `filter`
+
+As your database gets larger, searching through the whole database to find employees who satisfy a certain condition
+becomes extremely tedious.
+However, ExecutivePro has just the right feature for you! The `filter` command will list out all the employees
+satisfying the given condition.
+
+Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
+
+
+* The filtering condition can be based on Payroll(`pr`) value or the number of leaves remaining for an employee(`l`)
+* The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
+* The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT`
+* The `COMPARISON_AMOUNT` must be _non-negative_ and an _integer_
+
+Examples:
+* `filter pr > 1000` displays list of all employees whose payroll value is greater than 1000
+* `filter l = 1` displays list of all employees who have only 1 leave left
+
+Below are the steps to use this command:
+
+**Step 1 (Creating the criteria) :**
+You can use the command syntax to create the criteria, just like the image below.
+![](images/UserGuide/filterInterface.png)
+
+**Step 2 (Results displayed) :**
+All the employees who satisfy the criteria will be listed.
+![](images/UserGuide/filterResults.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### System commands
+
+#### Changing the UI theme : `theme`
+
+Want to tweak the look of ExecutivePro?
+This feature allows you to choose one of two appearances for ExecutivePro to suit your needs.
+
+The `light` theme (black text on light background) improves readability in well-lit surroundings.
+
+![](images/UserGuide/ThemeCommandLight.png)
+
+The `dark` theme (white text on dark background) can reduce eye strain in low-light conditions.
+
+![](images/UserGuide/ThemeCommandDark.png)
+
+Format: `theme THEME_NAME`
+* `THEME_NAME` is either `dark` (white text on dark background) or `light` (black text on white background).
+
+Examples:
+`theme light` applies the `light` theme to ExecutivePro.
+
+<div markdown="span" class="alert alert-warning">
+
+:warning:
+**Note:** Themes are not kept upon closing ExecutivePro.
+</div>
+
+<a name="section-exit"></a>
+#### Exiting the program : `exit`
+
+Exits the program. Your data is automatically saved so ExecutivePro will look exactly the same the next time you open it up.
+
+Format: `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+### Saving/Editing the data file
 ExecutivePro data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-
-### Editing the data file
 
 ExecutivePro data are saved as a JSON file `[JAR file location]/data/executivepro.json`. 
 Advanced users are discouraged from updating data directly by editing that data file due to possible 
