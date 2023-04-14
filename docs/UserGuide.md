@@ -321,7 +321,7 @@ Examples:
 
 ### Editing a student: `edit`
 
-Edits a student's information _(all information except remarks)_. To remove a student's parameter, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
+Edits a student's information _(all information except remarks)_. To remove a student's parameter, leave the value after the [prefix](#glossary-prefix) blank _(eg. `a/ p/` to remove address & phone number)_.
 
 > Format: `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
 >
@@ -590,7 +590,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 | Operating System               | Also known as (OS) of the computer, managers the software and hardware on the computer.                         | Windows 10, Windows 11, Linux, Mac.                                                                                                                                                                                                         |
 | Parameter                      | Parameters are information TeachMeSenpai requires you to fill in.                                               | `NAME`, `PHONE` are parameters you have to fill in. Relevant information to fill in could be Shaun and 999 respectively. <br/> You may refer to the [Parameter descriptions](#parameter-descriptions) for more specifications and examples. |
 | Partial keyword                | Part of the word you want to [find/filter](#findfilter-students-findfilter) by.                                 | A partial keyword for a student named "Shao Hong" could be "Sh", or "on" etc.                                                                                                                                                               |
-| Prefix                         | Indicators for commands. Always ends with a slash `/` and comes before a parameter.                             | `n/` is the prefix for parameter `NAME` which could be a name like Shaun. <br/> You may refer to [Prefix Summary](#prefix-summary) to see all the prefixes used in TeachMeSenpai.                                                           |
+| <a id="glossary-prefix"></a>Prefix                         | Indicators for commands. Always ends with a slash `/` and comes before a parameter.                             | `n/` is the prefix for parameter `NAME` which could be a name like Shaun. <br/> You may refer to [Prefix Summary](#prefix-summary) to see all the prefixes used in TeachMeSenpai.                                                           |
 | Remark                         | Notes or things to take note of for a student.                                                                  | "Not good in Japanese", "Has not submitted MC" etc.                                                                                                                                                                                         |
 
 
@@ -614,9 +614,9 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 
 ---
 
-## Prefix summary
+## [Prefix](#glossary-prefix) summary
 
-| Prefix | Meaning                                 | Example                               |
+| [Prefix](#glossary-prefix) | Meaning                                 | Example                               |
 |--------|-----------------------------------------|---------------------------------------|
 | n/     | Name of student                         | `n/Shao Hong`                         |
 | p/     | Phone number of student                 | `p/81234567`                          |
