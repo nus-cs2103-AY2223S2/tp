@@ -70,7 +70,6 @@ This section highlights the key components of PowerCards’ user interface. Refe
 <div style="page-break-after: always;"></div>
 
 # 2. Quick Start
-
 <a markdown="span" href="#1-introduction"> 🏠 **Back to top** </a> <br>
 
 1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install from this [link](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). Remember to download the correct version for your Operating System! (e.g. Window or Mac) 
@@ -602,7 +601,7 @@ Not sure what a JSON file is? Check out this [brief introduction](https://www.w3
 
 ## 5.1. Main Mode - before selecting a Deck
 
-<a markdown="span" href="#5-command"> ⬆️ **Back to 5. Command** </a> <br>
+<a markdown="span" href="#5-command-summary"> ⬆️ **Back to 5. Command** </a> <br>
 
 | Action         | Format, Examples                                                     |
 |----------------|----------------------------------------------------------------------|
@@ -622,7 +621,7 @@ Not sure what a JSON file is? Check out this [brief introduction](https://www.w3
 
 ## 5.2. Main Mode - after selecting a Deck
 
-<a markdown="span" href="#5-command"> ⬆️ **Back to 5. Command** </a> <br>
+<a markdown="span" href="#5-command-summary"> ⬆️ **Back to 5. Command** </a> <br>
 
 | Action         | Format, Examples                                                                                                                                 |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -642,7 +641,7 @@ Not sure what a JSON file is? Check out this [brief introduction](https://www.w3
 
 ## 5.3. Review mode
 
-<a markdown="span" href="#5-command"> ⬆️ **Back to 5. Command** </a> <br>
+<a markdown="span" href="#5-command-summary"> ⬆️ **Back to 5. Command** </a> <br>
 
 | Action        | Format, Examples |
 |---------------|------------------|
