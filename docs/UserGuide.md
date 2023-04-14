@@ -74,7 +74,7 @@ This section highlights the key components of PowerCards’ user interface. Refe
 
 2. Download the latest `powercards.jar` from [here](https://github.com/AY2223S2-CS2103T-W11-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your PCs.
+3. Copy the file to the folder you want to use as the _home folder_ for PowerCards.
 
 4. Open a command terminal, enter the folder you put the jar file in using the `cd` command, and use the `java -jar powercards.jar` command to run the application.  
 
@@ -394,7 +394,8 @@ While the limit is in effect, the deck will be truncated to the specified number
 You can set the limit back to 'none' to view all cards in the deck for future reviews.
 
 Format: `setLimit LIMIT_NUM` or `setLimit none`
-- `LIMIT_NUM` must be a number between 1 and 2147483647 inclusive. 
+
+- `LIMIT_NUM` must be a whole number between 1 and 2147483647 inclusive. 
 - If `LIMIT_NUM` is greater than the number of cards inside the deck to be reviewed, you will review **all** the cards in that deck.
 
 Examples:
@@ -411,12 +412,12 @@ Once ready, you can enter the Review Mode to test yourself on the cards of a dec
 ![ReviewModeComponent](images/ReviewModeComponent.png)
 
 In the review mode, you will see:
-- On the left panel - a review panel with the updated statistics of the current review (current deck, current card number, number of cards tagged each difficulty) and a navigation guide of the keys.
+- On the left panel - the updated statistics of the current review (current deck, current card number, number of cards tagged each difficulty) and a navigation guide of the keys.
 - On the right panel - the card that is currently under review, which you can flip to reveal the answer and then tag with a given difficulty.
 
 To review a card, you can attempt the question on the card (in your mind or on a paper if you prefer!) before flipping it. 
 
-Flipping a card reveals the answer - based on how close your guess was to the answer or how confident you were when attempting, you can tag the card with a difficulty of easy, medium or hard.
+Flipping a card reveals the answer - based on how close your guess was to the answer or how confident you were when attempting, you can then tag the card with a difficulty of easy, medium or hard.
 
 Your goal would be to eventually have all cards in a deck be tagged as easy!
 
@@ -448,10 +449,10 @@ Format: `endReview`
 ![Review Command Keys](images/ReviewCommandKeys.png)
 
 The diagram above shows the commands you will use to interact with the cards during a Review. 
-You must press the Enter key after typing in the command to execute it, e.g., pressing the key `p` alone will not flip the card.
+You must press the `Enter` key after typing in the command to execute it, e.g., pressing the key `p` alone will not flip the card.
 
-Notice that the keys are all close to the Enter key so that you can breeze through decks of cards ergonomically!
-- The top row of keys are commands to flip cards, or move to the previous/next cards. 
+Notice that the keys are all close to the `Enter` key so that you can breeze through decks of cards ergonomically!
+- The top row of keys are commands to flip cards or move to the previous/next cards. 
 - The bottom row of keys are commands to tag the difficulty of the current card.
 
 <div style="page-break-after: always;"></div>
@@ -465,7 +466,7 @@ Format: `p`
 
 ### 3.6.5. Next Card: `]`
 
-Displays the next card. After tagging the current card, you use this command to move on to the next card.
+Displays the next card. After reviewing the current card, you use this command to move on to the next card.
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:** 
 If the card you are currently reviewing is the last card, the result display will display `This is the last card.` when you use this command.
@@ -524,11 +525,16 @@ Format: `exit`
 
 ### 3.7.3. Saving the Data
 
-PCs data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+PowerCards' data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### 3.7.4. Editing the Data File
 
-PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Advanced users are welcome to update data directly by editing that data file.
+PowerCards' data is saved as a JSON file `[JAR file location]/data/masterdeck.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="block" class="alert alert-info">
+💡 **Tip:**
+Not sure what a JSON file is? Check out this [brief introduction](https://www.w3schools.com/js/js_json_intro.asp) to learn more!
+</div>
 
 <div markdown="block" class="alert alert-warning">
 
@@ -543,14 +549,14 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 
 # 4. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data in your previous PC's home folder.
-
 **Q**: Will my data be automatically saved?<br>
 **A**: **Yes**, PowerCards automatically saves your data after every command entered.
 
 **Q**: Where is my data saved?<br>
 **A**: If you have run PowerCards at least once, there will be a folder named `data` inside the folder you store the application. The save data can be found as `masterdeck.json` in the `data` folder.
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: First, make a copy of the JSON data file (can be found in `[JAR file location]/data/masterdeck.json`). Next, transfer the copy of data to the respective location of the other computer (`[JAR file location]/data/masterdeck.json`), overwriting any old data files. If done correctly, when you start the app on the other computer, you will observe that the data has been transferred over successfully!
 
 **Q**: Can I rename my saved data file?<br>
 **A**: **No**, PowerCards currently only supports the use of `masterdeck.json` as the name of the saved data file.
