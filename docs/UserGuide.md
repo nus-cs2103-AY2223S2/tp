@@ -108,7 +108,7 @@ Format: `help`
 #### Adding a person: `add`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you have an existing CSV dataset, you may choose to [import it directly](#import-and-export-csv-file) rather than adding each contact individually.
+If you have an existing CSV dataset, you may choose to **[import it directly](#import-and-export-csv-file)** rather than adding each contact individually.
 </div>
 
 Adds a person to E-Lister.
@@ -244,20 +244,6 @@ Examples:
 * `filter t/bank` will list all persons with a tag containing "bank", such as `banker`, `bankrupt`, or `riverbanks`.
 * `filter p/8765 e/hotmail` will list all persons with a phone number containing "8765", and an email address containing "hotmail".
 * `filter e/org e/net` will list all persons with email addresses containing "org" **or** "net".
-
-Important note:
-* These keywords are matched as [regular expressions](https://regexone.com/).
-  * This gives you more flexibility in finding matches, but means that using non-alphanumeric characters, like `$`, `.`, `-` or `*`, might display unexpected results.
-  * If you need to non-alphanumeric characters anyway, write a backslash "\\" before each such character:
-  * `filter a/\#459\-2965 \\ Navarro` will list all persons with an address containing "#459-2965 \ Navarro".
-
-Advanced examples:
-
-* `filter t/^bank$` will list all persons with exactly the tag `bank`,
-and will not match `banker` or `bankrupt`.
-* `filter i/.{7}` will list all persons with 7 or more digits in their income.
-* `filter e/.*\.org$ n/(?<!len)rin(?!len) e/.*\.net$` will list all persons with the substring "rin" but not "len" in their name,
-as well as an email that ends in ".org" or ".net".
 
 #### Freezing the display : `freeze`
 
@@ -462,7 +448,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Tag** | `tag INDEX TAG` <br> e.g, `tag 2 MIDDLE_CLASS`, `tag 5 teacher`
 **Delete Tag** | `delete_tag INDEX TAG` <br> e.g, `delete_tag 2 MIDDLE_CLASS`, `delete_tag 5 teacher`
-**Filter** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`<br> e.g., `filter e/.*\.org$ n/rin e/.*\.net$`
+**Filter** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES]…​`
 **Freeze** | `freeze`
 **Unfreeze** | `unfreeze`
 **Mass** | `mass COMMAND [ARGS_WITHOUT_INDEX]`<br> e.g., `mass tag Noticed`
