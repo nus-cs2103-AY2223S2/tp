@@ -266,7 +266,7 @@ In Vimification, a task can has the following attributes:
 
 ## Information on commands' parameters
 
-_Take note of how the command format is being interpretted, to know what parameters it requires._
+_Take note of how the command format is being interpreted to know what parameters it requires._
 
 Flags like `-d`, `-l` and `-p` act as identifier for the parameter that comes immediately after the flag.
 
@@ -363,7 +363,7 @@ Insert the parameters as specified by the flag of a task to the current task lis
 
 Format: `:i <task_index> [-d <deadline>] [-l <label>]...`
 
-| Parameter      | Detail                               | Example                                           |
+| Parameter      | Meaning                              | Example                                           |
 | -------------- | ------------------------------------ | ------------------------------------------------- |
 | `<task_index>` | Index of the target task             | `3` (assuming the task list has at least 3 tasks) |
 | `<deadline>`   | Deadline of task you want to insert  | `2023-04-05`                                      |
@@ -397,7 +397,7 @@ Delete a task from the current task list by specifying the task number.
 
 Format: `:d <task_index>`
 
-| Parameter      | Detail                               | Compulsory | Example                                           |
+| Parameter      | Meaning                              | Compulsory | Example                                           |
 | -------------- | ------------------------------------ | ---------- | ------------------------------------------------- |
 | `<task_index>` | Index of the task you want to delete | Yes        | `3` (assuming the task list has at least 3 tasks) |
 
@@ -419,7 +419,7 @@ Delete the parameters as specified by the flag of a task from the current task l
 
 Format: `:d <task_index> [-d] [-l <label>]...`
 
-| Parameter      | Detail                               | Example                                           |
+| Parameter      | Meaning                              | Example                                           |
 | -------------- | ------------------------------------ | ------------------------------------------------- |
 | `<task_index>` | Index of the target task             | `3` (assuming the task list has at least 3 tasks) |
 | `<label>`      | Name of the label you want to delete | `cs2103t`                                         |
@@ -452,7 +452,7 @@ Edit the parameters as specified by the flag of a task in the current task list 
 
 Format: `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>]...`
 
-| Parameter          | Detail                              | Example         |
+| Parameter          | Meaning                             | Example         |
 | ------------------ | ----------------------------------- | --------------- |
 | `"<title>"`        | New title of task                   | `"CS2103T UG"`  |
 | `<deadline>`       | New deadline of the task            | `2023-03-31`    |
@@ -494,7 +494,7 @@ Filter by the parameters as specified by the flag.
 
 Format: `:f [-a] [-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...`
 
-| Parameter    | Detail                                         | Example        |
+| Parameter    | Meaning                                        | Example        |
 | ------------ | ---------------------------------------------- | -------------- |
 | `<keywords>` | Keywords to filter                             | `"CS2103T UG"` |
 | `<date>`     | Deadline of the task to filter before or after | `2023-03-31`   |
@@ -577,7 +577,7 @@ Macro is a customisable template-like command, to streamline the process of runn
 
 Format: `:macro -a <macro> <command_string>`
 
-| Parameter          | Detail                                         | Example          |
+| Parameter          | Meaning                                        | Example          |
 | ------------------ | ---------------------------------------------- | ---------------- |
 | `<macro>`          | The macro to be defined, can only be one word  | `l2103`          |
 | `<command_string>` | The command string to be mapped with the macro | `"f -l cs2103t"` |
@@ -592,7 +592,7 @@ Note:
 
 Format: `macro -d <macro>`
 
-| Parameter | Detail                                        | Example |
+| Parameter | Meaning                                       | Example |
 | --------- | --------------------------------------------- | ------- |
 | `<macro>` | The macro to be deleted, can only be one word | `l2103` |
 
