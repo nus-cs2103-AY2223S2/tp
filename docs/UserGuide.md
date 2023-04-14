@@ -185,7 +185,42 @@ Congratulations, ExecutivePro is now running, you can refer to the [Features](#f
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
 
+## Employee Profiles
+
+ExecutivePro makes it easy for you to add, remove, or edit employee information, to help you be an efficient and effective HR manager.
+Each employee within ExecutivePro has an employee profile, where their personal particulars are stored.
+These are the particulars that ExecutivePro can help you keep track of:
+
+| Particular      | Description                                    | Compulsory?            |
+|-----------------|------------------------------------------------|------------------------|
+| Employee ID     | Unique numerical ID for each employee          | Automatically assigned |
+| Name            | Name of employee                               | Compulsory             |
+| Phone           | Phone number of employee                       | Compulsory             |
+| Department      | Department of employee                         | Compulsory             |
+| Salary          | Monthly salary of employee                     | Compulsory             |
+| Day of Payment  | Day of the month that the employee is paid     | Compulsory             |
+| Email           | Email address of employee                      | Optional               |
+| Address         | Address of employee                            | Optional               |
+| Leave           | Number of days of leave employee has remaining | Optional (Default: 21) |
+| Date of Birth   | Date of birth of employee                      | Optional               |
+| Date of Joining | Date the employee joined the company           | Optional               |
+| Tag             | Used to record any other simple remarks        | Optional               |
+
+In addition, you can upload a profile picture for each employee
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb:
+Tags can be used to record any information about your employees that does not fall into any of the above categories.
+For example, you could:
+- Tag an employee as "Software Engineer" to record their role within their department.
+- Tag an employee as "Vegetarian" to take note of their dietary requirements.
+
+Tags give you more flexibility in building employee profiles, so you can use ExecutivePro to its fullest!
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -632,26 +667,6 @@ If your changes to the data file makes its format invalid, ExecutivePro will dis
 ## Planned Enhancements
 1. In the near future, our team will be creating a login feature page for ExecutivePro. This helps to enhance the
 security feature of ExecutivePro as it ensures that only you and your team members have access to the database.
-
---------------------------------------------------------------------------------------------------------------------
-[Return to `add` feature](#adding-an-employee-add)
-## Order of Fields
-
-This table describes the requirements and order of the fields.
-
-| Index | Field           | Requirement    |
-|-------|-----------------|----------------|
-| 1.    | `NAME`          | **Compulsory** |
-| 2.    | `PHONE`         | **Compulsory** |
-| 3.    | `DEPARTMENT`    | **Compulsory** |
-| 4.    | `PAYROLL`       | **Compulsory** |
-| 5.    | `EMAIL`         | Optional       |
-| 6.    | `ADDRESS`       | Optional       |
-| 7.    | `LEAVECOUNT`    | Optional       |
-| 8.    | `DATEOFBIRTH`   | Optional       |
-| 9.    | `DATEOFJOINING` | Optional       |
-| 10.   | `TAGS`          | Optional       |
-
 
 --------------------------------------------------------------------------------------------------------------------
 [Return to `add` feature](#adding-an-employee-add) \
