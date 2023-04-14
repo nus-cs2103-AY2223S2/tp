@@ -19,6 +19,8 @@ With ExecutivePro, you can optimise your HR workflow and free yourself from the 
 The purpose of this guide is to walk you through the comprehensive features of ExecutivePro and to help you troubleshoot any problems you may face while using ExecutivePro.
 Read on to learn more and experience the game-changing benefits that ExecutivePro can bring to your work!
 
+<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## Using this Guide
 
@@ -44,6 +46,7 @@ Here are the symbols that you will see while reading this user guide:
 | :warning: | Be wary and proceed with caution.                                                                                                                                       |
 | `...`     | Items with `...` after them can either be omitted or used one or more times.<br/> Example:`[t/TAG]…` can be used as ` ` (omitted), `t/friend`, `t/friend t/family` etc. |
 
+<div style="page-break-after: always"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 <a id="toc"></a>
@@ -72,14 +75,14 @@ Follow these steps if this is your first time using ExecutivePro:
    This folder can be on your Desktop or any location you prefer.
    For example, we create a `test` folder on the Desktop.
     <p align="center">
-      <img src="images/jarfile.png" width="100%" height="50%">
+      <img src="images/jarfile.png" width="80%" height="50%">
       <br>
       <em>`test` folder</em>
     </p>
 
     Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
     <p align="center">
-      <img src="images/jarfile2.png" width="100%" height="50%">
+      <img src="images/jarfile2.png" width="80%" height="50%">
       <br>
       <em>ExecutivePro jar file</em>
     </p>
@@ -448,28 +451,28 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
 
 3. Click on `Format Cells...` and the table below will appear:
    <p align="center">
-    <img src="images/format.png" width="80%" height="80%">
+    <img src="images/format.png" width="80%" height="70%">
     <br>
     <em>Format cells table</em>
    </p>
 
 4. Click on `Date`:
    <p align="center">
-    <img src="images/formatdate.png" width="80%" height="80%">
+    <img src="images/formatdate.png" width="80%" height="70%">
     <br>
     <em>Clicking on date</em>
    </p>
 
 5. Select the correct date format ("YYYY-MM-DD"):
    <p align="center">
-    <img src="images/correct.png" width="100%" height="100%">
+    <img src="images/correct.png" width="80%" height="80%">
     <br>
     <em>Correct date format</em>
    </p>
 
 6. Click `OK` and the date in the file will be updated to the correct format:
    <p align="center">
-    <img src="images/successCSV.png" width="80%" height="80%">
+    <img src="images/successCSV.png" width="100%" height="100%">
     <br>
     <em>Correct date format in Excel file</em>
    </p>
