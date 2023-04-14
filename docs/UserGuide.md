@@ -236,6 +236,7 @@ and will not match `banker` or `bankrupt`.
 * `filter e/.*\.org$ n/(?<!len)rin(?!len) e/.*\.net$` will list all persons with the substring "rin" but not "len" in their name,
 as well as an email that ends in ".org" or ".net".
 
+![applying filters display](images/filtersDisplay.png)
 #### Freezing the display : `freeze`
 
 Freezes the current <span style="color:green">selection</span> of persons displayed.
@@ -382,7 +383,6 @@ E-Lister data is saved as a JSON file `[JAR file location]/data/elister.json`. A
 If your changes to the data file make its format invalid, E-Lister will discard all data and start with an empty data file at the next run.
 </div>
 
-![applying filters display](images/filtersDisplay.png)
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
