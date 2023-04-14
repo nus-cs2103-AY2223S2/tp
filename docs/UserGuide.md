@@ -428,14 +428,14 @@ Examples:
 
 ![result for 'refd eid/1 n/Sales'](images/UiRemoveEmployeeFromDepartmentCommand.png)
 
-### 4.2.8. List an employee's departments: `leid`
+### 4.2.8. List an employee's departments: `led`
 
 List all departments the given employee is in.
 
-Format: `leid eid/EMPLOYEE_ID`
+Format: `led eid/EMPLOYEE_ID`
 
 Examples:
-* `leid eid/100`
+* `led eid/100`
 
 ### 4.2.9. List all employees in a department: `leid`
 
