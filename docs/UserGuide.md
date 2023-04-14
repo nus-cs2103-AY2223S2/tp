@@ -12,7 +12,7 @@ Tailored to fast-typists, TeachMeSenpai is built around a **Command Line Interfa
 to help you manage your students quicker than a traditional point-and-click app can.
 
 ## About this User Guide
-This user guide provides everything you need to know to get started with TeachMeSenpai and how to use its features.
+This user guide provides everything you need to know to start setting up TeachMeSenpai and how to use its features.
 Head over to the [Quick Start](#quick-start) section to get started with setting up, or the [Features](#features) section
 to learn more about what TeachMeSenpai can do for you! If at any point there are any unfamiliar terms, you may head over to the [Glossary](#glossary)
 for an explanation.
@@ -47,16 +47,19 @@ this user guide for more information, or to external websites to learn more!
 
 ## Quick start
 
-TeachMeSenpai has been designed to work for all Operating Systems/computers!
-
-<p align=center>
-    <img alt="TeachMeSenpai upon launch" src="images/user-guide/sample_GUI.jpg" />
-</p>
+TeachMeSenpai has been designed to work for all Operating Systems no matter if you’re a Mac, Windows or Linux
 
 1. Ensure you have `Java 11` or above installed in your computer (you may refer to [Java Help Resources](https://www.java.com/en/download/help/version_manual.html) if you're not sure how to do so).
 2. Download the latest `teachmesenpai.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-2/tp/releases/latest).
 3. Copy or move the file to the folder you want to use as the home folder for your application.
 4. Double-click the file to start the app.
+5. If everything works well, you should be able to see the following User Interface.
+<p align=center>
+    <img alt="TeachMeSenpai upon launch" src="images/user-guide/sample_GUI.jpg" />
+</p>
+
+
+
 
 [↑ Back to top](#table-of-contents)
 
@@ -71,8 +74,8 @@ TeachMeSenpai has several important components as part of its display. Here is a
 </p>
 
 <h3 style="color:Gray"><b>Menu bar</b></h3>
-* Clicking `FILE` will give you the option to exit the app
-* Clicking `HELP` will show `HELP F1`, clicking it will provide you a link to this User Guide!
+* Clicking `File` will give you the option to exit the app
+* Clicking `Help` will show `Help F1`, clicking it will provide you a link to this User Guide!
 
 <h3 style="color:MediumSeaGreen"><b>Command line</b></h3>
 * This is where you will be typing all the commands for TeachMeSenpai! To learn more about the commands TeachMeSenpai has, head over
