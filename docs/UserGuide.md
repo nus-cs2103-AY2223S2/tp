@@ -68,6 +68,7 @@ TutorPro is a **desktop app designed to help private tutors manage their student
   * [List of Commands](#list-of-commands)
   * [List of Prefixes](#list-of-prefixes)
   * [Supported date-time formats](#supported-date-time-formats)
+  * [Supported date formats](#supported-date-formats)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
