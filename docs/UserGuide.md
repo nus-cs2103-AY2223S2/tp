@@ -152,7 +152,11 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 Shows you a message explaining how to access the help page.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `help`
+
+</div>
 
 <div style="text-align: center;">
   <img src="images/helpMessage.png">
@@ -166,7 +170,11 @@ Format: `help`
 
 Lets you add a person to AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
+
+</div>
 
 <div markdown="span" class="alert alert-info">
 
@@ -194,7 +202,11 @@ Examples:
 
 Lets you adds all persons from a given valid CSV (Comma-Separated Values) file to AIMS. Excel and Google spreadsheets can be easily converted into CSV files for quick importing.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `importcsv PATH_TO_CSV_FILE`
+
+</div>
 
 The given CSV file must fulfill the following conditions:
 
@@ -264,7 +276,11 @@ Step-by-step example of converting and importing an Excel spreadsheet:
 
 Shows you a list of all existing persons in AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `list`
+
+</div>
 
 <br>
 
@@ -274,7 +290,11 @@ Format: `list`
 
 Copies the information of a person to your clipboard.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `copy INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+
+</div>
 
 - Copies the required information of the person at the specified `INDEX` to the user's clipboard.
 - The index refers to the index number shown in the displayed main list.
@@ -343,7 +363,11 @@ Examples:
 
 Lets you edit an existing person in AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+</div>
 
 - Edits the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed main list.
@@ -371,7 +395,11 @@ Examples:
 
 Lets you find persons who have any fields that contain any of the given keywords.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `find KEYWORD [MORE_KEYWORDS]`
+
+</div>
 
 - The search is case-insensitive. (e.g `hans` will match `Hans`)
 - Keywords cannot contain spaces. Instead, spaces are used to separate keywords.
@@ -401,7 +429,11 @@ Example:
 
 Lets you filter all persons to only show those whose fields contain **all** the given keywords.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `filter [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [p/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+</div>
 
 - The search is case-insensitive. (e.g. `hanS` will match `Hans`)
 - The order of the keywords does not matter. (e.g. `n/Hans r/3sg` will match `r/3sg n/Hans`)
@@ -430,7 +462,11 @@ Example:
 
 Lets you delete a specified person from AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `delete INDEX`
+
+</div>
 
 - Deletes the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed main list.
@@ -454,7 +490,11 @@ Examples:
 
 Lets you clear all existing entries in AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `clear`
+
+</div>
 
 <br>
 
@@ -471,7 +511,11 @@ AIMS are not recorded in the undo history.
 
 </div>
 
+<div markdown="span" class="alert alert-success">
+
 Format: `undo`
+
+</div>
 
 <br>
 
@@ -501,7 +545,11 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
 
 Lets you toggle the favorite status of a person from AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `favorite INDEX`
+
+</div>
 
 - Toggles favorite status for the person at the specified `INDEX`.
 - If the command is run on a person who is not in the favorite list, he will be added to the favorite list.
@@ -536,7 +584,11 @@ Example:
 
 Exit from AIMS.
 
+<div markdown="span" class="alert alert-success">
+
 Format: `exit`
+
+</div>
 
 <br>
 
