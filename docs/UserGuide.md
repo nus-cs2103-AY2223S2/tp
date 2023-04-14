@@ -55,7 +55,7 @@ Here are some of the symbols that may appear in this user guide:
 Below is the ExecutivePro User Interface with the main components labelled.
 
 <p align="center">
-  <img src="images/UserGuide/labelledgui.png" alt="startup_whitebackground.jpg" width="70%" height="50%">
+  <img src="images/labelledgui.png" alt="startup_whitebackground.jpg" width="70%" height="50%">
   <br>
   <em>User Interface</em>
 </p>
@@ -73,7 +73,11 @@ Main components of the ExecutivePro User Interface:
 
 #### 1. Toolbar
 
-![Toolbar](images/UserGuide/tool.png)
+<p align="center">
+  <img src="images/tool.png" alt="startup_whitebackground.jpg" width="50%" height="50%">
+  <br>
+  <em>Toolbar</em>
+</p>
 
 This toolbar can be used to:
 
@@ -82,7 +86,12 @@ This toolbar can be used to:
 
 
 #### 2. Display Panel
-< img src = "images/UserGuide/DisplayPanel.png" class = "centerImage" width = 80% height = 100% >
+
+<p align="center">
+  <img src="images/displaypanel.png" width="50%" height="50%">
+  <br>
+  <em>Display Panel</em>
+</p>
 
 This section shows the full information of the selected employee.
 
@@ -95,7 +104,11 @@ This section shows the full information of the selected employee.
 
 #### 3. Employee List
 
-<img src="images/UserGuide/EmployeeList.png" class="centerImage" width = 80% height = 100%>
+<p align="center">
+  <img src="images/employeelist.png" alt="startup_whitebackground.jpg" width="50%" height="50%">
+  <br>
+  <em>Employee List</em>
+</p>
 
 This shows the whole employee list with basic information such as _Name_, _Employee ID_, _Department_ and their respective tags highlighted in blue.
 
@@ -108,7 +121,11 @@ This will come in handy if:
 
 #### 4. Command Panel
 
-<img src="images/UserGuide/commandpanel.png" class="centerImage" >
+<p align="center">
+  <img src="images/commandpanel.png" alt="startup_whitebackground.jpg" width="50%" height="50%">
+  <br>
+  <em>Command Panel</em>
+</p>
 
 This section displays relevant messages or errors after the command is entered.
 
