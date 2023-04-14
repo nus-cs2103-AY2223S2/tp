@@ -383,9 +383,8 @@ Format: `unselectDeck`
 
 ### 3.5.1. Setting the Limit of Cards per Review: `setLimit`
 
-Suppose you have a really long deck of cards, but you only want to test yourself on 20 cards this session. 
-Use this function to set an upper limit on the number of cards per review.
-While a limit is set, the review deck will be truncated to the card limit. 
+If you've got a long deck of cards but only want to test yourself on a certain number of them during a review session, no problem! You can use a handy function to set an upper limit on the number of cards you'll be reviewing. 
+While the limit is in effect, the deck will be truncated to the specified number of cards. Give it a try!
 
 You can set the limit back to 'none' to view all cards in the deck for future reviews.
 
