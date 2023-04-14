@@ -57,6 +57,8 @@ We hope that this user guide will help you adopt, learn and ultimately master AI
 
 For a more technical and comprehensive overview of AIMS's codebase, please refer to our [Developer Guide](DeveloperGuide.md).
 
+<br>
+
 [Back to Top ↑](#table-of-contents)
 
 ---
@@ -70,6 +72,8 @@ Here are some symbols used throughout the user guide to inform you of additional
 :bulb: **Tip:** Tips are useful suggestions that you can follow.
 
 :exclamation: **Caution:** Cautions are used as warnings for actions that may cause data loss.
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -95,6 +99,8 @@ Here are some symbols used throughout the user guide to inform you of additional
    </div>
 
 1. Refer to the [Features](#features) section below for details of each command.
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -173,8 +179,10 @@ Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE e/EMAIL a/A
 
 Examples:
 
-- `add r/3SG n/Lawrence Tay u/1 GDS p/91649723 e/lawrencetay@gmail.com a/124 Drummond Street t/PlatoonSergeant t/AllergySeafood`<br>
-  Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.<br>
+- `add r/3SG n/Lawrence Tay u/1 GDS p/91649723 e/lawrencetay@gmail.com a/124 Drummond Street t/PlatoonSergeant t/AllergySeafood`
+
+  Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.
+
   <div style="text-align: center;">
     <img src="images/addLawrenceSuccess.png">
     <p style="font-style: italic;"><br>Success screen upon successful addition of Lawrence Tay</p>
@@ -290,35 +298,41 @@ see all the text.
 
 Examples:
 
-- `copy 2` <br>
-If your clipboard is accessible, a success message will be displayed.
-    <div style="text-align: center;">
-      <img src="images/copy2Result.png">
-      <p style="font-style: italic;"><br>Success screen upon successful copying of information to clipboard</p>
-      <br>
-    </div>
+- `copy 2`
 
-    The following text will be copied into your clipboard.
+  If your clipboard is accessible, a success message will be displayed.
 
-    ```text
-    Rank: CPL
-    Name: Bernice Yu
-    Unit: 1 GDS
-    Company: Charlie
-    Platoon: 2
-    Phone: 99272758
-    Email: berniceyu@example.com
-    Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
-    Tags: [colleagues][friends]
-    ```
+  <div style="text-align: center;">
+    <img src="images/copy2Result.png">
+    <p style="font-style: italic;"><br>Success screen upon successful copying of information to clipboard</p>
+    <br>
+  </div>
 
-- `copy 2` <br>
-If your clipboard is not accessible, the information will be displayed in the message box which can be manually selected and copied.
-   <div style="text-align: center;">
-     <img src="images/copy2_noclipboard.png">
-     <p style="font-style: italic;"><br>Screen when the AIMS detects that the clipboard is not accessible</p>
-     <br>
-   </div>
+  The following text will be copied into your clipboard.
+
+  ```text
+  Rank: CPL
+  Name: Bernice Yu
+  Unit: 1 GDS
+  Company: Charlie
+  Platoon: 2
+  Phone: 99272758
+  Email: berniceyu@example.com
+  Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
+  Tags: [colleagues][friends]
+  ```
+
+  <br>
+
+- `copy 2`
+
+  If your clipboard is not accessible, the information will be displayed in the message box which can be manually selected and copied.
+
+  <div style="text-align: center;">
+    <img src="images/copy2_noclipboard.png">
+    <p style="font-style: italic;"><br>Screen when the AIMS detects that the clipboard is not accessible</p>
+    <br>
+  </div>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -328,7 +342,7 @@ Lets you edit an existing person in AIMS.
 
 Format: `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-- Edits the person at the specified `INDEX`. 
+- Edits the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed main list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - At **least** one of the optional fields must be provided.
@@ -342,6 +356,10 @@ Examples:
 Edits the phone number and email address of the 1st person in the existing main list to be `91234567`and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` <br>
 Edits the name of the 2nd person in the existing main list to be `Betsy Crower` and clears all existing tags.
+
+<br>
+
+[Back to Top ↑](#table-of-contents)
 
 ### Searching for persons by any field : `find`
 
@@ -358,16 +376,16 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Example:
 
-- `find live delta` <br>
-3 persons will be found:
+- When running `find live delta`, 3 persons will be found:
   - `Charlotte Oliveiro` (name matches `live`)
   - `Irfan Ibrahim` (email matches `live`)
-  - `Roy Balakrishnan` (company matches `delta`)<br>
-  <div style="text-align: center;">
-    <img src="images/findCharlotteIrfanRoyResult.png">
-    <p style="font-style: italic;"><br>Screen showing the result of finding 3 persons using partial keyword matching</p>
-    <br>
-  </div>
+  - `Roy Balakrishnan` (company matches `delta`)
+
+    <div style="text-align: center;">
+      <img src="images/findCharlotteIrfanRoyResult.png">
+      <p style="font-style: italic;"><br>Screen showing the result of finding 3 persons using partial keyword matching</p>
+      <br>
+    </div>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -386,8 +404,10 @@ Format: `filter [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [p/PLATOON] [p/PHONE] [e/
 
 Example:
 
-- `filter a/street r/sg` <br>
-2 persons named `David Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
+- `filter a/street r/sg`
+
+  2 persons named `David Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
+
   <div style="text-align: center;">
     <img src="images/filterDavidLeeResult.png">
     <p style="font-style: italic;"><br>Screen showing the results of filtering by address and rank</p>
@@ -413,6 +433,8 @@ The 2nd existing person in the main list will be deleted.
 - `find Betsy` followed by `delete 1` <br>
 The 1st person in the main list of the `find` command will be deleted.
 
+<br>
+
 [Back to Top ↑](#table-of-contents)
 
 ### Clearing all entries : `clear`
@@ -420,6 +442,8 @@ The 1st person in the main list of the `find` command will be deleted.
 Lets you clear all existing entries in AIMS.
 
 Format: `clear`
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -435,6 +459,8 @@ AIMS are not recorded in the undo history.
 </div>
 
 Format: `undo`
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -453,6 +479,8 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
 - At any point in the command history, you can simply edit the command and re-run it. Note that once you navigate away
   from this point in the command history, the changes you've made to this current command in history will be lost.
 - The command history file is located at `[JAR file location]/data/command_history.txt`. Whenever you run a command **successfully**, the command history file will be automatically updated. In other words, commands that fail to run due to syntax errors or otherwise will **not** be recorded in the command history.
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -477,8 +505,10 @@ Format: `favorite INDEX`
 
 Example:
 
-- `favorite 3`<br>
-The third person in the existing main list will be added to and pinned in the favorites list.<br>
+- `favorite 3`
+
+  The third person in the existing main list will be added to and pinned in the favorites list.
+
   <div style="text-align: center;">
     <img src="images/favorite3.png">
     <p style="font-style: italic;"><br>Screen showing the result of favoriting person 3, causing the contact to be pinned to the sidebar</p>
@@ -493,11 +523,15 @@ Exit from AIMS.
 
 Format: `exit`
 
+<br>
+
 [Back to Top ↑](#table-of-contents)
 
 ### Saving the data
 
 AIMS data is saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -512,6 +546,8 @@ directly by editing that data file.
 start with an empty data file in the next run.
 
 </div>
+
+<br>
 
 [Back to Top ↑](#table-of-contents)
 
