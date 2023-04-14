@@ -677,14 +677,6 @@ Format: `clear`
 
 ### Viewing Employee Details
 
-#### Listing all employees : `list`
-
-After searching for employees using the `find` command, you might realise that the employee list no longer shows all the employees.
-In order to get the full list back, simply use the list command, and it will show a list of all employees and
-their details in the ExecutivePro database.
-
-Format: `list`
-
 #### Locating employees by keyword: `find`
 
 As your database gets larger, scrolling and finding a certain employee becomes harder. However, ExecutivePro will ease this process
@@ -758,6 +750,15 @@ All the employees who satisfy the criteria will be listed.
      <br>
      <em>Results displayed after filter command</em>
    </p>
+
+#### Listing all employees : `list`
+
+After searching for employees using the `find` command, you might realise that the employee list no longer shows all the employees.
+In order to get the full list back, simply use the list command, and it will show a list of all employees and
+their details in the ExecutivePro database.
+
+Format: `list`
+
 <a href="#toc">Back to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
