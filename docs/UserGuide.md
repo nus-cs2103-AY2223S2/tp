@@ -46,8 +46,6 @@ Here are the symbols that you will see while reading this user guide:
 | :warning: | Be wary and proceed with caution.                                                                                                                                       |
 | `...`     | Items with `...` after them can either be omitted or used one or more times.<br/> Example:`[t/TAG]…` can be used as ` ` (omitted), `t/friend`, `t/friend t/family` etc. |
 
-<div style="page-break-after: always"></div>
-
 --------------------------------------------------------------------------------------------------------------------
 <a id="toc"></a>
 ## Table of Contents
@@ -102,7 +100,7 @@ On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
 
 Your Command Prompt/Terminal should show up like this:
 <p align="center">
-  <img src="images/Terminal.png" width="75%" height="50%">
+  <img src="images/Terminal.png" width="60%" height="50%">
   <br>
   <em>Terminal Page</em>
 </p>
@@ -115,7 +113,7 @@ For example, if the file is located in the `test` folder on your Desktop, you ca
 `cd test`and Enter to reach the `test` folder, just like the image below.
 
 <p align="center">
-  <img src="images/CD.png" width="75%" height="50%">
+  <img src="images/CD.png" width="60%" height="50%">
   <br>
   <em>Changing Directory</em>
 </p>
@@ -127,7 +125,7 @@ A window like below should appear in seconds.
 Note how the app contains some sample data.
 
 <p align="center">
-  <img src="images/quickstartui.png" width="75%" height="50%">
+  <img src="images/quickstartui.png" width="60%" height="50%">
   <br>
   <em>Starting Page</em>
 </p>
@@ -283,6 +281,8 @@ For example, you could:
 Tags give you more flexibility in building employee profiles, so you can use ExecutivePro to its fullest!
 
 </div>
+
+<div style="page-break-after: always"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -451,21 +451,21 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
 
 3. Click on `Format Cells...` and the table below will appear:
    <p align="center">
-    <img src="images/format.png" width="80%" height="70%">
+    <img src="images/format.png" width="80%" height="60%">
     <br>
     <em>Format cells table</em>
    </p>
 
 4. Click on `Date`:
    <p align="center">
-    <img src="images/formatdate.png" width="80%" height="70%">
+    <img src="images/formatdate.png" width="80%" height="60%">
     <br>
     <em>Clicking on date</em>
    </p>
 
 5. Select the correct date format ("YYYY-MM-DD"):
    <p align="center">
-    <img src="images/correct.png" width="80%" height="80%">
+    <img src="images/correct.png" width="80%" height="60%">
     <br>
     <em>Correct date format</em>
    </p>
