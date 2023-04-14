@@ -2,1012 +2,1210 @@
 layout: page
 title: User Guide
 ---
+## Welcome
 
-## Introduction
+<div style="display: flex; align-items: center;">
+  <p>CLIpboard is a user-friendly desktop application that helps educators manage their students' particulars. </p>
+  <img src="./images/clipboard1.png" alt="image description" align="right" width="10%" height="10%"/>
+</div>
+CLIpboard was created with love by real teachers who faced the everyday challenge of managing large amounts of class information. We hope that CLIpboard will be able to serve you as reliably as it has for us.
 
-CLIpboard is a desktop app that helps educators (like you!), especially those that tutor multiple classes, by managing their students’ particulars<strong> in an organised manner.</strong>
+ClIpboard will be great for you too if:
 
-CLIpboard is designed to work efficiently through typing keyword commands and also has a user-friendly interface with graphical elements. It can get your student management tasks done faster than traditional apps.
+1. You have to manage lots of students and classes
+2. You prefer typing
+3. You dislike dealing with boring spreadsheets
 
-CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard can work even faster.
+In this guide, we will walk you through the entire CLIpboard experience, whether you're a beginner learning to set up, or you're an advanced user looking to take your skills to the next level, you're in the right place.
 
-![image](./images/Ui.png)
-###### Figure 1
+Let's dive in!
 
---------------------------------------------------------------------------------------------------------------
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Table of Contents](#table-of-contents)
-- [Quick Start](#quick-start)
-- [Visual Guide](#visual-guide)
-- [Fields for Student Commands](#fields-for-student-commands)
-- [Navigation Guide](#navigation-guide)
-- [List of Commands](#commands)
-    - [General Commands](#general-commands)
-    - [Course Page Commands](#course-page-commands)
-    - [Group Page Commands](#group-page-commands)
-    - [Students Page Commands](#students-page-commands)
-    - [Session Page Commands](#session-page-commands)
-    - [Attendance Page Commands](#attendance-page-commands)
-    - [Task Page Commands](#task-page-commands)
-    - [Grades Page Commands](#grades-page-commands)
+- [Definitions](#definitions)
+- [Getting Started](#getting-started)
+  - [Setting Up](#setting-up)
+  - [Quick Start](#quick-start)
+  - [Visual Guide](#visuals)
+  - [Navigation Guide](#navigation)
+- [Features](#features)
+  - [Commands](#commands)
+  - [General Features](#general-features)
+  - [Managing Courses](#managing-courses)
+  - [Managing Groups](#managing-groups)
+  - [Managing Students](#managing-students)
+  - [Managing Sessions](#managing-sessions)
+  - [Managing Attendance](#managing-the-attendance-of-a-session)
+  - [Managing Tasks](#managing-tasks)
+  - [Managing Grades](#managing-the-grades-of-a-task)
 - [Glossary](#glossary)
 
---------------------------------------------------------------------------------------------------------------
+---
 
-## Quick Start
+## Definitions
+In this guide, you may come across some terms and conventions that you may be unfamiliar with. This section serves as a quick reference for these concepts.
 
-1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest clipboard.jar from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
-3. Copy the file to the folder you want to use as the *home folder* for your CLIpboard.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
-<br>e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
-<br>A GUI similar to [<i>Figure 1</i>](#introduction) should appear in a few seconds.
-<br><i>Note how the app contains some sample data.</i>
-5. You will start on the `Course page` (Refer to [<i>Figure 3</i>](#navigation-guide) below for the Navigation Guide).
-6. Type your command in the command box (Refer to [<i>Figure 2</i>](#visual-guide) below for the Visual Guide) and press Enter/Return to execute it.
-<br>e.g. typing `help` and pressing the Enter/Return key will open the help window.
-    <br>Some example commands you can try:
+* **Command**: A line of text that CLIpboard recognises as an instruction to execute.
+* **Path**: A line of text that describes a file location on a computer.
+  - Example: `C:/Users/AlexYeoh/Desktop/A0123456X.png` is a file path.
+* **Navigate**: Switching between the multiple pages that CLIpboard offers. (See the [Navigation Guide](#navigation) for more information)
+* Text formatted like `this` represents a program-related element. Depending on context, it can mean:
+  1. A command that CLIpboard recognises
+     - Example: `add group t15-4` is a valid command you can execute.
+  2. A file path
+  3. A keyboard key
+  4. An element in the visual interface (See the [Visuals](#visuals) section for more details)
+* **">" (Forward Angle Bracket)**: Indicates a sequence of actions for you to take.
+  - Example: "Click on `File > Exit`" means you should click on `File`, then `Exit`.
+* **Note**: Important information to be aware of.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+ A note looks like this.
+</div>
+
+* **Tip**: Useful information to help you enhance your skills with CLIpboard.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A tip looks like this.
+</div>
+
+* **Caution**: Critical information about how CLIpboard behaves. Disregarding these might cause CLIpboard to not behave as you would expect.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+A caution looks like this.
+</div>
+
+* Please see the [Glossary](#glossary) section for more detailed and specific definitions.
+
+---
+
+## Getting started
+
+### Setting up
+#### Installation
+1. Ensure you have Java 11 or above installed on your Computer.
+2. Download the latest `clipboard.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
+3. Copy `clipboard.jar` to the folder you want to use as the home folder of CLIpboard.
+
+#### Launching CLIpboard
+*Option 1*:
+* Double-click on `clipboard.jar` to run it. If this does not work, go to *Option 2*.
+
+*Option 2*:
+1. Open a command terminal. [Guide to open a command terminal (External link)](https://www.ionos.com/help/email/troubleshooting-mail-basicmail-business/access-the-command-prompt-or-terminal/#:~:text=Open%20Command%20Prompt%20in%20Windows,cmd%22%20and%20then%20click%20OK.).
+2. Copy the file path of the **folder** you put `clipboard.jar` in.
+    * Guides for getting a file path (External links):
+      * [On Windows](https://www.howtogeek.com/670447/how-to-copy-the-full-path-of-a-file-on-windows-10/)
+      * [On MacOS](https://support.apple.com/en-sg/guide/mac-help/mchlp1774/mac#:~:text=Show%20the%20path%20to%20a%20file%20or%20folder&text=Choose%20View%20%3E%20Show%20Path%20Bar,bottom%20of%20the%20Finder%20window.)
+      * [On Linux](https://www.tutorialspoint.com/get-the-full-path-of-a-file-in-linux)
+3. In the command terminal, type `cd <FILE_PATH>`, where `<FILE_PATH>` is the file path you found in step 2.
+4. Type `java -jar clipboard.jar` into the command terminal and press `ENTER` to launch CLIpboard.&nbsp;
+
+If you see something like this, you're good to go!<br>
+<img src="./images/UiCoursePage.png" max-width="80%" max-height="80%"/>
+<br>
+*CLIpboard contains some sample data if there is no initial data, as is the case when you first launch it.*
+
+### Quick Start
+
+1. When you first launch CLIpboard, you will be brought to the `Course page`.
+2. Type your command in the [`Command Box`](#visuals) and press `ENTER/RETURN` to execute it.
+   <br>e.g. typing `help` and pressing the `ENTER/RETURN` key will open the help window.
+   <br>Some example commands you can try:
    1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
    2. `select 1` : Selects the first group displayed (eg. `T15`) on the `Group Page`. You will be redirected to the `Student Page`.
    3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list on the `Student Page`.
-   4. `delete student 3` : Deletes the 3rd student (eg. `Lim Kim Choo`) shown in the student list.
-   5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. `Lim Kim Choo`) should be back on the list.
+   4. `delete student 3` : Deletes the third student (eg. "Lim Kim Choo") shown in the student list.
+   5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. "Lim Kim Choo") should be back on the list.
    6. `exit` : Exits the app.
-6. Refer to the [commands list](#commands) below for a detailed description for each command.
+3. Refer to the [Features](#features) section below for a detailed description for each command.
 
---------------------------------------------------------------------------------------------------------------
+### Visuals
 
-## Visual Guide
+Before diving in, it might be useful to take a moment to understand some of CLIpboard's visual elements. It will make it an even more of a breeze to use CLIpboard effectively!
 
-Look through the visual guide before you get started. It will provide you with a clear and easy-to-follow overview
-of the basic elements and features of the product's interface, making it easier for you to navigate and use the
-product effectively.
+<img src="./images/VisualGuide.png" max-width="80%" max-height="80%"/>
+<br>
 
-![image](./images/VisualGuide.png)
-###### Figure 2
+**1. Toolbar**
+   * To close the app, you can simply click on `File > Exit`.
+   * To open the help window, click on `Help > Help`.
 
-1. Using the File and Help Tabs
-   * If you want to close the app, simply click on `File > Exit` with your mouse. To open the help window, click on
-     `Help > Help`.
-2. Using the Page Tabs
-   * The Page Tabs give you a quick summary of the type of page you are on.
-   * Refer to the [<i>Figure 3</i>](#navigation-guide) below for the Navigation Guide to the different pages in CLIpboard.
-3. Using the Navigation Bar
-   * You can see the courses and groups you have selected and the page you are currently on in the Navigation Bar.
-4. Using the Left Pane
-   * This is where you can find your list of added page objects such as `Courses`, `Groups`, `Students`, `Sessions`,
-     and `Tasks`.
-5. Using the Right Pane
-   * The Right Pane will appear when you are on the `Attendance Page` or `Tasks Page`. It will show the list of
-     students to mark their attendance or assign them a grade.
-6. Entering Commands in the Command Box
-   * To enter a command, type it into the Command Box.
-7. Viewing Results in the Result Display
-   * After entering a command, you can view whether it was successful in the Result Display.
-   * If your command failed, you can also find help messages with valid arguments here.
-8. Checking the Status Bar Footer
-   * The Status Bar Footer displays the file path from which the data is being loaded or saved in relation to the
-     location of `clipboard.jar`.
-9. Checking the CLIppy Indicator
-   * The CLIppy Indicator can help you know whether you are typing in a command correctly.
-   * When you enter a correct command, CLIppy will be happy. If you have a command failure, CLIppy will be sad.
+**2. Page Tabs**
+   * The `Page Tabs` give you a quick summary of the type of page you are on.
+   * Refer to the [Navigation Guide](#navigation) below to find out more about the different pages in CLIpboard.
 
---------------------------------------------------------------------------------------------------------------
-## Fields for Student Commands
+**3. Navigation Bar**
+   * You can view your selected items in the `Navigation Bar`.
 
-| Prefix | Prefix meaning | Character Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------ | -------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/     | Name           | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| p/     | Phone Number   | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| e/     | Email          | Emails should be of the format local-part@domain and adhere to the following constraints: <br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br/> - end with a domain label at least 2 characters long <br/> - have each domain label start and end with alphanumeric characters <br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| sid/   | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+**4. Left Pane**
+   * This is where you will see your lists of `Courses`, `Groups`, `Students`, `Sessions`, and `Tasks`.
 
---------------------------------------------------------------------------------------------------------------
+**5. Right Pane**
+   * The `Right Pane` will appear when you are on the `Attendance Page` or `Task Page`. It will show your list of students so you can mark their attendance or assign them a grade.
 
-## Navigation Guide
+**6. Command Box**
+   * Type your commands here!
 
-Moving between pages is easy with our navigation tools.
-Simply use a combination of `select`, `back`, `session`, and `task` commands.
-If you need more information on how to use these commands, just refer to our handy navigation guide below (Figure 3).
+**7. Result Display**
+   * After entering a command, you can view it's status and feedback in the `Result Display`.
+   * If your command fails, you will also find help messages here.
 
-![image](./images/navigation.png)
-###### Figure 3
+**8. Status Bar Footer**
+   * The `Status Bar Footer` displays the file path of the data file used by CLIpboard to store or load your information.
 
-Here is an example workflow to help you better understand the Navigation Guide (Figure 3) better:
-1. Start at the Course Page where you see two modules displayed.
-2. Type `select 1` to view the groups of the first course. You'll be redirected to the `Group Page`.
-3. Choose to assign grades for `T15` group at index 1 by typing `task 1`. You'll be redirected to the `Task Page`.
-4. You realize you made a mistake and want to mark attendance for the `T16` group instead. Simply type `back` and
-   you'll be redirected back to the `Group Page`.
-5. To view `Session Page` for `T16` group, type `session 2`. You'll be redirected to the `Session Page` for that group.
+**9. CLIppy Indicator**
+   * The `CLIppy Indicator` helps you know whether you have entered a valid command.
+     If the command is valid, CLIppy will be happy. Otherwise, CLIppy will be sad.
 
---------------------------------------------------------------------------------------------------------------
+### Navigation
 
-## Commands
+Navigating between pages is made effortless with CLIpboard's intuitive navigation commands.
+Simply choose from a selection of `select`, `back`, `session`, or `task` commands.
 
-List of commands:
+Here's a handy navigation map to get around CLIpboard.
 
-- [General Commands: ](#general-commands)
-    - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
-    - [Displaying the previous page you were at: ](#displaying-the-previous-page-you-were-at-back) `back`
-    - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
-    - [Opening help window: ](#opening-help-window-help) `help`
-    - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
-    - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
-    - [Exiting the program: ](#exiting-the-program-exit) `exit`
-- [Course Page Commands: ](#course-page-commands)
-    - [Adding a course: ](#adding-a-course-add-course) `add course`
-    - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
-    - [Editing a course: ](#editing-a-course-edit-course) `edit course`
-    - [Selecting a course to display its Group Page: ](#selecting-a-course-select) `select`
-    - [Finding a course: ](#finding-a-course-find-course) `find course`
-- [Group Page Commands: ](#group-page-commands)
-    - [Adding a group: ](#adding-a-group-add-group) `add group`
-    - [Deleting a group: ](#deleting-a-group-delete-group) `delete group`
-    - [Editing a group: ](#editing-a-group-edit-group) `edit group`
-    - [Selecting a group to display its Student Page: ](#selecting-a-group-select) `select`
-    - [Displaying sessions of a group: ](#displaying-sessions-of-a-group-session) `session`
-    - [Displaying tasks of a group: ](#displaying-tasks-of-a-group-task) `task`
-    - [Finding a group: ](#finding-a-group-find-group) `find group`
-- [Students Page Commands: ](#students-page-commands)
-    - [Adding a student: ](#adding-a-student-add-student) `add student`
-    - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
-    - [Editing a student: ](#editing-a-student-edit-student) `edit student`
-    - [Copying a student's email: ](#copying-a-students-email-copy) `copy`
-    - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find-student) `find student`
-    - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
-    - [Displays a student's information:  ](#displays-a-students-information-select) `select`
-    - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
-    - [Upload a student's photo: ](#uploading-a-students-photo-upload) `upload`
-    - [Displays a summary of a student's attendance: ](#viewing-a-students-attendance-throughout-the-course-attendance) `attendance`
-- [Session Page Commands: ](#session-page-commands)
-    - [Adding a session: ](#adding-a-session-add-session) `add session`
-    - [Deleting a session: ](#deleting-a-session-delete-session) `delete session`
-    - [Editing a session: ](#editing-a-session-edit-session) `edit session`
-    - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking-select) `select`
-    - [Finding a session: ](#finding-a-session-find-session) `find session`
-- [Attendance Page Commands: ](#attendance-page-commands)
-    - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
-    - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
-    - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session-attendance) `attendance`
-- [Task Page Commands: ](#task-page-commands)
-    - [Adding a task: ](#adding-a-task-add-task) `add task`
-    - [Deleting a task: ](#deleting-a-task-delete-task) `delete task`
-    - [Editing a task: ](#editing-a-task-edit-task) `edit task`
-    - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
-    - [Finding a task: ](#finding-a-task-find-task) `find task`
-- [Grades Page Commands: ](#grades-page-commands)
-    - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
+<img src="./images/navigationguide.png" max-width="80%" max-height="80%"/>
+<br>
 
+Here's a hypothetical workflow that might help you better understand the figure above:<br>
+*Say you wish to assign the grades for a task in one of your tutorial groups.*
 
+1. You'll first start on the `Course Page`.
+2. Enter the command `select 1` to select the *first* course in the course list. You'll then be brought to the `Group Page` to view the groups of your selected course.
+3. You see now that the group you wish to select is the *second* group in the list, so you enter the command `task 2`, and you'll be brought to the `Task Page` of your selected group. Here, you can choose from the tasks that are available, and subsequently enter the grades for your individual students.
 
---------------------------------------------------------------------------------------------------------------
+*Now, you wish to work on something else, like marking the attendance for another group.*
+4. From where we left off, simply enter the command `back` and you'll be brought back to the `Group Page`.
+5. From here, you can use `session 4` to view the `Session Page` of the fourth group, and you can then mark their attendance for your selected session.
 
-<div markdown="block" class="alert alert-info">
+---
 
-**:information_source: Notes about the command format:**<br>
+## Features
 
-* Words in `UPPER_CASE` and angle brackets `<>` are the parameters to be supplied by the user.<br>
-  e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
+Here is a list of amazing features that CLIpboard supports:
 
-* Items in square brackets are optional.<br>
-  e.g `[n/<NAME>] [p/<PHONE_NUMBER>]` can be used as `n/John Doe p/88886886` or as `n/John Doe`.
+- [General Features: ](#general-commands)
+  - [Showing the home page: ](#showing-the-home-page-home) `home`
+  - [Going back to the previous page: ](#going-back-to-the-previous-page-back) `back`
+  - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
+  - [Help: ](#help-help) `help`
+  - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
+  - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
+  - [Exiting the program: ](#exiting-the-program-exit) `exit`
+- [Managing Courses: ](#managing-courses)
+  - [Adding a course: ](#adding-a-course-add-course) `add course`
+  - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
+  - [Editing a course: ](#editing-a-course-edit-course) `edit course`
+  - [Selecting a course to display its Group Page: ](#selecting-a-course-select) `select`
+  - [Finding a course: ](#finding-a-course-find-course) `find course`
+- [Managing Groups: ](#managing-groups)
+  - [Adding a group: ](#adding-a-group-add-group) `add group`
+  - [Deleting a group: ](#deleting-a-group-delete-group) `delete group`
+  - [Editing a group: ](#editing-a-group-edit-group) `edit group`
+  - [Selecting a group to display its Student Page: ](#selecting-a-group-select) `select`
+  - [Displaying sessions of a group: ](#displaying-the-sessions-of-a-group-session) `session`
+  - [Displaying tasks of a group: ](#displaying-the-tasks-of-a-group-task) `task`
+  - [Finding a group: ](#finding-a-group-find-group) `find group`
+- [Managing Students: ](#managing-students)
+  - [Adding a student: ](#adding-a-student-add-student) `add student`
+  - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
+  - [Editing a student: ](#editing-a-student-edit-student) `edit student`
+  - [Copying a student&#39;s email: ](#copying-a-students-email-copy) `copy`
+  - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find-student) `find student`
+  - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
+  - [Display a student's information:  ](#display-a-students-information-select) `select`
+  - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
+  - [Uploading a student's photo: ](#uploading-a-students-photo-upload) `upload`
+  - [Display a summary of a student's attendance: ](#viewing-a-students-attendance-throughout-the-course-attendance) `attendance`
+- [Managing Sessions: ](#managing-sessions)
+  - [Adding a session: ](#adding-a-session-add-session) `add session`
+  - [Deleting a session: ](#deleting-a-session-delete-session) `delete session`
+  - [Editing a session: ](#editing-a-session-edit-session) `edit session`
+  - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking-select) `select`
+  - [Finding a session: ](#finding-a-session-find-session) `find session`
+- [Managing Attendance: ](#managing-the-attendance-of-a-session)
+  - [Marking students as present: ](#marking-students-as-present-mark) `mark`
+  - [Marking students as absent: ](#marking-students-as-absent-unmark) `unmark`
+  - [View the overall attendance of a session: ](#view-the-overall-attendance-of-a-session-attendance) `attendance`
+- [Managing Tasks: ](#managing-tasks)
+  - [Adding a task: ](#adding-a-task-add-task) `add task`
+  - [Deleting a task: ](#deleting-a-task-delete-task) `delete task`
+  - [Editing a task: ](#editing-a-task-edit-task) `edit task`
+  - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
+  - [Finding a task: ](#finding-a-task-find-task) `find task`
+- [Managing Grades: ](#managing-the-grades-of-a-task)
+  - [Assigning a grade: ](#assigning-a-grade-to-a-student-assign) `assign`
 
-* Items with `…`​ after them can be used multiple times.<br>
-  e.g. `mark <INDEX>…​` can be used as `mark 1`, `mark 1,2,3` etc.
+### Commands
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+Features in CLIpboard are supported by commands.
+Commands are like giving instructions to CLIpboard on what to do.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+A typical command would look like this:
+<br>
+<img src="./images/typicalcommand.png" max-width="35%" max-height="35%"/>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `back`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+**Command keyword(s)**: Typically 1 or 2 words, they specify the type of action for CLIpboard to execute.<br>
+**Supplementary command information**: These provide additional context about a command you wish to execute. Conventionally, these are referred to as "arguments" or "parameters".
+
+Putting it all together for the above example, `find course` would tell CLIpboard that you're looking for a course, and "cs2101" tells CLIpboard which specific course you're looking for.
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:** <br>
+
+* If a command expects a parameter to be input only once, but multiple instances of it are included, only the last occurrence of the parameter will be taken.<br>
+  * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* Extraneous parameters for commands that do not expect any parameters will be ignored.<br>
+  * e.g. if you input the command `help 123`, CLIpboard will interpret it simply as `help`.
 
 </div>
 
-## General Commands
-Before navigating through the different pages in CLIpboard, you may familiarise yourself with general commands and features that can be used on any page.
+#### Understanding Command Formats
+To help you understand how CLIpboard recognises commands, these are some of the conventions used in this guide when specifying command formats.
 
+- **Supplementary command information**: These are represented in uppercase and enclosed by angle brackets (`<>`).<br>
+  - e.g. in `add course <COURSE>`, `<COURSE>` is a parameter. `<COURSE>` can be replaced with a course code to form the command `add course CS2103T`.
+- **Square brackets (`[]`)**: Parameters in square brackets are optional.<br>
+  - e.g If the parameters are specified as `[n/<NAME>] [p/<PHONE_NUMBER>]`, omitting these parameters are acceptable.
+- **Elipses (`…`)**: Parameters postfixed by `…` can have multiple inputs.<br>
+  - e.g. `mark <INDEX>…` can be used as `mark 1` or `mark 1,2,3` etc.
+- **Index**: CLIpboard displays items like courses and groups as numbered lists. The *index* of an item in the list might be required as a parameter for some commands.
+  - e.g. if the specified command format is `delete course <INDEX>`, and you enter `delete course 3`, CLIpboard will delete the *third* course in the course list.
+- **Multiple Parameters**: Some commands require multiple parameters. In such cases, each parameter would require a specific corresponding prefix to denote the type of information it is.
+  - e.g When adding a student, there may be multiple pieces of information tied to a student.
+    Thus, a typical command for adding a student might look like `add student n/john doe p/12345678`.
+    In this command,
+    - The prefix `n/` in `n/john doe` tells CLIpboard that this parameter is the student's name.
+    - The prefix `p/` in `p/12345678` tells CLIpboard that this parameter is the student's phone number.
+- **Parameters can be input in any order**<br>
+  - If the command format specifies the required parameters as `n/NAME p/PHONE_NUMBER`, an alternative format like `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-### Displaying the home page (Course Page): `home`
+<div markdown="span" class="alert alert-info">
+  :information_source: **Note:** It is important to enter commands exactly in their required formats in order for CLIpboard to understand them.<br>
+</div>
 
-Goes back to the home page, which is the Course Page of CLIpboard.
+---
 
-Format:
+## General Features
+
+General features are features that may be used anywhere on CLIpboard, regardless of what page you're on.
+
+### Showing the home page: `home`
+
+Brings you to the home page, which is the `Course Page` of CLIpboard.
+
+**Command Format:**
+
 ```
 home
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#commands)
 
-### Displaying the previous page you were at: `back`
+### Going back to the previous page: `back`
 
-Goes back to the previous page you were at.
+Brings you back to the previous page you were at.
 
-Format:
+**Command Format:**
+
 ```
 back
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Undoing the last command you did: `undo`
+Because everyone makes mistakes.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You may `undo` up to 5 previous commands.
+</div>
+<br>
 
 
-Format:
+**Command Format:**
+
 ```
 undo
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
-### Opening help window: `help`
+### Help: `help`
+When you're feeling lost or unsure of how to do something, use this command to open the help window.
+There, you can see a list of available commands on your current page, as well as a link to this User Guide.
 
-Opens a window showing the list of commands available in the current page, as well as a link to this User Guide.
+**Command Format:**
 
-Format:
 ```
 help
 ```
 
-[Back to list of commands](#commands)
-
-### Scrolling through command history: `UP` or `DOWN` arrow key
-
-Scrolls through past commands in command box.
-
-- Similar to Linux command-line interface, use the up or down arrow keys to scroll through previously typed commands in the command box.
-- You may use the `LEFT` or `RIGHT` arrow keys to edit the command first.
-- Press `ENTER` to execute the command.
-
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Clearing all entries: `clear`
 
-Clears all entries in the list pane of the current page.
+Clears all entries in the list of the current page. Useful for when you've ended the curriculum and you wish to delete all data.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-After the <code>clear</code> command is executed, all entries in the current page will be deleted.
-</div>
+**Command Format:**
 
-Format:
 ```
 clear
 ```
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Accidentally cleared your data? Don't worry, try <code>undo</code> command!
+Accidentally cleared your data? Don't worry, just run the <code>undo</code> command!
 </div>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Be very careful with this command. Deleted data may not be recovered after closing the application or if you've gone beyond the `undo` limit (`undo` only works up to 5 previous commands).
+</div>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
+
+### Scrolling through command history: `UP` or `DOWN` arrow key
+
+You're feeling lazy and the commands you need to run are only slightly different from each other. No fret.
+
+1. You can scroll through your past commands using the `UP` or `DOWN` arrow keys.
+2. You may then use the `LEFT` or `RIGHT` arrow keys to edit your previous command.
+3. Finally, press `ENTER` to execute the command.
+
+[Back to list of features](#features)
 
 ### Exiting the program: `exit`
+Goodbye! We hope you've enjoyed using CLIpboard 😄
 
-Format:
+**Command Format:**
+
 ```
 exit
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
---------------------------------------------------------------------------------------------------------------
+---
 
-## Course Page Commands
-![image](./images/UiCoursePage.png)
-###### Figure 4
+## Managing Courses
+In the following sections, you will find the features that are available to you on the `Course Page`.
+A `Course Page` typically looks like this:
+
+<img src="./images/UiCoursePage.png" max-width="80%" max-height="80%"/>
+<br>
+
+
 
 ### Adding a course: `add course`
+If you're teaching a new course, you can use this command to add it to the `Course Page`.
 
-Adds a course to the list of courses in the course page.
+**Command Format:**
 
-Format:
 ```
 add course <COURSE>
 ```
 
-- Adding a course with the same module code is not allowed.
-    - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message inside the result display.
-<div markdown="block" class="alert alert-info">
-This command is case-sensitive.<br>
-e.g. <code>CS2103T</code> and <code>cs2103t</code> are treated as different courses.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+  * Adding courses with the same course code is not possible.
+  * Course codes can contain alphanumeric and special characters. e.g. "AY2223S2-CS2103T"
+  * Course codes cannot contain white spaces.
+  * Course codes are case-sensitive. e.g. "CS2103T" and "cs2103t" are treated as different courses.
 </div>
 
 Examples:
-- `add course CS2103T` will add a new course with module code `CS2103T`
-- `add course CS2105` will add a new course with module code `CS2105`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Course code can have special characters! i.e. "AY2223S2-CS2103T"
-</div>
+- `add course CS2103T` will add a new course with course code `CS2103T`
+- `add course CS2105` will add a new course with course code `CS2105`
+
+
 <br>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Deleting a course: `delete course`
+If you're done teaching a course, you can remove it with this command.
 
-Deletes a course from the list of courses in the course page.
+**Command Format:**
 
-Format:
 ```
 delete course <INDEX>
 ```
 
 Examples:
-- `delete course 1` will delete the first course listed in the course list.
 
-[Back to list of commands](#commands)
+- `delete course 1` will delete your first course listed in your course list.
+
+[Back to list of features](#features)
 
 ### Editing a course: `edit course`
 
-Edits an existing course in the course list.
+Use this command to change the course code of an existing course.
 
-Format:
-```
-edit course <INDEX> <NEW COURSE NAME>
-```
+**Command Format:**
 
-- Edits the module code of the course at index `<INDEX>`.
+```
+edit course <INDEX> <NEW_COURSE_CODE>
+```
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You cannot edit the course code
+</div>
+<br>
 
 Examples:
-- `edit course 1 CS2106` will rename the first course listed in the course list to `CS2106`.
 
-[Back to list of commands](#commands)
+- `edit course 1 CS2106` will rename your first course listed in your course list to "CS2106".
 
-### Selecting a course: `select`
-
-Selects an existing course to display its corresponding Group Page.
-
-Format:
-```
-select <INDEX>
-```
-- Selects course at index specified in `<INDEX>` and displays list of groups from that course.
-
-Examples:
-- `select 1` will display a list of groups from the first course.
-
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Finding a course: `find course`
+You can filter your course list to show only courses that contain specific keywords.
 
-Finds course(s) that contains any of the given keywords(s) in the module code.
+**Command Format:**
 
-Format:
 ```
 find course <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
-- This command is case-insensitive. (e.g. `find course CS2103T` and `find course cs2103t` will give you the same result)
-- Keywords are separated by spaces.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* Keywords are case-insensitive. (e.g. `find course CS2103T` and `find course cs2103t` will give you the same result)
+* Keywords are separated by spaces.
+</div>
+<br>
+
+Example:
+  If your course list contains 2 courses "CS2103T" and "CS2101":
+  - `find course CS` will show "CS2103T", "CS2101".
+  - `find course 03` will show "CS2103T".
+
+[Back to list of features](#features)
+
+### Selecting a course: `select`
+This command allows you to select a course and navigates you to its corresponding `Group Page`.
+
+**Command Format:**
+
+```
+select <INDEX>
+```
 
 Examples:
-- `find course CS` returns `CS2103T`, `CS2101`.
-- `find course 03` returns `CS2103T`.
 
-[Back to list of commands](#commands)
+- `select 1` will display a list of groups from the first course.
 
---------------------------------------------------------------------------------------------------------------
+[Back to list of features](#features)
 
-## Group Page Commands
-![image](./images/UiGroupPage.png)
-###### Figure 5
+---
+
+## Managing Groups
+In the following sections, you will find the features that are available to you on the `Group Page`.
+A `Group Page` typically looks like this:
+
+<img src="./images/UiGroupPage.png" max-width="80%" max-height="80%"/>
+<br>
 
 ### Adding a group: `add group`
 
-Adds a group to the list of groups in the group page.
+Use this command to a new group to a course you've selected.
 
-Format:
+**Command Format:**
+
 ```
 add group <GROUP>
 ```
 
-- Adding a group with the same group name is not allowed.
-    - For example, if a group with group name `T15` already exists in CLIpboard,
-  entering `add group T15` will display an error message inside the result display.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-<div markdown="block" class="alert alert-info">
-This command is case-sensitive.<br>
-e.g. <code>T15</code> and <code>t15</code> are treated as different groups.
+  * Adding groups with the same group name is not possible.
+  * Group names can contain alphanumeric and special characters. e.g. "LO3-2"
+  * Group names cannot contain white spaces.
+  * Group names are case-sensitive. e.g. "t15" and "T15" are treated as different courses.
 </div>
 
 Examples:
+
 - `add group T15` will add a new group with group name `T15`
 - `add group L08` will add a new group with group name `L08`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Group names can have special characters! i.e. "AY2223S2-T15"
-</div>
-<br>
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Deleting a group: `delete group`
 
-Deletes a group from the list of groups in the group page.
+This removes a group from your selected course.
 
-Format:
+**Command Format:**
+
 ```
 delete group <INDEX>
 ```
-Examples:
-- `delete group 1` will delete the first group listed in the group list panel of CLIpboard.
 
-[Back to list of commands](#commands)
+Examples:
+
+- `delete group 1` will delete the first group listed in your group list.
+
+[Back to list of features](#features)
 
 ### Editing a group: `edit group`
 
-Edits an existing group in the group list.
+Use this command to edit the name of an existing group.
 
-Format:
+**Command Format:**
+
 ```
-edit group <INDEX> <NEW GROUP NAME>
+edit group <INDEX> <NEW_GROUP_NAME>
 ```
-
-- Edits the group name of the group at index specified in `<INDEX>`.
-
 
 Examples:
-- `edit group 1 T16` will rename the first group listed in the group list to `T16`.
 
-[Back to list of commands](#commands)
+- `edit group 1 T16` will rename the first group listed in your group list to `T16`.
+
+[Back to list of features](#features)
 
 ### Selecting a group: `select`
 
-Selects an existing group to display its corresponding Student Page.
+This command allows you to select a group and navigates you to its corresponding `Student Page`.
 
-Format:
+**Command Format:**
+
 ```
 select <INDEX>
 ```
-- Selects the group at index specified in `<INDEX>` and displays list of students in that group.
 
 Examples:
-- `select 1` will return a list of students from the first group.
 
-[Back to list of commands](#commands)
+- `select 1` will show you your list of students from the first group.
 
+[Back to list of features](#features)
 
-### Displaying sessions of a group: `session`
+### Displaying the Sessions of a Group: `session`
+Use this command to view the sessions of a particular group.
 
-Selects an existing group to display its corresponding Session Page.
+**Command Format:**
 
-Format:
 ```
 session <INDEX>
 ```
-- Selects the group at index specified in `<INDEX>` and displays list of sessions in that group.
 
-Examples:
-- `session 1` will return a list of sessions from the first group.
-
-<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
- Adding new student under a group will propagate to session, but deleting a student will NOT propagate to session.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+  Adding a new student to a group will automatically add them to all existing sessions, but deleting a student from a group will NOT delete them from existing sessions (to preserve historical data).
 </div>
 <br>
 
-[Back to list of commands](#commands)
+Examples:
 
+- `session 1` will show you your list of sessions from the first group.
 
-### Displaying tasks of a group: `task`
+[Back to list of features](#features)
 
-Selects an existing group to display its corresponding Task Page.
+### Displaying the Tasks of a Group: `task`
+Use this command to view the tasks of a particular group.
 
-Format:
+**Command Format:**
+
 ```
 task <INDEX>
 ```
-- Selects group at index specified in `<INDEX>` and displays list of tasks assigned to that group.
 
-Examples:
-- `task 1` will return a list of tasks for the first group.
-
-<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
- Adding new student under a group will propagate to task, but deleting a student will NOT propagate to task.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+  Adding a new student to a group will automatically add them to all existing tasks, but deleting a student from a group will NOT delete them from existing tasks (to preserve historical data).
 </div>
 <br>
 
-[Back to list of commands](#commands)
+Examples:
+
+- `task 1` will show you your list of tasks for the first group.
+
+[Back to list of features](#features)
 
 ### Finding a group: `find group`
+You can filter your group list to show only groups that contain specific keywords.
 
-Finds group(s) that contains any of the given keywords(s) in the group name.
+**Command Format:**
 
-Format:
 ```
 find group <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
-- This command is case-insensitive. (e.g. `find group T15` and `find group t15` will give you the same result)
-- Keywords are separated by spaces.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* Keywords are case-insensitive. (e.g. `find course T15` and `find course t15` will give you the same result)
+* Keywords are separated by spaces.
+</div>
 
 Examples:
+
 - `find group 15` returns `T15`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
---------------------------------------------------------------------------------------------------------------
+---
 
-## Students Page Commands
-![image](./images/UiStudentPage.png)
-###### Figure 6
+## Managing Students
+In the following sections, you will find the features that are available to you on the `Student Page`.
+A `Student Page` typically looks like this:
 
+<img src="./images/UiStudentPage.png" max-width="80%" max-height="80%"/>
+<br>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+  Some commands for managing students require multiple parameters.<br>
+  As described in [Understanding Command Formats](#understanding-command-formats), these parameters would require specific prefixes to indicate the type of information they represent. There are also some restrictions on the inputs for these parameters.<br>
+
+  **Please refer to the table below**
+</div>
+<br>
+
+
+| Prefix | Prefix meaning              | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| n/     | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| p/     | Phone Number                | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| e/     | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints: <br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br/> - end with a domain label at least 2 characters long <br/> - have each domain label start and end with alphanumeric characters <br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| sid/   | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ### Adding a student: `add student`
 
-Adds a student to the student roster.
+Use this command to add a new student to a selected group.
 
-Format:
+**Command Format:**
+
 ```
 add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
 ```
 
-- Adding a student with the same student ID is not allowed.
-    - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message inside the result display.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-Examples:
-- `add student n/Tan Wei Xuan p/81776544 e/twx@example.com sid/A6788796F`
-- `add student n/Amirul Bin Othman p/98884417 e/amirul@example.com sid/A1324356G`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-The same student can exist in different groups, because that student can be in tutorial group T1 and project group Team15 at the same time.
+  * Adding students with the same student id is not possible.
+  * The same student can exist in multiple groups. For example, a student can be in both tutorial group "T1" and a project group "Team15" at the same time.
 </div>
 <br>
 
-[Back to list of commands](#commands)
+Examples:
+
+- `add student n/Tan Wei Xuan p/81776544 e/twx@example.com sid/A6788796F`
+- `add student n/Amirul Bin Othman p/98884417 e/amirul@example.com sid/A1324356G`
+
+[Back to list of features](#features)
 
 ### Deleting a student: `delete student`
 
-Deletes a student from the student roster.
+This removes a student from a selected group.
 
-Format:
+**Command Format:**
+
 ```
 delete student <INDEX>
 ```
 
 Examples:
-- `delete student 1` will delete the first student listed in the student list panel of CLIpboard.
 
-[Back to list of commands](#commands)
+- `delete student 1` will delete your first student listed in your student list.
+
+[Back to list of features](#features)
 
 ### Editing a student: `edit student`
 
-Did your student change their phone number, or you realised you misspelled their name? Do not worry, because you can easily change this with the edit command.
+If your student has changed their phone number, or any other student information, you may edit it with this command.
 
-Format:
+**Command Format:**
+
 ```
 edit student <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
 ```
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-- Edits student at index specified in `<INDEX>`.
-- At least one field `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
-- Fields entered following `edit <INDEX>` will replace the original fields.
-- Fields not entered will not replace the original fields.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Made a typo? Try <code>undo</code> command!
+  * At least one parameter `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
 </div>
 
-Examples:
-- `edit student 1 n/John Doe` will replace the name of the first student listed in the student list to `John Doe`.
-- `edit student 4 p/99887766 e/john@gmail.com` will replace the phone number and email of the fourth student listed in the student list to `99887766` and `john@gmail.com` respectively.
 
-[Back to list of commands](#commands)
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Made a typo? Try the <code>undo</code> command!
+</div>
+<br>
+
+Examples:
+
+- `edit student 1 n/John Doe` will replace the name of your first student listed in your student list to `John Doe`.
+- `edit student 4 p/99887766 e/john@gmail.com` will replace the phone number and email of your fourth student listed in your student list with `99887766` and `john@gmail.com` respectively.
+
+[Back to list of features](#features)
 
 ### Copying a student's email: `copy`
 
-Copies a student's email to your clipboard.
+To quickly get the email of a student, use this command to copy a student's email.
+Then, simply use `CTRL+V` or `Right-Click > Paste` to paste their email.
 
-Format:
+**Command Format:**
+
 ```
 copy <INDEX>
 ```
 
 Examples:
-- `copy 1` will copy the email of the first student in the list to your clipboard.
 
-[Back to list of commands](#commands)
+- `copy 1` will copy the email of your first student in your student list to your clipboard.
+
+[Back to list of features](#features)
 
 ### Finding students by name or student ID: `find student`
 
-Finds students whose names or student IDs contain any of the given keywords(s).
+You can filter your student list to show only students whose names or student IDs contain any of the given keywords.
 
-Format:
+**Command Format:**
+
 ```
 find student <KEYWORD> [<MORE_KEYWORDS>]
 ```
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-- You can find students using either `name` or `student ID` for the keyword(s).
-- Keywords are separated by spaces.
-- This command is key-insensitive.
+* You can find students using either `name` or `student ID` for the keyword(s).
+* Keywords are separated by spaces.
+* Keywords are case-insensitive.
+</div>
+<br>
 
 Examples:
+
 - `find student John` returns `John`.
 - `find student Alex Yu` returns `Alex Yeoh`, `Bernice Yu`.
 - `find student A123` returns students whose student ID contains `A123`, such as `A123` and `A1234567X`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Sorting list of students: `sort`
 
-Sorts list of students in student roster.
+You can sort your students either by their names or their student ID.
 
-Format:
+**Command Format:**
+
 ```
 sort <CATEGORY>
 ```
-
-- Current possible categories are `name` and `id`
+- `<CATEGORY>` is either `name` or `id`
 
 Examples:
-- `sort name` will sort list of students alphabetically according to name.
-- `sort id` will sort list of students alphanumerically according to student ID.
 
-![image](./images/UiStudentSortName.png)
-###### Figure 7
-![image](./images/UiStudentSortId.png)
-###### Figure 8
+- `sort name` will sort your list of students alphabetically according to name.
+- `sort id` will sort your list of students alphanumerically according to student ID.
 
-[Back to list of commands](#commands)
+<img src="./images/UiStudentSortName.png" max-width="80%" max-height="80%"/>
+<br>
+<img src="./images/UiStudentSortId.png" max-width="80%" max-height="80%"/>
+<br>
 
-### Displays a student's information: `select`
+[Back to list of features](#features)
 
-![image](./images/UiStudentView.png)
-###### Figure 9
+### Display a student's information: `select`
 
-Select a particular student and display his / her particulars.
+This command allows you to select a student and display their full particulars.
+The selected student will be shown like this:
 
-Format:
+<img src="./images/UiStudentView.png" max-width="80%" max-height="80%"/>
+
+**Command Format:**
+
 ```
 select <INDEX>
 ```
 
 Examples:
-- `select 1` will select the 1st student in the student list and display his / her particulars on the view panel on the right.
 
-[Back to list of commands](#commands)
+- `select 1` will select your first student in your student list and displays their particulars.
+
+[Back to list of features](#features)
 
 ### Adding or deleting a remark: `remark`
 
-Format for adding / editing a remark:
+You can use this command to add, edit or remove remarks from a student.
+
+**Command Format for Adding/Editing a remark:**
+
 ```
-remark <INDEX> [<REMARK>]
+remark <INDEX> <REMARK>
 ```
 
-- Adds a remark to student in the student list whose index is specified in the `<INDEX>` field.
-- If there is already an existing remark, this command will replace current remark with `<REMARK>`.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** If there is already an existing remark, it will be replaced with the new remark.
+</div>
 
-Format for deleting a remark:
+
+**Command Format for deleting a remark:**
+
 ```
 remark <INDEX>
 ```
 
-- Deletes a remark from a student in the student list whose index is specified in the `<INDEX>` field.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+  Accidentally deleted a remark? Don't worry, Try using the <code>undo</code> command!
+</div>
+<br>
 
 Examples:
-- `remark 1 Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student
-listed in the student list.
+
+- `remark 1 Loves watching Sci-Fi movies` will add a remark of "Loves watching Sci-Fi movies" to your first student.
+  listed in the student list.
 - `remark 2` will delete the remark from the second student listed in the student list.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Accidentally deleted a remark? Don't worry, Try using <code>undo</code> command!
-</div>
-
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Uploading a student's photo: `upload`
 
-Uploads a student's photo to be displayed in the student roster.
+You can upload an image to be displayed as a student's profile picture.
 
-Format:
+**Command Format:**
+
 ```
 upload <LOCAL_FILE_PATH>
 ```
-- File path to the photo can be either absolute file path or relative file path.
-- For student photo to be displayed as the profile picture of a student in CLIpboard, photo must be named after the said
-student's student ID (i.e. `<STUDENT_ID>.png`)
-- If a new photo with the same name as an existing photo in CLIpboard is uploaded, existing photo will be replaced.
-- Only images of file type `.png` can be uploaded
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Images not named correctly can still be uploaded (e.g. <code>Alex.png</code>), but only those named correctly
-(e.g. <code>A0123456X.png</code>) will be displayed in the profile of corresponding student.
+* For an image to be displayed as the profile picture of a student in CLIpboard, the image must be named after the said
+  student's student ID and must be a `.png` file (i.e. `<STUDENT_ID>.png`)
+* If a new image with the same name as an existing image in CLIpboard is uploaded, the existing photo will be replaced.
 </div>
+<br>
+
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+
+* If you're on Windows, you can get the file path of a file by clicking it with `SHIFT + Right-Click > 'Copy as Path'`.
+* You can upload the student images before actually adding the student. CLIpboard will still match the images to the student once they're added (if the file name matches their student ID).
+</div>
+<br>
 
 Examples:
+
 - `upload C:/Users/AlexYeoh/Desktop/A0123456X.png` will upload `A0123456X.png` to the CLIpboard data folder and the
-photo will be displayed in the profile of student with student ID `A0123456X`
+  photo will be displayed in the profile of student with student ID `A0123456X`
 
-[Back to list of commands](#commands)
-
+[Back to list of features](#features)
 
 ### Viewing a student's attendance throughout the course: `attendance`
 
-![image](./images/UiStudentAttendanceView.png)
-###### Figure 10
+You can view a summary of a student's attendance like this:
 
-Shows a summary of a student's attendance in the view pane.
+<img src="./images/UiStudentAttendanceView.png" max-width="80%" max-height="80%"/>
 
-Format:
+**Command Format:**
+
 ```
 attendance
 ```
-- To mark a student's attendance for a particular session, you can navigate to the [Attendance Page](#attendance-page-commands).
 
-[Back to list of commands](#commands)
+<div markdown="block" class="alert alert-info">:information_source: **Note:** To edit a student's attendance for a particular session, you can navigate to their [Attendance Page](#attendance-page-commands).
+</div>
+<br>
 
---------------------------------------------------------------------------------------------------------------
+[Back to list of features](#features)
 
-## Session Page Commands
+---
 
-![image](./images/UiSessionPage.png)
-###### Figure 11
+## Managing Sessions
+
+In the following sections, you will find the features that are available to you on the `Session Page`.
+A `Session Page` typically looks like this:
+<img src="./images/UiSessionPage.png" max-width="80%" max-height="80%"/>
+<br>
 
 ### Adding a session: `add session`
 
-Adds a session to the list of session in the session page.
+This adds a new session to your selected group.
 
-Format:
+**Command Format:**
+
 ```
 add session <SESSION>
 ```
 
-- Adding a session with the same session name is not allowed.
-    - For example, if a session with name `Tutorial1` already exists in CLIpboard,
-      entering `add session Tutorial1` will display an error message inside the result display.
-    - Whitespaces are not allowed in session names.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* Adding sessions with the same session name is not possible.
+* Session names can contain alphanumeric and special characters. e.g. "T15-Session-1.2"
+* Session names cannot contain white spaces.
+* Session names are case-sensitive. e.g. "session1" and "SESSION1" are treated as different sessions.
+</div>
+<br>
 
 Examples:
+
 - `add session Tutorial4`
 - `add session Lab3`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Session names can have special characters! i.e. "AY2223S2-Tutorial15"
-</div>
-
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Deleting a session: `delete session`
 
-Deletes a session from the list of session in the session page.
+This removes a session from your selected group.
 
-Format:
+**Command Format:**
+
 ```
 delete session <INDEX>
 ```
 
 Examples:
+
 - `delete session 1` will delete the first session listed in the session list panel of CLIpboard.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Editing a session: `edit session`
 
-Edits an existing session in the session list.
+You can edit the name of an existing session in your session list.
 
-Format:
+**Command Format:**
+
 ```
-edit session <INDEX> <NEW SESSION NAME>
+edit session <INDEX> <NEW_SESSION_NAME>
 ```
 
 Examples:
-- `edit session 1 Tutorial1` will rename the first session listed to `Tutorial1`.
 
-[Back to list of commands](#commands)
+- `edit session 1 Tutorial1` will rename your first session listed to `Tutorial1`.
 
-### Selecting a session to start attendance-taking: `select`
-
-Selects an existing session to start taking attendance for that session by displaying Student Page of that session on the right panel.
-
-Format:
-```
-select <INDEX>
-```
-- Selects session at specified index and displays list of students in that session.
-
-Examples:
-- `select 1` will return a list of students from the first session.
-
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Finding a session: `find session`
 
-Finds session(s) that contains any of the given keywords(s) in the session name.
+You can filter your session list to show only sessions that contain specific keywords.
 
-Format:
+**Command Format:**
+
 ```
 find session <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
-- This command is case-insensitive. (e.g. `find session tutorial1` and `find session Tutorial1`
-will give you the same result)
-- Keywords are separated by spaces.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* Keywords are case-insensitive. (e.g. `find session tutorial1` and `find session Tutorial1`
+  will give you the same result)
+* Keywords are separated by spaces.
+</div>
+<br>
 
 Examples:
+
 - `find session 1` returns `Tutorial1` and `Lab1`.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
---------------------------------------------------------------------------------------------------------------
+### Selecting a session to start attendance-taking: `select`
 
-## Attendance Page Commands
-![images](./images/UiAttendancePage.png)
-###### Figure 12
+This command allows you to select a session and view its student attendance.
 
-### Marking selected students as present: `mark`
+**Command Format:**
 
-Marks selected students' attendance as present for current session.
+```
+select <INDEX>
+```
 
-Format:
+Examples:
+
+- `select 1` will return a list of your students from the first session.
+
+[Back to list of features](#features)
+
+---
+
+## Managing the attendance of a session
+
+In the following sections, you will find the features that are available to you after you have selected a session while on the `Session Page`.
+Your current page would look similar to this:
+<img src="./images/UiAttendancePage.png" max-width="80%" max-height="80%"/>
+<br>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** The attendance for all students will be set to ABSENT when a session is created. Make sure to check that you have marked the attendance of all students, so that no one's attendance is accidentally left as absent.
+</div>
+
+### Marking students as present: `mark`
+
+This marks your selected students' attendance as present for your selected session.
+
+**Command Format:**
+
 ```
 mark <INDEX>
-mark <INDEX>, <INDEX>, ...
+mark <INDEX>...
 ```
 
 Examples:
+
 - `mark 1` will mark the first student as present.
-- `mark 2, 4, 5, 6` will mark the 2nd, 4th, 5th and 6th students as present.
+- `mark 2,4,5,6` will mark the second, fourth, fifth and sixth students as present.
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
-### Marking selected students as absent: `unmark`
+### Marking students as absent: `unmark`
 
-Marks selected students' attendance as absent for current session.
+This marks your selected students' attendance as absent for your selected session.
 
-Format:
+**Command Format:**
+
 ```
 unmark <INDEX>
-unmark <INDEX>, <INDEX>, ...
+unmark <INDEX>...
 ```
 
 Examples:
-- `unmark 1` will mark the first student as absent.
-- `unmark 2,3,4` will mark the 2nd, 3rd and 4th students as absent.
 
-[Back to list of commands](#commands)
+- `unmark 1` will mark your first student as absent.
+- `unmark 2,3,4` will mark your second, third and fourth students as absent.
 
-### View the overall attendance of the session: `attendance`
+[Back to list of features](#features)
 
-Displays the overall attendance of the session you are at in the command box. (Pictured below.)
+### View the overall attendance of a session: `attendance`
 
-![image](images/UiAttendance.png)
-###### Figure 13
+You can view the overall attendance of a session that you've selected, which will be shown like this:
 
-Format:
+<img src="./images/UiAttendance.png" max-width="80%" max-height="80%"/>
+<br>
+
+**Command Format:**
+
 ```
 attendance
 ```
 
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
---------------------------------------------------------------------------------------------------------------
+---
 
-## Task Page Commands
-![image](./images/UiTaskPage.png)
-###### Figure 14
+## Managing Tasks
+In the following sections, you will find the features that are available to you on the `Task Page`.
+A `Task Page` typically looks like this:
+<img src="./images/UiTaskPage.png" max-width="80%" max-height="80%"/>
+<br>
 
 ### Adding a task: `add task`
 
-Adds a new task into the task page.
+This adds a new task to your selected group.
 
-Format:
+**Command Format:**
+
 ```
-add task <TASK NAME>
+add task <TASK_NAME>
 ```
 
-- Adding a task with the same task name is not allowed.
-    - For example, if a task with name `OP1` already exists in CLIpboard,
-      entering `add task OP1` will display an error message inside the result display.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* Adding tasks with the same task name is not possible.
+* Task names can contain alphanumeric, special characters and white spaces. e.g. "AY2223S2-Midterm Practice Paper"
+* Task names are case-sensitive. e.g. "task1" and "TASK1" are treated as different tasks.
+</div>
 
 Examples:
-- `add task OP3`
+
+- `add task OP3` will add a new task named "OP3".
 - `add task Critical Reflection 3`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Task names can have special characters! i.e. "AY2223S2-Midterm Practice Paper"
-</div>
-<br>
-
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Deleting a task: `delete task`
 
-Deletes a task from the current list of tasks.
+This removes a task from your selected group.
 
-Format:
+**Command Format:**
+
 ```
 delete task <INDEX>
 ```
 
 Examples:
-- `delete task 1` will delete the first task listed.
 
-[Back to list of commands](#commands)
+- `delete task 1` will delete your first task listed.
+
+[Back to list of features](#features)
 
 ### Editing a task: `edit task`
 
-Edits an existing task in the task list.
+You can edit the name of an existing task in your task list.
 
-Format:
+**Command Format:**
+
 ```
-edit task <INDEX> <NEW TASK NAME>
+edit task <INDEX> <NEW_TASK_NAME>
 ```
 
 Examples:
-- `edit task 1 CA5` will rename the first task listed to `CA5`.
 
-[Back to list of commands](#commands)
+- `edit task 1 CA5` will rename your first task listed to `CA5`.
 
-### Selecting a task to assign grades: `select`
-
-Selects an existing task to assign students their grades for that task, by displaying the Student Page on the right panel.
-
-Format:
-```
-select <INDEX>
-```
-- Selects task at specified index and displays list of students with the task.
-
-Examples:
-- `select 1` will return a list of students who was assigned the first task on the list.
-
-[Back to list of commands](#commands)
+[Back to list of features](#features)
 
 ### Finding a task: `find task`
 
-Finds task(s) that contains any of the given keywords(s) in the task name.
+You can filter your task list to show only tasks that contain specific keywords.
 
-Format:
+**Command Format:**
+
 ```
 find task <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
-- This command is case-insensitive. (e.g. `find task op1` and `find task OP1`
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+* Keywords are case-insensitive. (e.g. `find task op1` and `find task OP1`
   will give you the same result)
-- Keywords are separated by spaces.
+* Keywords are separated by spaces.
+</div>
+<br>
 
 Examples:
-- `find task 1` returns `OP1` and `Critical Reflection 1`.
 
-[Back to list of commands](#commands)
+- `find task 1` will show `OP1` and `Critical Reflection 1`.
 
-## Grades Page Commands
-![images](./images/UiGradesPage.png)
-###### Figure 15
+[Back to list of features](#features)
 
-### Assigning a grade to student: `assign`
-Assigns a grade to a student.
+### Selecting a task to assign grades: `select`
 
-Format:
+This command allows you to select a task and view the grades of your students with that task.
+
+**Command Format:**
+
+```
+select <INDEX>
+```
+
+Examples:
+
+- `select 1` will show a list of students who were assigned the first task on the list.
+
+[Back to list of features](#features)
+
+---
+
+## Managing the Grades of a Task
+In the following sections, you will find the features that are available to you after you have selected a task while on the `Task Page`.
+Your current page would look similar to this:
+<img src="./images/UiGradesPage.png" max-width="80%" max-height="80%"/>
+<br>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** The grades for all students will be set to ZERO when a task is created. Make sure to check that you have assigned grades to all students, so that no one's grade is accidentally left as 0.
+</div>
+
+### Assigning a grade to a student: `assign`
+
+This assigns a grade to a student.
+
+**Command Format:**
+
 ```
 assign <INDEX> <GRADE>
 ```
-- Assigns a grade to the student specified at `<INDEX>` as seen from the Student Page on the right.
-- Grade must be a number between `0 and 100`, inclusive of `0 and 100`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** A grade must be a number between `0 and 100`.
+</div>
+<br>
 
 Examples:
-- `assign 1 78` will assign the first student on the Student Page the grade of 78.
-- `assign 3 0` will assign the third student on the Studet Page the grade of 0.
 
-[Back to list of commands](#commands)
+- `assign 1 78` will assign your first student on the `Right Pane` the grade of 78.
+- `assign 3 0` will assign your third student on your `Right Pane` the grade of 0.
 
---------------------------------------------------------------------------------------------------------------
+[Back to list of features](#features)
+
+---
 
 ## Glossary
 
-| **Term**              | **Definition**                                                                                            | **Example(s)**                          |
-|-----------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------|
-| **Course**            | A module that provides a certain level of understanding in a subject area.                                | CS2103T, CS2105                         |
+| **Term**              | **Definition**                                                                                      | **Example(s)**                    |
+| --------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| **Course**            | A course that provides a certain level of understanding in a subject area.                                | CS2103T, CS2105                         |
 | **Group**             | A group of students in a Course that can be categorised according to their tutorial, project group, etc.  | T15, Team15                             |
 | **Session**           | A period of class for a Group which can be tutorial session, lab session etc.                             | Tutorial1, Lab3                         |
 | **Task**              | An assignment dedicated to a Group which can be presentation, reflection etc.                             | OP1, Critical Reflection 2              |
-| **Path**              | A string of characters used to uniquely identify a location in a directory structure.                     | C:/Users/AlexYeoh/Desktop/A0123456X.png |
-| **Absolute Path**     | A path that always contains the root element and the complete directory list required to locate the file. | C:/Users/AlexYeoh/Desktop/A0123456X.png |
-| **Relative Path**     | A hierarchical path that locates a file or folder on a file system starting from the current directory.   | ../A1234567X.png                        |
 | **Special Character** | A character that does not fall under the category of either alphabet or a number.                         | -,+,*                                   |
-| **Student ID**        | A unique identification number given to a student.                                                        | A1234567X |                              |
+| **Student ID**        | A unique identification number given to a student.                                                        | A1234567X                               |
