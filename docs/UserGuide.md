@@ -219,8 +219,10 @@ that will be shown in the display panel when the employee is selected.
 Tags can be used to record any information about your employees that does not fall into any of the above categories.
 For example, you could:
 
- - Tag an employee as "Software Engineer" to record their role within their department.
- - Tag an employee as "Vegetarian" to take note of their dietary requirements.
+<ul>
+    <li>Tag an employee as "Software Engineer" to record their role within their department.</li>
+    <li>Tag an employee as "Vegetarian" to take note of their dietary requirements.</li>
+</ul>
 
 Tags give you more flexibility in building employee profiles, so you can use ExecutivePro to its fullest!
 
