@@ -46,6 +46,7 @@ Here are the symbols that you will see while reading this user guide:
 
 
 --------------------------------------------------------------------------------------------------------------------
+<a id="toc"></a>
 ## Table of Contents
 
 * Table of Contents
@@ -300,6 +301,7 @@ Entering the `help` command will open up the _Help Window_ that looks like this.
 On the left column, you can find the full list of ExecutivePro commands and the right are the details for each command. If you require more information, the _Help Window_ also contains a button at the bottom to open up this User Guide in your browser.
 
 Format: `help`
+<a href="#toc">Back to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -438,7 +440,7 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
    </p>
 2. Next, right-click on the selected columns so that the following shows up:
    <p align="center">
-    <img src="images/rightclick.png" width="50%" height="30%">
+    <img src="images/rightclick.png" width="30%" height="20%">
     <br>
     <em>Right click to format selected cells</em>
    </p>
@@ -525,6 +527,7 @@ To ensure the correct date format is saved, please refer to the instructions [he
 :warning: Caution:
 **Do take note to only export in `.csv file` and not any other file types.**
 </div>
+<a href="#toc">Back to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -668,18 +671,11 @@ Once you run this command, you lose all data immediately.
 </div>
 
 Format: `clear`
+<a href="#toc">Back to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Viewing Employee Details
-
-#### Listing all employees : `list`
-
-After searching for employees using the `find` command, you might realise that the employee list no longer shows all the employees.
-In order to get the full list back, simply use the list command, and it will show a list of all employees and
-their details in the ExecutivePro database.
-
-Format: `list`
 
 #### Locating employees by keyword: `find`
 
@@ -755,6 +751,16 @@ All the employees who satisfy the criteria will be listed.
      <em>Results displayed after filter command</em>
    </p>
 
+#### Listing all employees : `list`
+
+After searching for employees using the `find` command, you might realise that the employee list no longer shows all the employees.
+In order to get the full list back, simply use the list command, and it will show a list of all employees and
+their details in the ExecutivePro database.
+
+Format: `list`
+
+<a href="#toc">Back to Table of Contents</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### System commands
@@ -799,6 +805,7 @@ Example:
 Exits the program. Your data is automatically saved so ExecutivePro will look exactly the same the next time you open it up.
 
 Format: `exit`
+<a href="#toc">Back to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 ### Saving/Editing the data file
