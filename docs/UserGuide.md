@@ -54,9 +54,12 @@ Here are some of the symbols that may appear in this user guide:
 
 Below is the ExecutivePro User Interface with the main components labelled.
 
-![GUI](images/UserGuide/labelledgui.png)
+<p align="center">
+  <img src="images/UserGuide/labelledgui.png" alt="startup_whitebackground.jpg" width="70%" height="50%">
+  <br>
+  <em>User Interface</em>
+</p>
 
-<div style="page-break-after: always"></div>
 
 Main components of the ExecutivePro User Interface:
 
@@ -79,8 +82,7 @@ This toolbar can be used to:
 
 
 #### 2. Display Panel
-
-<img src="images/UserGuide/DisplayPanel.png" class="centerImage" width = 80% height = 100%>
+< img src = "images/UserGuide/DisplayPanel.png" class = "centerImage" width = 80% height = 100% >
 
 This section shows the full information of the selected employee.
 
