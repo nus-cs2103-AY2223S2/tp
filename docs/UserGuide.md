@@ -54,9 +54,12 @@ Here are some of the symbols that may appear in this user guide:
 
 Below is the ExecutivePro User Interface with the main components labelled.
 
-![GUI](images/UserGuide/labelledgui.png)
+<p align="center">
+  <img src="images/UserGuide/labelledgui.png" alt="startup_whitebackground.jpg" width="70%" height="50%">
+  <br>
+  <em>User Interface</em>
+</p>
 
-<div style="page-break-after: always"></div>
 
 Main components of the ExecutivePro User Interface:
 
@@ -79,8 +82,7 @@ This toolbar can be used to:
 
 
 #### 2. Display Panel
-
-<img src="images/UserGuide/DisplayPanel.png" class="centerImage" width = 80% height = 100%>
+< img src = "images/UserGuide/DisplayPanel.png" class = "centerImage" width = 80% height = 100% >
 
 This section shows the full information of the selected employee.
 
@@ -217,8 +219,10 @@ that will be shown in the display panel when the employee is selected.
 Tags can be used to record any information about your employees that does not fall into any of the above categories.
 For example, you could:
 
-- Tag an employee as "Software Engineer" to record their role within their department.
-- Tag an employee as "Vegetarian" to take note of their dietary requirements.
+<ul>
+    <li>Tag an employee as "Software Engineer" to record their role within their department.</li>
+    <li>Tag an employee as "Vegetarian" to take note of their dietary requirements.</li>
+</ul>
 
 Tags give you more flexibility in building employee profiles, so you can use ExecutivePro to its fullest!
 
@@ -257,7 +261,7 @@ database, and you are free to access and modify the particulars with the [`edit`
 
 However, this function could fail (and ExecutivePro simply does not add any employee), if:
 
-1. There are missing particulars which are compulsory, you can find these listed in [here](#order-of-fields).
+1. There are missing compulsory particulars. You can refer to the input format below for help, or find the list of compulsory particulars [here](#employee-profiles).
 2. The particulars are in the wrong format, the program will prompt you on the correct format. Alternatively, you can find them [here](#field-formats).
 3. The new employee added is a duplicate, i.e. there is someone in the database who already shares the same name, phone number
 and email
