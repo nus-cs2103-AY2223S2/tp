@@ -67,20 +67,19 @@ Follow these steps if this is your first time using ExecutivePro:
         - If you are using an Apple Silicon Mac, you can install the Azul build of OpenJDK 11 version
           from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest `ExecutivePro.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-4/tp/releases).
-3. Copy the jar file to a folder you want to use as the _main folder_ for your ExecutivePro.
-   This folder can be on your Desktop or any location you prefer.
-   For example, we create a `test` folder on the Desktop.
+3. Create a folder on your computer that you want to use as the _main folder_ for ExecutivePro and move `ExecutivePro.jar` to that folder.
+   For example, we create a `test` folder on our Desktop.
     <p align="center">
       <img src="images/jarfile.png" width="100%" height="50%">
       <br>
-      <em>`test` folder</em>
+      <em>test folder</em>
     </p>
 
     Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
         <p align="center">
           <img src="images/jarfile2.png" width="100%" height="50%">
           <br>
-          <em>ExecutivePro jar file</em>
+          <em>ExecutivePro.jar file</em>
         </p>
 
 4. Now you are ready to use ExecutivePro, refer to the section [Starting ExecutivePro](#starting-executivepro) below for more details.
@@ -106,7 +105,7 @@ Your Command Prompt/Terminal should show up like this:
 Step 2 (Navigating to the Jar File Location) :
 
 Use the `cd` command to navigate to the folder where the `ExecutivePro.jar` file is located in.
-This is the location where you have placed your jar file in, as done in [point 3 of Quick start section](#quick-start).
+This is the folder you placed your jar file in, as done in [point 3 of Quick start section](#quick-start).
 For example, if the file is located in the `test` folder on your Desktop, you can type `cd Desktop` and hit Enter, followed by
 `cd test`and Enter to reach the `test` folder, just like the image below.
 
@@ -139,12 +138,12 @@ Congratulations, ExecutivePro is now running, you can refer to the [Features](#f
 --------------------------------------------------------------------------------------------------------------------
 ## The User Interface
 
-Below is the ExecutivePro User Interface with the main components labelled.
+This section explains the different components of the ExecutivePro User Interface.
 
 <p align="center">
   <img src="images/labelledgui.png" width="75%" height="50%">
   <br>
-  <em>User Interface</em>
+  <em>ExecutivePro User Interface</em>
 </p>
 
 
@@ -186,7 +185,7 @@ This section shows the full information of the selected employee.
 
 1. On startup of the application, this panel shows "Welcome to ExecutivePro"
 2. To view an employee's particulars in this panel, click on one of the employees in the employee list.
-3. If you delete an employee that you are currently viewing, the display panel will display the next employee's particulars.
+3. If you delete an employee that you are currently viewing, the display panel will display the particulars of the next employee in the list.
 
 #### 3. Employee List
 
@@ -196,7 +195,7 @@ This section shows the full information of the selected employee.
   <em>Employee List</em>
 </p>
 
-This shows the whole employee list with basic information such as _Name_, _Employee ID_, _Department_ and their respective tags highlighted in blue.
+This shows the whole employee list with their basic information such as _Name_, _Employee ID_, _Department_ and their respective tags highlighted in blue.
 
 This will come in handy if:
 
@@ -211,7 +210,7 @@ This will come in handy if:
   <em>Command Panel</em>
 </p>
 
-This section displays relevant messages or errors after the command is entered.
+This section displays relevant messages or errors after a command is entered.
 
 #### 5. Command Line Interface (CLI)
 
@@ -221,9 +220,9 @@ This section displays relevant messages or errors after the command is entered.
   <em>Command Line Interface (CLI)</em>
 </p>
 
-In this section, you can enter your command in the text box and click enter on your keyboard to send it to the application. 
+In this section, you can enter your commands in the text box and click enter on your keyboard to send it to the application. 
 
-This is also known as a Command Line Interface or CLI for short. If you are new to CLI, a crash course is available below.
+This is also known as a Command Line Interface or CLI for short. If you are new to CLI, a short introduction is available below.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -237,32 +236,34 @@ Imagine being in a restaurant with a talented chef in the kitchen. The chef repr
 
 Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time. <br>
 
+<u> How to use the CLI?</u> <br>
+
+Simply type in a command in the text box and press enter on your keyboard to execute it. To execute additional commands, continue typing and hit enter after each one is completed. <br>
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Employee Profiles
 
-ExecutivePro makes it easy for you to add, remove, or edit employee information, to help you be an efficient and effective HR manager.
-Each employee within ExecutivePro has an employee profile, where their personal particulars are stored.
-These are the particulars that ExecutivePro can help you keep track of:
+ExecutivePro makes it easy for you to add, remove, or edit employee information. ExecutivePro builds an employee profile for every employee to store their personal particulars. These are the employee information that ExecutivePro can help you keep track of:
 
-| Particular      | Description                                    | Compulsory?            |
-|-----------------|------------------------------------------------|------------------------|
-| Employee ID     | Unique numerical ID for each employee          | Automatically assigned |
-| Name            | Name of employee                               | Compulsory             |
-| Phone           | Phone number of employee                       | Compulsory             |
-| Department      | Department of employee                         | Compulsory             |
-| Salary          | Monthly salary of employee                     | Compulsory             |
-| Day of Payment  | Day of the month that the employee is paid     | Compulsory             |
-| Email           | Email address of employee                      | Optional               |
-| Address         | Address of employee                            | Optional               |
-| Leave           | Number of days of leave employee has remaining | Optional (Default: 21) |
-| Date of Birth   | Date of birth of employee                      | Optional               |
-| Date of Joining | Date the employee joined the company           | Optional               |
-| Tag             | Used to record any other simple remarks        | Optional               |
+| Particular      | Description                                   | Compulsory?                                   |
+|-----------------|-----------------------------------------------|-----------------------------------------------|
+| Employee ID     | Unique number for each employee               | Automatically assigned when employee is added |
+| Name            | Name of employee                              | Compulsory                                    |
+| Phone           | Phone number of employee                      | Compulsory                                    |
+| Department      | Department of employee                        | Compulsory                                    |
+| Salary          | Monthly salary of employee                    | Compulsory                                    |
+| Day of Payment  | Day of the month that the employee is paid    | Compulsory                                    |
+| Email           | Email address of employee                     | Optional                                      |
+| Address         | Home address of employee                      | Optional                                      |
+| Leave           | Number of days of leave remaining             | Optional (Default value: 21)                  |
+| Date of Birth   | Date of birth of employee                     | Optional                                      |
+| Date of Joining | Date when employee joined the company         | Optional                                      |
+| Tag             | Used to record any other employee information | Optional                                      |
 
-In addition, you can upload a profile picture for each employee (see [here](#setting-an-employees-picture--setpicture)),
+In addition, you can upload a profile picture for each employee (click [here](#setting-an-employees-picture--setpicture)),
 that will be shown in the display panel when the employee is selected.
 
 <div markdown="span" class="alert alert-primary">
@@ -297,7 +298,7 @@ Entering the `help` command will open up the _Help Window_ that looks like this.
   <em>Help Window</em>
 </p>
 
-On the left column, you can find the full list of ExecutivePro commands and the right are the details for each command. If you require more information, the _Help Window_ also contains a button at the bottom to open up this User Guide in your browser.
+On the left column, you can find the full list of ExecutivePro commands and on the right are the details for each command. If you require more information, the _Help Window_ also contains a button at the bottom to open up this User Guide in your browser.
 
 Format: `help`
 
@@ -309,30 +310,20 @@ Format: `help`
 
 How do we build an employee profile?
 
-The first step is to add a new employee to the database,
-so ExecutivePro can begin managing their particulars and profile for you.
-To do this, use the `add` command, together with the employee particulars that you have available for this person.
+The first step is to add a new employee using the `add` command along with any particulars that you want to include in the input format specified below.
 
-Upon successfully adding a new employee, ExecutivePro will then keep track of the new profile and details in the
-database, and you are free to access and modify the particulars with the [`edit`](#editing-an-employee--edit) command.
+Upon successfully adding a new employee, ExecutivePro will then keep track of the new employee profile in the
+database, and you are free to access and modify the particulars later on with the [`edit`](#editing-an-employee--edit) command.
 
-However, this function could fail (and ExecutivePro simply does not add any employee), if:
+However, this function could fail (and ExecutivePro does not add the employee), if:
 
 1. There are missing compulsory particulars. You can refer to the input format below for help, or find the list of compulsory particulars [here](#employee-profiles).
 2. The particulars are in the wrong format, the program will prompt you on the correct format. Alternatively, you can find them [here](#field-formats).
-3. The new employee added is a duplicate, i.e. there is someone in the database who already shares the same name, phone number
-and email
+3. The new employee added is a duplicate, i.e. there is someone in the database who already shares the same name, phone number and email. 
 
 
 Format: `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb:
-**For Tags:**
-A person can have any number of tags (including 0)
-
-</div>
 
 Examples:
 * `add n/John Doe p/98765432 d/Marketing pr/1000 15 e/johnd@example.com a/John street, block 123, #01-01`
@@ -344,10 +335,10 @@ Examples:
 
 Tired of adding new employees one by one?
 ExecutivePro allows you to add multiple employees at once from a `.csv` file.
-This feature will come in handy when:
+This feature will come in handy if:
 
-1. You are a new user and have your employee data stored in a `.csv` file.
-2. There has been a recruitment cycle and the company has recruited multiple employees.
+1. You are a new user and have your existing employee data stored in a `.csv` file.
+2. There has been a recruitment cycle and the company has multiple new employees.
 
 With this feature, you would not need to spend time to manually add each employee in!
 
@@ -355,7 +346,7 @@ Format: `batchadd FILENAME`
 
 Example: `batchadd executivepro.csv`
 
-Below are the steps to use this command:
+Here are the steps to use this command:
 
 **Step 1 (Creating CSV file) :**
 
@@ -476,7 +467,7 @@ Format: `batchexport FILENAME`
 
 Example: `batchexport exported_database.csv`
 
-Below are the steps to use this command:
+Here are the steps to use this command:
 
 **Step 1 (Exporting to CSV file) :**
 
@@ -524,7 +515,7 @@ Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [d/DEPARTMENT] [pr/PAYROLL] 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Changes the phone number and email address of the employee with ID `1` to be `91234567` and `johndoe@example.com` respectively.
 
-Below are the steps to use this command:
+Here are the steps to use this command:
 
 **Step 1 (Inputting the edit command) :**
 You can use the command syntax to edit an employee's fields, the image below demonstrates the command `edit 1 p/91234567`.
@@ -646,7 +637,7 @@ Examples:
   or they are in the 'Sales' department
 * `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
 
-Below are the steps to use this command:
+Here are the steps to use this command:
 
 **Step 1 (Inputting the search keywords) :**
 You can use the command syntax to input the search keywords, just like the image below.
@@ -675,7 +666,7 @@ Examples:
 * `filter pr > 1000` displays list of all employees whose payroll value is greater than 1000
 * `filter l = 1` displays list of all employees who have only 1 leave left
 
-Below are the steps to use this command:
+Here are the steps to use this command:
 
 **Step 1 (Creating the criteria) :**
 You can use the command syntax to create the criteria, just like the image below.
