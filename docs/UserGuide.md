@@ -279,7 +279,7 @@ The following table details the [parameters](#parameter) to be used with the `ad
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tag is an optional field when adding an application. An application can have multiple tags or none at all, as seen in
 the image below.
-![Tag](images/tag)
+![Tag](images/Tag.png)
 If you forgot to add a tag to your application after it's been created, or wish to add even more tags, refer to the
 section [here](#414-managing-application-tags-with-add-app-and-edit-app) on managing application tags.
 </div>
