@@ -18,6 +18,8 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 ## 1.1. How to use the User Guide
 
+<a markdown="span" href="#1-introduction"> ⬆️ **Back to 1.Introduction ** </a> <br>
+
 * For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](#2-quick-start) section.
 * To **understand the terms** we use in PowerCards, you can visit the [Key Terms](#12-key-terms) section.
 * To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#3-features) section.
@@ -30,6 +32,8 @@ This user guide will help you use PowerCards with ease and integrate it into you
 </div>
 
 ## 1.2. Key Terms
+
+<a markdown="span" href="#1-introduction"> ⬆️ **Back to 1.Introduction ** </a> <br>
 
 **Deck**<br>
 
@@ -48,6 +52,8 @@ A tag refers to the level of difficulty (easy/medium/hard) you can assign to eac
 A card can only have at most one tag at any time.
 
 ## 1.3. User Interface Components 
+
+<a markdown="span" href="#1-introduction"> ⬆️ **Back to 1.Introduction ** </a> <br>
 
 This section highlights the key components of PowerCards’ user interface. Refer to the description below for more information.
 
@@ -91,6 +97,8 @@ This section highlights the key components of PowerCards’ user interface. Refe
 
 ## 3.1. Command Components
 
+<a markdown="span" href="#3-features"> ⬆️ **Back to 3.Features ** </a> <br>
+
 This section explains some common components you may find in a command.
 
 | Component                 | Example              | Usage                                                                                                                                                                                                                                                                                                                    |
@@ -116,6 +124,8 @@ This section explains some common components you may find in a command.
 
 ## 3.2. Main Mode
 
+<a markdown="span" href="#3-features"> ⬆️ **Back to 3.Features ** </a> <br>
+
 Welcome to the Main Mode of the PowerCards application! This is the default mode you will see when you open the app. 
 
 In the Main Mode, you can quickly and easily create new decks, add new cards to your decks, delete and modify existing cards or decks as needed, and more!
@@ -134,6 +144,8 @@ In the Main Mode, you can quickly and easily create new decks, add new cards to 
 <div style="page-break-after: always;"></div>
 
 ## 3.3. Main Mode - Before Selecting a Deck
+
+<a markdown="span" href="#3-features"> ⬆️ **Back to 3.Features ** </a> <br>
 
 ### 3.3.1. Adding a Deck : `addDeck`
 
@@ -262,6 +274,8 @@ Format: `clear`
 
 ## 3.4. Main Mode - After Selecting a Deck
 
+<a markdown="span" href="#3-features"> ⬆️ **Back to 3.Features ** </a> <br>
+
 With a deck selected, you can see all the cards in the deck on the right panel! 
 Now you can interact with the cards in the selected deck.
 
@@ -385,6 +399,8 @@ Format: `unselectDeck`
 
 ## 3.5. Before entering Review Mode
 
+<a markdown="span" href="#3-features"> ⬆️ **Back to 3.Features ** </a> <br>
+
 ### 3.5.1. Setting the Limit of Cards per Review: `setLimit`
 
 If you've got a long deck of cards but only want to test yourself on a certain number of them during a review session, no problem! You can use a handy function to set an upper limit on the number of cards you'll be reviewing. 
@@ -405,6 +421,8 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 ## 3.6. Review Mode
+
+<a markdown="span" href="#3-features"> ⬆️ **Back to 3.Features ** </a> <br>
 
 Once ready, you can enter the Review Mode to test yourself on the cards of a deck. You can also specify the difficulties of the cards of the deck you want to test, e.g., you just want test medium and hard cards only.
 
@@ -507,6 +525,8 @@ Format: `'`
 
 ## 3.7. Other Features
 
+<a markdown="span" href="#3-features"> ⬆️ **Back to 3.Features ** </a> <br>
+
 ### 3.7.1. Viewing Help : `help`
 
 If you are unsure about how to use PowerCards, you can always execute this command.
@@ -582,6 +602,8 @@ Not sure what a JSON file is? Check out this [brief introduction](https://www.w3
 
 ## 5.1. Main Mode - before selecting a Deck
 
+<a markdown="span" href="#5-command"> ⬆️ **Back to 5.Command ** </a> <br>
+
 | Action         | Format, Examples                                                     |
 |----------------|----------------------------------------------------------------------|
 | Select Deck    | `selectDeck INDEX` <br /> e.g., `selectDeck 2`                       |
@@ -600,6 +622,8 @@ Not sure what a JSON file is? Check out this [brief introduction](https://www.w3
 
 ## 5.2. Main Mode - after selecting a Deck
 
+<a markdown="span" href="#5-command"> ⬆️ **Back to 5.Command ** </a> <br>
+
 | Action         | Format, Examples                                                                                                                                 |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
 | Select Deck    | `selectDeck INDEX` <br /> e.g., `selectDeck 2`                                                                                                   |
@@ -617,6 +641,8 @@ Not sure what a JSON file is? Check out this [brief introduction](https://www.w3
 <div style="page-break-after: always;"></div>
 
 ## 5.3. Review mode
+
+<a markdown="span" href="#5-command"> ⬆️ **Back to 5.Command ** </a> <br>
 
 | Action        | Format, Examples |
 |---------------|------------------|
