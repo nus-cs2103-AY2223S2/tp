@@ -516,14 +516,14 @@ Not sure what a JSON file is? Check out this [brief introduction](https://www.w3
 
 # 4. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: First, find the JSON data file (can be found in `[JAR file location]/data/masterdeck.json`) that you want to transfer over and transfer a copy of it to the other computer. Next, overwrite the data file in the respective location (`[JAR file location]/data/masterdeck.json`) of the other computer with the desired data file. If done correctly, when you start the app on the other computer, you will observe that the data has been transferred over successfully!
-
 **Q**: Will my data be automatically saved?<br>
 **A**: **Yes**, PowerCards automatically saves your data after every command entered.
 
 **Q**: Where is my data saved?<br>
 **A**: If you have run PowerCards at least once, there will be a folder named `data` inside the folder you store the application. The save data can be found as `masterdeck.json` in the `data` folder.
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: First, make a copy of the JSON data file (can be found in `[JAR file location]/data/masterdeck.json`). Next, transfer the copy of data to the respective location of the other computer (`[JAR file location]/data/masterdeck.json`), overwriting any old data files. If done correctly, when you start the app on the other computer, you will observe that the data has been transferred over successfully!
 
 **Q**: Can I rename my saved data file?<br>
 **A**: **No**, PowerCards currently only supports the use of `masterdeck.json` as the name of the saved data file.
