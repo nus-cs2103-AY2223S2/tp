@@ -557,7 +557,7 @@ Note:
 
 ### Refreshing task list
 
-Refresh the task list and revert it back to the original state by removing any filter or sort.
+Refresh the task list and revert it back to the original state by removing all filter or sort.
 
 Format: `:refresh`
 
@@ -565,13 +565,13 @@ Format: `:refresh`
 
 Format: `:undo`
 
-You can undo the previous command by simply keying in `:undo`.
+You can undo the previous command executing the `:undo` command.
 
 ### Using macro
 
-Sometimes we might be adding the exact same task every week, say `:a "Do CS2103 weekly quiz"`. Typing repeated and identical command could be time consuming and Vimification is aware of it. This is where the **macro feature** comes in.
+Sometimes we might have to add the exact same task every week, say `:a "Do CS2103 weekly quiz".` Typing repeated and identical commands could be time-consuming, and Vimification is aware of it. This is where the **macro feature** comes in.
 
-Macro is a customisable template-like command, to streamline the process of running repeated commands. For example, you can define a macro `cs2103t` that maps to `a "Do CS2103 weekly quiz" -d Fri 14:00`. Afterward, whenever you type `:cs2103t`, your input will be transformed into `:a "Do CS2103 weekly quiz" -d Fri 14:00`.
+A macro is a customizable template-like command that streamlines the process of running repeated commands. For example, you can define a macro `cs2103t` that maps to `a "Do CS2103 weekly quiz" -d Fri 14:00`. Afterward, whenever you type `:cs2103t`, your input will be transformed into `:a "Do CS2103 weekly quiz" -d Fri 14:00`.
 
 ### Defining new macro
 
@@ -584,7 +584,7 @@ Format: `:macro -a <macro> <command_string>`
 
 Note:
 
-- If the macro is already defined, this command will replaced the old mapping with the new one.
+- If the macro is already defined, this command will replace the old mapping with the new one.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -614,7 +614,7 @@ Existing task list data is saved at a JSON file `[JAR file location]/.vimificati
 
 ### Editing existing macro data
 
-Existing macro data is saved at a JSON file `[JAR file location]/.vimification/macromap.json`. Users can edit this file directly to manages the macros that can be used in the application.
+Existing macro data is saved at a JSON file `[JAR file location]/.vimification/macromap.json`. Users can edit this file directly to manage the macros that can be used in the application.
 
 <div markdown="span" class="alert alert-warning">
 
