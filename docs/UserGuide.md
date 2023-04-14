@@ -92,7 +92,8 @@ By following these tips, you can effectively use this guide to manage patient da
 
 * Refer to the [Features](#features) below for details of each command. 
 
-### Glossary 
+### Glossary  
+The glossary is at the top of the user guide to help you quickly find definitions for any technical or specialized terms used in the guide. This will make it easier for you to understand the content and navigate the guide more effectively, especially if you are new to the software or system being described.
 * Add - A command or button function that allows users to add a patient to the MediMate application.
 * Alphabetical order - A way of organizing data or information in order based on the letters of the alphabet.
 * Appointment - A scheduled meeting between a patient and a medical professional for medical evaluation, diagnosis, or treatment.
@@ -157,8 +158,11 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITI
 
 * MANDATORY: You must add the patient's name, phone number, email, and address to successfully add the patient into MediMate.
 * OPTIONAL: You can also add patient's age, medical condition, Nric.
-* To record a patient's other information, add them as additional tags to the patient's profile.
 * Refer to [Restriction on Add and Edit](#restriction-on-add-and-edit) below on the `add` function restriction.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To record a patient's other information, add them as additional tags to the patient's profile.
+</div>
 
 Examples:
 
@@ -174,10 +178,13 @@ Adds a patient to MediMate through button method:
 1. Click the add button as shown in the screenshot above.
 
 ![Add_Pop_up_Window](images/userGuide/Add_2.png "Add Pop Up Window")
-2. After clicking on the **Add** button, a popup window will appear where you can enter the patient's details.
-Make sure to fill in all the required fields that were mentioned in the CLI method. Once all the mandatory fields are filled in,
+2. After clicking on the **Add** button, a popup window will appear where you can enter the patient's details. After filling in,
 click on the **+ ADD PATIENT** button to successfully add the patient. The patient's details will be saved in MediMate,
-and you can view them later in the patient list.
+and you can view them later in the patient list. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+All blanks are required to be filled.
+</div>
 
 ### Listing all patients : `list`
 
@@ -218,25 +225,23 @@ Edits an existing patient in the patient list:
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ag/AGE] [m/MEDICAL_CONDITION] [nric/NRIC_NUMBER] [t/TAG]…` 
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
-  The index **must be a positive integer** 1, 2, 3, …
+  The index **must be a positive whole number** 1, 2, 3, …
 * Specify the field you want to edit (name, phone, email, address, age, medical condition, nric, or tag) followed by the
   new value. At least one of the optional fields must be provided.
-* Existing values will be updated to the user input values.
+* Existing values will be updated to your input values.
 * When editing tags, the existing tags of the patient will be removed. (i.e adding of tags is not cumulative.)
-* You can remove all the patient’s tags by typing `t/` without
-  specifying any tags after it.
-* You can remove all the patient's medical condition by typing `m/` without specifying any letter(s) after it.
 * Refer to [Restriction on Add and Edit](#restriction-on-add-and-edit) below on the `edit` function restriction.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all the patient’s tags or medication condition by typing `t/` or `m/` without specifying any tags or medication condition after it.
+</div> 
+
 Examples:
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567`
-  and `johndoe@example.com` respectively.
+* `edit 1 p/91234567 e/johndoe@example.com t/CHAS` Edits the phone number and email address of the 1st patient to be `91234567`
+  ,`johndoe@example.com` and `CHAS` respectively. (Note: Existing tag(s) will be removed)
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
-* `edit 2 m/` Edits the medication condition of the 2nd patient to be empty.
-* `edit 2 m/Flu` Edits the medication condition of the 2nd patient to be `Flu`.
-* `edit 3 ag/50` Edits the age of the 3rd patient to be `50`.
 * `edit 3 ag/1222` This command is not allowed as age should be less than or equal to 120 and must be a positive
-  integer.
+  whole number.
 * `edit 1 ag/50 A/John street` This command is not allowed as it has invalid prefix.
 * `edit 1 nric/SS92433AB` command is permissible. However, it is important for the user to carefully verify the NRIC that has been inputted to ensure its accuracy.
 
@@ -251,10 +256,10 @@ Make an appointment to Medimate through command method:
 Format: `makeApp INDEX /from {startTime} /to {endTime}`
 
 * Makes/Reschedule an appointment with a patient at the specified `INDEX`. The index refers to the index number shown in the
-  displayed patient list. The index **must be a positive integer** 1, 2, 3, …
+  displayed patient list. The index **must be a positive whole number** 1, 2, 3, …
 * startTime and endTime should be on the same date, and in 24-hour clock format.
 * startTime has to be earlier than the endTime else appointment will not be created.
-* If a patient already had an appointment, it will reschedule this appointment
+* If your patient already had an appointment, it will reschedule this appointment
 * Appointment will not be created if the timing clash with the doctor's existing appointment timing
 
 Examples:
@@ -279,7 +284,7 @@ Make an appointment to MediMate through button method:
 2. A popup window will appear, as shown in the screenshot above. If you use the **Check Availability** button with a specific date, it will display a list of patients who have appointments scheduled for that day.
 
 * 💡Date must be in **YYYY-MM-DD** format and Time must be in the format of 24hr clock (HHmm).
-* 💡Once the appointment button is clicked, patient's card should not be clicked again, else the appointment made will be assigned to the latest patient's card clicked.
+* 💡Once the appointment button is clicked, you should not click the patient's card again, else the appointment made will be assigned to the latest patient's card clicked.
 
 ### Marking Appointment with a patient: `markApp`
 
@@ -288,10 +293,9 @@ Marks an appointment with a patient as done using command method:
 Format: `markApp INDEX`
 
 * Marks an appointment with a patient at the specified `INDEX`. The index refers to the index number shown in the
-  displayed patient list. The index **must be a positive integer** 1, 2, 3, …
-* The patient will now have no appointment
-* Once marked, the patient's appointment will be empty.
-* Appointment cannot be marked if the patient's appointment is empty.
+  displayed patient list. The index **must be a positive whole number** 1, 2, 3, …
+* Once marked, your patient's appointment will be empty.
+* Before you can mark an appointment as completed, make sure the patient has a scheduled appointment in the first place.
 
 Examples:
 
@@ -304,8 +308,8 @@ Create a PDF Medical Certificate for a patient using command:
 Format: `create INDEX doc/DOCTOR_NAME [m/MEDICAL_CONDITION] d/DAYS`
 
 * Create a PDF medical certificate for a patient at the specified `INDEX`. The index refers to the index number shown in
-  the displayed patient list. The index **must be a positive integer** 1,2,3 …
-* Days representing the number of days of unfit, and it **must be positive integer** 1,2,3 …
+  the displayed patient list. The index **must be a positive whole number** 1,2,3 …
+* Days representing the number of days of unfit, and it **must be positive whole number** 1,2,3 …
 * The maximum allowed days is 60. Hence, any days more than 60 is regards as invalid. 
 * Medical condition is optional for command method.
 
@@ -321,9 +325,11 @@ Create a PDF Medical Certificate for a patient button method:
 1. Click on the **Create button** as shown in the screenshot above.
 
 ![Create_Popup](images/userGuide/Create_2.png "Create Popup")
-2. A popup window appear, as shown in the screenshot above. Fill in all the blanks namely: Medical Condition, Doctor Name, and Duration (Number of days) and click **Generate MC**. Now, you have successfully generated a MC.
-3. When using the button method to make an appointment, it is required to input the patient's medical condition, and the maximum allowed number of characters for this blank is 200.
-4. When using the button method to specify the doctor's name for an appointment, the maximum allowed number of characters is 25.
+2. A popup window appear, as shown in the screenshot above. You need to fill in all the blanks namely: Medical Condition, Doctor Name, and Duration (Number of days) and click **Generate MC**. Now, you have successfully generated a MC.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Maximum characters for Medical Condition is 200 and Doctor's Name is 25.
+</div> 
 
 ### View the Medical File of a patient: `view`
 
@@ -332,13 +338,11 @@ View a PDF Medical Certificate for a patient using command:
 Format: `view INDEX {FILE INDEX}`
 
 * View the medical report or relevant file of a patient at the specified `INDEX`. The index refers to the index number
-  shown in the displayed patient list. The index **must be a positive integer** 1,2,3 …
-* If index provided is number lesser or equal to 0. MediMate will displays **invalid command format!**
-* If index provided is more than the number of patients in MediMate. MediMate will displays **The File index provided is invalid**
-* Once selected, the chosen medical report will pop up in another window allowing user to view.
-* `FILE INDEX` refers to the index number shown in the patient's panel, containing a list of relevant patient's file.
-  The file index **must be a positive integer** 1,2,3 …
-* If the specified **INDEX** patient does not have a medical report, the report cannot be view as it does not existed.
+  shown in the displayed patient list. The index **must be a positive whole number** 1,2,3 …
+* Once selected, the chosen medical report will pop up in another window allowing you to view.
+* `FILE INDEX` refers to the index number shown in your patient's panel, containing a list of relevant patient's file.
+  The file index **must be a positive whole number** 1,2,3 …
+* If the specified **INDEX** patient does not have a medical report, you will not be able to view the report as it does not exists. 
 
 Examples:
 
@@ -350,7 +354,7 @@ View a PDF Medical Certificate for a patient using button:
 
 1. Click on the **View button** as shown in the screenshot above.
    ![View_Popup](images/userGuide/view_2.png "Create Popup")
-2. The selected medical will popup, a sample medical file is shown in the screenshot above.
+2. The selected medical will pop up, a sample medical file is shown in the screenshot above.
 
 ### Upload a patient's medical file: `upload`
 
@@ -363,7 +367,7 @@ This index file can contain additional information about the patient, such as me
 test results, or treatment plans.
 
 * Upload a medical file and store in the patient's record at the specified `INDEX`. The index refers to the index number
-  shown in the displayed patient list. The index **must be a positive integer** 1,2,3 …
+  shown in the displayed patient list. The index **must be a positive whole number** 1,2,3 …
 
 Examples:
 
@@ -376,7 +380,7 @@ Upload Medical File of a patient's through button:
 1. Click on the **upload** button as shown in the screenshot above.
 
 ![Upload_Popup](images/userGuide/Upload_2.png "Upload Popup")
-2. A popup window appear, as shown in the screenshot above. Select the file you want to upload into MediMate through clicking **Open**. Now, you have successfully upload the medical file.
+2. A popup window appear, as shown in the screenshot above. Select the file you want to upload into MediMate through clicking **Open**. Now, you have successfully uploaded the medical file.
 
 ### Locating patients by name : `find`
 
@@ -391,7 +395,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
+Example:
 <div style="display:flex;">
     <img src="images/userGuide/find_before.png" style="width:50%; padding-right:10px;">
     <img src="images/userGuide/find_after.png" style="width:50%; padding-left:10px;">
@@ -425,7 +429,7 @@ Format: `deletes INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The `INDEX` refers to the index number shown in the displayed patient list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …
+* The `INDEX` **must be a positive whole number** 1, 2, 3, …
 
 Examples:
 
@@ -440,7 +444,7 @@ Format: `deletes INDEX1 INDEX2 …`
 
 * Deletes multiple patients records at the specified INDEX.
 * The INDEX refers to the index number shown in the displayed patient list.
-* INDEX must be a positive integer 1, 2, 3, …
+* INDEX must be a positive whole number 1, 2, 3, …
 * The order of the INDEX does not need to be sequential or follow a specific numerical pattern.
 
 Examples:
@@ -458,7 +462,7 @@ Format: `deletefile INDEX {FILE INDEX}`
 * The `INDEX` refers to the index number shown in the displayed patient list.
 * `FILE INDEX` refers to the index number shown in the list at the patient panel, which contains all the relevant medical
   reports of the specified patient's.
-* Both `INDEX` and `FILE INDEX` must be a positive integer 1, 2, 3, … 
+* Both `INDEX` and `FILE INDEX` must be a positive whole number 1, 2, 3, … 
 * If index and file index inputted are values less than 0 or more than the number of patients in the patient list, `deletefile` will not execute successfully.
 
 Examples:
@@ -483,7 +487,7 @@ MediMate data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-MediMate data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MediMate data are saved as a JSON file `[JAR file location]/data/MediMate.json`. Advanced users are welcome to update data directly by editing that data file.
 
 ---
 
@@ -510,7 +514,7 @@ MediMate data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 * Nric is case-sensitive. Hence, 's' , 't' or 'g' is not allowed for the first letter.
 * Nric has no restriction from second letter onwards, hence user need to be careful as alphabets is still recognised as a valid input after the first letter.
 * Nric is not unique. Hence, please be aware to check your Nric input before adding to prevent duplicate Nric with other patient's.
-* Age need to be less than or equal to 120 and must be a positive integer.
+* Age need to be less than or equal to 120 and must be a positive whole number.
 * Invalid prefix (such as `AG/` in upper case or `EDITSS` unknown prefix) will cause MediMate to assume it as the description of the previous prefix or unknown command respectively.
 
 ## Command summary
