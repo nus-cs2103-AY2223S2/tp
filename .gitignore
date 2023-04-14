@@ -8,6 +8,7 @@ src/main/resources/docs/
 /out/
 /*.iml
 
+
 # Storage/log files
 /data/
 /config.json

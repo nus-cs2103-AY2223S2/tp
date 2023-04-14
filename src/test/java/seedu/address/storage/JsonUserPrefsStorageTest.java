@@ -28,6 +28,12 @@ public class JsonUserPrefsStorageTest {
         assertThrows(NullPointerException.class, () -> readUserPrefs(null));
     }
 
+    @Test
+    public void getFilePath_nullFilePath_throwsNullPointerException() {
+        JsonUserPrefsStorage nullPath = new JsonUserPrefsStorage(null);
+        assert(new JsonUserPrefsStorage(null).getUserPrefsFilePath() == null);
+    }
+
     private Optional<UserPrefs> readUserPrefs(String userPrefsFileInTestDataFolder) throws DataConversionException {
         Path prefsFilePath = addToTestDataPathIfNotNull(userPrefsFileInTestDataFolder);
         return new JsonUserPrefsStorage(prefsFilePath).readUserPrefs(prefsFilePath);
@@ -73,7 +79,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setExecutiveProDbFilePath(Paths.get("data/executiveprodb.json"));
         return userPrefs;
     }
 

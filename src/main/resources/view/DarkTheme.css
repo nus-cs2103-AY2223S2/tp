@@ -28,7 +28,20 @@
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
 }
+.scroll-pane {
+    -fx-background: #3c3e3f
+}
+.scroll-pane-small-label {
+-fx-font-family: "Segoe UI";
+    -fx-font-size: 17px;
+    -fx-text-fill: #fefafb;
+}
 
+.scroll-pane-big-label {
+-fx-font-family: "Segoe UI";
+    -fx-font-size: 23px;
+    -fx-text-fill: #fefafb;
+}
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }
@@ -123,13 +136,14 @@
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #fefafb;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #fefafb;
+
 }
 
 .stack-pane {
@@ -330,6 +344,7 @@
 
 #filterField, #personListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
+
 }
 
 #resultDisplay .content {

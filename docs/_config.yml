@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "ExecutivePro"
 theme: minima
 
 header_pages:
@@ -8,8 +8,9 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2223S2-CS2103T-W09-4/tp"
 github_icon: "images/github-icon.png"
 
 plugins:
   - jemoji
+

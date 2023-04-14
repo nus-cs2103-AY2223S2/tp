@@ -1,5 +1,5 @@
 @startuml
-!include style.puml
+!include Style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
@@ -14,10 +14,10 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
+package "ExecutivePro Storage" #F4F6F6{
+Class "<<interface>>\nExecutiveProStorage" as ExecutiveProStorage
+Class JsonExecutiveProStorage
+Class JsonSerializableExecutiveProDb
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
@@ -25,19 +25,19 @@ Class JsonAdaptedTag
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside ..> Storage.Storage
 
-StorageManager .up.|> Storage
+StorageManager .up.|> Storage.Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" ExecutiveProStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage.Storage -left-|> UserPrefsStorage
+Storage.Storage -right-|> ExecutiveProStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonExecutiveProStorage .up.|> ExecutiveProStorage
+JsonExecutiveProStorage ..> JsonSerializableExecutiveProDb
+JsonSerializableExecutiveProDb --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
 
 @enduml

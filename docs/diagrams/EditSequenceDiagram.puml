@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExecutiveProParser" as ExecutiveProParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "d:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "Employee" as Employee LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/John")
+activate LogicManager
+
+LogicManager -> ExecutiveProParser : parseCommand("edit 1 n/John")
+activate ExecutiveProParser
+
+create EditCommandParser
+ExecutiveProParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> ExecutiveProParser
+deactivate EditCommandParser
+
+ExecutiveProParser -> EditCommandParser : parse("1 n/John")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : d
+deactivate EditCommand
+
+EditCommandParser --> ExecutiveProParser : d
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> ExecutiveProParser
+destroy EditCommandParser
+
+ExecutiveProParser --> LogicManager : d
+deactivate ExecutiveProParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : getFilteredEmployeeList()
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create Employee
+EditCommand -> Employee
+activate Employee
+
+Employee --> EditCommand : editedEmployee
+deactivate Employee
+
+EditCommand -> Model : setEmployee()
+activate Model
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

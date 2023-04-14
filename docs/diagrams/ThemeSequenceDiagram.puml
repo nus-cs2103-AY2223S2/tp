@@ -1,0 +1,118 @@
+@startuml
+!include Style.puml
+
+'https://plantuml.com/sequence-diagram
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":Stage" as Stage UI_COLOR
+participant ":Scene" as Scene UI_COLOR
+participant ":ObservableList" as List UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+'participant ":ExecutiveProParser" as ExecutiveProParser LOGIC_COLOR
+'participant ":ThemeCommandParser" as ThemeCommandParser LOGIC_COLOR
+'participant "t:ThemeCommand" as ThemeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+'/
+end box
+
+[-> MainWindow : executeCommand("theme light")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("theme light")
+activate LogicManager
+/'
+LogicManager -> ExecutiveProParser : parseCommand("theme light")
+activate ExecutiveProParser
+
+create ThemeCommandParser
+ExecutiveProParser -> ThemeCommandParser
+activate ThemeCommandParser
+
+ThemeCommandParser --> ExecutiveProParser
+deactivate ThemeCommandParser
+
+ExecutiveProParser -> ThemeCommandParser : parse("light")
+activate ThemeCommandParser
+
+create ThemeCommand
+ThemeCommandParser -> ThemeCommand
+activate ThemeCommand
+
+ThemeCommand --> ThemeCommandParser : t
+deactivate ThemeCommand
+
+ThemeCommandParser --> ExecutiveProParser : t
+deactivate ThemeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ThemeCommandParser -[hidden]-> ExecutiveProParser
+destroy ThemeCommandParser
+
+ExecutiveProParser --> LogicManager : t
+deactivate ExecutiveProParser
+
+LogicManager -> ThemeCommand : execute()
+activate ThemeCommand
+
+create CommandResult
+ThemeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ThemeCommand : result
+deactivate CommandResult
+
+ThemeCommand --> LogicManager : result
+deactivate ThemeCommand
+'/
+create CommandResult
+LogicManager -> CommandResult
+activate CommandResult
+
+CommandResult --> LogicManager : result containing "light"
+deactivate CommandResult
+
+LogicManager --> MainWindow : result containing "light"
+deactivate LogicManager
+
+MainWindow -> CommandResult : getTheme()
+activate CommandResult
+
+CommandResult --> MainWindow : "light"
+deactivate CommandResult
+
+MainWindow -> MainWindow : handleChangeTheme("light")
+activate MainWindow
+
+MainWindow -> Stage :getScene()
+activate Stage
+
+Stage -> Scene : getStylesheets()
+activate Scene
+
+Scene -> List
+activate List
+
+List --> Scene : list of stylesheets
+deactivate List
+
+Scene --> Stage : list of stylesheets
+deactivate Scene
+
+Stage --> MainWindow : list of stylesheets
+deactivate Stage
+
+MainWindow -> List : empty list and add light theme stylesheets
+activate List
+
+List --> MainWindow
+deactivate List
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<-- MainWindow : result
+deactivate MainWindow
+@enduml

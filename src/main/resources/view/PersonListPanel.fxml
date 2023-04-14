@@ -1,8 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.ScrollPane?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
-</VBox>
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <ListView fx:id="personListView" HBox.hgrow="ALWAYS"/>
+  <ScrollPane fx:id="personList" prefWidth="423" hvalue="1.0"  hbarPolicy="NEVER" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="scroll-pane">
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" >
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+      </padding>
+
+<!--      <HBox spacing="5" alignment="CENTER_LEFT" >-->
+<!--        <Label fx:id="id" styleClass="cell_big_label">-->
+<!--          <minWidth>-->
+<!--            &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
+<!--            <Region fx:constant="USE_PREF_SIZE" />-->
+<!--          </minWidth>-->
+<!--        </Label>-->
+<!--        <Label fx:id="name" text="Welcome to ExecutivePro" styleClass="scroll-pane-big-label" />-->
+<!--      </HBox>-->
+      <Label fx:id="name" text="Welcome to ExecutivePro" styleClass="scroll-pane-big-label" />
+      <FlowPane fx:id="tags"/>
+      <Label fx:id="phone" styleClass="scroll-pane-small-label" />
+      <Label fx:id="employeeId" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="address" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="email" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="department" styleClass="scroll-pane-small-label"/>
+      <Label fx:id="salary" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="dayOfPayment" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="leaveCount" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="dateOfBirth" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="dateOfJoining" styleClass="scroll-pane-small-label"/>
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+    </VBox>
+  </ScrollPane>
+</HBox>
+

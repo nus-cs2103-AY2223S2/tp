@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,34 +13,53 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the ExecutivePro data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ExecutiveProDb executiveProDb;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Employee> filteredEmployees;
+    private final FilteredList<Employee> allEmployees;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given executiveProDb and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyExecutiveProDb executiveProDb, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(executiveProDb, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with ExecutivePro: " + executiveProDb + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.executiveProDb = new ExecutiveProDb(executiveProDb);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEmployees = new FilteredList<>(this.executiveProDb.getEmployeeList());
+        allEmployees = new FilteredList<>(this.executiveProDb.getEmployeeList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ExecutiveProDb(), new UserPrefs());
     }
+
+    /**
+     * Creates a new ModelManager by making a deep copy of the provided Model.
+     * This constructor is particularly useful when you need to create a deep copy of the ModelManager.
+     *
+     * @param model The Model to be copied.
+     */
+    public ModelManager(Model model) {
+        requireAllNonNull(model);
+        userPrefs = new UserPrefs(model.getUserPrefs());
+        executiveProDb = new ExecutiveProDb(model.getExecutiveProDb());
+        filteredEmployees = new FilteredList<>(this.executiveProDb.getEmployeeList());
+        allEmployees = new FilteredList<>(model.getFullEmployeeList());
+    }
+
+
 
     //=========== UserPrefs ==================================================================================
 
@@ -65,50 +86,73 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getExecutiveProFilePath() {
+        return userPrefs.getExecutiveProDbFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setExecutiveProFilePath(Path executiveProFilePath) {
+        requireNonNull(executiveProFilePath);
+        userPrefs.setExecutiveProDbFilePath(executiveProFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ExecutiveProDb ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setExecutiveProDb(ReadOnlyExecutiveProDb addressBook) {
+        this.executiveProDb.resetData(addressBook);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyExecutiveProDb getExecutiveProDb() {
+        return executiveProDb;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasEmployee(Employee employee) {
+        requireNonNull(employee);
+        return executiveProDb.hasEmployee(employee);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public Optional<Employee> getEmployee(EmployeeId employeeId) {
+        requireNonNull(employeeId);
+        return executiveProDb.getEmployee(employeeId);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void deleteEmployee(Employee target) {
+        executiveProDb.removeEmployee(target);
+    }
 
-        addressBook.setPerson(target, editedPerson);
+    @Override
+    public void addEmployee(Employee employee) {
+        executiveProDb.addEmployee(employee);
+        updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
+    }
+
+    @Override
+    public void batchAddEmployees(String fileName) {
+        Path file = Paths.get("data", " ");
+
+        String line = "";
+
+    }
+
+    @Override
+    public void setEmployee(Employee target, Employee editedEmployee) {
+        requireAllNonNull(target, editedEmployee);
+
+        executiveProDb.setEmployee(target, editedEmployee);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Employee> getFullEmployeeList() {
+        return allEmployees;
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -118,14 +162,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Employee> getFilteredEmployeeList() {
+        return filteredEmployees;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredEmployees.setPredicate(predicate);
     }
 
     @Override
@@ -142,9 +186,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return executiveProDb.equals(other.executiveProDb)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredEmployees.equals(other.filteredEmployees);
     }
 
 }

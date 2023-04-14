@@ -2,104 +2,153 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_JOINING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEAVE_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYROLL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.Department;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.LeaveCounter;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Payroll;
+import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.PicturePath;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing employee in the ExecutivePro database.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the employee identified "
+            + "by their employee ID. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: employee ID "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
+            + "[" + PREFIX_PAYROLL + "PAYROLL] "
+            + "[" + PREFIX_LEAVE_COUNT + "LEAVE_COUNT] "
+            + "[" + PREFIX_DATE_OF_BIRTH + "DATE_OF_BIRTH] "
+            + "[" + PREFIX_DATE_OF_JOINING + "DATE_OF_JOINING] "
+            + "[" + PREFIX_TAG + "TAG]... \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_EMPLOYEE_SUCCESS = "Edited Employee: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the database.";
 
-    private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EmployeeId employeeId;
+    private final EditEmployeeDescriptor editEmployeeDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param employeeId EmployeeId of the employee in the filtered employee list to edit.
+     * @param editEmployeeDescriptor Details to edit the employee with.
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+    public EditCommand(EmployeeId employeeId, EditEmployeeDescriptor editEmployeeDescriptor) {
+        requireNonNull(employeeId);
+        requireNonNull(editEmployeeDescriptor);
 
-        this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.employeeId = employeeId;
+        this.editEmployeeDescriptor = new EditEmployeeDescriptor(editEmployeeDescriptor);
     }
 
+    /**
+     * Executes the EditCommand and returns the result message.
+     *
+     * @param model {@code Model} which the EditCommand should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If an error occurs during EditCommand execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (!EmployeeId.isValidEmployeeId(employeeId.toString())) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Optional<Employee> optionalEmployee = model.getEmployee(employeeId);
+        Employee employeeToEdit = optionalEmployee.orElseThrow(() -> new
+                CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX));
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+
+        Employee editedEmployee = createEditedEmployee(employeeToEdit, editEmployeeDescriptor);
+
+        if (!employeeToEdit.isSameEmployee(editedEmployee) && model.hasEmployee(editedEmployee)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setEmployee(employeeToEdit, editedEmployee);
+        model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
+
+        return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Employee} with the details of {@code employeeToEdit}
+     * edited with {@code editEmployeeDescriptor}.
+     *
+     * @param employeeToEdit Employee to edit.
+     * @param editEmployeeDescriptor Details to edit the employee with.
+     * @return New edited employee.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    static Employee createEditedEmployee(Employee employeeToEdit,
+                                         EditEmployeeDescriptor editEmployeeDescriptor) {
+        assert employeeToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());
+        Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
+        Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
+        Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
+        Department updatedDepartment = editEmployeeDescriptor.getDepartment().orElse(employeeToEdit.getDepartment());
+        Payroll updatedPayroll = editEmployeeDescriptor.getPayroll().orElse(employeeToEdit.getPayroll());
+        LeaveCounter updatedLeaveCounter = editEmployeeDescriptor.getLeaveCounter()
+                .orElse(employeeToEdit.getLeaveCounter());
+        Optional<LocalDate> updatedDateOfBirth = Optional.ofNullable(editEmployeeDescriptor.getDateOfBirth())
+                .flatMap(s -> s).or(employeeToEdit::getDateOfBirthOptional);
+        if (updatedDateOfBirth.isEmpty()) {
+            updatedDateOfBirth = employeeToEdit.getDateOfBirthOptional();
+        }
+        Optional<LocalDate> updatedDateOfJoining = Optional.ofNullable(editEmployeeDescriptor.getDateOfJoining())
+                .flatMap(s -> s).or(employeeToEdit::getDateOfJoiningOptional);
+        if (updatedDateOfJoining.isEmpty()) {
+            updatedDateOfJoining = employeeToEdit.getDateOfJoiningOptional();
+        }
+        PicturePath updatedPicturePath = editEmployeeDescriptor.getPicturePath()
+                .orElse(employeeToEdit.getPicturePath());
+        Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        EmployeeId employeeId = employeeToEdit.getEmployeeId();
+        return new Employee(updatedName, employeeId, updatedPhone, updatedEmail, updatedAddress, updatedDepartment,
+                updatedPayroll, updatedLeaveCounter, updatedDateOfBirth, updatedDateOfJoining, updatedPicturePath,
+                updatedTags);
     }
 
     @Override
@@ -116,32 +165,44 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+        return employeeId.equals(e.employeeId)
+                && editEmployeeDescriptor.equals(e.editEmployeeDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the employee with. Each non-empty field value will replace the
+     * corresponding field value of the employee.
      */
-    public static class EditPersonDescriptor {
+    public static class EditEmployeeDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
+        private Department department;
+        private Payroll payroll;
+        private LeaveCounter leaveCounter;
+        private Optional<LocalDate> dateOfBirth;
+        private Optional<LocalDate> dateOfJoining;
+        private PicturePath picturePath;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditEmployeeDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditEmployeeDescriptor(EditEmployeeDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setDepartment(toCopy.department);
+            setPayroll(toCopy.payroll);
+            setLeaveCounter(toCopy.leaveCounter);
+            setDateOfBirth(toCopy.dateOfBirth);
+            setDateOfJoining(toCopy.dateOfJoining);
+            setPicturePath(toCopy.picturePath);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +210,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, department, payroll, leaveCounter,
+                    dateOfBirth, dateOfJoining, picturePath, tags);
         }
 
         public void setName(Name name) {
@@ -184,9 +246,59 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setDepartment(Department department) {
+            this.department = department;
+        }
+
+        public Optional<Department> getDepartment() {
+            return Optional.ofNullable(department);
+        }
+
+        public void setPayroll(Payroll payroll) {
+            this.payroll = payroll;
+        }
+
+        public Optional<Payroll> getPayroll() {
+            return Optional.ofNullable(payroll);
+        }
+
+        public void setLeaveCounter(LeaveCounter leaveCounter) {
+            this.leaveCounter = leaveCounter;
+        }
+
+        public Optional<LeaveCounter> getLeaveCounter() {
+            return Optional.ofNullable(leaveCounter);
+        }
+
+        public void setDateOfBirth(Optional<LocalDate> dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+        }
+
+        public Optional<LocalDate> getDateOfBirth() {
+            return Optional.ofNullable(dateOfBirth).flatMap(s -> s);
+        }
+
+        public void setDateOfJoining(Optional<LocalDate> dateOfJoining) {
+            this.dateOfJoining = dateOfJoining;
+        }
+
+        public Optional<LocalDate> getDateOfJoining() {
+            return Optional.ofNullable(dateOfJoining).flatMap(s -> s);
+        }
+
+        public void setPicturePath(PicturePath picturePath) {
+            this.picturePath = picturePath;
+        }
+
+        public Optional<PicturePath> getPicturePath() {
+            return Optional.ofNullable(picturePath);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
+         *
+         * @param tags The tags to replace the object's {@code tags}.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
@@ -209,17 +321,23 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditEmployeeDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditEmployeeDescriptor e = (EditEmployeeDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getDepartment().equals(e.getDepartment())
+                    && getPayroll().equals(e.getPayroll())
+                    && getLeaveCounter().equals(e.getLeaveCounter())
+                    && getDateOfBirth().equals(e.getDateOfBirth())
+                    && getDateOfJoining().equals(e.getDateOfJoining())
+                    && getPicturePath().equals(e.getPicturePath())
                     && getTags().equals(e.getTags());
         }
     }

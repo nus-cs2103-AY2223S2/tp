@@ -110,13 +110,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredEmployeeList(), logic);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getExecutiveProDbFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -163,6 +163,27 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Changes the CSS theme.
+     */
+    @FXML
+    private void handleChangeTheme(String theme) {
+        if (theme.equals("light")) {
+            String lightThemeUrl = getClass().getResource("/view/LightTheme.css").toExternalForm();
+            System.out.println(lightThemeUrl);
+            String lightExtensionsUrl = getClass().getResource("/view/LightExtensions.css").toExternalForm();
+            primaryStage.getScene().getStylesheets().setAll();
+            primaryStage.getScene().getStylesheets().add(lightThemeUrl);
+            primaryStage.getScene().getStylesheets().add(lightExtensionsUrl);
+        } else if (theme.equals("dark")) {
+            String darkThemeUrl = getClass().getResource("/view/DarkTheme.css").toExternalForm();
+            String darkExtensionsUrl = getClass().getResource("/view/DarkExtensions.css").toExternalForm();
+            primaryStage.getScene().getStylesheets().setAll();
+            primaryStage.getScene().getStylesheets().add(darkThemeUrl);
+            primaryStage.getScene().getStylesheets().add(darkExtensionsUrl);
+        }
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -184,6 +205,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isChangeTheme()) {
+                handleChangeTheme(commandResult.getTheme());
             }
 
             return commandResult;

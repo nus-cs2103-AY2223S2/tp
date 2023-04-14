@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SetPictureCommand" as SetPictureCommand LOGIC_COLOR
+participant "FileChooser" as FileChooser LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("setpicture 1")
+activate LogicManager
+
+create SetPictureCommand
+LogicManager -> SetPictureCommand : details of parsing omitted
+activate SetPictureCommand
+
+SetPictureCommand --> LogicManager
+deactivate SetPictureCommand
+
+LogicManager -> SetPictureCommand : execute()
+activate SetPictureCommand
+
+'SetPictureCommand -> SetPictureCommand : chooseSourcePicture()
+'activate SetPictureCommand
+
+create FileChooser
+SetPictureCommand -> FileChooser : showOpenDialog()
+activate FileChooser
+
+FileChooser --> SetPictureCommand : selectedFile
+deactivate FileChooser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FileChooser -[hidden]-> SetPictureCommand
+destroy FileChooser
+
+'SetPictureCommand --> SetPictureCommand
+'deactivate SetPictureCommand
+
+SetPictureCommand -> SetPictureCommand : savePicture(employeeToSavePicture, selectedFile)
+activate SetPictureCommand
+
+SetPictureCommand --> SetPictureCommand : destPicturePath
+deactivate SetPictureCommand
+
+create EditCommand
+SetPictureCommand -> EditCommand : EditCommand that sets Employee's picturePath to destPicturePath
+activate EditCommand
+
+EditCommand --> SetPictureCommand :
+deactivate EditCommand
+
+SetPictureCommand -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : details omitted
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand --> SetPictureCommand
+deactivate EditCommand
+
+create CommandResult
+SetPictureCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SetPictureCommand
+deactivate CommandResult
+
+SetPictureCommand --> LogicManager : result
+deactivate SetPictureCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

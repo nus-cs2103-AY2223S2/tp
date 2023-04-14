@@ -1,0 +1,20 @@
+{
+  "employees": [ {
+    "name": "Valid Person",
+    "employeeId": "1",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "department" : "Marketing",
+    "payroll" : "1000 15",
+    "picturePath" : "data/employeepictures/default.png"
+  }, {
+    "name": "Person With Invalid Phone Field",
+    "employeeId": "bbb",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "department" : "Marketing",
+    "payroll" : "1000 15",
+    "picturePath" : "data/employeepictures/default.png"  } ]
+}

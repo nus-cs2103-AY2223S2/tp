@@ -4,11 +4,11 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+package Model <<Rectangle>> {
+Class "<<interface>>\nReadOnlyExecutiveProDb" as ReadOnlyExecutiveProDb
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class ExecutiveProDb
 Class ModelManager
 Class UserPrefs
 
@@ -19,27 +19,38 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Leave
+Class PayRoll
+Class DateOfBirth
+Class DateOfJoining
+Class Department
+
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> Model.Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ExecutiveProDb .up.|> ReadOnlyExecutiveProDb
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager .up.|> Model.Model
+Model.Model .right.> ReadOnlyUserPrefs
+Model.Model .left.> ReadOnlyExecutiveProDb
+ModelManager -left-> "1" ExecutiveProDb
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+ExecutiveProDb *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> "*" Email
+Person *--> "*" Address
+Person *--> "*" Leave
+Person *--> PayRoll
+Person *--> "*" DateOfBirth
+Person *--> "*" DateOfJoining
+Person *--> Department
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone

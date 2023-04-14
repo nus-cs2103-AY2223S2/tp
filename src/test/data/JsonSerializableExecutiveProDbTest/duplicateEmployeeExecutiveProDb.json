@@ -1,0 +1,29 @@
+{
+  "employees": [ {
+    "name": "Alice Pauline",
+    "employeeId": "1",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "department" : "Marketing",
+    "payroll" : "1000 15",
+    "leaveCounter" : "21",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "employeeId": "1",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "department" : "Marketing",
+    "payroll" : "1000 15",
+    "leaveCounter" : "21",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
+    "tagged": [ "friends" ]
+  } ]
+}

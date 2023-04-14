@@ -1,18 +1,20 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Employee> PREDICATE_SHOW_ALL_EMPLOYEES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -23,6 +25,7 @@ public interface Model {
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
 
     /**
      * Returns the user prefs' GUI settings.
@@ -35,53 +38,68 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' ExecutivePro file path.
      */
-    Path getAddressBookFilePath();
+    Path getExecutiveProFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' ExecutivePro file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setExecutiveProFilePath(Path executiveProFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces ExecutivePro data with the data in {@code executiveProDb}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setExecutiveProDb(ReadOnlyExecutiveProDb executiveProDb);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ExecutiveProDb */
+    ReadOnlyExecutiveProDb getExecutiveProDb();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an employee with the same identity as {@code employee} exists in ExecutivePro.
      */
-    boolean hasPerson(Person person);
+    boolean hasEmployee(Employee employee);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns an Optional object that may contain the employee with a given employee ID {@code employeeId}.
      */
-    void deletePerson(Person target);
+    Optional<Employee> getEmployee(EmployeeId employeeId);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Deletes the given employee.
+     * The employee must exist in ExecutivePro.
      */
-    void addPerson(Person person);
+    void deleteEmployee(Employee target);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Adds the given employee.
+     * {@code employee} must not already exist in ExecutivePro.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void addEmployee(Employee employee);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Batch Adds the employees from the user input.
+     * {@code fileName} must not already exist in ExecutivePro.
+     */
+    void batchAddEmployees(String fileName);
+
+    /**
+     * Replaces the given employee {@code target} with {@code editedEmployee}.
+     * {@code target} must exist in the ExecutivePro.
+     * The employee identity of {@code editedPerson} must not be the same as another
+     * existing employee in the ExecutivePro.
+     */
+    void setEmployee(Employee target, Employee editedEmployee);
+
+    /** Returns an unmodifiable view of the full employee list */
+    ObservableList<Employee> getFullEmployeeList();
+
+    /** Returns an unmodifiable view of the filtered employee list */
+    ObservableList<Employee> getFilteredEmployeeList();
+
+    /**
+     * Updates the filter of the filtered employee list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredEmployeeList(Predicate<Employee> predicate);
 }
