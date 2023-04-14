@@ -236,7 +236,6 @@ and will not match `banker` or `bankrupt`.
 * `filter e/.*\.org$ n/(?<!len)rin(?!len) e/.*\.net$` will list all persons with the substring "rin" but not "len" in their name,
 as well as an email that ends in ".org" or ".net".
 
-![applying filters display](images/filtersDisplay.png)
 #### Freezing the display : `freeze`
 
 Freezes the current <span style="color:green">selection</span> of persons displayed.
@@ -360,6 +359,8 @@ On the right side of the application, an Input Log section is available & displa
 
 ![history display](images/historyDisplay.png)
 ### **Applying Filters Display**
+![applying filters display](images/filtersDisplay.png)
+
 Right above the History box, you can see another small container where all the filters that were used on your persons list will be displayed
 
 *Why do we need this?* The reasoning is pretty much the same as for History Display, imagine having to filter out your list of 1000 persons with 5 different eligibilities, don't you think it's great idea to have all the filters displayed so that you know what are people showing up in the app?
