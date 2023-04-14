@@ -434,7 +434,6 @@ By using the `exit` command, you can close and exit the application.
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## <a id="addfeat"></a>**Additional Features**
 
