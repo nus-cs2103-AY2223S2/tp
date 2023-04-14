@@ -602,7 +602,7 @@ You can view all macros and their mappings by keying in `:macro -l`.
 
 ### Exiting the application
 
-(Somwhat) similar to Vim, we can use the `:quit` or `:q!` to exit the application.
+Similar to Vim, we can use the `:quit` or `:q!` to exit the application.
 
 ### Saving the task list data
 
