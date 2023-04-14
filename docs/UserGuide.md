@@ -5,25 +5,28 @@ title: ExecutivePro User Guide
 
 ## Introduction
 Welcome to ExecutivePro, an all-in-one solution for managing employees' information.
-Are you tired of wasting time and energy on inefficient tasks? Do you want to streamline your HR processes and
-boost your productivity?
-Look no further! ExecutivePro is here to solve your problems.
+Are you tired of grappling with time-consuming tasks? Do you want to streamline your HR processes and boost your productivity?
+Look no further! ExecutivePro is here to make it happen.
 
-ExecutivePro is a **desktop app designed for Human Resource managers to manage their employee information,
-optimized for use via a intuitive Command Line Interface (CLI)** while still retaining the benefits of a
-Graphical User Interface (GUI). With ExecutivePro, you can streamline your HR processes and save you from your tedious and mundane tasks.
-So why wait? Don't miss out on the opportunity to bring your productivity to another level. Head over to [Quick Start](#quick-start) now and
+ExecutivePro is a **desktop app specifically designed for Human Resource managers to manage their employee information,
+optimized for use via an easy-to-use Command Line Interface (CLI)** while still retaining the benefits of a
+Graphical User Interface (GUI). With ExecutivePro, you can streamline your HR processes and free yourself from the drudgery of mundane tasks.
+Why wait? Head over to [Quick Start](#quick-start) now and
 experience the game-changing benefits that ExecutivePro can bring to your work!
 
 --------------------------------------------------------------------------------------------------------------------
 ## Using this Guide
-This guide walks you through the comprehensive features of ExecutivePro.
+The purpose of this guide is to walk you through the comprehensive features of ExecutivePro and to help you troubleshoot any problems you may face while using ExecutivePro.
 
 Do check out [Quick Start](#quick-start) if this is your first time using ExecutivePro.
 
 Refer to the [Table of Contents](#table-of-contents) to easily navigate around different sections of the User Guide.
 
 If you have already set up ExecutivePro, feel free to navigate to [Features](#features) to learn how to use the features we offer.
+
+Refer to the [Command Summary](#command-summary) if you just need some quick reminders of the command format.
+
+If you encounter a term that you are unsure about, the [Glossary](#glossary) is where you want to go.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
@@ -36,7 +39,7 @@ If you have already set up ExecutivePro, feel free to navigate to [Features](#fe
 --------------------------------------------------------------------------------------------------------------------
 ## Symbols and Syntax
 
-Here are some of the symbols to take note of when going through this user guide:
+Here are some of the symbols that may appear in this user guide:
 
 | Symbol    | Meaning                                                                                                                                                                      |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -49,36 +52,37 @@ Here are some of the symbols to take note of when going through this user guide:
 --------------------------------------------------------------------------------------------------------------------
 ## The User Interface
 
-Below is an image of ExecutivePro User Interface with the main components labelled.
+Below is the ExecutivePro User Interface with the main components labelled.
 
 ![GUI](images/UserGuide/labelledgui.png)
 
 <div style="page-break-after: always"></div>
 
+Main components of the ExecutivePro User Interface:
 
-| No. | Component                    | Description                                                                                                                                    |
-|-----|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | Toolbar                      | "File" button to exit program manually. Help window will appear with the click of "Help" button.                                               |
-| 2   | Display Panel                | Displays the information of an employee. The information includes the employee's personal details, department, payroll and leave information.  |
-| 3   | Employee List                | Displays the list of employees, with their basic information like `Name`, `Employee Id`, `Department` and `tags`.                              |
-| 4   | Command Panel                | Displays the system message after the execution of a command. The system message describes the outcome of the entered command.                 |
-| 5   | Command Line Interface (CLI) | Users are able to type their inputs and commands on this CLI.                                                                                  |
+| No. | Component                    | Description                                                                                                                 |
+|-----|------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| 1   | Toolbar                      | "File" button to exit program manually. "Help" button to display the _Help Window_.                                         |
+| 2   | Display Panel                | Displays the full information of an employee, including personal details, department, payroll and leave information.        |
+| 3   | Employee List                | Displays the entire list of employees, along with their basic information (`Name`, `Employee Id`, `Department` and `tags`). |
+| 4   | Command Panel                | Displays the outcome of the entered command after execution, including error and success messages.                          |
+| 5   | Command Line Interface (CLI) | This is where you enter the commands.                                                                                       |
 
 #### 1. Toolbar
 
 ![Toolbar](images/UserGuide/tool.png)
 
-This Toolbar can be used to :
+This toolbar can be used to:
 
-1. Exit the application through the **File** button
-2. Access the Help guide through the **Help** button
+1. Exit ExecutivePro through the **File** button
+2. Access the _Help Window_ through the **Help** button
 
 
 #### 2. Display Panel
 
 <img src="images/UserGuide/DisplayPanel.png" class="centerImage" width = 80% height = 100%>
 
-This section shows a specific employee's particulars.
+This section shows the full information of the selected employee.
 
 <u> Things to note: </u>
 
@@ -95,8 +99,8 @@ This shows the whole employee list with basic information such as _Name_, _Emplo
 
 This will come in handy if:
 
-1. You want a general overview of the employees in the company as of this moment.
-2. You want to quickly find out their Employee ID to view more details.
+1. You want a general overview of the employees in the company.
+2. You want to quickly find out an employee's ID to edit their details.
 
 <div style="page-break-after: always"></div>
 
@@ -110,19 +114,20 @@ This section displays relevant messages or errors after the command is entered.
 <u> What is CLI?</u>
 
 To understand CLI better, here is an analogy:
-Imagine you are in a restaurant with a talented chef in the kitchen. The chef represents the computer.
-The CLI is like communicating directly with the chef by giving specific 
+Imagine being in a restaurant with a talented chef in the kitchen. The chef represents the computer.
+The CLI helps you to communicate directly with the chef by giving specific 
 instructions or "orders" about what you want to eat. Hence, the CLI is a way to interact with your computer by giving precise, text-based instructions,
-much like talking directly to a chef to customize your meal.
+much like talking directly to a chef to customize your meal. Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time.
 
 <img src="images/UserGuide/CLI.png" class="centerImage">
 In this section, you can enter your user commands in the command line in order to communicate with the application.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
+Follow these steps if this is your first time using ExecutivePro:
 
 1. Ensure you have Java `11` or above installed in your Computer.
-    1. If you have installed Java before, check that you have the right version, which is Java `11`.
+    1. If you have already installed Java, check that you have Java version `11`.
         - If you are using Windows, open up command prompt and type `java -version` and enter.
         - If you are using Mac, open up terminal and type `java -version` and enter.
     2. If you do not have Java `11`:
@@ -134,62 +139,62 @@ In this section, you can enter your user commands in the command line in order t
 
 3. Copy the jar file to a folder you want to use as the _main folder_ for your ExecutivePro. 
 This folder can be on your Desktop or any location you prefer.
-In the below image, the folder `test` is placed in the Desktop.
+For example, we create a `test` folder on the Desktop.
 <img src="images/UserGuide/jarfile.png" class="centerImage">
-Furthermore, the jar file has been placed in the `test` folder as shown below.
+Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
 <img src="images/UserGuide/jarfile2.png" class="centerImage" >
+4. Now you are ready to use ExecutivePro, refer to the section [Starting ExecutivePro](#starting-executivepro) below for more details.
 
 <div markdown="block" class="alert alert-info">
 <div style="page-break-after: always"></div>
 
-### Starting ExecutivePro application
+### Starting ExecutivePro
 :warning: **Note:**
 To get started with ExecutivePro, you will need to run the application using your terminal or command prompt. Follow the steps below:
 
 Step 1 (Opening Terminal or Command Prompt) :
 
-On Windows, press Windows + R, type cmd, and hit Enter to open Command Prompt.
+On Windows, press Windows + R, type cmd, and hit Enter to open the Command Prompt.
 On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
 
-Your terminal should show up like this:
+Your Command Prompt/Terminal should show up like this:
 <img src="images/UserGuide/Terminal.png" class="centerImage" width = 80% height = 50% >
 
 Step 2 (Navigating to the Jar File Location) :
 
-Use the `cd` command to navigate to the folder where the ExecutivePro.jar file is located in.
+Use the `cd` command to navigate to the folder where the `ExecutivePro.jar` file is located in.
 This is the location where you have placed your jar file in, as done in [point 3 of Quick start section](#quick-start).
-For example, if the file is located in the `test` folder on your Desktop, you can type `cd Desktop` and followed by
-`cd test` on your terminal and hit Enter, just like the image below.
+For example, if the file is located in the `test` folder on your Desktop, you can type `cd Desktop` and hit Enter, followed by
+`cd test`and Enter to reach the `test` folder, just like the image below.
 
 <img src="images/UserGuide/CD.png" class="centerImage" width = 80% height = 50% >
 
 Step 3 (Running the Application) :
 Once you are in the correct directory, type the following command,`java -jar ExecutivePro.jar`, in your terminal and hit Enter:
 
-A Graphical User Interface(GUI) similar to below should appear in seconds. 
+A window like below should appear in seconds. 
 Note how the app contains some sample data.
 
 <img src="images/UserGuide/quickstartui.png" class="centerImage" width = 80% height = 50% >
 
-A data folder should appear in the same folder as the ExecutivePro.jar file after the application is run successfully.
+A data folder should appear in the same folder as the `ExecutivePro.jar` file after the application is run successfully.
 
-If the data folder is still missing, simply create a `data` folder by creating a new folder in the same
-folder where the jar file is located.
+If the data folder is missing, simply create a folder named `data` in the same location as the `ExecutivePro.jar` file.
 
-Now that the application is running, you can follow the steps in the user guide to perform various tasks
-such as adding employees using the `batchadd` command and exporting the database using the `batchexport` command.
+Congratulations, ExecutivePro is now running, you can refer to the [Features](#features) section below to learn all about the exciting features that ExecutivePro offer.
 
 </div>
 
-_Refer to the [Features](#features) below for details of each command._
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
+This section lists the details of all the features of ExecutivePro.
 
 ### Viewing help : `help`
-We know that there can be a lot of information to take in for a new user, so if you ever _feel lost_ while using ExecutivePro, getting help with the commands is just a simple step away.
+We know that there can be a lot of information to take in for a new user, so if you ever _feel lost_ while using ExecutivePro, getting help is just a simple step away.
 
-Entering the `help` command will open up the help window that looks like this.
+Entering the `help` command will open up the _Help Window_ that looks like this.
 ![Help Window](./images/UserGuide/helpwindow.png)
 
 On the left column, you can find the full list of ExecutivePro commands and the right are the details for each command. If you require more information, the _Help Window_ also contains a button at the bottom to open up this User Guide in your browser.
@@ -568,7 +573,7 @@ before uploading it to ExecutivePro.
 <a name="section-exit"></a>
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits the program. Your data is automatically saved so ExecutivePro will look exactly the same the next time you open it up.
 
 Format: `exit`
 
