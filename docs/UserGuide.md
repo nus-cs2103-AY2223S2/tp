@@ -4,10 +4,10 @@ title: User Guide
 ---
 
 E-Lister is a comprehensive **desktop app**, specially designed for **insurance agents and other financial professionals** to streamline the management of their customers' contact information. This powerful tool provides users with:
-1.	Basic operations **(add, delete, find, clear)** with the contact information via CLI (Command Line Interface) and user-customized tags for labeling.
-2.	Ability to **import** and work on existing CSV files.
-3.	Other useful operations **(filter, mass operation, freeze)** for advanced users to work with data in meaningful ways.
-4.	Additional commands **(undo, shortcut)** for a smooth, personalised experience.
+1.	Basic operations **(e.g. add, edit, delete, tag, find)** to work on contact details via CLI (Command Line Interface) and user-customized tags for labeling.
+2.	Other useful operations **(e.g. filter, mass operation, freeze)** for advanced users to handle data in meaningful ways.
+3.	Ability to **import** and work on existing CSV files.
+4.	Additional commands **(e.g. undo, shortcut)** for a smooth, personalised experience.
 5. An extensive yet friendly user interface.
 
 * Table of Contents
@@ -108,7 +108,7 @@ Format: `help`
 #### Adding a person: `add`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you have an existing CSV dataset, you may choose to **[import it directly](#import-and-export-csv-file)** rather than adding each contact individually.
+If you have an existing CSV dataset, you may choose to <ins>**[import it directly](#import-and-export-csv-file)**</ins> rather than adding each contact individually.
 </div>
 
 Adds a person to E-Lister.
@@ -359,24 +359,26 @@ Format: `export [shown|all]`
 
 ![export example](images/exportExample.png)
 
-### **Input Log**
-![history display](images/historyDisplay.png)
+## Additional info on the User Interface
 
-On the right side of the application, an Input Log section is available & displays successful commands you have previously entered.
+### **Filter Box**
 
-*Why do we need this?* Keeping a record of all commands executed in contacts managing app is important for several reasons.
-- It provides a historical log of all actions taken by the insurance agent, which can be useful in case of any disputes or discrepancies that may arise in the future.
-- It allows the agent to keep track of their progress and performance, providing a clear overview of where they are in the workflow at any given time. This can be especially helpful when managing a large number of customers and tasks simultaneously, as it can be easy to lose track of what has been done and what still needs to be done
-- Finally, having a record of all commands executed in the app can help identify any issues or areas for improvement in the workflow, allowing the agent to refine their approach and optimize their performance over time.
+On the top-right corner of the display, you can see a small box where all the filters that were used on your persons list will be displayed.
 
-
-### **Applying Filters Display**
 ![applying filters display](images/filtersDisplay.png)
 
-Right above the History box, you can see another small container where all the filters that were used on your persons list will be displayed
+*Why do we need this?* Imagine having to obtain a specific list of contacts with the tags `upperClass`, `healthy`, `premiumPlanCandidates`, `healthPlanCandidates`, and `returningCustomers`. It'll be useful to have all the current filters displayed so that you know which ones you have already applied!
 
-*Why do we need this?* The reasoning is pretty much the same as for History Display, imagine having to filter out your list of 1000 persons with 5 different eligibilities, don't you think it's great idea to have all the filters displayed so that you know what are people showing up in the app?
+### **Input Log**
 
+Below the Filter Box, an Input Log box displays commands you have previously entered.
+
+![history display](images/historyDisplay.png)
+
+*Why do we need this?* Keeping a record of all commands executed has several advantages.
+- It provides a historical log of all actions taken by you, which can be useful in case of any disputes or discrepancies that may arise in the future.
+- It allows you to keep track of your current progress, which is especially helpful when managing a large number of tasks so you don't lose track of your current task!
+- You may also use your input history to identify areas for improvement in your approach to handling contact data, allowing you optimize productivity over time!
 
 ## **Exiting the program** : `exit`
 
