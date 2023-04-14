@@ -152,7 +152,7 @@ Don't worry! Editing a deck name will not affect the cards stored inside it.
 
 Format: `editDeck INDEX DECK_NAME`
 - `INDEX` is the index of the deck you want to edit.
-- The card's index can be found in the displayed card list.
+- The deck's index can be found in the displayed deck list.
 - `DECK_NAME` is the new name you want to assign to the specified deck.
 - The new deck name must not match any existing deck names (Deck names are case-sensitive).
 
@@ -172,13 +172,13 @@ Once you have no use for a deck, you can delete the deck and all the cards withi
 
 Format: `deleteDeck INDEX`
 - `INDEX` is the index of the deck in the deck list.
-- The card's index can be found in the displayed card list.
+- The deck's index can be found in the displayed deck list.
 
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:** <br>
-- Make sure that the index you are providing is valid! For example, `deleteDeck -1` will result in an error message on the result display as -1 is an invalid index.
 - Be careful, a deck (and cards within the deck) once deleted cannot be retrieved!
+- Make sure that the index you are providing is valid! For example, `deleteDeck -1` will result in an error message on the result display as -1 is an invalid index.
 
 </div>
 
@@ -269,7 +269,7 @@ Note that you will not be able to make any deck-related changes (e.g. `addDeck`,
 
 This command allows you to add a card to the **selected** deck. 
 
-A card must contain a question and an answer. It may contain at most **one** difficulty tag. 
+Remember, every card needs to have a question and an answer, and it can have a **maximum of one** difficulty tag.
 
 Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
 - `QUESTION` field of the card is **case-sensitive** and cannot be duplicated in the same deck.
@@ -293,14 +293,18 @@ Examples:
 <div style="page-break-after: always;"></div>
 ### 3.4.2. Deleting a Card : `deleteCard`
 
-You can swiftly delete an existing card from the current selected deck with this command. 
+You can swiftly delete an existing card from the current selected deck with this command.
+
+Format: `deleteCard INDEX`
+- `INDEX` is the index of the card in the card list on the right panel.
+- The card's index can be found in the displayed card list.
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**
-Note that this is irreversible!
+- Note that this is irreversible!
+- Make sure that the index you are providing is valid! For example, `deleteCard -1` will result in an error message on the result display as -1 is an invalid index.
 </div>
 
-Format: `deleteCard INDEX`
 * Deletes the card at the specified `INDEX`. The card's index can be found in the displayed card list.
 
 Example:
@@ -312,10 +316,15 @@ If you made mistakes while creating a card, no problem! You can easily edit any 
 
 Format: `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 
-* Edits the card at the specified `INDEX`. The card's index can be found in the displayed card list.
-* At least **one** of the optional components must be provided.
-* Existing values of the card will be replaced by the input values.
-* If the same prefix appears multiple times, only the **last** occurrence of the prefix will be considered. 
+- Edits the card at the specified `INDEX`. The card's index can be found in the displayed card list.
+- At least **one** of the optional components must be provided.
+- Existing values of the card will be replaced by the input values.
+- If the same prefix appears multiple times, only the **last** occurrence of the prefix will be considered. 
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** Make sure that the index you are providing is valid! For example, `deleteCard -1` will result in an error message on the result display as -1 is an invalid index.
+</div>
+
 
 Examples:
 * `editCard 1 q\What is chemical symbol for Carbon? a\C` edits the question and answer of the 1st card to be `What is chemical symbol for Carbon?` and `C` respectively.
