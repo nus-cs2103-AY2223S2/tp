@@ -613,19 +613,33 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 
 | Action | Format, Examples                                                                                                                                                                                                                                    |
 |--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | `add n/NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
-| Clear  | `clear`                                                                                                                                                                                                                                             |
-| Delete | `delete INDEX [INDEX]...`<br>eg. `delete 3` or `delete 1 2 3 4`                                                                                                                                                                                     |
-| Edit   | `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
-| Exit   | `exit`                                                                                                                                                                                                                                              |
-| Filter   | `filter [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...` <br/>eg. `filter a/tampines` <br/>                                                                                 |                                                                                                                                                                                           |
-| Find   | `find [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...` <br/>eg. `find n/Sh` <br/>                                                                                 |                                                                                                                                                                                           |
-| Help   | `help`                                                                                                                                                                                                                                              |
-| List   | `list`                                                                                                                                                                                                                                              |
-| Redo   | `redo`                                                                                                                                                                                                                                              |
-| Remark | `remark INDEX [REMARK]` <br/>eg. `remark 2 Not good in Japanese`                                                                                                                                                                                    |
-| Undo   | `undo`                                                                                                                                                                                                                                              |
-| Show   | `show INDEX` <br/>eg. `show 1`                                                                                                                                                                                                                      |
+| [Add]    | `add n/NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
+| [Clear]  | `clear`                                                                                                                                                                                                                                             |
+| [Delete] | `delete INDEX [INDEX]...`<br>eg. `delete 3` or `delete 1 2 3 4`                                                                                                                                                                                     |
+| [Edit]   | `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
+| [Exit]   | `exit`                                                                                                                                                                                                                                              |
+| [Filter]   | `filter [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...` <br/>eg. `filter a/tampines` <br/>                                                                                 |                                                                                                                                                                                           |
+| [Find]   | `find [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...` <br/>eg. `find n/Sh` <br/>                                                                                 |                                                                                                                                                                                           |
+| [Help]   | `help`                                                                                                                                                                                                                                              |
+| [List]   | `list`                                                                                                                                                                                                                                              |
+| [Redo]   | `redo`                                                                                                                                                                                                                                              |
+| [Remark] | `remark INDEX [REMARK]` <br/>eg. `remark 2 Not good in Japanese`                                                                                                                                                                                    |
+| [Undo]   | `undo`                                                                                                                                                                                                                                              |
+| [Show]   | `show INDEX` <br/>eg. `show 1`                                                                                                                                                                                                                      |
+
+[Add]: #adding-a-student-add
+[Clear]: #clearing-all-entries-clear
+[Delete]: #delete-a-student-delete
+[Edit]: #editing-a-student-edit
+[Exit]: #exiting-the-program-exit
+[Filter]: #findfilter-students-findfilter
+[Find]: #findfilter-students-findfilter
+[Help]: #viewing-help-help
+[List]: #listing-all-students-list
+[Redo]: #redo-a-previous-undo-redo
+[Remark]: #editing-remark-of-student-remark
+[Undo]: #redo-a-previous-undo-redo
+[Show]: #showing-a-students-remark-show
 
 [↑ Back to top](#table-of-contents)
 
