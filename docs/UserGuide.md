@@ -163,6 +163,7 @@ Main components of the ExecutivePro User Interface:
 | 4   | Command Panel                | Displays the outcome of the entered command after execution, including error and success messages.                          |
 | 5   | Command Line Interface (CLI) | This is where you enter the commands.                                                                                       |
 
+<div style="page-break-after: always"></div>
 
 #### 1. Toolbar
 
@@ -404,8 +405,7 @@ Once that is done,
 
 1. Once done, run `batchadd FILENAME` in the CLI.
 
-If the command is successful, the employees in the file should be added to the database all at once,
-and it should look something like the below image.
+If the command is successful, the employees in the file should be added to the database like below:
 
 <p align="center">
   <img src="images/batchaddsuccess.png" width="75%" height="50%">
@@ -420,7 +420,6 @@ The command could be unsuccessful, and there are a few potential causes of this:
    and the command will not run.
 3. If you are using Excel to open your CSV file, the date formatting in Excel might not be set to the right format,
 please refer to the instructions [here](#opening-csv-files-in-excel)
-
 
 In the case of an unsuccessful Batch Add, **NONE** of the employees in the CSV will be added.
 Also note that as of version `1.3` , this feature only supports CSV files and adding employees with the fields mentioned above.
