@@ -713,7 +713,7 @@ you can find employees with the specified keywords, just like the image below.
    <p align="center">
      <img src="images/findInterface.png" width="75%" height="50%">
      <br>
-     <em>Input search keywords "Alex Marketing"</em>
+     <em>Input search keywords: "Alex Marketing"</em>
    </p>
 
 **Step 2 (Results displayed) :**
