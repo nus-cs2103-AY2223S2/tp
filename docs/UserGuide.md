@@ -133,7 +133,7 @@ In the Main Mode, you can quickly and easily create new decks, add new cards to 
 
 ### 3.3.1. Adding a Deck : `addDeck`
 
-Before you can add any cards, you must first create a deck. Creating a deck is done through the simple command below. 
+Before you can add any cards, you must first create a deck. It's super easy though, just use the simple command below to get started with your first deck!
 
 Format: `addDeck DECK_NAME`
 - `DECK_NAME` is the name of the deck you want to create. 
@@ -141,36 +141,53 @@ Format: `addDeck DECK_NAME`
   - You do not need any prefix before deck name.
 
 Example:
-* `addDeck Science` will create a deck titled Science.
+- `addDeck Science` will create a deck titled Science.
+- `addDeck Math` will create a deck titled Math.
 
 ### 3.3.2. Editing a Deck : `editDeck`
 
 You just created a deck, but you realised you made a typo! Fret not, you can easily edit the name of the deck with this command.  
 
-Editing a deck name will not affect the cards stored inside it.
+Don't worry! Editing a deck name will not affect the cards stored inside it.
 
 Format: `editDeck INDEX DECK_NAME`
 - `INDEX` is the index of the deck you want to edit.
+- The card's index can be found in the displayed card list.
 - `DECK_NAME` is the new name you want to assign to the specified deck.
-  - The new deck name must not match any existing deck names (Deck names are case-sensitive).
+- The new deck name must not match any existing deck names (Deck names are case-sensitive).
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** Make sure that the index you are providing is valid! For example, `editDeck -1` will result in an error message on the result display as -1 is an invalid index.
+
+</div>
 
 Example: 
-- `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to "Chemistry".
+- `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to "Chemistry". 
+- `editDeck 2 Math` will edit the name of the second deck in the deck list to "Math". 
 
 ### 3.3.3. Deleting a Deck : `deleteDeck`
 
 Once you have no use for a deck, you can delete the deck and all the cards within it with this command.  
 
-Be careful, a deck once deleted cannot be retrieved! 
-
 Format: `deleteDeck INDEX`
 - `INDEX` is the index of the deck in the deck list.
+- The card's index can be found in the displayed card list.
 
-Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in that deck. 
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** <br>
+- Make sure that the index you are providing is valid! For example, `deleteDeck -1` will result in an error message on the result display as -1 is an invalid index.
+- Be careful, a deck (and cards within the deck) once deleted cannot be retrieved!
+
+</div>
+
+Example: 
+- `deleteDeck 1` deletes the deck at index 1 and all the cards in that deck. 
 
 ### 3.3.4. Finding Decks by Keywords: `findDecks`
 
-If you want to find a specific deck among the many decks you have created, use this command to filter the decks based on their deck names!
+If you're looking for a way to quickly find a specific deck among the many you've created, you can use a handy command to filter your decks based on their names. Give it a try!
 
 Format: `findDecks KEYWORD...`
 - You can include multiple KEYWORDS - as long as a deck's name contains at least one keyword, the deck will be found.
@@ -188,7 +205,7 @@ Example:
 
 💡 **Tip:** 
 - Notice there is a small text box `Finding Decks with keyword(s): science programming` below the filtered list of decks. This text box is displayed as long as the decks are filtered. It is to help you remember what you have previously searched for!
-- Notice that the result display will show how many decks have been listed.
+- Notice that the result display will also show how many decks have been listed.
 
 </div>
 
@@ -244,7 +261,9 @@ Format: `clear`
 With a deck selected, you can see all the cards in the deck on the right panel! 
 Now you can interact with the cards in the selected deck.
 
+<div markdown="block" class="alert alert-info">:information_source: **Note:** 
 Note that you will not be able to make any deck-related changes (e.g. `addDeck`, `deleteDeck`) until you unselect the current deck.
+</div>
 
 ### 3.4.1. Adding a Card: `addCard`
 
