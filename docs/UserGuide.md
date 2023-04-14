@@ -42,7 +42,7 @@ Alternatively, you may refer to the user guide to quickly view information regar
 unsure of how to use.
 
 To help you better navigate through our user guide, the [Return to ToC](#table) at the end of
-each section allows you return to the Table of Contents. From there, you can quickly access
+each section allows you to return to the Table of Contents. From there, you can quickly access
 another section by clicking the respective header.
 <br>
 
