@@ -122,13 +122,13 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 |-------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ADDRESS`         | Address of the student.                                                               | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                              |
 | `EDUCATION` | Education level of the student.                                                       | Can contain numbers and multiple letters/words                                                                                                                                                                                       |
-| `EMAIL`           | Email address of the student.                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contain letters and numbers <br/> 5. Should not contain any spacings |
+| `EMAIL`           | Email address of the student.                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-[alphanumeric](#glossary-alphanum) character (eg. . , ' " @) <br/> 4. Can contain letters and numbers <br/> 5. Should not contain any spacings |
 | `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list). | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                           |
-| `MODULE`          | The module you're teaching the student.                                               | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the module given will be removed by the app                                                                                          |
+| `MODULE`          | The module you're teaching the student.                                               | 1. Can only contains [alphanumeric](#glossary-alphanum) characters and/or spaces <br/> 2. Any whitespaces in front of the module given will be removed by the app                                                                                          |
 | `PHONE`           | Phone number of the student.                                                          | 1. Must only contain numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
 | `REMARK`          | Your notes or remarks on the student.                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                 |
-| `NAME`    | Name of the student.                                                                  | 1. Can only contain alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name given will be removed by the app                                                                                             |
-| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add).    | Must be a single word containing alphanumeric characters only                                                                                                                                                                        |
+| `NAME`    | Name of the student.                                                                  | 1. Can only contain [alphanumeric](#glossary-alphanum) characters and/or spaces <br/> 2. Any whitespaces in front of the name given will be removed by the app                                                                                             |
+| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add).    | Must be a single word containing [alphanumeric](#glossary-alphanum) characters only                                                                                                                                                                        |
 | `TELEGRAM`        | Telegram handle of the student.                                                       | 1. Must begin with "@"<br/> 2. Can only contain uppercase and lowercase alphabets, digits (0-9), and underscores<br/> 3. Minimum length is 5 characters                                                                              |
 
 <div markdown="block" class="alert alert-info">
@@ -246,11 +246,11 @@ Adds a student to the list, along with their education level and any student-spe
 
 > Format: `add n/NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`
 >
-> - NAME: [Alphanumeric](#glossary) word(s).
+> - NAME: [Alphanumeric](#glossary-alphanum) word(s).
 > - ADDRESS: The student's address.
 > - PHONE: A student's phone number that only contains numbers and is as least 3 numbers long.
 > - EMAIL: A valid email follows the `local@domain` format.
-> - EDUCATION: [Alphanumeric](#glossary) word(s)
+> - EDUCATION: [Alphanumeric](#glossary-alphanum) word(s)
 > - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
 > - REMARK: Can be sentences or even paragraphs.
 > - TAG: A detail about a student (limited to one word long).
@@ -327,11 +327,11 @@ Edits a student's information _(all information except remarks)_. To remove a st
 >
 > - The index refers to the index number shown in the displayed student list.
 > - The index **must be a positive integer** 1, 2, 3, ...
-> - NAME: [Alphanumeric](#glossary) word(s).
+> - NAME: [Alphanumeric](#glossary-alphanum) word(s).
 > - ADDRESS: The student's address.
 > - PHONE: A student's phone number that only contains numbers and is as least 3 numbers long.
 > - EMAIL: A valid email follows the `local@domain` format.
-> - EDUCATION: [Alphanumeric](#glossary) word(s)
+> - EDUCATION: [Alphanumeric](#glossary-alphanum) word(s)
 > - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
 > - TAG: A detail about a student (limited to one word long).
 > - MODULE: The module code the student is taking (can be multiple words).
@@ -580,7 +580,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 
 | Term                           | Details                                                                                                         | Examples                                                                                                                                                                                                                                    |
 |--------------------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Alphanumeric                   | Characters that are either a numbers or letters.                                                                | 1, 2, 3, a, b, c are alphanumeric                                                                                                                                                                                                           |
+| <a id="glossary-alphanum"></a>Alphanumeric                   | Characters that are either a numbers or letters.                                                                | 1, 2, 3, a, b, c are alphanumeric                                                                                                                                                                                                           |
 | Command                        | Instructions for TeachMeSenpai to execute/carry out.                                                            | [Features](#features) are commands TeachMeSenpai can execute. For example, [`add`](#adding-a-student-add) is a command!                                                                                                                     |
 | <a id="glossary-cli"></a>Command Line Interface (CLI)   | A Command Line Interface allows users to use text as command to be executed by an application.                  | The [command line](#guide-to-teachmesenpais-gui) acts as a CLI in this case.                                                                                                                                                                |
 | <a id="glossary-gui"></a>Graphical User Interface (GUI) | A Graphical User Interface allows users to interace with an application through graphics like icons, menus etc. | TeachMeSenpai acts as a GUI in this case.                                                                                                                                                                                                   |
