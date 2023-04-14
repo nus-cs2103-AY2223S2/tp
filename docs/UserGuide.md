@@ -881,7 +881,7 @@ After selecting a student, you can use `attendance` to view a summary of their a
 attendance
 ```
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** To edit a student's attendance for a particular session, you can navigate to their [Attendance Page](#managing-attendance).
+<div markdown="block" class="alert alert-info">:information_source: **Note:** To edit a student's attendance for a particular session, you can navigate to their [Attendance Page](#managing-the-attendance-of-a-session).
 </div>
 <br>
 
