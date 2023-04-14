@@ -2,6 +2,7 @@
 layout: page
 title: ExecutivePro User Guide
 ---
+<a id="top"></a>
 
 ## Introduction
 Welcome to ExecutivePro, an all-in-one solution for managing employees' information.
@@ -11,12 +12,12 @@ Look no further! ExecutivePro is here to make it happen.
 ExecutivePro is a **desktop app specifically designed for Human Resource managers to manage their employee information,
 optimized for use via an easy-to-use Command Line Interface (CLI)** while still retaining the benefits of a
 Graphical User Interface (GUI). With ExecutivePro, you can streamline your HR processes and free yourself from the drudgery of mundane tasks.
-Why wait? Head over to [Quick Start](#quick-start) now and
-experience the game-changing benefits that ExecutivePro can bring to your work!
+
+The purpose of this guide is to walk you through the comprehensive features of ExecutivePro and to help you troubleshoot any problems you may face while using ExecutivePro.
+Read on to learn more and experience the game-changing benefits that ExecutivePro can bring to your work!
 
 --------------------------------------------------------------------------------------------------------------------
 ## Using this Guide
-The purpose of this guide is to walk you through the comprehensive features of ExecutivePro and to help you troubleshoot any problems you may face while using ExecutivePro.
 
 Do check out [Quick Start](#quick-start) if this is your first time using ExecutivePro.
 
@@ -28,18 +29,9 @@ Refer to the [Command Summary](#command-summary) if you just need some quick rem
 
 If you encounter a term that you are unsure about, the [Glossary](#glossary) is where you want to go.
 
---------------------------------------------------------------------------------------------------------------------
-## Table of Contents
+### Symbols and Syntax
 
-* Table of Contents
-{:toc}
-
-<div style="page-break-after: always"></div>
-
---------------------------------------------------------------------------------------------------------------------
-## Symbols and Syntax
-
-Here are some of the symbols that may appear in this user guide:
+Here are the symbols that you will see while reading this user guide:
 
 | Symbol    | Meaning                                                                                                                                                                 |
 |-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -49,13 +41,106 @@ Here are some of the symbols that may appear in this user guide:
 | :warning: | Be wary and proceed with caution.                                                                                                                                       |
 | `...`     | Items with `...` after them can either be omitted or used one or more times.<br/> Example:`[t/TAG]…` can be used as ` ` (omitted), `t/friend`, `t/friend t/family` etc. |
 
+
+--------------------------------------------------------------------------------------------------------------------
+## Table of Contents
+
+* Table of Contents
+{:toc}
+
+<div style="page-break-after: always"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+## Quick start
+Follow these steps if this is your first time using ExecutivePro:
+
+1. Ensure you have Java `11` or above installed in your Computer.
+    1. If you have already installed Java, check that you have Java version `11`.
+        - If you are using Windows, open up command prompt and type `java -version` and enter.
+        - If you are using Mac, open up terminal and type `java -version` and enter.
+    2. If you do not have Java `11`:
+        - If you are using Windows/Linux/Intel-based Mac, you can download the latest version of Java from
+          [here](https://www.oracle.com/java/technologies/downloads/).
+        - If you are using an Apple Silicon Mac, you can install the Azul build of OpenJDK 11 version
+          from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
+2. Download the latest `ExecutivePro.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-4/tp/releases).
+
+3. Copy the jar file to a folder you want to use as the _main folder_ for your ExecutivePro.
+   This folder can be on your Desktop or any location you prefer.
+   For example, we create a `test` folder on the Desktop.
+<p align="center">
+  <img src="images/jarfile.png" width="75%" height="50%">
+  <br>
+  <em>`test` folder</em>
+</p>
+
+Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
+<p align="center">
+  <img src="images/jarfile2.png" width="75%" height="50%">
+  <br>
+  <em>ExecutivePro jar file</em>
+</p>
+
+4. Now you are ready to use ExecutivePro, refer to the section [Starting ExecutivePro](#starting-executivepro) below for more details.
+
+<div markdown="block" class="alert alert-info">
+
+### Starting ExecutivePro
+:warning: **Note:**
+To get started with ExecutivePro, you will need to run the application using your terminal or command prompt. Follow the steps below:
+
+Step 1 (Opening Terminal or Command Prompt) :
+
+On Windows, press Windows + R, type cmd, and hit Enter to open the Command Prompt.
+On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
+
+Your Command Prompt/Terminal should show up like this:
+<p align="center">
+  <img src="images/Terminal.png" width="75%" height="50%">
+  <br>
+  <em>Terminal Page</em>
+</p>
+
+Step 2 (Navigating to the Jar File Location) :
+
+Use the `cd` command to navigate to the folder where the `ExecutivePro.jar` file is located in.
+This is the location where you have placed your jar file in, as done in [point 3 of Quick start section](#quick-start).
+For example, if the file is located in the `test` folder on your Desktop, you can type `cd Desktop` and hit Enter, followed by
+`cd test`and Enter to reach the `test` folder, just like the image below.
+
+<p align="center">
+  <img src="images/CD.png" width="75%" height="50%">
+  <br>
+  <em>Changing Directory</em>
+</p>
+
+Step 3 (Running the Application) :
+Once you are in the correct directory, type the following command,`java -jar ExecutivePro.jar`, in your terminal and hit Enter:
+
+A window like below should appear in seconds.
+Note how the app contains some sample data.
+
+<p align="center">
+  <img src="images/quickstartui.png" width="50%" height="50%">
+  <br>
+  <em>Starting Page</em>
+</p>
+
+A data folder should appear in the same folder as the `ExecutivePro.jar` file after the application is run successfully.
+
+If the data folder is missing, simply create a folder named `data` in the same location as the `ExecutivePro.jar` file.
+
+Congratulations, ExecutivePro is now running, you can refer to the [Features](#features) section below to learn all about the exciting features that ExecutivePro offer.
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## The User Interface
 
 Below is the ExecutivePro User Interface with the main components labelled.
 
 <p align="center">
-  <img src="images/UserGuide/labelledgui.png" alt="startup_whitebackground.jpg" width="70%" height="50%">
+  <img src="images/labelledgui.png" width="70%" height="50%">
   <br>
   <em>User Interface</em>
 </p>
@@ -73,7 +158,11 @@ Main components of the ExecutivePro User Interface:
 
 #### 1. Toolbar
 
-![Toolbar](images/UserGuide/tool.png)
+<p align="center">
+  <img src="images/tool.png" width="30%" height="50%">
+  <br>
+  <em>Toolbar</em>
+</p>
 
 This toolbar can be used to:
 
@@ -82,7 +171,12 @@ This toolbar can be used to:
 
 
 #### 2. Display Panel
-< img src = "images/UserGuide/DisplayPanel.png" class = "centerImage" width = 80% height = 100% >
+
+<p align="center">
+  <img src="images/displaypanel.png" width="50%" height="50%">
+  <br>
+  <em>Display Panel</em>
+</p>
 
 This section shows the full information of the selected employee.
 
@@ -91,11 +185,14 @@ This section shows the full information of the selected employee.
 1. On startup of the application, this panel shows "Welcome to ExecutivePro"
 2. To view an employee's particulars in this panel, click on one of the employees in the employee list.
 3. If you delete an employee that you are currently viewing, the display panel will display the next employee's particulars.
-<div style="page-break-after: always"></div>
 
 #### 3. Employee List
 
-<img src="images/UserGuide/EmployeeList.png" class="centerImage" width = 80% height = 100%>
+<p align="center">
+  <img src="images/employeelist.png" width="50%" height="50%">
+  <br>
+  <em>Employee List</em>
+</p>
 
 This shows the whole employee list with basic information such as _Name_, _Employee ID_, _Department_ and their respective tags highlighted in blue.
 
@@ -104,11 +201,13 @@ This will come in handy if:
 1. You want a general overview of the employees in the company.
 2. You want to quickly find out an employee's ID to edit their details.
 
-<div style="page-break-after: always"></div>
-
 #### 4. Command Panel
 
-<img src="images/UserGuide/commandpanel.png" class="centerImage" >
+<p align="center">
+  <img src="images/commandpanel.png" width="50%" height="50%">
+  <br>
+  <em>Command Panel</em>
+</p>
 
 This section displays relevant messages or errors after the command is entered.
 
@@ -127,70 +226,6 @@ Imagine being in a restaurant with a talented chef in the kitchen. The chef repr
 <u> Why use CLI?</u>
 
 Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time.
-
-
---------------------------------------------------------------------------------------------------------------------
-## Quick start
-Follow these steps if this is your first time using ExecutivePro:
-
-1. Ensure you have Java `11` or above installed in your Computer.
-    1. If you have already installed Java, check that you have Java version `11`.
-        - If you are using Windows, open up command prompt and type `java -version` and enter.
-        - If you are using Mac, open up terminal and type `java -version` and enter.
-    2. If you do not have Java `11`:
-        - If you are using Windows/Linux/Intel-based Mac, you can download the latest version of Java from
-          [here](https://www.oracle.com/java/technologies/downloads/).
-        - If you are using an Apple Silicon Mac, you can install the Azul build of OpenJDK 11 version
-          from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
-2. Download the latest `ExecutivePro.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-4/tp/releases).
-
-3. Copy the jar file to a folder you want to use as the _main folder_ for your ExecutivePro. 
-This folder can be on your Desktop or any location you prefer.
-For example, we create a `test` folder on the Desktop.
-<img src="images/UserGuide/jarfile.png" class="centerImage">
-Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
-<img src="images/UserGuide/jarfile2.png" class="centerImage" >
-4. Now you are ready to use ExecutivePro, refer to the section [Starting ExecutivePro](#starting-executivepro) below for more details.
-
-<div markdown="block" class="alert alert-info">
-<div style="page-break-after: always"></div>
-
-### Starting ExecutivePro
-:warning: **Note:**
-To get started with ExecutivePro, you will need to run the application using your terminal or command prompt. Follow the steps below:
-
-Step 1 (Opening Terminal or Command Prompt) :
-
-On Windows, press Windows + R, type cmd, and hit Enter to open the Command Prompt.
-On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
-
-Your Command Prompt/Terminal should show up like this:
-<img src="images/UserGuide/Terminal.png" class="centerImage" width = 80% height = 50% >
-
-Step 2 (Navigating to the Jar File Location) :
-
-Use the `cd` command to navigate to the folder where the `ExecutivePro.jar` file is located in.
-This is the location where you have placed your jar file in, as done in [point 3 of Quick start section](#quick-start).
-For example, if the file is located in the `test` folder on your Desktop, you can type `cd Desktop` and hit Enter, followed by
-`cd test`and Enter to reach the `test` folder, just like the image below.
-
-<img src="images/UserGuide/CD.png" class="centerImage" width = 80% height = 50% >
-
-Step 3 (Running the Application) :
-Once you are in the correct directory, type the following command,`java -jar ExecutivePro.jar`, in your terminal and hit Enter:
-
-A window like below should appear in seconds. 
-Note how the app contains some sample data.
-
-<img src="images/UserGuide/quickstartui.png" class="centerImage" width = 80% height = 50% >
-
-A data folder should appear in the same folder as the `ExecutivePro.jar` file after the application is run successfully.
-
-If the data folder is missing, simply create a folder named `data` in the same location as the `ExecutivePro.jar` file.
-
-Congratulations, ExecutivePro is now running, you can refer to the [Features](#features) section below to learn all about the exciting features that ExecutivePro offer.
-
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -243,7 +278,12 @@ This section lists the details of all the features of ExecutivePro.
 We know that there can be a lot of information to take in for a new user, so if you ever _feel lost_ while using ExecutivePro, getting help is just a simple step away.
 
 Entering the `help` command will open up the _Help Window_ that looks like this.
-![Help Window](./images/UserGuide/helpwindow.png)
+
+<p align="center">
+  <img src="images/helpwindow.png" width="50%" height="50%">
+  <br>
+  <em>Help Window</em>
+</p>
 
 On the left column, you can find the full list of ExecutivePro commands and the right are the details for each command. If you require more information, the _Help Window_ also contains a button at the bottom to open up this User Guide in your browser.
 
@@ -343,7 +383,10 @@ Once that is done,
 If the command is successful, the employees in the file should be added to the database all at once,
 and it should look something like the below image.
 
-![](images/UserGuide/batchadd/batchaddsuccess.png)
+<p align="center">
+  <img src="images/batchaddsuccess.png" width="75%" height="50%">
+  <br>
+</p>
 
 The command could be unsuccessful, and there are a few potential causes of this:
 
@@ -734,3 +777,4 @@ If you came from the `batchadd` command, [click here to return](#adding-multiple
 - **CSV**: _Comma-Separated Values (CSV)_ file is a text file that has a specific format which allows data to be saved in a table structured format.
 - **JSON**: _JavaScript Object Notation (JSON)_ is a standard text-based format for representing structured data and is commonly used for transmitting data in web applications.
 
+<a href="#top">Back to top</a>
