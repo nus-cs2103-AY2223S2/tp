@@ -298,7 +298,7 @@ Brings you to the home page, which is the `Course Page` of CLIpboard.
 home
 ```
 
-[Back to list of features](#commands)
+[Back to list of features](#features)
 
 ### Going back to the previous page: `back`
 
