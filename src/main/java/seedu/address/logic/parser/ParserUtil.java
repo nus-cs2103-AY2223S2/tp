@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,10 +10,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.files.Csv;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Platoon;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Unit;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +31,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -96,6 +103,66 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String rank} into an {@code Rank}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rank} is invalid.
+     */
+    public static Rank parseRank(String rank) throws ParseException {
+        requireNonNull(rank);
+        String trimmedRank = rank.trim();
+        if (!Rank.isValidRank(trimmedRank)) {
+            throw new ParseException(Rank.MESSAGE_CONSTRAINTS);
+        }
+        return new Rank(trimmedRank);
+    }
+
+    /**
+     * Parses a {@code String unit} into an {@code Unit}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code unit} is invalid.
+     */
+    public static Unit parseUnit(String unit) throws ParseException {
+        requireNonNull(unit);
+        String trimmedUnit = unit.trim();
+        if (!Unit.isValidUnit(trimmedUnit)) {
+            throw new ParseException(Unit.MESSAGE_CONSTRAINTS);
+        }
+        return new Unit(trimmedUnit);
+    }
+
+    /**
+     * Parses a {@code String company} into an {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code company} is invalid.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompany = company.trim();
+        if (!Company.isValidCompany(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(trimmedCompany);
+    }
+
+    /**
+     * Parses a {@code String platoon} into an {@code Platoon}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code platoon} is invalid.
+     */
+    public static Platoon parsePlatoon(String platoon) throws ParseException {
+        requireNonNull(platoon);
+        String trimmedPlatoon = platoon.trim();
+        if (!Platoon.isValidPlatoon(trimmedPlatoon)) {
+            throw new ParseException(Platoon.MESSAGE_CONSTRAINTS);
+        }
+        return new Platoon(trimmedPlatoon);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -104,8 +171,10 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Tag.isValidTagLength(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_LENGTH_CONSTRAINTS);
+        } else if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_ALPHANUMERIC_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
     }
@@ -120,5 +189,17 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String path} into a {@code Csv}.
+     */
+    public static Csv parseCsv(String path) throws ParseException, IOException {
+        requireNonNull(path);
+        String trimmedPath = path.trim();
+        if (!Csv.isValidCsvPath(trimmedPath)) {
+            throw new ParseException(Csv.MESSAGE_CONSTRAINTS);
+        }
+        return new Csv(path);
     }
 }

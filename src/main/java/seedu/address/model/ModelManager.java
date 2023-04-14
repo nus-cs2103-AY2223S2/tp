@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -23,6 +24,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final FilteredList<Person> favoritedPersons;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +37,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        favoritedPersons = new FilteredList<>(this.addressBook.getPersonList());
+        favoritedPersons.setPredicate(PREDICATE_SHOW_FAVORITED);
     }
 
     public ModelManager() {
@@ -43,14 +48,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -78,19 +83,42 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasPersons(List<Person> persons) {
+        requireAllNonNull(persons);
+        return addressBook.hasPersons(persons);
+    }
+
+    @Override
+    public int getDuplicateIndex(List<Person> persons) {
+        requireAllNonNull(persons);
+        return addressBook.getDuplicateIndex(persons);
+    }
+
+    @Override
+    public String getDuplicateString(Person person) {
+        requireNonNull(person);
+        return addressBook.getDuplicateString(person);
+    }
+
+    @Override
+    public String getDuplicateStringForEdit(Person duplicateEditedPerson, Person notCounted) {
+        return addressBook.getDuplicateStringForEdit(duplicateEditedPerson, notCounted);
     }
 
     @Override
@@ -105,10 +133,38 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addPersons(List<Person> persons) {
+        addressBook.addPersons(persons);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public boolean canEdit(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        return addressBook.canEdit(target, editedPerson);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void commit(ReadOnlyAddressBook currentState) {
+        addressBook.commit(currentState);
+    }
+
+    @Override
+    public void undo() {
+        addressBook.undo();
+    }
+
+    @Override
+    public boolean canUndo() {
+        return addressBook.canUndo();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -126,6 +182,15 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the favorited list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getFavoritedPersonList() {
+        return favoritedPersons;
     }
 
     @Override

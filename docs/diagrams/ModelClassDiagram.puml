@@ -18,6 +18,10 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class Rank
+Class Unit
+Class Platoon
+Class Company
 Class Tag
 
 }
@@ -40,11 +44,19 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Rank
+Person *--> Unit
+Person *--> Company
+Person *--> Platoon
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Email -[hidden]right-> Rank
+Rank -[hidden]right-> Unit
+Unit -[hidden]right-> Company
+Company -[hidden]right-> Platoon
 
 ModelManager -->"~* filtered" Person
 @enduml

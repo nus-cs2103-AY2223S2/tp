@@ -1,7 +1,9 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -16,6 +18,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
+    private final ArrayList<ReadOnlyAddressBook> addressBookStateList = new ArrayList<>();
+
+    private int currentStatePointer;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -27,7 +33,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -35,6 +42,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+        addressBookStateList.add(toBeCopied);
+        currentStatePointer = 0;
     }
 
     //// list overwrite operations
@@ -47,6 +56,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    //// person-level operations
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -55,8 +66,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
     }
-
-    //// person-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -67,11 +76,61 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a person with the same identity as any person in {@code newPersons} exists in the address book.
+     */
+    public boolean hasPersons(List<Person> newPersons) {
+        requireAllNonNull(newPersons);
+        return persons.containsAny(newPersons);
+    }
+
+    /**
+     * Returns the index of the first duplicate found between {@code newPersons} and the address book.
+     * Returns -1 if none are found.
+     */
+    public int getDuplicateIndex(List<Person> newPersons) {
+        requireAllNonNull(newPersons);
+        return persons.getDuplicateIndex(newPersons);
+    }
+
+    /**
+     * Returns the duplicated field that was found between {@code duplicatedPerson} and the address book.
+     */
+    public String getDuplicateString(Person duplicatedPerson) {
+        return persons.getDuplicatedString(duplicatedPerson);
+    }
+
+    /**
+     * Returns the duplicates field that was found between {@code duplicatedEditedPerson} and the address book,
+     * not considering the {@code notCounted}.
+     */
+    public String getDuplicateStringForEdit(Person duplicateEditedPerson, Person notCounted) {
+        return persons.getDuplicateStringExceptFor(duplicateEditedPerson, notCounted);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
-        persons.add(p);
+        persons.addPerson(p);
+    }
+
+    /**
+     * Adds a list of persons to the address book.
+     * Each person in the list must not already exist in the address book.
+     */
+    public void addPersons(List<Person> p) {
+        persons.addPersons(p);
+    }
+
+    /**
+     * Checks if the {@code editedPerson} is a valid Person to replace the {@code target}, and that it is not a
+     * duplicate of another existing person in the address book.
+     */
+    public boolean canEdit(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        return persons.canEdit(target, editedPerson);
     }
 
     /**
@@ -93,11 +152,47 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Saves the current address book state to history.
+     *
+     * @param currentState The current state of the address book.
+     */
+    public void commit(ReadOnlyAddressBook currentState) {
+        if (currentStatePointer < addressBookStateList.size() - 1) {
+            // need to remove all states to the right
+            int numStatesToRemove = addressBookStateList.size() - 1 - currentStatePointer;
+            for (int i = 0; i < numStatesToRemove; i++) {
+                addressBookStateList.remove(addressBookStateList.size() - 1);
+            }
+        }
+        addressBookStateList.add(new AddressBook(currentState));
+        currentStatePointer += 1;
+    }
+
+    /**
+     * Restores the previous address book state from history.
+     */
+    public void undo() {
+        ReadOnlyAddressBook previousState = addressBookStateList.get(currentStatePointer - 1);
+        resetData(previousState);
+        currentStatePointer -= 1;
+    }
+
+    /**
+     * Checks whether there are old address book states in history to undo.
+     *
+     * @return A boolean indicating if there are old address book states in history.
+     */
+    public boolean canUndo() {
+        return currentStatePointer > 0;
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.toString();
+        // return persons.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 

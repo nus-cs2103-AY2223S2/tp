@@ -6,10 +6,14 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Platoon;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Unit;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,7 +21,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private final EditPersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
         descriptor = new EditPersonDescriptor();
@@ -32,7 +36,11 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
+        descriptor.setRank(person.getRank());
         descriptor.setName(person.getName());
+        descriptor.setUnit(person.getUnit());
+        descriptor.setCompany(person.getCompany());
+        descriptor.setPlatoon(person.getPlatoon());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
@@ -40,10 +48,42 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Rank} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRank(String rank) {
+        descriptor.setRank(new Rank(rank));
+        return this;
+    }
+
+    /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Unit} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withUnit(String unit) {
+        descriptor.setUnit(new Unit(unit));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Company} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withCompany(String company) {
+        descriptor.setCompany(new Company(company));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Platoon} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPlatoon(String platoon) {
+        descriptor.setPlatoon(new Platoon(platoon));
         return this;
     }
 

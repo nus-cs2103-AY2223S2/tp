@@ -11,10 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Platoon;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Unit;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,51 +28,80 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    private final String rank;
     private final String name;
+    private final String unit;
+    private final String company;
+    private final String platoon;
     private final String phone;
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private boolean isFavorite = false;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPerson(
+            @JsonProperty("rank") String rank,
+            @JsonProperty("name") String name,
+            @JsonProperty("unit") String unit,
+            @JsonProperty("company") String company,
+            @JsonProperty("platoon") String platoon,
+            @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email,
+            @JsonProperty("address") String address,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("isFavorite") boolean isFavorite) {
+        this.rank = rank;
         this.name = name;
+        this.unit = unit == null ? "N/A" : unit;
+        this.company = company == null ? "N/A" : company;
+        this.platoon = platoon == null ? "N/A" : platoon;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.isFavorite = isFavorite;
     }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        rank = source.getRank().value;
         name = source.getName().fullName;
+        unit = source.getUnit().value;
+        company = source.getCompany().value;
+        platoon = source.getPlatoon().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        isFavorite = source.getIsFavorite();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+
+        if (rank == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rank.class.getSimpleName()));
         }
+        if (!Rank.isValidRank(rank)) {
+            throw new IllegalValueException(Rank.MESSAGE_CONSTRAINTS);
+        }
+        final Rank modelRank = new Rank(rank);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -77,6 +110,30 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (unit == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rank.class.getSimpleName()));
+        }
+        if (!Unit.isValidUnit(unit)) {
+            throw new IllegalValueException(Unit.MESSAGE_CONSTRAINTS);
+        }
+        final Unit modelUnit = new Unit(unit);
+
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rank.class.getSimpleName()));
+        }
+        if (!Company.isValidCompany(company)) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
+        }
+        final Company modelCompany = new Company(company);
+
+        if (platoon == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Platoon.class.getSimpleName()));
+        }
+        if (!Platoon.isValidPlatoon(platoon)) {
+            throw new IllegalValueException(Platoon.MESSAGE_CONSTRAINTS);
+        }
+        final Platoon modelPlatoon = new Platoon(platoon);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -102,8 +159,17 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        Person newPerson = new Person(modelRank, modelName, modelUnit, modelCompany, modelPlatoon,
+                modelPhone, modelEmail, modelAddress, modelTags);
+        newPerson.setIsFavorite(isFavorite);
+
+        return newPerson;
     }
 
 }

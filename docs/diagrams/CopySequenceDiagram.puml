@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "c:CopyCommand" as CopyCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(copy)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(copy)
+activate AddressBookParser
+
+create CopyCommand
+AddressBookParser -> CopyCommand
+activate CopyCommand
+
+CopyCommand --> AddressBookParser : c
+deactivate CopyCommand
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> CopyCommand : execute()
+activate CopyCommand
+
+CopyCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> CopyCommand
+deactivate Model
+
+CopyCommand --> CopyCommand :getInformation(Person)
+
+CopyCommand --> CopyCommand :copyToClipboard()
+
+CopyCommand --> LogicManager : result
+deactivate CopyCommand
+CopyCommand -[hidden]-> LogicManager
+destroy CopyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
