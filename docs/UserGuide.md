@@ -8,7 +8,7 @@ TeachMeSenpai is a **desktop app targeted at NUS teaching assistants who have ma
 
 As a teaching assistant, you can add all your students' particulars, make notes about them, quickly navigate through your long list of students and so much more!
 If using our app seems daunting to you at first, don't worry, we even have an [autocomplete feature](#autocompletion) to guide you through every step of the way!
-Tailored to fast-typists, TeachMeSenpai is built around a **Command Line Interface (CLI)**, complete with an **autocomplete** feature and a **Graphical User Interface** (GUI)
+Tailored to fast-typists, TeachMeSenpai is built around a [**Command Line Interface (CLI)**](#glossary-cli), complete with an **autocomplete** feature and a [**Graphical User Interface** (GUI)](#glossary-gui)
 to help you manage your students quicker than a traditional point-and-click app can.
 
 ## About this User Guide
@@ -47,7 +47,7 @@ this user guide for more information, or to external websites to learn more!
 
 ## Quick start
 
-TeachMeSenpai has been designed to work for all [Operating Systems](#glossary) (Mac, Windows, or Linux etc.)!
+TeachMeSenpai has been designed to work for all [Operating Systems](#glossary-os) (Mac, Windows, or Linux etc.)!
 
 1. Ensure you have `Java 11` or above installed in your computer (you may refer to [Java Help Resources](https://www.java.com/en/download/help/version_manual.html) if you're not sure how to do so).
 2. Download the latest `teachmesenpai.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-2/tp/releases/latest).
@@ -65,7 +65,7 @@ TeachMeSenpai has been designed to work for all [Operating Systems](#glossary) (
 
 ---
 
-## Guide to TeachMeSenpai's GUI
+## Guide to TeachMeSenpai's [GUI](#glossary-gui)
 
 TeachMeSenpai has several important components as part of its display. Here is a quick walk-through each component.
 
@@ -77,7 +77,7 @@ TeachMeSenpai has several important components as part of its display. Here is a
 * Clicking `File` will give you the option to exit the app
 * Clicking `Help` will show `Help F1`, clicking it will provide you a link to this User Guide!
 
-<h3 style="color:MediumSeaGreen"><b>Command line</b></h3>
+<h3 style="color:MediumSeaGreen" id="command-line"><b>Command line</b></h3>
 * This is where you will be typing all the commands for TeachMeSenpai! To learn more about the commands TeachMeSenpai has, head over
 to [Features](#features).
 
@@ -114,7 +114,7 @@ you to adjust the size of the window
 
 ## Parameter descriptions
 
-Firstly, parameters are the inputs/information you have to fill in together with their respective commands in the command line when using TeachMeSenpai!
+Firstly, parameters are the inputs/information you have to fill in together with their respective commands in the [command line](#command-line) when using TeachMeSenpai!
 
 Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
 
@@ -122,13 +122,13 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 |-------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ADDRESS`         | Address of the student.                                                               | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                              |
 | `EDUCATION` | Education level of the student.                                                       | Can contain numbers and multiple letters/words                                                                                                                                                                                       |
-| `EMAIL`           | Email address of the student.                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contain letters and numbers <br/> 5. Should not contain any spacings |
+| `EMAIL`           | Email address of the student.                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-[alphanumeric](#glossary-alphanum) character (eg. . , ' " @) <br/> 4. Can contain letters and numbers <br/> 5. Should not contain any spacings |
 | `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list). | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                           |
-| `MODULE`          | The module you're teaching the student.                                               | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the module given will be removed by the app                                                                                          |
+| `MODULE`          | The module you're teaching the student.                                               | 1. Can only contains [alphanumeric](#glossary-alphanum) characters and/or spaces <br/> 2. Any whitespaces in front of the module given will be removed by the app                                                                                          |
 | `PHONE`           | Phone number of the student.                                                          | 1. Must only contain numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
 | `REMARK`          | Your notes or remarks on the student.                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                 |
-| `NAME`    | Name of the student.                                                                  | 1. Can only contain alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name given will be removed by the app                                                                                             |
-| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add).    | Must be a single word containing alphanumeric characters only                                                                                                                                                                        |
+| `NAME`    | Name of the student.                                                                  | 1. Can only contain [alphanumeric](#glossary-alphanum) characters and/or spaces <br/> 2. Any whitespaces in front of the name given will be removed by the app                                                                                             |
+| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add).    | Must be a single word containing [alphanumeric](#glossary-alphanum) characters only                                                                                                                                                                        |
 | `TELEGRAM`        | Telegram handle of the student.                                                       | 1. Must begin with "@"<br/> 2. Can only contain uppercase and lowercase alphabets, digits (0-9), and underscores<br/> 3. Minimum length is 5 characters                                                                              |
 
 <div markdown="block" class="alert alert-info">
@@ -169,6 +169,10 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 </div>
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ### Autocompletion
 
 TeachMeSenpai has a lot of features for you to experiment with, and we understand that it might take some getting used to. Hence, we've included an autocompletion feature!
@@ -198,6 +202,10 @@ The autocompletion feature also hints to you if you've entered an invalid comman
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The above invalid-input hints does not check if the parameters you gave are actually valid. Just because the words aren't red, does not imply that your input will execute when you press enter!
 </div>
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ### Viewing help: `help`
 
@@ -246,11 +254,11 @@ Adds a student to the list, along with their education level and any student-spe
 
 > Format: `add n/NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`
 >
-> - NAME: [Alphanumeric](#glossary) word(s).
+> - NAME: [Alphanumeric](#glossary-alphanum) word(s).
 > - ADDRESS: The student's address.
 > - PHONE: A student's phone number that only contains numbers and is as least 3 numbers long.
 > - EMAIL: A valid email follows the `local@domain` format.
-> - EDUCATION: [Alphanumeric](#glossary) word(s)
+> - EDUCATION: [Alphanumeric](#glossary-alphanum) word(s)
 > - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
 > - REMARK: Can be sentences or even paragraphs.
 > - TAG: A detail about a student (limited to one word long).
@@ -321,17 +329,17 @@ Examples:
 
 ### Editing a student: `edit`
 
-Edits a student's information _(all information except remarks)_. To remove a student's parameter, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
+Edits a student's information _(all information except remarks)_. To remove a student's parameter, leave the value after the [prefix](#glossary-prefix) blank _(eg. `a/ p/` to remove address & phone number)_.
 
 > Format: `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
 >
 > - The index refers to the index number shown in the displayed student list.
 > - The index **must be a positive integer** 1, 2, 3, ...
-> - NAME: [Alphanumeric](#glossary) word(s).
+> - NAME: [Alphanumeric](#glossary-alphanum) word(s).
 > - ADDRESS: The student's address.
 > - PHONE: A student's phone number that only contains numbers and is as least 3 numbers long.
 > - EMAIL: A valid email follows the `local@domain` format.
-> - EDUCATION: [Alphanumeric](#glossary) word(s)
+> - EDUCATION: [Alphanumeric](#glossary-alphanum) word(s)
 > - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
 > - TAG: A detail about a student (limited to one word long).
 > - MODULE: The module code the student is taking (can be multiple words).
@@ -377,7 +385,7 @@ multiple sentences, paragraphs etc. When you are done, you can simply press `Ctr
 and your remarks will be saved once the text box closes.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** Do not edit or type commands into the command line of TeachMeSenpai while the remark text box is open!
+:information_source: **Note:** Do not edit or type commands into the [command line](#command-line) of TeachMeSenpai while the remark text box is open!
 The current version of TeachMeSenpai requires you to close the remark text box before you continue with other commands :)
 </div>
 
@@ -528,6 +536,10 @@ Examples:
     <br><i><b>Above:</b> Original state before entering <code>delete 1 4</code>, before entering <code>undo</code> command and after entering <code>undo</code> command</i>
 </p>
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ### Redo a previous `undo`: `redo`
 
 Did you `undo` a command on accident? Fret not, you may use `redo` to reverse the changes done by `undo`!
@@ -580,36 +592,54 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 
 | Term                           | Details                                                                                                         | Examples                                                                                                                                                                                                                                    |
 |--------------------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Alphanumeric                   | Characters that are either a numbers or letters.                                                                | 1, 2, 3, a, b, c are alphanumeric                                                                                                                                                                                                           |
+| <a id="glossary-alphanum"></a>Alphanumeric                   | Characters that are either a numbers or letters.                                                                | 1, 2, 3, a, b, c are alphanumeric                                                                                                                                                                                                           |
 | Command                        | Instructions for TeachMeSenpai to execute/carry out.                                                            | [Features](#features) are commands TeachMeSenpai can execute. For example, [`add`](#adding-a-student-add) is a command!                                                                                                                     |
-| Command Line Interface (CLI)   | A Command Line Interface allows users to use text as command to be executed by an application.                  | The [command line](#guide-to-teachmesenpais-gui) acts as a CLI in this case.                                                                                                                                                                |
-| Graphical User Interface (GUI) | A Graphical User Interface allows users to interace with an application through graphics like icons, menus etc. | TeachMeSenpai acts as a GUI in this case.                                                                                                                                                                                                   |
+| <a id="glossary-cli"></a>Command Line Interface (CLI)   | A Command Line Interface allows users to use text as command to be executed by an application.                  | The [command line](#command-line) acts as a CLI in this case.                                                                                                                                                                |
+| <a id="glossary-gui"></a>Graphical User Interface (GUI) | A Graphical User Interface allows users to interace with an application through graphics like icons, menus etc. | TeachMeSenpai acts as a GUI in this case.                                                                                                                                                                                                   |
 | Index                          | The number displayed next to the student entry's name after `list` is used.                                     | 1. Alex Yeoh, 1 would be the index for Alex Yeoh.                                                                                                                                                                                           |
 | Integer                        | An integer is a whole number.                                                                                   | 1, 10, 100 are integers. 1.5, 0.00 are not integers!                                                                                                                                                                                        |
 | Keyword                        | The word you want to [find/filter](#findfilter-students-findfilter) by.                                         | A keyword for a student named "Shao Hong" could be "Shao Hong"                                                                                                                                                                              |
-| Operating System               | Also known as (OS) of the computer, managers the software and hardware on the computer.                         | Windows 10, Windows 11, Linux, Mac.                                                                                                                                                                                                         |
+| <a id="glossary-os"></a>Operating System               | Also known as (OS) of the computer, managers the software and hardware on the computer.                         | Windows 10, Windows 11, Linux, Mac.                                                                                                                                                                                                         |
 | Parameter                      | Parameters are information TeachMeSenpai requires you to fill in.                                               | `NAME`, `PHONE` are parameters you have to fill in. Relevant information to fill in could be Shaun and 999 respectively. <br/> You may refer to the [Parameter descriptions](#parameter-descriptions) for more specifications and examples. |
 | Partial keyword                | Part of the word you want to [find/filter](#findfilter-students-findfilter) by.                                 | A partial keyword for a student named "Shao Hong" could be "Sh", or "on" etc.                                                                                                                                                               |
-| Prefix                         | Indicators for commands. Always ends with a slash `/` and comes before a parameter.                             | `n/` is the prefix for parameter `NAME` which could be a name like Shaun. <br/> You may refer to [Prefix Summary](#prefix-summary) to see all the prefixes used in TeachMeSenpai.                                                           |
+| <a id="glossary-prefix"></a>Prefix                         | Indicators for commands. Always ends with a slash `/` and comes before a parameter.                             | `n/` is the prefix for parameter `NAME` which could be a name like Shaun. <br/> You may refer to [Prefix Summary](#prefix-summary) to see all the prefixes used in TeachMeSenpai.                                                           |
 | Remark                         | Notes or things to take note of for a student.                                                                  | "Not good in Japanese", "Has not submitted MC" etc.                                                                                                                                                                                         |
 
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## Command summary
 
 | Action | Format, Examples                                                                                                                                                                                                                                    |
 |--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | `add n/NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
-| Clear  | `clear`                                                                                                                                                                                                                                             |
-| Delete | `delete INDEX [INDEX]...`<br>eg. `delete 3` or `delete 1 2 3 4`                                                                                                                                                                                     |
-| Edit   | `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
-| Exit   | `exit`                                                                                                                                                                                                                                              |
-| Find   | `find [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...` <br/>eg. `find n/Sh` <br/>                                                                                 |                                                                                                                                                                                           |
-| Help   | `help`                                                                                                                                                                                                                                              |
-| List   | `list`                                                                                                                                                                                                                                              |
-| Redo   | `redo`                                                                                                                                                                                                                                              |
-| Remark | `remark INDEX [REMARK]` <br/>eg. `remark 2 Not good in Japanese`                                                                                                                                                                                    |
-| Undo   | `undo`                                                                                                                                                                                                                                              |
-| Show   | `show INDEX` <br/>eg. `show 1`                                                                                                                                                                                                                      |
+| [Add]    | `add n/NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
+| [Clear]  | `clear`                                                                                                                                                                                                                                             |
+| [Delete] | `delete INDEX [INDEX]...`<br>eg. `delete 3` or `delete 1 2 3 4`                                                                                                                                                                                     |
+| [Edit]   | `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
+| [Exit]   | `exit`                                                                                                                                                                                                                                              |
+| [Filter]   | `filter [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...` <br/>eg. `filter a/tampines` <br/>                                                                                 |                                                                                                                                                                                           |
+| [Find]   | `find [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...` <br/>eg. `find n/Sh` <br/>                                                                                 |                                                                                                                                                                                           |
+| [Help]   | `help`                                                                                                                                                                                                                                              |
+| [List]   | `list`                                                                                                                                                                                                                                              |
+| [Redo]   | `redo`                                                                                                                                                                                                                                              |
+| [Remark] | `remark INDEX [REMARK]` <br/>eg. `remark 2 Not good in Japanese`                                                                                                                                                                                    |
+| [Undo]   | `undo`                                                                                                                                                                                                                                              |
+| [Show]   | `show INDEX` <br/>eg. `show 1`                                                                                                                                                                                                                      |
+
+[Add]: #adding-a-student-add
+[Clear]: #clearing-all-entries-clear
+[Delete]: #delete-a-student-delete
+[Edit]: #editing-a-student-edit
+[Exit]: #exiting-the-program-exit
+[Filter]: #findfilter-students-findfilter
+[Find]: #findfilter-students-findfilter
+[Help]: #viewing-help-help
+[List]: #listing-all-students-list
+[Redo]: #redo-a-previous-undo-redo
+[Remark]: #editing-remark-of-student-remark
+[Undo]: #redo-a-previous-undo-redo
+[Show]: #showing-a-students-remark-show
 
 [↑ Back to top](#table-of-contents)
 
@@ -617,7 +647,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 
 ## Prefix summary
 
-| Prefix | Meaning                                 | Example                               |
+| [Prefix](#glossary-prefix) | Meaning                                 | Example                               |
 |--------|-----------------------------------------|---------------------------------------|
 | n/     | Name of student                         | `n/Shao Hong`                         |
 | p/     | Phone number of student                 | `p/81234567`                          |
