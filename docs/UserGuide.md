@@ -3,11 +3,12 @@ layout: page
 title: User Guide
 ---
 
-E-Lister is a comprehensive **desktop app**, specially designed for **insurance agents and other financial professionals** to streamline the management of their customers' contact information.  This powerful tool provides users with:
-1.	Basic operations (add, delete, find, clear) with the contact information via CLI (Command Line Interface) and user-customized tags for labeling.
-2.	Import and export CSV files.
-3.	Other advanced operations (filter, mass operation, freeze, undo, shortcut).
-4.  An comprehensive and friendly user interface.
+E-Lister is a comprehensive **desktop app**, specially designed for **insurance agents and other financial professionals** to streamline the management of their customers' contact information. This powerful tool provides users with:
+1.	Basic operations **(add, delete, find, clear)** with the contact information via CLI (Command Line Interface) and user-customized tags for labeling.
+2.	Ability to **import** and work on existing CSV files.
+3.	Other useful operations **(filter, mass operation, freeze)** for advanced users to work with data in meaningful ways.
+4.	Additional commands **(undo, shortcut)** for a smooth, personalised experience.
+5. An extensive yet friendly user interface.
 
 * Table of Contents
 {:toc}
@@ -78,7 +79,7 @@ e.g `t/TAG`, `n/NAME`, `p/PHONE_NUMBER`, etc
 ### Viewing help : `help`
 
 Shows a help message detailing the various commands available in E-Lister.
-A link can also bring the user to the online user guide for more detailed help.
+It also includes a link to this user guide so you do not need to remember this website's address!
 
 Format: `help`
 
@@ -87,6 +88,10 @@ Format: `help`
 ### **Basic operations**
 
 #### Adding a person: `add`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you have an existing CSV dataset, you may choose to [import it directly](#Import-&-Export-CSV-file) rather than adding each contact individually.
+</div>
 
 Adds a person to E-Lister.
 
@@ -320,7 +325,8 @@ Format: `shortcut ORIGINAL_COMMAND SHORTCUT`
 Examples:
 * `shortcut list lst` will allow the user to input `lst` in place of `list`.
 
-### **Import&Export CSV file**
+### **Import & Export CSV file**
+
 #### Import data from CSV : `import`
 
 Opens a file chooser to select a CSV file containing relevant data and merges with the existing data.
