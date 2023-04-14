@@ -68,7 +68,7 @@ Inside the **Person list**, each person has a **Person Card**, this is the break
 
 **Some notices before going through this guide:**<br>
 * Any notation with a letter followed by a `/` is referred to as a input field for user to key in.<br>
-e.g `t/TAG`, `n/NAME`, `p/PHONE_NUMBER`, etc
+  e.g. `t/TAG`, `n/NAME`, `p/PHONE_NUMBER`, etc
 
 * Words in `UPPER_CASE` are the input values for you to supply.<br>
   e.g. in `add n/NAME`, `NAME` is an input value which can be used as `add n/John Doe`.
@@ -77,7 +77,7 @@ e.g `t/TAG`, `n/NAME`, `p/PHONE_NUMBER`, etc
   e.g. `all|shown` indicates that you may enter either `all` or `shown`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -167,10 +167,13 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive.
+  e.g. `hans` will match `Hans`
+* The order of the keywords does not matter.
+  e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Partial words will also be matched. e.g. `Han` will match `Hans`
+* Partial words will also be matched.
+  e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Grub Ya` will return `Hans Gruber`, `Bo Yang`
 
@@ -253,7 +256,7 @@ Freezes the current <span style="color:green">selection</span> of persons displa
   * This can happen e.g. if you `filtered` for a tag `x`, but then deleted `x` from a displayed Person.
   * `freeze` temporarily prevents persons from being hidden from view in such a scenario.
 
-<span style="color:red">The visible details **within** each Person will still be updated,
+<span style="color:red">The visible details **within** each person will still be updated,
 if modified.</span>
 
 Format: `freeze`
@@ -289,7 +292,7 @@ Format: `undo [NUM]`
 
 * Undoes `NUM` of the most recent commands, or the 1 most recent if `NUM` is not specified.
   * If specified, `NUM` must be a positive integer less than 2^31 ≈ 2 billion.
-* Only undoes commands which affect data or the display. E.g.:
+* Only undoes commands which affect data or the display. For example:
   * `edit`, `filter`, `freeze`, and `import` can be undone
   * `help` and `export` cannot be undone; `undo` will skip them for the next most recent command.
 * Only undoes commands executed within the current session.
@@ -442,18 +445,18 @@ Action | use case
 Action | Format, Examples
 --------|------------------
 [**Help**](#viewing-help--help) | `help`
-[**Add**](#adding-a-person-add) | `add n/NAME p/PHONE_NUMBER e/EMAIL i/INCOME a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague i/10000`
-[**Delete**](#deleting-a-person--delete) | `delete INDEX`<br> e.g., `delete 3`
-[**Edit**](#editing-a-person--edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/INCOME] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-[**Find**](#locating-persons-by-name-find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+[**Add**](#adding-a-person-add) | `add n/NAME p/PHONE_NUMBER e/EMAIL i/INCOME a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague i/10000`
+[**Delete**](#deleting-a-person--delete) | `delete INDEX`<br> e.g. `delete 3`
+[**Edit**](#editing-a-person--edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/INCOME] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`
+[**Find**](#locating-persons-by-name-find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 [**List**](#listing-all-persons--list) | `list`
 [**Clear**](#clearing-all-entries--clear) | `clear`
-[**Tag**](#adding-a-tag--tag) | `tag INDEX TAG` <br> e.g, `tag 2 MIDDLE_CLASS`, `tag 5 teacher`
-[**Delete Tag**](#deleting-a-tag--delete_tag) | `delete_tag INDEX TAG` <br> e.g, `delete_tag 2 MIDDLE_CLASS`, `delete_tag 5 teacher`
-[**Filter**](#filter-by-fields--filter) | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`<br> e.g., `filter e/.*\.org$ n/rin e/.*\.net$`
+[**Tag**](#adding-a-tag--tag) | `tag INDEX TAG` <br> e.g. `tag 2 MIDDLE_CLASS`, `tag 5 teacher`
+[**Delete Tag**](#deleting-a-tag--delete_tag) | `delete_tag INDEX TAG` <br> e.g. `delete_tag 2 MIDDLE_CLASS`, `delete_tag 5 teacher`
+[**Filter**](#filter-by-fields--filter) | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`<br> e.g. `filter e/.*\.org$ n/rin e/.*\.net$`
 [**Freeze**](#freezing-the-display--freeze) | `freeze`
 [**Unfreeze**](#unfreezing-the-display--unfreeze) | `unfreeze`
-[**Mass**](#mass-operations--mass) | `mass COMMAND [ARGS_WITHOUT_INDEX]`<br> e.g., `mass tag Noticed`
+[**Mass**](#mass-operations--mass) | `mass COMMAND [ARGS_WITHOUT_INDEX]`<br> e.g. `mass tag Noticed`
 [**Undo**](#undoing-a-command--undo) | `undo [NUM]`
 [**Redo**](#redoing-a-command--redo) | `redo [NUM]`
 [**Shortcut**](#creating-a-shortcut--shortcut) | `shortcut`
