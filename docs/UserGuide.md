@@ -4,7 +4,7 @@ title: User Guide
 ---
 <div markdown="span" class="alert alert-warning">
 
-:home: Make sure that the index you are providing is valid! For example, `editDeck -1` will result in an error message on the result display as -1 is an invalid index.
+🏠 Make sure that the index you are providing is valid! For example, `editDeck -1` will result in an error message on the result display as -1 is an invalid index.
 
 </div>
 
