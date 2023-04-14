@@ -48,7 +48,6 @@ By using MM, medical professionals can manage patient data more efficiently and 
 
 ---
 ### How to use the User Guide 
-How to Use the User Guide
 
 This user guide is intended to provide you with clear and concise instructions on how to use MediMate (MM) to manage patient data. To make the most out of this guide, follow these tips:
 
