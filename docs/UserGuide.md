@@ -67,7 +67,7 @@ The user guide will contain certain visuals to aid in conveying information more
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MyLib.jar` command to run the application.
 
-5. A GUI similar to the one below should appear in a few seconds. You can get an overview of the various components that make up MyLib's GUI [here](#graphical-user-interface).
+5. A GUI similar to the one below should appear in a few seconds. You can get an overview of the various components that make up MyLib's GUI [here](#graphical-user-interface-br).
 
     <img width="560" height="400" style="margin-top:20px; margin-bottom:20px" src="images/Ui.png">
 
