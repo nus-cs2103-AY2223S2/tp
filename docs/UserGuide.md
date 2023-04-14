@@ -618,6 +618,21 @@ If your changes to the data file makes its format invalid, ExecutivePro will dis
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app on the other computer and overwrite the empty data file. This creates a new file that contains the data of your previous ExecutivePro home folder.
 
+**Q**: Do I need internet access to use ExecutivePro? <br>
+**A**: No, ExecutivePro does not require internet access
+
+**Q**: Does ExecutivePro support different themes?
+**A**: Yes, ExecutivePro offers both light and dark themes for your preference.
+
+**Q**: I have added the wrong details for my employee. How do I change it?
+**A**: Simply use ExecutivePro's [edit command](#editing-an-employee--edit) to change any details of the employee.
+
+
+--------------------------------------------------------------------------------------------------------------------
+## Planned Enhancements
+1. In the near future, our team will be creating a login feature page for ExecutivePro. This helps to enhance the
+security feature of ExecutivePro as it ensures that only you and your team members have access to the database.
+
 --------------------------------------------------------------------------------------------------------------------
 [Return to `add` feature](#adding-an-employee-add)
 ## Order of Fields
