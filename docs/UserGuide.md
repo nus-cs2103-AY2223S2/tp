@@ -301,6 +301,7 @@ Entering the `help` command will open up the _Help Window_ that looks like this.
 On the left column, you can find the full list of ExecutivePro commands and the right are the details for each command. If you require more information, the _Help Window_ also contains a button at the bottom to open up this User Guide in your browser.
 
 Format: `help`
+
 <a href="#toc">Back to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -527,6 +528,7 @@ To ensure the correct date format is saved, please refer to the instructions [he
 :warning: Caution:
 **Do take note to only export in `.csv file` and not any other file types.**
 </div>
+
 <a href="#toc">Back to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -671,6 +673,7 @@ Once you run this command, you lose all data immediately.
 </div>
 
 Format: `clear`
+
 <a href="#toc">Back to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -805,6 +808,7 @@ Example:
 Exits the program. Your data is automatically saved so ExecutivePro will look exactly the same the next time you open it up.
 
 Format: `exit`
+
 <a href="#toc">Back to Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
