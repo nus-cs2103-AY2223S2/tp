@@ -2,6 +2,7 @@
 layout: page
 title: ExecutivePro User Guide
 ---
+<a id="top"></a>
 
 ## Introduction
 Welcome to ExecutivePro, an all-in-one solution for managing employees' information.
@@ -74,7 +75,7 @@ Main components of the ExecutivePro User Interface:
 #### 1. Toolbar
 
 <p align="center">
-  <img src="images/tool.png" width="50%" height="50%">
+  <img src="images/tool.png" width="30%" height="50%">
   <br>
   <em>Toolbar</em>
 </p>
@@ -136,7 +137,7 @@ instructions or "orders" about what you want to eat. Hence, the CLI is a way to 
 much like talking directly to a chef to customize your meal. Using a CLI can greatly enhance your efficiency as you no longer have to toggle between the mouse and your keyboard. Don't worry if this is your first time using the CLI, you'll get used to it in no time.
 
 <p align="center">
-  <img src="images/CLI.png" width="50%" height="50%">
+  <img src="images/CLI.png" width="100%" height="50%">
   <br>
   <em>Command Line Interface(CLI)</em>
 </p>
@@ -162,14 +163,14 @@ Follow these steps if this is your first time using ExecutivePro:
 This folder can be on your Desktop or any location you prefer.
 For example, we create a `test` folder on the Desktop.
 <p align="center">
-  <img src="images/jarfile.png" width="50%" height="50%">
+  <img src="images/jarfile.png" width="75%" height="50%">
   <br>
   <em>`test` folder</em>
 </p>
 
 Next, we place the `ExecutivePro.jar` file in the `test` folder as shown below.
 <p align="center">
-  <img src="images/jarfile2.png" width="50%" height="50%">
+  <img src="images/jarfile2.png" width="75%" height="50%">
   <br>
   <em>ExecutivePro jar file</em>
 </p>
@@ -189,7 +190,7 @@ On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
 
 Your Command Prompt/Terminal should show up like this:
 <p align="center">
-  <img src="images/Terminal.png" width="50%" height="50%">
+  <img src="images/Terminal.png" width="75%" height="50%">
   <br>
   <em>Terminal Page</em>
 </p>
@@ -202,7 +203,7 @@ For example, if the file is located in the `test` folder on your Desktop, you ca
 `cd test`and Enter to reach the `test` folder, just like the image below.
 
 <p align="center">
-  <img src="images/CD.png" width="50%" height="50%">
+  <img src="images/CD.png" width="75%" height="50%">
   <br>
   <em>Changing Directory</em>
 </p>
@@ -214,7 +215,7 @@ A window like below should appear in seconds.
 Note how the app contains some sample data.
 
 <p align="center">
-  <img src="images/quickstartui" width="50%" height="50%">
+  <img src="images/quickstartui.png" width="50%" height="50%">
   <br>
   <em>Starting Page</em>
 </p>
@@ -278,7 +279,12 @@ This section lists the details of all the features of ExecutivePro.
 We know that there can be a lot of information to take in for a new user, so if you ever _feel lost_ while using ExecutivePro, getting help is just a simple step away.
 
 Entering the `help` command will open up the _Help Window_ that looks like this.
-![Help Window](./images/UserGuide/helpwindow.png)
+
+<p align="center">
+  <img src="images/helpwindow.png" width="50%" height="50%">
+  <br>
+  <em>Help Window</em>
+</p>
 
 On the left column, you can find the full list of ExecutivePro commands and the right are the details for each command. If you require more information, the _Help Window_ also contains a button at the bottom to open up this User Guide in your browser.
 
@@ -378,7 +384,10 @@ Once that is done,
 If the command is successful, the employees in the file should be added to the database all at once,
 and it should look something like the below image.
 
-![](images/UserGuide/batchadd/batchaddsuccess.png)
+<p align="center">
+  <img src="images/batchaddsuccess.png" width="75%" height="50%">
+  <br>
+</p>
 
 The command could be unsuccessful, and there are a few potential causes of this:
 
@@ -770,3 +779,4 @@ If you came from the `batchadd` command, [click here to return](#adding-multiple
 - **CSV**: _Comma-Separated Values (CSV)_ file is a text file that has a specific format which allows data to be saved in a table structured format.
 - **JSON**: _JavaScript Object Notation (JSON)_ is a standard text-based format for representing structured data and is commonly used for transmitting data in web applications.
 
+<a href="#top">Back to top</a>
