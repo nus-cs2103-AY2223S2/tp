@@ -77,7 +77,7 @@ TeachMeSenpai has several important components as part of its display. Here is a
 * Clicking `File` will give you the option to exit the app
 * Clicking `Help` will show `Help F1`, clicking it will provide you a link to this User Guide!
 
-<h3 style="color:MediumSeaGreen"><b>Command line</b></h3>
+<h3 style="color:MediumSeaGreen" id="command-line"><b>Command line</b></h3>
 * This is where you will be typing all the commands for TeachMeSenpai! To learn more about the commands TeachMeSenpai has, head over
 to [Features](#features).
 
@@ -114,7 +114,7 @@ you to adjust the size of the window
 
 ## Parameter descriptions
 
-Firstly, parameters are the inputs/information you have to fill in together with their respective commands in the command line when using TeachMeSenpai!
+Firstly, parameters are the inputs/information you have to fill in together with their respective commands in the [command line](#command-line) when using TeachMeSenpai!
 
 Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
 
@@ -377,7 +377,7 @@ multiple sentences, paragraphs etc. When you are done, you can simply press `Ctr
 and your remarks will be saved once the text box closes.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** Do not edit or type commands into the command line of TeachMeSenpai while the remark text box is open!
+:information_source: **Note:** Do not edit or type commands into the [command line](#command-line) of TeachMeSenpai while the remark text box is open!
 The current version of TeachMeSenpai requires you to close the remark text box before you continue with other commands :)
 </div>
 
@@ -582,7 +582,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 |--------------------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <a id="glossary-alphanum"></a>Alphanumeric                   | Characters that are either a numbers or letters.                                                                | 1, 2, 3, a, b, c are alphanumeric                                                                                                                                                                                                           |
 | Command                        | Instructions for TeachMeSenpai to execute/carry out.                                                            | [Features](#features) are commands TeachMeSenpai can execute. For example, [`add`](#adding-a-student-add) is a command!                                                                                                                     |
-| <a id="glossary-cli"></a>Command Line Interface (CLI)   | A Command Line Interface allows users to use text as command to be executed by an application.                  | The [command line](#guide-to-teachmesenpais-gui) acts as a CLI in this case.                                                                                                                                                                |
+| <a id="glossary-cli"></a>Command Line Interface (CLI)   | A Command Line Interface allows users to use text as command to be executed by an application.                  | The [command line](#command-line) acts as a CLI in this case.                                                                                                                                                                |
 | <a id="glossary-gui"></a>Graphical User Interface (GUI) | A Graphical User Interface allows users to interace with an application through graphics like icons, menus etc. | TeachMeSenpai acts as a GUI in this case.                                                                                                                                                                                                   |
 | Index                          | The number displayed next to the student entry's name after `list` is used.                                     | 1. Alex Yeoh, 1 would be the index for Alex Yeoh.                                                                                                                                                                                           |
 | Integer                        | An integer is a whole number.                                                                                   | 1, 10, 100 are integers. 1.5, 0.00 are not integers!                                                                                                                                                                                        |
