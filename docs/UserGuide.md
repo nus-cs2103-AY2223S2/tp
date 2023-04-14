@@ -2,6 +2,11 @@
 layout: page
 title: User Guide
 ---
+<div markdown="span" class="alert alert-warning">
+
+:home: Make sure that the index you are providing is valid! For example, `editDeck -1` will result in an error message on the result display as -1 is an invalid index.
+
+</div>
 
 # 1. Introduction
 
@@ -95,7 +100,7 @@ This section explains some common components you may find in a command.
 | **Prefix**                | `q\ `, `a\ `, `t\ `  | Prefixes are used to identify the parameters of a command. <br><br> For example, prefix `q\ ` identifies the parameter `QUESTION` in the command `add q\QUESTION`.                                                                                                                                                       |
 | **Optional Component**    | `[t\TAG]`            | Optional components can be **omitted** in certain commands.<br/> <br/>For example, `add q\QUESTION a\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first two components `q\QUESTION`, `a\ANSWER` are compulsory. The last component `t\TAG` is optional.                                                |
 | **Multi-value Parameter** | `KEYWORDS...`        | These are parameters that can appear **multiple times**. <br><br> For example, the command `findCards KEYWORD...` filters all the cards based on the keywords specified.<br><br>This means that the parameter `KEYWORD` can:<br>- Appear one time: `findCards cell`<br>- Appear multiple times: `findCards cell biology` | 
-| **Index**                 | `INDEX`              | Index refers to the index of the card/deck you want to target from the list. The index must be a positive integer (1, 2, 3...). <br/> <br/>For example, `deleteDeck 1` deletes the first deck in the deck list.                                                                                                          |
+| **Index**                 | `INDEX`              | Index refers to the index of the card/deck you want to target from the list. The index must be a positive number (1, 2, 3...). <br/> <br/>For example, `deleteDeck 1` deletes the first deck in the deck list.                                                                                                           |
 | **Flag**                  | `-e`, `-m`, `-h`     | Flags are used to toggle a particular setting or behavior.<br/><br/> For example, `review 1 -e` lets you review questions in the first deck that are tagged as **easy** only.                                                                                                                                            |
 
 <div markdown="block" class="alert alert-info">
@@ -133,7 +138,7 @@ In the Main Mode, you can quickly and easily create new decks, add new cards to 
 
 ### 3.3.1. Adding a Deck : `addDeck`
 
-Before you can add any cards, you must first create a deck. Creating a deck is done through the simple command below. 
+Before you can add any cards, you must first create a deck. It's super easy though, just use the simple command below to get started with your first deck!
 
 Format: `addDeck DECK_NAME`
 - `DECK_NAME` is the name of the deck you want to create. 
@@ -141,36 +146,53 @@ Format: `addDeck DECK_NAME`
   - You do not need any prefix before deck name.
 
 Example:
-* `addDeck Science` will create a deck titled Science.
+- `addDeck Science` will create a deck titled Science.
+- `addDeck Math` will create a deck titled Math.
 
 ### 3.3.2. Editing a Deck : `editDeck`
 
 You just created a deck, but you realised you made a typo! Fret not, you can easily edit the name of the deck with this command.  
 
-Editing a deck name will not affect the cards stored inside it.
+Don't worry! Editing a deck name will not affect the cards stored inside it.
 
 Format: `editDeck INDEX DECK_NAME`
 - `INDEX` is the index of the deck you want to edit.
+- The deck's index can be found in the displayed deck list.
 - `DECK_NAME` is the new name you want to assign to the specified deck.
-  - The new deck name must not match any existing deck names (Deck names are case-sensitive).
+- The new deck name must not match any existing deck names (Deck names are case-sensitive).
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** Make sure that the index you are providing is valid! For example, `editDeck -1` will result in an error message on the result display as -1 is an invalid index.
+
+</div>
 
 Example: 
-- `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to "Chemistry".
+- `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to "Chemistry". 
+- `editDeck 2 Math` will edit the name of the second deck in the deck list to "Math". 
 
 ### 3.3.3. Deleting a Deck : `deleteDeck`
 
 Once you have no use for a deck, you can delete the deck and all the cards within it with this command.  
 
-Be careful, a deck once deleted cannot be retrieved! 
-
 Format: `deleteDeck INDEX`
 - `INDEX` is the index of the deck in the deck list.
+- The deck's index can be found in the displayed deck list.
 
-Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in that deck. 
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** <br>
+- Be careful, a deck (and cards within the deck) once deleted cannot be retrieved!
+- Make sure that the index you are providing is valid! For example, `deleteDeck -1` will result in an error message on the result display as -1 is an invalid index.
+
+</div>
+
+Example: 
+- `deleteDeck 1` deletes the deck at index 1 and all the cards in that deck. 
 
 ### 3.3.4. Finding Decks by Keywords: `findDecks`
 
-If you want to find a specific deck among the many decks you have created, use this command to filter the decks based on their deck names!
+If you're looking for a way to quickly find a specific deck among the many you've created, you can use a handy command to filter your decks based on their names. Give it a try!
 
 Format: `findDecks KEYWORD...`
 - You can include multiple KEYWORDS - as long as a deck's name contains at least one keyword, the deck will be found.
@@ -188,7 +210,7 @@ Example:
 
 💡 **Tip:** 
 - Notice there is a small text box `Finding Decks with keyword(s): science programming` below the filtered list of decks. This text box is displayed as long as the decks are filtered. It is to help you remember what you have previously searched for!
-- Notice that the result display will show how many decks have been listed.
+- Notice that the result display will also show how many decks have been listed.
 
 </div>
 
@@ -244,13 +266,15 @@ Format: `clear`
 With a deck selected, you can see all the cards in the deck on the right panel! 
 Now you can interact with the cards in the selected deck.
 
+<div markdown="block" class="alert alert-info">:information_source: **Note:** 
 Note that you will not be able to make any deck-related changes (e.g. `addDeck`, `deleteDeck`) until you unselect the current deck.
+</div>
 
 ### 3.4.1. Adding a Card: `addCard`
 
 This command allows you to add a card to the **selected** deck. 
 
-A card must contain a question and an answer. It may contain at most **one** difficulty tag. 
+Remember, every card needs to have a question and an answer, and it can have a **maximum of one** difficulty tag.
 
 Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
 - `QUESTION` field of the card is **case-sensitive** and cannot be duplicated in the same deck.
@@ -274,14 +298,18 @@ Examples:
 <div style="page-break-after: always;"></div>
 ### 3.4.2. Deleting a Card : `deleteCard`
 
-You can swiftly delete an existing card from the current selected deck with this command. 
+You can swiftly delete an existing card from the current selected deck with this command.
+
+Format: `deleteCard INDEX`
+- `INDEX` is the index of the card in the card list on the right panel.
+- The card's index can be found in the displayed card list.
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**
-Note that this is irreversible!
+- Note that this is irreversible!
+- Make sure that the index you are providing is valid! For example, `deleteCard -1` will result in an error message on the result display as -1 is an invalid index.
 </div>
 
-Format: `deleteCard INDEX`
 * Deletes the card at the specified `INDEX`. The card's index can be found in the displayed card list.
 
 Example:
@@ -293,10 +321,15 @@ If you made mistakes while creating a card, no problem! You can easily edit any 
 
 Format: `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 
-* Edits the card at the specified `INDEX`. The card's index can be found in the displayed card list.
-* At least **one** of the optional components must be provided.
-* Existing values of the card will be replaced by the input values.
-* If the same prefix appears multiple times, only the **last** occurrence of the prefix will be considered. 
+- Edits the card at the specified `INDEX`. The card's index can be found in the displayed card list.
+- At least **one** of the optional components must be provided.
+- Existing values of the card will be replaced by the input values.
+- If the same prefix appears multiple times, only the **last** occurrence of the prefix will be considered. 
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** Make sure that the index you are providing is valid! For example, `deleteCard -1` will result in an error message on the result display as -1 is an invalid index.
+</div>
+
 
 Examples:
 * `editCard 1 q\What is chemical symbol for Carbon? a\C` edits the question and answer of the 1st card to be `What is chemical symbol for Carbon?` and `C` respectively.
@@ -355,13 +388,13 @@ Format: `unselectDeck`
 
 ### 3.5.1. Setting the Limit of Cards per Review: `setLimit`
 
-Suppose you have a really long deck of cards, but you only want to test yourself on 20 cards this session. 
-Use this function to set an upper limit on the number of cards per review.
-While a limit is set, the review deck will be truncated to the card limit. 
+If you've got a long deck of cards but only want to test yourself on a certain number of them during a review session, no problem! You can use a handy function to set an upper limit on the number of cards you'll be reviewing. 
+While the limit is in effect, the deck will be truncated to the specified number of cards. Give it a try!
 
 You can set the limit back to 'none' to view all cards in the deck for future reviews.
 
 Format: `setLimit LIMIT_NUM` or `setLimit none`
+
 - `LIMIT_NUM` must be a whole number between 1 and 2147483647 inclusive. 
 - If `LIMIT_NUM` is greater than the number of cards inside the deck to be reviewed, you will review **all** the cards in that deck.
 
