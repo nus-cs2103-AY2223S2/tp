@@ -133,13 +133,21 @@ as well as a [short tutorial](#34-short-tutorial).
 
 Step 1: Ensure you have Java `11` or above installed in your computer.
 
-Step 2: Download the latest `sprINT.jar` file [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.3.1).
+If you are unsure of whether you have installed it, you can check so by first opening a [command terminal](#command-terminal)
+and then typing `java --version`. If it is not installed, it will probably prompt you with the following: <br>
+**_`java` is not recognised as an internal or external command_** <br>
+Fret not; you can refer to this [online tutorial](https://java.tutorials24x7.com/blog/how-to-install-java-11-on-windows) 
+for detailed step-by-step installation instructions.
+
+Step 2: Download the latest `sprINT.jar` file [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.4).
 
 Step 3: Copy the file to the folder you want to use as the [home folder](#home-folder) for your sprINT application.
 
 Step 4: Double-click on the jar file to run the application.
-If it doesn't work, open a [command terminal](#command-terminal), enter `cd` with the path to the folder you put the jar file in,
-and type: `java -jar sprINT.jar` to run the application.<br>
+
+If double-clicking doesn't work, consider trying an alternative method of opening. <br>
+Open a [command terminal](#command-terminal), enter `cd` with the path to the folder you put the jar file in,
+and type: `java -jar sprINT.jar` to run the application.
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** `cd` stands for "change directory". As the name suggests, it is a command that allows you to navigate
@@ -683,7 +691,7 @@ Displays statistics information for the current list of applications shown in th
 This includes the total number of applications currently displayed in the Application List Panel, as well as a 
 breakdown of these applications by status (shown both in numbers and as a pie chart).
 
-Format: no command is needed. Statistics information is recomputed and regenerated upon every command execution. 
+Format: no command is needed. Application statistics are recomputed and regenerated upon every command execution. 
 
 You may refer to the screenshots below for the before and after comparison of the Statistics panel, after an application's
 status was changed from `interested` to `applied`.
