@@ -5,13 +5,16 @@ title: ExecutivePro User Guide
 <a id="top"></a>
 
 ## Introduction
-Welcome to ExecutivePro, an all-in-one solution for managing employees' information.
-Are you tired of grappling with time-consuming tasks? Do you want to streamline your HR processes and boost your productivity?
+
+Welcome to **ExecutivePro, an all-in-one Human Resource (HR) solution for managing employee information**.
+Are you a growing startup looking for its first HR software?
+Are you tired of grappling with time-consuming tasks?
+Do you want to streamline your HR processes and boost your productivity?
 Look no further! ExecutivePro is here to make it happen.
 
-ExecutivePro is a **desktop app specifically designed for Human Resource managers to manage their employee information,
-optimized for use via an easy-to-use Command Line Interface (CLI)** while still retaining the benefits of a
-Graphical User Interface (GUI). With ExecutivePro, you can streamline your HR processes and free yourself from the drudgery of mundane tasks.
+ExecutivePro is a **desktop app for HR managers** that you can use to **keep track of your employees' personal information, filter through employee data, manage their leaves, and more!**
+ExecutivePro features an easy-to-use Command Line Interface (CLI), which means it's designed to save you time by letting you do everything from **just your keyboard**.
+With ExecutivePro, you can optimise your HR workflow and free yourself from the drudgery of mundane tasks.
 
 The purpose of this guide is to walk you through the comprehensive features of ExecutivePro and to help you troubleshoot any problems you may face while using ExecutivePro.
 Read on to learn more and experience the game-changing benefits that ExecutivePro can bring to your work!
