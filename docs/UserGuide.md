@@ -92,6 +92,8 @@ Tips are useful suggestions that will help you become a seasoned sprINT user qui
 **Tip:** Tips give you a better experience with sprINT.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 **Notes**
 
 Notes are important information that you should pay attention to when using sprINT.
@@ -115,6 +117,8 @@ Scenarios provide examples of specific situations in which a feature would be us
 <div markdown="span" class="alert alert-success">:grey_question:
 **Scenario:** Refer to these scenarios for ideas on how you might want to use a feature in your own sprINT journey!
 </div>
+
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -312,7 +316,8 @@ You can make these changes to your existing application using the command: `edit
 
 You may refer to the screenshots below for the before and after comparison of the execution of the `edit-app` command.
 
-![BeforeAfterEditApp](images/BeforeAfterEditApp.png)
+![BeforeAfterEditApp1](images/BeforeAfterEditApp1.png)
+![BeforeAfterEditApp2](images/BeforeAfterEditApp2.png)
 
 Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]​`
 
@@ -365,7 +370,7 @@ execution of the `find` command.
 
 **Adding tags** 
 
-sprINT currently supports 2 ways of adding [tags](#tag) to an application entry:
+sprINT currently supports 2 ways of adding tags to an application entry:
 
 1. Tags can be added when you are creating a **new** application, as a parameter to the `add-app` command. For more 
 information, refer to [section 4.1.1](#411-adding-an-application--add-app).
@@ -400,6 +405,8 @@ Example:
 * `edit-app 3 t/creditBearing t/nearHome`: adds a new `nearHome` tag to the 3rd application on the Application List Panel, 
   assuming it has an existing `creditBearing` tag.
 
+<br>
+
 **Editing tags**
 
 If the application only has 1 existing tag, you can edit it using `edit-app` as follows:
@@ -416,6 +423,8 @@ Format: `edit-app INDEX t/EXISTING_TAG(s) t/EDITED_TAG(s)`
 Example:
 * `edit-app 1 t/goodWelfare t/farFromHome t/highPay`: assuming that the 1st application on the Application List Panel 
   has existing `goodWelfare`, `farFromHome` and `payUnknown` tags, modifies `payUnknown` to `highPay`.
+
+<br>
 
 **Deleting tags**
 
@@ -460,7 +469,8 @@ as a task to the existing application entry using the command: `add-task 1 d/Tec
 
 You may refer to the screenshots below for the before and after comparison of the execution of the `add-task` command.
 
-![BeforeAfterAddTask](images/BeforeAfterAddTask.png)
+![BeforeAfterAddTask1](images/BeforeAfterAddTask1.png)
+![BeforeAfterAddTask2](images/BeforeAfterAddTask2.png)
 
 Format: `add-task INDEX d/DESCRIPTION by/DEADLINE`
 
@@ -554,7 +564,8 @@ Finds internship applications with information containing any of the given keywo
 Suppose exams are nearing and you are extremely busy! You want to know which internship offers you have at hand so you can accept one of the offers. Using `find s/offered`, the applications with companies that have responded with an offer will be listed. Thanks to this, you can see all your offers at a quick glance! :v:</div>
 
 You may refer to the screenshots below for the before and after comparison of the execution of the `find` command.
-![BeforeAfterFind](images/BeforeAfterFind.png)
+![BeforeAfterFind1](images/BeforeAfterFind1.png)
+![BeforeAfterFind2](images/BeforeAfterFind2.png)
 
 Format: `find keywords(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
 
@@ -572,8 +583,8 @@ Examples:
 
 #### 4.3.3 Sorting applications : `sort`
 
-Sorts internship applications in the order you desire. Please refer to the scenarios below to understand 
-how `sort` behaves with different parameters. 
+Sorts internship applications in the order you desire. Please read on to understand how `sort` behaves with 
+different parameters. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 While you can't undo a sort command, you can simply use the `list` command if you wish to return to the default list and order of applications.
@@ -592,14 +603,14 @@ Additional things to note:
 * `a` and `d` for `SEQUENCE` refer to **ascending** and **descending** respectively.
 * Currently, there are two `ORDER`s you can choose from: `alphabetical` and `deadline`.
 
-**Scenario 1: Sorting current list of applications by role name**
+**Case 1: Sorting current list of applications by role name**
 
 Choosing `alphabetical` will sort applications **currently displayed in the Application List Panel** by their roles in alphabetical order according to the specified sequence. Should
 there be multiple application entries with the same role, their company names will be used as a tiebreaker.
 In the event that there is still a tie (i.e., two applications with same role, same company), then they will be ranked in the order of when they are created;
 more recently created application entries will be shown higher up in the list.
 
-**Scenario 2: Sorting all applications by task deadline**
+**Case 2: Sorting all applications by task deadline**
 
 <div markdown="span" class="alert alert-success">:grey_question: **Scenario:**
 Suppose you have several tasks like interviews and online assessments coming up, but you can't remember the exact dates, 
@@ -607,7 +618,8 @@ which applications these tasks are for or which deadline comes first. To retriev
 ascending order of deadline (i.e. from earliest to latest), you can use the command: `sort a deadline`.
 </div>
 
-![BeforeAfterSort](images/BeforeAfterSort.png)
+![BeforeAfterSort1](images/BeforeAfterSort1.png)
+![BeforeAfterSort2](images/BeforeAfterSort2.png)
 
 Choosing `deadline` will retrieve and display **all existing applications with tasks** (and therefore, deadlines). 
 If there are no applications that have tasks associated with them, an empty list will be displayed.
@@ -647,7 +659,8 @@ the command: `undo`. Now, you can proceed to type the correct command.
 </div>
 
 You may refer to the screenshots below for the before and after comparison of the execution of the `undo` command.
-![BeforeAfterUndo](images/BeforeAfterUndo.png)
+![BeforeAfterUndo1](images/BeforeAfterUndo1.png)
+![BeforeAfterUndo2](images/BeforeAfterUndo2.png)
 
 Note that you can append extra characters after undo, but all these characters will be ignored, and the basic undo command will be executed.
 
@@ -655,7 +668,8 @@ Note that you can append extra characters after undo, but all these characters w
 Only `add-app`, `edit-app`, `delete-app`, `add-task`, `edit-task`, `delete-task`, `redo` and `clear` can be undone.  
 </div>
 
-This command works for all the commands made in the period that you opened sprINT for.
+`undo` works for all applicable commands that were executed during the current session. Commands issued in previous 
+sessions cannot be undone.
 
 Format: `undo`
 
@@ -683,7 +697,8 @@ Format: no command is needed. Statistics information is recomputed and regenerat
 You may refer to the screenshots below for the before and after comparison of the Statistics panel, after an application's
 status was changed from `interested` to `applied`.
 
-![BeforeAfterStatistics](images/BeforeAfterStatistics.png)
+![BeforeAfterStatistics1](images/BeforeAfterStatistics1.png)
+![BeforeAfterStatistics2](images/BeforeAfterStatistics2.png)
 
 #### 4.4.5 Clearing all applications : `clear`
 
@@ -729,6 +744,8 @@ If your changes to the data file makes its format invalid, sprINT automatically 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install sprINT on the other computer and run it for the first time. A new data file will be created with
 the sample data. Overwrite this data file with the original data file from the computer you have been using sprINT on previously.
+
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 
