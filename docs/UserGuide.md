@@ -389,7 +389,7 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 * For example, a module with deadline `250623` will be shown before a module with deadline `260623`.
 
 <p align="center">
-   <img width="327" height="463" src="images/sort.png">
+   <img width="273" height="386" src="images/sort.png">
 </p>
 
 <div align="center">Figure 7 : Sorting the modules based on deadline.</div>
