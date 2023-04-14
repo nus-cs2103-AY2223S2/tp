@@ -847,5 +847,3 @@ sprINT can process your data more quickly!
 | **Exit**                    | :x:                | `exit`                                                                                                                                                                 |
 
 #### *Return to the [Table of Contents](#table-of-contents).*
-
-<div style="page-break-after: always;"></div>
