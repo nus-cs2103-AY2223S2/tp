@@ -448,28 +448,28 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
 
 3. Click on `Format Cells...` and the table below will appear:
    <p align="center">
-    <img src="images/format.png" width="80%" height="80%">
+    <img src="images/format.png" width="80%" height="70%">
     <br>
     <em>Format cells table</em>
    </p>
 
 4. Click on `Date`:
    <p align="center">
-    <img src="images/formatdate.png" width="80%" height="80%">
+    <img src="images/formatdate.png" width="80%" height="70%">
     <br>
     <em>Clicking on date</em>
    </p>
 
 5. Select the correct date format ("YYYY-MM-DD"):
    <p align="center">
-    <img src="images/correct.png" width="100%" height="100%">
+    <img src="images/correct.png" width="80%" height="80%">
     <br>
     <em>Correct date format</em>
    </p>
 
 6. Click `OK` and the date in the file will be updated to the correct format:
    <p align="center">
-    <img src="images/successCSV.png" width="80%" height="80%">
+    <img src="images/successCSV.png" width="100%" height="100%">
     <br>
     <em>Correct date format in Excel file</em>
    </p>
