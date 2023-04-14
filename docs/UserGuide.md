@@ -441,7 +441,7 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
    </p>
 2. Next, right-click on the selected columns so that the following shows up:
    <p align="center">
-    <img src="images/rightclick.png" width="45%" height="40%">
+    <img src="images/rightclick.png" width="40%" height="30%">
     <br>
     <em>Right click to format selected cells</em>
    </p>
@@ -708,11 +708,12 @@ Examples:
 Here are the steps to use this command:
 
 **Step 1 (Inputting the search keywords) :**
-You can use the command syntax to input the search keywords, just like the image below.
+Following the command format above,
+you can find employees with the specified keywords, just like the image below.
    <p align="center">
      <img src="images/findInterface.png" width="75%" height="50%">
      <br>
-     <em>Input search keywords</em>
+     <em>Input search keywords: "Alex Marketing"</em>
    </p>
 
 **Step 2 (Results displayed) :**
@@ -725,39 +726,39 @@ All the employees who match the keywords will be listed.
 
 #### Filtering out employees: `filter`
 
-As your database gets larger, searching through the whole database to find employees whose salaries are greater than 
-a certain threshold or whose leave count is lower than a certain value becomes extremely tedious.
-Fret not, ExecutivePro has just the right feature for you! The `filter` command will help you filter out such employees with ease.
+Similar to the `find` command, the `filter` command helps you to search for employees by their salaries or remaining leave counts.
+Furthermore, you can find employees whose salaries/leave counts are greater than/lesser than/equal to a specified amount.
 
 Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
 
-
 * You can create your own condition based on which the employees will be filtered.
-* The filtering condition can filter based on the Payroll(`pr`) value or the number of leaves remaining for an employee(`l`).
-* The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
-* The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT`
-* The `COMPARISON_AMOUNT` must be _non-negative_ and an _integer_
+* The filtering condition can be `pr` (for employee salaries) or `l` (for remaining leave counts).
+* The filtering condition checks the salaries or leave counts of employees against a `COMPARISON_AMOUNT`.
+* The filtering condition can either be greater than (`>`), lesser than (`<`) or equal to (`=`) the `COMPARISON_AMOUNT`.
+* The `COMPARISON_AMOUNT` must be a _non-negative_ integer.
 
 Examples:
-* `filter pr > 1000` displays list of all employees whose payroll value is greater than 1000
-* `filter l = 1` displays list of all employees who have only 1 leave left
+* `filter pr > 1000` displays a list of all employees whose salaries are greater than 1000
+* `filter l = 1` displays a list of all employees who have only 1 leave left
 
 Here are the steps to use this command:
 
 **Step 1 (Creating the criteria) :**
-You can use the command syntax to create the criteria, just like the image below.
+Following the command format above, 
+you can filter for employees with salaries greater than 500, just like the image below.
+
    <p align="center">
      <img src="images/filterInterface.png" width="75%" height="50%">
      <br>
-     <em>Filtering employees with payroll greater than 500</em>
+     <em>Filtering employees with salaries greater than 500</em>
    </p>
 
 **Step 2 (Results displayed) :**
-All the employees who satisfy the criteria will be listed.
+All the employees who have satisfied the criteria will be listed.
    <p align="center">
      <img src="images/filterResults.png" width="75%" height="50%">
      <br>
-     <em>Results displayed after filter command</em>
+     <em>Results displayed after filter command is entered</em>
    </p>
 
 #### Listing all employees : `list`
