@@ -261,3 +261,8 @@
     width: calc(50% - (#{$spacing-unit} / 2));
   }
 }
+
+img[src*='#center'] {
+  display: block;
+  margin: auto;
+}

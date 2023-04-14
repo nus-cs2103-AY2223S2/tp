@@ -1,0 +1,26 @@
+{
+  "bookmarks": [ {
+    "title": "Alice Pauline",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
+    "genre": "Action",
+    "author": "123, Jurong West Ave 6, #08-111",
+    "url": "",
+    "tagged": [ {
+      "tag": "friends"
+    } ]
+  }, {
+    "title": "Alice Pauline",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
+    "genre": "Others",
+    "author": "4th street",
+    "url": ""
+  } ]
+}

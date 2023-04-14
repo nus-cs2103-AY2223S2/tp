@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: #FDF6E3; -fx-padding: 10,0,0,0; -fx-background-color: #FDF6E3;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="340.0" prefWidth="570.0" style="-fx-background-color: #F4F6F8; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black;">
+         <children>
+            <HBox fx:id="zoomed" maxWidth="1.7976931348623157E308">
+               <children>
+                  <Label fx:id="viewTitle" minHeight="-Infinity"  style="-fx-font-family: 'Britannic Bold'; -fx-font-size: 30; -fx-text-fill: black;" text="Label" translateX="12.0" translateY="15.0" wrapText="true"/>
+               </children>
+            </HBox>
+            <HBox fx:id="authorBox" minHeight="29.0" prefWidth="555.0" maxWidth="1.7976931348623157E308">
+               <children>
+                  <Label fx:id="authorView" minHeight="-Infinity" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="18.0" translateY="17.0" wrapText="true" />
+               </children>
+            </HBox>
+            <HBox minHeight="35.0" prefWidth="630.0">
+               <children>
+                  <Label fx:id="progressView" minHeight="-Infinity" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="18.0" translateY="20" wrapText="true" />
+               </children>
+            </HBox>
+            <HBox fx:id="hyperBox" minHeight="23.0" prefHeight="23.0" prefWidth="568.0" nodeOrientation="LEFT_TO_RIGHT">
+               <children>
+                  <Hyperlink fx:id="urlLink" minHeight="-Infinity" style="-fx-text-fill: Black; -fx-font-size: 15;"  text="Hyperlink" translateX="12.0" translateY="4" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox minHeight="29.0" prefHeight="29.0" prefWidth="568.0">
+               <children>
+                  <Label fx:id="genreView" minHeight="-Infinity" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="17.0" translateY="12.0" wrapText="true" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label fx:id="zoomTag" minHeight="-Infinity" maxWidth="47.0" minWidth="47.0" prefWidth="47.0" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Tags:" translateX="17.0" translateY="5.0" wrapText="true" />
+                  <FlowPane fx:id="tagsView" prefHeight="10.0" prefWidth="600.0" translateX="10.0" translateY="2.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="555.0">
+               <children>
+                  <Label fx:id="labelHeader" minHeight="-Infinity" style="-fx-font-family: Arial; -fx-font-size: 15;" text="Rating:" translateX="17.0" translateY="10.0" wrapText="true"  />
+                  <ImageView fx:id="ratingStar" fitHeight="20.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="9.0" />
+               </children>
+            </HBox>
+            <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <HBox fx:id="center" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="150.0" VBox.vgrow="NEVER">
+               <children>
+                  <ImageView fx:id="avatar" fitHeight="208.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

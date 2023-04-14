@@ -1,0 +1,89 @@
+{
+  "_comment": "Library save file which contains the same Bookmark values as in TypicalBookmarks#getTypicalLibrary()",
+  "bookmarks": [ {
+    "title": "Attack on Titans",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
+    "genre": "Action",
+    "author": "Hajime Isayama",
+    "url": "https://aotmanga.com/attack-on-titan/chapter-139/",
+    "tagged" : [ {
+      "tag": "MaleProtagonist"
+    }]
+  }, {
+    "title": "Benson Meier",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
+    "genre": "Adventure",
+    "author": "311, Clementi Ave 2, #02-25",
+    "url": "",
+    "tagged" : [ {
+      "tag": "owesMoney"
+    }, {
+      "tag": "friends"
+    }]
+  }, {
+    "title": "Carl Kurz",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
+    "genre": "Comedy",
+    "author": "wall street",
+    "url": "",
+    "tagged" : [ ]
+  }, {
+    "title": "Daniel Meier",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
+    "genre": "Drama",
+    "author": "10th street",
+    "url": "",
+    "tagged" : [ {
+      "tag": "friends"
+    } ]
+  }, {
+    "title": "Elle Meyer",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
+    "genre": "Fantasy",
+    "author": "michegan ave",
+    "url": "",
+    "tagged" : [ ]
+  }, {
+    "title": "Fiona Kunz",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
+    "genre": "Historical",
+    "author": "little tokyo",
+    "url": "",
+    "tagged" : [ ]
+  }, {
+    "title": "George Best",
+    "progress": {
+      "volume": "1",
+      "chapter": "2",
+      "page": "~"
+    },
+    "genre": "Horror",
+    "author": "4th street",
+    "url": "",
+    "tagged" : [ ]
+  } ]
+}
