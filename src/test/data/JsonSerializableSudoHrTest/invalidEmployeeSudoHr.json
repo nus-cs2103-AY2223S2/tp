@@ -1,0 +1,11 @@
+{
+  "employees": [ {
+    "id": "11",
+    "name": "Hans Muster",
+    "phone": "94824241",
+    "email": "invalid@email!3e",
+    "address": "4th street"
+  } ],
+  "departments": [],
+  "leaves":[]
+}

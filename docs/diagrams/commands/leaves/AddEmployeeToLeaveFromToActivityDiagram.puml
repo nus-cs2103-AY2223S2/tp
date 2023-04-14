@@ -1,0 +1,19 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters aelr command;
+if () then ([else])
+  :Error: Invalid command format;
+([Command format is valid]) elseif () then ([else])
+  :Error: Start Date and End Date \n violate date constraints;
+([End Date is not before Start Date]) elseif () then ([else])
+  :Error: Start Date and End Date \n violate date constraints;
+([End Date is less than 7 days after Start Date]) elseif () then ([else])
+  :Error: Employee does not exist in SudoHR;
+([Employee exists in SudoHR]) elseif () then ([else])
+  :Error: Employee has already \n taken leave on one of the days in range;
+ else ([Employee has not taken \n leave on any days in range])
+  :aelr command successfully executes.;
+endif
+stop
+@enduml

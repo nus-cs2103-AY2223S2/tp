@@ -1,0 +1,20 @@
+
+@startuml
+!pragma useVerticalIf on
+start
+:User enters aetd command;
+if () then ([else])
+  :Error: Invalid command format;
+([Command format is valid])elseif () then ([else])
+  :Error: Employee does not exist in SudoHR;
+([Employee exists in SudoHR])elseif () then ([else])
+ :Error: Department does not exist in SudoHR;
+([Department exists in SudoHR])elseif () then ([else])
+  :Error: Employee already exists in the department;
+ else ([Employee does not exist
+ in the department])
+  :aetd command successfully executes.;
+  endif
+stop
+
+@enduml

@@ -1,0 +1,106 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SudoHrParser" as SudoHrParser LOGIC_COLOR
+participant ":ListDepartmentHeadcountCommandParser" as ListDepartmentHeadcountCommandParser LOGIC_COLOR
+participant ":ListDepartmentHeadcountCommand" as ListDepartmentHeadcountCommand LOGIC_COLOR
+participant "departmentName:DepartmentName" as DepartmentName LOGIC_COLOR
+participant "leaveDate:LeaveDate" as LeaveDate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("ldhc d/2023-04-10 n/Human Resources")
+activate LogicManager
+
+LogicManager -> SudoHrParser : parseCommand("ldhc d/2023-04-10 n/Human Resources")
+activate SudoHrParser
+
+create ListDepartmentHeadcountCommandParser
+SudoHrParser -> ListDepartmentHeadcountCommandParser
+activate ListDepartmentHeadcountCommandParser
+
+ListDepartmentHeadcountCommandParser --> SudoHrParser
+deactivate ListDepartmentHeadcountCommandParser
+
+SudoHrParser -> ListDepartmentHeadcountCommandParser: parse("d/2023-04-10 n/Human Resources")
+activate ListDepartmentHeadcountCommandParser
+
+create DepartmentName
+ListDepartmentHeadcountCommandParser -> DepartmentName
+activate DepartmentName
+
+DepartmentName --> ListDepartmentHeadcountCommandParser
+deactivate DepartmentName
+
+create ListDepartmentHeadcountCommand
+ListDepartmentHeadcountCommandParser -> ListDepartmentHeadcountCommand
+activate ListDepartmentHeadcountCommand
+
+ListDepartmentHeadcountCommand --> ListDepartmentHeadcountCommandParser
+deactivate ListDepartmentHeadcountCommand
+
+ListDepartmentHeadcountCommandParser --> SudoHrParser
+deactivate ListDepartmentHeadcountCommandParser
+
+ListDepartmentHeadcountCommandParser -[hidden]-> SudoHrParser
+destroy ListDepartmentHeadcountCommandParser
+
+SudoHrParser --> LogicManager
+deactivate SudoHrParser
+
+LogicManager -> ListDepartmentHeadcountCommand : execute(model)
+activate ListDepartmentHeadcountCommand
+
+ListDepartmentHeadcountCommand -> Model : getDepartment(departmentName)
+activate Model
+
+Model --> ListDepartmentHeadcountCommand
+deactivate Model
+
+create LeaveDate
+ListDepartmentHeadcountCommand -> LeaveDate
+activate LeaveDate
+
+LeaveDate --> ListDepartmentHeadcountCommand
+deactivate LeaveDate
+
+ListDepartmentHeadcountCommand -> Model: getLeave(leaveDate)
+activate Model
+
+Model --> ListDepartmentHeadcountCommand
+deactivate Model
+
+
+ListDepartmentHeadcountCommand -> Model : updateFilteredDepartmentList
+activate Model
+
+Model --> ListDepartmentHeadcountCommand
+deactivate Model
+
+ListDepartmentHeadcountCommand -> Model: updateFilteredEmployeeList
+activate Model
+
+Model --> ListDepartmentHeadcountCommand
+deactivate Model
+
+
+
+create CommandResult
+ListDepartmentHeadcountCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListDepartmentHeadcountCommand
+deactivate CommandResult
+
+ListDepartmentHeadcountCommand --> LogicManager : result
+deactivate ListDepartmentHeadcountCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,45 @@
+{
+  "_comment": "SudoHR save file which contains the same Person and Department values as in TypicalDepartments#getTypicalSudoHr()",
+  "employees" : [],
+
+  "departments":[],
+  "leaves" : [ {
+    "date" : "2022-12-24",
+    "employees": [ {
+      "id": "104",
+      "name" : "Daniel Meier",
+      "phone" : "87652533",
+      "email" : "cornelia@example.com",
+      "address" : "10th street",
+      "tagged" : [ "friends" ]
+    }, {
+      "id": "105",
+      "name" : "Elle Meyer",
+      "phone" : "94822241",
+      "email" : "werner@example.com",
+      "address" : "michegan ave",
+      "tagged" : [ ]
+    }, {
+      "id": "108",
+      "name" : "Elle Meyer",
+      "phone" : "99999999",
+      "email" : "werner@example.com",
+      "address" : "michegan ave",
+      "tagged" : [ ]
+    }, {
+      "id": "106",
+      "name" : "Fiona Kunz",
+      "phone" : "94824271",
+      "email" : "lydia@example.com",
+      "address" : "little tokyo",
+      "tagged" : [ ]
+    }, {
+      "id": "107",
+      "name" : "George Best",
+      "phone" : "94824421",
+      "email" : "anna@example.com",
+      "address" : "4th street",
+      "tagged" : [ ]
+    } ]
+  } ]
+}

@@ -1,0 +1,71 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SudoHrParser" as SudoHrParser LOGIC_COLOR
+participant ":AddEmployeeToLeaveFromToCommandParser" as AddEmployeeToLeaveFromToCommandParser LOGIC_COLOR
+participant "a:AddEmployeeToLeaveFromToCommand" as AddEmployeeToLeaveFromToCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("aetl eid/1 s/2022-03-04 e/2022-03-07")
+activate LogicManager
+
+LogicManager -> SudoHrParser : parseCommand("aetl eid/1 s/2022-03-04 e/2022-03-07")
+activate SudoHrParser
+
+create AddEmployeeToLeaveFromToCommandParser
+SudoHrParser -> AddEmployeeToLeaveFromToCommandParser
+activate AddEmployeeToLeaveFromToCommandParser
+
+AddEmployeeToLeaveFromToCommandParser --> SudoHrParser
+deactivate AddEmployeeToLeaveFromToCommandParser
+
+SudoHrParser -> AddEmployeeToLeaveFromToCommandParser : parse("eid/1 s/2022-03-04 e/2022-03-07")
+activate AddEmployeeToLeaveFromToCommandParser
+
+create AddEmployeeToLeaveFromToCommand
+AddEmployeeToLeaveFromToCommandParser -> AddEmployeeToLeaveFromToCommand
+activate AddEmployeeToLeaveFromToCommand
+
+AddEmployeeToLeaveFromToCommand --> AddEmployeeToLeaveFromToCommandParser : a
+deactivate AddEmployeeToLeaveFromToCommand
+
+AddEmployeeToLeaveFromToCommandParser --> SudoHrParser : a
+deactivate AddEmployeeToLeaveFromToCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddEmployeeToLeaveFromToCommandParser -[hidden]-> SudoHrParser
+destroy AddEmployeeToLeaveFromToCommandParser
+
+SudoHrParser --> LogicManager : a
+deactivate SudoHrParser
+
+LogicManager -> AddEmployeeToLeaveFromToCommand : execute(model)
+activate AddEmployeeToLeaveFromToCommand
+
+loop 4 times
+AddEmployeeToLeaveFromToCommand -> Model : addEmployeeToLeave(1,datesToAdd)
+activate Model
+
+Model --> AddEmployeeToLeaveFromToCommand
+deactivate Model
+end
+
+create CommandResult
+AddEmployeeToLeaveFromToCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddEmployeeToLeaveFromToCommand
+deactivate CommandResult
+
+AddEmployeeToLeaveFromToCommand --> LogicManager : result
+deactivate AddEmployeeToLeaveFromToCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

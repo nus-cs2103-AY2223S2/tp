@@ -1,0 +1,20 @@
+
+@startuml
+!pragma useVerticalIf on
+start
+:User enters edep command;
+if () then ([else])
+  :Error: Invalid command format;
+([Command format is valid])elseif () then ([else])
+  :Error: At least one field to edit must be provided;
+([Department name argument exists])elseif () then ([else])
+  :Error: The department to edit does not exist in SudoHR.;
+([Department to edit exists])elseif () then ([else])
+   :Error: Edited department already exists in SudoHr;
+ else ([Edited department does not
+ exist in SudoHr])
+  :edep command successfully executes.;
+  endif
+stop
+
+@enduml

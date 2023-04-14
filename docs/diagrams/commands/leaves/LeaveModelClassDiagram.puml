@@ -1,0 +1,23 @@
+@startuml
+!include ../../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class UniqueEmployeeList
+Class Employee
+
+
+Class UniqueLeaveList
+Class Leave
+Class LeaveDate
+
+UniqueEmployeeList --> "~* all" Employee
+
+
+UniqueLeaveList --> "~* all" Leave
+Leave *--> LeaveDate
+Leave *-->"1"UniqueEmployeeList
+
+
+@enduml

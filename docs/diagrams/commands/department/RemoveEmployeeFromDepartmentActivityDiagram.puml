@@ -1,0 +1,20 @@
+
+@startuml
+!pragma useVerticalIf on
+start
+:User enters refd command;
+if () then ([else])
+  :Error: Invalid command format;
+([Command format is valid])elseif () then ([else])
+  :Error: Employee does not exist in SudoHR;
+([Employee exists in SudoHR])elseif () then ([else])
+ :Error: Department does not exist in SudoHR;
+([Department exists in SudoHR])elseif () then ([else])
+  :Error: Employee not found in the department;
+ else ([Employee found in
+ the department])
+  :refd command successfully executes.;
+  endif
+stop
+
+@enduml

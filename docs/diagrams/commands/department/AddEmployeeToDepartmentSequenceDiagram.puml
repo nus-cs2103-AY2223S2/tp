@@ -1,0 +1,104 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SudoHrParser" as SudoHrParser LOGIC_COLOR
+participant ":AddEmployeeToDepartmentCommandParser" as AddEmployeeToDepartmentCommandParser LOGIC_COLOR
+participant ":Id" as Id LOGIC_COLOR
+participant ":DepartmentName" as DepartmentName LOGIC_COLOR
+participant "department:Department" as Department LOGIC_COLOR
+participant "AddEmployeeToDepartmentCommand" as AddEmployeeToDepartmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("aetd eid/100 n/Software Engineering")
+activate LogicManager
+
+LogicManager -> SudoHrParser : parseCommand("aetd eid/100 n/Software Engineering")
+activate SudoHrParser
+
+create AddEmployeeToDepartmentCommandParser
+SudoHrParser -> AddEmployeeToDepartmentCommandParser
+activate AddEmployeeToDepartmentCommandParser
+
+AddEmployeeToDepartmentCommandParser --> SudoHrParser
+deactivate AddEmployeeToDepartmentCommandParser
+
+SudoHrParser -> AddEmployeeToDepartmentCommandParser : parse("eid/100 n/Software Engineering")
+activate AddEmployeeToDepartmentCommandParser
+
+create Id
+AddEmployeeToDepartmentCommandParser -> Id
+activate Id
+
+Id --> AddEmployeeToDepartmentCommandParser
+deactivate
+
+create DepartmentName
+AddEmployeeToDepartmentCommandParser -> DepartmentName
+activate DepartmentName
+
+DepartmentName --> AddEmployeeToDepartmentCommandParser
+deactivate
+
+create AddEmployeeToDepartmentCommand
+AddEmployeeToDepartmentCommandParser -> AddEmployeeToDepartmentCommand
+activate AddEmployeeToDepartmentCommand
+
+AddEmployeeToDepartmentCommand --> AddEmployeeToDepartmentCommandParser
+deactivate AddEmployeeToDepartmentCommand
+
+AddEmployeeToDepartmentCommandParser --> SudoHrParser
+deactivate AddEmployeeToDepartmentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddEmployeeToDepartmentCommandParser -[hidden]-> SudoHrParser
+destroy AddEmployeeToDepartmentCommandParser
+
+SudoHrParser --> LogicManager
+deactivate SudoHrParser
+
+LogicManager -> AddEmployeeToDepartmentCommand : execute(model)
+activate AddEmployeeToDepartmentCommand
+
+AddEmployeeToDepartmentCommand -> Model : getEmployee(toAdd)
+activate Model
+
+Model --> AddEmployeeToDepartmentCommand
+deactivate Model
+
+AddEmployeeToDepartmentCommand -> Model : getDepartment(departmentName)
+activate Model
+
+Model --> AddEmployeeToDepartmentCommand
+deactivate Model
+
+AddEmployeeToDepartmentCommand -> Department : hasEmployee(employee)
+activate Department
+
+Department --> AddEmployeeToDepartmentCommand
+deactivate Department
+
+AddEmployeeToDepartmentCommand -> Department : addEmployee(employee)
+activate Department
+
+Department --> AddEmployeeToDepartmentCommand
+deactivate Department
+
+create CommandResult
+AddEmployeeToDepartmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddEmployeeToDepartmentCommand
+deactivate CommandResult
+
+AddEmployeeToDepartmentCommand --> LogicManager : result
+deactivate AddEmployeeToDepartmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

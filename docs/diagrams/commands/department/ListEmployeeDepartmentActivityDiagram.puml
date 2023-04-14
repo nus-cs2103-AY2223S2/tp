@@ -1,0 +1,16 @@
+
+@startuml
+!pragma useVerticalIf on
+start
+:User enters led command;
+if () then ([else])
+  :Error: Invalid command format;
+([Command format is valid])elseif () then ([else])
+  :Error: Employee does not exist in SudoHR;
+ else ([Employee exists
+ in SudoHR])
+  :led command successfully executes.;
+  endif
+stop
+
+@enduml

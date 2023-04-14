@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "SudoHR"
 theme: minima
 
 header_pages:
@@ -8,8 +8,9 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2223S2-CS2103T-T17-2/tp"
 github_icon: "images/github-icon.png"
 
 plugins:
   - jemoji
+  - jekyll-toc

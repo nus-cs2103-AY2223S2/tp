@@ -1,0 +1,83 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SudoHrParser" as SudoHrParser LOGIC_COLOR
+participant ":DeleteDepartmentCommandParser" as DeleteDepartmentCommandParser LOGIC_COLOR
+participant ":DepartmentName" as DepartmentName LOGIC_COLOR
+participant "DeleteDepartmentCommand" as DeleteDepartmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deldep n/Sales")
+activate LogicManager
+
+LogicManager -> SudoHrParser : parseCommand("deldep n/Sales")
+activate SudoHrParser
+
+create DeleteDepartmentCommandParser
+SudoHrParser -> DeleteDepartmentCommandParser
+activate DeleteDepartmentCommandParser
+
+DeleteDepartmentCommandParser --> SudoHrParser
+deactivate DeleteDepartmentCommandParser
+
+SudoHrParser -> DeleteDepartmentCommandParser : parse("n/Sales")
+activate DeleteDepartmentCommandParser
+
+create DepartmentName
+DeleteDepartmentCommandParser -> DepartmentName
+activate DepartmentName
+
+DepartmentName --> DeleteDepartmentCommandParser
+deactivate
+
+create DeleteDepartmentCommand
+DeleteDepartmentCommandParser -> DeleteDepartmentCommand
+activate DeleteDepartmentCommand
+
+DeleteDepartmentCommand --> DeleteDepartmentCommandParser
+deactivate DeleteDepartmentCommand
+
+DeleteDepartmentCommandParser --> SudoHrParser
+deactivate DeleteDepartmentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteDepartmentCommandParser -[hidden]-> SudoHrParser
+destroy DeleteDepartmentCommandParser
+
+SudoHrParser --> LogicManager
+deactivate SudoHrParser
+
+LogicManager -> DeleteDepartmentCommand : execute(model)
+activate DeleteDepartmentCommand
+
+DeleteDepartmentCommand -> Model : getDepartment(targetDepartment)
+activate Model
+
+Model --> DeleteDepartmentCommand
+deactivate Model
+
+DeleteDepartmentCommand -> Model : DeleteDepartment(toDelete)
+activate Model
+
+Model --> DeleteDepartmentCommand
+deactivate Model
+
+create CommandResult
+DeleteDepartmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteDepartmentCommand
+deactivate CommandResult
+
+DeleteDepartmentCommand --> LogicManager : result
+deactivate DeleteDepartmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

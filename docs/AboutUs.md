@@ -5,55 +5,60 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Andre Lin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/4ndrelim.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/4ndrelim)]
+[[portfolio](team/4ndrelim.md)]
 
-* Role: Project Advisor
+- Role: Developer, PR Reviewer
+- Responsibilities: Integration, Testing & Bug Fixing
+- In-charge of: Employee class and related features
 
-### Jane Doe
+### Kenneth Kiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kennethk-1201.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kennethk-1201)]
+[[portfolio](team/kennethk-1201.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Team Lead
+- Responsibilities: Integration and Testing
+- In-charge of: Department class and related features
 
-### Johnny Doe
+### Park Kwangjoo
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
+<img src="images/pkwangjoo.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/pkwangjoo.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Integration
+- In-charge of: Department and Leave features.
 
-### James Doe
+### Chee Jer En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jerrrren.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jerrrren)]
+[[portfolio](team/jerrrren.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Code reviewer
+- Responsibilities: Review Code
+- In-charge of: Leave class and related features
+
+
+### Johnathan Wee
+
+<img src="images/jweeyh.png" width="200px">
+
+[[github](http://github.com/jweeyh)]
+[[portfolio](team/jweeyh.md)]
+
+- Role: Developer
+- Responsibilities: Secretary
+- In-charge of: UI

@@ -1,0 +1,20 @@
+@startuml
+!include ../../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class UniqueEmployeeList
+Class Employee
+
+Class UniqueDepartmentList
+Class Department
+Class DepartmentName
+
+UniqueEmployeeList --> "~* all" Employee
+
+UniqueDepartmentList --> "~* all" Department
+Department *--> DepartmentName
+Department *-->"1"UniqueEmployeeList
+
+@enduml

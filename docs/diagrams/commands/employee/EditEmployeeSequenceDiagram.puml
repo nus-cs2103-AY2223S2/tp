@@ -1,0 +1,94 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SudoHrParser" as SudoHrParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "editEmployeeDescriptor:EditEmployeeDescriptor" as EditEmployeeDescriptor LOGIC_COLOR
+participant "editedEmployee:Employee" as Employee LOGIC_COLOR
+participant "EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit eid/.. ..")
+activate LogicManager
+
+LogicManager -> SudoHrParser : parseCommand("edit eid/.. ..")
+activate SudoHrParser
+
+create EditCommandParser
+SudoHrParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> SudoHrParser
+deactivate EditCommandParser
+
+SudoHrParser -> EditCommandParser : parse("eid/.. ..")
+activate EditCommandParser
+
+create EditEmployeeDescriptor
+EditCommandParser -> EditEmployeeDescriptor
+activate EditEmployeeDescriptor
+
+EditEmployeeDescriptor --> EditCommandParser
+deactivate EditEmployeeDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser
+deactivate EditCommand
+
+EditCommandParser --> SudoHrParser
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> SudoHrParser
+destroy EditCommandParser
+
+SudoHrParser --> LogicManager
+deactivate SudoHrParser
+
+LogicManager -> EditCommand : execute(model)
+activate EditCommand
+
+EditCommand -> Model: checkEmployeeExists(id)
+EditCommand -> Model : getEmployee(id)
+
+EditCommand -> EditCommand : createEditedEmployee(employeeToEdit, editEmployeeDescriptor)
+activate EditCommand
+
+create Employee
+EditCommand -> Employee
+activate Employee
+Employee --> EditCommand
+deactivate Employee
+
+EditCommand --> EditCommand
+deactivate EditCommand
+
+EditCommand -> Model : hasEmployee(editedEmployee, employeeExcludedFromCheck)
+EditCommand -> Model : hasClashingPhoneNumber(editedEmployee, employeeExcludedFromCheck)
+EditCommand -> Model : hasClashingEmail(editedEmployee, employeeExcludedFromCheck)
+
+EditCommand -> Model : setEmployee(employeeToEdit, editedEmployee)
+EditCommand -> Model : refresh()
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

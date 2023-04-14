@@ -1,12 +1,12 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #000101;
+    background-color: #000101; /* Used in the default.html file */
 }
 
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
+    -fx-text-fill: #3EA93C;
     -fx-opacity: 0.9;
 }
 
@@ -27,6 +27,27 @@
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #3EA93C;
+}
+
+.header-employee{
+    -fx-font-size: 20pt;
+    -fx-background-color: #161616;
+    -fx-text-fill: #F8D06A;
+    -fx-alignment: center;
+}
+.header-department{
+    -fx-font-size: 20pt;
+    -fx-background-color: #161616;
+    -fx-text-fill: #CC79FF;
+    -fx-alignment: center;
+}
+
+.header-leave{
+    -fx-font-size: 20pt;
+    -fx-background-color: #161616;
+    -fx-text-fill: #F54A4A;
+    -fx-alignment: center;
 }
 
 .tab-pane {
@@ -84,63 +105,84 @@
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#000101, 20%);
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#000101, 20%);
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-font-family: "Roboto";
+    -fx-background-color: #000101;
 }
 
-.list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+
+.list-cell:filled {
+    -fx-background-color: #000101;
+    -fx-border-color: #161616;
 }
 
-.list-cell:filled:odd {
-    -fx-background-color: #515658;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
-}
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-font-family: "Lucida Console";
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 20px;
+    -fx-text-fill: #3EA93C;
+}
+
+.cell_bigger_label_leave {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 25px;
+    -fx-text-fill: #DF3030;
+}
+
+.cell_bigger_label_employee {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 25px;
+    -fx-text-fill: #DD9F00;
+}
+
+.cell_bigger_label_department {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 25px;
+    -fx-text-fill: #D362FB;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Lucida Console";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #3EA93C;
+}
+.box_something{
+    -fx-background-color:#000101;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #000101;
+}
+
+.internalList .label {
+     -fx-font-family: "Lucida Console";
+     -fx-font-size: 13px;
+     -fx-text-fill: #3EA93C;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: #000101;
+     -fx-border-color: #161616;
      -fx-border-top-width: 1px;
 }
+
+
 
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
@@ -198,7 +240,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Lucida Console";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -307,9 +349,14 @@
     -fx-padding: 8 1 8 1;
 }
 
+.scroll-pane {
+    -fx-background-colour: #000101;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
+    -fx-pref-height: 120px;
 }
 
 #commandTypeLabel {
@@ -318,22 +365,22 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #000101;
     -fx-background-insets: 0;
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Lucida Console";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #employeeListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: #161616;
     -fx-background-radius: 0;
 }
 
@@ -349,4 +396,20 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+#employees .label {
+    -fx-text-fill: white;
+    -fx-background-color: #3037EF;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 16;
+    -fx-pref-width: 300px;
+    -fx-wrap-text: true;
+    -fx-alignment: center;
+}
+
+#hashId {
+    -fx-text-fill: B88E23;
+    -fx-font-size: 20px;
 }

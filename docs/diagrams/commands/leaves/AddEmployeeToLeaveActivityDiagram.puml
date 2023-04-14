@@ -1,0 +1,19 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters aetl command;
+if () then ([else])
+  :Error: Invalid command format;
+
+([Command format is valid])elseif () then ([else])
+  :Error: Employee does not exist in SudoHR;
+
+([Employee exists in SudoHR])elseif () then ([else])
+  :Error: Employee already \n taken leave on the given day;
+
+else ([Employee has not taken \n leave on the given day])
+  :aetl command successfully executes.;
+  endif
+stop
+
+@enduml
