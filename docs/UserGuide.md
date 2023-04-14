@@ -209,7 +209,7 @@ Here is a list of amazing features that CLIpboard supports:
   - [Editing a student: ](#editing-a-student-edit-student) `edit student`
   - [Copying a student&#39;s email: ](#copying-a-students-email-copy) `copy`
   - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find-student) `find student`
-  - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
+  - [Sorting a list of students: ](#sorting-a-list-of-students-sort) `sort`
   - [Display a student's information:  ](#display-a-students-information-select) `select`
   - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
   - [Uploading a student's photo: ](#uploading-a-students-photo-upload) `upload`
@@ -763,7 +763,7 @@ Examples:
 
 [Back to list of features](#features)
 
-### Sorting list of students: `sort`
+### Sorting a list of students: `sort`
 
 You can sort your students either by their names or their student ID.
 
@@ -871,7 +871,7 @@ Examples:
 
 ### Viewing a student's attendance throughout the course: `attendance`
 
-You can view a summary of a student's attendance like this:
+After selecting a student, you can use `attendance` to view a summary of their attendance like this:
 
 <img src="./images/UiStudentAttendanceView.png" max-width="80%" max-height="80%"/>
 
@@ -881,7 +881,7 @@ You can view a summary of a student's attendance like this:
 attendance
 ```
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** To edit a student's attendance for a particular session, you can navigate to their [Attendance Page](#attendance-page-commands).
+<div markdown="block" class="alert alert-info">:information_source: **Note:** To edit a student's attendance for a particular session, you can navigate to their [Attendance Page](#managing-attendance).
 </div>
 <br>
 
