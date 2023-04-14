@@ -614,7 +614,7 @@ ascending order of deadline (i.e. from earliest to latest), you can use the comm
 Choosing `deadline` will retrieve and display **all existing applications with tasks** (and therefore, deadlines). 
 If there are no applications that have tasks associated with them, an empty list will be displayed.
 
-The applications will be sorted by their task's deadline according to the specified sequence. In the example above where the sequence
+The applications will be sorted by their task's deadline according to the specified sequence. In the example shown in the screenshots above where the sequence
 `a` is specified for ascending sequence, you can see that the application to Apple is placed higher, as it has a task deadline for an `Interview`
 on 27 Apr 2023, compared to 29 Apr 2023 for the application to Amazon.
 
