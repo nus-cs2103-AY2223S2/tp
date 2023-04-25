@@ -4,18 +4,29 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
+AddressBook *--right-> "1" UniquePersonList
 AddressBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
+UniqueTagList -[hidden]down- Module
+UniqueTagList -[hidden]down- Tag
+Tag -[hidden]right- Module
 
 UniqueTagList -right-> "*" Tag
-UniquePersonList -right-> Person
+UniqueTagList -down-> "*" Module
+UniquePersonList -right-> Student
 
-Person -up-> "*" Tag
+Student *-up-> "*" Tag
+Student *-up-> "*" Module
+Student -[hidden]right-> Module
+Student -[hidden]up-> Module
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Student *--> Name
+Student *--> Phone
+Student *--> Email
+Student *--> Address
+Student *--> Telegram
+Student *--> Education
+Student *--> Remark
+
 @enduml

@@ -33,10 +33,15 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
+    private ResultPersonListPanel resultPersonlistPanel;
     private HelpWindow helpWindow;
+    private RemarkWindow remarkWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private StackPane remarkBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -48,7 +53,11 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
+    private StackPane resultPersonListPlaceholder;
+
+    @FXML
     private StackPane statusbarPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +75,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        remarkWindow = new RemarkWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -113,13 +123,17 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        resultPersonlistPanel = new ResultPersonListPanel(logic.getShowPerson());
+        resultPersonListPlaceholder.getChildren().add(resultPersonlistPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, logic::suggestCommand,
+                logic::autocompleteCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -161,10 +175,15 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        remarkWindow.hide();
     }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+    public ResultPersonListPanel getResultPersonListPanel() {
+        return resultPersonlistPanel;
     }
 
     /**
@@ -186,11 +205,25 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isRemark()) {
+                String remarkInput = getRemarksFromRemarkBox(commandResult.getRemark());
+
+                commandResult = remarkInput.isBlank()
+                        ? logic.execute(commandText + " \0")
+                        : logic.execute(commandText + " " + remarkInput);
+                logger.info("Result: " + commandResult.getFeedbackToUser());
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private String getRemarksFromRemarkBox(String existingRemarks) {
+        return remarkWindow.showAndGetText(existingRemarks);
     }
 }

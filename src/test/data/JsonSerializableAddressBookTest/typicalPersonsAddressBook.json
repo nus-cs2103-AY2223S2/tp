@@ -5,42 +5,69 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "education" : "P1",
+    "remark" : "She hates bob.",
+    "telegram": "@alice123",
+    "modules" : [ "CS2101" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "education" : "P2",
+    "remark" : "He can't take beer!",
+    "telegram": "@bensonboy",
+    "modules" : [ "CS2103T", "CS2030" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "education" : "P3",
+    "remark" : "Needs help with algebra.",
+    "modules" : [ ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "education" : "P4",
+    "remark" : "Needs help with compo.",
+    "telegram": "@danielm",
+    "modules" : [ ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "education" : "P5",
+    "remark" : "Needs more time on limits",
+    "telegram": "@ellomayor",
+    "modules" : [ ],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "education" : "P6",
+    "remark" : "Is good at algebra",
+    "telegram": "@theorge",
+    "modules" : [ ],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "education" : "Sec 2",
+    "remark" : "Is bad at argumentative essays",
+    "telegram": "@georgia",
+    "modules" : [ ],
     "tagged" : [ ]
   } ]
 }

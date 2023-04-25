@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant ":EditPersonDescriptor" as Descriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+end box
+[-> LogicManager : execute("edit 1 n/Bob edu/Year 2")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit 1 n/Bob edu/Year 2")
+activate AddressBookParser
+
+create EditCommandParser
+AddressBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> AddressBookParser
+deactivate EditCommandParser
+
+AddressBookParser -> EditCommandParser : parse("1 n/Bob edu/Year 2")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+create Descriptor
+EditCommand -> Descriptor
+activate Descriptor
+Descriptor --> EditCommand
+deactivate Descriptor
+EditCommand --> EditCommandParser
+deactivate EditCommand
+
+EditCommandParser --> AddressBookParser
+deactivate EditCommandParser
+
+EditCommandParser -[hidden]-> AddressBookParser
+destroy EditCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Descriptor
+activate Descriptor
+
+Descriptor --> EditCommand : edited
+deactivate Descriptor
+
+Descriptor -[hidden]-> EditCommand
+destroy Descriptor
+
+EditCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> EditCommand
+
+EditCommand -> Model : commitAddressBook("edit")
+
+Model -> VersionedAddressBook : commit("edit")
+activate VersionedAddressBook
+
+VersionedAddressBook --> Model
+deactivate VersionedAddressBook
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+EditCommand -[hidden]-> LogicManager
+destroy EditCommand
+
+[<--LogicManager
+@enduml

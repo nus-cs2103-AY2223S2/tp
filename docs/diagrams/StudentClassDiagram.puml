@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Student *-right-> "*" Tag
+Student *-left-> "*" Module
+
+Student *--> "1" Name
+Student *--> "0..1" Phone
+Student *--> "0..1" Email
+Student *--> "0..1" Address
+Student *--> "0..1" Education
+Student *--> "0..1" Telegram
+Student *--> "0..1" Remark
+
+@enduml

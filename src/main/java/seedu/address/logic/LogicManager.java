@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AutocompleteEngine;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,6 +28,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final AutocompleteEngine autocompleteEngine;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +37,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        autocompleteEngine = new AutocompleteEngine(model);
     }
 
     @Override
@@ -44,7 +47,6 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
@@ -55,6 +57,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public String suggestCommand(String userInput) throws ParseException {
+        return autocompleteEngine.suggestCommand(userInput);
+    }
+
+    @Override
+    public String autocompleteCommand(String userInput, String commandSuggestion) {
+        return autocompleteEngine.autocompleteCommand(userInput, commandSuggestion);
+    }
+
+    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }
@@ -62,6 +74,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Person> getShowPerson() {
+        return model.getShowPerson();
     }
 
     @Override

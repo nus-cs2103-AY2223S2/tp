@@ -1,6 +1,11 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 
 /**
@@ -17,4 +22,16 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
 
+    protected static String getParameterUsage(List<Prefix> argumentPrefixes) {
+        return "Parameters:\n" + argumentPrefixes.stream()
+                .map(Prefix::toPlaceholderString)
+                .collect(Collectors.joining(" "));
+    }
+
+    protected static String getExampleUsage(String commandWord, List<Prefix> argumentPrefixes) {
+        return "Example:\n" + commandWord + " " + argumentPrefixes.stream()
+                .map(Prefix::toExampleString)
+                .filter(Predicate.not(String::isEmpty))
+                .collect(Collectors.joining(" "));
+    }
 }

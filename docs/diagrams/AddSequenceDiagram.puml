@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+end box
+[-> LogicManager : execute("add n/Alice edu/Year 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add n/Alice edu/Year 1")
+activate AddressBookParser
+
+create AddCommandParser
+AddressBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> AddressBookParser
+deactivate AddCommandParser
+
+AddressBookParser -> AddCommandParser : parse("n/Alice edu/Year 1")
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+AddCommand --> AddCommandParser
+deactivate AddCommand
+
+AddCommandParser --> AddressBookParser
+deactivate AddCommandParser
+
+AddCommandParser -[hidden]-> AddressBookParser
+destroy AddCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addPerson(toAdd)
+activate Model
+
+Model --> AddCommand
+
+AddCommand -> Model : commitAddressBook("add")
+
+Model -> VersionedAddressBook : commit("add")
+activate VersionedAddressBook
+
+VersionedAddressBook --> Model
+deactivate VersionedAddressBook
+
+Model --> AddCommand
+deactivate Model
+
+AddCommand --> LogicManager: result
+deactivate AddCommand
+
+AddCommand -[hidden]-> LogicManager: result
+destroy AddCommand
+
+[<--LogicManager
+@enduml

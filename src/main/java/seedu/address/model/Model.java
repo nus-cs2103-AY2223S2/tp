@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -58,6 +59,15 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person in the address book can be replaced by another
+     * without causing any duplicates of person in the address book.
+     *
+     * @param toBeReplaced The person to be replaced.
+     * @param replacement The replacement person.
+     */
+    boolean canReplacePerson(Person toBeReplaced, Person replacement);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -84,4 +94,74 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the person to be shown as an empty person.
+     */
+    void setDefaultShowPerson();
+
+    /**
+     * Updates the person to be shown as the person who matches the predicate.
+     * @param predicate Full name of person to be shown.
+     */
+    void updateShowPerson(Predicate<Person> predicate);
+
+    /**
+     * Returns the person to be shown in an ObservableList.
+     * @return ObservableList containing the person be shown.
+     */
+    ObservableList<Person> getShowPerson();
+
+    /**
+     * Checks if the versionedAddressBook has prior history to be undone.
+     * @return true if undo is possible and false otherwise.
+     */
+    boolean checkUndoable();
+
+    /**
+     * Checks if the versionedAddressBook has recent undo history to be redone.
+     * @return true if redo is possible and false otherwise.
+     */
+    boolean checkRedoable();
+
+    /**
+     * Restores a previous version of AddressBook, and returns the name of the
+     * command that was undone.
+     *
+     * @return The name of the command that was undone.
+     */
+    String undoAddressBook();
+
+    /**
+     * Restores an undone version of AddressBook, and returns the name of the command
+     * that was redone.
+     *
+     * @return The name of the command that was redone.
+     */
+    String redoAddressBook();
+
+    /**
+     * Saves the current version of AddressBook and the last executed command.
+     *
+     * @param lastExecutedCommand The name of the command to be updated to the command history.
+     */
+    void commitAddressBook(String lastExecutedCommand);
+
+    /**
+     * Returns a list of all existing tag values (without duplicates) contained
+     * in the person list.
+     */
+    ArrayList<String> getExistingTagValues();
+
+    /**
+     * Returns a list of all existing module values (without duplicates) contained
+     * in the person list.
+     */
+    ArrayList<String> getExistingModuleValues();
+
+    /**
+     * Returns a list of all existing education values (without duplicates) contained
+     * in the person list.
+     */
+    ArrayList<String> getExistingEducationValues();
 }

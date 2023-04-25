@@ -3,8 +3,12 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +38,19 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the list will contain duplicates after replacing
+     * {@code toReplace} with {@code replacement}.
+     */
+    public boolean willHaveDuplicatesAftReplacement(Person toBeReplaced, Person replacement) {
+        requireAllNonNull(toBeReplaced, replacement);
+        assert contains(toBeReplaced) : "list should contain the person to replace";
+
+        return internalList.stream()
+            .filter(Predicate.not(toBeReplaced::isSamePerson))
+            .anyMatch(replacement::isSamePerson);
     }
 
     /**
@@ -102,6 +119,46 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns a list of all existing tag values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingTagValues() {
+        return internalList.stream()
+                .map(Person::getTags)
+                .flatMap(set -> set.stream())
+                .distinct()
+                .map(tag -> tag.tagName)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * Returns a list of all existing module values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingModuleValues() {
+        return internalList.stream()
+                .map(Person::getModules)
+                .flatMap(set -> set.stream())
+                .distinct()
+                .map(module -> module.moduleName)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * Returns a list of all existing education values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingEducationValues() {
+        return internalList.stream()
+                .map(Person::getOptionalEducation)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .map(education -> education.value)
+                .distinct()
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override

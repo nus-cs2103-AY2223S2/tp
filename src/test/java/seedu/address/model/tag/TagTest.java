@@ -13,7 +13,7 @@ public class TagTest {
 
     @Test
     public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        String invalidTagName = "";
+        String invalidTagName = "tag with spaces";
         assertThrows(IllegalArgumentException.class, () -> new Tag(invalidTagName));
     }
 

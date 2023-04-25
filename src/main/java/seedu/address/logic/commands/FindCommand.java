@@ -1,10 +1,23 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.predicates.FullMatchKeywordsPredicate;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -13,15 +26,26 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
+            PREFIX_NAME.asOptional().asRepeatable().setExamples("alice", "tan"),
+            PREFIX_PHONE.asOptional().asRepeatable(),
+            PREFIX_EMAIL.asOptional().asRepeatable(),
+            PREFIX_ADDRESS.asOptional().asRepeatable(),
+            PREFIX_EDUCATION.asOptional().asRepeatable(),
+            PREFIX_TELEGRAM.asOptional().asRepeatable(),
+            PREFIX_REMARK.asOptional().asRepeatable(),
+            PREFIX_TAG.asOptional().asRepeatable().setExamples("hasSubmitted"),
+            PREFIX_MODULE.asOptional().asRepeatable()
+    ));
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain ALL of "
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers."
+            + "\n" + getParameterUsage(ARGUMENT_PREFIXES)
+            + "\n" + getExampleUsage(COMMAND_WORD, ARGUMENT_PREFIXES);
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final FullMatchKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(FullMatchKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

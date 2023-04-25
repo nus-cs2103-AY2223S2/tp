@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.FullNamePredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -18,10 +20,12 @@ import seedu.address.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final FullNamePredicate DEFAULT_EMPTY_NAME_PREDICATE = new FullNamePredicate("");
 
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Person> targetPerson;
+    private final VersionedAddressBook versionedAddressBook;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -31,9 +35,11 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        targetPerson = new FilteredList<Person>(versionedAddressBook.getPersonList());
+        setDefaultShowPerson();
+        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -79,37 +85,71 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        versionedAddressBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return versionedAddressBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return versionedAddressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean canReplacePerson(Person toBeReplaced, Person replacement) {
+        requireAllNonNull(toBeReplaced, replacement);
+        return versionedAddressBook.canReplacePerson(toBeReplaced, replacement);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        versionedAddressBook.removePerson(target);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+        versionedAddressBook.setPerson(target, editedPerson);
     }
+
+    @Override
+    public boolean checkUndoable() {
+        return versionedAddressBook.checkUndoable();
+    }
+
+    @Override
+    public boolean checkRedoable() {
+        return versionedAddressBook.checkRedoable();
+    }
+
+    @Override
+    public String undoAddressBook() {
+        return versionedAddressBook.undo();
+    }
+
+    @Override
+    public String redoAddressBook() {
+        return versionedAddressBook.redo();
+    }
+
+    @Override
+    public void commitAddressBook(String lastExecutedCommand) {
+        versionedAddressBook.commit(lastExecutedCommand);
+    }
+
+
+
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -129,6 +169,37 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setDefaultShowPerson() {
+        targetPerson.setPredicate(DEFAULT_EMPTY_NAME_PREDICATE);
+    }
+
+    @Override
+    public void updateShowPerson(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        targetPerson.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Person> getShowPerson() {
+        return targetPerson;
+    }
+
+    @Override
+    public ArrayList<String> getExistingTagValues() {
+        return versionedAddressBook.getExistingTagValues();
+    }
+
+    @Override
+    public ArrayList<String> getExistingModuleValues() {
+        return versionedAddressBook.getExistingModuleValues();
+    }
+
+    @Override
+    public ArrayList<String> getExistingEducationValues() {
+        return versionedAddressBook.getExistingEducationValues();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -142,7 +213,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

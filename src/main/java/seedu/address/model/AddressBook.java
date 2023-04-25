@@ -1,7 +1,9 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -67,6 +69,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a person in the address book can be replaced by another
+     * without causing any duplicates of person in the address book.
+     *
+     * @param toBeReplaced The person to be replaced.
+     * @param replacement The replacement person.
+     */
+    public boolean canReplacePerson(Person toBeReplaced, Person replacement) {
+        requireAllNonNull(toBeReplaced, replacement);
+        return persons.willHaveDuplicatesAftReplacement(toBeReplaced, replacement);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -91,6 +105,30 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Returns a list of all existing tag values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingTagValues() {
+        return persons.getExistingTagValues();
+    }
+
+    /**
+     * Returns a list of all existing module values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingModuleValues() {
+        return persons.getExistingModuleValues();
+    }
+
+    /**
+     * Returns a list of all existing education values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingEducationValues() {
+        return persons.getExistingEducationValues();
     }
 
     //// util methods

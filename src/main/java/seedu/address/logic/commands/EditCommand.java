@@ -1,13 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -18,12 +23,18 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Education;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FullNamePredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,19 +43,23 @@ import seedu.address.model.tag.Tag;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
+            INDEX_PLACEHOLDER.setExamples("1"),
+            PREFIX_NAME.asOptional(),
+            PREFIX_PHONE.asOptional().setExamples("91234567"),
+            PREFIX_EMAIL.asOptional().setExamples("johndoe@example.com"),
+            PREFIX_ADDRESS.asOptional(),
+            PREFIX_EDUCATION.asOptional(),
+            PREFIX_TELEGRAM.asOptional().setExamples("@john_goh"),
+            PREFIX_TAG.asOptional().asRepeatable(),
+            PREFIX_MODULE.asOptional().asRepeatable()
+    ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Existing values will be overwritten by the input values."
+            + "\n" + getParameterUsage(ARGUMENT_PREFIXES)
+            + "\n" + getExampleUsage(COMMAND_WORD, ARGUMENT_PREFIXES);
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -77,12 +92,14 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (model.canReplacePerson(personToEdit, editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateShowPerson(new FullNamePredicate(editedPerson.getName().fullName));
+        model.commitAddressBook(COMMAND_WORD);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -94,12 +111,19 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getOptionalPhone()).orElse(null);
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getOptionalEmail()).orElse(null);
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getOptionalAddress())
+                .orElse(null);
+        Education updatedEducation = editPersonDescriptor.getEducation()
+                .orElse(personToEdit.getOptionalEducation()).orElse(null);
+        Remark oldRemark = personToEdit.getOptionalRemark().orElse(null); // edit command does not allow editing remarks
+        Telegram updatedTelegram = editPersonDescriptor.getTelegram()
+                .orElse(personToEdit.getOptionalTelegram()).orElse(null);
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedEducation, oldRemark,
+                    updatedTelegram, updatedModules, updatedTags);
     }
 
     @Override
@@ -126,9 +150,13 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private Optional<Phone> phone;
+        private Optional<Email> email;
+        private Optional<Address> address;
+        private Optional<Education> education;
+        private Optional<Remark> remark;
+        private Optional<Telegram> telegram;
+        private Set<Module> modules;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -141,7 +169,11 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setEducation(toCopy.education);
             setAddress(toCopy.address);
+            setModules(toCopy.modules);
+            setTelegram(toCopy.telegram);
+            setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +181,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, education, telegram, modules, tags);
         }
 
         public void setName(Name name) {
@@ -161,27 +193,75 @@ public class EditCommand extends Command {
         }
 
         public void setPhone(Phone phone) {
+            this.phone = Optional.ofNullable(phone);
+        }
+
+        public void setPhone(Optional<Phone> phone) {
             this.phone = phone;
         }
 
-        public Optional<Phone> getPhone() {
+        public Optional<Optional<Phone>> getPhone() {
             return Optional.ofNullable(phone);
         }
 
         public void setEmail(Email email) {
+            this.email = Optional.ofNullable(email);
+        }
+
+        public void setEmail(Optional<Email> email) {
             this.email = email;
         }
 
-        public Optional<Email> getEmail() {
+        public Optional<Optional<Email>> getEmail() {
             return Optional.ofNullable(email);
         }
 
         public void setAddress(Address address) {
+            this.address = Optional.ofNullable(address);
+        }
+
+        public void setAddress(Optional<Address> address) {
             this.address = address;
         }
 
-        public Optional<Address> getAddress() {
+        public Optional<Optional<Address>> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setEducation(Education education) {
+            this.education = Optional.ofNullable(education);
+        }
+
+        public void setEducation(Optional<Education> education) {
+            this.education = education;
+        }
+
+        public Optional<Optional<Education>> getEducation() {
+            return Optional.ofNullable(education);
+        }
+
+        public void setRemark(Remark remark) {
+            this.remark = Optional.ofNullable(remark);
+        }
+
+        public void setRemark(Optional<Remark> remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Optional<Remark>> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
+        public void setTelegram(Telegram telegram) {
+            this.telegram = Optional.ofNullable(telegram);
+        }
+
+        public void setTelegram(Optional<Telegram> telegram) {
+            this.telegram = telegram;
+        }
+
+        public Optional<Optional<Telegram>> getTelegram() {
+            return Optional.ofNullable(telegram);
         }
 
         /**
@@ -193,12 +273,29 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code modules} to this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void setModules(Set<Module> modules) {
+            this.modules = (modules != null) ? new HashSet<>(modules) : null;
+        }
+
+        /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable module set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code modules} is null.
+         */
+        public Optional<Set<Module>> getModules() {
+            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
         }
 
         @Override
@@ -220,6 +317,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getTelegram().equals(e.getTelegram())
+                    && getModules().equals(e.getModules())
                     && getTags().equals(e.getTags());
         }
     }
