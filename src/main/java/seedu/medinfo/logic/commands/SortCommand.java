@@ -18,7 +18,8 @@ import seedu.medinfo.model.patient.Patient;
  * Sort all patients in MedInfo based on the field and the order.
  */
 
-// Solution below adapted from https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/logic/commands/SortCommand.java
+// Solution below adapted from
+// https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/logic/commands/SortCommand.java
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
