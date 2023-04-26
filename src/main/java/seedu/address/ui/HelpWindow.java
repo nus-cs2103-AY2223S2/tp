@@ -53,6 +53,9 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         methodDescription.setWrapText(true);
+        //@@author {kayyenl}-reused
+        //Reused from https://stackoverflow.com/questions/13857041/tree-item-select-event-in-javafx2
+        //with minor modifications
         treeView
                 .getSelectionModel()
                 .selectedItemProperty()
@@ -64,6 +67,7 @@ public class HelpWindow extends UiPart<Stage> {
                         methodDescription.setText(instructionMap(selectedTreeItem.getValue()));
                     }
                 });
+        //@@author {user:invariant}
         helpMessage.setText(HelpStrings.HELP_MESSAGE);
     }
 
