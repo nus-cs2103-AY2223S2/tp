@@ -142,6 +142,9 @@ public class UniquePatientList implements Iterable<Patient> {
         internalList.setAll(patients);
     }
 
+
+    // @@author {Echomo-Xinyu}-reused
+    // Referenced the sortPatient and replaceSort methods
     /**
      * Sorts the patient list with {@code comparator}.
      * @param comparator Comparator used.
@@ -167,6 +170,7 @@ public class UniquePatientList implements Iterable<Patient> {
         duplicatedList.sort(comparator);
         return duplicatedList;
     }
+    //@@author
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
