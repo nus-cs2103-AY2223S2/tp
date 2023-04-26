@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui
+Class "{abstract}\nUiPart" as UiPart
+Class UiManager
+Class MainWindow
+Class PersonListPanel
+Class TaskListPanel
+Class PersonCard
+Class TaskCard
+Class UiComponents
+}
+
+package "OfficeConnectModel" as Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+UiManager .left.|> Ui
+UiManager -down-> "1" MainWindow
+MainWindow *--->  UiComponents : Generates >
+MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" TaskListPanel
+
+PersonListPanel -down-> "*" PersonCard
+TaskListPanel -down-> "*" TaskCard
+
+MainWindow -left-|> UiPart
+UiComponents --|> UiPart
+PersonListPanel --|> UiPart
+TaskListPanel --|> UiPart
+PersonCard --|> UiPart
+TaskCard --|> UiPart
+
+PersonCard ..> Model
+TaskCard ..> Model
+UiManager -right-> Logic
+MainWindow -left-> Logic
+
+@enduml

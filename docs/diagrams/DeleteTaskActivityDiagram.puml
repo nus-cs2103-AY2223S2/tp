@@ -1,0 +1,13 @@
+@startuml
+start
+:User inputs "listt" command;
+:INDEX of all tasks are shown;
+:User inputs "deletet INDEX";
+if () then([Invalid INDEX])
+    : OfficeConnect throws an error;
+else ([else]))
+    : OfficeConnect deletes the task at specified INDEX;
+endif;
+
+stop
+@enduml

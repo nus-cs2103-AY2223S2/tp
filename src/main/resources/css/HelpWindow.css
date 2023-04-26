@@ -1,0 +1,35 @@
+#copyButton, #helpMessage {
+    -fx-text-fill: white;
+}
+
+#copyButton {
+    -fx-background-color: dimgray;
+}
+
+#treeView {
+    -fx-border-width: 8px;
+    -fx-border-radius: 6 6 6 6;
+    -fx-background-radius: 14 14 14 14;
+    -fx-border-color: dimgray;
+}
+
+#methodDescription {
+    -fx-border-width: 4px;
+    -fx-border-radius: 6 6 6 6;
+    -fx-background-radius: 14 14 14 14;
+    -fx-border-color: dimgray;
+    -fx-font-size: 14px;
+    -fx-word-wrap: break-word;
+}
+
+#copyButton:hover {
+    -fx-background-color: #add8e6;
+}
+
+#copyButton:armed {
+    -fx-background-color: darkgray;
+}
+
+#helpMessageContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}

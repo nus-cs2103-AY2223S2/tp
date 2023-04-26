@@ -1,0 +1,18 @@
+@startuml
+start
+:User inputs "filterp t/TAG";
+if () then([one TAG is specified])
+    : OfficeConnect will search for persons assigned with the TAG;
+
+if () then([no persons with TAG])
+    : OfficeConnect tells user that no persons have the specified TAG;
+else ([else])
+    : OfficeConnect displays all persons with the specified TAG;
+endif;
+
+else ([else]))
+    : OfficeConnect throws an error;
+endif;
+
+stop
+@enduml

@@ -2,20 +2,25 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in OfficeConnect.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
+    private final Id id;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -23,6 +28,8 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Task> tasks = new ArrayList<>();
+
 
     /**
      * Every field must be present and not null.
@@ -34,10 +41,56 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.id = new Id();
     }
+
+    /**
+     * Every field must be present and not null.
+     * ID must be specific when loading from local storage
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Id id) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.id = id;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    private Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Id id, List<Task> tasks) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.id = id;
+        this.getTasks().addAll(tasks);
+    }
+
+    /**
+     * Returns a new Person object with the specified set of tasks added to the original set of tasks.
+     *
+     * @param person the Person object to be updated
+     * @param tasks  the Set of Task objects to be added to the Person object
+     * @return a new Person object with the updated set of tasks
+     */
+    public static Person ofUpdateTasks(Person person, List<Task> tasks) {
+        return new Person(person.getName(), person.getPhone(), person.getEmail(),
+            person.getAddress(), person.getTags(), person.getId(), tasks);
+    }
+
 
     public Name getName() {
         return name;
+    }
+
+    public String getStringNameLowerCase() {
+        return name.fullName.toLowerCase();
     }
 
     public Phone getPhone() {
@@ -51,6 +104,23 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
+    public Id getId() {
+        return id;
+    }
+
+
+    // public void setIndex(int index) {
+    //     this.index = index;
+    // }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    // public void setTasks(List<Task> tasks) {
+    //     this.tasks = tasks;
+    // }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -70,7 +140,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -89,10 +159,12 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getEmail().equals(getEmail())
+            && otherPerson.getAddress().equals(getAddress())
+            && otherPerson.getTags().equals(getTags())
+            && otherPerson.getId().equals(getId())
+            && otherPerson.getTasks().equals(getTasks());
     }
 
     @Override
@@ -105,12 +177,12 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+            .append("; Phone: ")
+            .append(getPhone())
+            .append("; Email: ")
+            .append(getEmail())
+            .append("; Address: ")
+            .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -120,4 +192,17 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Calculates the progress of completed tasks as a ratio.
+     *
+     * <p>The progress is calculated as the number of completed tasks divided by the total number of tasks.
+     * If there are no tasks, the progress is set to 1.</p>
+     *
+     * @return The progress ratio, as a value between 0 and 1 (inclusive), where 0 indicates no tasks are completed, 1
+     *      indicates all tasks are completed, and values in between indicate partial completion.
+     */
+    public double progress() {
+        double doneTask = tasks.stream().filter(t -> t.getStatus().isValue()).count();
+        return tasks.size() == 0 ? 1 : doneTask / tasks.size();
+    }
 }

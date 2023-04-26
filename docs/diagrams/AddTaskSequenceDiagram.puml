@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
+participant "at:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box OfficeConnectModel MODEL_COLOR_T1
+participant ":OfficeConnectModel" as OfficeConnectModel MODEL_COLOR
+end box
+
+[-> LogicManager : execute(commandText)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(userInput)
+activate AddressBookParser
+
+create AddTaskCommandParser
+AddressBookParser -> AddTaskCommandParser
+activate AddTaskCommandParser
+
+AddTaskCommandParser --> AddressBookParser
+deactivate AddTaskCommandParser
+
+AddressBookParser -> AddTaskCommandParser : parse(args)
+activate AddTaskCommandParser
+
+create AddTaskCommand
+AddTaskCommandParser -> AddTaskCommand
+activate AddTaskCommand
+
+AddTaskCommand --> AddTaskCommandParser : at
+deactivate AddTaskCommand
+
+AddTaskCommandParser --> AddressBookParser : at
+
+
+deactivate AddTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddTaskCommandParser -[hidden]-> AddressBookParser
+destroy AddTaskCommandParser
+
+AddressBookParser --> LogicManager : at
+deactivate AddressBookParser
+
+LogicManager -> AddTaskCommand : execute(model, officeConnectModel)
+activate AddTaskCommand
+
+AddTaskCommand -> OfficeConnectModel : addTaskModelManagerItem(task)
+activate OfficeConnectModel
+
+OfficeConnectModel --> AddTaskCommand
+deactivate OfficeConnectModel
+
+create CommandResult
+AddTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddTaskCommand
+deactivate CommandResult
+
+AddTaskCommand --> LogicManager : CommandResult(MESSAGE_SUCCESS)
+deactivate AddTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

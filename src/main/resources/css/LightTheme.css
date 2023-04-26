@@ -1,0 +1,311 @@
+.root {
+    -fx-primary: #ffadc9; //pink
+    -fx-secondary: derive(#1d1d1d, 10%);
+    -fx-primary-foreground: derive(#f0f0f0, 40%);
+    -fx-primary-background: derive(#f0f0f0, 20%);
+    -fx-primary-text: black;
+    -fx-secondary-text: #ffb6c1;
+}
+
+
+.menu {
+    -fx-text-fill: #333333;
+}
+
+.menu-item {
+    -fx-text-fill: #333333;
+}
+
+
+.stack-pane {
+    -fx-background-color: #f7f2e7;
+}
+
+/* Style the TextField */
+.stack-pane .text-field {
+    -fx-background-color: #fff3e9; /* Lighter cream color */
+    -fx-text-fill: #6a492b; /* Chocolate color */
+    -fx-border-color: #6a492b; /* Chocolate color */
+    -fx-prompt-text-fill: #9d7c63; /* Lighter chocolate color */
+}
+
+.stack-pane .text-field:focused {
+    -fx-border-color: #9d7c63; /* Lighter chocolate color */
+}
+
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+}
+
+.list-cell:empty {
+    -fx-background: #383838;
+}
+
+.tag-selector {
+    -fx-border-color: white;
+
+}
+
+.tooltip-text {
+    -fx-text-fill: white;
+}
+#copyButton, #helpMessage {
+    -fx-text-fill: white;
+}
+
+#copyButton {
+    -fx-background-color: dimgray;
+}
+
+#treeView {
+    -fx-border-color: dimgray;
+}
+
+#methodDescription {
+    -fx-border-color: dimgray;
+
+}
+
+#copyButton:hover {
+    -fx-background-color: #add8e6;
+}
+
+#copyButton:armed {
+    -fx-background-color: darkgray;
+}
+
+#helpMessageContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+/* Set the base background color and font color */
+.root {
+    -fx-base: #ff8da1;
+    -fx-background: #f5f5f5;
+    -fx-text-fill: #333333;
+}
+
+/* Style the MenuBar */
+.menu-bar {
+    -fx-background-color: linear-gradient(to bottom, #ffcee5 0%, #ffadc9 100%);
+    -fx-border-color: #ff9cb9;
+    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 0);
+}
+
+.menu {
+    -fx-text-fill: #333333;
+}
+
+.menu-item {
+    -fx-text-fill: #333333;
+}
+
+.menu-item:hover {
+    -fx-background-color: #ff9cb9;
+}
+
+/* Style the StackPane and its border */
+.pane-with-border {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #ff9cb9;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 1, 1);
+}
+
+/* Style the SplitPane */
+.split-pane {
+    -fx-border-radius: 1;
+    -fx-border-width: 1;
+    -fx-background-color: #f5f5f5;
+}
+
+.split-pane .split-pane-divider {
+    -fx-background-color: #ff9cb9;
+    -fx-border-color: transparent transparent transparent -fx-primary;
+    -fx-padding: 0 1px;
+}
+
+/* Style the status bar */
+.status-bar {
+    -fx-background-color: linear-gradient(to bottom, #ffcee5 0%, #ffadc9 100%);
+    -fx-border-color: #ff9cb9;
+    -fx-text-fill: #333333;
+    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 0);
+}
+/* Set the background color and border for the card pane */
+#cardPane {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #d8d8d8;
+
+}
+
+/* Style the labels */
+.cell_big_label {
+    -fx-text-fill: #333333;
+}
+
+.cell_small_label {
+    -fx-text-fill: #666666;
+}
+
+
+/* Label inside the tags FlowPane */
+.label.tag {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: #ff9cb9;
+
+}
+
+.progress-indicator .percentage {
+    -fx-fill: black;
+}
+
+
+/* Style the ListView */
+.list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+.list-view .list-cell {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 0px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+/* FlowPane for personIndexes */
+#taskCardPane .flow-pane.cell_small_label {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+/* Set the background color and border for the card pane */
+#cardPane {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #d8d8d8;
+}
+
+#cardPane:hover {
+    -fx-border-color: -fx-primary;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+.list-cell:selected #cardPane {
+    -fx-border-color: -fx-primary;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+/* Style the labels */
+.cell_big_label {
+    -fx-text-fill: #333333;
+}
+
+.cell_small_label {
+    -fx-text-fill: #666666;
+}
+
+
+
+/* Label inside the tags FlowPane */
+.label.tag {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: #ff9cb9; /* Purple border color */
+
+}
+
+.progress-indicator .percentage {
+    -fx-fill: black;
+}
+
+#quickAnchorPane {
+    -fx-background-color: dimgray;
+}
+
+
+/* Style the StackPane */
+
+.pane-with-border {
+    -fx-background-image: url("../images/grassland.png");
+}
+
+/* Style the Label */
+.result-display {
+    -fx-text-fill: #000000; /* White text for better contrast against the grass background */
+
+}
+.result-display {
+    -fx-background-color: transparent;
+}
+
+.result-display .content {
+    -fx-background-color: transparent;
+}
+
+.result-display .viewport {
+    -fx-background-color: transparent;
+}
+
+.status-bar {
+    -fx-background-image: url("../images/wave.png");
+    -fx-border-color: #5d99c6;
+
+}
+
+/* Style the Label inside the GridPane */
+.status-bar .label {
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 1, 0.0 , 1 , 1 );
+}
+/* Set the background color and border for the task card pane */
+#taskCardPane {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #d8d8d8;
+}
+
+/* Style the labels */
+.cell_big_label {
+    -fx-text-fill: #333333;
+}
+
+.cell_small_label {
+    -fx-text-fill: #666666;
+}
+
+/* Label inside the personIndexes FlowPane */
+.person-index {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: #ff9cb9; /* Dark pink border color */
+
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: -fx-primary;
+    -fx-background-insets: 3;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 6 1 6;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 6 1 6 1;
+}

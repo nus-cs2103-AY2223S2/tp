@@ -1,0 +1,12 @@
+
+/* Style the TextField */
+.stack-pane .text-field {
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 14px;
+}
+
+/* Style the TextField when focused */
+.stack-pane .text-field:focused {
+}

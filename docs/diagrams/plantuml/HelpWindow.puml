@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User wants to view help sheet;
+if () then ([uses keyboard])
+:Enters "help" command;
+else ([uses cursor]);
+:Clicks "help" in toolbar;
+endif;
+
+:User consults help sheet;
+
+if () then (   [user needs
+     more help])
+:  User is linked to full UserGuide  ;
+else ([else])
+endif
+
+:Help window closes;
+stop
+
+@enduml

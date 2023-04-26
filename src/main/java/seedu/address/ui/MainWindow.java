@@ -3,12 +3,17 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -24,31 +29,52 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-
+    //@@author Guo-KeCheng
+    private static final String DARK_THEME = "/css/DarkTheme.css";
+    //@@author Guo-KeCheng
+    private static final String LIGHT_THEME = "/css/LightTheme.css";
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
-    // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
+
+    private final QuickstartWindow quickstartWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
+    @FXML
+    private VBox mainVbox;
 
     @FXML
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem quickMenuItem;
+
+    @FXML
+    private MenuItem baseMenuItem;
+    @FXML
+    private MenuItem darkMenuItem;
+
+    @FXML
+    private MenuItem lightMenuItem;
+    @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Cursor customCursor;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +92,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        quickstartWindow = new QuickstartWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -73,7 +100,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(baseMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(lightMenuItem, KeyCombination.valueOf("F2"));
+        setAccelerator(darkMenuItem, KeyCombination.valueOf("F3"));
+        setAccelerator(helpMenuItem, KeyCombination.valueOf("F4"));
+        setAccelerator(quickMenuItem, KeyCombination.valueOf("F5"));
     }
 
     /**
@@ -104,14 +135,44 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+        //@@author Guo-KeCheng
+        EventHandler<KeyEvent> keyEventHandler = event -> {
+            if (event.getCode() == KeyCode.F1) {
+                handleExit();
+                event.consume();
+            } else if (event.getCode() == KeyCode.F2) {
+                setLightTheme();
+                event.consume();
+            } else if (event.getCode() == KeyCode.F3) {
+                setDarkTheme();
+                event.consume();
+            } else if (event.getCode() == KeyCode.F4) {
+                handleHelp();
+                event.consume();
+            } else if (event.getCode() == KeyCode.F4) {
+                handleQuickstart();
+                event.consume();
+            }
+        };
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, keyEventHandler);
+
+
+        // set event filter on menu to set custom cursor on hover
+        primaryStage.getScene().addEventFilter(MouseEvent.MOUSE_ENTERED, e
+            -> primaryStage.getScene().setCursor(customCursor));
     }
 
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        // Independent Ui parts residing in this Ui container
+        PersonListPanel personListPanel = new PersonListPanel(logic);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        TaskListPanel taskListPanel = new TaskListPanel(logic.getOfficeConnectModel()
+            .getTaskModelManagerFilteredItemList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -121,6 +182,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        if (quickstartWindow.getFirstTimeFocus()) {
+            quickstartWindow.show();
+            quickstartWindow.focus();
+        }
     }
 
     /**
@@ -147,6 +213,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the quickstart window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleQuickstart() {
+        if (!quickstartWindow.isShowing()) {
+            quickstartWindow.show();
+        } else {
+            quickstartWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -161,10 +239,9 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+        quickstartWindow.hide();
+        logger.info("MainWindow: asserting all windows is closed...");
+        assert (!(helpWindow.isShowing() && quickstartWindow.isShowing() && primaryStage.isShowing()));
     }
 
     /**
@@ -186,11 +263,38 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isShowQuickstart()) {
+                handleQuickstart();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+
+    }
+
+    //@@author Guo-KeCheng
+
+    /**
+     * Loads the light themed css.
+     */
+    @FXML
+    public void setLightTheme() {
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(LIGHT_THEME);
+    }
+
+    //@@author Guo-KeCheng
+
+    /**
+     * Loads the dark themed css.
+     */
+    @FXML
+    public void setDarkTheme() {
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(DARK_THEME);
     }
 }

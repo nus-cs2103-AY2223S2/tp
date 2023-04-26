@@ -1,0 +1,13 @@
+/* Style the StackPane */
+
+.pane-with-border {
+    -fx-background-size: 100% auto; /* Scale the background image horizontally to fit the width of the container */
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center; /* Center the background image vertically */
+}
+
+/* Style the Label */
+.result-display {
+    -fx-font-size: 14px;
+    -fx-padding: 5px 10px;
+}

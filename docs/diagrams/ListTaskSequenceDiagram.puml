@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":Ui" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":OfficeConnectModel" as model MODEL_COLOR
+
+user -[USER_COLOR]> ui : commandText
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute(commandText)
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : updateTaskModelManagerFilteredItemList(predicate)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic
+deactivate model
+
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+
+ui-[UI_COLOR]> logic : getOfficeConnectModel()
+activate logic LOGIC_COLOR
+
+logic-[LOGIC_COLOR]> model : getTaskModelManagerFilteredItemList()
+activate model MODEL_COLOR
+
+model--[MODEL_COLOR]> logic:
+deactivate model
+
+logic--[LOGIC_COLOR]> ui:
+deactivate logic
+
+ui--[UI_COLOR]> user : display tasks to users
+deactivate ui
+@enduml

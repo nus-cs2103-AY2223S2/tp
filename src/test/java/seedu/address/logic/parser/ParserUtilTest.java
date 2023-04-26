@@ -1,10 +1,11 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +19,11 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Content;
+import seedu.address.model.task.Status;
+import seedu.address.model.task.Title;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -28,7 +33,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "98765432";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -44,21 +49,21 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+            -> ParserUtil.parseIndex(Long.toString((long) Integer.MAX_VALUE + 1)));
     }
 
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
     }
 
     @Test
@@ -81,7 +86,7 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone(null));
     }
 
     @Test
@@ -104,7 +109,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
     }
 
     @Test
@@ -127,7 +132,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail(null));
     }
 
     @Test
@@ -189,8 +194,66 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    void parseId_emptyString_generatesValidUuid() throws ParseException {
+        Id id = ParserUtil.parseId("");
+        assertFalse(Id.isInValidId(id.toString()), "Generated UUID should be valid");
+    }
+
+    @Test
+    void parseId_validString_returnsId() throws ParseException {
+        String validUuid = "d9cc62ca-0f19-11ec-82a8-0242ac130003";
+        Id id = ParserUtil.parseId(validUuid);
+        assertEquals(validUuid, id.toString(), "Parsed UUID should be equal to the input string");
+    }
+
+    @Test
+    void parseId_invalidString_throwsParseException() {
+        String invalidUuid = "not a valid uuid";
+        assertThrows(ParseException.class, Id.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseId(invalidUuid));
+    }
+
+    @Test
+    void parseTitle_validString_returnsSubject() throws ParseException {
+        String validSubject = "Math";
+        Title title = ParserUtil.parseTitle(validSubject);
+        assertEquals(validSubject, title.toString(), "Parsed title should be equal to the input string");
+    }
+
+    @Test
+    void parseTitle_invalidString_throwsParseException() {
+        String invalidSubject = "Invalid_Subject";
+        assertThrows(ParseException.class, Title.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseTitle(invalidSubject));
+    }
+
+    @Test
+    void parseContent_validString_returnsContent() throws ParseException {
+        String validContent = "This is a valid content";
+        Content content = ParserUtil.parseContent(validContent);
+        assertEquals(validContent, content.toString(), "Parsed content should be equal to the input string");
+    }
+
+    @Test
+    void parseContent_invalidString_throwsParseException() {
+        String invalidContent = "";
+        assertThrows(ParseException.class, Content.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseContent(invalidContent));
+    }
+
+    @Test
+    void parseStatus_validString_returnsStatus() throws ParseException {
+        String validStatus = "true";
+        Status status = ParserUtil.parseStatus(validStatus);
+        assertTrue(status.isValue(), "Parsed status should be equal to the input boolean value");
+    }
+
+    @Test
+    void parseStatus_invalidString_throwsParseException() {
+        String invalidStatus = "invalid";
+        assertThrows(ParseException.class, Status.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseStatus(invalidStatus));
     }
 }

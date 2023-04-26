@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,10 +13,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the OfficeConnect data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -76,6 +79,10 @@ public class ModelManager implements Model {
     }
 
     //=========== AddressBook ================================================================================
+    @Override
+    public boolean isValidFilterPersonListIndexRange(int index) {
+        return index >= 0 && index < filteredPersons.size();
+    }
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -85,6 +92,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
+    }
+
+    @Override
+    public Person getFilterPerson(int index) {
+        return filteredPersons.get(index);
     }
 
     @Override
@@ -107,8 +119,18 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void focusPerson(Person personToFocus, OfficeConnectModel officeConnectModel) {
+        updateFilteredPersonList(person -> person.getId().equals(personToFocus.getId()));
+        List<AssignTask> assignTasks = new ArrayList<>(officeConnectModel.getAssignTaskModelManager()
+            .filter(assign -> assign.getPersonId().equals(personToFocus.getId())));
+
+        officeConnectModel.updateTaskModelManagerFilteredItemList(task -> assignTasks.stream()
+            .anyMatch(assign -> assign.getTaskId().equals(task.getId())));
+
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -127,6 +149,21 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public ObservableList<Person> filterReadOnlyPersonList(Predicate<Person> predicate) {
+        return addressBook.getPersonList().filtered(predicate);
+    }
+
+    // @Override
+    // public void setPeopleTasks(OfficeConnectModel officeConnectModel) {
+    //     for (Person person : addressBook.getPersonList()) {
+    //         List<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager()
+    //             .filter(a -> a.getPersonId().equals(person.getId()));
+    //         person.setTasks(officeConnectModel.getTaskModelManager()
+    //             .filter(t -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(t.getId()))));
+    //     }
+    // }
 
     @Override
     public boolean equals(Object obj) {

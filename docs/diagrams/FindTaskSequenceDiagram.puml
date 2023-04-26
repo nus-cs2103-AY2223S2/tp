@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindTaskCommandParser" as FindTaskCommandParser LOGIC_COLOR
+participant "f:FindTaskCommand" as FindTaskCommand LOGIC_COLOR
+end box
+
+box OfficeConnectModel MODEL_COLOR_T1
+participant ":OfficeConnectModel" as OfficeConnectModel MODEL_COLOR
+end box
+
+-> LogicManager: execute(commandText)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(userInput)
+activate AddressBookParser
+
+create FindTaskCommandParser
+AddressBookParser -> FindTaskCommandParser
+activate FindTaskCommandParser
+
+FindTaskCommandParser -> AddressBookParser
+deactivate FindTaskCommandParser
+
+AddressBookParser -> FindTaskCommandParser : parse(args)
+activate FindTaskCommandParser
+
+create FindTaskCommand
+FindTaskCommandParser -> FindTaskCommand
+activate FindTaskCommand
+
+FindTaskCommand --> FindTaskCommandParser : f
+deactivate FindTaskCommand
+
+FindTaskCommandParser --> AddressBookParser : f
+deactivate FindTaskCommandParser
+
+FindTaskCommandParser -[hidden]-> AddressBookParser
+destroy FindTaskCommandParser
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FindTaskCommand: execute(model, officeConnectModel)
+activate FindTaskCommand
+
+FindTaskCommand -> OfficeConnectModel: filterItemList(predicate)
+activate OfficeConnectModel
+
+OfficeConnectModel --> FindTaskCommand: ObservableList<AssignTask>
+deactivate OfficeConnectModel
+
+FindTaskCommand -> OfficeConnectModel: updateFilteredPersonList(predicate)
+activate OfficeConnectModel
+
+OfficeConnectModel --> FindTaskCommand
+deactivate OfficeConnectModel
+
+FindTaskCommand -> OfficeConnectModel: updateFilteredItemList(predicate)
+activate OfficeConnectModel
+
+OfficeConnectModel --> FindTaskCommand
+deactivate OfficeConnectModel
+
+FindTaskCommand --> LogicManager: CommandResult(MESSAGE_SUCCESS)
+
+@enduml

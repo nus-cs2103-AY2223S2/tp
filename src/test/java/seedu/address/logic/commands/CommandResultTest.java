@@ -8,31 +8,55 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+
     @Test
-    public void equals() {
-        CommandResult commandResult = new CommandResult("feedback");
+    public void constructor_allFields_success() {
+        CommandResult result = new CommandResult("Feedback to user", true, true);
+        assertEquals("Feedback to user", result.getFeedbackToUser());
+        assertTrue(result.isShowHelp());
+        assertTrue(result.isExit());
+    }
 
-        // same values -> returns true
-        assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
+    @Test
+    public void constructor_feedbackToUser_success() {
+        CommandResult result = new CommandResult("Feedback to user");
+        assertEquals("Feedback to user", result.getFeedbackToUser());
+        assertFalse(result.isShowHelp());
+        assertFalse(result.isExit());
+    }
 
-        // same object -> returns true
-        assertTrue(commandResult.equals(commandResult));
+    @Test
+    public void equals_sameCommandResult_returnsTrue() {
+        CommandResult result1 = new CommandResult("Feedback to user", true, true);
+        CommandResult result2 = new CommandResult("Feedback to user", true, true);
+        assertEquals(result1, result2);
+    }
 
-        // null -> returns false
-        assertFalse(commandResult.equals(null));
+    @Test
+    public void equals_differentFeedbackToUser_returnsFalse() {
+        CommandResult result1 = new CommandResult("Feedback to user", true, true);
+        CommandResult result2 = new CommandResult("Different feedback to user", true, true);
+        assertNotEquals(result1, result2);
+    }
 
-        // different types -> returns false
-        assertFalse(commandResult.equals(0.5f));
+    @Test
+    public void equals_differentShowHelp_returnsFalse() {
+        CommandResult result1 = new CommandResult("Feedback to user", true, true);
+        CommandResult result2 = new CommandResult("Feedback to user", false, true);
+        assertNotEquals(result1, result2);
+    }
 
-        // different feedbackToUser value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("different")));
+    @Test
+    public void equals_differentExit_returnsFalse() {
+        CommandResult result1 = new CommandResult("Feedback to user", true, true);
+        CommandResult result2 = new CommandResult("Feedback to user", true, false);
+        assertNotEquals(result1, result2);
+    }
 
-        // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false)));
-
-        // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+    @Test
+    public void toString_returnsExpectedString() {
+        CommandResult result = new CommandResult("Feedback to user", true, true, true);
+        assertEquals("Command Result: Feedback to user, true, true, true", result.toString());
     }
 
     @Test

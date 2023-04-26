@@ -33,15 +33,18 @@
 
 !define USER_COLOR #000000
 
-skinparam BackgroundColor #FFFFFFF
+!define REPO_COLOR #purple
+
+
+skinparam BackgroundColor #FFFFFF
 
 skinparam Shadowing false
 
 skinparam Class {
     FontColor #FFFFFF
     BorderThickness 1
-    BorderColor #FFFFFF
-    StereotypeFontColor #FFFFFF
+    BorderColor #FFFFFFF
+    StereotypeFontColor #000000
     FontName Arial
 }
 
@@ -55,12 +58,12 @@ skinparam Sequence {
     MessageAlign center
     BoxFontSize 15
     BoxPadding 0
-    BoxFontColor #FFFFFF
+    BoxFontColor #000000
     FontName Arial
 }
 
 skinparam Participant {
-    FontColor #FFFFFFF
+    FontColor #FFFFFF
     Padding 20
 }
 
@@ -73,3 +76,4 @@ skinparam packageStyle Rectangle
 hide footbox
 hide members
 hide circle
+

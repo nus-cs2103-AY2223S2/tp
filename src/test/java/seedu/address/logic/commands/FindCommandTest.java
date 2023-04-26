@@ -1,83 +1,118 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.model.util.TypicalTasks.getTypicalTaskRepository;
 
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.OfficeConnectModel;
+import seedu.address.model.Repository;
+import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.mapping.AssignTask;
+import seedu.address.model.person.NameContainsInOrderKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.shared.Id;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+    private final OfficeConnectModel officeConnectModel = new OfficeConnectModel(
+            new RepositoryModelManager<>(getTypicalTaskRepository()),
+            new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
+    private final OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(new
+            RepositoryModelManager<>(officeConnectModel.getTaskModelManager().getReadOnlyRepository()),
+            new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
-
+        NameContainsInOrderKeywordsPredicate firstPredicate =
+                new NameContainsInOrderKeywordsPredicate("first");
+        NameContainsInOrderKeywordsPredicate secondPredicate =
+                new NameContainsInOrderKeywordsPredicate("second");
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertEquals(findFirstCommand, findFirstCommand);
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertNotEquals(1, findFirstCommand);
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertNotEquals(null, findFirstCommand);
 
-        // different person -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        // different predicate -> returns false
+        assertNotEquals(findFirstCommand, findSecondCommand);
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+    public void execute_invalidKeywords_noPersonFound() throws CommandException {
+        String expectedMessage = Messages.MESSAGE_INVALID_PERSON;
+        NameContainsInOrderKeywordsPredicate predicate = preparePredicate("invalidKeyword");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        CommandResult commandResult = command.execute(expectedModel, expectedOfficeConnectModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                officeConnectModel, expectedOfficeConnectModel);
+    }
+    @Test
+    public void execute_validKeywords_noTaskAssigned() {
+        String expectedMessage = String.format(FindCommand.MESSAGE_PERSON_FOUND_S, "1");
+        NameContainsInOrderKeywordsPredicate predicate = preparePredicate("Alice Pauline");
+        FindCommand command = new FindCommand(predicate);
+
+        Id pId = getAssignedPersonId(predicate);
+
+        ObservableList<AssignTask> assignedTaskList = getAssignedTaskList(pId);
+        assertEquals(Collections.emptyList(), assignedTaskList);
+
+        expectedModel.updateFilteredPersonList(person -> person.getId().equals(pId));
+        expectedOfficeConnectModel.getTaskModelManager()
+                .updateFilteredItemList(assignedPerson -> assignedTaskList.stream()
+                .anyMatch(personTask -> personTask.getPersonId().equals(assignedPerson.getId())));
+        // Person list should be updated accordingly
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        // Task list expected to be empty
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                officeConnectModel, expectedOfficeConnectModel);
     }
 
-    @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    private Id getAssignedPersonId(NameContainsInOrderKeywordsPredicate predicate) {
+        List<Person> personList = model.getAddressBook()
+                .getPersonList()
+                .filtered(predicate);
+        return personList.get(0).getId();
+    }
+
+    private ObservableList<AssignTask> getAssignedTaskList(Id pId) {
+        return expectedOfficeConnectModel.getAssignTaskModelManager()
+                .getFilteredItemList()
+                .filtered(persontask -> persontask.getPersonId().equals(pId));
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code NameContainsInOrderKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private NameContainsInOrderKeywordsPredicate preparePredicate(String userInput) {
+        return new NameContainsInOrderKeywordsPredicate(userInput);
     }
+
 }

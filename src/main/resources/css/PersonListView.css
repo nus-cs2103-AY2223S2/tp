@@ -1,0 +1,10 @@
+/* Style the ListView */
+.list-view {
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.list-view .list-cell {
+    -fx-padding: 5px 10px;
+}
