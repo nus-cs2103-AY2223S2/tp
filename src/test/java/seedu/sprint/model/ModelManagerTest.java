@@ -23,9 +23,6 @@ import seedu.sprint.testutil.InternshipBookBuilder;
 
 /**
  * Test cases for ModelManager.
- * Reused and Adapted from a past CS2103T project - PleaseHireUs
- * at https://github.com/AY2223S1-CS2103T-W17-4/tp/blob/master/src/test/java/seedu/phu/model/ModelManagerTest.java
- * with some minor modifications.
  */
 public class ModelManagerTest {
 
@@ -114,6 +111,10 @@ public class ModelManagerTest {
                 -> modelManager.getSortedApplicationList().remove(0));
     }
 
+    //@@author noahxinjie-reused
+    //Reused from a past CS2103T project - PleaseHireUs
+    //at https://github.com/AY2223S1-CS2103T-W17-4/tp/blob/master/src/test/java/seedu/phu/model/ModelManagerTest.java
+    //with minor modifications
     @Test
     public void canUndo_internshipBookIsNotUndoable_returnsFalse() {
         assertFalse(modelManager.canUndoInternshipBook());
@@ -155,6 +156,7 @@ public class ModelManagerTest {
         modelManager.redoInternshipBook();
         assertTrue(modelManager.hasApplication(BYTEDANCE));
     }
+    //@@author
 
     @Test
     public void equals() {
