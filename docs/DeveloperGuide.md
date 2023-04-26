@@ -1072,6 +1072,8 @@ Our work on implementing the assignment feature is the most prominent in the Ass
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+<!--- Appendix H reused from from https://ay2021s2-cs2103t-t12-4.github.io/tp/DeveloperGuide.html with modifications --->
+
 ## **Appendix H: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
