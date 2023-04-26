@@ -15,6 +15,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 
+//Solution below adapted from https://gist.github.com/Da9el00/f4340927b8ba6941eb7562a3306e93b6
+
 /**
  * A {@code Calendar} UI that displays information of {@code Event}.
  */
