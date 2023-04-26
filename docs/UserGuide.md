@@ -3,151 +3,385 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+## Introduction
+Welcome to the MedInfo User Guide!
 
+MedInfo is a desktop application for **private hospital administrative staff** to
+help manage patients and wards.
+
+This User Guide will guide you through installing the app, getting familiarised with its features and using it.
+If this is your first time using this Guide, you may refer to this segment
+on [how to use our User Guide](#how-to-use-the-user-guide)
+
+## Table of Contents
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
+## About MedInfo
+MedInfo is a simple application that will help you manage your patients' **statuses, wards,
+discharge dates**, and ward **occupancies**. <br>
+<br>
+Considering the time-critical nature of hospital services, patient and ward management are
+of utmost priority, where the smallest delays or lapses in updating information can affect
+how your hospital attends to your patients. **MedInfo** was designed with this in mind.
+It has simplified and optimized patient and ward management, allowing you to in-process, update, and move patients
+around while still being able to view overall stats of the hospital at a glance.<br>
+<br>
+[Back to Table of Contents](#table-of-contents)
 
-## Quick start
+---
 
-1. Ensure you have Java `11` or above installed in your Computer.
+## Getting Started
+Below, you'll find everything you need to install and set up MedInfo.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+### System Requirements
+For the best possible experience, we recommend that you use MedInfo on one of the following operating systems:
+- Windows
+- macOS
+- Linux
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+To run MedInfo, you will need to have Java 11 or above installed on your system. If you don't, you can find the
+appropriate version for your system [here](https://www.oracle.com/java/technologies/downloads/).
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+### Quick Start
+1. Download the latest `medinfo.jar` from [here](https://github.com/AY2223S2-CS2103T-T12-2/tp/releases).
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+2. Copy the file to the folder you want to use as the [_home folder_](#glossary) for your MedInfo.
+
+3. Run the application by
+   2. Double-clicking the [`.jar`](#glossary) file or
+   3. Opening a [command terminal](#glossary), `cd` into the folder you put the `.jar` file in, and use the `java -jar medinfo.jar`
+command to run the application.<br>
+4. A [GUI](#glossary) similar to the one below should appear in a few seconds. If you are starting the app for the first time, the 
+app will contain some sample data for you to try commands.<br>
+      ![Ui](images/Ui.png)
+
+5. Type the command in the command input box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing
+<kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   - `list` : Lists all patients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   - `add nric/S1234567A name/John Doe` : Adds a patient named `John Doe` to MedInfo.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   - `delete 1` : Deletes the first patient on the currently displayed list.
+   
+   - `clear` : Clears all patient and ward data.
 
-   * `clear` : Deletes all contacts.
+   - `exit` : Exits the app.
 
-   * `exit` : Exits the app.
+7. Refer to the [Features](#features) section below for details on each command.
 
-1. Refer to the [Features](#features) below for details of each command.
+[Back to Table of Contents](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+---
+## User Interface Overview
+
+![UiOverview](images/UiOverview.png)
+
+The main GUI has 7 sections as highlighted above.
+- **_Menu Bar_**: File and Help buttons to exit or get help.
+- **_Command Input_**: Key in commands here and press <kbd>Enter</kbd> to execute.
+- **_Result Display_**: Responses from the application including error and success messages appear here.
+- **_Adjustable Panels_**: Click and drag on the purple highlighted areas to customize the panel sizes to your preference.
+- **_Patient List_**: List of patients you have.
+- **_Ward List_**: List of wards you have.
+- **_Save Location and Stats_**: Status bar which displays the location of data storage and some statistics of your hospital.
+
+[Back to Table of Contents](#table-of-contents)
+
+---
+## How to use the User Guide
+
+### Navigation
+This Guide contains detailed explanations on the **commands** available and what they do. If you wish to navigate to
+any section within this Guide, the [**Table of Contents**](#table-of-contents) above provides a quick way to do so.
+Each section in the User Guide comes with a [Back to Table of Contents](#table-of-contents) link in the footer to
+take you back to the Table of Contents.
+
+If you know what you're looking for, press <kbd>Ctrl</kbd> + <kbd>F</kbd> to search anywhere within this Guide
+for a keyword.
+
+### Symbols used
+
+| Symbol               | Meaning                                                     |
+|----------------------|-------------------------------------------------------------|
+| :information_source: | General information/notes.                                  |
+| :bulb:               | Tips that will optimize your usage of MedInfo.              |
+| :exclamation:        | Information that is crucial to know before using a command. |
+
+---
 
 ## Features
+
+The section below describes the commands available in MedInfo. The commands fall under 3 categories:
+- [Patient Features](#patient-features)
+- [Ward Features](#ward-features)
+- [Utility Features](#utility-features)
+
+Our commands follow a certain format for ease of use. If you are new to MedInfo, do take some time to familiarise
+yourself with the command format from the notes below.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+- Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  e.g. in `add nric/NRIC name/NAME`, `NRIC` and `NAME` are parameters which can be used as `add nric/S1234567A name/John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Items in square brackets are optional.<br>
+  e.g `name/NAME [s/STATUS]` can be used as `name/John Doe s/GREEN` or as `name/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+[//]: # 'Might be used in future features'
+[//]: # '- Items with `…` after them can be used multiple times including zero times.<br>'
+[//]: # '  e.g. `[t/TAG]…` can be used as `` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.'
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+- Parameters can be in any order.<br>
+  e.g. if the command specifies `name/NAME s/STATUS`, `s/STATUS name/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
+  the parameter will be taken.<br>
+  e.g. if you specify `nric/S1234567X nric/S1234567A`, only `nric/S1234567A` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Commands that do not take in parameters (such as `help`, `list`, and `exit`) will ignore any parameters supplied
+  along with it.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
+## Patient Features
+### Adding a patient to the system: `add`
+
+Adds the patient (NRIC, name and status).
+
+Format: `add nric/NRIC name/NAME [s/STATUS]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The first and last letters in NRIC must be capitalised.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `add`:**<br>
+- The default status is set to `GRAY`.
+- The default ward is set to `Waiting Room`.
+- No discharge date is added by default.
+</div>
+
+Examples:
+
+- `add nric/S1234567A name/John Doe s/RED`
+
+[Back to Table of Contents](#table-of-contents)
+
+
+### Listing all patients in the system: `list`
+
+Shows a list of all patients with their details in the system.
+
+Format: `list`
+
+[Back to Table of Contents](#table-of-contents)
+
+
+### Editing a patient’s details in the system: `edit`
+
+Edit an existing patient’s status or ward or discharge date-time.
+
+Format: `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`
+
+- Edits the patient's details at the specified index as of the currently displayed list.
+- The status of a patient is either `GRAY` or `GREEN` or `YELLOW` or `RED`.
+- The ward allocated to a patient is represented as an alphanumeric string. E.g `A01`.
+- The discharge date-time is of the `dd/MM/yyyy HHmm` format. E.g `12/03/2023 1200` is interpreted as 12th March 2023 1200hrs.
+
+Examples:
+
+- `edit 1 s/GREEN` Edits the status of the first currently displayed patient to be `GREEN`.
+- `edit 5 w/A01` Edits the ward of the fifth currently displayed patient to be `A01`.
+- `edit 4 d/27/07/2023 1600` Edits the discharge date-time of the fourth currently displayed patient to be `27/07/2023 1600` which is read as 27th July 2023 1600hrs.
+
+[Back to Table of Contents](#table-of-contents)
+
+
+### Sorting all patients in the system: `sort`
+
+Sorts all the patients with the specified field and order in the system.
+
+The fields that you can sort by include:
+- patient name (`name/`)
+- status (`s/`)
+- discharge date (`d/`)
+- ward name (`w/`)
+
+You can sort in one of two orders:
+- ascending (`asc`)
+- descending (`desc`)
+
+Format: `sort FIELD/ORDER`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `sort`:**<br>
+- You can only sort by one field in a command.
+- When sorting by status (in ascending order), the order is `GRAY`, `GREEN`, `YELLOW`, then `RED`. The `GRAY` status is given the lowest priority as the patient's condition is unknown, while the `RED` status is given the highest priority due to the patient's critical condition.
+</div>
+
+Examples:
+
+- `sort s/asc`
+
+[Back to Table of Contents](#table-of-contents)
+
+
+### Finding patients by name in the system: `find`
+
+Shows a list of all patients with their details that match input name or NRIC.
+
+Format: `find name/NAME`, `find nric/NRIC`, `find s/STATUS`, `find w/WARD`
+
+- The search is case-insensitive. e.g `hans` will match `Hans`
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- Either only the name or only the NRIC is searched.
+- Only full words will be matched e.g. `Han` will not match `Hans`
+- Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+<!-- EXAMPLE OF TIP -->
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Using `find` with a status acts as a filter on that status.
+</div>
+
+Examples:
+
+- `find name/John` returns `john` and `John Smith`
+- `find name/john carlos` returns `John Smith`, `Carlos Lopez`<br>
+  ![result for 'find alex david'](images/findJohnCarlosResult.png)
+
+[Back to Table of Contents](#table-of-contents)
+
+
+### Deleting a patient from the system: `delete`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once deleted, a patient cannot be recovered.
+</div>
+
+Deletes a patient by index.
+
+Format: `delete INDEX`
+
+- Deletes the patient at the specified index as of the currently displayed list.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `delete`:**<br>
+On entering a `delete` command, a confirmation window will pop-up requesting for confirmation, regardless of the command's validity. This is to verify that you truly intend to perform that action and are fully aware of its consequences.
+</div>
+
+Examples:
+
+`delete 1`
+
+
+
+
+[Back to Table of Contents](#table-of-contents)
+
+## Ward Features
+### Adding a ward to the system: `addward`
+
+Adds the ward (name and capacity).
+
+Format: `addward w/WARD [c/CAPACITY]`
+
+- The ward name is represented as an alphanumeric string. E.g `A01`.
+- The capacity is a positive integer. E.g `50`.
+
+<!-- EXAMPLE OF TIP -->
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about `add`:**
+The default capacity is set to 10.
+</div>
+
+Examples:
+
+- `addward w/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
+
+[Back to Table of Contents](#table-of-contents)
+
+
+### Editing a ward's details in the system: `editward`
+
+Edit an existing ward's name or capacity.
+
+Format: `editward INDEX [w/WARD] [c/CAPACITY]`
+
+- Edits the ward's details at the specified index as of the currently displayed list.
+- The given capacity has to be an integer.
+- The given capacity has to be greater or equal to the ward's current occupancy
+
+Examples:
+
+- `editward 1 w/A02` Edits the name of the first currently displayed ward to be `A02`.
+- `editward 5 c/35` Edits the capacity of the fifth currently displayed ward to be `35`.
+
+[Back to Table of Contents](#table-of-contents)
+
+### Deleting a ward from the system: `deleteward`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once deleted, a ward cannot be recovered.
+</div>
+
+Deletes a ward by index.
+
+Format: `deleteward INDEX`
+
+- Deletes the ward at the specified index as of the currently displayed list.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `deleteward`:**<br>
+- On entering a `deleteward` command, a confirmation window will pop-up requesting for confirmation, regardless of the command's validity. This is to verify that you truly intend to perform that action and are fully aware of its consequences.
+- You will not be able to delete a ward that currently has patients assigned to it.
+</div>
+
+
+Examples:
+
+`deleteward 1`
+
+[Back to Table of Contents](#table-of-contents)
+
+## Utility Features
+### Clearing all data : `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once cleared, MedInfo data cannot be recovered!
+</div>
+
+Clears all data (patients and wards) stored in MedInfo.
+
+Format: `clear`
+
+[Back to Table of Contents](#table-of-contents)
+
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
+<!-- INSERT SCREENSHOT PREVIEW HERE -->
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
+[Back to Table of Contents](#table-of-contents)
 
 ### Exiting the program : `exit`
 
@@ -155,39 +389,86 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
+[Back to Table of Contents](#table-of-contents)
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Saving the data
+MedInfo data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Back to Table of Contents](#table-of-contents)
+
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MedInfo data are saved as a JSON file `[JAR file location]/data/medinfo.json`. Advanced users can update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+Edit the data file at your own risk! Any changes that make the data invalid will lead to MedInfo clearing
+all data and starting anew.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+[Back to Table of Contents](#table-of-contents)
 
-_Details coming soon ..._
+---
 
---------------------------------------------------------------------------------------------------------------------
+## FAQ :raising_hand:
 
-## FAQ
+**Q**: I keep forgetting the commands, is there a quick way to get help?<br>
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Yes! Entering the `help` command will show a message explaining how to access the help page.<br>
+<br>
 
---------------------------------------------------------------------------------------------------------------------
+**Q**: Why can't I remove the waiting room?<br>
+
+**A**: As every hospital would have some pre-screening room for patients to wait in, and to make it easier
+to start entering patients into the system, the waiting room is made un-deletable.<br>
+<br>
+
+**Q**: How do I transfer my data to another device/computer?<br>
+
+**A**: Install the app in the other device/ computer and overwrite the empty data file it creates with
+the file that contains the data of your previous MedInfo home folder.<br>
+<br>
+
+[Back to Table of Contents](#table-of-contents)
+
+---
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action          | Format, Examples                                                                                    |
+| --------------- | --------------------------------------------------------------------------------------------------- |
+| **Add**         | `add nric/NRIC name/NAME [s/STATUS]` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN`          |
+| **List**        | `list`                                                                                              |
+| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`<br> e.g.,`edit 1 s/GREEN`                            |
+| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`, `sort d/desc`                                        |
+| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`or `find w/WARD` <br> e.g., `find name/John` |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                                 |
+| **Add Ward**    | `addward w/WARD [c/CAPACITY]` <br> e.g., `addward w/S1234567A c/25`                                 |
+| **Edit Ward**   | `editward INDEX [w/WARD] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`                           |
+| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                                        |
+| **Clear**       | `clear`                                                                                             |
+| **Help**        | `help`                                                                                              |
+| **Exit**        | `exit`                                                                                              |
+
+[Back to Table of Contents](#table-of-contents)
+
+---
+
+## Glossary
+
+| Term                 | Definition                                                                                                                                                             |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`.jar`**           | A package file format that groups together Java program files and data files for ease of distribution.                                                                 |
+| **`cd`**             | A command used to change the current working directory in various operating systems. To use it, type `cd` followed by a space and the folder you wish to work in.      |
+| **Command terminal** | A program that allows the user to enter commands that the computer processes. Examples of popular terminals include Terminal (for macOS) and PowerShell (for Windows). |
+| **Discharge Date**   | The date on which a patient can be discharged from the hospital.                                                                                                       |
+| **GUI**              | Graphical User Interface. A form of user interface that allows users to interact primarily through graphics.                                                           |
+| **Home folder**      | The main folder you wish to run MedInfo in. On running MedInfo, this folder will become populated with data and preference files.                                      |
+| **In-process**       | The process of checking in patients with their identifying information before they consult a medical professional.                                                     |
+| **Occupancy**        | The number of patients in a given ward at a point in time.                                                                                                             |
+| **Status**           | A code indicating a patient's current condition. MedInfo works with 4 statuses: GRAY (unknown), GREEN (stable), YELLOW (serious), and RED (critical).                  |
+| **Ward**             | A separate room in a hospital, typically allocated to a particular type of patient.                                                                                    |
+
+
+[Back to Table of Contents](#table-of-contents)

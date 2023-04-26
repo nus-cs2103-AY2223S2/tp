@@ -1,0 +1,13 @@
+@startuml
+skinparam activity {
+    ArrowColor #A80036
+    BackgroundColor #FEFECE
+    BorderColor #A80036
+    BorderThickness 1.5
+}
+start
+:User executes list command;
+:Update model to display all patients;
+stop
+
+@enduml

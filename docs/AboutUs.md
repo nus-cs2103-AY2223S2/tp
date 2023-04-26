@@ -2,58 +2,68 @@
 layout: page
 title: About Us
 ---
-
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Navaneeth Ramapurath
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nramapurath.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/nramapurath)]
+[[portfolio](team/nramapurath.md)]
 
-* Role: Project Advisor
+- Role: Team Lead
+- Code Focus Area: Logic, model
+- Primary Role: Scheduling and tracking
+- Secondary Role: Testing
 
-### Jane Doe
+### Jerald Kiew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jeraldkiew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jeraldkiew)]
+[[portfolio](team/jeraldkiew.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Code Focus Area: Model
+- Primary Role: Documentation
+- Secondary Role: Code Quality
 
-### Johnny Doe
+### K Sunil Avinash
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ksunil2001.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ksunil2001)]
+[[portfolio](team/ksunil2001.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Code Focus Area: Storage
+- Primary Role: Code Quality
+- Secondary Role: Documentation
 
-### Jean Doe
+### Nicholas Arlin Halim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/daytona65.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/daytona65)]
+[[portfolio](team/daytona65.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Code Focus Area: UI
+- Primary Role: Code Integration
+- Secondary Role: Testing
 
-### James Doe
+### Sun Yitong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yitong241.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yitong241)]
+[[portfolio](team/yitong241.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Code Focus Area: Logic
+- Primary Role: Deliverables and deadlines
+- Secondary Role: Scheduling and tracking

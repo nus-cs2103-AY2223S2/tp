@@ -1,0 +1,15 @@
+@startuml
+skinparam activity {
+    ArrowColor #A80036
+    BackgroundColor #FEFECE
+    BorderColor #A80036
+    BorderThickness 1.5
+}
+start
+:User executes edit command;
+:Find patient to edit;
+:Create new patient using fields entered;
+:Set new patient to the model;
+stop
+
+@enduml

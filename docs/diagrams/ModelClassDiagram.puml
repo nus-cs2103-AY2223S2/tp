@@ -5,46 +5,51 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyMedInfo" as ReadOnlyMedInfo
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class MedInfo
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Class UniquePatientList
+Class Patient
+Class UniqueWardList
+Class Ward
+Class Capacity
+Class WardName
+Class Nric
 Class Name
-Class Phone
-Class Tag
+Class Status
+Class Discharge
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+MedInfo .up.|> ReadOnlyMedInfo
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyMedInfo
+ModelManager -left-> "1" MedInfo
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+MedInfo *--> "1" UniquePatientList
+MedInfo *--> "1" UniqueWardList
+UniquePatientList --> "~* all" Patient
+UniqueWardList --> "~* all" Ward
+Patient *--> Name
+Patient *--> Nric
+Patient *--> Status
+Patient *--> WardName
+Patient *--> Discharge
+Ward *--> Capacity
+Ward *--> WardName
+Ward *--> "1" UniquePatientList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Patient
 @enduml
