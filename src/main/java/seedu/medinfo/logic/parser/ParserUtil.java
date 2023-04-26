@@ -134,6 +134,8 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code order} is invalid.
      */
+    // @@author {Echomo-Xinyu}-reused
+    // Referenced the parseSortOrder method
     public static Order parseSortOrder(String order) throws ParseException {
         try {
             return Order.valueOf(order.toUpperCase());
@@ -141,4 +143,5 @@ public class ParserUtil {
             throw new ParseException(SortCommand.MESSAGE_UNKNOWN_ORDER_KEYWORD);
         }
     }
+    //@@author
 }
