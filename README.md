@@ -10,6 +10,6 @@ Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assist
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
-##Acknowledgements
+## Acknowledgements
 
-This project uses [Apache Commons CSV](https://commons.apache.org/proper/commons-csv/) under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+This project uses [Apache Commons CSV](https://commons.apache.org/proper/commons-csv/) under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) and [JFreeChart](https://www.jfree.org/jfreechart/) under the [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl-3.0.html).
