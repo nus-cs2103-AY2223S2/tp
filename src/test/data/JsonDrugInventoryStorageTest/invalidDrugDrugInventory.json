@@ -1,0 +1,10 @@
+{
+  "drugs": [ {
+    "tradeName": "Drug with Invalid storageCount field",
+    "activeIngredient": "Brimonidine Tartrate",
+    "direction": "aaaaaaa",
+    "purposes": "bbbbb",
+    "sideEffects": "ccccccc",
+    "storageCount": "1000"
+  }]
+}

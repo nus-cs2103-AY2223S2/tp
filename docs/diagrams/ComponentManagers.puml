@@ -4,28 +4,28 @@ skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-package Logic {
-Class "<<interface>>\nLogic" as Logic
-Class LogicManager
+package CareFlowLogic {
+Class "<<interface>>\nCareFlowLogic" as CareFlowLogic
+Class CareFlowLogicManager
 }
 
-package Model{
-Class "<<interface>>\nModel" as Model
-Class ModelManager
+package CareFlowModel{
+Class "<<interface>>\nCareFlowModel" as CareFlowModel
+Class CareFlowModelManager
 }
 
-package Storage{
-Class "<<interface>>\nStorage" as Storage
-Class StorageManager
+package CareFlowStorage{
+Class "<<interface>>\nCareFlowStorage" as CareFlowStorage
+Class CareFlowStorageManager
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ..> CareFlowLogic
 
-LogicManager .up.|> Logic
-ModelManager .up.|> Model
-StorageManager .up.|> Storage
+CareFlowLogicManager .up.|> CareFlowLogic
+CareFlowModelManager .up.|> CareFlowModel
+CareFlowStorageManager .up.|> CareFlowStorage
 
-LogicManager --> Model
-LogicManager --> Storage
+CareFlowLogicManager --> CareFlowModel
+CareFlowLogicManager --> CareFlowStorage
 @enduml

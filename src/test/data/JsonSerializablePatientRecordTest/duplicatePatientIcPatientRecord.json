@@ -1,0 +1,26 @@
+{
+  "patients": [
+    {
+      "name": "Penny",
+      "phone": "9482424",
+      "email": "penny@example.com",
+      "address": "9th street",
+      "birthDate": "01-01-2000",
+      "gender": "female",
+      "ic": "T9997777K",
+      "drugAllergy": "Penicillin",
+      "emergencyContact": null
+    },
+    {
+      "name": "Thommas",
+      "phone": "1234567",
+      "email": "thommas_hofs@example.com",
+      "address": "5th street",
+      "birthDate": "01-01-2002",
+      "gender": "male",
+      "ic": "T9997777K",
+      "drugAllergy":  null,
+      "emergencyContact": null
+    }
+  ]
+}

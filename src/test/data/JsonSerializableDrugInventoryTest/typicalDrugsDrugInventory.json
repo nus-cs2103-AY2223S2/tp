@@ -1,0 +1,53 @@
+{
+  "_comment": "Drug Inventory save file which contains the same Drug values as in TypicalDrugs#getTypicalDrugInventory()",
+  "drugs": [
+    {
+      "tradeName":"Prozac",
+      "activeIngredient": "Fluoxetine hydrochloride",
+      "direction": "The usual starting dose for adults is 20 mg once a day, typically taken in the morning.",
+      "purposes": "Prozac is an antidepressant medication that is used to treat major depressive disorder, obsessive-compulsive disorder (OCD), bulimia nervosa, and panic disorder.",
+      "sideEffects": "Common side effects of Prozac may include nausea, vomiting, diarrhea, dry mouth, headache, dizziness, and nervousness.",
+      "storageCount": "10"
+    },
+    {
+      "tradeName": "Robitussin",
+      "activeIngredient": "Dextromethorphan",
+      "direction": "The usual recommended dose of Robitussin for adults is 10-20 mg every 4-6 hours, up to a maximum of 120 mg per day.",
+      "purposes": "Robitussin is a cough suppressant that is used to treat coughs caused by the common cold or other respiratory illnesses.",
+      "sideEffects": "Common side effects of Robitussin may include dizziness, drowsiness, and upset stomach.",
+      "storageCount":"100"
+    },
+    {
+      "tradeName": "Sudafed",
+      "activeIngredient": "Pseudoephedrine",
+      "direction": "The usual recommended dose of Sudafed for adults is 30-60 mg every 4-6 hours, up to a maximum of 240 mg per day.",
+      "purposes": "Sudafed is a decongestant that is used to treat nasal congestion and a runny nose caused by allergies, the common cold, or other respiratory illnesses.",
+      "sideEffects": "Common side effects of Sudafed may include headache, dry mouth, nervousness, and insomnia.",
+      "storageCount":"22"
+    },
+    {
+      "tradeName": "Visine",
+      "activeIngredient": "Tetrahydrozoline",
+      "direction": "The usual recommended dose of Visine for adults is 1-2 drops in the affected eye(s) up to 4 times a day.",
+      "purposes": "Visine is an eye drop that is used to relieve redness in the eyes caused by minor eye irritations, such as smoke, dust, or wind.",
+      "sideEffects": "Common side effects of Visine may include temporary stinging or burning in the eye(s), dryness, and blurred vision.",
+      "storageCount":"7"
+    },
+    {
+      "tradeName": "Metformin",
+      "activeIngredient": "Metformin Hydrochloride",
+      "direction": "The usual recommended dose of Metformin for adults is typically 500mg-1000mg taken twice daily with meals.",
+      "purposes": "Metformin is an oral medication used to manage type 2 diabetes by helping to control blood sugar levels.",
+      "sideEffects": "Common side effects of Metformin may include diarrhea, nausea, vomiting, abdominal pain, and a metallic taste in the mouth.",
+      "storageCount":"23"
+    },
+    {
+      "tradeName": "Imodium",
+      "activeIngredient": "Loperamide",
+      "direction": "The usual recommended dose of Imodium for adults is 4 mg initially, followed by 2 mg after each loose stool, up to a maximum of 16 mg per day.",
+      "purposes": "Imodium is an over-the-counter medication used to treat acute diarrhea, including traveler's diarrhea and diarrhea associated with gastroenteritis.",
+      "sideEffects": "Common side effects of Imodium may include constipation, dizziness, and drowsiness.",
+      "storageCount":"25"
+    }
+  ]
+}

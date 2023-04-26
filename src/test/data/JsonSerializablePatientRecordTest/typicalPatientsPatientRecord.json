@@ -1,0 +1,75 @@
+{
+  "patients": [
+    {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "birthDate": "01-01-1999",
+      "gender": "female",
+      "ic": "T1128899I",
+      "drugAllergy": null,
+      "emergencyContact": null
+    }, {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "birthDate": "03-06-2000",
+      "gender": "male",
+      "ic": "Y7778899K",
+      "drugAllergy": null,
+      "emergencyContact": null
+    }, {
+      "name" : "Carl Kurz",
+      "phone" : "95352563",
+      "email" : "heinz@example.com",
+      "address" : "wall street",
+      "birthDate": "08-08-1998",
+      "gender": "male",
+      "ic": "P0098811H",
+      "drugAllergy": "Aspirin",
+      "emergencyContact": null
+    }, {
+      "name" : "Daniel Meier",
+      "phone" : "87652533",
+      "email" : "cornelia@example.com",
+      "address" : "10th street",
+      "birthDate": "03-05-1971",
+      "gender": "male",
+      "ic": "B9965511S",
+      "drugAllergy": "Anticonvulsants",
+      "emergencyContact": "83754333"
+    }, {
+      "name" : "Elle Meyer",
+      "phone" : "9482224",
+      "email" : "werner@example.com",
+      "address" : "michegan ave",
+      "birthDate": "09-04-1961",
+      "gender": "female",
+      "ic": "I1133113S",
+      "drugAllergy": "Local anesthetics",
+      "emergencyContact": "81756633"
+    }, {
+      "name" : "Fiona Kunz",
+      "phone" : "9482427",
+      "email" : "lydia@example.com",
+      "address" : "little tokyo",
+      "birthDate": "03-12-1981",
+      "gender": "female",
+      "ic": "W9164411S",
+      "drugAllergy": null,
+      "emergencyContact": null
+    }, {
+      "name" : "George Best",
+      "phone" : "9482442",
+      "email" : "anna@example.com",
+      "address" : "4th street",
+      "birthDate": "01-08-1991",
+      "gender": "male",
+      "ic": "B9532511S",
+      "drugAllergy": null,
+      "emergencyContact": "83704433"
+    }
+  ]
+}

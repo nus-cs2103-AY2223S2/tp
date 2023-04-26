@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package DrugModel <<Rectangle>>{
+Class Drug
+Class ActiveIngredient
+Class Direction
+Class Purpose
+CLass SideEffect
+Class StorageCount
+Class TradeName
+Class UniqueDrugList
+}
+
+Class DrugInventory
+DrugInventory *--> UniqueDrugList
+UniqueDrugList -right-> Drug
+Drug *--> "1" TradeName
+Drug *--> "1" ActiveIngredient
+Drug *--> "1" Direction
+Drug *--> "1" Purpose
+Drug *--> "1" SideEffect
+Drug *--> "1" StorageCount
+
+TradeName -[hidden]right-> ActiveIngredient
+ActiveIngredient -[hidden]right-> Direction
+Direction -[hidden]right-> Purpose
+Purpose -[hidden]right-> SideEffect
+SideEffect -[hidden]right-> StorageCount
+
+@enduml

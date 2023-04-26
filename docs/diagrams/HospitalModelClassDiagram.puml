@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package HospitalModel <<Rectangle>>{
+Class Hospital
+Class Name
+Class Phone
+Class UniqueHospitalList
+}
+
+Class HospitalRecord
+HospitalRecord *--> UniqueHospitalList
+UniqueHospitalList -right-> Hospital
+
+Hospital *--> "1" Name
+Hospital *--> " hotline 1"  Phone
+
+Name -[hidden]right-> Phone
+
+@enduml

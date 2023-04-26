@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+participant ":UiManager" as UiManager LOGIC_COLOR
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":DrugPieChartPanel" as DrugPieChartPanel LOGIC_COLOR
+participant ":DrugPieChart" as DrugPieChart LOGIC_COLOR
+
+create MainWindow
+activate UiManager
+UiManager -> MainWindow: MainWindow()
+activate MainWindow
+
+UiManager <-- MainWindow
+deactivate MainWindow
+
+UiManager -> MainWindow: show()
+activate MainWindow
+
+UiManager <-- MainWindow
+deactivate MainWindow
+
+
+UiManager -> MainWindow: fillInnerParts()
+activate MainWindow
+
+create DrugPieChartPanel
+MainWindow -> DrugPieChartPanel: DrugPieChartPanel()
+activate DrugPieChartPanel
+
+DrugPieChartPanel -> DrugPieChartPanel: updatePieChartSegments()
+activate DrugPieChartPanel
+DrugPieChartPanel -> DrugPieChartPanel: setupPieChartData()
+
+
+DrugPieChartPanel -> DrugPieChart: setData()
+activate DrugPieChart
+DrugPieChartPanel <-- DrugPieChart
+deactivate DrugPieChart
+deactivate DrugPieChartPanel
+
+
+MainWindow <-- DrugPieChartPanel
+deactivate DrugPieChartPanel
+
+UiManager<--MainWindow
+deactivate MainWindow
+deactivate UiManager
+
+@enduml

@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+box "Ui" #LightBlue
+skinparam maxMessageSize 60
+participant ":CommandBox" as CommandBox LOGIC_COLOR
+participant  ":CommandExecutor" as CommandExecutor LOGIC_COLOR
+end box
+box "Logic" #Pink
+participant ":CareFlow\nLogicManager" as Logic LOGIC_COLOR
+participant ":CareFlowParser" as CareFlowParser LOGIC_COLOR
+participant ":DrugParser" as DrugParser LOGIC_COLOR
+participant ":FindCommand\nParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+box "Model" #Olive
+participant ":CareFlow\nModelManager" as Model LOGIC_COLOR
+end box
+box "Commons" #Maroon
+participant ":TradeNameContains\nKeywordsPredicate" as Predicate LOGIC_COLOR
+end box
+-> CommandBox: handleCommandEntered()
+activate CommandBox
+CommandBox -> CommandExecutor: execute("d find Panadol")
+activate CommandExecutor
+CommandExecutor -> Logic: execute("d find Panadol")
+activate Logic
+Logic -> CareFlowParser: parseCommand("d find Panadol")
+activate CareFlowParser
+create DrugParser
+CareFlowParser -> DrugParser
+activate DrugParser
+DrugParser --> CareFlowParser
+deactivate DrugParser
+CareFlowParser -> DrugParser: parse("find", "Panadol")
+activate DrugParser
+create FindCommandParser
+DrugParser -> FindCommandParser
+activate FindCommandParser
+FindCommandParser --> DrugParser
+deactivate FindCommandParser
+DrugParser -> FindCommandParser: parse("Panadol")
+activate FindCommandParser
+create Predicate
+FindCommandParser -> Predicate: new Predicate(["Panadol"])
+activate Predicate
+Predicate --> FindCommandParser: predicate
+deactivate Predicate
+create FindCommand
+FindCommandParser -> FindCommand: new FindCommand(predicate)
+activate FindCommand
+FindCommand --> FindCommandParser: findCommand
+deactivate FindCommand
+FindCommandParser --> DrugParser: findCommand
+deactivate FindCommandParser
+DrugParser --> CareFlowParser: findCommand
+deactivate DrugParser
+CareFlowParser --> Logic: findCommand
+deactivate CareFlowParser
+Logic -> FindCommand: execute(model)
+activate FindCommand
+FindCommand -> Model:updateFilteredDrugList(predicate)
+activate Model
+Model --> FindCommand
+deactivate Model
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+CommandResult --> FindCommand
+deactivate CommandResult
+FindCommand --> Logic: commandResult
+deactivate FindCommand
+Logic --> CommandExecutor: commandResult
+deactivate Logic
+CommandExecutor --> CommandBox
+deactivate CommandExecutor
+@enduml

@@ -1,0 +1,24 @@
+
+.root {
+    -fx-font-family: sans-serif, Helvetica, Arial;
+}
+
+#openButton, #helpMessage {
+    -fx-text-fill: white;
+}
+
+#openButton {
+    -fx-background-color: dimgray;
+}
+
+#openButton:hover {
+    -fx-background-color: gray;
+}
+
+#openButton:armed {
+    -fx-background-color: darkgray;
+}
+
+#helpMessageContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}

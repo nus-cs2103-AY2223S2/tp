@@ -4,43 +4,43 @@ skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-package Logic {
+package CareFlowLogic {
 
-Class AddressBookParser
+Class CareFlowParser
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 
 
-Class "<<interface>>\nLogic" as Logic
-Class LogicManager
+Class "<<interface>>\nCareFlowLogic" as CareFlowLogic
+Class CareFlowLogicManager
 }
 
-package Model{
+package CareFlowModel{
 Class HiddenModel #FFFFFF
 }
 
-package Storage{
+package CareFlowStorage{
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ..> CareFlowLogic
 
-LogicManager .right.|> Logic
-LogicManager -right->"1" AddressBookParser
-AddressBookParser ..> XYZCommand : creates >
+CareFlowLogicManager .right.|> CareFlowLogic
+CareFlowLogicManager -right->"1" CareFlowParser
+CareFlowParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command
-LogicManager .left.> Command : executes >
+CareFlowLogicManager .left.> Command : executes >
 
-LogicManager --> Model
-LogicManager --> Storage
-Storage --[hidden] Model
-Command .[hidden]up.> Storage
-Command .right.> Model
+CareFlowLogicManager --> CareFlowModel
+CareFlowLogicManager --> CareFlowStorage
+CareFlowStorage --[hidden] CareFlowModel
+Command .[hidden]up.> CareFlowStorage
+Command .right.> CareFlowModel
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
-Logic ..> CommandResult
-LogicManager .down.> CommandResult
+CareFlowLogic ..> CommandResult
+CareFlowLogicManager .down.> CommandResult
 Command .up.> CommandResult : produces >
 @enduml

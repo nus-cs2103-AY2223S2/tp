@@ -1,0 +1,23 @@
+{
+  "patients": [ {
+    "name": "Valid Patient",
+    "phone": "94824241",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "birthDate": "01-01-2000",
+    "gender": "male",
+    "ic": "T9997777K",
+    "drugAllergy": "Penicillin",
+    "emergencyContact": null
+  }, {
+    "name": "Patient With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "birthDate": "09-09-2001",
+    "gender": "female",
+    "ic": "L1111222Y",
+    "drugAllergy": null,
+    "emergencyContact": null
+  } ]
+}

@@ -7,7 +7,9 @@
       "x" : 300,
       "y" : 100,
       "z" : 99
-    }
+    },
+    "theme": "DARK"
   },
-  "addressBookFilePath" : "addressbook.json"
+  "drugInventoryFilePath" : "drugInventory.json",
+  "patientRecordFilePath": "patientRecord.json"
 }

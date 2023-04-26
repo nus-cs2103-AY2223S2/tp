@@ -1,0 +1,15 @@
+{
+  "patients": [
+    {
+      "name": "Patient With Invalid birthDate Field",
+      "phone": "94892424",
+      "email": "henz@example.com",
+      "address": "9th street",
+      "birthDate": "00-00-0000",
+      "gender": "female",
+      "ic": "L9999000Y",
+      "drugAllergy": null,
+      "emergencyContact": null
+    }
+  ]
+}

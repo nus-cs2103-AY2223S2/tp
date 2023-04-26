@@ -1,0 +1,19 @@
+{
+  "drugs": [
+    {
+      "tradeName": "Alphagan",
+      "activeIngredient": "Brimonidine Tartrate",
+      "direction": "Instill 1 drop into the affected eye(s) 3 times daily, or as directed by a healthcare professional.",
+      "purposes": "Brimonidine Tartrate eye drops are used to treat high pressure inside the eye due to glaucoma or other eye conditions. It works by reducing the amount of fluid in the eye, which helps to lower pressure.",
+      "sideEffects": "Common side effects may include redness or itching of the eye, dry mouth, and drowsiness.",
+      "storageCount": "15"
+    }, {
+      "tradeName": "Alphagan",
+      "activeIngredient": "Brimonidine Tartrate",
+      "direction": "Instill 1 drop into the affected eye(s) 3 times daily, or as directed by a healthcare professional.",
+      "purposes": "Brimonidine Tartrate eye drops are used to treat high pressure inside the eye due to glaucoma or other eye conditions. It works by reducing the amount of fluid in the eye, which helps to lower pressure.",
+      "sideEffects": "Less common side effects may include blurred vision, eye pain, or sensitivity to light. If you experience any unusual or persistent side effects, contact your healthcare provider.",
+      "storageCount": "20"
+    }
+  ]
+}
