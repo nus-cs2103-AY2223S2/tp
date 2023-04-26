@@ -160,6 +160,11 @@
 
 
 /* TAB PANE RELATED*/
+/*
+ * Modified from original authors
+ * Author: Vipul and Uluk Biy
+ * https://stackoverflow.com/questions/19788661/change-javafx-tab-default-look
+ */
 .tab-pane:top *.tab-header-area {
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.416667em 0.166667em 0.0em 0.0em;
@@ -178,6 +183,7 @@
 .tab{
     -fx-background-insets: 0 1 0 1, 0, 0;
 }
+
 .tab-pane .tab
 {
     -fx-background-color: #F7F8F8;
