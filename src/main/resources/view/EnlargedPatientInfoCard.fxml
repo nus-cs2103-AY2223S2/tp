@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="enlargedPatientInfoCard" styleClass="enlarged-contact-card, primary-border"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <HBox alignment="CENTER" styleClass="title-background, only-bottom-primary-border">
+    <Label text="Selected Patient" styleClass="label-header-3"/>
+  </HBox>
+  <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+              styleClass="enlarged-contacts-details-scroll-pane, edge-to-edge">
+    <VBox styleClass="enlarged-contacts-details-pane">
+      <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+      </padding>
+      <Label styleClass="description-label" text="Name:" />
+      <Label fx:id="name" styleClass="value-label" text="\$name" />
+      <Label styleClass="description-label" text="Phone Number:" />
+      <Label fx:id="phone" styleClass="value-label" text="\$phone" />
+      <Label styleClass="description-label" text="Email:" />
+      <Label fx:id="email" styleClass="value-label" text="\$email" />
+      <Label styleClass="description-label" text="Height:" />
+      <Label fx:id="height" styleClass="value-label" text="\$height" />
+      <Label styleClass="description-label" text="Weight:" />
+      <Label fx:id="weight" styleClass="value-label" text="\$weight" />
+      <Label styleClass="description-label" text="Diagnosis:" />
+      <Label fx:id="diagnosis" styleClass="value-label" text="\$diagnosis" />
+      <Label styleClass="description-label" text="Status:" />
+      <Label fx:id="status" styleClass="value-label" text="\$status" />
+      <Label styleClass="description-label" text="Remark:" />
+      <Label fx:id="remark" styleClass="value-label" text="\$remark" />
+      <Label styleClass="description-label" text="Tags:" />
+      <FlowPane fx:id="tags" minWidth="150"/>
+    </VBox>
+  </ScrollPane>
+</VBox>

@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditDoctorCommandParser" as EditDoctorCommandParser LOGIC_COLOR
+participant ":EditDoctorDescriptor" as EditDoctorDescriptor LOGIC_COLOR
+participant "d:EditDoctorCommand" as EditDoctorCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit-doc 1 n/Simon")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit-doc 1 n/Simon")
+activate AddressBookParser
+
+create EditDoctorCommandParser
+AddressBookParser -> EditDoctorCommandParser
+activate EditDoctorCommandParser
+
+EditDoctorCommandParser --> AddressBookParser
+deactivate EditDoctorCommandParser
+
+AddressBookParser -> EditDoctorCommandParser : parse("1")
+activate EditDoctorCommandParser
+
+create EditDoctorDescriptor
+EditDoctorCommandParser -> EditDoctorDescriptor
+activate EditDoctorDescriptor
+
+EditDoctorDescriptor --> EditDoctorCommandParser
+deactivate EditDoctorDescriptor
+
+create EditDoctorCommand
+EditDoctorCommandParser -> EditDoctorCommand
+activate EditDoctorCommand
+
+EditDoctorCommand --> EditDoctorCommandParser : d
+deactivate EditDoctorCommand
+
+EditDoctorCommandParser --> AddressBookParser : d
+deactivate EditDoctorCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditDoctorCommandParser -[hidden]-> AddressBookParser
+destroy EditDoctorCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> EditDoctorCommand : execute()
+activate EditDoctorCommand
+
+EditDoctorCommand -> Model : setDoctor()
+activate Model
+
+Model --> EditDoctorCommand
+
+EditDoctorCommand -> Model : updateFilteredDoctorList()
+Model --> EditDoctorCommand
+deactivate Model
+
+create CommandResult
+EditDoctorCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditDoctorCommand
+deactivate CommandResult
+
+EditDoctorCommand --> LogicManager : result
+deactivate EditDoctorCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

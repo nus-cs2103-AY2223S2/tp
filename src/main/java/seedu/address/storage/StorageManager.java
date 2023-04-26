@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -17,8 +18,8 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final AddressBookStorage addressBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -72,6 +73,7 @@ public class StorageManager implements Storage {
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
+        logger.log(Level.INFO, "Updating the file manually may result in unexpected behaviour and/or data loss");
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 

@@ -3,57 +3,52 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are the Docedex team! We are undergraduates based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+**_Our contact information will be updated soon!_**
 
 ## Project team
+### Vigneshwar Hariharan
 
-### John Doe
+<img src="images/vigonometry.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/vigonometry)]
+[[portfolio](team/vigonometry.md)]
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: QA Testing, Product Development, Documentation
+* Responsibilities:
+  * Implementation of themes and CRUD commands.
+  * Ensure adherence to code quality and test coverage.
+  * Ensure quality of various documents.
 
-* Role: Project Advisor
 
-### Jane Doe
+### Amos Hung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bobfree546.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Bobfree546)] [[portfolio](team/bobfree546.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time.
 
-### Johnny Doe
+### Krishnamoorthi Praveen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/praveenkrishna0512.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/praveenkrishna0512)]
+[[portfolio](team/praveenkrishna0512.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: GUI, Storage and Documentation
+* Responsibilities: Responsible for the implementation of the GUI and Storage within Docedex,
+as well as the quality of various project documents.
 
-### Jean Doe
+### Owen Yap Yuhan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/owen-yap.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/owen-yap)]
+[[portfolio](team/owen-yap.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Project Manager
+* Responsibilities: Responsible for overall project coordination and in charge of defining, \
+assigning, and tracking project tasks.

@@ -1,0 +1,104 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AssignPatientCommandParser" as AssignPatientCommandParser LOGIC_COLOR
+participant "a:AssignPatientCommand" as AssignPatientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "d2:Doctor" as Doctor USER_COLOR
+participant "p2:Patient" as Patient USER_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("assign-ptn ptn/1 doc/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("assign-ptn ptn/1 doc/1")
+activate AddressBookParser
+
+create AssignPatientCommandParser
+AddressBookParser -> AssignPatientCommandParser
+activate AssignPatientCommandParser
+
+AssignPatientCommandParser --> AddressBookParser
+deactivate AssignPatientCommandParser
+
+AddressBookParser -> AssignPatientCommandParser : parse("ptn/1 doc/1")
+activate AssignPatientCommandParser
+
+create AssignPatientCommand
+AssignPatientCommandParser -> AssignPatientCommand
+activate AssignPatientCommand
+
+AssignPatientCommand --> AssignPatientCommandParser : a
+deactivate AssignPatientCommand
+
+AssignPatientCommandParser --> AddressBookParser : a
+deactivate AssignPatientCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AssignPatientCommandParser -[hidden]-> AddressBookParser
+destroy AssignPatientCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AssignPatientCommand : execute()
+activate AssignPatientCommand
+
+AssignPatientCommand -> Model : getFilteredDoctorList()
+activate Model
+
+Model --> AssignPatientCommand : d1
+deactivate Model
+
+AssignPatientCommand -> Model : getFilteredPatientList()
+activate Model
+
+Model --> AssignPatientCommand : p1
+deactivate Model
+
+create Doctor
+AssignPatientCommand -> Doctor : new
+activate Doctor
+
+Doctor --> AssignPatientCommand : d2
+deactivate Doctor
+
+create Patient
+AssignPatientCommand -> Patient : new
+activate Patient
+
+Patient --> AssignPatientCommand : p2
+deactivate Patient
+
+AssignPatientCommand -> Model : setDoctor(d1, d2)
+activate Model
+
+Model --> AssignPatientCommand
+deactivate Model
+
+AssignPatientCommand -> Model : setPatient(p1, p2)
+activate Model
+
+Model --> AssignPatientCommand
+deactivate Model
+
+create CommandResult
+AssignPatientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AssignPatientCommand
+deactivate CommandResult
+
+AssignPatientCommand --> LogicManager : result
+deactivate AssignPatientCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

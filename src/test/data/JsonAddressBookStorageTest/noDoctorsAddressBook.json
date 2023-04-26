@@ -1,0 +1,15 @@
+{
+  "unassignedPatients": [
+    {
+      "name" : "Rob Smith",
+      "phone" : "12346666",
+      "email" : "robbie@gmail.com",
+      "height" : "1.74",
+      "weight" : "63.4",
+      "diagnosis" : "None",
+      "status" : "Outpatient",
+      "remark" : "Non compliant",
+      "tagged" : [ ]
+    }
+  ]
+}

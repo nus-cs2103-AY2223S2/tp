@@ -16,7 +16,7 @@ title: Setting up and getting started
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
 
-First, **fork** this repo, and **clone** the fork into your computer.
+First, **fork** this [repository](https://github.com/AY2223S2-CS2103T-F12-1/tp), and **clone** the fork into your computer.
 
 If you plan to use Intellij IDEA (highly recommended):
 1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to ensure Intellij is configured to use **JDK 11**.
@@ -45,11 +45,4 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
-
-1. **Do the tutorials**
-   These tutorials will help you get acquainted with the codebase.
-
-   * [Tracing code](tutorials/TracingCode.md)
-   * [Adding a new command](tutorials/AddRemark.md)
-   * [Removing fields](tutorials/RemovingFields.md)
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [Docedex’s architecture](DeveloperGuide.md#architecture).
