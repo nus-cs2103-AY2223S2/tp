@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Tam Keng Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tamkenghong.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/TamKengHong)]
+[[portfolio](team/tamkenghong.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Xu BoJie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bojie3.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bojie3)]
+[[portfolio](team/bojie3.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Attendance, Participation point, Testing, Documentation
 
-### James Doe
+### Kok Chun Zhi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chunzkok.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chunzkok)]
+[[portfolio](team/chunzkok.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Class List: Insertion, Deletion and Grouping of Students (Class List)
+
+### Li Chengyue
+
+<img src="images/cyli133.png" width="200px">
+
+[[github](http://github.com/cyli133)]
+[[portfolio](team/cyli133.md)]
+
+* Role: Developer
+* Responsibilities: ClassList, Alarm, Tests, Documentation
+
+### Gu Haiwei
+
+<img src="images/williamhaiweigu.png" width="200px">
+
+[[github](http://github.com/WilliamHaiweiGu)]
+[[portfolio](team/williamhaiweigu.md)]
+
+* Role: Developer
+* Responsibilities: CSV import & export, JSON interaction improvement, command history navigation, testing.

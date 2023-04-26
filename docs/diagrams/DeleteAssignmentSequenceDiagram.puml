@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TAA" as TAA LOGIC_COLOR
+participant ":DeleteAssignmentCommandParser" as DeleteAssignmentCommandParser LOGIC_COLOR
+participant "d:DeleteAssignmentCommand" as DeleteAssignmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete_asgn n/Assignment 1")
+activate LogicManager
+
+LogicManager -> TAA : parseCommand("delete_asgn n/Assignment 1")
+activate TAA
+
+create DeleteAssignmentCommandParser
+TAA -> DeleteAssignmentCommandParser
+activate DeleteAssignmentCommandParser
+
+DeleteAssignmentCommandParser --> TAA
+deactivate DeleteAssignmentCommandParser
+
+TAA -> DeleteAssignmentCommandParser : parse("n/Assignment 1")
+activate DeleteAssignmentCommandParser
+
+create DeleteAssignmentCommand
+DeleteAssignmentCommandParser -> DeleteAssignmentCommand
+activate DeleteAssignmentCommand
+
+DeleteAssignmentCommand --> DeleteAssignmentCommandParser : d
+deactivate DeleteAssignmentCommand
+
+DeleteAssignmentCommandParser --> TAA : d
+deactivate DeleteAssignmentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteAssignmentCommandParser -[hidden]-> TAA
+destroy DeleteAssignmentCommandParser
+
+TAA --> LogicManager : d
+deactivate TAA
+
+LogicManager -> DeleteAssignmentCommand : execute()
+activate DeleteAssignmentCommand
+
+DeleteAssignmentCommand -> Model : updateStudent(student)
+activate Model
+
+Model --> DeleteAssignmentCommand
+deactivate Model
+
+create CommandResult
+DeleteAssignmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteAssignmentCommand
+deactivate CommandResult
+
+DeleteAssignmentCommand --> LogicManager : result
+deactivate DeleteAssignmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
