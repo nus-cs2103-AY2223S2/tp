@@ -62,7 +62,10 @@ public class UntagFoodCommand extends Command {
                 && index.equals(((UntagFoodCommand) other).index); // state check
     }
 
-    // Tag utils
+    //@@author rmj1405-reused
+    //Adapted from https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main/java/seedu
+    // /foodrem/logic/commands/tagcommands/TagCommandUtil.java
+    // with minor modifications
     public static Food getFoodToUntag(Model model, Tag tag, Index index) throws CommandException {
         requireNonNull(model);
         requireNonNull(tag);
@@ -80,5 +83,5 @@ public class UntagFoodCommand extends Command {
 
         return foodList.get(index.getZeroBased());
     }
-
+    //@@author
 }
