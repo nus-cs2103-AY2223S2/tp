@@ -83,6 +83,8 @@ public class StatisticPanel extends UiPart<Region> {
         applyCustomColorSequence(pieChartData, "#91d7ff", "#ffbd59", "#5bb288", "#ff8787");
     }
 
+    //@@author XylusChen-reused
+    //Reused from https://stackoverflow.com/questions/15219334/javafx-change-piechart-color
     private void applyCustomColorSequence(ObservableList<PieChart.Data> pieChartData, String... pieColors) {
         int i = 0;
         for (PieChart.Data data : pieChartData) {
@@ -90,5 +92,6 @@ public class StatisticPanel extends UiPart<Region> {
             i++;
         }
     }
+    //@@author
 
 }
