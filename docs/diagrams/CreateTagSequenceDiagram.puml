@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+'all logic entities
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WifeParser" as WifeParser LOGIC_COLOR
+participant ":CreateTagCommandParser" as CreateTagCommandParser LOGIC_COLOR
+participant ":Tag" as Tag LOGIC_COLOR
+participant ":CreateTagCommand" as CreateTagCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+'model entity
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("createtag n/tagname")
+activate LogicManager
+
+LogicManager -> WifeParser : parseCommand("createtag n/tagname")
+activate WifeParser
+
+create CreateTagCommandParser
+WifeParser -> CreateTagCommandParser
+activate CreateTagCommandParser
+
+CreateTagCommandParser --> WifeParser
+deactivate CreateTagCommandParser
+
+WifeParser -> CreateTagCommandParser :parse("n/tagname")
+activate CreateTagCommandParser
+
+create Tag
+CreateTagCommandParser -> Tag
+activate Tag
+
+Tag --> CreateTagCommandParser
+deactivate Tag
+
+create CreateTagCommand
+CreateTagCommandParser -> CreateTagCommand : CreateTagCommand(tag)
+activate CreateTagCommand
+
+CreateTagCommand --> CreateTagCommandParser
+deactivate CreateTagCommand
+
+CreateTagCommandParser --> WifeParser
+deactivate CreateTagCommandParser
+
+CreateTagCommandParser -[hidden]-> WifeParser
+destroy CreateTagCommandParser
+
+WifeParser --> LogicManager
+deactivate WifeParser
+
+LogicManager -> CreateTagCommand : execute(model)
+activate CreateTagCommand
+
+CreateTagCommand -> Model : addTag(toCreate)
+activate Model
+
+Model --> CreateTagCommand
+deactivate Model
+
+create CommandResult
+CreateTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CreateTagCommand
+deactivate CommandResult
+
+CreateTagCommand --> LogicManager
+deactivate CreateTagCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

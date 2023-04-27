@@ -5,46 +5,51 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyWife" as ReadOnlyWife
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class Wife
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
+Class UniqueFoodList
+class UniqueTagList
+Class Food
+class Name
+Class Unit
+Class Quantity
+Class ExpiryDate
 Class Tag
-
+class TagName
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Wife .up.|> ReadOnlyWife
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyWife
+ModelManager -left-> "1" Wife
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Wife *--> "1" UniqueFoodList
+Wife *--> "1" UniqueTagList
+UniqueFoodList --> "~* all" Food
+UniqueTagList --> "~* all" Tag
+Food *--> Name
+Food *--> Unit
+Food *--> Quantity
+Food *--> ExpiryDate
+Food *--> "*" Tag
+Tag *--> TagName
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> Unit
+Unit -[hidden]right-> Quantity
+Quantity -[hidden]right-> ExpiryDate
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Food
+ModelManager -->"~* filtered" Tag
 @enduml

@@ -1,0 +1,13 @@
+{
+  "foods": [ {
+    "name": "Valid food",
+    "unit": "Carton",
+    "quantity": "2",
+    "expiryDate": "13-11-2024"
+  }, {
+    "name": "M@iji !nval!d N@me",
+    "unit": "Un213it",
+    "quantity": "69",
+    "expiryDate": "13112024"
+  } ]
+}

@@ -44,3 +44,6 @@ jobs:
           directory: ${{ github.workspace }}/build/reports/jacoco/coverage
           files: coverage.xml
           fail_ci_if_error: false
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3

@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WifeParser" as WifeParser LOGIC_COLOR
+participant ":IncreaseCommandParser" as IncreaseCommandParser LOGIC_COLOR
+participant "inc:IncreaseCommand" as IncreaseCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("inc 1 q/10")
+activate LogicManager
+
+LogicManager -> WifeParser : parseCommand("inc 1 q/10")
+activate WifeParser
+
+create IncreaseCommandParser
+WifeParser -> IncreaseCommandParser
+activate IncreaseCommandParser
+
+IncreaseCommandParser --> WifeParser
+deactivate IncreaseCommandParser
+
+WifeParser -> IncreaseCommandParser : parse("1 q/10")
+activate IncreaseCommandParser
+
+create IncreaseCommand
+IncreaseCommandParser -> IncreaseCommand
+activate IncreaseCommand
+
+IncreaseCommand --> IncreaseCommandParser : inc
+deactivate IncreaseCommand
+
+IncreaseCommandParser --> WifeParser : inc
+deactivate IncreaseCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+IncreaseCommandParser -[hidden]-> WifeParser
+destroy IncreaseCommandParser
+
+WifeParser --> LogicManager : inc
+deactivate WifeParser
+
+LogicManager -> IncreaseCommand : execute()
+activate IncreaseCommand
+
+IncreaseCommand -> Model : increaseFood(1, 10)
+activate Model
+
+Model --> IncreaseCommand
+deactivate Model
+
+create CommandResult
+IncreaseCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> IncreaseCommand
+deactivate CommandResult
+
+IncreaseCommand --> LogicManager : result
+deactivate IncreaseCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+

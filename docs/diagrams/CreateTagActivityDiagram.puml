@@ -1,0 +1,20 @@
+@startuml
+!pragma useVerticalIf on
+
+start
+:User executes `createtag` command;
+if () then ([else])
+    :Error: Invalid Command;
+    stop;
+([Valid command]) elseif () then ([else])
+    :Error: Invalid Tag Name;
+    stop;
+([Valid tag name]) elseif () then ([else])
+    :Error: Tag Storage Full;
+    stop;
+else ([Tag storage available])
+endif
+    :createtag command executes successfully;
+stop
+
+@enduml

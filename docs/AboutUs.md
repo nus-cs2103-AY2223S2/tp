@@ -3,57 +3,58 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg)
+aiming to transform fridge inventory management. <br/><br/>
+You can reach us at the email `ng.jinyuan@u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Ng Jin Yuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jnjy.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jnjy)]
+[[portfolio](team/jnjy.md)]
 
-* Role: Project Advisor
+-   Role: Team lead, Git Expert
+-   Responsibilities: Responsible for overall project coordination and assisting team with issues relating to Git.
 
-### Jane Doe
+### Ritika Joshi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rmj1405.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/rmj1405)]
+[[portfolio](team/rmj1405.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+-   Role: Scheduling and tracking, Deliverables and deadlines
+-   Responsibilities: Responsible for ensuring that requirements are being met. In charge of defining, assigning and tracking project tickets.
 
-### Johnny Doe
+### Justin Leng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/scorpiussigma.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/scorpiussigma)]
+[[portfolio](team/scorpiussigma.md)]
 
-* Role: Developer
-* Responsibilities: Data
+-   Role: Integration
+-   Responsibilities: Responsible for versioning of the code, maintaining the code repository, integrate various parts of the software to create a whole.
 
-### Jean Doe
+### Nigel Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nigelteosw.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nigelteosw)]
+[[portfolio](team/nigelteosw.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+-   Role: UI/UX experts
+-   Responsibilities: Responsible for the look of the product and user experience.
 
-### James Doe
+### Wesley Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bisceto.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bisceto)]
+[[portfolio](team/bisceto.md)]
 
-* Role: Developer
-* Responsibilities: UI
+-   Role: Documentation
+-   Responsibilities: Responsible for the quality of project documentation.
