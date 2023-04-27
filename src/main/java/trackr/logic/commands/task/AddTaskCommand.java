@@ -25,7 +25,6 @@ public class AddTaskCommand extends AddItemCommand<Task> {
             + PREFIX_NAME + "Sort Inventory "
             + PREFIX_DEADLINE + "01/01/2024 "
             + PREFIX_STATUS + "N ";
-    //@@author
 
     /**
      * Creates an AddTaskCommand to add the specified {@code Task}.
@@ -35,4 +34,5 @@ public class AddTaskCommand extends AddItemCommand<Task> {
     public AddTaskCommand(Task task) {
         super(task, ModelEnum.TASK);
     }
+    //@@author
 }

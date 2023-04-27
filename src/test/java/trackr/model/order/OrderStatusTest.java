@@ -34,7 +34,8 @@ public class OrderStatusTest {
     }
     //@@author
 
-    //Solution for isValidOrderStatus test below is adapted from AB3
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void isValidOrderStatus() {
         // null order status
@@ -59,6 +60,7 @@ public class OrderStatusTest {
         assertTrue(OrderStatus.isValidStatus("i", OrderStatus.STATUSES)); // small letter
         assertTrue(OrderStatus.isValidStatus("d", OrderStatus.STATUSES)); // small letter
     }
+    //@@author
 
     //@@author chongweiguan-reused
     @Test

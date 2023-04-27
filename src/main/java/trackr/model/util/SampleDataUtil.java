@@ -76,6 +76,8 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Task(new TaskName("Buy flour"), new TaskDeadline("01/01/2024"),
@@ -86,6 +88,7 @@ public class SampleDataUtil {
                     new TaskStatus("N"))
         };
     }
+    //@@author
 
     //@@author liumc-sg-reused
     public static ReadOnlyTaskList getSampleTaskList() {

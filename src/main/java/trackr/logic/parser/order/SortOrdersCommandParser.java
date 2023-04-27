@@ -12,6 +12,8 @@ import trackr.logic.parser.ParserUtil;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.order.SortOrdersComparator;
 
+//@@author HmuuMyatMoe-reused
+//Reused from AB3 with minor modifications
 /**
  * Parses input arguments and creates a new SortOrdersCommand object.
  */
@@ -40,3 +42,4 @@ public class SortOrdersCommandParser implements Parser<SortOrdersCommand> {
         return new SortOrdersCommand(comparator);
     }
 }
+//@@author
