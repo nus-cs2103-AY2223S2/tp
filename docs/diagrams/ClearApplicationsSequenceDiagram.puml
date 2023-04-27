@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":ClearCommand" as ClearCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":InternshipBook" as InternshipBook MODEL_COLOR
+end box
+
+[-> LogicManager : execute("clear")
+activate LogicManager
+
+LogicManager -> InternshipBookParser : parseCommand("clear")
+activate InternshipBookParser
+
+create ClearCommand
+InternshipBookParser -> ClearCommand
+activate ClearCommand
+
+ClearCommand --> InternshipBookParser : clearCommand
+deactivate ClearCommand
+
+InternshipBookParser --> LogicManager : clearCommand
+deactivate InternshipBookParser
+
+LogicManager -> ClearCommand : execute()
+activate ClearCommand
+
+create InternshipBook
+ClearCommand -> InternshipBook : new InternshipBook()
+activate InternshipBook
+
+InternshipBook --> ClearCommand : newIB
+deactivate InternshipBook
+
+ClearCommand -> Model : setInternshipBook(newIB)
+activate Model
+
+Model --> ClearCommand
+deactivate Model
+
+create CommandResult
+ClearCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearCommand : result
+deactivate CommandResult
+
+ClearCommand --> LogicManager : result
+deactivate ClearCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

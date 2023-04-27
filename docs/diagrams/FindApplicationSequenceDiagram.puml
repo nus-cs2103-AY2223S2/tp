@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ApplicationContainsKeywordsPredicate" as ApplicationContainsKeywordsPredicate MODEL_COLOR
+end box
+
+note left of LogicManager #aqua
+Let user input be: <str>
+str = "r/SWE c/Google s/Applied"
+end note
+
+[-> LogicManager : execute("find {str}")
+activate LogicManager
+
+LogicManager -> InternshipBookParser : parseCommand("find {str}")
+activate InternshipBookParser
+
+create FindCommandParser
+InternshipBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> InternshipBookParser
+deactivate FindCommandParser
+
+InternshipBookParser -> FindCommandParser : parse("{str}")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand : new FindCommand(app)
+activate FindCommand
+
+create ApplicationContainsKeywordsPredicate
+FindCommand -> ApplicationContainsKeywordsPredicate: new ApplicationContainsKeywordsPredicate(keywords)
+activate ApplicationContainsKeywordsPredicate
+
+ApplicationContainsKeywordsPredicate --> FindCommand : predicate
+deactivate ApplicationContainsKeywordsPredicate
+
+FindCommand --> FindCommandParser : findCommand
+deactivate FindCommand
+
+FindCommandParser --> InternshipBookParser : findCommand
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> InternshipBookParser
+destroy FindCommandParser
+
+InternshipBookParser --> LogicManager : findCommand
+deactivate InternshipBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredApplicationList(predicate)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="TOP_LEFT" spacing="15" minHeight="105" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+      <VBox fx:id="applicationDetails">
+        <BorderPane styleClass="border-pane">
+          <left>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+              <Label fx:id="id" styleClass="cell_big_label">
+                <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+              </Label>
+              <Label fx:id="role" styleClass="cell_big_label" text="\$role" />
+            </HBox>
+          </left>
+          <right>
+            <Label fx:id="status" styleClass="status_label" text="\$status" />
+          </right>
+        </BorderPane>
+        <FlowPane fx:id="tags" />
+        <Label fx:id="companyName" styleClass="cell_small_label" text="\$companyName" />
+        <Label fx:id="companyEmail" styleClass="cell_small_label" text="\$email" />
+      </VBox>
+      <VBox fx:id="taskDetails" />
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>
