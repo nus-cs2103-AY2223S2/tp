@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam groupInheritance 1
+
+top to bottom direction
+
+Abstract Class "{abstract}\nItem" as Item
+Abstract Class "{abstract}\nName" as Name
+Abstract Class "{abstract}\nDeadline" as Deadline
+Abstract Class "{abstract}\nStatus" as Status
+Class "UniqueItemList<T> " as UniqueItemList
+Class ItemList<T extends Item>
+
+Class LocalDateTime
+Class Task
+Class TaskName
+Class TaskStatus
+Class TaskDeadline
+Class TaskList extends ItemList
+Class UniqueTaskList extends UniqueItemList
+
+ItemList *--r> "1" UniqueItemList
+UniqueItemList -r> "*" Item
+
+TaskList *--r> "1 " UniqueTaskList
+UniqueTaskList -r> "*" Task
+Task *--> "1" TaskName
+Task *--> "            1" TaskDeadline
+Task *--> "1   " TaskStatus
+Task *--> "1" LocalDateTime
+Task -u|> Item
+
+TaskName --|> Name
+TaskDeadline --|> Deadline
+TaskStatus --|> Status
+
+@enduml

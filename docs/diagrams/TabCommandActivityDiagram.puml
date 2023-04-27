@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+
+start
+:User executes TabCommand;
+:TabCommandParser extracts the relevant zero-based index
+from the supplied Target Tab name from TabEnum;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Invalid Index Argument])
+    :Display error message
+    on invalid command argument;
+    stop
+else ([else])
+    :Get zero-based index;
+    :Update ObservableTabIndex to the index;
+    :Listener in Ui observes the change;
+    if () then ([No change in
+    ObservableTabIndex])
+        :Same Tab is shown;
+        stop
+    else ([else])
+        :Target Tab is shown;
+        stop
+@enduml

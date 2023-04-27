@@ -1,0 +1,35 @@
+{
+    "suppliers": [ ],
+    "tasks": [ ],
+    "orders": [ {
+        "menuItem": {
+            "itemName": "Chocolate Cookies",
+            "itemCost": "1.20",
+            "itemPrice":"5.00",
+            "itemProfit": "3.80"
+        },
+        "customerName": "John Doe",
+        "orderDeadline": "01/01/2024",
+        "orderStatus": "N",
+        "orderQuantity": "10",
+        "customerPhone": "12345678",
+        "customerAddress": "123 Smith Street",
+        "timeAdded" : "2023-02-05T16:33:18.127253474"
+    }, {
+        "menuItem": {
+            "itemName": "Chocolate Cookies",
+            "itemCost": "1.20",
+            "itemPrice":"5.00",
+            "itemProfit": "3.80"
+        },
+        "orderDeadline": "01/01/2024",
+        "orderStatus": "N",
+        "orderQuantity": "10",
+        "customerName": "John Doe",
+        "customerPhone": "12345678",
+        "customerAddress": "123 Smith Street",
+        "timeAdded" : "2023-02-13T06:27:39.225926493"
+    } ],
+    "menuItems": [ ]
+
+}

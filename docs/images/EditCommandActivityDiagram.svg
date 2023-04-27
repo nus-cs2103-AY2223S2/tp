@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="598px" preserveAspectRatio="none" style="width:751px;height:598px;background:#FFFFFF;" version="1.1" viewBox="0 0 751 598" width="751px" zoomAndPan="magnify"><defs/><g><ellipse cx="359.5" cy="20" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/><rect fill="#F1F1F1" height="70.3125" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="222" x="248.5" y="50"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="193" x="258.5" y="80.7617">User enters command</text><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="202" x="258.5" y="105.918">to edit XYZ in XYZ List</text><rect fill="#F1F1F1" height="70.3125" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="241" x="239" y="140.3125"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="221" x="249" y="171.0742">EditXYZCommandParser</text><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="184" x="267" y="196.2305">parses the user input</text><polygon fill="#F1F1F1" points="359.5,233.7207,359.5,233.7207,371.5,245.7207,359.5,257.7207,359.5,257.7207,347.5,245.7207,359.5,233.7207" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="198" x="149.5" y="241.7656">[Invalid command format]</text><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="43" x="371.5" y="241.7656">[else]</text><rect fill="#F1F1F1" height="70.3125" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="309" x="11" y="267.7207"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="289" x="21" y="298.4824">Display Invalid Command Format</text><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="129" x="99" y="323.6387">error message</text><ellipse cx="165.5" cy="369.0332" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/><ellipse cx="165.5" cy="369.0332" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/><rect fill="#F1F1F1" height="70.3125" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="237" x="435" y="267.7207"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="217" x="445" y="298.4824">Change one-based index</text><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="173" x="463" y="323.6387">to zero-based index</text><rect fill="#F1F1F1" height="45.1563" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="258" x="424.5" y="358.0332"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="238" x="434.5" y="388.7949">Check if index given is valid</text><polygon fill="#F1F1F1" points="553.5,426.2852,553.5,426.2852,565.5,438.2852,553.5,450.2852,553.5,450.2852,541.5,438.2852,553.5,426.2852" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="184" x="357.5" y="434.3301">[Index is out of bounds]</text><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="43" x="565.5" y="434.3301">[else]</text><rect fill="#F1F1F1" height="70.3125" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="202" x="350" y="460.2852"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="170" x="360" y="491.0469">Display Invalid Item</text><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="182" x="360" y="516.2031">Index error message</text><ellipse cx="451" cy="576.5977" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/><ellipse cx="451" cy="576.5977" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/><rect fill="#F1F1F1" height="45.1563" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="168" x="572" y="460.2852"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="122" x="582" y="491.0469">Edit item XYZ</text><path d="M717,476.4414 L719,476.4414 L719,482.4414 L725,482.4414 L725,490.4414 L723,490.4414 L723,484.4414 L719,484.4414 L719,490.4414 L717,490.4414 L717,484.4414 L713,484.4414 L713,490.4414 L711,490.4414 L711,482.4414 L717,482.4414 " fill="#181818" style="stroke:;stroke-width:0.0;stroke-dasharray:;"/><ellipse cx="656" cy="551.4414" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/><ellipse cx="656" cy="551.4414" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="359.5" x2="359.5" y1="30" y2="50"/><polygon fill="#181818" points="355.5,40,359.5,50,363.5,40,359.5,44" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="359.5" x2="359.5" y1="120.3125" y2="140.3125"/><polygon fill="#181818" points="355.5,130.3125,359.5,140.3125,363.5,130.3125,359.5,134.3125" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="165.5" x2="165.5" y1="338.0332" y2="358.0332"/><polygon fill="#181818" points="161.5,348.0332,165.5,358.0332,169.5,348.0332,165.5,352.0332" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="553.5" x2="553.5" y1="338.0332" y2="358.0332"/><polygon fill="#181818" points="549.5,348.0332,553.5,358.0332,557.5,348.0332,553.5,352.0332" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="451" x2="451" y1="530.5977" y2="565.5977"/><polygon fill="#181818" points="447,555.5977,451,565.5977,455,555.5977,451,559.5977" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="656" x2="656" y1="505.4414" y2="540.4414"/><polygon fill="#181818" points="652,530.4414,656,540.4414,660,530.4414,656,534.4414" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="541.5" x2="451" y1="438.2852" y2="438.2852"/><line style="stroke:#181818;stroke-width:1.0;" x1="451" x2="451" y1="438.2852" y2="460.2852"/><polygon fill="#181818" points="447,450.2852,451,460.2852,455,450.2852,451,454.2852" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="565.5" x2="656" y1="438.2852" y2="438.2852"/><line style="stroke:#181818;stroke-width:1.0;" x1="656" x2="656" y1="438.2852" y2="460.2852"/><polygon fill="#181818" points="652,450.2852,656,460.2852,660,450.2852,656,454.2852" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="553.5" x2="553.5" y1="403.1895" y2="426.2852"/><polygon fill="#181818" points="549.5,416.2852,553.5,426.2852,557.5,416.2852,553.5,420.2852" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="347.5" x2="165.5" y1="245.7207" y2="245.7207"/><line style="stroke:#181818;stroke-width:1.0;" x1="165.5" x2="165.5" y1="245.7207" y2="267.7207"/><polygon fill="#181818" points="161.5,257.7207,165.5,267.7207,169.5,257.7207,165.5,261.7207" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="371.5" x2="553.5" y1="245.7207" y2="245.7207"/><line style="stroke:#181818;stroke-width:1.0;" x1="553.5" x2="553.5" y1="245.7207" y2="267.7207"/><polygon fill="#181818" points="549.5,257.7207,553.5,267.7207,557.5,257.7207,553.5,261.7207" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="359.5" x2="359.5" y1="210.625" y2="233.7207"/><polygon fill="#181818" points="355.5,223.7207,359.5,233.7207,363.5,223.7207,359.5,227.7207" style="stroke:#181818;stroke-width:1.0;"/><!--MD5=[645cd874d6009a90f905b38f52a2b259]
+@startuml
+skinparam activityFontSize 20
+skinparam activityArrowFontSize 18
+
+'@@author HmuuMyatMoe-reused
+'Reused from https://forum.plantuml.net/195/is-there-any-support-for-subactivity-or-the-rake-symbol
+sprite $rake <svg width="20" height="20" viewBox="0 0 20 20">
+<path
+    style="fill:#000000"
+    d="M 7,1 H 9 V 7 H 15 V 15 H 13 V 9 H 9 V 15 H 7 V 9 H 3 V 15 H 1 V 7 H 7 Z"
+/>
+</svg>
+'@@author
+
+start
+:User enters command
+to edit XYZ in XYZ List;
+:EditXYZCommandParser
+   parses the user input;
+if () then ([Invalid command format])
+  :Display Invalid Command Format
+               error message;
+  stop
+else ([else])
+:Change one-based index
+   to zero-based index;
+:Check if index given is valid;
+
+if () then ([Index is out of bounds])
+    :Display Invalid Item
+    Index error message;
+    stop
+else ([else])
+:Edit item XYZ <$rake>;
+stop
+
+@enduml
+
+@startuml
+skinparam activityFontSize 20
+skinparam activityArrowFontSize 18
+
+sprite $rake <svg width="20" height="20" viewBox="0 0 20 20">
+<path
+    style="fill:#000000"
+    d="M 7,1 H 9 V 7 H 15 V 15 H 13 V 9 H 9 V 15 H 7 V 9 H 3 V 15 H 1 V 7 H 7 Z"
+/>
+</svg>
+
+start
+:User enters command
+to edit XYZ in XYZ List;
+:EditXYZCommandParser
+   parses the user input;
+if () then ([Invalid command format])
+  :Display Invalid Command Format
+               error message;
+  stop
+else ([else])
+:Change one-based index
+   to zero-based index;
+:Check if index given is valid;
+
+if () then ([Index is out of bounds])
+    :Display Invalid Item
+    Index error message;
+    stop
+else ([else])
+:Edit item XYZ <$rake>;
+stop
+
+@enduml
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: SG
+--></g></svg>

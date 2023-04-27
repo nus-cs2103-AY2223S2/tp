@@ -1,0 +1,12 @@
+{
+  "suppliers": [ {
+    "name": "Hans Muster",
+    "phone": "94824243",
+    "email": "invalid@email!3e",
+    "address": "4th street"
+  } ],
+  "tasks": [ ],
+  "orders": [ ],
+  "menuItems": [ ]
+
+}

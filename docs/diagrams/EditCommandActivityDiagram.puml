@@ -1,0 +1,37 @@
+@startuml
+skinparam activityFontSize 20
+skinparam activityArrowFontSize 18
+
+'@@author HmuuMyatMoe-reused
+'Reused from https://forum.plantuml.net/195/is-there-any-support-for-subactivity-or-the-rake-symbol
+sprite $rake <svg width="20" height="20" viewBox="0 0 20 20">
+<path
+    style="fill:#000000"
+    d="M 7,1 H 9 V 7 H 15 V 15 H 13 V 9 H 9 V 15 H 7 V 9 H 3 V 15 H 1 V 7 H 7 Z"
+/>
+</svg>
+'@@author
+
+start
+:User enters command
+to edit XYZ in XYZ List;
+:EditXYZCommandParser
+   parses the user input;
+if () then ([Invalid command format])
+  :Display Invalid Command Format
+               error message;
+  stop
+else ([else])
+:Change one-based index
+   to zero-based index;
+:Check if index given is valid;
+
+if () then ([Index is out of bounds])
+    :Display Invalid Item
+    Index error message;
+    stop
+else ([else])
+:Edit item XYZ <$rake>;
+stop
+
+@enduml

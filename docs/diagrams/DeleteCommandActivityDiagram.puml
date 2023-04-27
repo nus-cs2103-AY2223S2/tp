@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+
+start
+:User executes DeleteXYZCommand;
+:DeleteXYZCommandParser extracts the relevant one-based index
+from the input argument;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Invalid Index Argument])
+    :Display error message
+    on invalid command argument;
+    stop
+else ([else])
+    :Get zero-based index from one-based index;
+    :Check out-of-bounds condition for index on FilteredXYZList;
+    if () then ([true])
+        : Display invalid XYZ index error message;
+        stop
+    else ([false])
+        : Retrieve item to delete from FilteredXYZList;
+        : Item is deleted from XYZList;
+        : XYZList with XYZ removed is saved to local storage;
+        : Success message is returned;
+        stop
+@enduml

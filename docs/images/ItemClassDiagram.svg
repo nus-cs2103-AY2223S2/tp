@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="139px" preserveAspectRatio="none"
+     style="width:319px;height:139px;background:#FFFFFF;" version="1.1" viewBox="0 0 319 139" width="319px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--class ModelEnum-->
+        <g id="elem_ModelEnum">
+            <rect codeLine="7" fill="#9D0012" height="41.2813" id="ModelEnum" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="101" x="139" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="95" x="142"
+                  y="24.6738">&#171;enumeration&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="152.5"
+                  y="40.3145">ModelEnum
+            </text>
+        </g><!--class Item-->
+        <g id="elem_Item">
+            <rect codeLine="13" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="37" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="40" y="24.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="27" x="57" y="40.3145">Item
+            </text>
+        </g><!--class ItemList-->
+        <g id="elem_ItemList">
+            <rect codeLine="14" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="139" x="169" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="172"
+                  y="125.6738">ItemList
+            </text>
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="83" x="228" y="105"/>
+            <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="81" x="229" y="118.9492">T extends Item
+            </text>
+        </g><!--class UniqueItemList-->
+        <g id="elem_UniqueItemList">
+            <rect codeLine="15" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="127" x="7" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="10"
+                  y="125.6738">UniqueItemList&lt;T&gt;
+            </text>
+        </g><!--link Item to ModelEnum-->
+        <g id="link_Item_ModelEnum">
+            <path codeLine="18" d="M104.43,27.5 C113.7,27.5 122.97,27.5 132.24,27.5 " fill="none" id="Item-to-ModelEnum"
+                  style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="137.15,27.5,128.15,23.5,132.15,27.5,128.15,31.5,137.15,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="120.0893" y="23.3868">1
+            </text>
+        </g><!--reverse link Item to UniqueItemList-->
+        <g id="link_Item_UniqueItemList">
+            <path codeLine="19" d="M70.5,54.55 C70.5,72.02 70.5,94.22 70.5,107.76 " fill="none"
+                  id="Item-backto-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="70.5,49.87,66.5,58.87,70.5,54.87,74.5,58.87,70.5,49.87"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="58.3781" y="70.2674">*
+            </text>
+        </g><!--reverse link UniqueItemList to ItemList-->
+        <g id="link_UniqueItemList_ItemList">
+            <path codeLine="20" d="M140.88,121 C150.13,121 159.37,121 168.61,121 " fill="none"
+                  id="UniqueItemList-backto-ItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="136,121,145,125,141,121,145,117,136,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="146.0794" y="117.1342">1
+            </text>
+        </g><!--SRC=[PO_BQiCm54Jt-efRBGiEU6yCgUD5g8s37xj0KMKr4PObLm_Q4lBlbUAGfpOQpHpcNhrmIONh6HZx9zXYSgD0Pk1o8fgCGBHMF-sUqq4oOo1Un8zXfeJIK5QhlFZ8ggAgRm0gY35lX0uxhPpidr64Skb6m4d2_CqqiLp9DDtAKlLCX0m3CN1v7L3JRJR5EgzHkspUKLMllCowfgrABuve-Mci9jH25aO3Ff2pSTpAjMLpNH1e1e8ikB592-pNCjdFLdgESIVvjsDNAeLJmxtjln4aH9hlzZRoJEonozBedeR8JO61c_EAvwMkZ61VfoQ8yUEqVm00]-->
+    </g>
+</svg>

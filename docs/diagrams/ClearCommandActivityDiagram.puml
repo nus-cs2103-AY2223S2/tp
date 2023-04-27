@@ -1,0 +1,15 @@
+@startuml
+skinparam activityFontSize 20
+skinparam activityArrowFontSize 18
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+start
+:User enters ClearXYZCommand;
+:Trackr removes all XYZ items from XYZList;
+:Save data into data file;
+:Shows success message;
+stop
+
+@enduml

@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam groupInheritance 1
+
+top to bottom direction
+
+Abstract Class "{abstract}\nItem" as Item
+Abstract Class "{abstract}\nName" as Name
+Class "UniqueItemList<T> " as UniqueItemList
+Class ItemList<T extends Item>
+
+
+Class MenuItem
+Class ItemSellingPrice
+Class ItemProfit
+Class ItemPrice
+Class ItemCost
+Class ItemName
+Class Menu extends ItemList
+Class UniqueMenuItemList extends UniqueItemList
+Class ItemSellingPrice extends ItemPrice
+Class ItemCost extends ItemPrice
+
+
+ItemList *--r> "1" UniqueItemList
+UniqueItemList -r>"*" Item
+
+Menu *--r> "1 " UniqueMenuItemList
+UniqueMenuItemList -r>"*" MenuItem
+
+MenuItem *--> " 1" ItemSellingPrice
+MenuItem *--> "1  " ItemProfit
+MenuItem *--> "     1" ItemCost
+MenuItem *--> "1" ItemName
+
+ItemProfit .left.> "            1 " ItemSellingPrice
+ItemProfit ..> "   1 " ItemCost
+
+
+
+
+MenuItem -u|> Item
+
+ItemName --|> Name
+
+@enduml

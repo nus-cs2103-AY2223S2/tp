@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Liu Muchen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/liumc-sg.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/LiuMC-SG)]
+[[portfolio](team/liumc-sg.md)]
 
-* Role: Project Advisor
+* Role: Software Developer
+* Responsibilities: Team Lead (Documentation, Deliverables)
 
-### Jane Doe
+### Darren Chang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/changgittyhub.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ChangGittyHub)]
+[[portfolio](team/changgittyhub.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Software Developer
+* Responsibilities: Scheduling & Tracking
 
-### Johnny Doe
+### Arkar Kyaw Aung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/arkarsg.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/arkarsg)]
+[[portfolio](team/arkarsg.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI & Testing
 
-### James Doe
+### Hmuu Myat Moe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hmuumyatmoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/HmuuMyatMoe)]
+[[portfolio](team/hmuumyatmoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation & Code Quality
+
+### Chong Wei Guan
+
+<img src="images/chongweiguan.png" width="200px">
+
+[[github](https://github.com/chongweiguan)]
+[[portfolio](team/chongweiguan.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables & Deadlines

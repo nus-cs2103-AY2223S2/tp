@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="610px" preserveAspectRatio="none" style="width:611px;height:610px;background:#FFFFFF;" version="1.1" viewBox="0 0 611 610" width="611px" zoomAndPan="magnify"><defs/><g><!--MD5=[8237f0313b7e89f796726a268ea6fa70]
+cluster Logic--><g id="cluster_Logic"><rect fill="none" height="524.5" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="322" x="7" y="80"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="38" x="149" y="95.5352">Logic</text></g><!--MD5=[15636c1ca4a123c16a2a1a8e90aca7a9]
+cluster Model--><g id="cluster_Model"><rect fill="none" height="93" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="157" x="377" y="407"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="44" x="433.5" y="422.5352">Model</text></g><!--MD5=[109e4168f4f7f94f1dc86ba2aaf40378]
+class TrackrParser--><g id="elem_TrackrParser"><rect codeLine="8" fill="#3333C4" height="26.0986" id="TrackrParser" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="89" x="48" y="207"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="83" x="51" y="225.1318">TrackrParser</text></g><!--MD5=[20b3262af791fb1c285bffe8069ced12]
+class XYZCommand--><g id="elem_XYZCommand"><rect codeLine="9" fill="#3333C4" height="26.0986" id="XYZCommand" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="99" x="200.5" y="562.5"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="203.5" y="580.6318">XYZCommand</text></g><!--MD5=[8b8ed4d3c39d809e656c591f744ce388]
+class CommandResult--><g id="elem_CommandResult"><rect codeLine="10" fill="#3333C4" height="26.0986" id="CommandResult" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="112" x="201" y="296.5"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="106" x="204" y="314.6318">CommandResult</text></g><!--MD5=[521817ab83e81da341a3f4b5e91bae41]
+class Command--><g id="elem_Command"><rect codeLine="11" fill="#3333C4" height="42.1973" id="Command" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="72" x="214" y="442"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="219.5" y="460.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="66" x="217" y="476.2305">Command</text></g><!--MD5=[42fa18dda7351a0ae87d9497de925436]
+class Logic--><g id="elem_Logic"><rect codeLine="14" fill="#3333C4" height="42.1973" id="Logic" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="93" x="219.5" y="115"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="87" x="222.5" y="133.1318">&lt;&lt;interface&gt;&gt;</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="34" x="249" y="149.2305">Logic</text></g><!--MD5=[ac54ce389d4d948eef4a4344659a3e1d]
+class LogicManager--><g id="elem_LogicManager"><rect codeLine="15" fill="#3333C4" height="26.0986" id="LogicManager" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="97" x="87.5" y="123"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="91" x="90.5" y="141.1318">LogicManager</text></g><!--MD5=[eef5f0b07d2fd263bed9c722d8c1c089]
+class HiddenModel--><g id="elem_HiddenModel"><rect codeLine="19" fill="#FFFFFF" height="26.0986" id="HiddenModel" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="90" x="420" y="450"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="84" x="423" y="468.1318">HiddenModel</text></g><rect fill="#F1F1F1" height="52.9766" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="73" x="348.5" y="283"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="53" x="358.5" y="298.5352">Storage</text><!--MD5=[f8dc820cca8808bdb695301f77a92b66]
+class HiddenOutside--><g id="elem_HiddenOutside"><rect codeLine="25" fill="#FFFFFF" height="26.0986" id="HiddenOutside" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="100" x="216" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="219" y="25.1318">HiddenOutside</text></g><g id="elem_GMN27"><path d="M345.5,555 L345.5,571.5 L299.66,575.5 L345.5,579.5 L345.5,595.6211 A0,0 0 0 0 345.5,595.6211 L604.5,595.6211 A0,0 0 0 0 604.5,595.6211 L604.5,565 L594.5,555 L345.5,555 A0,0 0 0 0 345.5,555 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M594.5,555 L594.5,565 L604.5,565 L594.5,555 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="234" x="351.5" y="572.5684">XYZCommand = AddOrderCommand,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="153" x="394" y="587.8789">FindOrderCommand, etc</text></g><!--MD5=[f287eff34db650aad88860d6e0e6d9fb]
+link HiddenOutside to Logic--><g id="link_HiddenOutside_Logic"><path codeLine="26" d="M266,33.2 C266,51.05 266,84.74 266,108.46 " fill="none" id="HiddenOutside-to-Logic" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="266,113.35,270,104.35,266,108.35,262,104.35,266,113.35" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[4143125d6d2dcbbb1f88caeeb45de3b4]
+link LogicManager to Logic--><g id="link_LogicManager_Logic"><path codeLine="28" d="M184.75,136 C189.03,136 193.32,136 197.6,136 " fill="none" id="LogicManager-to-Logic" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="197.51,129,217.51,136,197.51,143,197.51,129" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[dff2c6554021de4d2bedc0a966cd2db4]
+link LogicManager to TrackrParser--><g id="link_LogicManager_TrackrParser"><path codeLine="29" d="M129.47,149.45 C122.15,163.42 110.22,186.16 102.01,201.81 " fill="none" id="LogicManager-to-TrackrParser" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="#101086" points="99.88,205.89,107.5935,199.7661,102.1958,201.4586,100.5033,196.0609,99.88,205.89" style="stroke:#101086;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="92.2714" y="196.4807">1</text></g><!--MD5=[21e12f78fb24094cef1a4878abdc3a23]
+link TrackrParser to XYZCommand--><g id="link_TrackrParser_XYZCommand"><path codeLine="30" d="M86.44,232.85 C72.18,260.25 41.31,329.75 63,383 C96.11,464.3 182.19,529.9 225.03,558.69 " fill="none" id="TrackrParser-to-XYZCommand" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="229.02,561.35,223.7503,553.0295,224.8597,558.5765,219.3127,559.6859,229.02,561.35" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="#000000" points="69.957,379.2564,69.1212,369.7826,63.7123,372.0832,69.957,379.2564" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="45" x="77" y="379.5684">creates</text></g><!--MD5=[520da0335c5a8803876f267d9ec2ad91]
+reverse link Command to XYZCommand--><g id="link_Command_XYZCommand"><path codeLine="32" d="M250,505.7 C250,525.87 250,548.61 250,562.24 " fill="none" id="Command-backto-XYZCommand" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="none" points="243,505.78,250,485.78,257,505.78,243,505.78" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[a9e1a5717f5f63af61c3019fdb5e4d29]
+reverse link Command to LogicManager--><g id="link_Command_LogicManager"><path codeLine="33" d="M209.01,438.18 C175.91,416.35 131.7,380.66 112,336 C102.49,314.45 100.39,303.5 112,283 C124.77,260.45 149.23,275.55 162,253 C181.32,218.88 157.64,171.51 144.15,149.35 " fill="none" id="Command-backto-LogicManager" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="212.96,440.74,207.592,432.4826,208.7671,438.0161,203.2337,439.1912,212.96,440.74" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="#000000" points="118.0955,314.5338,118.9812,305.0645,113.2462,306.3524,118.0955,314.5338" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="126" y="314.5684">executes</text></g><!--MD5=[583ed1d0c45772f950f62e8f2bec1df7]
+link LogicManager to Model--><g id="link_LogicManager_Model"><path codeLine="35" d="M174.55,149.49 C210.13,161.2 260.19,178.18 279,187 C354.09,222.2 398.14,210.84 439,283 C450.61,303.5 445.25,313.29 439,336 C432.55,359.44 425.29,363.33 411,383 C408.22,386.82 406.22,386.83 404,391 C402.1375,394.49 400.4475,398.1759 398.9155,401.9592 C398.5325,402.905 398.1594,403.8569 397.796,404.8133 C397.6142,405.2915 397.4349,405.7709 397.258,406.2512 C397.1695,406.4913 397.0816,406.7317 396.9943,406.9723 " fill="none" id="LogicManager-to-Model" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="#101086" points="396.9943,406.9723,403.8237,399.8759,398.6994,402.272,396.3033,397.1477,396.9943,406.9723" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[90462986d69614cbc6d4bc0cb46f8efd]
+link LogicManager to Storage--><g id="link_LogicManager_Storage"><path codeLine="36" d="M153.91,149.33 C193.23,176.42 288,241.69 343.2,279.71 " fill="none" id="LogicManager-to-Storage" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="#101086" points="347.16,282.44,342.0295,274.033,343.0465,279.5977,337.4818,280.6146,347.16,282.44" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[ae0e345d33b432dd1a74f1b00fbf82aa]
+link Storage to Model--><!--MD5=[894af96810da56d5af6f5fd9ee84a0d6]
+reverse link Storage to Command--><!--MD5=[bfa7276062558292ff251f85fbc261be]
+link Command to Model--><g id="link_Command_Model"><path codeLine="39" d="M286.39,463 C302.695,463 319.0025,463 335.31,463 C343.4638,463 351.6175,463 359.7709,463 C363.8477,463 367.9243,463 372.0008,463 C373.02,463 374.0391,463 375.0582,463 C375.5677,463 376.0773,463 376.5869,463 C376.7142,463 376.8416,463 376.969,463 " fill="none" id="Command-to-Model" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="376.969,463,367.969,459,371.969,463,367.969,467,376.969,463" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[e956d43f58f30a24ce78a60af954e307]
+link Logic to CommandResult--><g id="link_Logic_CommandResult"><path codeLine="42" d="M264.93,157.35 C263.17,190.98 259.67,257.66 257.97,290.02 " fill="none" id="Logic-to-CommandResult" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="257.72,294.87,262.202,286.1001,257.991,289.8774,254.2137,285.6664,257.72,294.87" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[326ab9d23d3e7b599e2005f3db29a5f7]
+link LogicManager to CommandResult--><g id="link_LogicManager_CommandResult"><path codeLine="43" d="M146.17,149.1 C154.44,159.08 166.29,173.72 176,187 C202.32,223 230.71,266.89 245.9,290.83 " fill="none" id="LogicManager-to-CommandResult" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="248.48,294.91,247.0548,285.1648,245.8095,290.6829,240.2914,289.4376,248.48,294.91" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[a534c61ae9dd17e311f1526c83ae047b]
+reverse link CommandResult to Command--><g id="link_CommandResult_Command"><path codeLine="44" d="M250.41,328.53 C246.84,339.26 242.81,353.22 241,366 C237.32,392.02 241.54,422.23 245.35,441.71 " fill="none" id="CommandResult-backto-Command" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="251.94,324.06,245.234,331.2731,250.3162,328.789,252.8003,333.8712,251.94,324.06" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="#000000" points="246.2233,369.6603,242.8833,378.5651,248.7553,378.8276,246.2233,369.6603" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="58" x="255" y="379.5684">produces</text></g><!--MD5=[0946254ae216d874689668ad831fe71e]
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+Class TrackrParser
+Class XYZCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+
+
+Class "<<interface>>\nLogic" as Logic
+Class LogicManager
+}
+
+package Model{
+Class HiddenModel #FFFFFF
+}
+
+package Storage{
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .right.|> Logic
+LogicManager -right->"1" TrackrParser
+TrackrParser ..> XYZCommand : creates >
+
+XYZCommand -up-|> Command
+LogicManager .left.> Command : executes >
+
+LogicManager - -> Model
+LogicManager - -> Storage
+Storage - -[hidden] Model
+Command .[hidden]up.> Storage
+Command .right.> Model
+note right of XYZCommand: XYZCommand = AddOrderCommand, \nFindOrderCommand, etc
+
+Logic ..> CommandResult
+LogicManager .down.> CommandResult
+Command .up.> CommandResult : produces >
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 0
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam arrowThickness 1.1
+skinparam arrowColor #101086
+skinparam classBackgroundColor #3333C4
+
+package Logic {
+
+Class TrackrParser
+Class XYZCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+
+
+Class "<<interface>>\nLogic" as Logic
+Class LogicManager
+}
+
+package Model{
+Class HiddenModel #FFFFFF
+}
+
+package Storage{
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .right.|> Logic
+LogicManager -right->"1" TrackrParser
+TrackrParser ..> XYZCommand : creates >
+
+XYZCommand -up-|> Command
+LogicManager .left.> Command : executes >
+
+LogicManager - -> Model
+LogicManager - -> Storage
+Storage - -[hidden] Model
+Command .[hidden]up.> Storage
+Command .right.> Model
+note right of XYZCommand: XYZCommand = AddOrderCommand, \nFindOrderCommand, etc
+
+Logic ..> CommandResult
+LogicManager .down.> CommandResult
+Command .up.> CommandResult : produces >
+@enduml
+
+PlantUML version 1.2022.7(Tue Aug 23 01:01:30 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: SG
+--></g></svg>

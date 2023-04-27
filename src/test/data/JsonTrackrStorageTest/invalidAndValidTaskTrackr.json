@@ -1,0 +1,15 @@
+{
+  "suppliers": [ ],
+  "tasks" : [ {
+    "taskName": "Valid Task",
+    "taskDeadline": "01/01/2023",
+    "taskStatus": "N"
+  }, {
+    "taskName": "Task with invalid status",
+    "taskDadline": "01/01/2023",
+    "taskStatus": "X",
+    "timeAdded": "2023-03-27T19:26:53.230502300"
+  } ],
+  "orders" : [ ],
+  "menuItems": [ ]
+}

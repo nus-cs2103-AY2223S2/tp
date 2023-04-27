@@ -1,0 +1,22 @@
+{
+  "_comment": "Trackr save file which contains the same Task values as in TypicalTasks#getTypicalTaskList()",
+  "suppliers" : [ ],
+  "tasks": [ {
+    "taskName": "Sort Inventory",
+    "taskDeadline": "01/01/2024",
+    "taskStatus": "N",
+    "timeAdded" : "2023-03-27T19:26:53.230502300"
+  }, {
+    "taskName": "Throw Expired Food",
+    "taskDeadline": "01/01/2024",
+    "taskStatus": "D",
+    "timeAdded" : "2023-03-29T18:26:53.230502300"
+  }, {
+    "taskName": "Buy 5kg of Eggs",
+    "taskDeadline": "11/10/2023",
+    "taskStatus": "D",
+    "timeAdded" : "2023-03-29T19:31:06.879643700"
+  } ],
+  "orders": [ ],
+  "menuItems": [ ]
+}
