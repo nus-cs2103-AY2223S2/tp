@@ -7,10 +7,12 @@ import trackr.model.commons.Deadline;
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
 public class OrderDeadline extends Deadline {
-
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     public static final String MESSAGE_CONSTRAINTS =
             "Order deadline should only contain numeric values "
                     + "in the format \"DD/MM/YYYY\" and it should not be blank.";
+    //@@author
 
 
     /**

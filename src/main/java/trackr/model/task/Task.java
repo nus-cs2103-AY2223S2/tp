@@ -13,6 +13,8 @@ import trackr.model.item.Item;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task extends Item {
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
 
     // Data fields
     private final TaskName taskName;
@@ -59,6 +61,7 @@ public class Task extends Item {
     public LocalDateTime getTimeAdded() {
         return timeAdded;
     }
+    //@@author
 
     /**
      * Compares 2 tasks using their time added.

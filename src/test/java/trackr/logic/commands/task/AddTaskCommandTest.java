@@ -21,7 +21,6 @@ import trackr.model.task.Task;
 import trackr.testutil.TaskBuilder;
 import trackr.testutil.TestUtil.ModelStub;
 
-//@@author hmuumyatmoe-reused
 public class AddTaskCommandTest {
 
     //@@author HmuuMyatMoe-reused
@@ -77,9 +76,7 @@ public class AddTaskCommandTest {
         // different task -> returns false
         assertFalse(addSortInventoryCommand.equals(addBuyEggsCommand));
     }
-    //@@author
 
-    //Solution below adapted from AB3.
     /**
      * A Model stub that contains a single task.
      */
@@ -97,7 +94,9 @@ public class AddTaskCommandTest {
             return this.task.isSameItem((Task) item);
         }
     }
+    //@@author
 
+    //@@author liumc-sg-reused
     /**
      * A Model stub that always accept the task being added.
      */
@@ -121,5 +120,5 @@ public class AddTaskCommandTest {
             return new TaskList();
         }
     }
-
+    //@@author
 }

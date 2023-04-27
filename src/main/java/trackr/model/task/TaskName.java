@@ -18,10 +18,9 @@ public class TaskName extends Name {
      *
      * @param taskName A valid task name.
      */
-    //@@author
     public TaskName(String taskName) {
         super(taskName, "Task");
     }
-
+    //@@author
 }
 

@@ -60,6 +60,7 @@ public class TaskListTest {
     public void hasTask_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> taskList.hasItem(null));
     }
+    //@@author
 
     @Test
     public void hasTask_taskNotInTaskList_returnsFalse() {
@@ -74,6 +75,8 @@ public class TaskListTest {
     }
     //@@author
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTaskList_returnsTrue() {
         taskList.addItem(SORT_INVENTORY_N);
@@ -103,6 +106,8 @@ public class TaskListTest {
     }
     //@@author
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void setTaskList_withDifferentTask_success() {
         TaskList expectedTaskList = new TaskList();
@@ -114,8 +119,6 @@ public class TaskListTest {
         assertEquals(expectedTaskList, taskList);
     }
 
-    //@@author HmuuMyatMoe-reused
-    //Reused from AB3 with minor modifications
     @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> taskList.getItemList().remove(0));

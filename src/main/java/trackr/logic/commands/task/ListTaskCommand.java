@@ -13,7 +13,6 @@ public class ListTaskCommand extends ListItemCommand<Task> {
     //Reused from AB3 with minor modifications
     public static final String COMMAND_WORD = "list_task";
     public static final String COMMAND_WORD_SHORTCUT = "list_t";
-    //@@author
 
     /**
      * Creates a ListTaskCommand to list all the tasks.
@@ -21,4 +20,5 @@ public class ListTaskCommand extends ListItemCommand<Task> {
     public ListTaskCommand() {
         super(ModelEnum.TASK);
     }
+    //@@author
 }
