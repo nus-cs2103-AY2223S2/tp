@@ -13,6 +13,7 @@ import trackr.model.person.Supplier;
 /**
  * Adds a supplier to the supplier list.
  */
+//@@author liumc-sg-reused
 public class AddSupplierCommand extends AddItemCommand<Supplier> {
 
     public static final String COMMAND_WORD = "add_supplier";

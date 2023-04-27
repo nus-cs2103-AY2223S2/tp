@@ -9,6 +9,7 @@ import trackr.model.task.TaskContainsKeywordsPredicate;
  * Finds and lists all task in task list whose description contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
+//@@author liumc-sg-reused
 public class FindTaskCommand extends FindItemCommand<Task> {
 
     public static final String COMMAND_WORD = "find_task";

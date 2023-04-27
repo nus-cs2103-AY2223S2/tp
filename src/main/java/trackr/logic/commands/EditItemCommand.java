@@ -111,6 +111,7 @@ public abstract class EditItemCommand<T extends Item> extends Command {
     //@@author liumc-sg-reused
     protected abstract T createEditedItem(T itemToEdit, ItemDescriptor<? super T> itemDescriptor);
 
+    //@@author liumc-sg-reused
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

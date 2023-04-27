@@ -23,6 +23,7 @@ import trackr.model.person.Supplier;
 /**
  * Edits the details of an existing supplier in the supplier list.
  */
+//@@author liumc-sg-reused
 public class EditSupplierCommand extends EditItemCommand<Supplier> {
 
     public static final String COMMAND_WORD = "edit_supplier";

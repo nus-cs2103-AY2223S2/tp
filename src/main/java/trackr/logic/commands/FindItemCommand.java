@@ -13,6 +13,7 @@ import trackr.model.item.Item;
 /**
  * Finds and lists all items in item list.
  */
+//@@author liumc-sg-reused
 public abstract class FindItemCommand<T extends Item> extends Command {
 
     private final ModelEnum modelEnum;
@@ -24,13 +25,11 @@ public abstract class FindItemCommand<T extends Item> extends Command {
      * @param predicate The predicate to find the items with.
      * @param modelEnum A representation of the name of the list to find the items in.
      */
-    //@@author liumc-sg-reused
     public FindItemCommand(Predicate<Item> predicate, ModelEnum modelEnum) {
         requireAllNonNull(predicate, modelEnum);
         this.predicate = predicate;
         this.modelEnum = modelEnum;
     }
-    //@@author
 
     /**
      * Finds the items that matches the given predicate and updates the filtered item list with the items found.
@@ -38,7 +37,6 @@ public abstract class FindItemCommand<T extends Item> extends Command {
      * @param model {@code Model} which the command should operate on.
      * @return Success message of the find operation for display.
      */
-    //@@author liumc-sg-reused
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

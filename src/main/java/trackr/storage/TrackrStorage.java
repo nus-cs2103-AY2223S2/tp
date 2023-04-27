@@ -15,6 +15,7 @@ import trackr.model.ReadOnlyTaskList;
  */
 public interface TrackrStorage {
 
+    //@@author liumc-sg-reused
     /**
      * Returns the file path of the data file.
      */
@@ -32,6 +33,7 @@ public interface TrackrStorage {
      * @see #getTrackrFilePath()
      */
     Optional<ReadOnlySupplierList> readSupplierList(Path filePath) throws DataConversionException, IOException;
+    //@@author
 
     /**
      * Saves the given {@link ReadOnlySupplierList}, {@link ReadOnlyTaskList}

@@ -11,6 +11,7 @@ import trackr.model.item.Item;
 /**
  * Adds an Item to the item list.
  */
+//@@author liumc-sg-reused
 public abstract class AddItemCommand<T extends Item> extends Command {
     public static final String MESSAGE_SUCCESS = "New %s added: %s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This %s already exists in the %s list";
@@ -24,7 +25,6 @@ public abstract class AddItemCommand<T extends Item> extends Command {
      * @param item The item to be added.
      * @param modelEnum A representation of the name of the list we add to.
      */
-    //@@author liumc-sg-reused
     public AddItemCommand(T item, ModelEnum modelEnum) {
         requireAllNonNull(item, modelEnum);
         toAdd = item;
