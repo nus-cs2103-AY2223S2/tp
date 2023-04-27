@@ -2,46 +2,47 @@ package vimification.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 
-import vimification.commons.exceptions.DataConversionException;
-import vimification.commons.util.JsonUtil;
-import vimification.model.ReadOnlyUserPrefs;
+import vimification.common.util.JsonUtil;
 import vimification.model.UserPrefs;
 
 /**
- * A class to access UserPrefs stored in the hard disk as a json file
+ * A class to access {@link UserPrefs} stored in the hard disk as a json file.
  */
 public class JsonUserPrefsStorage implements UserPrefsStorage {
 
     private Path filePath;
 
+    /**
+     * Creates a new instance with the specified path.
+     *
+     * @param filePath the path to the data file
+     */
     public JsonUserPrefsStorage(Path filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getUserPrefsFilePath() {
         return filePath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws DataConversionException {
-        return readUserPrefs(filePath);
+    public UserPrefs readUserPrefs() throws IOException {
+        return JsonUtil.readJsonFile(filePath, UserPrefs.class);
     }
 
     /**
-     * Similar to {@link #readUserPrefs()}
-     * @param prefsFilePath location of the data. Cannot be null.
-     * @throws DataConversionException if the file format is not as expected.
+     * {@inheritDoc}
      */
-    public Optional<UserPrefs> readUserPrefs(Path prefsFilePath) throws DataConversionException {
-        return JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);
-    }
-
     @Override
-    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+    public void saveUserPrefs(UserPrefs userPrefs) throws IOException {
         JsonUtil.saveJsonFile(userPrefs, filePath);
     }
-
 }

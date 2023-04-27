@@ -1,173 +1,94 @@
 package vimification.model;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import vimification.model.task.Priority;
 import vimification.model.task.Task;
 
 /**
- * Responsible for storing, retrieving and updating all the tasks that are currently on the list.
+ * Instances of this interface are responsible for storing, retrieving and updating {@link Task}
+ * instances in the application.
+ * <p>
+ * Methods of this interface that expect an index should use the index as an index on the wrapped
+ * task list.
  */
-public class LogicTaskList {
+public interface LogicTaskList {
 
-    private final List<Task> tasks;
+    /**
+     * Returns the current size of the task list.
+     *
+     * @return the current size of the task list
+     */
+    public int size();
 
-    public LogicTaskList(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-    public LogicTaskList() {
-        this(new ArrayList<>());
-    }
-
-    public LogicTaskList(Task... tasks) {
-        this(new ArrayList<>(Arrays.asList(tasks)));
-    }
-
-    public List<Task> getInternalList() {
-        return tasks;
-    }
-
-    public int size() {
-        return tasks.size();
-    }
-
-    //// Task-level operations
+    /**
+     * Checks whether the task list is empty or not.
+     *
+     * @return true if the task list is empty, otherwise false
+     */
+    public boolean isEmpty();
 
     /**
      * Returns the task with the specified index.
+     *
+     * @param index index of the task
+     * @return the task at the specified index
      */
-    public Task get(int index) {
-        return tasks.get(index);
-    }
-
-    /**
-     * Adds a task to the task list.
-     */
-    public void add(Task task) {
-        requireNonNull(task);
-        tasks.add(task);
-    }
-
-    /**
-     * Inserts a task to the task list at the specified index.
-     */
-    public void add(int index, Task task) {
-        requireNonNull(task);
-        tasks.add(index, task);
-    }
+    public Task get(int index);
 
     /**
      * Removes the task with the specified index from the task list.
+     *
+     * @param index index of the task
+     * @return the task at the specified index (before removal)
      */
-    public Task remove(int index) {
-        return tasks.remove(index);
-    }
+    public Task remove(int index);
 
     /**
-     * Replaces the task with the specified index with the given task.
+     * Replaces the task at the specified index with the given task.
+     *
+     * @param index index of the task
+     * @param newTask the new task to replace the old one
      */
-    public void set(int index, Task newTask) {
-        requireNonNull(newTask);
-        tasks.set(index, newTask);
-    }
+    public void set(int index, Task newTask);
 
     /**
-     * Returns the index of the task with the specified index.
+     * Adds a task to the task list.
+     *
+     * @param task the new task to be added
      */
-    public int indexOf(Task t) {
-        return tasks.indexOf(t);
-    }
+    public void add(Task task);
 
     /**
-     * Returns true if a task that is the same as {@code t} exists in the task list.
+     * Adds a task to the task list at the specified index.
+     *
+     * @param index the index to insert the task into
+     * @param task the new task to be inserted into the task list
      */
-    public boolean contains(Task task) {
-        requireNonNull(task);
-        return tasks.contains(task);
-    }
-
-    public Stream<Task> stream() {
-        return tasks.stream();
-    }
+    public void add(int index, Task task);
 
     /**
      * Removes the last task from the task list.
-     */
-    public void pop() {
-        tasks.remove(size() - 1);
-    }
-
-    /**
-     * Marks the task with the specified index as done.
-     */
-    public void mark(int index) {
-        tasks.get(index).mark();
-    }
-
-    /**
-     * Unmarks the task with the specified index as not done.
-     */
-    public void unmark(int index) {
-        tasks.get(index).unmark();
-    }
-
-    public void setPriority(int index, int newLevel) {
-        tasks.get(index).setPriority(newLevel);
-    }
-
-    public void setPriority(int index, Priority newPriority) {
-        tasks.get(index).setPriority(newPriority);
-    }
-
-    public Priority getPriority(int index) {
-        return tasks.get(index).getPriority();
-    }
-
-    //// util methods
-
-    public LogicTaskList slice(int start, int end) {
-        return new LogicTaskList(tasks.subList(start, end));
-    }
-
-    /**
-     * Filter {@code LogicTaskList} based on predicate.
      *
-     * @param pred
-     * @return
+     * @return the last task in the task list
      */
-    public List<Task> filter(Predicate<Task> pred) {
-        List<Task> filteredTasks = stream()
-                .filter(pred)
-                .collect(Collectors.toCollection(ArrayList::new));
-        return filteredTasks;
-    }
+    public Task removeLast();
 
-    @Override
-    public String toString() {
-        // TODO: rewrite this, too confusing
-        String result = "";
-        for (int i = 0; i < size(); i++) {
-            String prefix = i + 1 < 10 ? "0" : "";
-            result += prefix + (i + 1) + ". " + get(i).toString();
-            if (i < size() - 1) {
-                result += "\n";
-            }
-        }
-        return result;
-    }
+    /**
+     * Returns the actual index of the task at the specified index, in the source task list.
+     * <p>
+     * Note that, task index with respect to this instance may not be the actual index of the task
+     * in the original source. Retrieving the actual index in the original source is necessary
+     * before calling other methods.
+     *
+     * @param index index of the task, with respect to this instance
+     * @return the actual index of the task in the source
+     */
+    public int getLogicSourceIndex(int index);
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof LogicTaskList // instanceof handles nulls
-                        && tasks.equals(((LogicTaskList) other).tasks));
-    }
+    /**
+     * Returns an unmodifiable view of the source.
+     *
+     * @return an unmodifiable view of the source
+     */
+    public List<Task> getLogicSource();
 }

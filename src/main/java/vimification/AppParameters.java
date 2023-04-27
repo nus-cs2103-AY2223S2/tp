@@ -1,20 +1,20 @@
 package vimification;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
-import vimification.commons.core.LogsCenter;
-import vimification.commons.util.FileUtil;
+import vimification.common.core.LogsCenter;
+import vimification.common.util.FileUtil;
 
 /**
  * Represents the parsed command-line parameters given to the application.
  */
 public class AppParameters {
-    private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
+
+    private static final Logger LOGGER = LogsCenter.getLogger(AppParameters.class);
 
     private Path configPath;
 
@@ -28,20 +28,23 @@ public class AppParameters {
 
     /**
      * Parses the application command-line parameters.
+     *
+     * @param parameters the application command-line parameters
+     * @return an {@code AppParameters} instance that contains relevant parameters for the
+     *         application
      */
     public static AppParameters parse(Application.Parameters parameters) {
-        AppParameters appParameters = new AppParameters();
         Map<String, String> namedParameters = parameters.getNamed();
-
         String configPathParameter = namedParameters.get("config");
         if (configPathParameter != null && !FileUtil.isValidPath(configPathParameter)) {
-            logger.warning(
-                    "Invalid config path " + configPathParameter + ". Using default config path.");
+            LOGGER.warning("Invalid config path "
+                    + configPathParameter
+                    + ". Using default config path.");
             configPathParameter = null;
         }
-        appParameters
-                .setConfigPath(configPathParameter != null ? Paths.get(configPathParameter) : null);
-
+        Path configPath = configPathParameter == null ? null : Path.of(configPathParameter);
+        AppParameters appParameters = new AppParameters();
+        appParameters.setConfigPath(configPath);
         return appParameters;
     }
 
@@ -50,17 +53,15 @@ public class AppParameters {
         if (other == this) {
             return true;
         }
-
         if (!(other instanceof AppParameters)) {
             return false;
         }
-
         AppParameters otherAppParameters = (AppParameters) other;
-        return Objects.equals(getConfigPath(), otherAppParameters.getConfigPath());
+        return Objects.equals(configPath, otherAppParameters.configPath);
     }
 
     @Override
     public int hashCode() {
-        return configPath.hashCode();
+        return Objects.hash(configPath);
     }
 }

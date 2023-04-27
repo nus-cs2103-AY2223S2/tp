@@ -1,0 +1,16 @@
+@startuml
+start
+
+:Task is going to be modified;
+:Copy the old task;
+:Modify the new task;
+
+if () then ([succeed])
+    :Replace the old task
+       with the new task;
+else ([fail])
+    :Discard the new task;
+endif
+
+stop
+@enduml

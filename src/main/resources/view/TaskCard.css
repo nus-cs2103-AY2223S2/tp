@@ -1,0 +1,23 @@
+/**
+
+.list-cell {
+  -fx-label-padding: 0 0 0 0;
+  -fx-graphic-text-gap: 0;
+  -fx-padding: 0 0 0 0;
+  -fx-background-color: transparent;
+  -fx-background-radius: 10;
+}
+
+#cardPane {
+  -fx-background-color: transparent;
+  -fx-border-width: 0;
+}
+
+.list-cell:filled:selected #cardPane {
+  -fx-background-color: transparent;
+  -fx-background-insets: 0;
+  -fx-border-width: 0;
+}
+
+*/
+/* Testing */

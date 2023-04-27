@@ -1,99 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
-         <children>
-            <Label fx:id="typeField" prefWidth="150.0">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label prefHeight="17.0" prefWidth="80.0" text="Description">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <Label fx:id="descriptionField" prefHeight="100.0" prefWidth="520.0" />
-         </children>
-      </HBox>
-
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
-         <children>
-            <HBox fillHeight="false" prefHeight="100.0" prefWidth="300.0">
-               <children>
-                  <Label prefHeight="50.0" prefWidth="80.0" text="Status">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="statusField" prefHeight="50.0" prefWidth="221.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="300.0">
-               <children>
-                  <Label prefHeight="51.0" prefWidth="80.0" text="Priority">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="priorityField" prefHeight="50.0" prefWidth="220.0" />
-               </children>
-            </HBox>
-         </children>
-      </HBox>
-
-
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label prefHeight="17.0" prefWidth="80.0" text="Tags">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <HBox fx:id="tagList" prefHeight="100.0" prefWidth="520.0" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" fx:id="durationComponent" visible="false">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="300.0">
-               <children>
-                  <Label prefHeight="52.0" prefWidth="80.0" text="Deadline">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <DatePicker prefHeight="51.0" prefWidth="221.0" />
-               </children>
-            </HBox>
-         </children>
-      </HBox>
-   </children>
+<VBox id="detailPane" fx:id="detailPane" spacing="40" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox>
+            <children>
+                <Label fx:id="title" styleClass="cell_big_label" wrapText="true"/>
+            </children>
+        </VBox>
+        <VBox spacing="10">
+            <children>
+                <HBox>
+                    <children>
+                        <Label text="Deadline : " styleClass="descriptionStyle"/>
+                        <Label fx:id="deadline" prefHeight="17.0" styleClass="cell_small_label"
+                               wrapText="true"/>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <HBox spacing="5">
+                            <Label text="Status : " styleClass="descriptionStyle"/>
+                            <ProgressBar fx:id="status" styleClass="progress_bar_status" progress="0.0"/>
+                            <Label fx:id="statusMessage" styleClass="cell_small_label">
+                            </Label>
+                        </HBox>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <FlowPane fx:id="priority">
+                            <Label text="Priority : " styleClass="descriptionStyle"/>
+                            <Label fx:id="priorityMessage" styleClass="priorityMessage">
+                            </Label>
+                        </FlowPane>
+                    </children>
+                </HBox>
+                <HBox>
+                    <Label text="Labels : " styleClass="descriptionStyle"/>
+                    <FlowPane fx:id="labels"/>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
 </VBox>

@@ -3,89 +3,93 @@ package vimification.internal;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import vimification.commons.core.LogsCenter;
+import vimification.common.core.LogsCenter;
+import vimification.common.util.StringUtil;
 import vimification.internal.command.Command;
-import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
+import vimification.internal.command.logic.LogicCommand;
+import vimification.internal.command.macro.MacroCommand;
+import vimification.internal.command.ui.UiCommand;
 import vimification.internal.parser.ParserException;
 import vimification.internal.parser.VimificationParser;
-import vimification.model.LogicTaskList;
-import vimification.model.task.Task;
+import vimification.model.CommandStack;
+import vimification.model.MacroMap;
+import vimification.model.TaskList;
+import vimification.model.UiTaskList;
 import vimification.storage.Storage;
+import vimification.ui.MainScreen;
 
 /**
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
 
-    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+    private static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file";
+    private static final String LIST_OPS_ERROR_MESSAGE = "Invalid operation";
+    private static final Logger LOGGER = LogsCenter.getLogger(LogicManager.class);
 
-    private final LogicTaskList taskList;
-    private final Storage storage;
-    private final ObservableList<Task> viewTaskList;
+    private TaskList taskList;
+    private MacroMap macroMap;
+    private CommandStack commandStack;
+    private MainScreen mainScreen;
+    private Storage storage;
+
     private final VimificationParser vimificationParser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     * Constructs a {@code LogicManager}.
      */
-    public LogicManager(LogicTaskList taskList, Storage storage) {
+    public LogicManager(
+            TaskList taskList,
+            MacroMap macroMap,
+            CommandStack commandStack,
+            Storage storage) {
+
         this.taskList = taskList;
+        this.macroMap = macroMap;
+        this.commandStack = commandStack;
         this.storage = storage;
-        this.viewTaskList = FXCollections.observableList(taskList.getInternalList());
-        this.vimificationParser = VimificationParser.getInstance();
+        this.vimificationParser = VimificationParser.getInstance(macroMap);
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParserException {
-        logger.info("[USER COMMAND] " + commandText);
-
-        // TODO : FIX THIS
-        Command command = vimificationParser.parse(commandText);
-        CommandResult result = command.execute(taskList);
-        updateViewTaskList(command);
-
-        // TODO: Fix this later
-        // Only save when the result indicates that the task list should be saved
+    public CommandResult execute(String commandText) {
+        LOGGER.info("[USER COMMAND] " + commandText);
+        CommandResult result = null;
         try {
-            storage.saveLogicTaskList(taskList);
+            Command command = vimificationParser.parse(commandText);
+            if (command instanceof LogicCommand) {
+                LogicCommand logicCommand = (LogicCommand) command;
+                result = logicCommand.execute(taskList, commandStack);
+                storage.saveTaskList(taskList);
+            } else if (command instanceof UiCommand) {
+                UiCommand uiCommand = (UiCommand) command;
+                result = uiCommand.execute(mainScreen);
+            } else if (command instanceof MacroCommand) {
+                MacroCommand macroCommand = (MacroCommand) command;
+                result = macroCommand.execute(macroMap);
+                storage.saveMacroMap(macroMap);
+            } else {
+                LOGGER.warning("Unknown command type: " + command.getClass().getSimpleName());
+                result = new CommandResult("Nothing happened!", false);
+            }
+        } catch (ParserException ex) {
+            result = new CommandResult(ex.getMessage(), false);
+        } catch (RuntimeException ex) {
+            LOGGER.info(StringUtil.getDetails(ex));
+            result = new CommandResult(LIST_OPS_ERROR_MESSAGE, false);
         } catch (IOException ex) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ex, ex);
+            result = new CommandResult(FILE_OPS_ERROR_MESSAGE, false);
         }
         return result;
     }
 
-    private void updateViewTaskList(Command command) {
-        ObservableList<Task> newViewTaskList = command.getViewTaskList();
-        if (newViewTaskList != null) {
-            viewTaskList.setAll(newViewTaskList);
-        }
+    @Override
+    public UiTaskList getUiTaskList() {
+        return taskList;
     }
 
-    // @Override
-    // public ReadOnlyTaskPlanner getTaskList() {
-    // return model.getTaskList();
-    // }
-
-    public ObservableList<Task> getFilteredTaskList() {
-        return viewTaskList;
+    public void setMainScreen(MainScreen mainScreen) {
+        this.mainScreen = mainScreen;
     }
-
-    // @Override
-    // public Path getTaskListFilePath() {
-    // return model.getTaskListFilePath();
-    // }
-
-    // @Override
-    // public GuiSettings getGuiSettings() {
-    // return model.getGuiSettings();
-    // }
-
-    // @Override
-    // public void setGuiSettings(GuiSettings guiSettings) {
-    // model.setGuiSettings(guiSettings);
-    // }
 }

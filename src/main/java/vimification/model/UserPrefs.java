@@ -3,17 +3,19 @@ package vimification.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
-import vimification.commons.core.GuiSettings;
+import vimification.common.core.GuiSettings;
 
 /**
- * Represents User's preferences.
+ * Represents the user's preferences.
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
+    private static final String VIMIFICATION = ".vimification";
+
     private GuiSettings guiSettings = new GuiSettings();
-    private Path taskListFilePath = Paths.get("data" , "tasklist.json");
+    private Path taskListFilePath = Path.of(VIMIFICATION, "tasklist.json");
+    private Path macroMapFilePath = Path.of(VIMIFICATION, "macromap.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -21,22 +23,26 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public UserPrefs() {}
 
     /**
-     * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
+     * Creates a new {@code UserPrefs} with the values in the other {@code userPrefs}. This is a
+     * copy constructor.
+     *
+     * @param userPrefs the other {@code UserPrefs}.
      */
-    public UserPrefs(ReadOnlyUserPrefs userPrefs) {
-        this();
+    public UserPrefs(UserPrefs userPrefs) {
         resetData(userPrefs);
     }
 
     /**
      * Resets the existing data of this {@code UserPrefs} with {@code newUserPrefs}.
      */
-    public void resetData(ReadOnlyUserPrefs newUserPrefs) {
+    public void resetData(UserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
-        setGuiSettings(newUserPrefs.getGuiSettings());
-        setTaskListFilePath(newUserPrefs.getTaskListFilePath());
+        setGuiSettings(newUserPrefs.guiSettings);
+        setTaskListFilePath(newUserPrefs.taskListFilePath);
+        setMacroMapFilePath(newUserPrefs.macroMapFilePath);
     }
 
+    @Override
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }
@@ -46,6 +52,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
+    @Override
     public Path getTaskListFilePath() {
         return taskListFilePath;
     }
@@ -56,27 +63,32 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     @Override
+    public Path getMacroMapFilePath() {
+        return macroMapFilePath;
+    }
+
+    public void setMacroMapFilePath(Path macroMapFilePath) {
+        requireNonNull(macroMapFilePath);
+        this.macroMapFilePath = macroMapFilePath;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof UserPrefs)) { //this handles null as well.
+        if (!(other instanceof UserPrefs)) { // this handles null as well.
             return false;
         }
-
-        UserPrefs o = (UserPrefs) other;
-
-        return guiSettings.equals(o.guiSettings)
-                && taskListFilePath.equals(o.taskListFilePath);
+        UserPrefs otherUserPrefs = (UserPrefs) other;
+        return guiSettings.equals(otherUserPrefs.guiSettings)
+                && taskListFilePath.equals(otherUserPrefs.taskListFilePath)
+                && macroMapFilePath.equals(otherUserPrefs.macroMapFilePath);
     }
-
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + taskListFilePath);
-        return sb.toString();
+        return "UserPrefs [guiSettings=" + guiSettings + ", taskListFilePath=" + taskListFilePath
+                + ", macroMapFilePath=" + macroMapFilePath + "]";
     }
-
 }

@@ -2,83 +2,102 @@ package vimification.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
 
-import vimification.commons.core.LogsCenter;
-import vimification.commons.exceptions.DataConversionException;
-import vimification.model.LogicTaskList;
-import vimification.model.ReadOnlyUserPrefs;
+import vimification.common.exceptions.DataConversionException;
+import vimification.model.MacroMap;
+import vimification.model.TaskList;
 import vimification.model.UserPrefs;
 
 /**
- * Manages storage of TaskPlanner data in local storage.
+ * Reads and writes data of the application's entities from local storage.
  */
 public class StorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-
-    private LogicTaskListStorage taskPlannerStorage;
+    private TaskListStorage taskListStorage;
+    private MacroMapStorage macroMapStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code TaskPlannerStorage} and
-     * {@code UserPrefStorage}.
+     * Creates a new {@code StorageManager}.
      */
-    public StorageManager(LogicTaskListStorage taskPlannerStorage,
+    public StorageManager(
+            TaskListStorage taskListStorage,
+            MacroMapStorage macroMapStorage,
             UserPrefsStorage userPrefsStorage) {
-        this.taskPlannerStorage = taskPlannerStorage;
+        this.taskListStorage = taskListStorage;
+        this.macroMapStorage = macroMapStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
-    // ================ UserPrefs methods ==============================
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getUserPrefsFilePath() {
         return userPrefsStorage.getUserPrefsFilePath();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
+    public UserPrefs readUserPrefs() throws IOException {
         return userPrefsStorage.readUserPrefs();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+    public void saveUserPrefs(UserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ TaskPlanner methods ==============================
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Path getLogicTaskListFilePath() {
-        return taskPlannerStorage.getLogicTaskListFilePath();
+    public Path getTaskListFilePath() {
+        return taskListStorage.getTaskListFilePath();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Optional<LogicTaskList> readLogicTaskList()
-            throws DataConversionException, IOException {
-        return readLogicTaskList(taskPlannerStorage.getLogicTaskListFilePath());
+    public TaskList readTaskList() throws DataConversionException, IOException {
+        return taskListStorage.readTaskList();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Optional<LogicTaskList> readLogicTaskList(Path filePath)
-            throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return taskPlannerStorage.readLogicTaskList(filePath);
+    public void saveTaskList(TaskList taskList) throws IOException {
+        taskListStorage.saveTaskList(taskList);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-
-    public void saveLogicTaskList(LogicTaskList taskPlanner) throws IOException {
-        saveLogicTaskList(taskPlanner, taskPlannerStorage.getLogicTaskListFilePath());
+    public Path getMacroMapFilePath() {
+        return macroMapStorage.getMacroMapFilePath();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void saveLogicTaskList(LogicTaskList taskPlanner, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        taskPlannerStorage.saveLogicTaskList(taskPlanner, filePath);
+    public MacroMap readMacroMap() throws IOException {
+        return macroMapStorage.readMacroMap();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void saveMacroMap(MacroMap macroMap) throws IOException {
+        macroMapStorage.saveMacroMap(macroMap);
+    }
 }

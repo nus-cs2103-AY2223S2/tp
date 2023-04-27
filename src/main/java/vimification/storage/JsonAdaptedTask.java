@@ -1,50 +1,100 @@
 package vimification.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 
-import vimification.commons.exceptions.IllegalValueException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import vimification.common.exceptions.DataConversionException;
+import vimification.model.task.Priority;
+import vimification.model.task.Status;
 import vimification.model.task.Task;
 
 /**
  * Jackson-friendly version of {@link Task}.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = JsonAdaptedTodo.class, name = "todo"),
-        @JsonSubTypes.Type(value = JsonAdaptedDeadline.class, name = "deadline"),
-        @JsonSubTypes.Type(value = JsonAdaptedEvent.class, name = "event")
-})
-public abstract class JsonAdaptedTask {
+public class JsonAdaptedTask {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
+    private final String title;
+    private final Status status;
+    private final Priority priority;
+    private final LocalDateTime deadline;
+    private final List<String> labels;
 
-    final String description;
-    final boolean isDone;
-
+    /**
+     * The constructor used by Jackson.
+     *
+     * @param title title of the task
+     * @param status current status of the task
+     * @param priority current priority of the task
+     * @param deadline current deadline of the task
+     * @param labels a list contains all labels of the task
+     */
     @JsonCreator
     public JsonAdaptedTask(
-            @JsonProperty("description") String description,
-            @JsonProperty("isDone") boolean isDone) {
-        this.description = description;
-        this.isDone = isDone;
+            @JsonProperty("title") String title,
+            @JsonProperty("status") Status status,
+            @JsonProperty("priority") Priority priority,
+            @JsonProperty("deadline") LocalDateTime deadline,
+            @JsonProperty("labels") List<String> labels) {
+        this.title = title;
+        this.status = status;
+        this.priority = priority;
+        this.deadline = deadline;
+        this.labels = labels;
     }
 
+
     /**
-     * Converts a given {@code Task} into this class for Jackson use.
+     * Converts a given {@code Task} for Jackson use.
+     *
+     * @param task the task to be converted
      */
     public JsonAdaptedTask(Task task) {
-        description = task.getDescription();
-        isDone = task.isDone();
+        title = task.getTitle();
+        status = task.getStatus();
+        priority = task.getPriority();
+        deadline = task.getDeadline();
+        labels = List.copyOf(task.getLabels());
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this instance into an actual {@code Task}.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted
-     *         person.
+     * @return a {@code Task}, as a result of the conversion
+     * @throws DataConversionException if there is any error occured during the conversion
      */
-    public abstract Task toModelType() throws IllegalValueException;
+    public Task toModelType() throws DataConversionException {
+        try {
+            Task task = new Task(title, deadline, status, priority);
+            labels.forEach(task::addLabel);
+            return task;
+        } catch (RuntimeException ex) {
+            throw new DataConversionException(ex);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "JsonAdaptedTask [title=" + title + ", status=" + status + ", priority=" + priority
+                + ", deadline=" + deadline + ", labels=" + labels + "]";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof JsonAdaptedTask)) {
+            return false;
+        }
+        JsonAdaptedTask otherTask = (JsonAdaptedTask) other;
+        return Objects.equals(title, otherTask.title)
+                && Objects.equals(status, otherTask.status)
+                && Objects.equals(priority, otherTask.priority)
+                && Objects.equals(deadline, otherTask.deadline)
+                && Objects.equals(labels, otherTask.labels);
+    }
 }

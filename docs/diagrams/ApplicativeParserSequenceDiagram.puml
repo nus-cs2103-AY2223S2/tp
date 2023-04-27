@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+
+participant "wordParser:ApplicativeParser" as WordParser LOGIC_COLOR
+participant "intParser:ApplicativeParser" as IntParser LOGIC_COLOR
+participant "stringView:StringView" as StringView LOGIC_COLOR
+
+-> IntParser : parse("10")
+activate IntParser
+
+create StringView
+IntParser -> StringView
+activate StringView
+
+StringView --> IntParser
+deactivate StringView
+
+IntParser -> IntParser : run(stringView)
+activate IntParser
+
+IntParser -> WordParser : run(stringView)
+activate WordParser
+
+WordParser --> IntParser : container that contains ("", "10")
+deactivate WordParser
+
+IntParser --> IntParser : container that contains ("", 10)
+deactivate IntParser
+
+<--IntParser : 10
+deactivate IntParser
+
+@enduml

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -9,26 +10,45 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ProgressBar?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
+  <GridPane prefWidth="191.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.9451904296875" minWidth="10.0" />
+      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="143.4794464111328" minWidth="10.0" prefWidth="31.5" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
+        <Insets bottom="5.0" left="15.0" top="5.0" />
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="description" text="\$first" styleClass="cell_big_label" />
-      </HBox>
-      <!-- <FlowPane fx:id="tags" /> -->
-      <!-- <Label fx:id="deadline" styleClass="cell_small_label" text="\$phone" /> -->
+      <children>
+        <HBox alignment="CENTER_LEFT">
+          <VBox prefHeight="47.0" prefWidth="14.0">
+            <children>
+              <Label fx:id="id"  alignment="TOP_LEFT" styleClass="cell_big_label">
+                <minWidth>
+                  <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+              </Label>
+            </children>
+          </VBox>
+          <VBox HBox.hgrow="ALWAYS" spacing="5" >
+            <children>
+              <Label fx:id="title" styleClass="cell_big_label" wrapText="true" >
+              </Label>
+              <Label fx:id="deadline" prefHeight="17.0" styleClass="cell_small_label" wrapText="true">
+              </Label>
+              <FlowPane fx:id="priority">
+                <Label fx:id="priorityMessage" styleClass="priorityMessage" wrapText="true">
+                </Label>
+              </FlowPane>
+            </children>
+          </VBox>
+        </HBox>
+      </children>
     </VBox>
   </GridPane>
 </HBox>

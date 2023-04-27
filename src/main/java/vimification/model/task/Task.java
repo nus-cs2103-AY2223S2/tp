@@ -1,87 +1,271 @@
 package vimification.model.task;
 
-import static java.util.Objects.requireNonNull;
-import static vimification.commons.util.CollectionUtil.requireAllNonNull;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
-public abstract class Task {
+import vimification.common.util.CollectionUtil;
+import vimification.common.util.StringUtil;
 
-    private String description;
-    private boolean isDone;
+/**
+ * This class is the model of a task in the application.
+ * <p>
+ *
+ * A task contains:
+ *
+ * <ul>
+ * <li>A title (stored as a {@code String}, cannot be empty)</li>
+ * <li>A deadline (stored as a {@code LocalDateTime}, can be null to represent the lack of
+ * deadline)</li>
+ * <li>A status (stored as an enum, cannot be null)</li>
+ * <li>A priority (stored as an enum, cannot be null)</li>
+ * <li>Multiple labels (stored as a {@code Set<String>})</li>
+ * </ul>
+ *
+ * Defensive coding is applied for methods that modify the interal state of instances.
+ */
+public class Task {
+
+    private String title;
+    private LocalDateTime deadline;
+    private Status status;
     private Priority priority;
+    private Set<String> labels;
+
+    private static final DateTimeFormatter DEADLINE_FORMATTER =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
-     * Every field must be present and not null.
+     * Creates a new instance of {@code Task}.
+     *
+     * @param title the title of the task, cannot be null
+     * @param deadline the deadline of the task, can be null
+     * @param status the status of the task
+     * @param priority the priority of the task
      */
-    Task(String description, boolean isDone, Priority priority) {
-        requireAllNonNull(description, priority);
-        this.description = description;
-        this.isDone = isDone;
+    public Task(String title, LocalDateTime deadline, Status status, Priority priority) {
+        CollectionUtil.requireAllNonNull(title, status, priority);
+        StringUtil.requireNonEmpty(title);
+        this.title = title;
+        this.deadline = deadline;
+        this.status = status;
         this.priority = priority;
+        this.labels = new HashSet<>();
     }
 
-    Task(String description, boolean isDone) {
-        this(description, isDone, Priority.UNKNOWN);
+    /**
+     * Creates a new instance of {@code Task}, where some fields are set with default values.
+     *
+     * @param title the title of the task, cannot be null
+     */
+    public Task(String title) {
+        this(title, null, Status.NOT_DONE, Priority.UNKNOWN);
     }
 
-    public String getDescription() {
-        return description;
+    ///////////
+    // TITLE //
+    ///////////
+
+    public String getTitle() {
+        return title;
     }
+
+    public void setTitle(String title) {
+        Objects.requireNonNull(title);
+        StringUtil.requireNonEmpty(title);
+        this.title = title;
+    }
+
+    //////////////
+    // DEADLINE //
+    //////////////
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
+
+    public void insertDeadline(LocalDateTime deadline) {
+        Objects.requireNonNull(deadline);
+        if (this.deadline != null) {
+            throw new IllegalStateException("The task already has a deadline");
+        }
+        this.deadline = deadline;
+    }
+
+    public void editDeadline(LocalDateTime deadline) {
+        Objects.requireNonNull(deadline);
+        if (this.deadline == null) {
+            throw new IllegalStateException("The task has no deadline");
+        }
+        this.deadline = deadline;
+    }
+
+    public void deleteDeadline() {
+        if (deadline == null) {
+            throw new IllegalStateException("The task has no deadline");
+        }
+        deadline = null;
+    }
+
+    /**
+     * Returns the deadline of this task as a string. If this task has no deadline, a special string
+     * will be returned instead.
+     *
+     * @return the deadline of this task as a string
+     */
+    public String getDeadlineAsString() {
+        return deadline == null ? "-" : DEADLINE_FORMATTER.format(deadline);
+    }
+
+    ////////////
+    // STATUS //
+    ////////////
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        Objects.requireNonNull(status);
+        this.status = status;
+    }
+
+    public boolean hasStatus(Status status) {
+        return this.status.equals(status);
+    }
+
+    //////////////
+    // PRIORITY //
+    //////////////
 
     public Priority getPriority() {
         return priority;
     }
 
-    public boolean isDone() {
-        return isDone;
-    }
-
-    public void setDescription(String description) {
-        requireNonNull(description);
-        this.description = description;
-    }
-
     public void setPriority(Priority priority) {
-        requireNonNull(priority);
+        Objects.requireNonNull(priority);
         this.priority = priority;
     }
 
-    public void setPriority(int level) {
-        this.priority = Priority.fromInt(level);
-    }
-
-    public void mark() {
-        isDone = true;
-    }
-
-    public void unmark() {
-        isDone = false;
-    }
-
-    public boolean containsKeyword(String keyword) {
-        return description.contains(keyword);
-    }
-
-    public boolean checkPriority(Priority priority) {
+    public boolean hasPriority(Priority priority) {
         return this.priority.equals(priority);
     }
 
-    public boolean checkPriority(int level) {
-        return checkPriority(Priority.fromInt(level));
-    }
+    ////////////
+    // LABELS //
+    ////////////
 
-    public abstract Task clone();
-
-    public boolean isSameTask(Task otherTask) {
-        if (otherTask == this) {
-            return true;
-        }
-        return otherTask.description.equals(description);
+    public Set<String> getLabels() {
+        return Collections.unmodifiableSet(labels);
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields. This defines a stronger
-     * notion of equality between two persons.
+     * Adds a new label to this task.
+     *
+     * @param label the new label to be added
+     * @throws IllegalArgumentException if the label already exists
      */
+    public void addLabel(String label) {
+        Objects.requireNonNull(label);
+        StringUtil.requireNonEmpty(label);
+        label = label.toLowerCase();
+        if (!labels.add(label)) {
+            throw new IllegalArgumentException("Label already exists");
+        }
+    }
+
+    /**
+     * Removes a label from this task.
+     *
+     * @param label the label to be removed
+     * @throws IllegalArgumentException if the label does not exist
+     */
+    public void removeLabel(String label) {
+        Objects.requireNonNull(label);
+        StringUtil.requireNonEmpty(label);
+        label = label.toLowerCase();
+        if (!labels.remove(label)) {
+            throw new IllegalArgumentException("Label does not exist");
+        }
+    }
+
+    ///////////////
+    // UTILITIES //
+    ///////////////
+
+    /**
+     * Checks whether this task contains the specified label.
+     *
+     * @param label the label to check
+     * @return true if this task contains the label, otherwise false
+     */
+    public boolean containsLabel(String label) {
+        return labels.contains(label.toLowerCase());
+    }
+
+    /**
+     * Checks whether the title of this task contains the specified keyword.
+     *
+     * @param keyword the keyword to check
+     * @return true if the title of this task contains the specified keyword, otherwise false
+     */
+    public boolean containsKeyword(String keyword) {
+        return title.contains(keyword);
+    }
+
+    /**
+     * Checks whether the deadline of this task is before the specified date.
+     *
+     * @param date the date to check
+     * @return true of the deadline of this task is before the specified date
+     */
+    public boolean deadlineIsBefore(LocalDateTime date) {
+        return deadline != null && deadline.isBefore(date);
+    }
+
+    /**
+     * Checks whether the deadline of this task is after the specified date.
+     *
+     * @param date the date to check
+     * @return true of the deadline of this task is after the specified date
+     */
+    public boolean deadlineIsAfter(LocalDateTime date) {
+        return deadline != null && deadline.isAfter(date);
+    }
+
+    /**
+     * Returns a mutable copy of this task.
+     *
+     * @return a mutable copy of this task
+     */
+    public Task clone() {
+        Task clonedTask = new Task(title, deadline, status, priority);
+        clonedTask.labels.addAll(labels);
+        return clonedTask;
+    }
+
+    /**
+     * Returns a simple string representation of this task.
+     *
+     * @return a simple string representation of this task
+     */
+    public String display() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(title);
+        if (deadline != null) {
+            sb.append("; by: ");
+            sb.append(getDeadlineAsString());
+        }
+        return sb.toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -91,16 +275,21 @@ public abstract class Task {
             return false;
         }
         Task otherTask = (Task) other;
-        return otherTask.description.equals(description) && otherTask.isDone == isDone;
+        return Objects.equals(title, otherTask.title)
+                && Objects.equals(deadline, otherTask.deadline)
+                && Objects.equals(status, otherTask.status)
+                && Objects.equals(priority, otherTask.priority)
+                && Objects.equals(labels, otherTask.labels);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, deadline, status, priority, labels);
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("description: ")
-                .append(description)
-                .append("; status: ")
-                .append(isDone ? "done" : "not done");
-        return builder.toString();
+        return "Task [title=" + title + ", deadline=" + deadline + ", status=" + status
+                + ", priority=" + priority + ", labels=" + labels + "]";
     }
 }
