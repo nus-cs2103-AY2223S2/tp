@@ -4,12 +4,9 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-//import javafx.scene.image.Image;
-//import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-//import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 
 /**
@@ -29,7 +26,6 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
 
-    //Change to actual number in next iteration
     private final int numberOfStudents = 5;
 
     @FXML
