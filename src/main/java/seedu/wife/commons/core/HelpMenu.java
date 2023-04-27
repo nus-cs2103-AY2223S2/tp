@@ -176,13 +176,12 @@ public enum HelpMenu {
 
     public abstract String getCommandUsage();
 
+    //@@author rmj1405 -reused
+    //Reused from https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main
+    // /java/seedu/foodrem/commons/enums/CommandType.java
     /**
      * Checks if an input command is a valid command.
      *
-     * Reused from https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main
-     * /java/seedu/foodrem/commons/enums/CommandType.java
-     *
-     * @author rmj1405 -reused
      * @param commandToParse the input command to check
      * @return the command as an enum if it is valid
      *      otherwise the INVALID command
@@ -192,6 +191,7 @@ public enum HelpMenu {
                 .filter(type -> type.command.equals(commandToParse))
                 .findFirst().orElse(INVALID);
     }
+    //@@author
 
     /**
      * Displays help menu with command examples
