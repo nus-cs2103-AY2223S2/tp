@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box "Logic component" LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":VimificationParser" as VimificationParser LOGIC_COLOR
+participant "preprocessor:ApplicativeParser" as Preprocessor LOGIC_COLOR
+participant ":CommandParser" as CommandParser LOGIC_COLOR
+participant "command:Command" as Command LOGIC_COLOR
+end box
+
+box "Model component" MODEL_COLOR_T1
+participant ":MacroMap" as MacroMap MODEL_COLOR
+end box
+
+-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> VimificationParser : parse(input)
+activate VimificationParser
+
+VimificationParser -> Preprocessor : parse(input)
+activate Preprocessor
+
+Preprocessor -> MacroMap : get(macro)
+activate MacroMap
+
+MacroMap --> Preprocessor : commandString
+deactivate MacroMap
+
+Preprocessor --> VimificationParser : preprocessedInput
+deactivate Preprocessor
+
+VimificationParser -> CommandParser : parse(preprocessedInput)
+activate CommandParser
+
+create Command
+CommandParser -> Command
+activate Command
+
+Command --> CommandParser
+deactivate Command
+
+CommandParser --> VimificationParser : command
+deactivate CommandParser
+
+VimificationParser --> LogicManager : command
+deactivate VimificationParser
+
+<--LogicManager
+deactivate LogicManager
+@enduml

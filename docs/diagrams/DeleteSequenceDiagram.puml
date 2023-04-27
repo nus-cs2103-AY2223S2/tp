@@ -1,69 +1,72 @@
 @startuml
 !include style.puml
 
-box Logic LOGIC_COLOR_T1
+box "Logic component" LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":VimificationParser" as VimificationParser LOGIC_COLOR
+participant ":CommandParser" as CommandParser LOGIC_COLOR
+participant "command:DeleteTaskCommand" as DeleteTaskCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+box "Model component" MODEL_COLOR_T1
+participant ":LogicTaskList" as LogicTaskList MODEL_COLOR
+participant ":CommandStack" as CommandStack MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+-> LogicManager : execute("d 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> VimificationParser : parse("d 1")
+activate VimificationParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+VimificationParser -> CommandParser : parse("d 1")
+activate CommandParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+create DeleteTaskCommand
+CommandParser -> DeleteTaskCommand
+activate DeleteTaskCommand
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+DeleteTaskCommand --> CommandParser
+deactivate DeleteTaskCommand
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+CommandParser --> VimificationParser : command
+deactivate CommandParser
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+VimificationParser --> LogicManager : command
+deactivate VimificationParser
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+LogicManager -> DeleteTaskCommand : execute()
+activate DeleteTaskCommand
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+DeleteTaskCommand -> LogicTaskList : getLogicSourceIndex()
+activate LogicTaskList
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicTaskList --> DeleteTaskCommand
+deactivate LogicTaskList
 
-DeleteCommand -> Model : deletePerson(1)
-activate Model
+DeleteTaskCommand -> LogicTaskList : remove()
+activate LogicTaskList
 
-Model --> DeleteCommand
-deactivate Model
+LogicTaskList --> DeleteTaskCommand
+deactivate LogicTaskList
+
+DeleteTaskCommand -> CommandStack : push()
+activate CommandStack
+
+CommandStack --> DeleteTaskCommand
+deactivate CommandStack
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteTaskCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteTaskCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteTaskCommand --> LogicManager : result
+deactivate DeleteTaskCommand
 
-[<--LogicManager
+<--LogicManager
 deactivate LogicManager
 @enduml

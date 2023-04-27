@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "<<interface>>\nLogicTaskList" as LogicTaskList
+Class "<<interface>>\nUiTaskList" as UiTaskList
+Class TaskList
+
+Class ObservableList #orange
+Class FilteredList #orange
+Class SortedList #orange
+
+TaskList .up.|> LogicTaskList
+TaskList .up.|> UiTaskList
+
+TaskList --> ObservableList
+TaskList --> FilteredList
+TaskList --> SortedList
+
+FilteredList -left[#orange]-> ObservableList
+SortedList -left[#orange]-> FilteredList
+@enduml

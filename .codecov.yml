@@ -1,0 +1,13 @@
+coverage:
+  precision: 2
+  round: up
+  range: 0...100
+
+  status:
+    # for now, leave it at 100%
+    project:
+      default:
+        threshold: 100%
+    patch:
+      default:
+        threshold: 100%

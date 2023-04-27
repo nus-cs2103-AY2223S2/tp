@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <TabPane fx:id="taskTabPane" tabClosingPolicy="UNAVAILABLE">
+    <tabs>
+      <Tab text="Ongoing">
+        <VBox fx:id="ongoingTaskListComponent"></VBox>
+      </Tab>
+      <Tab text="Completed">
+        <VBox fx:id="completedTaskListComponent"></VBox>
+      </Tab>
+      <Tab text="Overdue">
+        <VBox fx:id="overdueTaskListComponent"></VBox>
+      </Tab>
+    </tabs>
+  </TabPane>
+</VBox>
