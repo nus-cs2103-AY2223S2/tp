@@ -176,7 +176,7 @@ public enum HelpMenu {
 
     public abstract String getCommandUsage();
 
-    //@@author rmj1405 -reused
+    //@@author rmj1405-reused
     //Reused from https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main
     // /java/seedu/foodrem/commons/enums/CommandType.java
     /**
