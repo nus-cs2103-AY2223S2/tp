@@ -1,46 +1,60 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "e6611228@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_1.png",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "remark" : "None yet!",
+    "performance" : "30",
     "tagged" : [ "friends" ]
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "e7654321@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_2.png",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "remark" : "None yet!",
+    "performance" : "81",
+    "tagged" : [ "colleagues", "friends" ]
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "e1122334@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_3.png",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "remark" : "None yet!",
+    "performance" : "4",
+    "tagged" : [ "neighbours" ]
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "e9988776@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_4.png",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "remark" : "None yet!",
+    "performance" : "19",
+    "tagged" : [ "family" ]
   }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tagged" : [ ]
+    "name" : "Irfan Ibrahim",
+    "phone" : "92492021",
+    "email" : "e9999888@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_5.png",
+    "address" : "Blk 47 Tampines Street 20, #17-35",
+    "remark" : "None yet!",
+    "performance" : "89",
+    "tagged" : [ "classmates" ]
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tagged" : [ ]
-  }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
-    "tagged" : [ ]
-  } ]
+    "name" : "Roy Balakrishnan",
+    "phone" : "92624417",
+    "email" : "e5555111@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_6.png",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "remark" : "None yet!",
+    "performance" : "50",
+    "tagged" : [ "colleagues" ]
+  } ],
+  "tutorials" : [ ],
+  "labs" : [ ],
+  "consultations" : [ ]
 }

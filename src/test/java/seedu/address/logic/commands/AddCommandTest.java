@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -15,11 +14,16 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.event.Consultation;
+import seedu.address.model.event.Lab;
+import seedu.address.model.event.Note;
+import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -58,26 +62,23 @@ public class AddCommandTest {
         AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
         AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertEquals(addAliceCommand, addAliceCommandCopy);
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertNotEquals(null, addAliceCommand);
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different person but same email and same phone number -> returns true
+        assertEquals(addAliceCommand, addBobCommand);
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -110,6 +111,41 @@ public class AddCommandTest {
 
         @Override
         public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTutorial(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLab(Lab lab) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addConsultation(Consultation consultation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStudentToTutorial(Index toAdd, Index tutorialIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStudentToLab(Index toAdd, Index labIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStudentToConsultation(Index toAdd, Index labIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteStudentFromEvent(Index index, Index eventIndex, String eventType) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -147,12 +183,150 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasTutorial(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTutorial(Tutorial target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTutorial(Tutorial target, Tutorial editedTutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Tutorial> getFilteredTutorialList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLab(Lab lab) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteLab(Lab target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setLab(Lab target, Lab editedLab) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lab> getFilteredLabList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredLabList(Predicate<Lab> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasConsultation(Consultation lab) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteConsultation(Consultation target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setConsultation(Consultation target, Consultation editedConsultation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Consultation> getFilteredConsultationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortAllPersonList(String metric, boolean increasingOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortTutorialPersonList(String metric, boolean isIncreasing) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortLabPersonList(String metric, boolean isIncreasing) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortConsultationPersonList(String metric, boolean isIncreasing) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean addNoteToTutorial(Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean addNoteToLab(Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean addNoteToConsultation(Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean removeNoteFromConsultation(Index index, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean removeNoteFromLab(Index index, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean removeNoteFromTutorial(Index index, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean editNoteFromLab(Index index, Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private static class ModelStubWithPerson extends ModelStub {
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -170,8 +344,10 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private static class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Tutorial> tutorialsAdded = new ArrayList<>();
+        final ArrayList<Lab> labsAdded = new ArrayList<>();
 
         @Override
         public boolean hasPerson(Person person) {
@@ -183,6 +359,30 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public boolean hasTutorial(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            return tutorialsAdded.stream().anyMatch(tutorial::isSameTutorial);
+        }
+
+        @Override
+        public void addTutorial(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            tutorialsAdded.add(tutorial);
+        }
+
+        @Override
+        public boolean hasLab(Lab lab) {
+            requireNonNull(lab);
+            return labsAdded.stream().anyMatch(lab::isSameLab);
+        }
+
+        @Override
+        public void addLab(Lab lab) {
+            requireNonNull(lab);
+            labsAdded.add(lab);
         }
 
         @Override

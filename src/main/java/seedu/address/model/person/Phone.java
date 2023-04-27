@@ -9,11 +9,19 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
 
-
+    public static final String NULL_PHONE = "NO_PHONE";
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Telegram handle must be at least 5-characters long and maximum 32-character long, "
+            + "and may consist only of a-z, A-Z, 0–9, and underscores. "
+            + "No whitespaces allowed between characters";
+    //public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_]{5,32}$";
+
     public final String value;
+
+    public Phone() {
+        value = NULL_PHONE;
+    }
 
     /**
      * Constructs a {@code Phone}.
@@ -30,6 +38,9 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
+        if (test.length() != test.trim().length()) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

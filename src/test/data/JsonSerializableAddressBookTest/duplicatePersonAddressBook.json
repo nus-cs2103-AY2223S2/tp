@@ -2,13 +2,22 @@
   "persons": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "alice@example.com",
+    "email": "e0000000@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_1.png",
     "address": "123, Jurong West Ave 6, #08-111",
+    "remark" : "",
+    "performance": "1",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
-  } ]
+    "email": "e0000000@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_2.png",
+    "address": "4th street",
+    "remark" : "",
+    "performance": "1"
+  } ],
+  "tutorials": [ ],
+  "labs": [ ],
+  "consultations": [ ]
 }

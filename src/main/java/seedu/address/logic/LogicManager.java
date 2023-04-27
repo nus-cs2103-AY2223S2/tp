@@ -14,6 +14,10 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Consultation;
+import seedu.address.model.event.Lab;
+import seedu.address.model.event.Tutorial;
+import seedu.address.model.event.exceptions.NoteLengthException;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -38,7 +42,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, NoteLengthException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -62,6 +66,21 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Consultation> getFilteredConsultationList() {
+        return model.getFilteredConsultationList();
+    }
+
+    @Override
+    public ObservableList<Lab> getFilteredLabList() {
+        return model.getFilteredLabList();
+    }
+
+    @Override
+    public ObservableList<Tutorial> getFilteredTutorialList() {
+        return model.getFilteredTutorialList();
     }
 
     @Override

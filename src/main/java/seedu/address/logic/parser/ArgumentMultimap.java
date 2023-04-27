@@ -32,6 +32,15 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Shows the size of the underlying map.
+     *
+     * @return the size of the underlying map.
+     */
+    public int getSize() {
+        return argMultimap.size();
+    }
+
+    /**
      * Returns the last value of {@code prefix}.
      */
     public Optional<String> getValue(Prefix prefix) {

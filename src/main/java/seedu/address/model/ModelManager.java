@@ -4,13 +4,27 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.comparators.AddressComparator;
+import seedu.address.logic.comparators.EmailComparator;
+import seedu.address.logic.comparators.NameComparator;
+import seedu.address.logic.comparators.PerformanceComparator;
+import seedu.address.logic.comparators.RemarkComparator;
+import seedu.address.model.event.Consultation;
+import seedu.address.model.event.Lab;
+import seedu.address.model.event.Note;
+import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
 /**
@@ -21,7 +35,10 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
+    private FilteredList<Lab> filteredLabs;
+    private FilteredList<Tutorial> filteredTutorials;
+    private FilteredList<Consultation> filteredConsultations;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +51,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredLabs = new FilteredList<>(this.addressBook.getLabList());
+        filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
+        filteredConsultations = new FilteredList<>(this.addressBook.getConsultationList());
     }
 
     public ModelManager() {
@@ -111,6 +131,155 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasTutorial(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return addressBook.hasTutorial(tutorial);
+    }
+
+    @Override
+    public void deleteTutorial(Tutorial target) {
+        addressBook.removeTutorial(target);
+    }
+
+    @Override
+    public void addTutorial(Tutorial tutorial) {
+        addressBook.addTutorial(tutorial);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
+        requireAllNonNull(target, editedTutorial);
+
+        addressBook.setTutorial(target, editedTutorial);
+    }
+
+    @Override
+    public void addStudentToTutorial(Index toAdd, Index tutIndex) throws CommandException {
+        Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
+        addressBook.addStudentToTutorial(toAddPerson, tutIndex);
+    }
+
+    @Override
+    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType) throws CommandException {
+        addressBook.deleteStudentFromEvent(toDel, eventIndex, eventType);
+    }
+
+    @Override
+    public boolean hasLab(Lab lab) {
+        requireNonNull(lab);
+        return addressBook.hasLab(lab);
+    }
+
+    @Override
+    public void deleteLab(Lab target) {
+        addressBook.removeLab(target);
+    }
+
+    @Override
+    public void addLab(Lab lab) {
+        addressBook.addLab(lab);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setLab(Lab target, Lab editedLab) {
+        requireAllNonNull(target, editedLab);
+
+        addressBook.setLab(target, editedLab);
+    }
+
+    @Override
+    public void addStudentToLab(Index toAdd, Index labIndex) throws CommandException {
+        Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
+        addressBook.addStudentToLab(toAddPerson, labIndex);
+    }
+
+    @Override
+    public boolean hasConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return addressBook.hasConsultation(consultation);
+    }
+
+    @Override
+    public void deleteConsultation(Consultation target) {
+        addressBook.removeConsultation(target);
+    }
+
+    @Override
+    public void addConsultation(Consultation consultation) {
+        addressBook.addConsultation(consultation);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setConsultation(Consultation target, Consultation editedConsultation) {
+        requireAllNonNull(target, editedConsultation);
+        addressBook.setConsultation(target, editedConsultation);
+    }
+
+    @Override
+    public void addStudentToConsultation(Index toAdd, Index consultationIndex) throws CommandException {
+        Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
+        addressBook.addStudentToConsultation(toAddPerson, consultationIndex);
+    }
+
+    @Override
+    public boolean addNoteToTutorial(Note note, String nameOfEvent) {
+        requireNonNull(note);
+        return addressBook.addNoteToTutorial(note, nameOfEvent);
+    }
+
+    @Override
+    public boolean addNoteToLab(Note note, String nameOfEvent) {
+        requireNonNull(note);
+        return addressBook.addNoteToLab(note, nameOfEvent);
+    }
+
+    @Override
+    public boolean addNoteToConsultation(Note note, String nameOfEvent) {
+        requireNonNull(note);
+        return addressBook.addNoteToConsultation(note, nameOfEvent);
+    }
+
+    @Override
+    public boolean removeNoteFromTutorial(Index index, String nameOfEvent) {
+        requireNonNull(index);
+        return addressBook.removeNoteFromTutorial(index, nameOfEvent);
+    }
+
+    @Override
+    public boolean removeNoteFromLab(Index index, String nameOfEvent) {
+        requireNonNull(index);
+        return addressBook.removeNoteFromLab(index, nameOfEvent);
+    }
+
+    @Override
+    public boolean removeNoteFromConsultation(Index index, String nameOfEvent) {
+        requireNonNull(index);
+        return addressBook.removeNoteFromConsultation(index, nameOfEvent);
+    }
+
+    @Override
+    public boolean editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+        requireNonNull(index);
+        requireNonNull(note);
+        return addressBook.editNoteFromTutorial(index, note, nameOfEvent);
+    }
+    @Override
+    public boolean editNoteFromLab(Index index, Note note, String nameOfEvent) {
+        requireNonNull(index);
+        requireNonNull(note);
+        return addressBook.editNoteFromLab(index, note, nameOfEvent);
+    }
+    @Override
+    public boolean editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
+        requireNonNull(index);
+        requireNonNull(note);
+        return addressBook.editNoteFromConsultation(index, note, nameOfEvent);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,6 +295,164 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    /**
+     * Updates the filterPersons list with the sorted list
+     * @param metric the sorting metric used
+     * @param isIncreasing a boolean to indicate the sorting order
+     */
+    public void updateSortAllPersonList(String metric, boolean isIncreasing) {
+        requireNonNull(metric);
+        SortedList<Person> sortedData = new SortedList<>(filteredPersons);
+        Comparator<Person> comparator;
+        switch (metric) {
+        case "performance":
+            comparator = new PerformanceComparator(isIncreasing);
+            break;
+        case "email":
+            comparator = new EmailComparator(isIncreasing);
+            break;
+        case "name":
+            comparator = new NameComparator(isIncreasing);
+            break;
+        case "address":
+            comparator = new AddressComparator(isIncreasing);
+            break;
+        default:
+            comparator = new RemarkComparator(isIncreasing);
+        }
+        sortedData.setComparator(comparator);
+
+        filteredPersons = new FilteredList<>(sortedData);
+    }
+
+    /**
+     * Updates the list of students in the tutorial if that is the group of students the TA wishes to sort
+     * @param metric Type of indicator to sort by
+     * @param isIncreasing Sort in ascending or descending order
+     */
+    public void updateSortTutorialPersonList(String metric, boolean isIncreasing) {
+        requireNonNull(metric);
+        Comparator<Person> comparator;
+        switch (metric) {
+        case "performance":
+            comparator = new PerformanceComparator(isIncreasing);
+            break;
+        case "email":
+            comparator = new EmailComparator(isIncreasing);
+            break;
+        case "name":
+            comparator = new NameComparator(isIncreasing);
+            break;
+        case "address":
+            comparator = new AddressComparator(isIncreasing);
+            break;
+        default:
+            comparator = new RemarkComparator(isIncreasing);
+        }
+
+        for (Tutorial tutorial : filteredTutorials) {
+            Collections.sort(tutorial.getStudents(), comparator);
+        }
+    }
+
+    /**
+     * Updates the list of students in the lab if that is the group of students the TA wishes to sort
+     * @param metric Type of indicator to sort by
+     * @param isIncreasing Sort in ascending or descending order
+     */
+    public void updateSortLabPersonList(String metric, boolean isIncreasing) {
+        requireNonNull(metric);
+        Comparator<Person> comparator;
+        switch (metric) {
+        case "performance":
+            comparator = new PerformanceComparator(isIncreasing);
+            break;
+        case "email":
+            comparator = new EmailComparator(isIncreasing);
+            break;
+        case "name":
+            comparator = new NameComparator(isIncreasing);
+            break;
+        case "address":
+            comparator = new AddressComparator(isIncreasing);
+            break;
+        default:
+            comparator = new RemarkComparator(isIncreasing);
+        }
+
+        for (Lab lab : filteredLabs) {
+            Collections.sort(lab.getStudents(), comparator);
+        }
+    }
+
+    /**
+     * Updates the list of students in the consultation if that is the group of students the TA wishes to sort
+     * @param metric Type of indicator to sort by
+     * @param isIncreasing Sort in ascending or descending order
+     */
+    public void updateSortConsultationPersonList(String metric, boolean isIncreasing) {
+        requireNonNull(metric);
+        Comparator<Person> comparator;
+        switch (metric) {
+        case "performance":
+            comparator = new PerformanceComparator(isIncreasing);
+            break;
+        case "email":
+            comparator = new EmailComparator(isIncreasing);
+            break;
+        case "name":
+            comparator = new NameComparator(isIncreasing);
+            break;
+        case "address":
+            comparator = new AddressComparator(isIncreasing);
+            break;
+        default:
+            comparator = new RemarkComparator(isIncreasing);
+        }
+
+        for (Consultation consultation : filteredConsultations) {
+            Collections.sort(consultation.getStudents(), comparator);
+        }
+    }
+    //=========== Filtered Tutorial List Accessors =============================================================
+
+    @Override
+    public ObservableList<Tutorial> getFilteredTutorialList() {
+        return filteredTutorials;
+    }
+
+    @Override
+    public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
+        requireNonNull(predicate);
+        filteredTutorials.setPredicate(predicate);
+    }
+
+    //=========== Filtered Lab List Accessors =============================================================
+
+    @Override
+    public ObservableList<Lab> getFilteredLabList() {
+        return filteredLabs;
+    }
+
+    @Override
+    public void updateFilteredLabList(Predicate<Lab> predicate) {
+        requireNonNull(predicate);
+        filteredLabs.setPredicate(predicate);
+    }
+
+    //=========== Filtered Consultation List Accessors =============================================================
+
+    @Override
+    public ObservableList<Consultation> getFilteredConsultationList() {
+        return filteredConsultations;
+    }
+
+    @Override
+    public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
+        requireNonNull(predicate);
+        filteredConsultations.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +471,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTutorials.equals(other.filteredTutorials)
+                && filteredLabs.equals(other.filteredLabs)
+                && filteredConsultations.equals(other.filteredConsultations);
     }
-
 }

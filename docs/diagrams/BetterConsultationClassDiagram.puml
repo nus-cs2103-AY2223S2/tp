@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "{abstract}\nEvent" as Event
+
+AddressBook *-> "1" UniquePersonList
+AddressBook *--> "1" UniqueConsultationList
+
+UniquePersonList -right-> "*" Person
+UniqueConsultationList -right-> "*" Consultation
+
+Consultation -up-|> Event
+
+Consultation *--> "1" Name
+Consultation *--> "1" LocalDateTime
+Consultation --> "*" Note
+Consultation --> "*" Person
+
+@enduml
