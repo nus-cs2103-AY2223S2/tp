@@ -53,7 +53,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Photo photo = ParserUtil.parsePhoto();
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        // add command does not allow adding remarks straight away
         Remark remark = new Remark();
         Performance performance = ParserUtil.parsePerformance(argMultimap.getValue(PREFIX_PERFORMANCE).get());
 

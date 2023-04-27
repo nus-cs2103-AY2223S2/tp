@@ -7,7 +7,8 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Note;
 
 /**
- * Allows TA to add a note by checking if the command input matches add-note
+ * Allows TA to add a note by checking if the command input matches add-note.
+ *
  */
 public class AddNoteToEventCommand extends Command {
     public static final String COMMAND_WORD = "addNote";
@@ -38,7 +39,8 @@ public class AddNoteToEventCommand extends Command {
     }
 
     /**
-     * Executes the addition of note and saves it into the model state
+     * Executes the addition of note and saves it into the model state.
+     *
      * @param model {@code Model} which the command should operate on.
      * @return CommandResult A command result that flags successful message
      * @throws CommandException Throws command exception when event type is not recognized
