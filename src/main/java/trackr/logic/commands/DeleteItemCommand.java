@@ -15,6 +15,7 @@ import trackr.model.item.Item;
 /**
  * Deletes an item identified using it's displayed index from the item list.
  */
+//@@author liumc-sg-reused
 public abstract class DeleteItemCommand<T extends Item> extends Command {
 
     public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted %s: %s";

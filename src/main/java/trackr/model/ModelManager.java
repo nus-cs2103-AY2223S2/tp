@@ -25,8 +25,9 @@ import trackr.model.task.Task;
  * Represents the in-memory model of trackr data.
  */
 public class ModelManager implements Model {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    //@@author liumc-sg-reused
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private final SupplierList supplierList;
     private final TaskList taskList;
     private final Menu menu;
@@ -45,10 +46,10 @@ public class ModelManager implements Model {
         requireAllNonNull(supplierList, taskList, orderList, userPrefs);
 
         logger.fine("Initializing with supplier list: " + supplierList
-                + " and task list: " + taskList
-                + " and menu: " + menu
-                + " and order list: " + orderList
-                + " and user prefs " + userPrefs);
+                            + " and task list: " + taskList
+                            + " and menu: " + menu
+                            + " and order list: " + orderList
+                            + " and user prefs " + userPrefs);
 
         this.supplierList = new SupplierList(supplierList);
         this.taskList = new TaskList(taskList);
@@ -266,6 +267,8 @@ public class ModelManager implements Model {
         }
     }
 
+    //@@author
+
 
     //=========== SupplierList - Supplier ==============================================================================
 
@@ -285,12 +288,16 @@ public class ModelManager implements Model {
         return filteredSuppliers;
     }
 
+    //@@author liumc-sg-reused
+
     //=========== TaskList ===================================================================================
 
     @Override
     public ReadOnlyTaskList getTaskList() {
         return taskList;
     }
+
+    //@@author
 
     /**
      * Sorts and updates the sorted task list.
@@ -307,6 +314,7 @@ public class ModelManager implements Model {
     //=========== Filtered Task List Accessors ===============================================================
 
     //@@author liumc-sg-reused
+
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
      * {@code versionedTaskList}
@@ -359,6 +367,7 @@ public class ModelManager implements Model {
 
     /**
      * Sort the filtered order list.
+     *
      * @param comparator The comparator used to compare 2 order objects.
      */
     @Override
@@ -385,14 +394,14 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return supplierList.equals(other.supplierList)
-                && taskList.equals(other.taskList)
-                && menu.equals(other.menu)
-                && orderList.equals(other.orderList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredSuppliers.equals(other.filteredSuppliers)
-                && filteredTasks.equals(other.filteredTasks)
-                && filteredMenuItems.equals(other.filteredMenuItems)
-                && filteredOrders.equals(other.filteredOrders);
+                       && taskList.equals(other.taskList)
+                       && menu.equals(other.menu)
+                       && orderList.equals(other.orderList)
+                       && userPrefs.equals(other.userPrefs)
+                       && filteredSuppliers.equals(other.filteredSuppliers)
+                       && filteredTasks.equals(other.filteredTasks)
+                       && filteredMenuItems.equals(other.filteredMenuItems)
+                       && filteredOrders.equals(other.filteredOrders);
     }
 
     //=========== Calculation =============================================================
@@ -402,8 +411,8 @@ public class ModelManager implements Model {
     public ItemProfit getTotalProfits() {
         ObservableList<Order> allOrders = this.getFilteredOrderList();
         Double total = allOrders.stream()
-                .map(x -> x.getTotalProfit().getValue())
-                .reduce(0.0, (subTotal, element) -> subTotal + element);
+                               .map(x -> x.getTotalProfit().getValue())
+                               .reduce(0.0, (subTotal, element) -> subTotal + element);
         return new ItemProfit(total);
     }
 
@@ -412,8 +421,8 @@ public class ModelManager implements Model {
     public ItemSellingPrice getTotalSales() {
         ObservableList<Order> allOrders = this.getFilteredOrderList();
         Double total = allOrders.stream()
-                .map(x -> x.getTotalRevenue().getValue())
-                .reduce(0.0, (subTotal, element) -> subTotal + element);
+                               .map(x -> x.getTotalRevenue().getValue())
+                               .reduce(0.0, (subTotal, element) -> subTotal + element);
         return new ItemSellingPrice(total);
     }
 

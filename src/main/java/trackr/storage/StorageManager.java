@@ -26,10 +26,12 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code TrackrStorage} and {@code UserPrefStorage}.
      */
+    //@@author liumc-sg-reused
     public StorageManager(TrackrStorage trackrStorage, UserPrefsStorage userPrefsStorage) {
         this.trackrStorage = trackrStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
+    //@@author
 
     // ================ UserPrefs methods ==============================
 
@@ -51,10 +53,12 @@ public class StorageManager implements Storage {
 
     // ================ Trackr methods ==============================
 
+    //@@author liumc-sg-reused
     @Override
     public Path getTrackrFilePath() {
         return trackrStorage.getTrackrFilePath();
     }
+    //@@author
 
     @Override
     public Optional<ReadOnlySupplierList> readSupplierList() throws DataConversionException, IOException {
@@ -67,6 +71,7 @@ public class StorageManager implements Storage {
         return trackrStorage.readSupplierList(filePath);
     }
 
+    //@@author liumc-sg-reused
     @Override
     public Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException {
         return readTaskList(trackrStorage.getTrackrFilePath());
@@ -77,6 +82,7 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to read data from file: " + filePath);
         return trackrStorage.readTaskList(filePath);
     }
+    //@@author
 
     //@@author changgittyhub-reused
     @Override
@@ -104,6 +110,7 @@ public class StorageManager implements Storage {
     }
     //@@author
 
+    //@@author liumc-sg-reused
     @Override
     public void saveTrackr(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,
                            ReadOnlyMenu menu, ReadOnlyOrderList orderList) throws IOException {

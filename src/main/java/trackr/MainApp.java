@@ -106,6 +106,7 @@ public class MainApp extends Application {
             initialSupplierList = new SupplierList();
         }
 
+        //@@author liumc-sg-reused
         try {
             taskListOptional = storage.readTaskList();
             if (!taskListOptional.isPresent()) {
@@ -119,6 +120,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty TaskList");
             initialTaskList = new TaskList();
         }
+        //@@author
 
         try {
             menuOptional = storage.readMenu();

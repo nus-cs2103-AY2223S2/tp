@@ -57,6 +57,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
+    //@@author liumc-sg-reused
     public static PersonName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
@@ -110,6 +111,7 @@ public class ParserUtil {
         }
         return new PersonEmail(trimmedEmail);
     }
+    //@@author
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -338,6 +340,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code customerName} is invalid.
      */
+    //@@author liumc-sg-reused
     public static PersonName parseCustomerName(String customerName) throws ParseException {
         requireNonNull(customerName);
         String trimmedCustomerName = customerName.trim();
@@ -346,6 +349,7 @@ public class ParserUtil {
         }
         return new PersonName(trimmedCustomerName);
     }
+    //@@author
 
     /**
      * Parses a {@code String CustomerPhone} into a {@code CustomerPhone}.

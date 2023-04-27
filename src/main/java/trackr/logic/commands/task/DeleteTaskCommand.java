@@ -8,6 +8,7 @@ import trackr.model.task.Task;
 /**
  * Deletes a task identified using it's displayed index from the task list.
  */
+//@@author liumc-sg-reused
 public class DeleteTaskCommand extends DeleteItemCommand<Task> {
 
     public static final String COMMAND_WORD = "delete_task";
